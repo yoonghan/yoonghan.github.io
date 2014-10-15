@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Site Development - Blog</title>
+<meta name="description" content="Website development.">
+<meta name="viewport" content="width=480">
+<link rel="author"	href="https://plus.google.com/u/1/114852108498604797792" />
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>	
+<link rel="stylesheet" href="/cache/css/common.css">
+<link rel="stylesheet" href="/cache/css/webby/submenu.css">
+<link rel="stylesheet" href="/cache/css/webby/ssblog.css">
+<script src="/cache/js/jquery.min.js"></script>
+<script src="/cache/js/date.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-sanitize.min.js"></script>
+<script src="/cache/js/webby/controllers.js"></script>
+<script>
+ (function(){
+	var $win = $(window);
+	
+	function checkScroll(){
+		if($win.scrollTop() > 550){
+			$win.off('scroll', checkScroll);
+			$("#sorter").fadeIn(100);
+		}
+	}
+	
+	$win.scroll(checkScroll);
+ })();
+</script>
+</head>
+<body ng-app="menuApp" ng-controller="subMenuListCtrl" ng-init="init('Blog')">
+<div class="overlay" id="overlay" style="display:none;"></div>
+<div class="box" id="box">
+ <a class="boxclose" id="boxclose"></a>
+ <h1>Contact Us</h1>
+ <p ng-bind-html="contactus"></p>
+</div>
+	<menu>
+	  <ul>
+		<li class="menuTitle">JOM Jaring</li>
+	  	<li ng-repeat="menu in menus">
+			<a ng-href="{{menu.link}}">{{menu.display}}</a>
+		</li>
+	  </ul>
+	</menu>
+
+	<img src="/cache/img/blogbanner.jpg" style="-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;width:100%;display:block;"></img>
+	
+<div class="fullbar" id="T2">
+ <h1>Site Blog</h1>
+</div>
+<div ng-controller="blogCtrl">
+	<div id="sorter" style="display:none">
+	<input type="checkbox" id="articleshift" checked />
+	
+	<label for="articleshift">
+		<span ng-click="sortDescDisplay()" class="tooltip" data-tip="By Latest Post">&#8595;</span>
+		<span ng-click="sortAscDisplay()" class="tooltip" data-tip="By Oldest Post">&#8593;</span>
+	</label>
+	</div>
+	<br>
+	<label for="search" class="searchLabel">Blog Search:</label><input id="search" ng-model="query" placeholder="Search related blog here" style="width:350px;">
+	<hr>
+	<div id="article">
+		<div class="row" ng-repeat="blog in blogs | filter:query">
+			<blogDate>{{blog.date}}</blogDate>
+			<blogDetails>
+				<blogTask>{{blog.task}}</blogTask>
+				<blogDetail ng-bind-html="blog.detail"></blogDetail>
+			</blogDetails>
+		</div>
+	</div>
+</div>
+
+<p class="addMargin">
+<a href="#" target="_self">Back to top</a>
+</p>
+<div class="footnote">
+	<ul id="menu">
+		<li ng-repeat="menu in menus">
+			<a ng-href="{{menu.link}}">{{menu.display}}</a>
+		</li>
+	</ul>
+&copy;2014 All rights reserved - JOM Jaring<br/>
+If you are interested, do not hesitate to <a href="#" ng-click="activateBtn()">contact us</a>.
+</div>
+</body>
+</html>

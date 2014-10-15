@@ -1,0 +1,80 @@
+body{
+ font-family: 'Roboto', verdana;
+ color: #555;
+ margin:0px;
+ padding:0px;
+}
+div.row{
+ padding: 10px;
+ border-width: 1px;
+ border-style: solid;
+ background-color: #CCC;
+}
+div.row:nth-child(even){
+ background-color: #FFF;
+}
+div blogDate{
+ font-family: verdana, arial;
+ font-size:10pt;
+ font-style:italic;
+ display: table-cell;
+ padding: 10px;
+ width: 130px;
+}
+div blogDetails{
+ font-family: verdana, arial;
+ font-size:10pt;
+ font-style:italic;
+ display: table-cell;
+ padding: 10px 0px;
+}
+div blogTask{
+ padding: 8px 0px;
+ font-weight:bold;
+ display: block;
+}
+div blogDetail{
+}
+input[type=checkbox] {
+ display:none; visibility:hidden;
+}
+#article{
+ display:table;
+}
+#article .row{
+ display:table-row;
+}
+span{
+ font-size: 60px;
+ font-weight: bold;
+ font-family: 'Source Sans Pro', Helvetica, Arial ,sans-serif;
+ right:30px;
+ top:40px;
+ background-color: #333;
+ height:80px;
+ width:80px;
+ opacity:0.4;
+ filter:alpha(opacity=40);
+ text-align:center;
+ position:fixed;
+ border-width: 2px;
+ border-style: solid;
+ border-radius: 15px;
+ box-shadow: inset 0 0 5px #000000;
+ box-shadow: 7px 7px 1px 1px #aaa;
+}
+span:hover{
+ opacity:0.8;
+ filter:alpha(opacity=80);
+}
+.addMargin{
+ margin-left:10px;
+}
+.searchLabel{
+ margin:0px 10px;
+ font-weight:bold;
+ color:blue;
+}
+span:last-child { display:none; visibility:hidden; }
+input[type=checkbox]:checked + label span:last-child { display:inline; visibility:visible; }
+input[type=checkbox]:checked + label span:first-child { display:none; visibility:hidden; }

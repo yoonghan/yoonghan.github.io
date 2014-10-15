@@ -1,0 +1,63 @@
+body{
+ margin:0px;
+ padding:0px;
+ font-family: 'Roboto', Arial;
+ font-size: 18pt;
+}
+.deprecated{
+ text-decoration: line-through
+}
+.deprecated_text{
+ color:red;
+ font-weight:bold;
+}
+.tablesaw td,
+.tablesaw tbody th{
+ vertical-align: middle;
+}
+.tablesaw thead{
+ border: 1px solid #e5e5e4;
+ background: #e2dfdc;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e2dfdc));
+ background-image: -webkit-linear-gradient(top, #fff, #e2dfdc);
+ background-image: linear-gradient(to bottom, #fff, #e2dfdc);
+}
+.tablesaw thead th{
+ font-weight: bold;
+ color: #777;
+ font-size:15pt;
+ text-transform: uppercase;
+ text-shadow: 0 1px 0 #fff;
+ text-align: left;
+}
+.tablesaw-cell-label{
+ font-weight:bold;
+}
+.artImgDisplay{
+ display:hide;
+}
+.desc{
+ font-style:italic;
+}
+tr:nth-child(even){ background-color:#ccc; }
+.addMargin,.link{
+ margin:0px 10px;
+}
+input[type=checkbox] {
+ border: 0;
+ clip: rect(0 0 0 0);
+ height: 1px;
+ width: 1px;
+ margin: -1px;
+ overflow: hidden;
+ padding: 0;
+ position: absolute;
+}
+.searchLabel{
+ margin:0px 10px;
+ font-weight:bold;
+ color:blue;
+}
+input[type=checkbox]:checked ~ section { display: block; visibility:visible; }
+input[type=checkbox]:checked ~ span:first-child { display: block; visibility:visible; }
+//section {display: none; visibility:hidden;}

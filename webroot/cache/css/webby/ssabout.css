@@ -1,0 +1,47 @@
+body{
+ margin:0px;
+ padding:0px;
+ font-family: 'Roboto', arial;	
+ font-size:20;
+ color:333;
+}
+.banner{
+ width: 150px;
+ border-radius: 50%;
+ margin-right: 20px;
+}
+intro{
+ color:#777;
+ text-align: justify;
+}
+.profile{
+ width: 220px;
+ border-radius: 50%;
+ margin-right: 20px;
+ margin-bottom: 100px;
+}
+#left{
+ float:left;
+}
+#right{
+ float:right;
+}
+#container{
+ display:table;
+ margin-right: 25%;
+ margin-left: 25%;
+}
+#row{
+ display:table-row;
+}
+#desc {
+ display: table-cell;
+}
+h2{
+ font-weight:bold;
+ font-size:24pt;
+ display:block;
+}
+contact{
+ font-weight: bold;
+}

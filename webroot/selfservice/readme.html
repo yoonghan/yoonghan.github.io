@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JOM Jaring - Login Help</title>
+<meta name="description" content="Login help.">
+<meta name="viewport" content="width=480">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<style>
+ body{
+ margin:10px;
+ font-family: 'Roboto', arial;
+ }
+ h1{
+ font-size:36px;
+ }
+ h2 {
+ color: #FFF;
+ background: none repeat scroll 0% 0% #444;
+ margin: 10px -10px;
+ padding: 20px 30px;
+}
+input[type=checkbox] {
+ color: #00F;
+}
+.images {display:none; visibility:hidden;}
+#account:hover .images{
+ position:absolute;
+ 
+ left:10px
+ z-index:100;
+ display:inline;
+ visibility:visible;
+ background-color:grey;
+ padding:10px;
+ valign:top;
+ border:#222 1px solid;
+}
+a{
+ text-decoration:none;
+ font-style:bold;
+ color:blue;
+}
+a:hover #return{
+ background-color:rgb(13, 73, 08);
+ margin-top:1px;
+ box-shadow:#444 6px 6px 3px;
+}
+#return{
+ margin-top:2px;
+ font-size:20pt;
+ background-color:rgb(30, 100, 35);
+ border-radius:8px;
+ border:#000 1px solid;
+ color:#FFF;
+ padding:10px;
+ text-align:center;
+ box-shadow:#444 5px 5px 3px;
+}
+</style>
+</head>
+<body>
+<h1>JOM Jaring's Login Help</h1>
+<h2>How do you login?</h2>
+<div>
+Here are the simple <strong>steps</strong>:
+ <ol>
+ <li>Visit <a href="http://login.jomjaring.com">JOM Jaring's Login page</a></li>
+ <li>Choose your login preference, either Gmail or Facebook.</li>
+ <li>You will be brought to Facebook or Gmail. Login or get registered at their website.</li>
+ <li><a href="#" id="account">Allow
+ <div class="images">
+ <img src="/cache/img/branding/login/g_approval.png"/>
+ <img src="/cache/img/branding/login/f_approval.png"/>
+ </div>
+ </a> the respective account's approval. <br>
+ <span style="color:red;font-weight:bold">NOTE:</span>
+	<ul>
+	<li>Check that the permission is from <strong>JOM Jaring</strong>.</li>
+	<li>The website is only accessing personal profile. <strong>Not</strong> your contacts.</li>
+	</ul>
+ </li>
+ <li>You're done!</li>
+ </ol>
+</div>
+<h2>Questionaires</h2>
+ 
+<h3>What's an External Login?</h3>
+<div>
+We are not, nor planning, to maintain an internal login of our own website. JOM Jaring will be using your <i>Gmail</i> and <i>Facebook</i>
+account as our identification platform. But do not worry, we will not be taking any advantages of your important data. If you will need more
+information, please email and contact us via <a href="mailto:jomjaring@gmail.com">jomjaring@gmail.com</a>.
+</div>
+ 
+<h3>Information Gathered</h3>
+	
+<div>
+We are only interested to verify your validity as an Internet user; i.e. not an AI. JOM Jaring will and do respect 
+you privacy, hence, we will not reveal any of these information any third parties without your consensus. We
+ will ONLY keep these information of yours for reference:
+ <ul>
+ <li>Your name</li>
+ <li>Your gender</li>
+ <li>Your email</li>
+ <li>Your facebook or gmail identity number</li>
+ </ul>
+</div>
+<a href="javascript:window.close();"><p id="return">Return</p></a>
+<br>
+<br>
+</body>
+</html>
