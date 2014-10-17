@@ -11,3 +11,8 @@ Supports
 
 -Caching of html pages
 -Manual identification and header modification of types/folders
+
+Installation required
+========
+-Install protractor by for development
+	npm install protractor
