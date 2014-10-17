@@ -21,12 +21,18 @@
   "dependencies": {
     "express": "^3.4.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+	"karma-chrome-launcher": "~0.1.5",
+	"karma": "~0.12.24",
+	"karma-jasmine": "~0.1.5"
+  },
   "bundleDependencies": [],
   "private": true,
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+	"test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+	"e2etest": "protractor test/protractor-conf.js"
   },
   "bugs": {
     "url": "https://github.com/openshift/origin-server/issues"

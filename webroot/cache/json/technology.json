@@ -17,10 +17,10 @@
 {
 "tech":"Vert.x",
 "deprecated":"true",
-"detail":"Lightweight webserver for image loading and static contents. Replacement of Node JS."
+"detail":"Lightweight webserver for image loading and static contents. Replacement of Node.js."
 },
 {
-"tech":"Node JS",
+"tech":"Node.js",
 "deprecated":"false",
 "detail":"Lightweight webserver. Replacement of Vert.x."
 },
@@ -47,7 +47,7 @@
 {
 "tech":"HTML5 & CSS3", 
 "deprecated":"false",
-"detail":"Do i need to say more?"
+"detail":"Do I need to say more?"
 },
 {
 "tech":"Quartz",
@@ -82,6 +82,6 @@
 {
 "tech":"Google Analytics", 
 "deprecated":"false",
-"detail":"Monitoring of website."
+"detail":"Monitor the visitor frequency of the website."
 }
 ]

@@ -23,7 +23,7 @@ var SampleApp = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 9000;
+        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -103,45 +103,56 @@ var SampleApp = function() {
      *  Create the routing table entries + handlers for the application.
      */
     self.createRoutes = function() {
+		var CONTENT_TYPE='Content-Type';
+		var CACHE_CONTROL='Cache-Control';
+		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
         self.routes = { };
 
 		self.routes['/favicon.ico'] = function(req, res) {
+			res.setHeader( CONTENT_TYPE,  self.checkfileHeader(".ico"));
 			res.send(fs.readFileSync(webroot+'/favicon.ico'));
 		};
 		
 		self.routes['/selfservice/*:path'] = function(req, res) {
-			res.setHeader('Content-Type', 'text/html');
+			
 			var reqPath = self.replacePath(req.path.toString());
+			
+			res.setHeader(CONTENT_TYPE, self.checkfileHeader(".html"));
 			res.send(self.cache_get(reqPath + ".html"));
 		};
 		
 		self.routes['/webby/*:path'] = function(req, res) {
-			res.setHeader('Content-Type', 'text/html');
+			
 			var reqPath = self.replacePath(req.path.toString());
+			
+			res.setHeader(CONTENT_TYPE, self.checkfileHeader(".html"));
 			res.send(self.cache_get(reqPath + "/index.html"));
 		};
 		
 		self.routes['/cache/*:path'] = function(req, res) {
 			var reqPath = self.replacePath(req.path.toString());
-			res.set({
-						'Content-Type': self.checkfileHeader(reqPath),
-						'Cache-Control': 'no-transform,public,max-age=3600,s-maxage=3600'
-					});
+			var header = {};
+			header[CONTENT_TYPE] = self.checkfileHeader(reqPath);
+			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
+			
+			res.set(header);
 			res.send(fs.readFileSync(reqPath));
 		};
 		
 		self.routes['/cache/json/*:path'] = function(req, res) {
 			var reqPath = self.replacePath(req.path.toString());
-			res.set({
-					'Access-Control-Allow-Origin': '*',
-					'Content-Type' : 'application/json',
-					'Cache-Control' : 'no-transform,public,max-age=3600,s-maxage=3600'
-					});
+			
+			var header = {};
+			header[CONTENT_TYPE] = self.checkfileHeader(".json");
+			header[ALLOW_ACCESS_ORIGIN] = '*';
+			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
+			
+			res.set(header);
 			res.send(fs.readFileSync(reqPath));
 		};
 		
         self.routes['/'] = function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
+            res.setHeader("Content-Type" , self.checkfileHeader(".html"));
             res.send( self.cache_get(webroot + 'webby/index.html') );
         };
     };
@@ -156,6 +167,7 @@ var SampleApp = function() {
 	**/
 	self.checkfileHeader = function(val){
 		var ext = val.substring(val.lastIndexOf("."), val.length)
+		
 		switch(ext){
 			case ".css":
 				return 'text/css';
@@ -167,6 +179,12 @@ var SampleApp = function() {
 				return "application/javascript";
 			case ".svg":
 				return "image/svg+xml";
+			case ".ico":
+				return "image/x-icon";
+			case ".json":
+				return "application/json";
+			case ".html":
+				return "text/html";
 			default:
 				return "application/stream";
 		}
