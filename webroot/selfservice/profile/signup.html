@@ -2,48 +2,53 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>First timer - Signing up</title>
 
-<script src="/cache/js/jquery.min.js"></script>
-<script src="/cache/js/angular/angular.min.js"></script>
-<script src="/cache/js/angular/angular-sanitize.min.js"></script>
-<script src="/cache/js/selfservice/profilecontroller.js"></script>
+<link href="/cache/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/cache/css/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
+<link href="/cache/css/selfservice/common.css" rel="stylesheet">
 </head>
-<body ng-app="profileApp"  ng-controller="profileController">
+<body ng-app="profileApp" role="document">
 
 <!-- Greetings -->
-<div style="text-align:justify; text-justify:inter-word; margin:10px; width: 720px">
-Hello <strong>{{fstName}} {{lstName}},</strong><br/><br/>
-Welcome and thank you for registering with us. 
-As a first timer, we would like you to spend some time with us to fill up these necessary information. 
-With the <strong>information</strong> you will be providing, we will try to anticipate and provide you with better services.
-<p/>
-<strong>Important:</strong> All datas of yours will be treated with confidentiality; only to be shared with your consensus.
-<p/>
-Again, we do like to thank you and we do hope that you'll enjoy the service.
-<p/>	 
+<div class="container theme-showcase" role="main"  ng-controller="profileController">
+<div class="jumbotron">
+<h3>Hello <strong>{{fstName}} {{lstName}},</strong></h3>
+
+<p>
+Welcome and thank you for registering with JOM Jaring. 
+As a first timer, please spend some time with us to fill up your necessary information. 
+We would like to thank you for trusting in us; we from JOM Jaring will always be looking forward to serve you better.
+<br><br>
+<strong>Notice:</strong> All datas of yours will be treated with confidentiality; only to be shared with your consensus.
+</p>
+
 </div>
 
-<div class="error" ng-show="errors">
-Errors Detected, please check:
+<div class="alert alert-danger" ng-show="errors" role="alert">
+<strong>Oh Snap, </strong> please check if there's something unconfigured:
 <ul ng-repeat="error in errors">
 	<li>{{error}}</li>
 </ul>
 </div>
 <!-- Input form for user -->
-<div>
+
+
 	<form ng-submit="processForm()" name="profile">
 
-<table>
+<table class="table table-striped">
 <!-- First Name -->
+<tbody>
 <tr>
 <td>
 		<label for="fstName" class="required">First Name:</label>
 </td>
 <td>
 		<input name="fstName" type="text" ng-model="fstName" required ngMaxlength="30">
-		<span class="error" ng-show="profile.fstName.$error.required">Required!</span>
+		<span class="alert alert-danger alertmsg" ng-show="profile.fstName.$error.required">Required!</span>
 </td>
 </tr>		
 <!-- Middle Name -->
@@ -62,7 +67,7 @@ Errors Detected, please check:
 </td>
 <td>
 		<input name="lstName" type="text" ng-model="lstName" required ngMaxlength="30">
-		<span class="error" ng-show="profile.lstName.$error.required">Required!</span>
+		<span class="alert alertmsg alert-danger" ng-show="profile.lstName.$error.required">Required!</span>
 </td>
 </tr>
 <!-- Gender -->
@@ -72,9 +77,9 @@ Errors Detected, please check:
 </td>
 <td>
 		<div>
-		<input type="radio" ng-model="gender" value="M">Male 
-		<input type="radio" ng-model="gender" value="F">Female
-		<input type="radio" ng-model="gender" value="O">Not to be specified
+		<input type="radio" ng-model="gender" value="M"> Male &nbsp;
+		<input type="radio" ng-model="gender" value="F"> Female &nbsp;
+		<input type="radio" ng-model="gender" value="O"> Not to be specified
 		</div>
 </td>
 </tr>
@@ -85,8 +90,8 @@ Errors Detected, please check:
 </td>
 <td>
 		<input name="ctcNo" type="text" ng-model="ctcNo" placeholder="e.g. 01234567890" ng-pattern="number" ng-maxlength="13">
-		<span class="error" ng-show="profile.ctcNo.$error.maxlength">Maximum only 13 numbers</span>
-		<span class="error" ng-show="profile.ctcNo.$error.pattern">Only +012345678 or 0123456 numbers allowed</span>
+		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.maxlength">Maximum only 13 numbers</span>
+		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.pattern">Only +012345678 or 0123456 numbers allowed</span>
 </td>
 </tr>
 <!-- Country -->
@@ -106,34 +111,40 @@ Errors Detected, please check:
 		<label for="state" class="required">State</label>
 </td>
 <td>
-		<select name="state" ng-model="state" required>
-			<option value="">--Select a state--</option>
-      		<option value="KL">Kuala Lumpur</option>
-      		<option value="PT">Putrajaya</option>
-      		<option value="JB">Johor Baharu</option>
-      		<option value="KD">Kedah</option>
-      		<option value="KL">Kelantan</option>
-      		<option value="MC">Malacca</option>
-      		<option value="NS">Negeri Sembilan</option>
-      		<option value="PHG">Pahang</option>
-      		<option value="PRK">Perak</option>
-      		<option value="PRL">Perlis</option>
-      		<option value="PG">Penang</option>
-      		<option value="SB">Sabah</option>
-      		<option value="SW">Sarawak</option>
-      		<option value="TRG">Terengganu</option>
+		<select name="state" ng-model="state" required ng-options="stat.value for stat in states">
+			 <option value="">-- Choose a State --</option>
     	</select>
 
-    	<span class="error" ng-show="profile.state.$error.required">Required!</span>
+    	<span class="alert alertmsg alert-danger" ng-show="profile.state.$error.required">Required!</span>
 </td>
 </tr>
 <tr>
 <td colspan="2" align="center">    	
-    	<input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="btn btn-lg btn-success">
 </td>
 </tr>
+</tbody>
 </table>
 </form>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Thank you for registering with us!</h3>
+        </div>
+        <div class="modal-body">
+            Your registration has been completed. You can now proceed to the site.
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>
+    </script>
 </div>
+
 </body>
+
+<script src="/cache/js/jquery.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-sanitize.min.js"></script>
+<script src="/cache/js/selfservice/profilecontroller.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.10.0.min.js"></script>
 </html>

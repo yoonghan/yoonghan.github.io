@@ -1,6 +1,6 @@
 'use strict';
 
-var profileApp = angular.module('profileApp', []);
+var profileApp = angular.module('profileApp', ['ui.bootstrap']);
 
 profileApp.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
@@ -16,7 +16,7 @@ function createProfileJSON($scope){
 		gender: $scope.gender,
 		contactNo: $scope.ctcNo,
 		country: $scope.cntry,
-		state: $scope.state
+		state: $scope.state.id
 	}
 }
 
@@ -37,8 +37,15 @@ function redirectPage(){
 }
 
 //Request is gathered from user session
-profileApp.controller('profileController', ['$scope','$http', 
-   function ($scope, $http) {
+profileApp.controller('profileController', ['$scope','$http', '$modal',  
+   function ($scope, $http, $modal) {
+	
+	//get all states
+	$http.get('/cache/json/mlystate.json').success(function(data){
+		$scope.states = data;
+	});
+	
+	//get user profile
 	$http.get('http://localhost:9000/user/profile').success(function(data){
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
@@ -48,11 +55,26 @@ profileApp.controller('profileController', ['$scope','$http',
 			redirectPage();
 		}
     });
+	
 	$scope.number = /^\+?[0-9]+$/;
 	$scope.cntry = "MY";
 	$scope.gender = "O";
 	
 	$scope.formData = {};
+	
+	$scope.open = function () {
+	   var modalInstance = $modal.open({
+	     templateUrl: 'myModalContent.html',
+	     controller: 'ModalInstanceCtrl',
+	     resolve: {}
+	   });
+	   modalInstance.result.then(function () {
+			redirectPage();
+	   }, function () {
+		   redirectPage();
+	   });
+	};
+	
 	
 	$scope.processForm = function(isValid) {
 		
@@ -66,17 +88,20 @@ profileApp.controller('profileController', ['$scope','$http',
 	        data    : $scope.formData,  // pass in data as strings
 	        headers: {'Content-Type': 'application/json'}
 	    })
-	        .success(function(data) {
-	            if (data.success) {
-	            	// create an alert box to thank then continue
-	            	redirectPage();
-	            }
-	        })
-	        .error(function(data){
-	        	$scope.errors = data.errors;
-	        });
-		
-
+        .success(function(data) {
+            if (data.success) {
+            	$scope.open();
+            }
+        })
+        .error(function(data){
+        	$scope.errors = data.errors;
+        });
 	};
-
 }]);
+
+profileApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+  $scope.ok = function () {
+	$modalInstance.close();
+  };
+});
+

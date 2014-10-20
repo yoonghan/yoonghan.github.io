@@ -18,31 +18,8 @@
   ga('create', 'UA-55768924-1', 'auto');
   ga('send', 'pageview');
 </script>
-<script src="/cache/js/jquery.min.js"></script>
-<script src="/cache/js/jquery.vegas.min.js"></script>
-<script src="/cache/js/angular/angular.min.js"></script>
-<script src="/cache/js/webby/controllers.js"></script>
 <link rel="stylesheet" type="text/css" href="/cache/css/vegas.min.css" />
 <link rel="stylesheet" type="text/css" href="/cache/css/webby/ssmain.css" />
-<script>
-$(function() {
- $.getJSON("http://localhost:9000/rest/image/intro",function(data)
- {
-	$.vegas( 'slideshow', data)('overlay'); 
- }); 
-});
-$( document ).ready(function() {
- $('#show').on('click', function() {
- $('#nav').animate({'left':'0px'},100);
- });
- $('#hide').on('click', function() {
- $('#nav').animate({'left':'-500px'},100);
- });
- $('#nav_listener').on('click', function() {
- $('#nav').animate({'left':'-500px'},100);
- });
-});
-</script>
 </head>
 <body ng-app="mainApp" ng-controller="menuListCtrl">
 <div id="nav_listener" style="min-width:96%;min-height:96%;z-index:96;position:absolute;">
@@ -65,4 +42,27 @@ $( document ).ready(function() {
  To use the images in this site, please request from the author: mailyoonghan@gmail.com.
 </footnote>
 </body>
+<script src="/cache/js/jquery.min.js"></script>
+<script src="/cache/js/jquery.vegas.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/webby/controllers.js"></script>
+<script>
+$(function() {
+ $.getJSON("http://localhost:9000/rest/image/intro",function(data)
+ {
+	$.vegas( 'slideshow', data)('overlay'); 
+ }); 
+});
+$( document ).ready(function() {
+ $('#show').on('click', function() {
+ $('#nav').animate({'left':'0px'},100);
+ });
+ $('#hide').on('click', function() {
+ $('#nav').animate({'left':'-500px'},100);
+ });
+ $('#nav_listener').on('click', function() {
+ $('#nav').animate({'left':'-500px'},100);
+ });
+});
+</script>
 </html>

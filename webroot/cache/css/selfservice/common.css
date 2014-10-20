@@ -1,0 +1,22 @@
+body {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.alertmsg{
+	padding:4px;
+}
+
+.jumbotron{
+	padding-top:15px;
+	padding-bottom:15px;
+	margin-bottom:0px;
+}
+
+.jumbotron p{
+	font-size:14px;
+}
