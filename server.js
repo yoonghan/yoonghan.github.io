@@ -11,6 +11,7 @@ var SampleApp = function() {
 	var webroot = "./webroot/";
     //  Scope.
     var self = this;
+    var testEnv = false;
 
 
     /*  ================================================================  */
@@ -30,6 +31,7 @@ var SampleApp = function() {
             //  allows us to run/test the app locally.
             console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
             self.ipaddress = "127.0.0.1";
+            testEnv=true;
         };
     };
 
@@ -45,14 +47,15 @@ var SampleApp = function() {
 
 
     /**
-     *  Retrieve entry (content) from cache.
+     *  Retrieve entry (content) from cache. 
+     *  Only test environment is not cached.
      *  @param {string} key  Key identifying content to retrieve from cache.
      */
     self.cache_get = function(path) { 
 		
 		var cache = self.zcache[path];
 		
-		if(cache == undefined){
+		if(cache == undefined || testEnv){
 			try{
 				cache = fs.readFileSync(path);
 			}catch(e){

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>First timer - Signing up</title>
+
+<script src="/cache/js/jquery.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-sanitize.min.js"></script>
+<script src="/cache/js/selfservice/profilecontroller.js"></script>
+
+</head>
+<body ng-app="profileApp"  ng-controller="profileController">
+
+<!-- Greetings -->
+<div style="text-align:justify; text-justify:inter-word; margin:10px; width: 720px">
+Hello <strong>{{fstName}} {{lstName}},</strong><br/><br/>
+Welcome and thank you for registering with us. 
+As a first timer, we would like you to spend some time with us to fill up these necessary information. 
+With the <strong>information</strong> you will be providing, we will try to anticipate and provide you with better services.
+<p/>
+<strong>Important:</strong> All datas of yours will be treated with confidentiality; only to be shared with your consensus.
+<p/>
+Again, we do like to thank you and we do hope that you'll enjoy the service.
+<p/>	 
+</div>
+
+<div class="error" ng-show="errors">
+Errors Detected, please check:
+<ul ng-repeat="error in errors">
+	<li>{{error}}</li>
+</ul>
+</div>
+<!-- Input form for user -->
+<div>
+	<form ng-submit="processForm()" name="profile">
+
+<table>
+<!-- First Name -->
+<tr>
+<td>
+		<label for="fstName" class="required">First Name:</label>
+</td>
+<td>
+		<input name="fstName" type="text" ng-model="fstName" required ngMaxlength="30">
+		<span class="error" ng-show="profile.fstName.$error.required">Required!</span>
+</td>
+</tr>		
+<!-- Middle Name -->
+<tr>
+<td>	
+		<label for="midName">Middle Name:</label>
+</td>
+<td>
+		<input name="midName" type="text" ng-model="midName" ngMaxlength="30">
+</td>
+</tr>
+<!-- Last Name -->
+<tr>
+<td>		
+		<label for="lstName" class="required">Last Name:</label>
+</td>
+<td>
+		<input name="lstName" type="text" ng-model="lstName" required ngMaxlength="30">
+		<span class="error" ng-show="profile.lstName.$error.required">Required!</span>
+</td>
+</tr>
+<!-- Gender -->
+<tr>
+<td>
+		<label for="gender" class="required">Gender:</label>
+</td>
+<td>
+		<div>
+		<input type="radio" ng-model="gender" value="M">Male 
+		<input type="radio" ng-model="gender" value="F">Female
+		<input type="radio" ng-model="gender" value="O">Not to be specified
+		</div>
+</td>
+</tr>
+<!-- Contact No -->
+<tr>
+<td>
+		<label for="ctcNo">Contact No:</label>
+</td>
+<td>
+		<input name="ctcNo" type="text" ng-model="ctcNo" placeholder="e.g. 01234567890" ng-pattern="number" ng-maxlength="13">
+		<span class="error" ng-show="profile.ctcNo.$error.maxlength">Maximum only 13 numbers</span>
+		<span class="error" ng-show="profile.ctcNo.$error.pattern">Only +012345678 or 0123456 numbers allowed</span>
+</td>
+</tr>
+<!-- Country -->
+<tr>
+<td>
+		<label for="cntry" class="required">Country</label>
+</td>
+<td>
+		<select name="cntry" ng-model="cntry" required>
+      		<option value="MY">Malaysia</option>
+    	</select>
+</td>
+</tr>
+<!-- State [Hard coded reason being it's never changed]-->
+<tr>
+<td>
+		<label for="state" class="required">State</label>
+</td>
+<td>
+		<select name="state" ng-model="state" required>
+			<option value="">--Select a state--</option>
+      		<option value="KL">Kuala Lumpur</option>
+      		<option value="PT">Putrajaya</option>
+      		<option value="JB">Johor Baharu</option>
+      		<option value="KD">Kedah</option>
+      		<option value="KL">Kelantan</option>
+      		<option value="MC">Malacca</option>
+      		<option value="NS">Negeri Sembilan</option>
+      		<option value="PHG">Pahang</option>
+      		<option value="PRK">Perak</option>
+      		<option value="PRL">Perlis</option>
+      		<option value="PG">Penang</option>
+      		<option value="SB">Sabah</option>
+      		<option value="SW">Sarawak</option>
+      		<option value="TRG">Terengganu</option>
+    	</select>
+
+    	<span class="error" ng-show="profile.state.$error.required">Required!</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">    	
+    	<input type="submit" value="Submit">
+</td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>
