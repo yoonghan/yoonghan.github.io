@@ -89,7 +89,7 @@ We would like to thank you for trusting in us; we from JOM Jaring will always be
 		<label for="ctcNo">Contact No:</label>
 </td>
 <td>
-		<input name="ctcNo" type="text" ng-model="ctcNo" placeholder="e.g. 01234567890" ng-pattern="number" ng-maxlength="13">
+		<input name="ctcNo" type="text" ng-model="ctcNo" placeholder="e.g. +60123456789" ng-pattern="number" ng-maxlength="13">
 		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.maxlength">Maximum only 13 numbers</span>
 		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.pattern">Only +012345678 or 0123456 numbers allowed</span>
 </td>
@@ -111,7 +111,7 @@ We would like to thank you for trusting in us; we from JOM Jaring will always be
 		<label for="state" class="required">State</label>
 </td>
 <td>
-		<select name="state" ng-model="state" required ng-options="stat.value for stat in states">
+		<select name="state" ng-model="state" required ng-options="stat.value for stat in states" autofocus>
 			 <option value="">-- Choose a State --</option>
     	</select>
 
@@ -139,7 +139,7 @@ We would like to thank you for trusting in us; we from JOM Jaring will always be
         </div>
     </script>
     
-<div id="status" style="visible:hidden;">{{status}}</div>
+<div id="status" style="display: none;">{{status}}</div>
     
 </div>
 
