@@ -42,14 +42,18 @@ describe('Introduction App', function() {
 	
 	//check query is correctly displayed
 	var query = element(by.model('query'));
-	var techListColumn = element.all(by.repeater('technology in technologies').column('{{technology.tech}}'));
-	function getNames() {
-        return techListColumn.map(function(elm) {
-          return elm.getText();
-        });
-    }
 	query.sendKeys('Node.js');
-	expect(getNames()).toContain("Node.js");
+	var techListColumn = element.all(by.repeater('technology in technologies').column('technology.tech'));
+//	function getNames() {
+//        return techListColumn.map(function(elm) {
+//          return (elm.getText());
+//        });
+//    }
+//	
+//	expect(getNames()).toContain("Node.js");
+	techListColumn.then(function(tech){
+		expect(tech[0].getText()).toContain("Node.js");
+	});
   });
   
   it('Check blog page', function() {
@@ -65,14 +69,17 @@ describe('Introduction App', function() {
 	
 	//check query is correctly displayed
 	var query = element(by.model('query'));
-	var blogListColumn = element.all(by.repeater('blog in blogs').column('{{blog.task}}'));
-	function getTasks() {
-        return blogListColumn.map(function(elm) {
-          return (elm.getText());
-        });
-    }
 	query.sendKeys('Node');
-	var extracted = eval(getTasks());
-	expect(extracted).toContain("Node JS");
+	var blogListColumn = element.all(by.repeater('blog in blogs').column('blog.task'));
+//	function getTasks() {
+//        return blogListColumn.map(function(elm) {
+//          return (elm.getText());
+//        });
+//    }
+//	var extracted = eval(getTasks());
+//	expect(extracted).toContain("Node JS");
+	blogListColumn.then(function(blog){
+		expect(blog[0].getText()).toContain("Node");
+	});
   });
 });

@@ -59,6 +59,7 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	$scope.number = /^\+?[0-9]+$/;
 	$scope.cntry = "MY";
 	$scope.gender = "O";
+	$scope.status = "notok";
 	
 	$scope.formData = {};
 	
@@ -66,15 +67,13 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	   var modalInstance = $modal.open({
 	     templateUrl: 'myModalContent.html',
 	     controller: 'ModalInstanceCtrl',
+	     backdrop: 'static',
 	     resolve: {}
 	   });
-	   modalInstance.result.then(function () {
-			redirectPage();
-	   }, function () {
-		   redirectPage();
-	   });
+	   
+	   //created this variable as there's no other way to know if dialog pop's up in protractor
+	   $scope.status = "ok";
 	};
-	
 	
 	$scope.processForm = function(isValid) {
 		
@@ -101,6 +100,7 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 
 profileApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
   $scope.ok = function () {
+	redirectPage();
 	$modalInstance.close();
   };
 });
