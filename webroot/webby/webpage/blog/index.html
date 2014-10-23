@@ -20,7 +20,7 @@
 	<menu>
 	  <ul>
 		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus">
+	  	<li ng-repeat="menu in menus" class="repeated-item">
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -44,7 +44,7 @@
 	<label for="search" class="searchLabel">Blog Search:</label><input id="search" ng-model="query" placeholder="Search related blog here" style="width:350px;">
 	<hr>
 	<div id="article">
-		<div class="row" ng-repeat="blog in blogs | filter:query">
+		<div class="row repeated-item" ng-repeat="blog in blogs | filter:query">
 			<blogDate>{{blog.date}}</blogDate>
 			<blogDetails>
 				<blogTask>{{blog.task}}</blogTask>
@@ -59,7 +59,7 @@
 </p>
 <div class="footnote">
 	<ul id="menu">
-		<li ng-repeat="menu in menus">
+		<li ng-repeat="menu in menus" class="repeated-item">
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>
@@ -71,6 +71,7 @@ If you are interested, do not hesitate to <a href="#" ng-click="activateBtn()">c
 <script src="/cache/js/date.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
 <script src="/cache/js/angular/angular-sanitize.min.js"></script>
+<script src="/cache/js/angular/angular-animate.min.js"></script>
 <script src="/cache/js/webby/controllers.js"></script>
 <script>
  (function(){

@@ -6,7 +6,7 @@ var contactus = "You can contact us via Email: "+
 	"<a href=\"mailto:mailyoonghan@gmail.com\">mailyoonghan@gmail.com</a>.";
 
 /* Controllers */
-var menuApp = angular.module('menuApp', ['ngSanitize']);
+var menuApp = angular.module('menuApp', ['ngSanitize','ngAnimate']);
 var mainApp = angular.module('mainApp', []);
 
 mainApp.controller('menuListCtrl', ['$scope','$http', '$location',

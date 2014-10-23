@@ -6,7 +6,7 @@ ping 192.0.2.2 -n 1 -w 2000 > nul
 
 #Start the play test service
 start /D "C:\SelfProject\IDE\workspace_scala\selfservice" activator run
-ping 192.0.2.2 -n 1 -w 10000 > nul
+ping 192.0.2.2 -n 1 -w 30000 > nul
 
 #Start the standalone pgm
 start npm start

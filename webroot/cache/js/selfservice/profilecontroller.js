@@ -60,6 +60,7 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	$scope.cntry = "MY";
 	$scope.gender = "O";
 	$scope.status = "notok";
+	$scope.flag = false;
 	
 	$scope.formData = {};
 	
@@ -76,6 +77,10 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	};
 	
 	$scope.processForm = function(isValid) {
+	    if ($scope.flag) {
+	        return;
+	    }
+		$scope.flag = true;
 		
 		if(checkNotValidity($scope))return;
 		
@@ -90,10 +95,14 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
         .success(function(data) {
             if (data.success) {
             	$scope.open();
+            }else{
+            	$scope.errors = "We encounted exception, please try again."
+            	$scope.flag = false;
             }
         })
         .error(function(data){
         	$scope.errors = data.errors;
+        	$scope.flag = false;
         });
 	};
 }]);

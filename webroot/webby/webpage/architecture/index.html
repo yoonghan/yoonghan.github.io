@@ -24,7 +24,7 @@
    	<menu>
 	  <ul>
 		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus">
+	  	<li ng-repeat="menu in menus" class="repeated-item">
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -67,7 +67,7 @@
 		</tr>
 	</thead>
 	<tbody >
-		<tr ng-repeat="technology in technologies | orderBy:'deprecated' | filter:query ">
+		<tr ng-repeat="technology in technologies | orderBy:'deprecated' | filter:query " class="repeated-item">
 			<td>{{technology.tech}}</td>
 			
 			<td class="desc">
@@ -165,7 +165,7 @@
 <br/>
    <div class="footnote">
 	<ul id="menu">
-		<li ng-repeat="menu in menus">
+		<li ng-repeat="menu in menus" class="repeated-item">
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>
@@ -177,5 +177,6 @@
 <script src="/cache/js/tablestack/tablesaw.stackonly.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
 <script src="/cache/js/angular/angular-sanitize.min.js"></script>
+<script src="/cache/js/angular/angular-animate.min.js"></script>
 <script src="/cache/js/webby/controllers.js"></script>
 </html>

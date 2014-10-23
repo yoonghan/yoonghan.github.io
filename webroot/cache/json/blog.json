@@ -87,7 +87,7 @@
 },
 {
 "date":"Oct 1st, 2014",
-"task":"Scala", 
+"task":"Scala, version 4", 
 "detail":"Migrated full source to scala <strong>Play</strong> as the architecture background, rather than using pure J2EE container. To migrate codes from Vert.x to NodeJS as well. It's inevitable, that technology has catched up; and so do I." 
 },
 {
@@ -99,6 +99,11 @@
 "date":"Oct 13th, 2014",
 "task":"Node JS", 
 "detail":"Migrated the front-end server to Node JS. Reason to move this is that vert.x has lack of libraries and test. More ever there are more functionalities, plugins and most importantly a test to use Node JS." 
+},
+{
+"date":"Oct 22th, 2014",
+"task":"Profile sign in", 
+"detail":"Completed a page to record user profile for first timer. Used bootstrap and angular." 
 }
 ]
 }
