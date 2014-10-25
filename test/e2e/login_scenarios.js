@@ -4,6 +4,7 @@ describe('Login App', function() {
 
   beforeEach(function () {
 	  browser.driver.get('http://localhost:9000/user/testprofile'); //this will add cookie
+	  //element(by.id("test")).style.display = "";;
   });
   
   describe('Check Login App', function() {
@@ -14,7 +15,6 @@ describe('Login App', function() {
 			var ctcModel = element(by.model('ctcNo'));
 			var stateModel = element(by.model('state'));
 			var submit = element(by.id('submit'));
-			var modal = element(by.binding('status'));
 			
 			//Set the only field needed.
 			stateModel.sendKeys('PT');
@@ -23,13 +23,13 @@ describe('Login App', function() {
 			ctcModel.sendKeys('ABC');
 			submit.click();
 			
-			expect(modal.getText()).toEqual("notok");
+			expect(submit.isEnabled()).toBe(true);			
 			
 			ctcModel.clear();
 			ctcModel.sendKeys('123456789012345');
 			submit.click();
 			
-			expect(modal.getText()).toEqual("notok");
+			expect(submit.isEnabled()).toBe(true);
 	  });
 	  
 	  it('Empty Names up fail', function() {
@@ -40,7 +40,6 @@ describe('Login App', function() {
 			var lstName = element(by.model('lstName'));
 			var stateModel = element(by.model('state'));
 			var submit = element(by.id('submit'));
-			var modal = element(by.binding('status'));
 			
 			//Set the only field needed.
 			stateModel.sendKeys('PT');
@@ -54,7 +53,7 @@ describe('Login App', function() {
 			lstName.clear();
 			submit.click();
 			
-			expect(modal.getText()).toEqual("notok");
+			expect(submit.isEnabled()).toBe(true);
 	  });
 	
 	  
@@ -70,8 +69,7 @@ describe('Login App', function() {
 	
 		stateModel.sendKeys('PT');
 		submit.click();
-	
-		expect(modal.getText()).toEqual("ok");
+		expect(submit.isEnabled()).toBe(false); //always check double clicks
 	  });
   });
 });

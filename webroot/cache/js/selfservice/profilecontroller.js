@@ -36,9 +36,19 @@ function redirectPage(){
 	window.location.href='/';
 }
 
+function init($scope){
+	$scope.number = /^\+?[0-9]+$/;
+	$scope.cntry = "MY";
+	$scope.gender = "O";
+	$scope.flag = false;
+	$scope.formData = {};
+}
+
 //Request is gathered from user session
 profileApp.controller('profileController', ['$scope','$http', '$modal',  
    function ($scope, $http, $modal) {
+	
+	init($scope);
 	
 	//get all states
 	$http.get('/cache/json/mlystate.json').success(function(data){
@@ -56,14 +66,6 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 		}
     });
 	
-	$scope.number = /^\+?[0-9]+$/;
-	$scope.cntry = "MY";
-	$scope.gender = "O";
-	$scope.status = "notok";
-	$scope.flag = false;
-	
-	$scope.formData = {};
-	
 	$scope.open = function () {
 	   var modalInstance = $modal.open({
 	     templateUrl: 'myModalContent.html',
@@ -71,19 +73,17 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	     backdrop: 'static',
 	     resolve: {}
 	   });
-	   
-	   //created this variable as there's no other way to know if dialog pop's up in protractor
-	   $scope.status = "ok";
 	};
 	
-	$scope.processForm = function(isValid) {
-	    if ($scope.flag) {
-	        return;
-	    }
-		$scope.flag = true;
+	$scope.processForm = function() {
 		
 		if(checkNotValidity($scope))return;
 		
+	    if ($scope.flag) {
+	        return;
+	    }
+
+		$scope.flag = true;
 		$scope.formData = createProfileJSON($scope);
 		
 		$http({
