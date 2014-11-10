@@ -56,7 +56,7 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
 	});
 	
 	//get user profile
-	$http.get('http://localhost:9000/user/profile').success(function(data){
+	$http.get('http://localhost:9000/user/basicinfo').success(function(data){
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
 		

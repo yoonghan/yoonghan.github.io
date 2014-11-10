@@ -184,6 +184,8 @@ var SampleApp = function() {
 				return "image/svg+xml";
 			case ".ico":
 				return "image/x-icon";
+			case ".png":
+				return "image/png";
 			case ".json":
 				return "application/json";
 			case ".html":
