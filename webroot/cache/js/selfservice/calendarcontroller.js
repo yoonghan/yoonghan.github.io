@@ -2,8 +2,14 @@
  * calendarDemoApp - 0.1.3
  */
 
+/**Init [S]**/
+var reservationURL = 'http://localhost:9000/tools/reserve';
+var calendarURL = 'http://localhost:9000/tools/calendar';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
+var profileURL = 'http://localhost:9000/user/profile';
+var redirectURL = "http://login.jomjaring.com";
 initWebSocket(ws);
+/**Init [E]**/
 
 var calendarApp = angular.module('calendarApp', ['ui.calendar', 'ui.bootstrap']);
 
@@ -16,13 +22,17 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     function ($scope, $http, $modal, $compile) {
 	
 	/**Retrieve user profile[S]**/
-	$http.get('http://localhost:9000/user/profile').success(function(data){
+	$http.get(profileURL).success(function(data){
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
 		$scope.state = data.state;
 
 		//TODO: Handle if we cannot get user info.
-		sendMessage('{"state":"'+$scope.state+'", "date":"'+(new Date().getTime())+'"}');
+		sendMessage($scope.state,(new Date().getTime()));
+    }).error(function(data, status) {
+        if(status == 401){
+        	location.href=redirectURL;
+        }
     });
 	/**Retrieve user profile[E]**/
 	
@@ -38,7 +48,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
   //temporary event is saved here.
     $scope.currEvents = [];	
     $scope.events = {
-    		url:'http://localhost:9000/tools/calendar',
+    		url:calendarURL,
     		className: 'btn',
     		xhrFields: {
     			withCredentials: true
@@ -46,7 +56,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     };
     
     $scope.reservedEvents = {
-    		url:'http://localhost:9000/tools/reserve',
+    		url: reservationURL,
             textColor: 'black',
             color: '#dff0d8',
     		className: 'btn',
@@ -60,7 +70,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     
     /**Each event clicks[S]**/
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
-		sendMessage('{"state":"'+$scope.state+'", "date":"'+(new Date(event.start).getTime())+'"}');
+		sendMessage($scope.state,(new Date(event.start).getTime()));
 		$scope.currEvents = []; //clean it.
 		var currentContent = {
 							title: event.title,
@@ -76,7 +86,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     
     /**Date selections[S]**/
     $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
-       sendMessage('{"state":"'+$scope.state+'", "date":"'+date+'"}');
+       sendMessage($scope.state,date);
     };
     /**Date selections[E]**/
         
@@ -131,6 +141,16 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     
     /**Booking clicked**/
     $scope.ok = function(id){
+    	$scope.confirmBooking("POST", id);
+    }
+    
+    /**Cancellation clicked**/
+    $scope.cancel = function(id){
+    	$scope.confirmBooking("DELETE", id);
+    }
+    
+    /**booking confirmation [S]**/
+    $scope.confirmBooking = function(method, id){
     	
 	    if ($scope.flag) {
 	        return;
@@ -138,10 +158,10 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	    
 	    $scope.flag = true;
 		$scope.formData = {_id: id};
-		
+		    	
     	$http({
-	        method  : 'POST',
-	        url     : 'http://localhost:9000/tools/reserve',
+	        method  : method,
+	        url     : reservationURL,
 	        data    : $scope.formData,  // pass in data as strings
 	        headers: {'Content-Type': 'application/json'}
 	    })
@@ -159,37 +179,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
         	$scope.flag = false;
         });
     }
-    
-    /**Booking clicked**/
-    $scope.cancel = function(id){
-    	
-	    if ($scope.flag) {
-	        return;
-	    }
-	    
-	    $scope.flag = true;
-		$scope.formData = {_id: id};
-		
-    	$http({
-	        method  : 'DELETE',
-	        url     : 'http://localhost:9000/tools/reserve',
-	        data    : $scope.formData,  // pass in data as strings
-	        headers: {'Content-Type': 'application/json'}
-	    })
-        .success(function(data) {
-            if (data.success) {
-            	$scope.flag = false;
-            	$scope.currEvents=[];
-            	$scope.myCalendar.fullCalendar( 'refetchEvents' );
-            	$scope.open('ok');
-            }else{
-            	$scope.open('nak');
-            }
-        })
-        .error(function(data){
-        	$scope.flag = false;
-        });
-    }
+    /**booking confirmation [E]**/
     
     /* event sources array*/
     $scope.eventSources = [$scope.events,$scope.reservedEvents];    
@@ -199,7 +189,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
   $scope.status = status=='ok'?true:false;
   if($scope.status){
-	  $scope.statMsg = "Booking Accepted."
+	  $scope.statMsg = "Status Confirmed."
   }else{
 	  $scope.statMsg = "Booking Not Accepted."
   }
@@ -290,9 +280,10 @@ function waitForSocketConnection(socket, callback){
 		}, 5);
 };
 
-function sendMessage(msg) {
+function sendMessage(state,time) {
     waitForSocketConnection(ws, function() {
-        ws.send(msg);
+    	
+        ws.send('{"state":"'+state+'", "date":"'+time+'"}');
     });
 };
 /**Web socket only[E]**/

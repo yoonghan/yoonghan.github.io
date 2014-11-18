@@ -1,0 +1,30 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'e2etest' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose run-script [ 'pree2etest', 'e2etest', 'poste2etest' ]
+6 info pree2etest OpenShift-Sample-App@1.0.0
+7 info e2etest OpenShift-Sample-App@1.0.0
+8 verbose unsafe-perm in lifecycle true
+9 info OpenShift-Sample-App@1.0.0 Failed to exec e2etest script
+10 error OpenShift-Sample-App@1.0.0 e2etest: `protractor test/protractor-conf.js`
+10 error Exit status 1
+11 error Failed at the OpenShift-Sample-App@1.0.0 e2etest script.
+11 error This is most likely a problem with the OpenShift-Sample-App package,
+11 error not with npm itself.
+11 error Tell the author that this fails on your system:
+11 error     protractor test/protractor-conf.js
+11 error You can get their info via:
+11 error     npm owner ls OpenShift-Sample-App
+11 error There is likely additional logging output above.
+12 error System Windows_NT 6.1.7601
+13 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "e2etest"
+14 error cwd C:\SelfProject\IDE\workspace_scala\nodejs
+15 error node -v v0.10.29
+16 error npm -v 1.4.14
+17 error code ELIFECYCLE
+18 verbose exit [ 1, true ]

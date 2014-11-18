@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="en" id="top">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>My Event Management</title>
+	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/cache/css/selfservice/common.css" />
+	<style>
+	form{
+		margin:30px;
+		padding:30px;
+	}
+	
+	.cal-show-hide {
+	  padding:10px;
+	  -webkit-transition:all linear 0.1s;
+	  transition:all linear 0.1s;
+	}
+	
+	.cal-show-hide.ng-hide {
+	  opacity:0;
+	}
+	
+	li{
+		display: list-item;
+		font-family: 'Rock Salt', cursive;
+		font-size: 18pt;
+		padding:2px;
+		zoom: 1;
+	}
+	ul{
+		list-style-type: none;
+		display: block;
+		margin:0px;
+		padding:0px;
+	}
+	.listing {
+		height: 180px; 
+		width: 180px;
+		overflow: auto;"
+	}
+	.form-group:nth-child(even){
+    	background-color: #f9f9f9;
+	}
+	.alternate:nth-child(even){
+		background-color: #979797;
+	}
+	.bs-callout {
+		padding: 5px;
+		margin: 5px;
+		border: 1px solid #eee;
+		border-left-width: 5px;
+		border-left-color: #d9534f;
+		border-radius: 3px;
+	}
+	.bs-callout-danger span {
+		color: #d9534f;
+	}
+	</style>
+</head>
+<body ng-app="calSetupApp">
+
+<div role="main" class="container-fluid">
+
+	<h1>Event management</h1>
+	<div class="jumbotron">
+		<p>
+		For more inquiries for our calendar usage, please refer to our <a href="calendar_help">Calendar Management</a> guide. <br>
+		As of current, we are still with <strong>BETA</strong> Stages.
+		</p>
+	</div>
+
+<hr>
+	
+	<form class="form-horizontal" role="form" ng-controller="calSetupCtrl">
+		<div class="form-group">
+			<label for="title" class="col-sm-2 control-label">Title</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" ng-model="title" id="title" name="title" placeholder="Enter short title" maxlength="10">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="desc" class="col-sm-2 control-label">Description</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="3" ng-model="desc" id="desc" name="desc"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			  <label for="fullday" class="col-sm-2 control-label">
+				Time
+				<div class="checkbox">
+					<label>
+			    		<input type="checkbox" ng-model="fullday" name="fullday">Full Day Event?
+			    	</label>
+			    </div>
+			  </label>
+			<div ng-hide="fullday" class="col-sm-10 cal-show-hide">
+				<button class="btn btn-primary col-sm-2" ng-click="addTimeEvents()">Add</button>
+				<div class="form-group col-sm-12" ng-repeat="e in timedEvents" class="alternate">
+					<label for="abookings" class="control-label">Allowed Bookings</label>
+					<input type="number" ng-model="e.abookings" id="e.abookings" name="e.abookings" min=1 max=99>
+					 
+					<label for="stime" class="col-sm-1">Start Time</label>
+					<timepicker class="col-sm-3" ng-model="e.stime" id="e.stime" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+					
+					<label for="etime" class="col-sm-1">End Time</label>
+					<timepicker class="col-sm-3" ng-model="e.etime" id="e.etime" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+				</div>
+			</div>
+			<div ng-show="fullday" class="col-sm-10 cal-show-hide">
+				<label>Full Day Event.</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="reserveType" class="col-sm-2 control-label">
+				Occurrence
+				<div class="radio">
+				  <label>
+				    <input type="radio" ng-model="reserveType" name="reserveType" id="reserveType1" value="opt1" checked>
+				    Specific date
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" ng-model="reserveType" name="reserveType" id="reserveType2" value="opt2">
+				    Repeating
+				  </label>
+				</div>
+			</label>
+			<div class="col-sm-10">
+				<div ng-show="reserveType=='opt2'" class="cal-show-hide">
+					<div class="bs-callout bs-callout-danger">
+				    	<p><span>Message: </span> Supports schedules up to a year only.</p>
+				    </div>
+					<div class="checkbox">
+					    <label><input type="checkbox" ng-model="monday">Monday</label>
+					    <label></label><input type="checkbox" ng-model="tuesday">Tuesday</label>
+					    <label><input type="checkbox" ng-model="wednesday">Wednesday</label>
+					    <label><input type="checkbox" ng-model="thursday">Thursday</label>
+					    <label><input type="checkbox" ng-model="friday">Friday</label>
+				    </div>
+				    <div class="checkbox">
+					    <label><input type="checkbox" ng-model="saturday">Saturday</label>
+					    <label></label><input type="checkbox" ng-model="sunday">Sunday</label>
+				    </div>
+				</div>
+				<div ng-show="reserveType=='opt1'" class="cal-show-hide">
+				    <div class="col-sm-4">
+				        <datepicker ng-model="reserveDates" min-date="minDate" show-weeks="true" class="well well-sm" year-range=2></datepicker>
+				        
+				    </div>
+				    <div class="col-sm-1"> 
+				    	<button class="btn btn-primary" ng-click="addReserve()">Add</button>
+				    	<ul class="listing">
+							<li ng-repeat="r in reservedEvents" class="alternate">
+								<a class="close" ng-click="removeReserve($index)">X</a>
+								<h4>{{r | date:"MMM dd yyyy"}}</h4> 
+							</li>
+						</ul>
+				    </div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="blackoutdates" class="col-sm-2 control-label">Blackout dates</label>
+			<div class="col-sm-10">
+			    <div class="col-sm-4">
+			        <datepicker ng-model="blackoutdates" min-date="minDate" show-weeks="true" class="well well-sm" year-range=2></datepicker>			        
+			    </div>
+			    <div class="col-sm-1"> 
+			    	<button class="btn btn-primary" ng-click="addBlackouts()">Add</button>
+			    	<ul class="listing">
+						<li ng-repeat="e in blackoutEvents" class="alternate">
+							<a class="close" ng-click="removeBlackouts($index)">X</a>
+							<h4>{{e | date:"MMM dd yyyy"}}</h4> 
+						</li>
+					</ul>
+			    </div>
+			</div>
+		</div>
+		<button class="btn btn-primary" type="submit" ng-disabled="flag" ng-click="processForm()">Submit</button>
+	</form>
+</div>
+
+	<script type="text/ng-template" id="myModalContent.html">
+		<div>
+			<div class="modal-header">
+            	<h3 class="modal-title">Confirmation</h3>
+        	</div>
+            <div class="modal-body bg-primary">
+				<h4>{{statMsg}}</h4>
+			</div>
+        	<div class="modal-footer">
+            	<button class="btn btn-primary" ng-click="ok()">Created</button>
+			</div>
+		</div>
+    </script>
+
+</body>
+<script src="/cache/js/jquery.min.js"></script>
+<script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/moment/moment.min.js"></script>
+<script src="/cache/js/angular/angular-animate.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-0.10.0.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.10.0.min.js"></script>
+<script src="/cache/js/selfservice/calsetupcontroller.js"></script>
+</html>
