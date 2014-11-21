@@ -190,6 +190,8 @@ var SampleApp = function() {
 				return "application/json";
 			case ".html":
 				return "text/html";
+			case ".woff":
+				return "application/x-font-woff";
 			default:
 				return "application/stream";
 		}

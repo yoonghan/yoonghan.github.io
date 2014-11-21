@@ -1,5 +1,8 @@
+'use strict';
+
 var calSetupApp = angular.module('calSetupApp', ['ui.bootstrap','ngAnimate']);
 var reservationURL = "http://localhost:9000/tools/calendar";
+var nextLocation = "http://localhost:8000/selfservice/booking/setup-confirm";
 
 calSetupApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;
@@ -19,10 +22,9 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 	    $scope.reserveType = "opt1";
 	    $scope.hstep = 1;
 		$scope.mstep = 30;
+		$scope.abookings = 1;
 		
-			    	    
-	    startD.setMinutes( 0 );
-		
+	    startD.setMinutes( 0 );		
 		endD.setMinutes( 30 );
 		
 		/*Default values[E]*/
@@ -61,13 +63,22 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		
 		function resetupTime(){
 			var newTimeEvent = [];
-			for(var loop = 0; loop<$scope.timedEvents.length; loop++){
-				var timeEvent = {
-					"stime": obtainTime($scope.timedEvents[loop].stime),
-					"etime": obtainTime($scope.timedEvents[loop].etime),
-					"abookings":$scope.timedEvents[loop].abookings,
+			
+			if($scope.fullday){
+				newTimeEvent.push({
+					"stime":"0000",
+					"etime":"2400",
+					"abookings":$scope.abookings
+				});
+			}else{
+				for(var loop = 0; loop<$scope.timedEvents.length; loop++){
+					var timeEvent = {
+						"stime": obtainTime($scope.timedEvents[loop].stime),
+						"etime": obtainTime($scope.timedEvents[loop].etime),
+						"abookings":$scope.timedEvents[loop].abookings,
+					}
+					newTimeEvent.push(timeEvent);
 				}
-				newTimeEvent.push(timeEvent);
 			}
 			return newTimeEvent;
 		}
@@ -77,7 +88,6 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 			var data = {
 				"title": $scope.title,
 				"desc": $scope.desc,
-				"allowBooking": $scope.abookings,
 				"fullDay": $scope.fullday? true:false,
 				"timedEvents": resetupTime(),
 				"reserveType": $scope.reserveType,
@@ -87,7 +97,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 				"reserveEvents" : $scope.reservedEvents,
 				"blackoutEvents" : $scope.blackoutEvents
 			}
-			alert(JSON.stringify(data));
+
 			return data;
 		}
 		
@@ -147,6 +157,7 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 	
   $scope.ok = function () {
 	$modalInstance.close();
+	location.href = nextLocation;
   };
 });
 /**Pop up dialog[E]**/

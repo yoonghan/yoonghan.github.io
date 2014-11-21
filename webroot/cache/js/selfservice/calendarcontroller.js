@@ -5,6 +5,7 @@
 /**Init [S]**/
 var reservationURL = 'http://localhost:9000/tools/reserve';
 var calendarURL = 'http://localhost:9000/tools/calendar';
+var calsetupURL = '/selfservice/booking/setup';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
 var redirectURL = "http://login.jomjaring.com";
@@ -74,8 +75,8 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 		$scope.currEvents = []; //clean it.
 		var currentContent = {
 							title: event.title,
-							start: obtainDate(event.start),
-							end: obtainDate(event.end),
+							start: obtainDate(event.start, 0),
+							end: obtainDate(event.end, 0),
 							desc: event.desc,
 							booked: ($(this).css('color')=="rgb(0, 0, 0)"),
 							id: event._id
@@ -149,6 +150,11 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     	$scope.confirmBooking("DELETE", id);
     }
     
+    /**Add setup link.**/
+    $scope.goToSetupLink = function(){
+    	location.href = calsetupURL;
+    }
+    
     /**booking confirmation [S]**/
     $scope.confirmBooking = function(method, id){
     	
@@ -182,7 +188,8 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**booking confirmation [E]**/
     
     /* event sources array*/
-    $scope.eventSources = [$scope.events,$scope.reservedEvents];    
+    $scope.eventSources = [$scope.events,$scope.reservedEvents];
+    
 }]);
 
 /**Pop up dialog[S]**/
@@ -201,8 +208,16 @@ calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 /**Pop up dialog[E]**/
 
 
-function obtainDate(date){
-	return moment(date).format("MMM Do, YYYY");
+function obtainDate(date, idx){
+	switch(idx){
+	case 0:
+		return moment(date).format("MMM Do, YYYY hh:mm");
+		break;
+	case 1:
+		return moment(date).format("MMM Do, YYYY");
+		break;
+	}
+	
 }
 
 function obtainDay(date){
@@ -256,7 +271,7 @@ function initWebSocket(ws){
 			skycons.set("weatherIcon", icon);
 			$("#weatherMessage").text(receivedJson.summary)
 			var date = new Date(eval(receivedJson.date)); 
-			$("#weatherDate").text(obtainDate(date));
+			$("#weatherDate").text(obtainDate(date, 1));
 		}
 		
 	}
