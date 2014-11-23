@@ -2,6 +2,7 @@
 //  OpenShift sample Node application
 var express   = require('express');
 var fs        = require('fs');
+var mime	  = require('mime/mime.js');
 
 /**
  *  Define the sample application.
@@ -112,7 +113,7 @@ var SampleApp = function() {
         self.routes = { };
 
 		self.routes['/favicon.ico'] = function(req, res) {
-			res.setHeader( CONTENT_TYPE,  self.checkfileHeader(".ico"));
+			res.setHeader( CONTENT_TYPE,  mime(".ico"));
 			res.send(fs.readFileSync(webroot+'/favicon.ico'));
 		};
 		
@@ -120,7 +121,7 @@ var SampleApp = function() {
 			
 			var reqPath = self.replacePath(req.path.toString());
 			
-			res.setHeader(CONTENT_TYPE, self.checkfileHeader(".html"));
+			res.setHeader(CONTENT_TYPE, mime(".html"));
 			res.send(self.cache_get(reqPath + ".html"));
 		};
 		
@@ -128,14 +129,14 @@ var SampleApp = function() {
 			
 			var reqPath = self.replacePath(req.path.toString());
 			
-			res.setHeader(CONTENT_TYPE, self.checkfileHeader(".html"));
+			res.setHeader(CONTENT_TYPE, mime(".html"));
 			res.send(self.cache_get(reqPath + "/index.html"));
 		};
 		
 		self.routes['/cache/*:path'] = function(req, res) {
 			var reqPath = self.replacePath(req.path.toString());
 			var header = {};
-			header[CONTENT_TYPE] = self.checkfileHeader(reqPath);
+			header[CONTENT_TYPE] = mime(reqPath);
 			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
 			
 			res.set(header);
@@ -146,7 +147,7 @@ var SampleApp = function() {
 			var reqPath = self.replacePath(req.path.toString());
 			
 			var header = {};
-			header[CONTENT_TYPE] = self.checkfileHeader(".json");
+			header[CONTENT_TYPE] = mime(".json");
 			header[ALLOW_ACCESS_ORIGIN] = '*';
 			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
 			
@@ -155,7 +156,7 @@ var SampleApp = function() {
 		};
 		
         self.routes['/'] = function(req, res) {
-            res.setHeader("Content-Type" , self.checkfileHeader(".html"));
+            res.setHeader("Content-Type" , mime(".html"));
             res.send( self.cache_get(webroot + 'webby/index.html') );
         };
     };
@@ -168,34 +169,34 @@ var SampleApp = function() {
 	/**
 	 * Determine content-type to send.
 	**/
-	self.checkfileHeader = function(val){
-		var ext = val.substring(val.lastIndexOf("."), val.length)
-		
-		switch(ext){
-			case ".css":
-				return 'text/css';
-			case ".jpg": case ".jpeg":
-				return 'image/jpeg';
-			case ".gif":
-				return 'image/gif';
-			case ".js":
-				return "application/javascript";
-			case ".svg":
-				return "image/svg+xml";
-			case ".ico":
-				return "image/x-icon";
-			case ".png":
-				return "image/png";
-			case ".json":
-				return "application/json";
-			case ".html":
-				return "text/html";
-			case ".woff":
-				return "application/x-font-woff";
-			default:
-				return "application/stream";
-		}
-	}
+//	self.checkfileHeader = function(val){
+//		var ext = val.substring(val.lastIndexOf("."), val.length)
+//		
+//		switch(ext){
+//			case ".css":
+//				return 'text/css';
+//			case ".jpg": case ".jpeg":
+//				return 'image/jpeg';
+//			case ".gif":
+//				return 'image/gif';
+//			case ".js":
+//				return "application/javascript";
+//			case ".svg":
+//				return "image/svg+xml";
+//			case ".ico":
+//				return "image/x-icon";
+//			case ".png":
+//				return "image/png";
+//			case ".json":
+//				return "application/json";
+//			case ".html":
+//				return "text/html";
+//			case ".woff":
+//				return "application/x-font-woff";
+//			default:
+//				return "application/stream";
+//		}
+//	}
 
     /**
      *  Initialize the server (express) and create the routes and register
