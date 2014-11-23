@@ -1,7 +1,7 @@
 var calSetupConfApp = angular.module('calSetupConfApp', ['ui.bootstrap','ngAnimate', 'calFilters']);
 var calSetupConfURL = "http://localhost:9000/tools/calendarconf";
 var month=["January","February","March","April","May","June","July","August","September","October","November","December"];
-var nextLocation = "http://localhost:8000/selfservice/booking/calendar"; 
+var nextLocation = "/selfservice/booking/calendar"; 
 
 calSetupConfApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;

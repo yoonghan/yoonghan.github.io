@@ -2,7 +2,7 @@
 
 var calSetupApp = angular.module('calSetupApp', ['ui.bootstrap','ngAnimate']);
 var reservationURL = "http://localhost:9000/tools/calendar";
-var nextLocation = "http://localhost:8000/selfservice/booking/setup-confirm";
+var nextLocation = "/selfservice/booking/setup-confirm";
 
 calSetupApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;
