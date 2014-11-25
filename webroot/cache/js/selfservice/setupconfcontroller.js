@@ -19,10 +19,13 @@ calSetupConfApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
     function ($scope, $http, $modal) {
 	    var startD = new Date();
 	    var endD = new Date();
+	    
+	    /**Setup [S]**/
 	    $scope.minDate = new Date();
 	    $scope.maxDate = new Date();
-	    
+	    $scope.word = /^([A-Z|a-z|0-9]+\s{0,1}[A-Z|a-z|0-9]*)*$/;
 	    $scope.events = [];
+	    /**Setup [E]**/
 	    
 		/**Refilter the search[S]**/
 		$scope.filterSearch = function(){
@@ -60,26 +63,45 @@ calSetupConfApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		/**Retrieve user profile[E]**/
 	    
 		/**CalendarControl [S]**/
-		$scope.open = function($event) {
-			$event.preventDefault();
-		    $event.stopPropagation();
-
-		    $scope.opened = true;
-		};
-		  $scope.dateOptions = {
+		$scope.dateOptions = {
 		    formatYear: 'yy',
 		    startingDay: 1
-		  };
+		};
+		
 		/**DialogBox[S]**/
 	    $scope.open = function (status) {
 	    	 var modalInstance = $modal.open({
-	    	 templateUrl: 'myModalContent.html',
-	    	 controller: 'ModalInstanceCtrl',
-	    	 backdrop: 'static',
-	    	 resolve: {status: function(){
-	    		 return status;
-	    	 }}
+		    	 templateUrl: 'myModalContent.html',
+		    	 controller: 'ModalInstanceCtrl',
+		    	 backdrop: 'static',
+		    	 resolve: {status: function(){
+		    		 return status;
+		    	 }}
 	    	 });
+	    	 
+	    	 modalInstance.result.then(function (status){
+	    		 if(status == 'reject'){
+	    			 $http({
+	 			        method  : "DELETE",
+	 			        url     : calSetupConfURL,
+	 			        data    : {},  // pass in data as strings
+	 			        headers: {'Content-Type': 'application/json'}
+	 			    })
+	 		        .success(function(data) {
+	 		        	
+	 		            $scope.flag = false;
+	 		            if (data.success) {
+	 		            	$scope.open('ok');
+	 		            }else{
+	 		            	$scope.open('nak');
+	 		            }
+	 		        });
+	    		 }else if(status == 'reset'){
+	    			 $scope.filterSearch();
+	    		 }
+	    	 });
+	    	 
+	    	 
 	    }
 	    /**DialogBox[E]**/
 	    
@@ -104,20 +126,11 @@ calSetupConfApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 	    
 	    /**Setup confirmation [S]**/
 	    $scope.rejectForm = function(){
-	    	$http({
-		        method  : "DELETE",
-		        url     : calSetupConfURL,
-		        data    : {},  // pass in data as strings
-		        headers: {'Content-Type': 'application/json'}
-		    })
-	        .success(function(data) {
-	            $scope.flag = false;
-	            if (data.success) {
-	            	$scope.open('ok');
-	            }else{
-	            	$scope.open('nak');
-	            }
-	        });
+	    	$scope.open("reject");
+	    }
+	    
+	    $scope.resetForm = function(){
+	    	$scope.open("reset");
 	    }
 	    
 		$scope.processForm = function(){
@@ -153,16 +166,33 @@ calSetupConfApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 
 /**Pop up dialog[S]**/
 calSetupConfApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
-  $scope.status = status=='ok'?true:false;
-  if($scope.status){
+  $scope.status = status;
+  if(status == "ok"){
 	  $scope.statMsg = "Status Confirmed."
+  }else if(status == "reset"){
+	  $scope.statMsg = "Reload values? Current value will be resetted."
+  }else if(status == "reject"){
+	  $scope.statMsg = "Remove all values? All values will be deleted."
   }else{
-	  $scope.statMsg = "Problem Accepting your input. Check again."
+	  status = "others";
+	  $scope.status = status;
+	  $scope.statMsg = "Problem Accepting your input. Check again your values."
   }
-	
+
+  $scope.cancel = function(){
+	  $modalInstance.close();  
+  }
   $scope.ok = function () {
-	$modalInstance.close();
-	location.href = nextLocation;
+	  if(status == 'reset'){
+		  $modalInstance.close('reset');
+	  }else if(status == 'reject'){
+		  $modalInstance.close('reject');
+      }else if(status == 'ok'){
+		  $modalInstance.close();
+		  location.href = nextLocation;
+	  }else{
+		  $modalInstance.close();
+	  }
   };
 });
 /**Pop up dialog[E]**/

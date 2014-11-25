@@ -4,6 +4,9 @@ var calSetupApp = angular.module('calSetupApp', ['ui.bootstrap','ngAnimate']);
 var reservationURL = "http://localhost:9000/tools/calendar";
 var nextLocation = "/selfservice/booking/setup-confirm";
 
+var MAX = 50;
+var MAX_TIME = 16;
+
 calSetupApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;
 	  $httpProvider.defaults.useXDomain = true;
@@ -23,17 +26,25 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 	    $scope.hstep = 1;
 		$scope.mstep = 30;
 		$scope.abookings = 1;
+		$scope.tooltiptype = "focus";
+		$scope.minDate = startD;
 		
 	    startD.setMinutes( 0 );		
 		endD.setMinutes( 30 );
 		
+
+		$scope.word = /^([A-Z|a-z|0-9]+\s{0,1}[A-Z|a-z|0-9]*)*$/;
 		/*Default values[E]*/
 		
 		$scope.addBlackouts = function() {
 			var bd = $scope.blackoutdates;
-			if(bd != undefined && $scope.blackoutEvents.indexOf(bd.getTime()) < 0){
-				$scope.blackoutEvents.push(bd.getTime());
-				$scope.blackoutEvents.sort();
+			if(bd != undefined){
+				var timeBD = (Date.UTC(bd.getFullYear(),bd.getMonth(),bd.getDate(),0,0,0));
+				if($scope.blackoutEvents.indexOf(timeBD) < 0 && 
+						maxLength("Blackout",$scope.blackoutEvents)){
+					$scope.blackoutEvents.push(timeBD);
+					$scope.blackoutEvents.sort();
+				}
 			}
 		};
 		$scope.removeBlackouts = function(idx) {
@@ -41,15 +52,26 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		}
 		$scope.addReserve = function() {
 			var rd = $scope.reserveDates;
-			if(rd != undefined && $scope.reservedEvents.indexOf(rd.getTime()) < 0){
-				$scope.reservedEvents.push(rd.getTime());
-				$scope.reservedEvents.sort();
+			if(rd != undefined){
+				
+				var timeRD = (Date.UTC(rd.getFullYear(),rd.getMonth(),rd.getDate(),0,0,0));
+				if( $scope.reservedEvents.indexOf(timeRD) < 0 && 
+						maxLength("Reserve",$scope.reservedEvents)){
+					$scope.reservedEvents.push(timeRD);
+					$scope.reservedEvents.sort();
+				}
 			}
 		};
 		$scope.removeReserve = function(idx) {
 			$scope.reservedEvents.splice(idx,1);
 		}
 		$scope.addTimeEvents = function() {
+			
+			if($scope.timedEvents.length > MAX_TIME){
+				alert("Maximum Booking Time allowed.")
+				return;
+			}
+			
 			var timeEvent = {
 					"stime": startD,
 					"etime": endD,
@@ -57,8 +79,17 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 			};
 			$scope.timedEvents.push(timeEvent);
 		};
+		
 		$scope.removeTimeEvents = function(idx) {
 			$scope.timedEvents.splice(idx,1);
+		}
+		
+		function maxLength(msg, event){
+			if(event.length >= MAX){
+				alert(msg +" events at it's Max! Which is "+MAX+".");
+				return false;
+			}
+			return true;
 		}
 		
 		function resetupTime(){
@@ -66,8 +97,8 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 			
 			if($scope.fullday){
 				newTimeEvent.push({
-					"stime":"0000",
-					"etime":"2400",
+					"stime":"0",
+					"etime":"0",
 					"abookings":$scope.abookings
 				});
 			}else{
@@ -111,16 +142,53 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 	    		 return status;
 	    	 }}
 	    	 });
+	    	 
+	    	 modalInstance.result.then(function (status){
+	    		 if(status == 'resetMe'){
+	    			$scope.setup.submitted = false;
+	    			$scope.flag = false;
+	    			$scope.blackoutEvents = [];
+	    			$scope.reservedEvents = [];
+	    			$scope.timedEvents = [];
+	    		 }
+	    	 });
 	    }
 	    /**DialogBox[E]**/
 	    
+	    /**Compare time[S]**/
+	    $scope.invalidTimeComparer = function (idx){
+	    	if($scope.timedEvents[idx].etime.getTime() <= $scope.timedEvents[idx].stime.getTime()){
+	    		$("#time"+idx).css("border-color","#f00");
+	    		return true;
+	    	}else{
+	    		$("#time"+idx).css("border-color","#000");
+	    		return false;
+	    	}
+	    }
+	    /**Compare time[E]**/
+	    
+	    /**Reset form[S]**/
+		$scope.resetForm = function(){
+			$scope.open("reset");
+		}
+	    /**Reset form[E]**/
+	    
 	    /**Setup confirmation [S]**/
 		$scope.processForm = function(){
+			
+			$scope.setup.submitted = true;
+		
 			if ($scope.flag) {
 		        return;
 		    }
+			
+			if(validForm() == false){
+				$scope.flag = false;
+				return;
+			}
 		    
-		    //$scope.flag = true;
+		    $scope.flag = true;
+		    
 		    $scope.formData = setupData();
 	    	
 	    	$http({
@@ -130,38 +198,68 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		        headers: {'Content-Type': 'application/json'}
 		    })
 	        .success(function(data) {
-	            $scope.flag = false;
 	            if (data.success) {
 	            	$scope.open('ok');
 	            }else{
 	            	$scope.open('nak');
+	            	$scope.flag = false;
 	            }
 	        })
 	        .error(function(data){
-	        	alert("GET ERROR");
+	        	$scope.errors = data.errors;
 	        	$scope.flag = false;
 	        });
 		}
 		/**Setup confirmation [E]**/
+		 
+		function validForm(){
+			if($scope.setup.$valid
+					&& ($scope.reserveType=="opt2" && ($scope.monday||$scope.tuesday||$scope.wedday||$scope.thursday||$scope.friday||$scope.saturday||$scope.sunday) 
+							|| $scope.reservedEvents.length > 0)
+					&& ($scope.fullday || ($scope.timedEvents.length > 0 && validDates()))
+			){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		function validDates(){
+			var timeEvents = $scope.timedEvents;
+			for(var loop=0; loop < timeEvents.length; loop++){
+				if($scope.invalidTimeComparer(loop)) return false
+			}
+			return true;
+		}
 	}
 ]);
 
 /**Pop up dialog[S]**/
 calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
-  $scope.status = status=='ok'?true:false;
-  if($scope.status){
-	  $scope.statMsg = "Status Confirmed."
+  $scope.status = status;
+  if($scope.status == 'ok'){
+	  $scope.statMsg = "Your Data Has Been Created.";
+  }else if($scope.status = 'reset'){
+	  $scope.statMsg = "Are you sure you want to reset?";
   }else{
-	  $scope.statMsg = "Problem Accepting your input. Check again."
+	  $scope.status = 'others';
+	  $scope.statMsg = "Problem Accepting your input. Check again!";
   }
 	
   $scope.ok = function () {
+	
+	if(status == 'reset'){
+		$modalInstance.close('resetMe');
+	}else{
+		$modalInstance.close();
+		location.href = nextLocation;	
+	}
+  };
+  $scope.reset = function () {
 	$modalInstance.close();
-	location.href = nextLocation;
   };
 });
 /**Pop up dialog[E]**/
-
 function obtainDate(date){
 	return moment(date).format("MMM Do, YYYY");
 }

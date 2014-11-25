@@ -134,6 +134,7 @@ var SampleApp = function() {
 		};
 		
 		self.routes['/cache/*:path'] = function(req, res) {
+			
 			var reqPath = self.replacePath(req.path.toString());
 			var header = {};
 			header[CONTENT_TYPE] = mime(reqPath);

@@ -69,10 +69,10 @@
 						<li ng-repeat="e in currEvents">
 							<div class="alert alert-info form-group" style="font-size:12pt;" ng-if="e.booked == false">
 							<dl class="dl-horizontal">
-								<dt>Start Date</dt>
-								<dd>{{e.start}}</dd>
-								<dt>End Date</dt>
-								<dd>{{e.end}}</dd>
+								<dt>Date</dt>
+								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
+								<dt ng-show="e.allDay == false">Time:</dt>
+								<dd ng-show="e.allDay == false">{{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}</dd>
 								<dt>Activity</dt>
 								<dd>{{e.title}}</dd>
 								<dt>Description</dt>
@@ -84,10 +84,10 @@
 							<div class="alert alert-success form-group" style="font-size:12pt;" ng-if="e.booked">
 							<h4>Reserved</h4>
 							<dl class="dl-horizontal">
-								<dt>Start Date</dt>
-								<dd>{{e.start}}</dd>
-								<dt>End Date</dt>
-								<dd>{{e.end}}</dd>
+								<dt>Date</dt>
+								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
+								<dt ng-show="e.allDay == false">Time:</dt>
+								<dd ng-show="e.allDay == false">{{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}</dd>
 								<dt>Activity</dt>
 								<dd>{{e.title}}</dd>
 								<dt>Description</dt>

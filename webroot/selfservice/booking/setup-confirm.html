@@ -8,14 +8,12 @@
 <title>My Event Confirmation</title>
 	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/cache/css/selfservice/common.css" />
+	<link rel="stylesheet" href="/cache/css/selfservice/calendarsetup.css" />
 	<style>
-		.accordion-toggle>.ng-binding { font-weight: bold; }
-		.panel-default>.panel-heading {
-			color: #333;
-			background-color: #f5f5f5;
-			border-color: #dfd;
-		}
-		accordian 
+	input.ng-invalid-required
+	{
+	  border:2px solid #f00;
+	}
 	</style>
 </head>
 <body ng-app="calSetupConfApp" ng-controller="calSetupCtrl">
@@ -37,7 +35,7 @@
 			<div class="col-sm-2">
 			
 			<p class="input-group">
-				<input type="text" placeholder="From Date" class="form-control" datepicker-popup="dd.MM.yyyy"  is-open="opened" ng-model="startD" min-date="minDate" max-date="'2015-06-22'" close-text="Close"/>
+				<input type="text" placeholder="dd.mm.yyyy" class="form-control" datepicker-popup="dd.MM.yyyy"  is-open="opened" ng-model="startD" min-date="minDate" max-date="'2015-06-22'" close-text="Close"/>
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="opencal($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
@@ -47,7 +45,7 @@
 			<div class="col-sm-2">
 			
 				<p class="input-group">
-					<input type="text" placeholder="End Date" class="form-control" datepicker-popup="dd.MM.yyyy" is-open="opened2" ng-model="endD" min-date="minDate" max-date="'2015-06-22'" close-text="Close"/>
+					<input type="text" placeholder="dd.mm.yyyy" class="form-control" datepicker-popup="dd.MM.yyyy" is-open="opened2" ng-model="endD" min-date="minDate" max-date="'2015-06-22'" close-text="Close"/>
 						<span class="input-group-btn">
 						<button type="button" class="btn btn-default" ng-click="opencal2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 					</span>
@@ -92,10 +90,10 @@
 					</thead>
 					<tbody>
 					<tr ng-repeat="e in groups | filter:search">
-						<td><input type="text" ng-model="e.title" maxlength="15"></td>
-						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm'}}</td>
-						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm'}}</td>
-						<td><input type="text" ng-model="e.desc" maxlength="150"></td>
+						<td><input type="text" ng-model="e.title" maxlength="50" ng-pattern="word" required></td>
+						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
+						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
+						<td><input type="text" ng-model="e.desc" maxlength="300" required></td>
 						<td><input type="checkbox" ng-model="e.virtualDel"></td>
 					</tr>
 					</tbody>
@@ -103,6 +101,7 @@
 			</accordion-group>
 		</accordion>
 		<button class="btn btn-primary" type="submit" ng-disabled="flag" ng-click="processForm()">Submit</button>
+		<button class="btn btn-warning" type="submit" ng-disabled="flag" ng-click="resetForm()">Reset</button>
 		<button class="btn btn-danger" type="submit" ng-disabled="flag" ng-click="rejectForm()">Reject</button>
 	</form>
 </div>
@@ -112,11 +111,18 @@
 			<div class="modal-header">
             	<h3 class="modal-title">Confirmation</h3>
         	</div>
-            <div class="modal-body bg-primary">
+			<div class="modal-body bg-success" ng-show="status=='ok'">
+				<h4>{{statMsg}}</h4>
+			</div>
+			<div class="modal-body bg-warning" ng-show="status=='reset'">
+				<h4>{{statMsg}}</h4>
+			</div>
+			<div class="modal-body bg-danger" ng-show="status!='reset' && status!='ok'">
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
-            	<button class="btn btn-primary" ng-click="ok()">Created</button>
+            	<button class="btn btn-success" ng-click="ok()">Proceed</button>
+				<button class="btn btn-danger" ng-click="cancel()" ng-show="status=='reset' || status=='reject'">Cancel</button>
 			</div>
 		</div>
     </script>

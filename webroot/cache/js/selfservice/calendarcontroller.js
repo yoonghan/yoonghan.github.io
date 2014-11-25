@@ -75,8 +75,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 		$scope.currEvents = []; //clean it.
 		var currentContent = {
 							title: event.title,
-							start: obtainDate(event.start, 0),
-							end: obtainDate(event.end, 0),
+							start: new Date(event.start),
+							end: new Date(event.end),
+							allDay: event.allDay,
 							desc: event.desc,
 							booked: ($(this).css('color')=="rgb(0, 0, 0)"),
 							id: event._id
@@ -116,6 +117,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
       calendar:{
         height: 450,
         editable: false,
+        ignoreTimezone: false,
         header:{
           left: 'title',
           center: '',
