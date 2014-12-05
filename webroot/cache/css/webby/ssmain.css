@@ -38,7 +38,7 @@ footnote {
 .button:hover{
  margin-top: 8px;
 }
-.button:hover,li a:hover,.button_hide:hover {
+.button:hover, li>a:hover,.button_hide:hover {
  border-top-color: #26cde3;
  background: #26cde3;
  color: #000;
@@ -68,10 +68,11 @@ li{
  font-size: 18pt;
  zoom: 1;
 }
-li a{
+li>a{
  display:block;
  padding:10px;
  font-size: 14pt;
+ font-family: 'Source Sans Pro', sans-serif;
 }
 ul{
  display: block;
@@ -86,4 +87,9 @@ text-decoration: none;
 }
 .menuTitle{
  display: none; visibility:hidden;
+}
+.navTitle{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16pt;
+	font-weight: bold;
 }

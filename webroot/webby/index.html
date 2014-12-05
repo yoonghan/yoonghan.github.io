@@ -10,6 +10,7 @@
 <meta property="og:description" content="An awesome site that introduce the capabilities we have."/>
 <meta property="fb:admins" content="jomjaring@gmail.com"/>
 <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,13 +28,28 @@
 <button type="button" id="intro" class="button" ng-click="go(mainBtnSrc)">{{mainBtnName}}</button>
 <button type="button" id="show" class="button"><img src="/cache/img/nav.svg"></button>
 <div class="menupanel" id="nav">
+
 <hr/><hr/>
+
+ <center class="navTitle">~JOM Jaring Links~</center>
+
+<hr/><hr/>
+
+<canvas id="hoverCanvas" width="200" height="100" style="position:absolute;top:0;left:0;"></canvas>
  <nav>
+  
  <ul id="menuList">
 	<li ng-repeat="menu in menus">
- <a ng-href="{{menu.link}}">{{menu.display}}</a>
+ 		<a ng-href="{{menu.link}}" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">{{menu.display}}</a>
 	</li>
  </ul>
+ <hr>
+ 
+ <ul>
+	 <li><a ng-href="http://mysanctuarycorner.blogspot.com/" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">Personal Blog</a></li>
+	 <li><a ng-href="http://login.jomjaring.com/" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">Scheduling Prototype</a></li>
+ </ul>
+ <hr>
  <hr>
  <button type="button" id="hide" class="button_hide">&lt;&lt; Hide</button>
  </nav>
@@ -42,10 +58,46 @@
  To use the images in this site, please request from the author: mailyoonghan@gmail.com.
 </footnote>
 </body>
+
 <script src="/cache/js/jquery.min.js"></script>
 <script src="/cache/js/ext/vegas/jquery.vegas.min.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
 <script src="/cache/js/webby/controllers.js"></script>
+<!-- script for target [Execute this first] -->
+<script>
+	var c = document.getElementById("hoverCanvas");
+	var ctx = c.getContext("2d");
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = '#fafafa';
+
+	function targetme(event, obj){
+		var objPos = obj.getBoundingClientRect();
+		var calcTop = objPos.top + ((objPos.bottom - objPos.top)/2)-20;
+		var calcLeft = objPos.left + ((objPos.right - objPos.left)/2)+25;
+		c.style.top = ""+calcTop+"px";
+		c.style.left = ""+calcLeft+"px";
+		ctx.beginPath();
+		ctx.arc(22,22,20,0,2*Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(22,22,16,0,2*Math.PI);
+		ctx.stroke();
+	}
+	
+	function untargetme(){
+		ctx.beginPath();
+		ctx.clearRect(0,0,200,100);
+		ctx.closePath();
+	}
+	
+	function shrinkme(){
+		untargetme();
+		ctx.beginPath();
+		ctx.arc(20,20,15,0,2*Math.PI);
+		ctx.stroke();
+	}
+</script>
+<!-- script for slider -->
 <script>
 $(function() {
  $.getJSON("http://localhost:9000/rest/image/intro",function(data)

@@ -212,14 +212,26 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		}
 		/**Setup confirmation [E]**/
 		 
+		function validatecheckbox(val){
+			return val != undefined && val 
+		}
+		
 		function validForm(){
 			if($scope.setup.$valid
-					&& ($scope.reserveType=="opt2" && ($scope.monday||$scope.tuesday||$scope.wedday||$scope.thursday||$scope.friday||$scope.saturday||$scope.sunday) 
+					&& ($scope.reserveType=="opt2" && (validatecheckbox($scope.monday)||
+							validatecheckbox($scope.tuesday)||
+							validatecheckbox($scope.wednesday)||
+							validatecheckbox($scope.thursday)||
+							validatecheckbox($scope.friday)||
+							validatecheckbox($scope.saturday)||
+							validatecheckbox($scope.sunday)) 
 							|| $scope.reservedEvents.length > 0)
 					&& ($scope.fullday || ($scope.timedEvents.length > 0 && validDates()))
 			){
+
+				
 				return true;
-			}else{
+			}else{;
 				return false;
 			}
 		}
