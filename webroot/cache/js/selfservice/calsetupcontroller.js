@@ -199,7 +199,8 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		    })
 	        .success(function(data) {
 	            if (data.success) {
-	            	$scope.open('ok');
+	            	/**$scope.open('ok'); //Maybe in future but it's annoying to have user to click an extra button**/
+	            	location.href = nextLocation;
 	            }else{
 	            	$scope.open('nak');
 	            	$scope.flag = false;

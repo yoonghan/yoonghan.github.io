@@ -33,6 +33,7 @@ footNote {
  opacity: 1;
  bottom:-35px;
 }
+
 ::-webkit-input-placeholder {font-style:italic};
 input:-moz-placeholder {font-style:italic};
 input:-ms-input-placeholder {font-style:italic};

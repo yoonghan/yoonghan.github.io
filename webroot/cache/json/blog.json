@@ -88,7 +88,7 @@
 {
 "date":"Oct 1st, 2014",
 "task":"Scala, version 4", 
-"detail":"Migrated full source to scala <strong>Play</strong> as the architecture background, rather than using pure J2EE container. To migrate codes from Vert.x to NodeJS as well. It's inevitable, that technology has catched up; and so do I." 
+"detail":"Migrated full source to scala <strong>Play</strong> as the architecture background, rather than using pure J2EE container. To migrate codes from Vert.x to NodeJS as well. It's inevitable, that technology has catched up; and so are the needs for me." 
 },
 {
 "date":"Oct 9th, 2014",
@@ -104,6 +104,16 @@
 "date":"Oct 22th, 2014",
 "task":"Profile sign in", 
 "detail":"Completed a page to record user profile for first timer. Used bootstrap and angular." 
+},
+{
+"date":"Dec 5th, 2014",
+"task":"Tied with project", 
+"detail":"Work got complicated among the months and was in Philipphines for a whole month. During the work there, I've completed my <strong>'Functional Programming'</strong> course. Created a BETA booking system and <strong>improved</strong> AngularJS. <br> Least to say, I'm now even good with Futures and Promises." 
+},
+{
+"date":"Dec 5th, 2014",
+"task":"Tied with project - Pt 2", 
+"detail":"Just for introduction. The swagger UI can be used here in <a href='http://petstore.swagger.wordnik.com/'>http://petstore.swagger.wordnik.com/</a> and key in <strong>http://scala.jomjaring.com/api-docs</strong> . Total awesomeness." 
 }
 ]
 }
