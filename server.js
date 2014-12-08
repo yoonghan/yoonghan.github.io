@@ -1,8 +1,9 @@
 #!/bin/env node
 //  OpenShift sample Node application
-var express   = require('express');
-var fs        = require('fs');
-var mime	  = require('mime/mime.js');
+var express   		= require('express');
+var fs        		= require('fs');
+var mime	  		= require('mime/mime.js');
+var replacer		= require('replacer/textreplacer.js');
 
 /**
  *  Define the sample application.
@@ -57,16 +58,36 @@ var SampleApp = function() {
 		var cache = self.zcache[path];
 		
 		if(cache == undefined || testEnv){
+			
+			/**
+			 * TODO: Create dynamic reading for pages and put into cache.
+			 * Useful for tooltips, but never for multilingua.
+			 * **/
+			
 			try{
 				cache = fs.readFileSync(path);
 			}catch(e){
 				console.log("ERROR:-"+e)
 				cache = fs.readFileSync(webroot + "error.html");
 			}
+			
+			cache = self.replaceText(path, cache);
+			
 			self.zcache[path] = cache
 		}
 		return cache;
 	};
+	
+	/**
+	 * Introduce dynamic text replacer in server.
+	 * Cache have to be working for this, as regeneration of text replacement is painful.
+	 */
+	self.replaceText = function(path, buff){
+		
+		var tmp_path = path.substring(webroot.length, path.length);
+		
+		return replacer(tmp_path, buff);
+	}
 
 
     /**
@@ -131,6 +152,14 @@ var SampleApp = function() {
 			
 			res.setHeader(CONTENT_TYPE, mime(".html"));
 			res.send(self.cache_get(reqPath + "/index.html"));
+		};
+		
+		self.routes['/errors/*:path'] = function(req, res) {
+			
+			var reqPath = self.replacePath(req.path.toString());
+			
+			res.setHeader(CONTENT_TYPE, mime(".html"));
+			res.send(self.cache_get(reqPath + ".html"));
 		};
 		
 		self.routes['/cache/*:path'] = function(req, res) {

@@ -3,6 +3,7 @@
 var calSetupApp = angular.module('calSetupApp', ['ui.bootstrap','ngAnimate']);
 var reservationURL = "http://localhost:9000/tools/calendar";
 var nextLocation = "/selfservice/booking/setup-confirm";
+var redirectURL = "/selfservice/booking/calendar"; 
 
 var MAX = 50;
 var MAX_TIME = 16;
@@ -172,6 +173,12 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 			$scope.open("reset");
 		}
 	    /**Reset form[E]**/
+		
+		/**Reset form[S]**/
+		$scope.returnForm = function(){
+			location.href=redirectURL;
+		}
+	    /**Reset form[E]**/
 	    
 	    /**Setup confirmation [S]**/
 		$scope.processForm = function(){
@@ -184,6 +191,8 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 			
 			if(validForm() == false){
 				$scope.flag = false;
+				$scope.open('nak');
+				location.href="#";
 				return;
 			}
 		    
@@ -252,6 +261,8 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
   $scope.status = status;
   if($scope.status == 'ok'){
 	  $scope.statMsg = "Your Data Has Been Created.";
+  }else if($scope.status = 'nak'){
+	  $scope.statMsg = "Please Check For Errors.";
   }else if($scope.status = 'reset'){
 	  $scope.statMsg = "Are you sure you want to reset?";
   }else{
@@ -263,6 +274,9 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 	
 	if(status == 'reset'){
 		$modalInstance.close('resetMe');
+	}else if(status == 'nak'){
+		//do nothing.
+		$modalInstance.close();
 	}else{
 		$modalInstance.close();
 		location.href = nextLocation;	

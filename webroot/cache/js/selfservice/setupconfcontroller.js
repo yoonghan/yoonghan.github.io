@@ -4,6 +4,7 @@ var calLoadURL = "http://localhost:9000/tools/calendarload";
 var calSetupConfURL = "http://localhost:9000/tools/calendarconf";
 var month=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var nextLocation = "/selfservice/booking/calendar"; 
+var redirectURL = "http://login.jomjaring.com";
 
 /**
  * Special application that stood by it own, used to check data and load the progress bar
@@ -69,6 +70,7 @@ setupConfApp.controller('ProgressCtrl', ['$scope', '$http', '$interval', '$route
 	  var maxRetryCount = 25
 	  
 	  //don't start at 0, user will suspect nothing is working
+	  
 	  $scope.progressValue = -1; 
 	  $scope.countTo = amt;
 	  $scope.countFrom = 0;
@@ -80,35 +82,39 @@ setupConfApp.controller('ProgressCtrl', ['$scope', '$http', '$interval', '$route
 	  
 	  var stop;
 	  
+	  /**Function for progress count[S]**/
+	  var progressFunc = function(data){
+			if ($scope.progressValue < $scope.countTo 
+					&& $scope.retryCount < $scope.maxRetryCount) {
+			  if(data.length != 0){
+				  var count = eval(data[0].count);
+				  var total = eval(data[0].total);
+				  
+				  var progress = Math.floor(count/total * amt);
+				  $scope.progressValue = progress;  
+			  }
+
+/**Handles retry**/
+			  $scope.retryCount++;
+			  if($scope.retryCount > 12){
+				  $scope.message = "Umm, something seems strange. But just to let you know, we're still here with you.";
+			  }else if($scope.retryCount > 3){
+				  $scope.message = "We're still loading, do be patient.";
+			  }
+			  
+			} else {
+			  $scope.stopLoad();
+			}
+  	  };
+  	  /**Function for progress count[E]**/
+	  
 	  $scope.load = function() {
-// Don't start a new fight if we are already fighting
+/**Don't start a new fight if we are already fighting**/
 	      if ( angular.isDefined(stop) ) return;
 	
 /**load every 2 seconds**/
-	      stop = $interval(function() {
-	    	  $http.get(calLoadURL).success(function(data){
-				if ($scope.progressValue < $scope.countTo 
-						&& $scope.retryCount < $scope.maxRetryCount) {
-				  if(data.length != 0){
-					  var count = eval(data[0].count);
-					  var total = eval(data[0].total);
-					  
-					  var progress = Math.floor(count/total * amt);
-					  $scope.progressValue = progress;  
-				  }
-
-/**Handles retry**/
-				  $scope.retryCount++;
-				  if($scope.retryCount > 12){
-					  $scope.message = "Umm, something seems strange. But just to let you know, we're still here with you.";
-				  }else if($scope.retryCount > 3){
-					  $scope.message = "We're still loading, do be patient.";
-				  }
-				  
-				} else {
-				  $scope.stopLoad();
-				}
-	    	  });
+	      stop = $interval(function() {	    	  
+	    	  getHTTP($http, calLoadURL, progressFunc);
 	      }, maxWait, maxRetryCount+1); 
 	  };
 	    
@@ -119,6 +125,7 @@ setupConfApp.controller('ProgressCtrl', ['$scope', '$http', '$interval', '$route
 	      }
 	      
 	      $location.url('/load/content/100');
+	      /**TODO: What should happen where there is no data?**/
 	  };
 		  
 	  $scope.$on('$destroy', function() {
@@ -160,14 +167,11 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
 	        	$scope.groupEvents = [];
 	        });
 		}else{
-			$http.get(calSetupConfURL+"/0/0").success(function(data){
+			var confFunc = function(data){
 				$scope.events = data;
 				$scope.groupEvents = _.groupBy($scope.events, function(num){ var d = new Date(num.start); var date = (new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0)); return date.getTime();});
-		    }).error(function(data, status) {
-		        if(status == 401){
-		        	location.href=redirectURL;
-		        }
-		    });	
+		    };
+			getHTTP($http, calSetupConfURL+"/0/0", confFunc);
 		}
 	};
 	/**Refilter the search[E]**/
@@ -254,6 +258,12 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
 	        return;
 	    }
 		
+		if ($scope.setup.$valid == false){
+			$scope.flag = false;
+			$scope.open('nak');
+			return;
+		}
+		
 	    $scope.flag = true;
 	    
 	    $scope.formData = setupData();
@@ -289,6 +299,8 @@ setupConfApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, s
 	  $scope.statMsg = "Reload values? Current value will be resetted."
   }else if(status == "reject"){
 	  $scope.statMsg = "Remove all values? All values will be deleted."
+  }else if(status == "nak"){
+	  $scope.statMsg = "Found some errors, please verify your inputs."
   }else{
 	  status = "others";
 	  $scope.status = status;

@@ -8,31 +8,10 @@
 <head>
 	<title>Event Confirmation</title>
 	<link rel="stylesheet" href="/cache/css/selfservice/common.css" />
-	<link rel="stylesheet" href="/cache/css/selfservice/calendarsetup.css" />  
+	<link rel="stylesheet" href="/cache/css/selfservice/calendarsetup.css" />
 	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/cache/css/selfservice/setupconf.css" />  
 	<script src="/cache/js/jquery.min.js"></script>
-<style>
-	html, body {
-   		height: 100%;
-   		margin: 0px;
-   	}
-   	
-	.progress { 
-	  height: 3em;
-	  i { line-height: 3.5em; }
-	}
-	
-	.Absolute-Center {
-	  margin: 0px 50px;
-	  position: absolute;
-	  top: 40%; left: 0; bottom: 40%; right: 0;
-	}
-	input.ng-invalid-required
-	{
-	  border:2px solid #f00;
-	}
-</style>
-
 </head>
 
 <!-- Use this as sample for all loading. -->
@@ -42,16 +21,21 @@
 <div ng-view>
 </div>
 
+<!-- Extra space so user can scroll -->
+<br><br><br><br>
+
 </body>
-	<script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
-	<script src="/cache/js/moment/moment.min.js"></script>
-	<script src="/cache/js/angular/angular.min.js"></script>
-	<script src="/cache/js/angular/angular-route.min.js"></script>
-	<script src="/cache/js/angular/angular-animate.min.js"></script>
-	<script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
-	<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
-	<script src="/cache/js/selfservice/setupconfcontroller.js"></script>
-	<script src="/cache/js/lodash/lodash.min.js"></script>
+
+<script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/cache/js/moment/moment.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-route.min.js"></script>
+<script src="/cache/js/angular/angular-animate.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+<script src="/cache/js/selfservice/auth_common.js"></script>
+<script src="/cache/js/selfservice/setupconfcontroller.js"></script>
+<script src="/cache/js/lodash/lodash.min.js"></script>
 
 
 </html>

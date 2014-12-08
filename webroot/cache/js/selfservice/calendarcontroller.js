@@ -23,18 +23,16 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     function ($scope, $http, $modal, $compile) {
 	
 	/**Retrieve user profile[S]**/
-	$http.get(profileURL).success(function(data){
+	var profileFunc = function(data){
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
 		$scope.state = data.state;
 
 		//TODO: Handle if we cannot get user info.
 		sendMessage($scope.state,(new Date().getTime()));
-    }).error(function(data, status) {
-        if(status == 401){
-        	location.href=redirectURL;
-        }
-    });
+	}
+	
+	getHTTP($http, profileURL, profileFunc);
 	/**Retrieve user profile[E]**/
 	
 	/**Obtain user's date[S]**/

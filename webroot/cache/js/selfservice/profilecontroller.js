@@ -103,6 +103,7 @@ profileApp.controller('profileController', ['$scope','$http', '$modal',
         .error(function(data){
         	$scope.errors = data.errors;
         	$scope.flag = false;
+        	location.href = '#';
         });
 	};
 }]);

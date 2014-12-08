@@ -3,7 +3,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>My Event Management</title>
 	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
@@ -33,17 +32,24 @@
 		</div>
 	
 		<div class="form-group">
-			<label for="title" class="col-sm-2 control-label">Title</label>
+			<label for="title" class="col-sm-2 control-label">
+			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.title]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
+			Title
+			</label>
 			<div class="col-sm-8">
 				<input type="text"  ng-class="{submitted:setup.submitted}" class="form-control" ng-model="title" name="title" id="title" ng-pattern="word" maxlength=30 required
 				tooltip="Required. Only spaces, numbers and alphabets are allowed." tooltip-trigger="{{tooltiptype}}" tooltip-placement="top">
 				<span class="alert alert-danger alertmsg" ng-show="setup.submitted && setup.title.$error.required">Required!</span>
 				<span class="alert alert-danger alertmsg" ng-show="setup.title.$error.pattern">Only spaces, numbers[0-9] and characters[a-z] is allowed!</span>
 			</div>
+			
 		</div>
 
 		<div class="form-group">
-			<label for="desc" class="col-sm-2 control-label">Description</label>
+			<label for="desc" class="col-sm-2 control-label">
+			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.desc]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
+			Description
+			</label>
 			<div class="col-sm-8">
 				<textarea ng-class="{submitted:setup.submitted}" class="form-control" rows="3" ng-model="desc" id="desc" name="desc" maxlength="300" required
 				tooltip="Required." tooltip-trigger="{{tooltiptype}}" tooltip-placement="top"></textarea>
@@ -52,6 +58,7 @@
 		</div>
 		<div class="form-group">
 			  <label for="fullday" class="col-sm-2 control-label">
+			  	<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.fullday]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
 				Time
 				<div class="checkbox">
 					<label>
@@ -91,6 +98,7 @@
 		</div>
 		<div class="form-group">
 			<label for="reserveType" class="col-sm-2 control-label">
+				<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.occur]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
 				Occurrence
 				<div class="radio">
 				  <label>
@@ -155,7 +163,10 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="blackoutdates" class="col-sm-2 control-label">Blackout dates</label>
+			<label for="blackoutdates" class="col-sm-2 control-label">
+			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.blockDates]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
+			Blackout dates
+			</label>
 			<div class="col-sm-10">
 			<div class="col-sm-12">
 				<table class="chg">
@@ -179,8 +190,9 @@
 		</div>
 		<hr>
 		<div align="center">
-			<button class="btn btn-lg btn-success" type="submit" ng-disabled="flag" ng-click="processForm()">Submit</button>
-			<button class="btn btn-lg btn-warning" ng-disabled="flag" ng-click="resetForm()">Reset</button>
+			<button class="btn btn-lg btn-success" type="submit" ng-disabled="flag" ng-click="processForm()" tooltip="[[tt.processForm]]" tooltip-placement="top">Submit</button>
+			<button class="btn btn-lg btn-warning" ng-disabled="flag" ng-click="resetForm()" tooltip="[[tt.resetForm]]" tooltip-placement="top">Reset</button>
+			<button class="btn btn-lg btn-primary" ng-disabled="flag" ng-click="returnForm()" tooltip="[[tt.returnForm]]" tooltip-placement="top"><span class="glyphicon glyphicon-home"></span> Return To Home</button>
 		</div>
 	</form>
 </div>
@@ -190,10 +202,10 @@
 			<div class="modal-header">
             	<h3 class="modal-title">Confirmation</h3>
         	</div>
-            <div class="modal-body bg-success" ng-show="status!='reset'">
+            <div class="modal-body bg-success" ng-show="status=='ok'">
 				<h4>{{statMsg}}</h4>
 			</div>
-			<div class="modal-body bg-warning" ng-show="status=='reset'">
+			<div class="modal-body bg-warning" ng-show="status=='reset' || status=='nak'">
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
@@ -203,6 +215,8 @@
 		</div>
     </script>
 
+	<!-- Create extra space so that user can scroll -->
+	<br><br><br><br>
 </body>
 <script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
@@ -210,5 +224,6 @@
 <script src="/cache/js/angular/angular-animate.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+<script src="/cache/js/selfservice/auth_common.js"></script>
 <script src="/cache/js/selfservice/calsetupcontroller.js"></script>
 </html>
