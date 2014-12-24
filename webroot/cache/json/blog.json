@@ -114,6 +114,11 @@
 "date":"Dec 5th, 2014",
 "task":"Tied with project - Pt 2", 
 "detail":"Just for introduction. The swagger UI can be used here in <a href='http://petstore.swagger.wordnik.com/'>http://petstore.swagger.wordnik.com/</a> and key in <strong>http://scala.jomjaring.com/api-docs</strong> . Total awesomeness." 
+},
+{
+"date":"Dec 24th, 2014",
+"task":"Implemented Rest Assured", 
+"detail":"Used RESTAssured to test all REST services. Complete and seperation of UAT has been achieved."
 }
 ]
 }

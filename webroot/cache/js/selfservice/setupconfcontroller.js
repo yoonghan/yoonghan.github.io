@@ -146,6 +146,7 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
     $scope.maxDate = new Date();
     $scope.word = /^([A-Z|a-z|0-9]+\s{0,1}[A-Z|a-z|0-9]*)*$/;
     $scope.events = [];
+    $scope.predicate = 'start';
     /**Setup [E]**/
     
 	/**Refilter the search[S]**/

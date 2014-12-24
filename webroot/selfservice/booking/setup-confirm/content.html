@@ -33,8 +33,7 @@
 	<form class="form-horizontal" role="form" name="setup">
 	
 		<button class="btn btn-default btn-sm" ng-click="accordian_open = !accordian_open"
-		tooltip="[[tt.collapseAll]]" tooltip-placement="top"
-		><span class="glyphicon glyphicon-ok-sign"></span> Collapse All For View</button>
+		tooltip="[[tt.collapseAll]]" tooltip-placement="top" ng-model="btnCollapse"><span class="glyphicon glyphicon-ok-sign"></span> Collapse All For View</button>
 		
 		<br></br>
 			
@@ -46,29 +45,30 @@
 				<table  class="table table-striped">
 					<thead>
 						<tr>
-							<th>Title</th>
-							<th>Start Date</th>
-							<th>End Date</th>
+							<th><a href="" ng-click="predicate='title'; reverse=!reverse">Title <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='title'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='title'&&reverse}"></i></a></th>
+							<th><a href="" ng-click="predicate='start'; reverse=!reverse">Start Date <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}"></i></a></th>
+							<th><a href="" ng-click="predicate='end'; reverse=!reverse">End Date <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='end'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='end'&&reverse}"></i></a></th>
 							<th>Description</th>
 							<th>Deletion ?</th>
 						</tr>
 					</thead>
 					<tbody>
-					<tr ng-repeat="e in groups | filter:search">
-						<td><input type="text" ng-model="e.title" maxlength="30" ng-pattern="word" required></td>
+					<tr ng-repeat="e in groups | orderBy:predicate:reverse | filter:search">
+						<td><input type="text" name="e.title" id="e.title" ng-model="e.title" maxlength="30" ng-pattern="word" required></td>
 						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
 						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
-						<td><input type="text" ng-model="e.desc" maxlength="300" required></td>
+						<td><input type="text" name="e.desc" id="e.desc" ng-model="e.desc" maxlength="300" required></td>
 						<td><input type="checkbox" ng-model="e.virtualDel"></td>
 					</tr>
 					</tbody>
 				</table>
 			</accordion-group>
 		</accordion>
+		
 		<div align="center">
-			<button class="btn btn-lg btn-primary" type="submit" ng-disabled="flag" ng-click="processForm()" tooltip="Publish Reservations For Public View." tooltip-placement="top">Submit</button>
-			<button class="btn btn-lg btn-warning" type="submit" ng-disabled="flag" ng-click="resetForm()" tooltip="Reset Changes And Start All Over Again." tooltip-placement="top">Reset</button>
-			<button class="btn btn-lg btn-danger" type="submit" ng-disabled="flag" ng-click="rejectForm()" tooltip="Reject Reservation Creation." tooltip-placement="top">Reject</button>
+			<button class="btn btn-lg btn-primary" type="submit" ng-disabled="flag" ng-click="processForm()" tooltip="Publish Reservations For Public View." tooltip-placement="top" ng-model="submit">Submit</button>
+			<button class="btn btn-lg btn-warning" type="submit" ng-disabled="flag" ng-click="resetForm()" tooltip="Reset Changes And Start All Over Again." tooltip-placement="top" ng-model="reset">Reset</button>
+			<button class="btn btn-lg btn-danger" type="submit" ng-disabled="flag" ng-click="rejectForm()" tooltip="Reject Reservation Creation." tooltip-placement="top" ng-model="reject">Reject</button>
 		</div>
 	</form>
 </div>
@@ -88,8 +88,8 @@
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
-            	<button class="btn btn-success" ng-click="ok()">Proceed</button>
-				<button class="btn btn-danger" ng-click="cancel()" ng-show="status=='reset' || status=='reject'">Cancel</button>
+            	<button class="btn btn-success" ng-click="ok()" ng-model="btnOK">Proceed</button>
+				<button class="btn btn-danger" ng-click="cancel()" ng-show="status=='reset' || status=='reject'" ng-model="btnCANCEL">Cancel</button>
 			</div>
 		</div>
     </script>

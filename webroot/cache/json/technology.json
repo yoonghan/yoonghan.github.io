@@ -40,6 +40,11 @@
 "detail":"Java test cases for utilities."
 },
 {
+"tech":"RestAssured", 
+"deprecated":"false",
+"detail":"A good tool to test all RESTlet services."
+},
+{
 "tech":"Guava", 
 "deprecated":"false",
 "detail":"Google caching and utilities. Used to support Java."

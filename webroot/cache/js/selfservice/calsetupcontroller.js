@@ -259,11 +259,12 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 /**Pop up dialog[S]**/
 calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
   $scope.status = status;
+  
   if($scope.status == 'ok'){
 	  $scope.statMsg = "Your Data Has Been Created.";
-  }else if($scope.status = 'nak'){
+  }else if($scope.status == 'nak'){
 	  $scope.statMsg = "Please Check For Errors.";
-  }else if($scope.status = 'reset'){
+  }else if($scope.status == 'reset'){
 	  $scope.statMsg = "Are you sure you want to reset?";
   }else{
 	  $scope.status = 'others';

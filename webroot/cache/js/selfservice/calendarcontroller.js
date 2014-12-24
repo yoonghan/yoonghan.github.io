@@ -102,13 +102,13 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     };
     /**Change to view month/day/week[E]**/
     
-    /**Tooltip - TODO: To make it work[S]**/
+    /**Tooltip[S]**/
     $scope.eventRender = function( event, element, view ) { 
         element.attr({'tooltip': event.title,
                      'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
-    /**Tooltip - TODO: To make it work[E]**/
+    /**Tooltip[E]**/
     
     /**UI Configuration[S]**/
     $scope.uiConfig = {

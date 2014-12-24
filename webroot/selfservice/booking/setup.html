@@ -70,7 +70,7 @@
 				<div class="form-group col-sm-12" ng-show="setup.submitted && timedEvents.length==0">
 					<span class="alert alert-danger alertmsg">Please add a time range!</span>
 				</div>
-				<button class="btn btn-primary col-sm-2" ng-click="addTimeEvents()">Add</button>
+				<button class="btn btn-primary col-sm-2" ng-click="addTimeEvents()" ng-model="btnAddTime">Add</button>
 				
 				
 				<div class="form-group col-sm-12 withborder" ng-repeat="e in timedEvents" id="time{{$index}}">
@@ -190,9 +190,12 @@
 		</div>
 		<hr>
 		<div align="center">
-			<button class="btn btn-lg btn-success" type="submit" ng-disabled="flag" ng-click="processForm()" tooltip="[[tt.processForm]]" tooltip-placement="top">Submit</button>
-			<button class="btn btn-lg btn-warning" ng-disabled="flag" ng-click="resetForm()" tooltip="[[tt.resetForm]]" tooltip-placement="top">Reset</button>
-			<button class="btn btn-lg btn-primary" ng-disabled="flag" ng-click="returnForm()" tooltip="[[tt.returnForm]]" tooltip-placement="top"><span class="glyphicon glyphicon-home"></span> Return To Home</button>
+			<button class="btn btn-lg btn-success" type="submit" ng-disabled="flag" ng-click="processForm()" tooltip="[[tt.processForm]]" 
+			tooltip-placement="top" ng-model="submit">Submit</button>
+			<button class="btn btn-lg btn-warning" ng-disabled="flag" ng-click="resetForm()" tooltip="[[tt.resetForm]]" 
+			tooltip-placement="top" ng-model="reset">Reset</button>
+			<button class="btn btn-lg btn-primary" ng-disabled="flag" ng-click="returnForm()" tooltip="[[tt.returnForm]]" 
+			tooltip-placement="top" ng-model="returnFlag"><span class="glyphicon glyphicon-home"></span> Return To Home</button>
 		</div>
 	</form>
 </div>
@@ -209,8 +212,8 @@
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
-            	<button class="btn btn-success" ng-click="ok()">Proceed</button>
-				<button class="btn btn-danger" ng-click="reset()" ng-show="status=='reset'">Cancel</button>
+            	<button class="btn btn-success" ng-click="ok()" ng-model="btnOK">Proceed</button>
+				<button class="btn btn-danger" ng-click="reset()" ng-show="status=='reset'" ng-model="btnCANCEL">Cancel</button>
 			</div>
 		</div>
     </script>
