@@ -15,7 +15,26 @@
 
 <div role="main" class="container-fluid" ng-controller="calendarCtrl">
 
-	<h1>My Calendar Events</h1>
+	<table width="100%">
+		<tr><td>
+			<h1>My Calendar Events</h1>
+		</td>
+		<td align="right">
+		    <div class="btn-group" dropdown>
+		      <button type="button" class="btn btn-default" ng-click="goSettings()">Settings</button>
+		      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+		        <span class="caret"></span>
+		        <span class="sr-only"></span>
+		      </button>
+		      <ul class="dropdown-menu" role="menu">
+		        <li><a href="" ng-click="goSettings()">Settings</a></li>
+		        <li class="divider"></li>
+		        <li><a href="http://localhost:9000/user/logout">Log out</a></li>
+		      </ul>
+		    </div>
+		</td></tr>
+	</table>
+	
 	<div class="jumbotron">
 		<p>
 		For more inquiries for our calendar usage, please refer to our <a href="calendar-help">Calendar Management</a> guide.
@@ -137,7 +156,8 @@
 <script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="/cache/js/moment/moment.min.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
-<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.10.0.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 <script src="/cache/js/calendar/fullcalendar.min.js"></script>
 <script src="/cache/js/calendar/ui-calendar.js"></script>
 <script src="/cache/js/selfservice/auth_common.js"></script>

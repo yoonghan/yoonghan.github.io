@@ -139,7 +139,8 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 	    	 templateUrl: 'myModalContent.html',
 	    	 controller: 'ModalInstanceCtrl',
 	    	 backdrop: 'static',
-	    	 resolve: {status: function(){
+	    	 resolve: {
+	    		 status: function(){
 	    		 return status;
 	    	 }}
 	    	 });

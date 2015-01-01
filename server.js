@@ -146,6 +146,14 @@ var SampleApp = function() {
 			res.send(self.cache_get(reqPath + ".html"));
 		};
 		
+		self.routes['/webby/special/*:path'] = function(req, res) {
+			
+			var reqPath = self.replacePath(req.path.toString());
+			
+			res.setHeader(CONTENT_TYPE, mime(".html"));
+			res.send(self.cache_get(reqPath + ".html"));
+		};
+		
 		self.routes['/webby/*:path'] = function(req, res) {
 			
 			var reqPath = self.replacePath(req.path.toString());

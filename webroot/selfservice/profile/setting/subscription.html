@@ -1,0 +1,49 @@
+<p>
+<div class="info">
+
+Subscribe yourself to the available posters. All your calendar settings are based on this.
+
+</div>
+</p>
+
+<form class="form-inline" role="form" name="setting" ng-controller="SubscriptionCtrl" style="margin:0px 10px">
+
+	<div class="form-group">
+		<label for="cNameSearch">Filter Company Name :</label> 
+		<input ng-model="cNameSearch" placeHolder="search" class="form-control" autofocus>
+	</div>
+
+	<p/>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<th>#</th>
+			<th><a href="" ng-click="predicate='cName'; reverse=!reverse">Company Name <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='cName'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='cName'&&reverse}"></i></a></th>
+			<th>Description</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="e in chkHostList | orderBy:predicate:reverse | filter:cNameSearch">
+				<td><input type="checkbox" ng-model="e.currStat"></td>
+				<td>{{e.cName}}</td>
+				<td>{{e.cDesc}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	<div colspan="2" align="center">    	
+	    <input type="submit" value="Save" id="save" class="btn btn-lg btn-success" ng-disabled="flag" ng-click="save()">
+	    <button type="button" id="cancel" class="btn btn-lg btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+	<br>
+	
+	<script type="text/ng-template" id="myModalContent.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Saved</h3>
+		</div>
+		<div class="modal-body">
+			Your subscription has been saved.
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-click="ok()">OK</button>
+		</div>
+	</script>
+</form>

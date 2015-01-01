@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Settings</title>
+
+<link href="/cache/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/cache/css/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/cache/css/selfservice/common.css" rel="stylesheet">
+<link href="/cache/css/selfservice/setting.css" rel="stylesheet">
+
+<script src="/cache/js/jquery.min.js"></script>
+</head>
+<body ng-app="settingApp" ng-controller="loaderCtrl" role="document">
+
+	<div class="viewDisplay container-fluid">
+		<h2><a href="" ng-click="cancel()">&lt;</a> Settings</h2>
+		<ul class="nav nav-pills">
+		  <li role="presentation" ng-class="{'active':a_nav===undefined||a_nav==='s'}"><a href="#notify/subscription" ng-click="a_nav='s'">Subscription</a></li>
+		  <li role="presentation" ng-class="{'active':a_nav==='r'}"><a href="#notify/reminder" ng-click="a_nav='r'">Reminder</a></li>
+		  <li role="presentation" ng-class="{'active':a_nav==='p'}"><a href="#notify/profile/1" ng-click="a_nav='p'">Profile</a></li>
+		</ul>
+	<div ng-view>
+	</div>
+	
+	</div>
+	
+</body>
+<script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/cache/js/lodash/lodash.min.js"></script>
+<script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-route.min.js"></script>
+<script src="/cache/js/angular/angular-animate.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
+<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+<script src="/cache/js/selfservice/auth_common.js"></script>
+<script src="/cache/js/selfservice/settingcontroller.js"></script>
+<script src="/cache/js/selfservice/sub_profilecontroller.js"></script>
+<script src="/cache/js/selfservice/sub_subscriptioncontroller.js"></script>
+<script src="/cache/js/selfservice/sub_remindercontroller.js"></script>
+</html>

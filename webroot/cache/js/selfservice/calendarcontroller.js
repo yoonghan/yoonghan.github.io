@@ -9,6 +9,7 @@ var calsetupURL = '/selfservice/booking/setup';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
 var redirectURL = "http://login.jomjaring.com";
+var settingsURL = "http://localhost:8000/selfservice/profile/setting";
 initWebSocket(ws);
 /**Init [E]**/
 
@@ -21,6 +22,12 @@ calendarApp.config(['$httpProvider', function($httpProvider) {
 
 calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     function ($scope, $http, $modal, $compile) {
+	
+	/**Initial[S]**/
+		$scope.goSettings = function(){
+			window.location.href=settingsURL;
+		}
+	/**Initial[E]**/
 	
 	/**Retrieve user profile[S]**/
 	var profileFunc = function(data){

@@ -37,8 +37,8 @@
 			Title
 			</label>
 			<div class="col-sm-8">
-				<input type="text"  ng-class="{submitted:setup.submitted}" class="form-control" ng-model="title" name="title" id="title" ng-pattern="word" maxlength=30 required
-				tooltip="Required. Only spaces, numbers and alphabets are allowed." tooltip-trigger="{{tooltiptype}}" tooltip-placement="top">
+				<input type="text" ng-class="{submitted:setup.submitted}" class="form-control" ng-model="title" name="title" id="title" ng-pattern="word" maxlength=30 required
+				tooltip="Required. Only spaces, numbers and alphabets are allowed." tooltip-trigger="{{tooltiptype}}" tooltip-placement="top" autofocus>
 				<span class="alert alert-danger alertmsg" ng-show="setup.submitted && setup.title.$error.required">Required!</span>
 				<span class="alert alert-danger alertmsg" ng-show="setup.title.$error.pattern">Only spaces, numbers[0-9] and characters[a-z] is allowed!</span>
 			</div>
