@@ -1,3 +1,4 @@
+"use strict";
 /**
  * calendarDemoApp - 0.1.3
  */
@@ -8,25 +9,28 @@ var calendarURL = 'http://localhost:9000/tools/calendar';
 var calsetupURL = '/selfservice/booking/setup';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
-var redirectURL = "http://login.jomjaring.com";
-var settingsURL = "http://localhost:8000/selfservice/profile/setting";
+var settingsURL = "/selfservice/profile/setting";
 initWebSocket(ws);
 /**Init [E]**/
 
-var calendarApp = angular.module('calendarApp', ['ui.calendar', 'ui.bootstrap']);
+var calendarApp = angular.module('calendarApp', ['ui.calendar', 'ui.bootstrap','ngSanitize']);
 
 calendarApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;
 	  $httpProvider.defaults.useXDomain = true;
 }])
 
-calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
-    function ($scope, $http, $modal, $compile) {
+calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile', '$location',
+    function ($scope, $http, $modal, $compile, $location) {
+	
+	/**Tutorial[S]**/
+	tutorialInit($scope, $location)
+	/**Tutorial[E]**/
 	
 	/**Initial[S]**/
-		$scope.goSettings = function(){
-			window.location.href=settingsURL;
-		}
+	$scope.goSettings = function(){
+		window.location.href=settingsURL;
+	}
 	/**Initial[E]**/
 	
 	/**Retrieve user profile[S]**/
@@ -39,7 +43,11 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 		sendMessage($scope.state,(new Date().getTime()));
 	}
 	
+	$scope.allowSetup = cookieAccess("Cal_Ctrl");
+	
+	
 	getHTTP($http, profileURL, profileFunc);
+	
 	/**Retrieve user profile[E]**/
 	
 	/**Obtain user's date[S]**/
@@ -87,6 +95,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 							booked: ($(this).css('color')=="rgb(0, 0, 0)"),
 							id: event._id
 						};
+		
 		$scope.currEvents.push(currentContent);
     };
     /**Each event Clicks[E]**/
@@ -171,31 +180,34 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	    
 	    $scope.flag = true;
 		$scope.formData = {_id: id};
-		    	
-    	$http({
-	        method  : method,
-	        url     : reservationURL,
-	        data    : $scope.formData,  // pass in data as strings
-	        headers: {'Content-Type': 'application/json'}
-	    })
-        .success(function(data) {
-            $scope.flag = false;
-            if (data.success) {
-            	$scope.currEvents=[];
-            	$scope.myCalendar.fullCalendar( 'refetchEvents' );
-            	$scope.open('ok');
-            }else{
-            	$scope.open('nak');
-            }
-        })
-        .error(function(data){
-        	$scope.flag = false;
-        });
+		    
+		
+		var succFunc = function(data){
+			$scope.flag = false;
+			$scope.currEvents=[];
+        	$scope.myCalendar.fullCalendar( 'refetchEvents' );
+        	$scope.open('ok');
+			}
+	    var failFunc = function(data){
+	    	$scope.flag = false;
+	    	$scope.open('nak');
+	    	}
+	    var errFunc = function(data){
+	    	$scope.flag = false;
+	   		}
+	    
+	    funcHTTP($http, method, reservationURL, $scope.formData, succFunc, failFunc, errFunc);
+		
     }
     /**booking confirmation [E]**/
     
-    /* event sources array*/
-    $scope.eventSources = [$scope.events,$scope.reservedEvents];
+    /* event sources array - hack*/
+    if($scope.tutorialRun){
+    	$scope.tutEvents = [];
+    	$scope.eventSources = [$scope.tutEvents];
+    }else{
+    	$scope.eventSources = [$scope.events,$scope.reservedEvents];
+    }
     
 }]);
 

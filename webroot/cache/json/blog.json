@@ -119,6 +119,11 @@
 "date":"Dec 24th, 2014",
 "task":"Implemented Rest Assured", 
 "detail":"Used RESTAssured to test all REST services. Complete and seperation of UAT has been achieved."
-}
+},
+{
+	"date":"Jan 5th, 2015",
+	"task":"Authentication and Tutorial", 
+	"detail":"Biggest add on yet, a live tutorial on calendar tools and added on/off switch for authentication."
+	}
 ]
 }

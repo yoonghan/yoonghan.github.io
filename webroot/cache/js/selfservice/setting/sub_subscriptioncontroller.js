@@ -1,3 +1,4 @@
+"use strict";
 var subsHostListURL = "http://localhost:9000/subscription/hosts";
 
 /**
@@ -42,26 +43,19 @@ settingApp.controller('SubscriptionCtrl', ['$scope', '$http', '$modal', '$routeP
 			$scope.flag = true;
 			$scope.formData = saveSubscription($scope);
 			
-			$http({
-		        method  : 'POST',
-		        url     : subsHostListURL,
-		        data    : $scope.formData,  // pass in data as strings
-		        headers: {'Content-Type': 'application/json'}
-		    })
-		    .success(function(data) {
-		        if (data.success) {
-		        	switchStatus($scope);
-		        	$scope.open();
-		        }else{
-		        	$scope.errors = "We encounted exception, please try again."
-		        }
+			var succFunc = function(data){
+				switchStatus($scope);
+	        	$scope.open();
+	        	$scope.flag = false;
+				}
+		    var failFunc = function(data){
 		        $scope.flag = false;
-		    })
-		    .error(function(data, status){
-		    	errorAction(status);
-		    	$scope.errors = data.errors;
+		    	}
+		    var errFunc = function(data){
 		    	$scope.flag = false;
-		    });
+		   		}
+		    
+		    funcHTTP($http, "POST", subsHostListURL, $scope.formData, succFunc, failFunc, errFunc);
 		}
 		/**Save user profile[E]**/
 		
@@ -114,9 +108,3 @@ function saveSubscription($scope){
 	return returnval;
 	
 }
-
-settingApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {  
-  $scope.ok = function () {
-	$modalInstance.close();
-  };
-});

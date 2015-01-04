@@ -201,25 +201,16 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		    
 		    $scope.formData = setupData();
 	    	
-	    	$http({
-		        method  : "PUT",
-		        url     : reservationURL,
-		        data    : $scope.formData,  // pass in data as strings
-		        headers: {'Content-Type': 'application/json'}
-		    })
-	        .success(function(data) {
-	            if (data.success) {
-	            	/**$scope.open('ok'); //Maybe in future but it's annoying to have user to click an extra button**/
-	            	location.href = nextLocation;
-	            }else{
-	            	$scope.open('nak');
-	            	$scope.flag = false;
-	            }
-	        })
-	        .error(function(data){
-	        	$scope.errors = data.errors;
-	        	$scope.flag = false;
-	        });
+		    var succFunc = function(data){location.href = nextLocation;}
+		    var failFunc = function(data){
+		    	$scope.open('nak');
+		    	$scope.flag = false;}
+		    var errFunc = function(data){
+		    	$scope.errors = data.errors;
+		    	$scope.flag = false;}
+		    
+		    funcHTTP($http, "PUT", reservationURL, $scope.formData, succFunc, failFunc, errFunc);
+	    	
 		}
 		/**Setup confirmation [E]**/
 		 

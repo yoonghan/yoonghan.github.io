@@ -78,7 +78,7 @@ settingApp.controller('ProfileCtrl', ['$scope','$http', '$modal', '$routeParams'
 	$scope.open = function (status) {
 	   var modalInstance = $modal.open({
 	     templateUrl: 'myModalContent.html',
-	     controller: 'ModalInstanceCtrl',
+	     controller: 'ModalInstanceCtrlProfile',
 	     backdrop: 'static',
 	     resolve: {
 	    	 status: function(){
@@ -113,54 +113,44 @@ settingApp.controller('ProfileCtrl', ['$scope','$http', '$modal', '$routeParams'
 }]);
 
 function insert($http, $scope){
-	$http({
-        method  : 'PUT',
-        url     : saveURL,
-        data    : $scope.formData,  // pass in data as strings
-        headers: {'Content-Type': 'application/json'}
-    })
-    .success(function(data) {
-        if (data.success) {
-        	$scope.open('new');
-        }else{
-        	$scope.errors = "We encounted exception, please try again."
-        	$scope.flag = false;
-        }
-    })
-    .error(function(data, status){
-    	errorAction(status);
+	
+	var succFunc = function(data){$scope.open('new');}
+    var failFunc = function(data){
+    	$scope.errors = "We encounted exception, please try again."
+        $scope.flag = false;}
+    var errFunc = function(data){
     	$scope.errors = data.errors;
     	$scope.flag = false;
-    	location.href = '#';
-    });
+    	location.href = '#';}
+    
+    funcHTTP($http, "PUT", saveURL, $scope.formData, succFunc, failFunc, errFunc);
+	
 }
 
 function update($http, $scope){
 	
-	$http({
-        method  : 'POST',
-        url     : saveURL,
-        data    : $scope.formData,  // pass in data as strings
-        headers: {'Content-Type': 'application/json'}
-    })
-    .success(function(data) {
-        if (data.success) {
-        	$scope.open('edit');
-        	$scope.flag = false;
-        }else{
-        	$scope.errors = "We encounted exception, please try again."
-        	$scope.flag = false;
-        }
-    })
-    .error(function(data, status){
-    	errorAction(status);
+	var succFunc = function(data){
+		$scope.open('edit');
+    	$scope.flag = false;
+		}
+    var failFunc = function(data){
+    	$scope.errors = "We encounted exception, please try again."
+        $scope.flag = false;
+    	}
+    var errFunc = function(data){
     	$scope.errors = data.errors;
     	$scope.flag = false;
    		location.href="#/notify/profile/1";
-    });
+   		}
+    
+    funcHTTP($http, "POST", saveURL, $scope.formData, succFunc, failFunc, errFunc);
+	
 }
 
-settingApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
+/**
+ * Used specifically for new registration. Do not remove.
+ */
+settingApp.controller('ModalInstanceCtrlProfile', function ($scope, $modalInstance, status) {
   $scope.status = status;
   
   $scope.ok = function () {

@@ -200,21 +200,19 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
     	 
     	 modalInstance.result.then(function (status){
     		 if(status == 'reject'){
-    			 $http({
- 			        method  : "DELETE",
- 			        url     : calSetupConfURL,
- 			        data    : {},  // pass in data as strings
- 			        headers: {'Content-Type': 'application/json'}
- 			    })
- 		        .success(function(data) {
- 		        	
- 		            $scope.flag = false;
- 		            if (data.success) {
- 		            	$scope.open('ok');
- 		            }else{
- 		            	$scope.open('nak');
- 		            }
- 		        });
+    			 
+    			 var succFunc = function(data){
+    			    	$scope.flag = false;
+    			    	$scope.open('ok');
+    					}
+    			    var failFunc = function(data){
+    			        $scope.flag = false;
+    			        $scope.open('nak');
+    			    	}
+    			    var errFunc = function(data){
+    			   		}
+    			    
+    			 funcHTTP($http, "DELETE", calSetupConfURL, {}, succFunc, failFunc, errFunc);
     		 }else if(status == 'reset'){
     			 $scope.filterSearch();
     		 }
@@ -269,23 +267,20 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
 	    
 	    $scope.formData = setupData();
     	
-    	$http({
-	        method  : "POST",
-	        url     : calSetupConfURL,
-	        data    : $scope.formData,  // pass in data as strings
-	        headers: {'Content-Type': 'application/json'}
-	    })
-        .success(function(data) {
-            $scope.flag = false;
-            if (data.success) {
-            	$scope.open('ok');
-            }else{
-            	$scope.open('nak');
-            }
-        })
-        .error(function(data){
-        	$scope.flag = false;
-        });
+	    var succFunc = function(data){
+	    	$scope.flag = false;
+	    	$scope.open('ok');
+			}
+	    var failFunc = function(data){
+	        $scope.flag = false;
+	        $scope.open('nak');
+	    	}
+	    var errFunc = function(data){
+	    	$scope.flag = false;
+	   		}
+	    
+	    funcHTTP($http, "POST", calSetupConfURL, $scope.formData, succFunc, failFunc, errFunc);
+	    
 	}
 	/**Setup confirmation [E]**/
 	

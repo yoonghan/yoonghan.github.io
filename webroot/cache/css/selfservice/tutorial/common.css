@@ -1,0 +1,15 @@
+@keyframes blink {  
+    0% { color: black; ; background-color:#fff }
+    100% { color: white; background-color:#3071a9 }
+}
+@-webkit-keyframes blink {
+    0% { color: black; background-color:#fff }
+    100% { color: white; background-color:#3071a9 }
+}
+.tutorialblink {
+    -webkit-animation: blink 1s ease infinite;
+    -moz-animation: blink 1s ease infinite;
+    -ms-animation: blink 1s ease infinite;
+    -o-animation: blink 1s ease infinite;
+    animation: blink 1s ease infinite;
+} 

@@ -1,8 +1,9 @@
 'use strict';
 
-var settingApp = angular.module('settingApp', ['ngRoute','ui.bootstrap','ngAnimate']);
+var settingApp = angular.module('settingApp', ['ngRoute','ui.bootstrap','ngAnimate','ngSanitize']);
 var initialStart = "/notify/subscription";
-var returnURL = "http://localhost:8000/selfservice/booking/calendar";
+var returnURL = "/selfservice/booking/calendar";
+var basicURL = "http://localhost:9000/user/basicinfo";
 /**
  * The main loader.
  */
@@ -38,8 +39,12 @@ settingApp.config(['$routeProvider', '$httpProvider',
 /**
  * Initial Controller
  */
-settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location',
-    function ($scope, $route, $routeParams, $location) {
+settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location', '$timeout',
+    function ($scope, $route, $routeParams, $location, $timeout) {
+	
+		/**Tutorial[S]**/
+		tutorialInit($scope, $location, $timeout)
+		/**Tutorial[E]**/
 		
 		$location.url(initialStart);
 	
@@ -52,13 +57,12 @@ settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$locat
 ]);
 
 /**
- * Initial Controller
+ * Profile  controller, only used for new signup
  */
 settingApp.controller('profileController', ['$scope', '$route', '$routeParams', '$location', '$http',
     function ($scope, $route, $routeParams, $location, $http) {
 	
-		//get user profile
-	
+		//get user profile	
 		$scope.succ = function(data){
 			$scope.fstName = encodeURI(data.firstName);
 			$scope.lstName = encodeURI(data.lastName);
@@ -75,7 +79,7 @@ settingApp.controller('profileController', ['$scope', '$route', '$routeParams', 
 			}
 	    };
 	    
-	    getHTTP($http,'http://localhost:9000/user/basicinfo', $scope.succ);
+	    getHTTP($http,basicURL, $scope.succ);
 	}
 ]);
 
@@ -92,3 +96,9 @@ function redirectPage(){
 var cancelBtn = function(){
 	window.location.href=returnURL;
 }
+
+settingApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+  $scope.ok = function () {
+	$modalInstance.close();
+  };
+});

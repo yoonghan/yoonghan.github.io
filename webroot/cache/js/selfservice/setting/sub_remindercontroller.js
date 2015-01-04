@@ -1,3 +1,4 @@
+"use strict";
 var subsReminderURL = "http://localhost:9000/reminder/profile";
 
 /**
@@ -38,25 +39,19 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 			$scope.flag = true;
 			$scope.formData = saveReminder($scope);
 			
-			$http({
-		        method  : 'POST',
-		        url     : subsReminderURL,
-		        data    : $scope.formData,  // pass in data as strings
-		        headers: {'Content-Type': 'application/json'}
-		    })
-		    .success(function(data) {
-		        if (data.success) {
-		        	$scope.open();
-		        }else{
-		        	$scope.errors = "We encounted exception, please try again."
-		        }
+			var succFunc = function(data){
+				$scope.open();
+		    	$scope.flag = false;
+				}
+		    var failFunc = function(data){
 		        $scope.flag = false;
-		    })
-		    .error(function(data, status){
-		    	errorAction(status);
+		    	}
+		    var errFunc = function(data){
 		    	$scope.errors = data.errors;
 		    	$scope.flag = false;
-		    });
+		   		}
+		    
+		    funcHTTP($http, "POST", subsReminderURL, $scope.formData, succFunc, failFunc, errFunc);
 		}
 		/**Save user profile[E]**/
 		
@@ -102,9 +97,3 @@ function saveReminder($scope){
 function extraInvalidChk($scope){
 	return $scope.chk_email && ($scope.setting.n_email.$viewValue=='' || $scope.setting.n_email.$viewValue==undefined);
 }
-
-settingApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
-  $scope.ok = function () {
-	$modalInstance.close();
-  };
-});

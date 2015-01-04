@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="/cache/css/calendar/fullcalendar.css">
 	<link rel="stylesheet" href="/cache/css/selfservice/calendar.css" />
 	<link rel="stylesheet" href="/cache/css/selfservice/common.css" />
+	<link rel="stylesheet" href="/cache/css/selfservice/tutorial/common.css" />
 	<script src="/cache/js/jquery.min.js"></script>
 </head>
 <body>
@@ -19,15 +20,16 @@
 		<tr><td>
 			<h1>My Calendar Events</h1>
 		</td>
-		<td align="right">
+		<td style="float:right;margin-right:50px" >
 		    <div class="btn-group" dropdown>
-		      <button type="button" class="btn btn-default" ng-click="goSettings()">Settings</button>
-		      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+		      <button type="button" class="btn btn-primary" ng-click="goSettings()" id="setting">Settings</button>
+		      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
 		        <span class="caret"></span>
 		        <span class="sr-only"></span>
 		      </button>
 		      <ul class="dropdown-menu" role="menu">
-		        <li><a href="" ng-click="goSettings()">Settings</a></li>
+		        <li><a ng-click="goSettings()">Settings</a></li>
+		        <li ng-show="allowSetup"><a ng-click="goToSetupLink()">Setup Calendar</a></li>
 		        <li class="divider"></li>
 		        <li><a href="http://localhost:9000/user/logout">Log out</a></li>
 		      </ul>
@@ -36,11 +38,15 @@
 	</table>
 	
 	<div class="jumbotron">
-		<p>
-		For more inquiries for our calendar usage, please refer to our <a href="calendar-help">Calendar Management</a> guide.
-		<br/><br/>
-		<input type="button" value="Setup a calendar here" ng-click="goToSetupLink()" class="btn btn-lg btn-primary" ng-disabled="flag">
-		</p>
+		<span ng-show="!tutorialRun">
+		For more inquiries for our calendar usage, please refer to our <strong></strong><a href="/selfservice/tutorial/calendar_tut">Calendar Help</a></strong> guide.
+		</span>
+		<span ng-show="tutorialRun"><h2 style="color:blue">[ Tutorial ]</h2>
+			<p ng-bind-html="tutorialMsg">
+			</p>
+			<input type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
+			<input type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
+		</span>
 	</div>
 	<hr>
 	<div class="row">
@@ -152,15 +158,24 @@
         
     </script>
 
+<div style="border-top:1px solid #aaa;">
+	&nbsp;<a href="/webby/webpage/about/" target="jomjaring">About Us</a>
+	|
+	<a href="/" target="jomjaring">Main Site</a> 
+	<span style="float:right">All rights reserved to Jom Jaring &copy;&nbsp;</span>
+</div>
 </body>
 <script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="/cache/js/moment/moment.min.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
+<script src="/cache/js/angular/angular-sanitize.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 <script src="/cache/js/calendar/fullcalendar.min.js"></script>
 <script src="/cache/js/calendar/ui-calendar.js"></script>
+<script src="/cache/js/selfservice/cookiereader.js"></script>
 <script src="/cache/js/selfservice/auth_common.js"></script>
+<script src="/cache/js/selfservice/tutorial/calendar_tut.js"></script>
 <script src="/cache/js/selfservice/calendarcontroller.js"></script>
 <script src="/cache/js/ext/weather/skycons.js"></script>
 <script>

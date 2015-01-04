@@ -100,7 +100,7 @@ Re-Setup your profile here.
 <td colspan="2" align="center">    	
     <input type="submit" value="Submit" id="submit" class="btn btn-lg btn-success" ng-disabled="flag" ng-show="!edit" ng-click="processForm()" >
     <input type="submit" value="Save" id="save" class="btn btn-lg btn-success" ng-disabled="flag" ng-show="edit" ng-click="processForm()" >
-    <button type="button" id="cancel" class="btn btn-lg btn-warning" ng-click="cancel()">Cancel</button>
+    <button type="button" id="cancel" class="btn btn-lg btn-primary" ng-click="cancel()" ng-disabled="tutorialRun">Return</button>
 </td>
 </tr>
 </tbody>
@@ -114,11 +114,11 @@ Re-Setup your profile here.
         <div class="modal-body" ng-show="status=='new'">
             Your registration has been completed. You can now proceed to the site.
         </div>
-		<div class="modal-body" ng-show="status=='edit'">
+		<div class="modal-body" ng-show="status!='new'">
             Your registration has been saved.
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
         </div>
     </script>
     

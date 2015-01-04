@@ -10,7 +10,7 @@ Subscribe yourself to the available posters. All your calendar settings are base
 
 	<div class="form-group">
 		<label for="cNameSearch">Filter Company Name :</label> 
-		<input ng-model="cNameSearch" placeHolder="search" class="form-control" autofocus>
+		<input ng-model="cNameSearch" id="cNameSearch" placeHolder="search" class="form-control" autofocus>
 	</div>
 
 	<p/>
@@ -21,6 +21,11 @@ Subscribe yourself to the available posters. All your calendar settings are base
 			<th>Description</th>
 		</thead>
 		<tbody>
+			<tr ng-show="tutSample">
+				<td>Special</td>
+				<td>JOM Jaring</td>
+				<td>For Sample</td>
+			</tr>
 			<tr ng-repeat="e in chkHostList | orderBy:predicate:reverse | filter:cNameSearch">
 				<td><input type="checkbox" ng-model="e.currStat"></td>
 				<td>{{e.cName}}</td>
@@ -31,7 +36,7 @@ Subscribe yourself to the available posters. All your calendar settings are base
 	<hr>
 	<div colspan="2" align="center">    	
 	    <input type="submit" value="Save" id="save" class="btn btn-lg btn-success" ng-disabled="flag" ng-click="save()">
-	    <button type="button" id="cancel" class="btn btn-lg btn-warning" ng-click="cancel()">Cancel</button>
+	    <button type="button" id="cancel" class="btn btn-lg btn-primary" ng-click="cancel()" ng-disabled="tutorialRun">Return</button>
 	</div>
 	<br>
 	

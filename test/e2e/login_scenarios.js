@@ -69,7 +69,11 @@ describe('Login App', function() {
 	
 		stateModel.sendKeys('PT');
 		submit.click();
-		expect(submit.isEnabled()).toBe(false); //always check double clicks
+		
+		var ok = element(by.model('btnOK'));
+		ok.click();
+		browser.sleep(1000);
+		expect(browser.getCurrentUrl()).toContain('localhost');
 	  });
   });
 });
