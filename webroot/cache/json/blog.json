@@ -121,9 +121,14 @@
 "detail":"Used RESTAssured to test all REST services. Complete and seperation of UAT has been achieved."
 },
 {
-	"date":"Jan 5th, 2015",
-	"task":"Authentication and Tutorial", 
-	"detail":"Biggest add on yet, a live tutorial on calendar tools and added on/off switch for authentication."
-	}
+"date":"Jan 5th, 2015",
+"task":"Authentication and Tutorial", 
+"detail":"Biggest add on yet, a live tutorial on calendar tools and added on/off switch for authentication. Then found out only that mongoDB in openshift is still version 2.4, a <b>dissappointment</b>."
+},
+{
+"date":"Jan 7th, 2015",
+"task":"Added Email Pooling", 
+"detail":"Added email pooling so that reminder works. This way all the email will be send nicely."
+}
 ]
 }

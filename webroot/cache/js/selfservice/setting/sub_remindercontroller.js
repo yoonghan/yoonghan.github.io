@@ -9,8 +9,9 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 	
 		$scope.succ = function(data){
 			if(data.success != "ok"){
-				$scope.r_day = data.oneDayB4;
-				$scope.r_week = data.oneWeekB4;
+				
+				$scope.r_day = (data.reminder.indexOf(1) > -1);
+				$scope.r_week = (data.reminder.indexOf(7) > -1);
 				if(data.alertEmail != undefined && data.alertEmail != ""){
 					$scope.chk_email = true;
 					$scope.n_email = data.alertEmail;
@@ -82,13 +83,19 @@ function saveReminder($scope){
 	$scope.chk_sms = $scope.chk_sms == undefined ? false: $scope.chk_sms;
 	$scope.allowCreation = $scope.allowCreation == undefined ? false: $scope.allowCreation;
 	
+	var reminder = []
+	if($scope.r_day) reminder.push(1)
+	if($scope.r_week) reminder.push(7)
+	
 	var jsonVal = {
-		oneDayB4: $scope.r_day,
-	    oneWeekB4: $scope.r_week,
+		reminderDays: reminder,
 	    alertEmail: ($scope.chk_email ? $scope.n_email : ""),
 	    //alertSMS: ($scope.chk_sms? $scope.n_sms: ""),//disabled
 	    allowCreation:$scope.allowCreation
 	};
+	
+	if(! $scope.chk_email)
+		delete jsonVal.alertEmail
 	
 	return jsonVal;
 }
