@@ -61,9 +61,10 @@ Configure the preference of your calendar reminder here.
 			</label>
 			<label class="col-sm-11">
 				<input type="checkbox" ng-model="allowCreation" name="allowCreation">
-				<span>Request for administration rights to set up a calendar schedule, read the </span>
-				<a href="readme.html"><u>Terms And Conditions</u></a>
-				<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.allow]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
+				<span>Request for access rights to set up a calendar schedule.</span>
+				<br>
+				<span ng-show="allowCreation" style="color:green">The system is still in it's fertile stage. Do sent to us an email <a href="mailto:jomjaring@gmail.com">jomjaring@gmail.com</a> and 
+				we from Jom Jaring shall proceed on this manually. Thank you for your support.</span>
 			</label>
 		</div>
 		<hr>
