@@ -16,7 +16,7 @@ function getHTTP($http, url, succfunc){
 
 function errorAction(status){
 	
-	var redirectURL = "http://localhost:8000/errors/unauthorized_401";
+	var redirectURL = "/errors/unauthorized_401";
 	
 	if(status == 401){
     	location.href=redirectURL;
