@@ -34,7 +34,7 @@ function errorAction(status){
  * @param func
  */
 function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
-	
+
 	$http({
         method  : _method,
         url     : _url,

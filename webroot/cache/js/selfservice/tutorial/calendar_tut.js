@@ -6,30 +6,30 @@
 function tutorialInit($scope, $location){
 	
 	var msg = [
-	           "Let's begin our tutorial by navigate with the <strong>Right(&raquo;)</strong> buttons below to proceed.<br>To return to your previous step click <strong>Left(&laquo;)</strong> buttons below.",
-	           "You will need to change your Profile Settings first. Click on the blinking button on top right which indicates <strong>Settings</strong> or, click the button here to proceed: <a class='btn btn-primary' href="+settingsURL+"#/?tut=1'>Continue tutorial</a>."
-	           ];
+	           [0,"Let's begin our tutorial by navigate with the <strong>Right(&raquo;)</strong> buttons below to proceed.<br>To return to your previous step click the <strong>Left(&laquo;)</strong> button."],
+	           [1,"To start, we will begin with the need to change your <strong>Profile Settings</strong>. Click on the blinking button on top right which indicates <strong>Settings</strong> or, click the button here to proceed: <a class='btn btn-primary' href="+settingsURL+"#/?tut=1'>Continue tutorial</a>."]
+	          ];
 	
 	var msg_2 = [
-	           "After you've changed your settings, your booking will be made here with this link/screen.<br>All available events that you have subscribed to will be displayed here.",
-	           "As tutorial, you've subscribed to <strong><i>JOM Jaring</i></strong>&copy; account in your subscription profile. Check out <strong>Today's</strong> <i>My Demo Event</i>.",
-	           "<i>Now, let's start a reservation!</i> Click on the blinking event and you'll see the event being displayed in <strong>Scheduled Events</strong> dialog.<br><strong>Try it !</strong>",
-	           "The <strong>Scheduled Events</strong> dialog, displays your booking status, which includes the date, time(as demo this a full day event, hence the unavailability) and an explanation of the event by the publisher.",
-	           "Click on the <strong>Book</strong> button under Scheduled Event and you will be confirmed.<br><strong>Try it !</strong>",
-	           "Your confirmed booking will have a different style. Click on the event again and see the <strong>Scheduled Event</strong> stated reserved.<br><strong>Try it !</strong>",
-	           "<i>Now, let's cancel your reservation!</i> Click on <strong>Cancel Booking</strong> button under <strong>Scheduled Events</strong> dialog.<br><strong>Try it !</strong>",
-	           "Your reservation is now cancelled(if you followed the tutorial that is!) and the event will be returned to it's normal status.<br><strong>Note: </strong>Sometimes your event cannot be cancelled or reserved. But this will not be covered in this tutorial.",
-	           "Your can change your view settings as well based on <strong>Day</strong>,<strong>Week</strong> and <strong>Month</strong> under the <strong>Calendar</strong> dialog.",
-	           "If you noticed, there is a weather forecast under <strong>Weather Forecast</strong> dialog. The weather changes based on your selected dates.<br><strong>Note:</strong> Due to that this is a network based, the response will have display <strong>delays</strong>.",
-	           "Click on any of the dates in the calendar and the <strong>weather prediction</strong> around your state will be displayed.<br><strong>Try it !</strong>",
-	           "You have completed your tutorial. To exit click on the button: <a class='btn btn-primary' href='/selfservice/booking/calendar'>Complete</a>.<br>Thank you for your participation."
+	           [0,"After you've changed your settings, your booking will be made here with this link/screen.<br>All available events that you have subscribed to will be displayed here."],
+	           [1,"As tutorial, you've subscribed to <strong><i>JOM Jaring</i></strong>&copy; account in your subscription profile. Check out <strong>Today's</strong> <i>My Demo Event</i>."],
+	           [2,"<i>Now, let's start a reservation!</i> Click on the blinking event and you'll see the event being displayed in <strong>Scheduled Events</strong> dialog.<br><strong>Try it !</strong>"],
+	           [3,"The <strong>Scheduled Events</strong> dialog, displays your booking status, which includes the date, time(as demo this a full day event, hence the unavailability) and an explanation of the event by the publisher."],
+	           [4,"Click on the <strong>Book</strong> button under Scheduled Event and you will be confirmed.<br><strong>Try it !</strong>"],
+	           [5,"Your confirmed booking will have a different style. Click on the event again and see the <strong>Scheduled Event</strong> stated reserved.<br><strong>Try it !</strong>"],
+	           [6,"<i>Now, let's cancel your reservation!</i> Click on <strong>Cancel Booking</strong> button under <strong>Scheduled Events</strong> dialog.<br><strong>Try it !</strong>"],
+	           [7,"Your reservation is now cancelled(if you followed the tutorial that is!) and the event will be returned to it's normal status.<br><strong>Note: </strong>Sometimes your event cannot be cancelled or reserved. But this will not be covered in this tutorial."],
+	           [8,"Your can change your view settings as well based on <strong>Day</strong>,<strong>Week</strong> and <strong>Month</strong> under the <strong>Calendar</strong> dialog."],
+	           [9,"If you noticed, there is a weather forecast under <strong>Weather Forecast</strong> dialog. The weather changes based on your selected dates.<br><strong>Note:</strong> Due to that this is a network based, the response will have display <strong>delays</strong>."],
+	           [10,"Click on any of the dates in the calendar and the <strong>weather prediction</strong> around your state will be displayed.<br><strong>Try it !</strong>"],
+	           [11,"You have completed your tutorial. To exit click on the button: <a class='btn btn-primary btnTutNextScreen' href='/selfservice/booking/calendar'>Complete</a>.<br>Thank you for your participation."]
 	           ];
 	var firstTrigger = false;
 	
-	var makeAnimation = function(count){
-		switch(count){
+	var makeAnimation = function(id){
+		switch(id){
 		case 1:
-			$('#setting').addClass("tutorialblink");
+			$('#btnSetting').addClass("tutorialblink");
 			//override the settings button.
 			$scope.goSettings = function(){
 				window.location.href=settingsURL+"#/?tut=1";
@@ -64,8 +64,8 @@ function tutorialInit($scope, $location){
 		}
 	}
 	
-	var makeAnimation_2 = function(count){
-		switch(count){
+	var makeAnimation_2 = function(id){
+		switch(id){
 		case 1:
 			if(!firstTrigger){
 				firstTrigger = true;
@@ -89,8 +89,9 @@ function tutorialInit($scope, $location){
 		}
 		
 		$scope.count += s_count;
-		animationFunc($scope.count);
-		$scope.tutorialMsg = msgType[$scope.count];
+		var msgCounter = msgType[$scope.count]; 
+		animationFunc(msgCounter[0]);
+		$scope.tutorialMsg = msgCounter[1];
 	}
 	
 	var tutorialOn = $location.search().tut;

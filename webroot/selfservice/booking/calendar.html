@@ -22,7 +22,7 @@
 		</td>
 		<td style="float:right;margin-right:50px" >
 		    <div class="btn-group" dropdown>
-		      <button type="button" class="btn btn-primary" ng-click="goSettings()" id="setting">Settings</button>
+		      <button type="button" class="btn btn-primary" ng-click="goSettings()" id="btnSetting">Settings</button>
 		      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
 		        <span class="caret"></span>
 		        <span class="sr-only"></span>
@@ -30,6 +30,7 @@
 		      <ul class="dropdown-menu" role="menu">
 		        <li><a ng-click="goSettings()">Settings</a></li>
 		        <li ng-show="allowSetup"><a ng-click="goToSetupLink()">Setup Calendar</a></li>
+		        <li ng-show="allowSetup"><a ng-click="goToBookingLink()">Reservations</a></li>
 		        <li class="divider"></li>
 		        <li><a href="http://localhost:9000/user/logout">Log out</a></li>
 		      </ul>
@@ -44,8 +45,8 @@
 		<span ng-show="tutorialRun"><h2 style="color:blue">[ Tutorial ]</h2>
 			<p ng-bind-html="tutorialMsg">
 			</p>
-			<input type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
-			<input type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
+			<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
+			<input id="tutBtnNxt" type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
 		</span>
 	</div>
 	<hr>
@@ -105,7 +106,7 @@
 								<dd>{{e.desc}}</dd>
 							</dl>
 							<hr>
-								<input type="button" value="Book Now" ng-click="ok(e.id)" class="btn btn-lg btn-primary" ng-disabled="flag">
+								<input type="button" id="btnBook" value="Book Now" ng-click="ok(e.id)" class="btn btn-lg btn-primary" ng-disabled="flag">
 							</div>
 							<div class="alert alert-success form-group" style="font-size:12pt;" ng-if="e.booked">
 							<h4>Reserved</h4>
@@ -120,7 +121,7 @@
 								<dd>{{e.desc}}</dd>
 							</dl>
 							<hr>
-								<input type="button" value="Cancel Booking" ng-click="cancel(e.id)" class="btn btn-lg btn-success" ng-disabled="flag">
+								<input type="button" id="btnCancelBook" value="Cancel Booking" ng-click="cancel(e.id)" class="btn btn-lg btn-success" ng-disabled="flag">
 							</div>
 						</li>
 					</ul>
@@ -139,7 +140,7 @@
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
-            	<button class="btn btn-danger" ng-click="ok()">Error</button>
+            	<button class="btn btn-danger" ng-click="ok()" id="btnOK_Error">Error</button>
 			</div>
 		</div>
 		
@@ -152,7 +153,7 @@
 				<h4>{{statMsg}}</h4>
 			</div>
         	<div class="modal-footer">
-            	<button class="btn btn-primary" ng-click="ok()">Confirm</button>
+            	<button class="btn btn-primary" ng-click="ok()" id="btnOK_Success">Confirm</button>
 			</div>
 		</div>
         

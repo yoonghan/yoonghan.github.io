@@ -37,7 +37,7 @@ Configure the preference of your calendar reminder here.
 						<input type="checkbox" ng-model="chk_email" name="chk_email">
 						<span ng-show="!chk_email">Email</span>
 						<input class="form-control" style="display:inline;width:initial" ng-show="chk_email" name="n_email" type="email" ng-model="n_email" placeholder="e.g. abc@yahoo.com" maxlength="200">
-						<span class="alert alert-danger alertmsg" ng-show="chk_email && setting.n_email.$error.email">Email provided is invalid!</span>
+						<span id="emailInvalid" class="alert alert-danger alertmsg" ng-show="chk_email && setting.n_email.$error.email">Email provided is invalid!</span>
 						<span id="emailBlank" class="alert alert-danger alertmsg" ng-show="chk_email && (setting.n_email.$viewValue==='' || setting.n_email.$viewValue===undefined)">Email must not be blank</span>
 					</label>
 				</div>
@@ -81,7 +81,7 @@ Configure the preference of your calendar reminder here.
 				Your reminder has been saved.
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-primary" ng-click="ok()">OK</button>
+				<button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
 			</div>
     	</script>
 	</form>

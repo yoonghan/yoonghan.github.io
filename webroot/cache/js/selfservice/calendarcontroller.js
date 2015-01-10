@@ -7,9 +7,11 @@
 var reservationURL = 'http://localhost:9000/tools/reserve';
 var calendarURL = 'http://localhost:9000/tools/calendar';
 var calsetupURL = '/selfservice/booking/setup';
+var bookingListURL = '/selfservice/booking/bookinginfo';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
 var settingsURL = "/selfservice/profile/setting";
+
 initWebSocket(ws);
 /**Init [E]**/
 
@@ -169,6 +171,11 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**Add setup link.**/
     $scope.goToSetupLink = function(){
     	location.href = calsetupURL;
+    }
+    
+    /**Add booking link.**/
+    $scope.goToBookingLink = function(){
+    	location.href = bookingListURL;
     }
     
     /**booking confirmation [S]**/

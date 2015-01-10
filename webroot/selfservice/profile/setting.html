@@ -23,8 +23,8 @@
 			<span><h2 style="color:blue">[ Tutorial ]</h2>
 				<p ng-bind-html="tutorialMsg">
 				</p>
-				<input type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
-				<input type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
+				<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
+				<input id="tutBtnNxt" type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
 			</span>
 		</div>
 		

@@ -6,22 +6,22 @@
 function tutorialInit($scope, $location, $timeout){
 	
 	var msg = [
-	           "This is the <strong>Settings</strong> page. You need to subscribe to a company to view any reservation event's. In this tutorial, we'll guide you on the profile setup process.",
-	           "On contrary, take <strong>note</strong> that this is a live demo; any changes will affect your current account. <br>For this demo, the Return button has been <strong>disabled</strong>.",
-	           "The <strong>Save</strong> button at the bottom of the page is to confirm that your changes are to be made. Look at the blinking button below <i>(you might need to scroll down)</i>.",
-	           "The <strong>Return</strong> button at the bottom of the page is to return to your booking schedule. Look at the blinking button below <i>(you might need to scroll down)</i>. <br>This button is currently <strong>Disabled</strong>",
-	           "The <strong>Reminder</strong> tab below shows the available list of reminder you can make. <br>Below shows the form details.",
-	           "The <strong>Profile</strong> tab highlights your profile. <br>Below shows the form details.",
-	           "The <strong>Subscription</strong> tab below shows the available list of booking you can make. <br>Below shows the form details.",
-	           "Some fields provide a filter. By entering your search text, the list will match your search text. Removing the text in the search fields will show all the datas.",
-	           "Let's try it on the <strong>Filter Company Name:</strong> text box.<br><strong>Try it!</strong>",
-	           "Take note, all changes are <strong>not modified</strong> when the filter is used <i>(unless specified)</i>. Hence everything you have selected previously will still remain.<br>",
-	           "Lastly as tutorial, you are subscribed to <strong><i>JOM Jaring&copy;</i></strong> account for this demo.<br><strong>Optional:</strong> Subscribe to one of the Company's event and click save, if you are ready. This way you are ready to do your reservation after the tutorial ended.",
-	           "This completes the Settings. Let us return to the Calendar page, by clicking on the button here: <a class='btn btn-primary' href='/selfservice/booking/calendar#/?tut=2'>Return to calendar</a>."
+	           [0,"This is the <strong>Settings</strong> page. You need to subscribe to a company to view any reservation event's. In this tutorial, we'll guide you on the profile setup process."],
+	           [1,"On contrary, take <strong>note</strong> that this is a live demo; any changes will affect your current account. <br>For this demo, the Return button has been <strong>disabled</strong>."],
+	           [2,"The <strong>Save</strong> button at the bottom of the page is to confirm that your changes are to be made. Look at the blinking button below <i>(you might need to scroll down)</i>."],
+	           [3,"The <strong>Return</strong> button at the bottom of the page is to return to your booking schedule. Look at the blinking button below <i>(you might need to scroll down)</i>. <br>This button is currently <strong>Disabled</strong>"],
+	           [4,"The <strong>Reminder</strong> tab below shows the available list of reminder you can make. <br>Below shows the form details."],
+	           [5,"The <strong>Profile</strong> tab highlights your profile. <br>Below shows the form details."],
+	           [6,"The <strong>Subscription</strong> tab below shows the available list of booking you can make. <br>Below shows the form details."],
+	           [7,"Some fields provide a filter. By entering your search text, the list will match your search text. Removing the text in the search fields will show all the datas."],
+	           [8,"Let's try it on the <strong>Filter Company Name:</strong> text box.<br><strong>Try it!</strong>"],
+	           [9,"Take note, all changes are <strong>not modified</strong> when the filter is used <i>(unless specified)</i>. Hence everything you have selected previously will still remain.<br>"],
+	           [10,"Lastly as tutorial, you are subscribed to <strong><i>JOM Jaring&copy;</i></strong> account for this demo.<br><strong>Optional:</strong> Subscribe to one of the Company's event and click save, if you are ready. This way you are ready to do your reservation after the tutorial ended."],
+	           [11,"This completes the Settings. Let us return to the Calendar page, by clicking on the button here: <a class='btn btn-primary btnTutNextScreen' href='/selfservice/booking/calendar#/?tut=2'>Return to calendar</a>."]
 	           ];
 	
-	function makeAnimation(count){
-		switch(count){
+	function makeAnimation(id){
+		switch(id){
 		case 0:
 			$timeout(function() {
 			    angular.element('#lnk_subscription').trigger('click');
@@ -102,8 +102,9 @@ function tutorialInit($scope, $location, $timeout){
 			return
 		
 		$scope.count += s_count;
-		makeAnimation($scope.count);
-		$scope.tutorialMsg = msg[$scope.count];
+		var msgCounter = msg[$scope.count];
+		makeAnimation(msgCounter[0]);
+		$scope.tutorialMsg = msgCounter[1];
 	}
 	
 	var tutorialOn = $location.search().tut;

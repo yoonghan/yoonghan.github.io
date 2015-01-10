@@ -21,7 +21,7 @@ Subscribe yourself to the available posters. All your calendar settings are base
 			<th>Description</th>
 		</thead>
 		<tbody>
-			<tr ng-show="tutSample">
+			<tr ng-show="tutSample" id="tutSpecialRec">
 				<td>Special</td>
 				<td>JOM Jaring</td>
 				<td>For Sample</td>
@@ -48,7 +48,7 @@ Subscribe yourself to the available posters. All your calendar settings are base
 			Your subscription has been saved.
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-primary" ng-click="ok()">OK</button>
+			<button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
 		</div>
 	</script>
 </form>

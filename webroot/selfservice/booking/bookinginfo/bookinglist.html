@@ -1,0 +1,55 @@
+<div role="main" class="container-fluid">
+
+	<h1>Reservation List</h1>
+	<div class="jumbotron">
+		<p>
+		As of current, we are still with <strong>BETA</strong> Stages.
+		<br>The Help are still under construction, as for current, please contact us for support.
+		</p>
+	</div>
+
+<hr>	
+	<form class="form-horizontal" role="form" name="list">
+	
+		<table class="table table-hover table-bordered">
+		<thead>
+			<th><a href="" ng-click="predicate='date'; reverse=!reverse">Date<i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='date'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='date'&&reverse}"></i></a></th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Title</th>
+			<th>Desc</th>
+			<th>Availability</th>
+			<th>Subscribers</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="e in bookingList | orderBy:predicate:reverse">
+				<td>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</td>
+				<td>
+					<span ng-show="!e.allDay">{{e.start | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="e.allDay">Full Day</span>
+				</td>
+				<td>
+					<span ng-show="!e.allDay">{{e.end | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="e.allDay">-</span>
+				</td>
+				<td>{{e.title}}</td>
+				<td>{{e.desc}}</td>
+				<td>{{e.avail}}</td>
+				<td>
+					<button class="btn btn-success btn-sm" ng-click="exposeUsers($index,e.id)">View Subscribers</button>
+					<table ng-repeat="f in bookingList[0].info">
+						<tr>
+						<td>{{f.firstName}}, {{f.lastName}}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</form>
+	<hr>
+	<div align="center">
+	<button class="btn btn-lg btn-primary" ng-disabled="flag" ng-click="returnForm()" tooltip="Cancel And Return To Calendar." 
+			tooltip-placement="top" ng-model="returnFlag"><span class="glyphicon glyphicon-home"></span> Return To Home</button>
+	</div>
+</div>
