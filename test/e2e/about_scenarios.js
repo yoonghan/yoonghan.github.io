@@ -2,7 +2,7 @@
 
 describe('Introduction App', function() {
 
-  var menuCounts = 6;
+  var menuCounts = 8;
 
   it('Check introduction page', function() {
     browser.get('/');
@@ -81,5 +81,13 @@ describe('Introduction App', function() {
 	blogListColumn.then(function(blog){
 		expect(blog[0].getText()).toContain("Node");
 	});
+  });
+  
+  it('Check reasearch page', function() {
+	    browser.get('/webby/webpage/research');
+	    
+	  //check all the links are displaying correctly
+		var menuList = element.all(by.repeater('menu in menus'));
+		expect(menuList.count()).toBe(menuCounts);
   });
 });
