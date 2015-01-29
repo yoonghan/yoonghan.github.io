@@ -295,7 +295,11 @@ To create test script using maven
 </tr>
 <tr>
 	<td>sed</td>
-	<td>sed -n '/HEADER.*APN=/{p;n;n;n;p;}' mythecube.log.2013-12-02. #Select match where print first line skip 3 lines then print</td>
+	<td>
+	sed -n '/HEADER.*APN=/{p;n;n;n;p;}' mythecube.log.2013-12-02. #Select match where print first line skip 3 lines then print
+	<br>
+	sed 's/.*\(dnStatus: NotDelivered\).*/\1/g' smsNotif|grep "errorCode" #Replace text
+	</td>
 </tr>
 <tr>
 	<td>vmstat</td>
@@ -308,6 +312,10 @@ To create test script using maven
 <tr>
 	<td>netstat -na</td>
 	<td>Run as administrator in windows, can view programs utilizing the ports.</td>
+</tr>
+<tr>
+	<td>tcpdump</td>
+	<td>sudo tcpdump -n dst host 203.87.166.59 #Execute tcp dump and get system output and input</td>
 </tr>
 <tbody>
 </tbody>

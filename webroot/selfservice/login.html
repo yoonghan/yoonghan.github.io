@@ -3,6 +3,7 @@
  <head data-gwd-animation-mode="quickMode">
  <title>JOM Jaring Login</title>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
  <meta name="generator" content="Google Web Designer 1.0.2.1210">
 	<script src="/cache/js/jquery.min.js"></script>
  <style type="text/css">
@@ -185,16 +186,58 @@
  </script>
 	<script>
 	var login = "http://localhost:9000/service/oauth/send/";
+	var btnClick = false;
+	var timeVar; 
+	
+	function clickButton(postUrl){
+		if(btnClick)
+			return;
+		else{
+			btnClick=true;
+			$('#loader').css('visibility','visible');
+			$('#info').text('is Loading...');
+			checkServerStarted(postUrl);
+		}
+	}
+	
+	function executeLogin(postUrl){
+		location.href=login+postUrl;
+	}
+	
+	function poolServlet(postUrl){
+		timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 5000);
+	}
+	
+	function checkServerStarted(postUrl){
+		clearTimeout(timeVar);
+		
+		$.ajax({
+			url:'http://localhost:9000/ping',
+			type: 'GET',
+			async: false,
+			success:
+				function(result){
+					executeLogin(postUrl);
+				},
+			error:
+				function(result, status , obj){
+					if(status = "timeout")
+						poolServlet(postUrl);
+				}
+		});
+	}
+ 
 	$( document ).ready(function() {
- $('#gcustomBtn').on('click', function() {
- location.href=login+"G";
- });
- $('#fcustomBtn').on('click', function() {
- location.href=login+"F";
- });
- $('#helpcustomBtn').on('click', function() {
- window.open("/selfservice/readme","selfservice");
- });
+		 $('#gcustomBtn').on('click', function() {
+		 	clickButton("G");
+		 	
+		 });
+		 $('#fcustomBtn').on('click', function() {
+		 	clickButton("F");
+		 });
+		 $('#helpcustomBtn').on('click', function() {
+		 	window.open("/selfservice/readme","selfservice");
+		 });
 	});
 	</script>
 	
@@ -266,7 +309,7 @@
  width: 80px;
  padding: 9px;
  text-align: center;
- box-shadow: #444 8px 8px 9px;
+ box-shadow: #444 -5px 5px 3px;
  border-radius: 8px;
  border:#000 1px solid;
  font-weight: bold;
@@ -274,7 +317,7 @@
 	}
 	#helpcustomBtn:hover {
  background-color: rgb(23, 93, 28);
- box-shadow: #444 7px 9px 9px;
+ box-shadow: #444 -4px 6px 3px;
  cursor:pointer; cursor:hand;
 	}
 	span.helpButtonText {
@@ -283,7 +326,11 @@
  </style>
  </head>
  <body>
+
+
+
 	<canvas data-rdge-id="1wwt7gg5" width="426" height="309" class="gwd-canvas-qmlz"></canvas>
+
  <div class="gwd-f-btn">
  <div id="fcustomBtn" class="customBtn customFacebookSignIn">
  <span class="icon ficon"></span>
@@ -291,7 +338,12 @@
  </div>
  </div>
  <div class="gwd-title">
- <span class="gwd-span-title">Sign in <br><span><span class="gwd-span-title2">with</span>
+ <span class="gwd-span-title">Sign in <br></span>
+ <span class="gwd-span-title2" id="info">
+ with
+ <br> 
+ </span>
+ <img src="/cache/css/images/loading.gif" style="position:absolute;top:15px;left:15px;width:30px;height:30px;visibility:hidden" id="loader">
  </div>
  <div class="gwd-g-btn">
  <div id="gcustomBtn" class="customBtn customGPlusSignIn">

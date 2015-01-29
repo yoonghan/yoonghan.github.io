@@ -55,9 +55,9 @@ Re-Setup your profile here.
 </td>
 <td>
 		<div class="radio">
-		<input type="radio" ng-model="gender" value="M"> Male &nbsp;
-		<input type="radio" ng-model="gender" value="F"> Female &nbsp;
-		<input type="radio" ng-model="gender" value="O"> Not to be specified
+		<label><input type="radio" ng-model="gender" value="M"> Male </label>
+		<label><input type="radio" ng-model="gender" value="F"> Female </label>
+		<label><input type="radio" ng-model="gender" value="O"> Not to be specified </label>
 		</div>
 </td>
 </tr>
@@ -100,7 +100,7 @@ Re-Setup your profile here.
 <td colspan="2" align="center">    	
     <input type="submit" value="Submit" id="submit" class="btn btn-lg btn-success" ng-disabled="flag" ng-show="!edit" ng-click="processForm()" >
     <input type="submit" value="Save" id="save" class="btn btn-lg btn-success" ng-disabled="flag" ng-show="edit" ng-click="processForm()" >
-    <button type="button" id="cancel" class="btn btn-lg btn-primary" ng-click="cancel()" ng-disabled="tutorialRun">Return</button>
+    <button type="button" id="cancel" class="btn btn-lg btn-primary" ng-click="cancel()" ng-show="edit" ng-disabled="tutorialRun">Return</button>
 </td>
 </tr>
 </tbody>
