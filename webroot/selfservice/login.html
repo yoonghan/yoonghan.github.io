@@ -195,7 +195,7 @@
 		else{
 			btnClick=true;
 			$('#loader').css('visibility','visible');
-			$('#info').text('is Loading...');
+			$('#info').text('is loading...');
 			checkServerStarted(postUrl);
 		}
 	}
@@ -205,7 +205,8 @@
 	}
 	
 	function poolServlet(postUrl){
-		timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 5000);
+		$('#info').text('initializing login...');
+		timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 8000);
 	}
 	
 	function checkServerStarted(postUrl){
@@ -221,8 +222,11 @@
 				},
 			error:
 				function(result, status , obj){
-					if(status = "timeout")
+					if(status = "timeout"){
 						poolServlet(postUrl);
+					}else{
+						btnClick=false;
+					}
 				}
 		});
 	}

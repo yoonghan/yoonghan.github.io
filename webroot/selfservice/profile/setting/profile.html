@@ -1,12 +1,13 @@
 <p>
-<div class="info" ng-show="edit">
+<div class="jumbotron" ng-show="edit">
 
 Re-Setup your profile here.
 
 </div>
 </p>
 
-<div class="alert alert-danger" ng-show="errors" role="alert" ng-controller="ProfileCtrl">
+<div ng-controller="ProfileCtrl">
+<div class="alert alert-danger" ng-show="errors" role="alert"> 
 <strong>Oh Snap, </strong> please check if there's some input errors:
 <ul ng-repeat="error in errors">
 	<li>{{error}}</li>

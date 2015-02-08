@@ -1,11 +1,19 @@
 <p>
-<div class="info">
+<div class="jumbotron">
 
 Configure the preference of your calendar reminder here.
 
 </div>
 </p>
 	<form class="form-horizontal" role="form" name="setting" ng-controller="ReminderCtrl" >
+	
+	<div class="alert alert-danger" ng-show="errors" role="alert"> 
+	<strong>Oh Snap, </strong> there is an error:
+	<ul ng-repeat="error in errors">
+		<li>{{error}}</li>
+	</ul>
+	</div>
+	
 		<div class="form-group">
 			<label class="col-sm-2 control-label">
 			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.reminder]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>

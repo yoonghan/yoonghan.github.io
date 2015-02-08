@@ -129,6 +129,11 @@
 "date":"Jan 7th, 2015",
 "task":"Added Email Pooling", 
 "detail":"Added email pooling so that reminder works. This way all the email will be send nicely."
+},
+{
+"date":"Feb 8th, 2015",
+"task":"Improvement", 
+"detail":"After some android studies and development, it's back to the web. Improved an animated.css and made error messages displayed better."
 }
 ]
 }

@@ -44,6 +44,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 		    	$scope.flag = false;
 				}
 		    var failFunc = function(data){
+		    	$scope.errors = data.errors;
 		        $scope.flag = false;
 		    	}
 		    var errFunc = function(data){

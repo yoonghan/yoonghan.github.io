@@ -147,13 +147,21 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**UI Configuration[E]**/
     
     /**DialogBox[S]**/
-    $scope.open = function (status) {
+    $scope.open = function (status, message) {
+    	
+    	if(typeof message === "undefined") message="";
+    	
     	 var modalInstance = $modal.open({
     	 templateUrl: 'myModalContent.html',
     	 controller: 'ModalInstanceCtrl',
-    	 resolve: {status: function(){
-    		 return status;
-    	 }}
+    	 resolve: {
+    		 status: function(){
+    			 return status;
+    		 },
+    		 message: function(){
+        		 return message;
+    		 }
+    	 }
     	 });
     }
     /**DialogBox[E]**/
@@ -197,10 +205,11 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 			}
 	    var failFunc = function(data){
 	    	$scope.flag = false;
-	    	$scope.open('nak');
+	    	$scope.open('nak', data.error);
 	    	}
 	    var errFunc = function(data){
 	    	$scope.flag = false;
+	    	$scope.open('nak', "Internal Server Error. Please try again.");
 	   		}
 	    
 	    funcHTTP($http, method, reservationURL, $scope.formData, succFunc, failFunc, errFunc);
@@ -219,12 +228,13 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 }]);
 
 /**Pop up dialog[S]**/
-calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
+calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status, message) {
   $scope.status = status=='ok'?true:false;
+ 
   if($scope.status){
 	  $scope.statMsg = "Status Confirmed."
   }else{
-	  $scope.statMsg = "Booking Not Accepted."
+	  $scope.statMsg = message==""?"Booking Not Accepted.":message;
   }
 	
   $scope.ok = function () {

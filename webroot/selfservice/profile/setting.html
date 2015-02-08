@@ -20,11 +20,11 @@
 		<h2><a href="" ng-click="cancel()">&lt;</a> Settings</h2>
 		
 		<div class="jumbotron" ng-show="tutorialRun">
-			<span><h2 style="color:blue">[ Tutorial ]</h2>
+			<span><h2 class="tutorialH2">[ TUTORIAL ]</h2>
 				<p ng-bind-html="tutorialMsg">
 				</p>
-				<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-show="!tut_first">
-				<input id="tutBtnNxt" type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-show="!tut_last">
+				<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-disabled="tut_first">
+				<input id="tutBtnNxt" type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-disabled="tut_last">
 			</span>
 		</div>
 		

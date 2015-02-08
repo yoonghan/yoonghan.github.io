@@ -1,6 +1,23 @@
 'use strict';
 
 /**
+ * Create a fragmented document to indicate processing.
+ * @param htmlStr
+ * @returns
+ */
+function create(htmlStr) {
+    var frag = document.createDocumentFragment(),
+        temp = document.createElement('div');
+    temp.innerHTML = htmlStr;
+    while (temp.firstChild) {
+        frag.appendChild(temp.firstChild);
+    }
+    return frag;
+}
+var fragment = create('<div class="processInd animated infinite flipInX" id="auth_common_lbl" >Processing...</div>');
+document.body.insertBefore(fragment, document.body.childNodes[0]);
+
+/**
  * HTTP GET function that return error page if error is 401.
  * @param $http
  * @param url
@@ -28,12 +45,14 @@ function errorAction(status){
 }
 
 /**
- * HTTP GET function that return error page if error is 401.
+ * HTTP METHOD function that return error page if error is 401.
  * @param $http
  * @param url
  * @param func
  */
 function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
+
+	$("#auth_common_lbl").show();
 
 	$http({
         method  : _method,
@@ -42,6 +61,7 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
         headers: {'Content-Type': 'application/json'}
     })
     .success(function(data) {
+    	$("#auth_common_lbl").hide();
         if (data.success) {
         	succfunc(data);
         }else{
@@ -49,7 +69,12 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
         }
     })
     .error(function(data, status){
-    	if(errorAction(status) == false)
+    	$("#auth_common_lbl").hide();
+    	if(errorAction(status) == false){
+    		if(data == null){
+    			data={errors:["We encountered server exception, please try again."]};
+    		}
     		errfunc(data);
-    });	
+    	}
+    });
 }

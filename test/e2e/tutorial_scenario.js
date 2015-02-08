@@ -12,7 +12,7 @@ describe('Tutorial Scan', function() {
 		  //**Page one testing[S]**//
 			browser.get('http://localhost:8000/selfservice/booking/calendar#/?tut=1');
 			
-			expect(element(by.id('tutBtnPrv')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnPrv')).isEnabled()).toBe(false);
 			
 			//***Make sure nxt, previous works[S]**/
 			element(by.id('tutBtnNxt')).click();
@@ -20,7 +20,7 @@ describe('Tutorial Scan', function() {
 			//***Make sure nxt, previous works[E]**/
 			element(by.id('tutBtnNxt')).click();
 			
-			expect(element(by.id('tutBtnNxt')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnNxt')).isEnabled()).toBe(false);
 			
 			expect(element(by.id('btnSetting')).getAttribute('class')).toContain('tutorialblink');
 			element(by.id('btnSetting')).click();
@@ -29,7 +29,7 @@ describe('Tutorial Scan', function() {
 			browser.sleep(1000);
 			//**Page two testing[S]**//
 			expect(browser.getCurrentUrl()).toContain('/profile/setting#/notify/subscription');
-			expect(element(by.id('tutBtnPrv')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnPrv')).isEnabled()).toBe(false);
 			
 			//***Make sure nxt, previous works[S]**/
 			element(by.id('tutBtnNxt')).click();
@@ -73,7 +73,7 @@ describe('Tutorial Scan', function() {
 			expect(element(by.id('tutSpecialRec')).isDisplayed()).toBe(true);
 			
 			element(by.id('tutBtnNxt')).click();
-			expect(element(by.id('tutBtnNxt')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnNxt')).isEnabled()).toBe(false);
 			element(by.css('.btnTutNextScreen')).click();
 			
 			browser.sleep(1000);
@@ -82,7 +82,7 @@ describe('Tutorial Scan', function() {
 			
 			//**Page three testing[S]**//
 			expect(browser.getCurrentUrl()).toContain('/booking/calendar#/?tut=2');
-			expect(element(by.id('tutBtnPrv')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnPrv')).isEnabled()).toBe(false);
 			
 			//***Make sure nxt, previous works[S]**/
 			element(by.id('tutBtnNxt')).click();
@@ -121,7 +121,7 @@ describe('Tutorial Scan', function() {
 			expect(element(by.id('weatherIcon')).isDisplayed()).toBe(true);
 			
 			element(by.id('tutBtnNxt')).click();
-			expect(element(by.id('tutBtnNxt')).isDisplayed()).toBe(false);
+			expect(element(by.id('tutBtnNxt')).isEnabled()).toBe(false);
 			element(by.css('.btnTutNextScreen')).click();
 			//**Page three testing[E]**//
 	  });

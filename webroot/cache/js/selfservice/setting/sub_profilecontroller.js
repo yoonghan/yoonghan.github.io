@@ -116,7 +116,7 @@ function insert($http, $scope){
 	
 	var succFunc = function(data){$scope.open('new');}
     var failFunc = function(data){
-    	$scope.errors = "We encounted exception, please try again."
+    	$scope.errors = data.errors;
         $scope.flag = false;}
     var errFunc = function(data){
     	$scope.errors = data.errors;
@@ -134,7 +134,7 @@ function update($http, $scope){
     	$scope.flag = false;
 		}
     var failFunc = function(data){
-    	$scope.errors = "We encounted exception, please try again."
+    	$scope.errors = data.errors;
         $scope.flag = false;
     	}
     var errFunc = function(data){

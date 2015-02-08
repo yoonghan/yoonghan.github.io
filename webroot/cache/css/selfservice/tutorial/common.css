@@ -12,4 +12,8 @@
     -ms-animation: blink 1s ease infinite;
     -o-animation: blink 1s ease infinite;
     animation: blink 1s ease infinite;
-} 
+}
+.tutorialH2 {
+	color: blue;
+	font-weight: bold;
+}

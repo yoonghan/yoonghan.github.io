@@ -49,9 +49,11 @@ settingApp.controller('SubscriptionCtrl', ['$scope', '$http', '$modal', '$routeP
 	        	$scope.flag = false;
 				}
 		    var failFunc = function(data){
+		    	$scope.errors = data.errors;
 		        $scope.flag = false;
 		    	}
 		    var errFunc = function(data){
+		    	$scope.errors = data.errors;
 		    	$scope.flag = false;
 		   		}
 		    
@@ -84,6 +86,10 @@ function switchStatus($scope){
 }
 
 function saveSubscription($scope){
+
+	if(typeof $scope.chkHostList === 'undefined'){
+		return;
+	}
 	
 	var subList = [];
 	var unsubList = [];

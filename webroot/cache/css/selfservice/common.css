@@ -1,3 +1,5 @@
+@import url("/cache/css/animate/animate.css");
+
 body {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -15,6 +17,9 @@ body {
 	padding-top:15px;
 	padding-bottom:15px;
 	margin-bottom:0px;
+	background-color: #D4E9FC;
+	border: 2px solid #428bca;
+	border-radius: 5px;
 }
 
 .jumbotron p{
