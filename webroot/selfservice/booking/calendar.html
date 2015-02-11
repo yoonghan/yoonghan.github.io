@@ -16,27 +16,9 @@
 
 <div role="main" class="container-fluid" ng-controller="calendarCtrl">
 
-	<table width="100%">
-		<tr><td>
-			<h1>My Events</h1>
-		</td>
-		<td style="float:right;width:130px" >
-		    <div class="btn-group" dropdown>
-		      <button type="button" class="btn btn-primary" ng-click="goSettings()" id="btnSetting">Settings</button>
-		      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
-		        <span class="caret"></span>
-		        <span class="sr-only"></span>
-		      </button>
-		      <ul class="dropdown-menu" role="menu">
-		        <li><a ng-click="goSettings()">Settings</a></li>
-		        <li ng-show="allowSetup"><a ng-click="goToSetupLink()">Setup Calendar</a></li>
-		        <li ng-show="allowSetup"><a ng-click="goToBookingLink()">Reservations</a></li>
-		        <li class="divider"></li>
-		        <li><a href="http://localhost:9000/user/logout">Log out</a></li>
-		      </ul>
-		    </div>
-		</td></tr>
-	</table>
+	<div ng-include="'/selfservice/common/header'"></div>
+
+	<h1>My Events</h1>
 	
 	<div class="jumbotron">
 		<span ng-show="!tutorialRun">
@@ -96,13 +78,13 @@
 						<li ng-repeat="e in currEvents">
 							<div class="alert alert-info form-group" style="font-size:12pt;" ng-if="e.booked == false">
 							<dl class="dl-horizontal">
-								<dt>Date</dt>
+								<dt>Date:</dt>
 								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
 								<dt ng-show="e.allDay == false">Time:</dt>
 								<dd ng-show="e.allDay == false">{{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}</dd>
-								<dt>Activity</dt>
+								<dt>Activity:</dt>
 								<dd>{{e.title}}</dd>
-								<dt>Description</dt>
+								<dt>Description:</dt>
 								<dd>{{e.desc}}</dd>
 							</dl>
 							<hr>
@@ -111,13 +93,13 @@
 							<div class="alert alert-success form-group" style="font-size:12pt;" ng-if="e.booked">
 							<h4>Reserved</h4>
 							<dl class="dl-horizontal">
-								<dt>Date</dt>
+								<dt>Date:</dt>
 								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
 								<dt ng-show="e.allDay == false">Time:</dt>
 								<dd ng-show="e.allDay == false">{{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}</dd>
-								<dt>Activity</dt>
+								<dt>Activity:</dt>
 								<dd>{{e.title}}</dd>
-								<dt>Description</dt>
+								<dt>Description:</dt>
 								<dd>{{e.desc}}</dd>
 							</dl>
 							<hr>
@@ -159,12 +141,7 @@
         
     </script>
 
-<div style="border-top:1px solid #aaa;">
-	&nbsp;<a href="/webby/webpage/about/" target="jomjaring">About Us</a>
-	|
-	<a href="/" target="jomjaring">Main Site</a> 
-	<span style="float:right">All rights reserved to Jom Jaring &copy;&nbsp;</span>
-</div>
+<div ng-include="'/selfservice/common/footer'"></div>
 </body>
 <script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="/cache/js/moment/moment.min.js"></script>

@@ -1,6 +1,9 @@
 <div role="main" class="container-fluid">
 
+
+	
 	<h1>Reservation List</h1>
+	
 	<div class="jumbotron">
 		<p>
 		As of current, we are still with <strong>BETA</strong> Stages.
@@ -11,9 +14,19 @@
 <hr>	
 	<form class="form-horizontal" role="form" name="list">
 	
+	<!-- Button [S] -->
+	<div class="alert alert-warning" ng-show="!rpt_allowed" role="alert"> 
+	<span>[[wr.reportgen]]</span>
+	</div>
+	
+	<button class="btn btn-success" ng-click="genReport()" tooltip="[[tt.reportgen]]" 
+			tooltip-placement="top" ng-model="genReport" ng-disabled="!rpt_allowed">Generate Report</button>
+	<!-- Button [E] -->
+	<br><br>
+	
 		<table class="table table-hover table-bordered">
 		<thead>
-			<th><a href="" ng-click="predicate='date'; reverse=!reverse">Date<i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='date'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='date'&&reverse}"></i></a></th>
+			<th><a href="" ng-click="predicate='start'; reverse=!reverse">Date<i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}"></i></a></th>
 			<th>Start Time</th>
 			<th>End Time</th>
 			<th>Title</th>

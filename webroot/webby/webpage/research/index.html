@@ -275,6 +275,7 @@ To create test script using maven
 <thead>
 	<tr><td colspan=2><h2> Unix Commands</h2></td></tr>
 </thead>
+<tbody>
 <tr>
 	<td>curl</td>
 	<td>Besides using HTTPWatch(in windows), this command helps in checking HTTP headers.<br>
@@ -317,9 +318,27 @@ To create test script using maven
 	<td>tcpdump</td>
 	<td>sudo tcpdump -n dst host 203.87.166.59 #Execute tcp dump and get system output and input</td>
 </tr>
-<tbody>
 </tbody>
 </table>
+
+<hr>
+<table border=1>
+<thead>
+	<tr><td><h2>Command</h2></td></tr>
+	<tr><td><h2>Description</h2></td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>typeof a_variable !== 'undefined'</td>
+	<td>To compare undefined variable in javascript, use the keyword <strong>typeof</strong>. No real diff with null !== a_variable and using === is better.</td>
+</tr>
+<tr>
+	<td>createDocumentFragment / document.body.appendChild/insertChild(fragment, document.body.nodes[0]) </td>
+	<td>Create fragment if we want to create HTML element with javascript. This is better than DOM.<a href="http://davidwalsh.name/documentfragment">Ref</a></td>
+</tr>
+</tbody>
+</table>
+
 <p class="addMargin">
 <a href="#" target="_self">Back to top</a>
 </p>

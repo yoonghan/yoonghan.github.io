@@ -33,6 +33,11 @@ settingApp.config(['$routeProvider', '$httpProvider',
 		    templateUrl: 'setting/profile',
 		    controller: 'ProfileCtrl',
 		    controllerAs: 'profile'
+		  })
+		  .when('/notify/reporting', {
+		    templateUrl: 'setting/reporting',
+		    controller: 'ReportCtrl',
+		    controllerAs: 'report'
 		  });
 }]);
 
@@ -41,6 +46,10 @@ settingApp.config(['$routeProvider', '$httpProvider',
  */
 settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location', '$timeout',
     function ($scope, $route, $routeParams, $location, $timeout) {
+	
+		/**Check authorization[S]**/
+		$scope.allowSetup = cookieAccess("Cal_Ctrl");
+		/**Check authorization[E]**/
 	
 		/**Tutorial[S]**/
 		tutorialInit($scope, $location, $timeout)
@@ -61,7 +70,7 @@ settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$locat
  */
 settingApp.controller('profileController', ['$scope', '$route', '$routeParams', '$location', '$http',
     function ($scope, $route, $routeParams, $location, $http) {
-	
+		
 		//get user profile	
 		$scope.succ = function(data){
 			$scope.fstName = encodeURI(data.firstName);
@@ -94,7 +103,14 @@ function redirectPage(){
  * Cancel operation
  */
 var cancelBtn = function(){
-	window.location.href=returnURL;
+	//read the previous page.
+	var prvPg = document.referrer;
+	
+	if(prvPg.indexOf("/selfservice/") == -1){
+		prvPg=returnURL
+	}
+	window.location.href=prvPg;
+	
 }
 
 settingApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {

@@ -32,6 +32,7 @@
 		  <li role="presentation" ng-class="{'active':a_nav===undefined||a_nav==='s'}"><a href="#notify/subscription" ng-click="a_nav='s'" id="lnk_subscription" >Subscription</a></li>
 		  <li role="presentation" ng-class="{'active':a_nav==='r'}"><a href="#notify/reminder" ng-click="a_nav='r'" id="lnk_reminder" >Reminder</a></li>
 		  <li role="presentation" ng-class="{'active':a_nav==='p'}"><a href="#notify/profile/1" ng-click="a_nav='p'" id="lnk_profile">Profile</a></li>
+		  <li role="presentation" ng-class="{'active':a_nav==='x'}" ng-show="allowSetup"><a href="#notify/reporting" ng-click="a_nav='x'" id="lnk_report">Report</a></li>
 		</ul>
 	<div ng-view>
 	</div>
@@ -47,10 +48,12 @@
 <script src="/cache/js/angular/angular-sanitize.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
 <script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+<script src="/cache/js/selfservice/cookiereader.js"></script>
 <script src="/cache/js/selfservice/auth_common.js"></script>
 <script src="/cache/js/selfservice/settingcontroller.js"></script>
 <script src="/cache/js/selfservice/setting/sub_profilecontroller.js"></script>
 <script src="/cache/js/selfservice/setting/sub_subscriptioncontroller.js"></script>
 <script src="/cache/js/selfservice/setting/sub_remindercontroller.js"></script>
+<script src="/cache/js/selfservice/setting/sub_reportcontroller.js"></script>
 <script src="/cache/js/selfservice/tutorial/setting_tut.js"></script>
 </html>

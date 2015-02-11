@@ -5,6 +5,9 @@ var bookingListURL = "http://localhost:9000/tools/reservationlist";
 var userInfoURL = "http://localhost:9000/tools/usersinreservation";
 var homeURL = "/selfservice/booking/calendar";
 var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
+var reportURL = 'http://localhost:9000/report/isAllow';
+var reportGenUrl = 'http://localhost:9000/report/gen';
+var settingsURL = "/selfservice/profile/setting";
 
 /**
  * Special application that stood by it own, used to check data and load the progress bar
@@ -65,15 +68,22 @@ bookinginfoApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$l
 	}
 ]);
   
+/**
+ * Booking reservation
+ */
 bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http', '$modal', '$location', 'calendar',
   function($scope, $routeParams, $http, $modal, $location, calendar) {
 	/**Init[S] **/
-	$scope.predicate = "date";
+	$scope.predicate = "start";
 	$scope.reverse = false;
 	if(calendar.length != 0) {
 		calendar = []
 	}
-	/**Init[E] **/
+	
+	$scope.goSettings = function(){
+		window.location.href=settingsURL;
+	}
+	/**Init[E]**/
 	
 	/**Retrieve user profile[S]**/
 	var bookingListFunc = function(data){
@@ -99,6 +109,25 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	
 	getHTTP($http, bookingListURL, bookingListFunc);
 	/**Retrieve user profile[E]**/
+	
+	/**Check reporting allow[S]**/
+	var allowReportFunc = function(data){
+		var value = data
+		if(typeof data !== 'undefined'){
+			if(typeof data.success !== 'undefined'){
+				$scope.rpt_allowed = true
+			}
+		}
+	}
+	getHTTP($http, reportURL, allowReportFunc);
+	/**Check reporting allow[E]**/
+	
+	$scope.genReport= function(){
+		var genReportFunc = function(data){
+		}
+		
+		getHTTP($http, reportGenUrl, genReportFunc);
+	}
 	
 	$scope.exposeUsers = function(idx,id){
 		var oid = id.$oid;

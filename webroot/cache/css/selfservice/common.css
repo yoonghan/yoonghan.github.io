@@ -2,7 +2,6 @@
 
 body {
   padding-top: 15px;
-  padding-bottom: 15px;
 }
 
 .theme-showcase > p > .btn {
@@ -24,4 +23,40 @@ body {
 
 .jumbotron p{
 	font-size:14px;
+}
+
+ul .dropdown-menu > li{
+	display: list-item;
+	zoom: 1;
+}
+ul .dropdown-menu{
+	list-style-type: none;
+	display: block;
+	margin:0px;
+	padding:0px;
+}
+
+.footer{
+	background-color:#343434;
+	color:#fff;
+	bottom:0;
+	padding:8px;
+	margin:0px
+}
+
+.footerpadding{
+	padding:0 10px 0 10px;
+}
+
+.footercell{
+	display:table-cell;
+}
+
+.footertable{
+	display:table;
+	padding:40px 0 0 40px;
+}
+
+space{
+	padding:25px;
 }

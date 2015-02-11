@@ -96,7 +96,7 @@ function saveReminder($scope){
 	
 	if(! $scope.chk_email)
 		delete jsonVal.alertEmail
-	
+		
 	return jsonVal;
 }
 

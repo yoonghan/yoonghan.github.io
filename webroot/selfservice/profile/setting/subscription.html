@@ -6,14 +6,14 @@ Subscribe yourself to the available posters. All your calendar settings are base
 </div>
 </p>
 
-<form class="form-inline" role="form" name="setting" ng-controller="SubscriptionCtrl" style="margin:0px 10px">
-
-	<div class="alert alert-danger" ng-show="errors" role="alert"> 
+<div class="alert alert-danger" ng-show="errors" role="alert"> 
 	<strong>Oh Snap, </strong> there is an error:
 	<ul ng-repeat="error in errors">
 		<li>{{error}}</li>
 	</ul>
-	</div>
+</div>
+
+<form class="form-inline" role="form" name="setting" style="margin:0px 10px">
 
 	<div class="form-group">
 		<label for="cNameSearch">Filter Company Name :</label> 

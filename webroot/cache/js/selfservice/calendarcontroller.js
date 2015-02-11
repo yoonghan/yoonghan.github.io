@@ -6,11 +6,9 @@
 /**Init [S]**/
 var reservationURL = 'http://localhost:9000/tools/reserve';
 var calendarURL = 'http://localhost:9000/tools/calendar';
-var calsetupURL = '/selfservice/booking/setup';
-var bookingListURL = '/selfservice/booking/bookinginfo';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
-var settingsURL = "/selfservice/profile/setting";
+var settingsURL = '/selfservice/profile/setting';
 
 initWebSocket(ws);
 /**Init [E]**/
@@ -30,9 +28,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	/**Tutorial[E]**/
 	
 	/**Initial[S]**/
-	$scope.goSettings = function(){
-		window.location.href=settingsURL;
-	}
+//	$scope.goSettings = function(){
+//		window.location.href=settingsURL;
+//	}
 	/**Initial[E]**/
 	
 	/**Retrieve user profile[S]**/
@@ -177,14 +175,14 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     }
     
     /**Add setup link.**/
-    $scope.goToSetupLink = function(){
-    	location.href = calsetupURL;
-    }
+//    $scope.goToSetupLink = function(){
+//    	location.href = calsetupURL;
+//    }
     
     /**Add booking link.**/
-    $scope.goToBookingLink = function(){
-    	location.href = bookingListURL;
-    }
+//    $scope.goToBookingLink = function(){
+//    	location.href = bookingListURL;
+//    }
     
     /**booking confirmation [S]**/
     $scope.confirmBooking = function(method, id){
