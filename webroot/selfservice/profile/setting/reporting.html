@@ -28,7 +28,7 @@ Configure your reporting generation settings here. <br><br>
 		Email Posting
 		</label>
 			<input class="form-control" style="display:inline;width:initial" name="email" type="email" ng-model="email" placeholder="e.g. abc@yahoo.com" maxlength="200" required>
-			<span class="alert alert-danger alertmsg" ng-show="setting.email.$error.required">Required!</span>
+			<span id="emailRequired" class="alert alert-danger alertmsg" ng-show="setting.email.$error.required">Required!</span>
 			<span id="emailInvalid" class="alert alert-danger alertmsg" ng-show="setting.email.$error.email">Email provided is invalid!</span>
 		
 	</div>

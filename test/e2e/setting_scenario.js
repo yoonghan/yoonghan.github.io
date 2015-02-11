@@ -68,13 +68,34 @@ describe('Settings App', function() {
 			
 	  });
 	  
-	  it('Check Reminder filter working', function() {
+	  it('Check Profile filter working', function() {
 			browser.get('http://localhost:8000/selfservice/profile/setting');
 			
 			element(by.id('lnk_profile')).click();
 			
 			//This test has been done by profile, do not need to do again.
 			
+			element(by.id('save')).click();
+			var ok = element(by.model('btnOK'));
+			ok.click();
+			
+	  });
+	  
+	  /**Should work for authorized user**/
+	  it('Check Report filter working', function() {
+			browser.get('http://localhost:8000/selfservice/profile/setting');
+			
+			element(by.id('lnk_report')).click();
+			
+			//This test has been done by profile, do not need to do again.
+			var email = element(by.model('email'));
+			email.sendKeys('@email.com');
+			expect(element(by.id('emailInvalid')).isDisplayed()).toBe(true);
+			
+			email.clear();
+			expect(element(by.id('emailRequired')).isDisplayed()).toBe(true);
+			
+			email.sendKeys('somemail@email.com');
 			element(by.id('save')).click();
 			var ok = element(by.model('btnOK'));
 			ok.click();

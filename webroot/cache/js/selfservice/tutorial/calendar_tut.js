@@ -31,9 +31,9 @@ function tutorialInit($scope, $location){
 		case 1:
 			$('#btnSetting').addClass("tutorialblink");
 			//override the settings button.
-			$scope.goSettings = function(){
-				window.location.href=settingsURL+"#/?tut=1";
-			}
+			var settingURL = $('#btnSetting').attr("href");
+			
+			$('#btnSetting').attr("href",settingsURL+"#/?tut=1");
 			break;
 		default:
 			break;
