@@ -123,7 +123,9 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	/**Check reporting allow[E]**/
 	
 	$scope.genReport= function(){
+				
 		var genReportFunc = function(data){
+			$scope.rpt_disabled = true;
 		}
 		
 		getHTTP($http, reportGenUrl, genReportFunc);

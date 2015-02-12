@@ -14,16 +14,22 @@
 <hr>	
 	<form class="form-horizontal" role="form" name="list">
 	
-	<!-- Button [S] -->
-	<div class="alert alert-warning" ng-show="!rpt_allowed" role="alert"> 
-	<span>[[wr.reportgen]]</span>
-	</div>
+	<!-- Button [S] : Check where the tooltip disable. -->
+
+	&nbsp;&nbsp;
 	
-	<button class="btn btn-success" ng-click="genReport()" tooltip="[[tt.reportgen]]" 
-			tooltip-placement="top" ng-model="genReport" ng-disabled="!rpt_allowed">Generate Report</button>
+	<a role="button" class="btn btn-success" ng-click="genReport()"
+		tooltip="[[tt.reportgen]]" tooltip-placement="top"	 
+		ng-model="genReport" ng-disabled="!rpt_allowed||rpt_disabled">Generate Report</a>
 	<!-- Button [E] -->
 	<br><br>
-	
+	<div class="alert alert-warning" ng-show="!rpt_allowed" role="alert" tooltip-popup-delay="5"> 
+	<span>[[wr.reportgen]]</span>
+	</div>
+	<div class="alert alert-warning" ng-show="rpt_disabled" role="alert" tooltip-popup-delay="5"> 
+	<span>[[wr.reportgenerated]]</span>
+	</div>
+		
 		<table class="table table-hover table-bordered">
 		<thead>
 			<th><a href="" ng-click="predicate='start'; reverse=!reverse">Date<i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}"></i></a></th>
