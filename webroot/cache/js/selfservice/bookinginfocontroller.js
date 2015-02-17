@@ -56,8 +56,8 @@ bookinginfoApp.config(['$routeProvider', '$httpProvider',
 /**
  * Init location
  */
-bookinginfoApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location', 
-    function ($scope, $route, $routeParams, $location) {
+bookinginfoApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location', '$http', '$modal',  
+    function ($scope, $route, $routeParams, $location, $http, $modal) {
 
 		$location.url('/load');
 	
@@ -65,14 +65,45 @@ bookinginfoApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$l
 		$scope.$location = $location;
 		$scope.$routeParams = $routeParams;
 		
+		/**DialogBox[S]**/
+	    $scope.open = function (status, message, data, calInfo) {
+	    	 var modalInstance = $modal.open({
+		    	 templateUrl: 'popupdialog.html',
+		    	 controller: 'ModalInstanceCtrl',
+		    	 backdrop: 'static',
+		    	 resolve: {status: function(){
+		    		 return status;
+		    	 }, message: function(){
+		    		 return message;
+		    	 }}
+	    	 });
+	    	 
+	    	 modalInstance.result.then(function (status){
+	    		 if(status == 'delete'){
+	    			var succFunc = function(data){
+						calInfo.avail = calInfo.avail + 1;
+						$route.reload();
+						}
+				    var failFunc = function(data){
+				    	$scope.open("error",data.error)
+				    	}
+				    var errFunc = function(data){
+				    	$scope.open("error","Please try again later, or inform the admin.")
+				   		}
+				    
+				    funcHTTP($http, "DELETE", cmdreservationURL, data, succFunc, failFunc, errFunc);
+	    		 }
+	    	 });
+	    }
+	    /**DialogBox[E]**/
 	}
 ]);
   
 /**
  * Booking reservation
  */
-bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http', '$modal', '$location', 'calendar',
-  function($scope, $routeParams, $http, $modal, $location, calendar) {
+bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http', '$location', 'calendar',
+  function($scope, $routeParams, $http, $location, calendar) {
 	/**Init[S] **/
 	$scope.predicate = "start";
 	$scope.reverse = false;
@@ -123,12 +154,17 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	/**Check reporting allow[E]**/
 	
 	$scope.genReport= function(){
-				
-		var genReportFunc = function(data){
+		var succFunc = function(data){
 			$scope.rpt_disabled = true;
 		}
-		
-		getHTTP($http, reportGenUrl, genReportFunc);
+	    var failFunc = function(data){
+	    	$scope.open("error",data.error)
+	    }
+	    var errFunc = function(data){
+	    	$scope.open("error","Please try again later, or inform the admin.")
+	   	}
+	    
+	    funcHTTP($http, "POST", reportGenUrl, {}, succFunc, failFunc, errFunc);
 	}
 	
 	$scope.exposeUsers = function(idx,id){
@@ -144,6 +180,7 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 
 bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '$modal', '$route', 'calendar', 
   function($scope, $routeParams, $http, $modal, $route, calendar) {
+	
 	/**Init[S] **/
 	$scope.predicate = "fname";
 	$scope.reverse = false;
@@ -152,6 +189,7 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 	/**Expose user[S]**/
 	var oid = $routeParams.oid;
 	var idx = $routeParams.idx;
+
 
 	var userListFunc = function(data){
 		var value = data
@@ -181,43 +219,10 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 		var calId = $scope.calInfo.id;
 		/**booking confirmation [S]**/
 		$scope.formData = {_id: calId, userId: maskId};
-		$scope.open("delete","")
+		$scope.open("delete","",$scope.formData, $scope.calInfo);
 		$scope.flag = false;
 	    /**booking confirmation [E]**/
 	}
-		
-	/**DialogBox[S]**/
-    $scope.open = function (status, message) {
-    	
-    	 var modalInstance = $modal.open({
-	    	 templateUrl: 'myModalContent.html',
-	    	 controller: 'ModalInstanceCtrl',
-	    	 backdrop: 'static',
-	    	 resolve: {status: function(){
-	    		 return status;
-	    	 }, message: function(){
-	    		 return message;
-	    	 }}
-    	 });
-    	 
-    	 modalInstance.result.then(function (status){
-    		 if(status == 'delete'){
-    			var succFunc = function(data){
-					$scope.calInfo.avail = $scope.calInfo.avail + 1;
-					$route.reload();
-					}
-			    var failFunc = function(data){
-			    	$scope.open("error",data.error)
-			    	}
-			    var errFunc = function(data){
-			    	$scope.open("error","Please try again later, or inform the admin.")
-			   		}
-			    
-			    funcHTTP($http, "DELETE", cmdreservationURL, $scope.formData, succFunc, failFunc, errFunc);
-    		 }
-    	 });
-    }
-    /**DialogBox[E]**/
   }
 ]);
 

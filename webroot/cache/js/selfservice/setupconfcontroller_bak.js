@@ -71,7 +71,7 @@ calSetupConfApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		/**DialogBox[S]**/
 	    $scope.open = function (status) {
 	    	 var modalInstance = $modal.open({
-		    	 templateUrl: 'myModalContent.html',
+		    	 templateUrl: 'popupdialog.html',
 		    	 controller: 'ModalInstanceCtrl',
 		    	 backdrop: 'static',
 		    	 resolve: {status: function(){

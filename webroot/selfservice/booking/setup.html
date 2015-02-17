@@ -44,7 +44,6 @@
 			</div>
 			
 		</div>
-
 		<div class="form-group">
 			<label for="desc" class="col-sm-2 control-label">
 			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.desc]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
@@ -54,6 +53,19 @@
 				<textarea ng-class="{submitted:setup.submitted}" class="form-control" rows="3" ng-model="desc" id="desc" name="desc" maxlength="300" required
 				tooltip="Required." tooltip-trigger="{{tooltiptype}}" tooltip-placement="top"></textarea>
 				<span class="alert alert-danger alertmsg" ng-show="setup.submitted && setup.desc.$error.required">Description Required!</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+			<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.addInfo]]" tooltip-trigger="mouseenter" tooltip-placement="bottom"></span>
+			User Information
+			</label>
+			<div class="col-sm-10">
+				<div class="checkbox">
+			    	<label><input type="checkbox" ng-model="add_ctcNo" name="add_ctcno">Contact No <a ng-click="optCtcNo()">{{opt_ctcNo}}</a></label><br>
+			    	<label><input type="checkbox" ng-model="add_email" name="add_email">Email Address <a ng-click="optEmail()">{{opt_email}}</a></label><br>
+			    	<label><input type="checkbox" ng-model="add_addr" name="add_addr">Address <a ng-click="optAddr()">{{opt_addr}}</a></label>
+			    </div>
 			</div>
 		</div>
 		<div class="form-group">
@@ -200,7 +212,7 @@
 	</form>
 </div>
 
-	<script type="text/ng-template" id="myModalContent.html">
+	<script type="text/ng-template" id="popupdialog.html">
 		<div>
 			<div class="modal-header">
             	<h3 class="modal-title">Confirmation</h3>

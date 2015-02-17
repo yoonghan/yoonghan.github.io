@@ -23,7 +23,7 @@ describe('Login App', function() {
 			ctcModel.sendKeys('ABC');
 			submit.click();
 			
-			expect(submit.isEnabled()).toBe(true);			
+			expect(submit.isEnabled()).toBe(true);
 			
 			ctcModel.clear();
 			ctcModel.sendKeys('123456789012345');
@@ -55,6 +55,67 @@ describe('Login App', function() {
 			
 			expect(submit.isEnabled()).toBe(true);
 	  });
+	  
+	  it('Postal Code to fail', function() {
+			browser.get('http://localhost:8000/selfservice/profile/signup');
+			
+			//make contact number invalid
+			var fstName = element(by.model('fstName'));
+			var lstName = element(by.model('lstName'));
+			var stateModel = element(by.model('state'));
+			var pstCdModel = element(by.model('pstCd'));
+			var submit = element(by.id('submit'));
+			
+			//Set the only field needed.
+			stateModel.sendKeys('PT');
+			
+			//Invalid sending
+			pstCdModel.sendKeys('ABC');
+			submit.click();
+			
+			expect(submit.isEnabled()).toBe(true);
+			
+			pstCdModel.clear();
+			//Invalid sending
+			pstCdModel.sendKeys('123456');
+			submit.click();
+			
+			expect(submit.isEnabled()).toBe(true);
+			
+			pstCdModel.clear();
+			//Invalid sending
+			pstCdModel.sendKeys('9999');
+			submit.click();
+			
+			expect(submit.isEnabled()).toBe(true);
+	  });
+	  
+	  it('Email to fail', function() {
+			browser.get('http://localhost:8000/selfservice/profile/signup');
+			
+			//make contact number invalid
+			var fstName = element(by.model('fstName'));
+			var lstName = element(by.model('lstName'));
+			var stateModel = element(by.model('state'));
+			var emailModel = element(by.model('email'));
+			var submit = element(by.id('submit'));
+			
+			//Set the only field needed.
+			stateModel.sendKeys('PT');
+			
+			//Invalid sending
+			emailModel.sendKeys('ABC');
+			submit.click();
+			
+			expect(submit.isEnabled()).toBe(true);
+			
+			emailModel.clear();
+			//Invalid sending
+			emailModel.sendKeys('123456@email');
+			submit.click();
+			
+			expect(submit.isEnabled()).toBe(true);
+	  });
 	
 	  
 	  //Make sure database is functional
@@ -62,12 +123,21 @@ describe('Login App', function() {
 		browser.get('http://localhost:8000/selfservice/profile/signup');
 		
 		//make contact number invalid
-		var ctcModel = element(by.model('ctcNo'));
 		var stateModel = element(by.model('state'));
+		var ctcModel = element(by.model('ctcNo'));
+		var pstCdModel = element(by.model('pstCd'));
+		var emailModel = element(by.model('email'));
+		var addrModel = element(by.model('addr'));
+		
 		var submit = element(by.id('submit'));
+		
 		var modal = element(by.binding('status'));
 	
 		stateModel.sendKeys('PT');
+		ctcModel.sendKeys('+0123456789');
+		pstCdModel.sendKeys('47100');
+		emailModel.sendKeys('example@email.com');
+		addrModel.sendKeys('house number, 1/14 street name, city code');
 		submit.click();
 		
 		var ok = element(by.model('btnOK'));

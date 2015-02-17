@@ -5,6 +5,8 @@ var reservationURL = "http://localhost:9000/tools/calendar";
 var nextLocation = "/selfservice/booking/setup-confirm";
 var redirectURL = "/selfservice/booking/calendar"; 
 
+var OPTIONAL = "[Optional]";
+var MANDATORY = "[Mandatory]";
 var MAX = 50;
 var MAX_TIME = 16;
 
@@ -37,9 +39,24 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		$scope.word = /^([A-Z|a-z|0-9]+\s{0,1}[A-Z|a-z|0-9]*)*$/;
 		/*Default values[E]*/
 		
+		/*setAdditionalButton[S]*/
+		$scope.opt_ctcNo = OPTIONAL;
+		$scope.optCtcNo = function(){
+			$scope.opt_ctcNo = ($scope.opt_ctcNo == OPTIONAL ? MANDATORY : OPTIONAL); 
+		}
+		$scope.opt_email = OPTIONAL;
+		$scope.optEmail = function(){
+			$scope.opt_email = ($scope.opt_email == OPTIONAL ? MANDATORY : OPTIONAL);
+		}
+		$scope.opt_addr = OPTIONAL;
+		$scope.optAddr = function(){
+			$scope.opt_addr = ($scope.opt_addr == OPTIONAL ? MANDATORY : OPTIONAL);
+		}
+		/*setAdditionalButton[E]*/
+		
 		$scope.addBlackouts = function() {
 			var bd = $scope.blackoutdates;
-			if(bd != undefined){
+			if(typeof bd !== 'undefined'){
 				var timeBD = (Date.UTC(bd.getFullYear(),bd.getMonth(),bd.getDate(),0,0,0));
 				if($scope.blackoutEvents.indexOf(timeBD) < 0 && 
 						maxLength("Blackout",$scope.blackoutEvents)){
@@ -53,7 +70,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		}
 		$scope.addReserve = function() {
 			var rd = $scope.reserveDates;
-			if(rd != undefined){
+			if(typeof rd !== 'undefined'){
 				
 				var timeRD = (Date.UTC(rd.getFullYear(),rd.getMonth(),rd.getDate(),0,0,0));
 				if( $scope.reservedEvents.indexOf(timeRD) < 0 && 
@@ -116,10 +133,10 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		}
 		
 		function setupData(){
-			
 			var data = {
 				"title": $scope.title,
 				"desc": $scope.desc,
+				"userInfo" : userInfoFunc($scope),
 				"fullDay": $scope.fullday? true:false,
 				"timedEvents": resetupTime(),
 				"reserveType": $scope.reserveType,
@@ -129,14 +146,13 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 				"reserveEvents" : $scope.reservedEvents,
 				"blackoutEvents" : $scope.blackoutEvents
 			}
-
 			return data;
 		}
 		
 		/**DialogBox[S]**/
 	    $scope.open = function (status) {
 	    	 var modalInstance = $modal.open({
-	    	 templateUrl: 'myModalContent.html',
+	    	 templateUrl: 'popupdialog.html',
 	    	 controller: 'ModalInstanceCtrl',
 	    	 backdrop: 'static',
 	    	 resolve: {
@@ -215,7 +231,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		/**Setup confirmation [E]**/
 		 
 		function validatecheckbox(val){
-			return val != undefined && val 
+			return (typeof val !== 'undefined') && val 
 		}
 		
 		function validForm(){
@@ -280,6 +296,31 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
   };
 });
 /**Pop up dialog[E]**/
+
+/**Additional Info parser[S]**/
+function userInfoFunc($scope){
+	var contact_val, email_val, addr_val = 0;
+	if($scope.add_ctcNo)
+		$scope.opt_ctcNo==OPTIONAL? contact_val = 1: contact_val = 2;
+	if($scope.add_email)
+		$scope.opt_email==OPTIONAL? email_val = 1: email_val = 2;
+	if($scope.add_addr)
+		$scope.opt_addr==OPTIONAL? addr_val = 1: addr_val = 2;
+	return switcherCal(
+		chkDef(contact_val), chkDef(email_val), chkDef(addr_val));
+}
+function chkDef(val){
+	return (typeof val === 'undefined'? 0: val);
+}
+function switcherCal(contact, email, addr){
+	var calc = 0;
+	calc += (3) * contact;
+	calc += (9) * email;
+	calc += (27) * addr;
+	return calc;
+}
+/**Additional Info parser[E]**/
+
 function obtainDate(date){
 	return moment(date).format("MMM Do, YYYY");
 }
@@ -287,3 +328,4 @@ function obtainDate(date){
 function obtainTime(time){
 	return moment(time).format("HHmm");
 }
+

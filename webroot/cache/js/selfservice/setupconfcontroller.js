@@ -149,6 +149,26 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
     $scope.predicate = 'start';
     /**Setup [E]**/
     
+    /**Check availability[S]**/
+    $scope.userInfoAllow = function(value){
+    	var permission = ["","Email","Contact","Address"];
+    	var ternary = value.toString(3);
+    	
+    	var permissionCnt = 0;
+    	var action = "";
+    	for(var i=ternary.length-1; i >= 0; i--){
+    		var charPos = ternary.charAt(i);
+    		if( charPos == 1){
+    			action += permission[permissionCnt] + ",";
+    		}else if(charPos == 2){
+    			action += permission[permissionCnt] + "[Opt],";
+    		}
+    		permissionCnt++;
+    	}
+    	return action == "" ? "":action.substring(0,action.length-1);
+    }
+    /**Check availability[E]**/
+    
 	/**Refilter the search[S]**/
 	$scope.filterSearch = function(){
 		if($scope.endD != undefined && $scope.startD != undefined){
@@ -190,7 +210,7 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
 	/**DialogBox[S]**/
     $scope.open = function (status) {
     	 var modalInstance = $modal.open({
-	    	 templateUrl: 'myModalContent.html',
+	    	 templateUrl: 'popupdialog.html',
 	    	 controller: 'ModalInstanceCtrl',
 	    	 backdrop: 'static',
 	    	 resolve: {status: function(){

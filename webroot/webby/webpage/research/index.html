@@ -30,7 +30,7 @@
 <div class="fullbar" id="T2">
  <h1>Research And Development</h1>
 </div>
-
+<br>
 <table border=1>
 <thead>
 <tr><td colspan="2"><h2> Oracle Database</h2></td></tr>
@@ -187,11 +187,18 @@ Fiddler - Change incoming response to browser and outgoing responses.
 	</tr>
 	<tr>
 		<td>
-Google Analytics
+tag1 &gt; tag { color: #fff }
 		</td>
 		<td>
-Analyze website visits, age, preference. It also supports Google WordsAds or Advertisement. All pages need to be added with a javascript header at the top.
-There are hacks in google analytics, where consumers now send links :( instead of browing info. How? Send anchor link as HTTP Header.
+nested tags means &lt;tag1&gt;&lt;tag&gt;APPLY&lt;/tag&gt;&lt;/tag1&gt;. 
+		</td>
+	</tr>
+		<tr>
+		<td>Hack the site with Javascript</td>
+		<td>
+Previously I used to hack scripted sites with the command "javascript:" written in the URL. Easiest is just to write "javascript:alert("hello");" on the browsers URL and it'll work. One of the best site that i tried was on jobstreet several years ago where cookie checking was their vulnerablities. Executed was.
+javascript:alert(document.cookie);
+javascript:void(document.cookie = "UserId:xxx;sessionID=xxx");
 		</td>
 	</tr>
 </tbody>
@@ -324,8 +331,8 @@ To create test script using maven
 <hr>
 <table border=1>
 <thead>
-	<tr><td><h2>Command</h2></td></tr>
-	<tr><td><h2>Description</h2></td></tr>
+	<tr><td><h2>Command</h2></td>
+	<td><h2>Description</h2></td></tr>
 </thead>
 <tbody>
 <tr>

@@ -53,7 +53,7 @@ settingApp.controller('ReportCtrl', ['$scope', '$http', '$modal', '$routeParams'
 		/**Open Modal[S]**/
 		$scope.open = function () {
 		   var modalInstance = $modal.open({
-		     templateUrl: 'myModalContent.html',
+		     templateUrl: 'popupdialog.html',
 		     controller: 'ModalInstanceCtrl',
 		     backdrop: 'static',
 		     resolve: {}

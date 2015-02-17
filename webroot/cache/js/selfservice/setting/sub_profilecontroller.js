@@ -11,9 +11,12 @@ function createProfileJSON($scope){
 		midName: $scope.midName,
 		lastName: $scope.lstName,
 		gender: $scope.gender,
-		contactNo: $scope.ctcNo,
 		country: $scope.cntry,
-		state: $scope.state.id
+		state: $scope.state.id,
+		postCode: $scope.pstCd,
+		address: $scope.addr,
+		email: $scope.email,
+		contactNo: $scope.ctcNo
 	}
 }
 
@@ -23,6 +26,12 @@ function checkNotValidity($scope){
 	
 	if($scope.ctcNo == undefined 
 			&& $scope.profile.ctcNo.$viewValue != undefined
+			){
+		return true
+	}
+	
+	if($scope.pstCd == undefined 
+			&& $scope.profile.pstCd.$viewValue != undefined
 			){
 		return true
 	}
@@ -40,6 +49,10 @@ function retrieveEditProfile($scope, $http){
 		$scope.gender = data.gender;
 		$scope.ctcNo = data.contactNo;
 		$scope.cntry = data.country;
+		$scope.pstCd = data.postCode;
+		$scope.addr = data.address;
+		$scope.email = data.email;
+		
 		//Complex to select state, thanks to Angular :(
 		var jsonState=eval("({'id':'"+data.state+"'})");
 		$scope.state = $scope.states[_.findIndex($scope.states, jsonState)];
@@ -47,7 +60,8 @@ function retrieveEditProfile($scope, $http){
 }
 
 function init($scope){
-	$scope.number = /^\+?[0-9]+$/;
+	$scope.postalCd = /^[1-9][0-9]{0,4}$/;
+	$scope.number = /^\+?[0-9]{0,13}$/;
 	$scope.cntry = "MY";
 	$scope.gender = "O";
 	$scope.flag = false;
@@ -77,7 +91,7 @@ settingApp.controller('ProfileCtrl', ['$scope','$http', '$modal', '$routeParams'
 	
 	$scope.open = function (status) {
 	   var modalInstance = $modal.open({
-	     templateUrl: 'myModalContent.html',
+	     templateUrl: 'popupdialog.html',
 	     controller: 'ModalInstanceCtrlProfile',
 	     backdrop: 'static',
 	     resolve: {
@@ -98,6 +112,7 @@ settingApp.controller('ProfileCtrl', ['$scope','$http', '$modal', '$routeParams'
 
 		$scope.flag = true;
 		$scope.formData = createProfileJSON($scope);
+		$scope.errors = undefined;
 		
 		if($scope.edit){
 			update($http,$scope);

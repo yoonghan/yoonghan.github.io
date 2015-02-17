@@ -61,17 +61,6 @@ Re-Setup your profile here.
 		</div>
 </td>
 </tr>
-<!-- Contact No -->
-<tr>
-<td>
-		<label for="ctcNo">Contact No:</label>
-</td>
-<td width="80%">
-		<input name="ctcNo" class="form-control" type="text" ng-model="ctcNo" placeholder="e.g. +60123456789" ng-pattern="number" ng-maxlength="13">
-		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.maxlength">Maximum only 13 numbers</span>
-		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.pattern">Only +012345678 or 0123456 numbers allowed</span>
-</td>
-</tr>
 <!-- Country -->
 <tr>
 <td>
@@ -96,6 +85,48 @@ Re-Setup your profile here.
     	<span class="alert alertmsg alert-danger" ng-show="profile.state.$error.required">Required!</span>
 </td>
 </tr>
+
+<!-- Postal Code -->
+<tr>
+<td>
+	<label for="pstCd" class="required">Postal Code</label>
+</td>
+<td>
+	<input name="pstCd" class="form-control" type="text" ng-model="pstCd" placeholder="e.g. 45000" ng-pattern="postalCd">
+	<span class="alert alertmsg alert-danger" ng-show="profile.pstCd.$error.pattern">Invalid Postal Code</span>
+</td>
+</tr>
+<!-- Address -->
+<tr>
+<td>
+	<label for="addr" class="required">Address</label>
+</td>
+<td>
+	<input name="addr" class="form-control" type="text" ng-model="addr" placeholder="e.g. House No, Street Address, City" ng-maxlength="100" style="width:100%">
+	<span class="alert alertmsg alert-danger" ng-show="profile.addr.$error.maxlength">Maximum 100 characters</span>
+</td>
+</tr>
+<!-- Email -->
+<tr>
+<td>
+	<label for="email" class="required">Email Contact</label>
+</td>
+<td>
+	<input name="email" class="form-control" type="email" ng-model="email" placeholder="e.g. abc@yahoo.com" ng-maxlength="100">
+	<span class="alert alertmsg alert-danger" ng-show="profile.email.$error.maxlength">Maximum 100 characters</span>
+	<span class="alert alertmsg alert-danger" ng-show="profile.email.$error.email">Invalid email</span>
+</td>
+</tr>
+<!-- Contact No -->
+<tr>
+<td>
+		<label for="ctcNo">Contact No:</label>
+</td>
+<td width="80%">
+		<input name="ctcNo" class="form-control" type="text" ng-model="ctcNo" placeholder="e.g. +60123456789" ng-pattern="number">
+		<span class="alert alertmsg alert-danger" ng-show="profile.ctcNo.$error.pattern">Only (+)012345678 with 13 numbers are allowed</span>
+</td>
+</tr>
 <tr>
 <td colspan="2" align="center">    	
     <input type="submit" value="Submit" id="submit" class="btn btn-lg btn-success" ng-disabled="flag" ng-show="!edit" ng-click="processForm()" >
@@ -107,7 +138,7 @@ Re-Setup your profile here.
 </table>
 </form>
 
-    <script type="text/ng-template" id="myModalContent.html">
+    <script type="text/ng-template" id="popupdialog.html">
         <div class="modal-header">
             <h3 class="modal-title">Thank you for registering with us!</h3>
         </div>

@@ -49,6 +49,7 @@
 							<th><a href="" ng-click="predicate='start'; reverse=!reverse">Start Date <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}"></i></a></th>
 							<th><a href="" ng-click="predicate='end'; reverse=!reverse">End Date <i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='end'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='end'&&reverse}"></i></a></th>
 							<th>Description</th>
+							<th>User Info</th>
 							<th>Deletion ?</th>
 						</tr>
 					</thead>
@@ -58,6 +59,7 @@
 						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
 						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
 						<td><input type="text" name="e.desc" id="e.desc" ng-model="e.desc" maxlength="300" required></td>
+						<td>{{userInfoAllow(e.userInfo)}}</td>
 						<td><input type="checkbox" ng-model="e.virtualDel"></td>
 					</tr>
 					</tbody>
@@ -73,7 +75,7 @@
 	</form>
 </div>
 
-	<script type="text/ng-template" id="myModalContent.html">
+	<script type="text/ng-template" id="popupdialog.html">
 		<div>
 			<div class="modal-header">
             	<h3 class="modal-title">Confirmation</h3>

@@ -27,6 +27,8 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 	
 		$scope.save = function(){
 			
+			$scope.errors = undefined;
+			
 			if ($scope.flag) {
 		        return;
 		    }
@@ -63,7 +65,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 		/**Open Modal[S]**/
 		$scope.open = function () {
 		   var modalInstance = $modal.open({
-		     templateUrl: 'myModalContent.html',
+		     templateUrl: 'popupdialog.html',
 		     controller: 'ModalInstanceCtrl',
 		     backdrop: 'static',
 		     resolve: {}

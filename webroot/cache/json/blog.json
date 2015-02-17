@@ -134,6 +134,11 @@
 "date":"Feb 8th, 2015",
 "task":"Improvement", 
 "detail":"After some android studies and development, it's back to the web. Improved an animated.css and made error messages displayed better."
+},
+{
+"date":"Feb 17th, 2015",
+"task":"Used Array Embedded Elements in MongoDB", 
+"detail":"Huge changes to make CP available to request for more information on the user details."
 }
 ]
 }

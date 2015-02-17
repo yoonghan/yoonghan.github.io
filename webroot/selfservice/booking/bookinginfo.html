@@ -25,6 +25,29 @@
 	<br><br>
 	<div ng-include="'/selfservice/common/footer'"></div>
 
+    <script type="text/ng-template" id="popupdialog.html">
+		<div>
+			<div class="modal-header" ng-show="status=='error'">
+            	<h3 class="modal-title">Error</h3>
+        	</div>
+			<div class="modal-header" ng-show="status=='delete'">
+            	<h3 class="modal-title">Deletion</h3>
+        	</div>
+
+			<div class="modal-body bg-danger" ng-show="status=='error'">
+				<h4>{{statMsg}}</h4>
+			</div>
+			<div class="modal-body bg-warning" ng-show="status=='delete'">
+				<h4>{{statMsg}}</h4>
+			</div>
+
+        	<div class="modal-footer">
+            	<button class="btn btn-success" ng-click="ok()" ng-model="btnOK">Proceed</button>
+				<button class="btn btn-danger" ng-click="cancel()" ng-show="status=='delete'" ng-model="btnCANCEL">Cancel</button>
+			</div>
+		</div>
+    </script>
+
 </body>
 
 <script src="/cache/js/jquery-ui/jquery-ui.min.js"></script>

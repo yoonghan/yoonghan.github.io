@@ -9,6 +9,7 @@ var calendarURL = 'http://localhost:9000/tools/calendar';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 var profileURL = 'http://localhost:9000/user/profile';
 var settingsURL = '/selfservice/profile/setting';
+var validateEntryURL = 'http://localhost:9000/user/isvalidinput'; 
 
 initWebSocket(ws);
 /**Init [E]**/
@@ -37,8 +38,17 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	var profileFunc = function(data){
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
+		$scope.email = data.email;
+		$scope.contactNo = data.contactNo;
+		$scope.addr = data.address;
+		$scope.postCode = data.postCode;
 		$scope.state = data.state;
 
+		//get all states
+		$http.get('/cache/json/mlystate.json').success(function(data){
+			$scope.states = data;
+		});
+		
 		//TODO: Handle if we cannot get user info.
 		sendMessage($scope.state,(new Date().getTime()));
 	}
@@ -93,9 +103,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 							allDay: event.allDay,
 							desc: event.desc,
 							booked: ($(this).css('color')=="rgb(0, 0, 0)"),
+							userInfo: (typeof event.userInfo === 'undefined')? 0:event.userInfo,
 							id: event._id
 						};
-		
 		$scope.currEvents.push(currentContent);
     };
     /**Each event Clicks[E]**/
@@ -150,7 +160,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     	if(typeof message === "undefined") message="";
     	
     	 var modalInstance = $modal.open({
-    	 templateUrl: 'myModalContent.html',
+    	 templateUrl: 'popupdialog.html',
     	 controller: 'ModalInstanceCtrl',
     	 resolve: {
     		 status: function(){
@@ -164,14 +174,65 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     }
     /**DialogBox[E]**/
     
+    /**DialogBox Ver 2[S]**/
+    $scope.openVer2 = function (userInfo, id, email, contactNo, addr, postCode, state, errors) {
+    	if(typeof userInfo === 'undefined') userInfo = 0;
+    	
+    	 var modalInstance = $modal.open({
+    	 templateUrl: 'usercontent.html',
+    	 controller: 'ModalUserReqCtrl',
+    	 backdrop: 'static',
+    	 resolve: {
+    		 errors: function(){
+    			 return (typeof errors==='undefined')?[]:errors;
+    		 },
+    		 id: function(){
+    			 return id;
+    		 },
+    		 userInfo: function(){
+    			 return userInfo;
+    		 },
+	   	 	 email: function(){
+	   	 		 return email; 
+	   	 	 },
+	   	 	 contactNo: function(){
+	   	 		 return contactNo; 
+	   	 	 },
+	   	 	 addr: function(){
+	   	 		 return addr; 
+	   	 	 },
+	   	 	 postCode: function(){
+	   	 		 return postCode; 
+	   	 	 },
+	   	 	 state: function(){
+	   	 		 return state; 
+	   	 	 },
+	   	 	 listStates: function(){
+	   	 		 return $scope.states;
+	   	 	 }
+    	 }
+    	 });
+    	 
+    	 modalInstance.result.then(function (formData) {
+	    		 if(typeof formData != 'undefined')
+	    			 $scope.confirmBooking("POST", formData);
+    	    }, function () {});
+    	 
+    	 
+    }
+    /**DialogBox Ver 2[E]**/
+    
     /**Booking clicked**/
-    $scope.ok = function(id){
-    	$scope.confirmBooking("POST", id);
+    $scope.ok = function(id, userInfo){
+    	if(userInfo == 0)
+    		$scope.confirmBooking("POST", {_id: id, userInfo: 0});
+    	else
+    		$scope.openVer2(userInfo, id, $scope.email, $scope.contactNo, $scope.addr, $scope.postCode, $scope.state);
     }
     
     /**Cancellation clicked**/
     $scope.cancel = function(id){
-    	$scope.confirmBooking("DELETE", id);
+    	$scope.confirmBooking("DELETE", {_id: id});
     }
     
     /**Add setup link.**/
@@ -185,33 +246,36 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 //    }
     
     /**booking confirmation [S]**/
-    $scope.confirmBooking = function(method, id){
+    $scope.confirmBooking = function(method, formData){
     	
 	    if ($scope.flag) {
 	        return;
 	    }
 	    
 	    $scope.flag = true;
-		$scope.formData = {_id: id};
-		    
+	    
+	    $scope.formData = formData
 		
 		var succFunc = function(data){
 			$scope.flag = false;
 			$scope.currEvents=[];
         	$scope.myCalendar.fullCalendar( 'refetchEvents' );
         	$scope.open('ok');
-			}
+		}
 	    var failFunc = function(data){
 	    	$scope.flag = false;
 	    	$scope.open('nak', data.error);
-	    	}
+	    }
 	    var errFunc = function(data){
 	    	$scope.flag = false;
-	    	$scope.open('nak', "Internal Server Error. Please try again.");
-	   		}
+	    	if(method == "POST" || formData.userInfo !=0){
+	    		$scope.openVer2(formData.userInfo, formData._id, formData.email, formData.contactNo, formData.address, formData.postCode, formData.state, data.errors);
+	    	}else{
+    			$scope.open('nak', data.error !== 'undefined' ? data.error : "Internal Server Error, please try again.");
+	    	}
+	   	}
 	    
 	    funcHTTP($http, method, reservationURL, $scope.formData, succFunc, failFunc, errFunc);
-		
     }
     /**booking confirmation [E]**/
     
@@ -239,8 +303,95 @@ calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 	$modalInstance.close();
   };
 });
-/**Pop up dialog[E]**/
 
+calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, errors, id, userInfo, email, contactNo, addr, postCode, state, listStates) {
+
+	/**Check availability[S]**/
+	$scope.checkUserInfo = function(action){
+		
+		var ternary = $scope.userInfo.toString(3);
+		var position = -1;
+		
+		switch(action){
+		case "Email":
+			position = ternary.length-2;
+			break;
+		case "ContactNo":
+			position = ternary.length-3;
+			break;
+		case "Address":
+			position = ternary.length-4;
+			break;	
+		}
+
+		return position < 0? 0 : parseInt(ternary.charAt(position),10);
+	}
+	
+	var isActValid = function(action){
+		return ($scope.checkUserInfo(action) == 0 ? false : true);
+	}
+	
+	$scope.isReq = function(action){
+		return ($scope.checkUserInfo(action) == 2 ? true : false);
+	}
+	/**Check availability[E]**/
+	
+	/**Initialize[S]**/
+	$scope.postalCd = /^[1-9][0-9]{0,4}$/;
+	$scope.number = /^\+?[0-9]{0,13}$/;
+	
+	$scope.userInfo = userInfo;
+	$scope.dtl_email = email;
+	$scope.dtl_ctcNo = contactNo;
+	$scope.dtl_addr = addr;
+	$scope.dtl_pstCd = postCode;
+	$scope.states = listStates;
+	if(errors.length != 0)
+		$scope.errors =  errors;
+	else
+		$scope.errors =  undefined;
+	
+	//Complex to select state, thanks to Angular :(
+	var jsonState=eval("({'id':'"+state+"'})");
+	$scope.dtl_state = $scope.states[_.findIndex($scope.states, jsonState)];
+	
+	
+	$scope.isEmailShow = isActValid("Email");
+	$scope.isContactNoShow = isActValid("ContactNo");
+	$scope.isAddressShow = isActValid("Address");
+	/**Initialize[E]**/
+	
+	$scope.dtl_ok = function () {
+		if($scope.detail.$valid){
+			var formData = {
+				_id: id,
+				userInfo: $scope.userInfo,
+				state: $scope.dtl_state.id,
+				postCode: $scope.dtl_pstCd,
+				address: $scope.dtl_addr,
+				email: $scope.dtl_email,
+				contactNo: $scope.dtl_ctcNo
+			};
+			
+			if($scope.isEmailShow == false)
+				delete formData.email;
+			if($scope.isContactNoShow == false)
+				delete formData.contactNo;
+			if($scope.isAddressShow == false){
+				delete formData.address;
+				delete formData.postCode;
+				delete formData.state;
+			}
+			
+			$modalInstance.close(formData);
+		}
+	    
+	};
+	$scope.dtl_cancel = function () {
+		$modalInstance.close();
+	};
+});
+/**Pop up dialog[E]**/
 
 function obtainDate(date, idx){
 	switch(idx){
