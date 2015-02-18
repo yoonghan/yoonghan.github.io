@@ -4,13 +4,7 @@
  */
 
 /**Init [S]**/
-var reservationURL = 'http://localhost:9000/tools/reserve';
-var calendarURL = 'http://localhost:9000/tools/calendar';
 var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
-var profileURL = 'http://localhost:9000/user/profile';
-var settingsURL = '/selfservice/profile/setting';
-var validateEntryURL = 'http://localhost:9000/user/isvalidinput'; 
-
 initWebSocket(ws);
 /**Init [E]**/
 
@@ -56,7 +50,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	$scope.allowSetup = cookieAccess("Cal_Ctrl");
 	
 	
-	getHTTP($http, profileURL, profileFunc);
+	getHTTP($http, userProfileURL, profileFunc);
 	
 	/**Retrieve user profile[E]**/
 	
@@ -69,7 +63,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**Obtain user's date[E]**/
 
     /**Define Events[S]**/
-  //temporary event is saved here.
+    //temporary event is saved here.    
     $scope.currEvents = [];	
     $scope.events = {
     		url:calendarURL,
@@ -90,21 +84,20 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     };
 
     /**Define Events[E]**/
-    
-    
+
     /**Each event clicks[S]**/
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
 		sendMessage($scope.state,(new Date(event.start).getTime()));
 		$scope.currEvents = []; //clean it.
 		var currentContent = {
-							title: event.title,
-							start: new Date(event.start),
-							end: new Date(event.end),
-							allDay: event.allDay,
-							desc: event.desc,
-							booked: ($(this).css('color')=="rgb(0, 0, 0)"),
-							userInfo: (typeof event.userInfo === 'undefined')? 0:event.userInfo,
-							id: event._id
+				title: event.title,
+				start: new Date(event.start),
+				end: new Date(event.end),
+				allDay: event.allDay,
+				desc: event.desc,
+				booked: ($(this).css('color')=="rgb(0, 0, 0)"),
+				userInfo: (typeof event.userInfo === 'undefined')? 0:event.userInfo,
+				id: event._id
 						};
 		$scope.currEvents.push(currentContent);
     };
@@ -234,16 +227,6 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     $scope.cancel = function(id){
     	$scope.confirmBooking("DELETE", {_id: id});
     }
-    
-    /**Add setup link.**/
-//    $scope.goToSetupLink = function(){
-//    	location.href = calsetupURL;
-//    }
-    
-    /**Add booking link.**/
-//    $scope.goToBookingLink = function(){
-//    	location.href = bookingListURL;
-//    }
     
     /**booking confirmation [S]**/
     $scope.confirmBooking = function(method, formData){
@@ -397,12 +380,9 @@ function obtainDate(date, idx){
 	switch(idx){
 	case 0:
 		return moment(date).format("MMM Do, YYYY hh:mm");
-		break;
 	case 1:
 		return moment(date).format("MMM Do, YYYY");
-		break;
 	}
-	
 }
 
 function obtainDay(date){

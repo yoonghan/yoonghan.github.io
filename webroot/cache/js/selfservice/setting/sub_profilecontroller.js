@@ -1,9 +1,5 @@
 'use strict';
 /**This angularJS is used by 2 webpages, signup and settings**/
-
-var userProfileURL = "http://localhost:9000/user/profile";
-var saveURL = "http://localhost:9000/user/profile";
-
 //Create the values to be populated
 function createProfileJSON($scope){
 	return {
@@ -138,7 +134,7 @@ function insert($http, $scope){
     	$scope.flag = false;
     	location.href = '#';}
     
-    funcHTTP($http, "PUT", saveURL, $scope.formData, succFunc, failFunc, errFunc);
+    funcHTTP($http, "PUT", userProfileURL, $scope.formData, succFunc, failFunc, errFunc);
 	
 }
 
@@ -158,7 +154,7 @@ function update($http, $scope){
    		location.href="#/notify/profile/1";
    		}
     
-    funcHTTP($http, "POST", saveURL, $scope.formData, succFunc, failFunc, errFunc);
+    funcHTTP($http, "POST", userProfileURL, $scope.formData, succFunc, failFunc, errFunc);
 	
 }
 

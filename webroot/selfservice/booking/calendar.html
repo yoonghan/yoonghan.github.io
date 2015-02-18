@@ -53,8 +53,8 @@
 			</div>
 		</div>
 		<!--calendar[E]-->
-		<div class="col-md-4" id="booking">
-		<!--WeatherForecasting[S]-->	
+		<div class="col-md-5" id="booking">
+		<!--WeatherForecasting[S]-->
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><span class="glyphicon glyphicon-globe"></span> Weather Forecast on your area</h3>
@@ -88,7 +88,8 @@
 								<dt>Activity:</dt>
 								<dd>{{e.title}}</dd>
 								<dt>Description:</dt>
-								<dd>{{e.desc}}</dd>
+								<dd style="display:hidden">User Info</dd>
+								<dd style="display:hidden">{{e.userInfo}}</dd>
 							</dl>
 							<hr>
 								<input type="button" id="btnBook" value="Book Now" ng-click="ok(e.id,e.userInfo)" class="btn btn-lg btn-primary" ng-disabled="flag">
@@ -211,6 +212,7 @@
 <script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 <script src="/cache/js/calendar/fullcalendar.min.js"></script>
 <script src="/cache/js/calendar/ui-calendar.js"></script>
+<script src="/cache/js/selfservice/global_var.js"></script>
 <script src="/cache/js/selfservice/cookiereader.js"></script>
 <script src="/cache/js/selfservice/auth_common.js"></script>
 <script src="/cache/js/selfservice/tutorial/calendar_tut.js"></script>

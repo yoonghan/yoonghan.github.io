@@ -1,6 +1,4 @@
 "use strict";
-var subsReminderURL = "http://localhost:9000/reminder/profile";
-
 /**
  * Reminder controller
  */

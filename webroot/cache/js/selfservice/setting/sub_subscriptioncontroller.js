@@ -1,6 +1,4 @@
 "use strict";
-var subsHostListURL = "http://localhost:9000/subscription/hosts";
-
 /**
  * Subscription controller
  */

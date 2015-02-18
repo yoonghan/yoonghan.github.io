@@ -1,9 +1,6 @@
 'use strict';
 
 var calSetupApp = angular.module('calSetupApp', ['ui.bootstrap','ngAnimate']);
-var reservationURL = "http://localhost:9000/tools/calendar";
-var nextLocation = "/selfservice/booking/setup-confirm";
-var redirectURL = "/selfservice/booking/calendar"; 
 
 var OPTIONAL = "[Optional]";
 var MANDATORY = "[Mandatory]";
@@ -193,7 +190,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		
 		/**Reset form[S]**/
 		$scope.returnForm = function(){
-			location.href=redirectURL;
+			location.href=homeURL;
 		}
 	    /**Reset form[E]**/
 	    
@@ -217,7 +214,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		    
 		    $scope.formData = setupData();
 	    	
-		    var succFunc = function(data){location.href = nextLocation;}
+		    var succFunc = function(data){location.href = setupConfLocation;}
 		    var failFunc = function(data){
 		    	$scope.open('nak');
 		    	$scope.flag = false;}
@@ -225,7 +222,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		    	$scope.errors = data.errors;
 		    	$scope.flag = false;}
 		    
-		    funcHTTP($http, "PUT", reservationURL, $scope.formData, succFunc, failFunc, errFunc);
+		    funcHTTP($http, "PUT", calendarURL, $scope.formData, succFunc, failFunc, errFunc);
 	    	
 		}
 		/**Setup confirmation [E]**/
@@ -288,7 +285,7 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 		$modalInstance.close();
 	}else{
 		$modalInstance.close();
-		location.href = nextLocation;	
+		location.href = setupConfLocation;	
 	}
   };
   $scope.reset = function () {
@@ -307,15 +304,16 @@ function userInfoFunc($scope){
 	if($scope.add_addr)
 		$scope.opt_addr==OPTIONAL? addr_val = 1: addr_val = 2;
 	return switcherCal(
-		chkDef(contact_val), chkDef(email_val), chkDef(addr_val));
+		chkDef(email_val), chkDef(contact_val), chkDef(addr_val)
+		);
 }
 function chkDef(val){
 	return (typeof val === 'undefined'? 0: val);
 }
-function switcherCal(contact, email, addr){
+function switcherCal(email, contact, addr){
 	var calc = 0;
-	calc += (3) * contact;
-	calc += (9) * email;
+	calc += (3) * email;
+	calc += (9) * contact;
 	calc += (27) * addr;
 	return calc;
 }

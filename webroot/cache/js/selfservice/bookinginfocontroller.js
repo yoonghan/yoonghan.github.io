@@ -1,13 +1,4 @@
 'use strict';
- 
-var redirectURL = "http://login.jomjaring.com";
-var bookingListURL = "http://localhost:9000/tools/reservationlist";
-var userInfoURL = "http://localhost:9000/tools/usersinreservation";
-var homeURL = "/selfservice/booking/calendar";
-var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
-var reportURL = 'http://localhost:9000/report/isAllow';
-var reportGenUrl = 'http://localhost:9000/report/gen';
-var settingsURL = "/selfservice/profile/setting";
 
 /**
  * Special application that stood by it own, used to check data and load the progress bar

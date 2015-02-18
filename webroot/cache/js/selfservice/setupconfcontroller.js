@@ -1,10 +1,6 @@
 'use strict';
 
-var calLoadURL = "http://localhost:9000/tools/calendarload";
-var calSetupConfURL = "http://localhost:9000/tools/calendarconf";
 var month=["January","February","March","April","May","June","July","August","September","October","November","December"];
-var nextLocation = "/selfservice/booking/calendar"; 
-var redirectURL = "http://login.jomjaring.com";
 
 /**
  * Special application that stood by it own, used to check data and load the progress bar
@@ -333,7 +329,7 @@ setupConfApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, s
 		  $modalInstance.close('reject');
       }else if(status == 'ok'){
 		  $modalInstance.close();
-		  location.href = nextLocation;
+		  location.href = homeURL;
 	  }else{
 		  $modalInstance.close();
 	  }

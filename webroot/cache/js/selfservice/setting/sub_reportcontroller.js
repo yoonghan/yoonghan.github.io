@@ -1,6 +1,4 @@
 "use strict";
-var subsReportURL = "http://localhost:9000/report/setting";
-
 /**
  * Report controller
  */

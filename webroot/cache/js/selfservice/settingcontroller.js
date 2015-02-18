@@ -1,9 +1,6 @@
 'use strict';
 
 var settingApp = angular.module('settingApp', ['ngRoute','ui.bootstrap','ngAnimate','ngSanitize']);
-var initialStart = "/notify/subscription";
-var returnURL = "/selfservice/booking/calendar";
-var basicURL = "http://localhost:9000/user/basicinfo";
 /**
  * The main loader.
  */
@@ -55,7 +52,7 @@ settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$locat
 		tutorialInit($scope, $location, $timeout)
 		/**Tutorial[E]**/
 		
-		$location.url(initialStart);
+		$location.url(initialStartURL);
 	
 		$scope.$route = $route;
 		$scope.$location = $location;
@@ -88,7 +85,7 @@ settingApp.controller('profileController', ['$scope', '$route', '$routeParams', 
 			}
 	    };
 	    
-	    getHTTP($http,basicURL, $scope.succ);
+	    getHTTP($http, basicURL, $scope.succ);
 	}
 ]);
 
@@ -96,7 +93,7 @@ settingApp.controller('profileController', ['$scope', '$route', '$routeParams', 
  * Site to be redirected to
  */
 function redirectPage(){
-	window.location.href='/';
+	window.location.href=homeURL;
 }
 
 /**
@@ -107,7 +104,7 @@ var cancelBtn = function(){
 	var prvPg = document.referrer;
 	
 	if(prvPg.indexOf("/selfservice/") == -1){
-		prvPg=returnURL
+		prvPg=homeURL
 	}
 	window.location.href=prvPg;
 	
