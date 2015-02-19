@@ -239,14 +239,11 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 							validatecheckbox($scope.thursday)||
 							validatecheckbox($scope.friday)||
 							validatecheckbox($scope.saturday)||
-							validatecheckbox($scope.sunday)) 
-							|| $scope.reservedEvents.length > 0)
-					&& ($scope.fullday || ($scope.timedEvents.length > 0 && validDates()))
-			){
-
-				
+							validatecheckbox($scope.sunday)) || 
+							$scope.reservedEvents.length > 0)
+					&& ($scope.fullday || ($scope.timedEvents.length > 0 && validDates()))){
 				return true;
-			}else{;
+			}else{
 				return false;
 			}
 		}
