@@ -214,7 +214,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		    
 		    $scope.formData = setupData();
 	    	
-		    var succFunc = function(data){location.href = setupConfLocation;}
+		    var succFunc = function(data){location.href = setupConfURL;}
 		    var failFunc = function(data){
 		    	$scope.open('nak');
 		    	$scope.flag = false;}
@@ -228,7 +228,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		/**Setup confirmation [E]**/
 		 
 		function validatecheckbox(val){
-			return (typeof val !== 'undefined') && val 
+			return (typeof val !== 'undefined') && val;
 		}
 		
 		function validForm(){
@@ -254,7 +254,7 @@ calSetupApp.controller('calSetupCtrl', ['$scope', '$http',  '$modal',
 		function validDates(){
 			var timeEvents = $scope.timedEvents;
 			for(var loop=0; loop < timeEvents.length; loop++){
-				if($scope.invalidTimeComparer(loop)) return false
+				if($scope.invalidTimeComparer(loop)) return false;
 			}
 			return true;
 		}
@@ -285,7 +285,7 @@ calSetupApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
 		$modalInstance.close();
 	}else{
 		$modalInstance.close();
-		location.href = setupConfLocation;	
+		location.href = setupConfURL;	
 	}
   };
   $scope.reset = function () {

@@ -99,7 +99,7 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	$scope.predicate = "start";
 	$scope.reverse = false;
 	if(calendar.length != 0) {
-		calendar = []
+		calendar = [];
 	}
 	
 	$scope.goSettings = function(){
@@ -134,10 +134,10 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	
 	/**Check reporting allow[S]**/
 	var allowReportFunc = function(data){
-		var value = data
+		var value = data;
 		if(typeof data !== 'undefined'){
 			if(typeof data.success !== 'undefined'){
-				$scope.rpt_allowed = true
+				$scope.rpt_allowed = true;
 			}
 		}
 	}
@@ -183,8 +183,7 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 
 
 	var userListFunc = function(data){
-		var value = data
-		
+		var value = data;		
 		$scope.userList = [];
 		for(var i=0; i < value.length; i++){
 			var currElem = value[i];
@@ -221,9 +220,9 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 bookinginfoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status, message) {
   $scope.status = status;
   if(status == "delete"){
-	  $scope.statMsg = "Confirm to forcefully remove the user reservation?"
+	  $scope.statMsg = "Confirm to forcefully remove the user reservation?";
   }else if(status == "error"){
-	  $scope.statMsg = message
+	  $scope.statMsg = message;
   }
   $scope.cancel = function(){
 	  $modalInstance.close();  
@@ -232,7 +231,7 @@ bookinginfoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance,
 	  if(status == 'delete'){
 		  $modalInstance.close('delete');
 	  }else{
-		  $modalInstance.close()
+		  $modalInstance.close();
 	  }
   };
 });

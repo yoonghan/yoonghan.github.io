@@ -20,16 +20,14 @@ function createProfileJSON($scope){
 function checkNotValidity($scope){
 	var valid = false;
 	
-	if($scope.ctcNo == undefined 
-			&& $scope.profile.ctcNo.$viewValue != undefined
-			){
-		return true
+	if($scope.ctcNo == undefined && 
+			$scope.profile.ctcNo.$viewValue != undefined){
+		return true;
 	}
 	
-	if($scope.pstCd == undefined 
-			&& $scope.profile.pstCd.$viewValue != undefined
-			){
-		return true
+	if($scope.pstCd == undefined && 
+			$scope.profile.pstCd.$viewValue != undefined){
+		return true;
 	}
 	
 	return valid;

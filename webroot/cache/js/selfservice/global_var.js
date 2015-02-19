@@ -20,7 +20,6 @@ var basicURL = "http://localhost:9000/user/basicinfo";
 
 var redirectURL			= "http://login.jomjaring.com";
 var initialStartURL		= "/notify/subscription";
-var setupConfLocation	= "/selfservice/booking/setup-confirm";
+var setupConfURL		= "/selfservice/booking/setup-confirm";
 var homeURL				= "/selfservice/booking/calendar";
 var settingsURL			= "/selfservice/profile/setting";
-var signUp				= "/selfservice/profile/signup";

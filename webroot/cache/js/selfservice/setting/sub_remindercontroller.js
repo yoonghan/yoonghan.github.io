@@ -83,7 +83,7 @@ function saveReminder($scope){
 	$scope.chk_sms = $scope.chk_sms == undefined ? false: $scope.chk_sms;
 	$scope.allowCreation = $scope.allowCreation == undefined ? false: $scope.allowCreation;
 	
-	var reminder = []
+	var reminder = [];
 	if($scope.r_day) reminder.push(1)
 	if($scope.r_week) reminder.push(7)
 	

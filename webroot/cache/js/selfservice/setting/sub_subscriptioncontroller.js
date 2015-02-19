@@ -94,7 +94,7 @@ function saveSubscription($scope){
 	for(var i=0; i < $scope.chkHostList.length; i++){
 		var currElem = $scope.chkHostList[i];
 		
-		if(currElem.currStat != currElem.initStat){	//if there is only changes
+		if(currElem.currStat != currElem.initStat){
 			if(currElem.currStat == true){
 				subList.push(currElem._id.$oid);
 			}

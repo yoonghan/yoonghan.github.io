@@ -63,7 +63,7 @@ setupConfApp.controller('ProgressCtrl', ['$scope', '$http', '$interval', '$route
 
 	  var amt = 100;
 	  var maxWait = 2000;
-	  var maxRetryCount = 25
+	  var maxRetryCount = 25;
 	  
 	  //don't start at 0, user will suspect nothing is working
 	  
@@ -306,17 +306,17 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
 setupConfApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, status) {
   $scope.status = status;
   if(status == "ok"){
-	  $scope.statMsg = "Status Confirmed."
+	  $scope.statMsg = "Status Confirmed.";
   }else if(status == "reset"){
-	  $scope.statMsg = "Reload values? Current value will be resetted."
+	  $scope.statMsg = "Reload values? Current value will be resetted.";
   }else if(status == "reject"){
-	  $scope.statMsg = "Remove all values? All values will be deleted."
+	  $scope.statMsg = "Remove all values? All values will be deleted.";
   }else if(status == "nak"){
-	  $scope.statMsg = "Found some errors, please verify your inputs."
+	  $scope.statMsg = "Found some errors, please verify your inputs.";
   }else{
 	  status = "others";
 	  $scope.status = status;
-	  $scope.statMsg = "Problem Accepting your input. Check again your values."
+	  $scope.statMsg = "Problem Accepting your input. Check again your values.";
   }
 
   $scope.cancel = function(){

@@ -88,7 +88,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**Each event clicks[S]**/
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
 		sendMessage($scope.state,(new Date(event.start).getTime()));
-		$scope.currEvents = []; //clean it.
+		$scope.currEvents = [];
 		var currentContent = {
 				title: event.title,
 				start: new Date(event.start),
@@ -237,7 +237,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	    
 	    $scope.flag = true;
 	    
-	    $scope.formData = formData
+	    $scope.formData = formData;
 		
 		var succFunc = function(data){
 			$scope.flag = false;
@@ -277,7 +277,7 @@ calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
   $scope.status = status=='ok'?true:false;
  
   if($scope.status){
-	  $scope.statMsg = "Status Confirmed."
+	  $scope.statMsg = "Status Confirmed.";
   }else{
 	  $scope.statMsg = message==""?"Booking Not Accepted.":message;
   }

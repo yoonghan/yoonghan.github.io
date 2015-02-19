@@ -104,7 +104,7 @@ var cancelBtn = function(){
 	var prvPg = document.referrer;
 	
 	if(prvPg.indexOf("/selfservice/") == -1){
-		prvPg=homeURL
+		prvPg=homeURL;
 	}
 	window.location.href=prvPg;
 	
