@@ -11,6 +11,7 @@ var userInfoURL = "http://localhost:9000/tools/usersinreservation";
 var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
 var reportURL = 'http://localhost:9000/report/isAllow';
 var reportGenUrl = 'http://localhost:9000/report/gen';
+var emailVerificationURL = 'http://localhost:9000/reminder/resent';
 
 var reservationURL = 'http://localhost:9000/tools/reserve';
 var calendarURL = 'http://localhost:9000/tools/calendar';

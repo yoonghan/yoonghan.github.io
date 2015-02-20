@@ -5,6 +5,8 @@
 settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParams',
       function($scope, $http, $modal, $routeParams) {
 	
+		$scope.emailValidate = "Resend Email Validation";
+	
 		$scope.succ = function(data){
 			if(data.success != "ok"){
 				$scope.r_day = (data.reminder!=undefined && data.reminder.indexOf(1) > -1);
@@ -12,6 +14,8 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 				if(data.alertEmail != undefined && data.alertEmail != ""){
 					$scope.chk_email = true;
 					$scope.n_email = data.alertEmail;
+					$scope.str_email = data.alertEmail;
+					$scope.str_validEmail = data.validEmail;
 				}
 				if(data.alertSMS != undefined && data.alertSMS != ""){
 					$scope.chk_sms = true;
@@ -40,6 +44,8 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 			$scope.formData = saveReminder($scope);
 			
 			var succFunc = function(data){
+				if($scope.str_email != $scope.n_email);
+					$scope.str_validEmail = false;
 				$scope.open();
 		    	$scope.flag = false;
 				}
@@ -71,6 +77,17 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 		};
 		/**Open Modal[E]**/
 	
+		/**Reminder[S]**/
+		$scope.resentEmailValidator = function(){			
+			$scope.emailValidateFlag = true;
+			
+			$scope.succ2 = function(data){
+				$scope.emailValidate = "Sent";
+		    };
+		    
+		    getHTTP($http,emailVerificationURL, $scope.succ2);	
+		}
+		/**Reminder[E]**/
 }]);
 
 /**Copy user profiles**/
