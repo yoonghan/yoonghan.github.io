@@ -6,6 +6,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
       function($scope, $http, $modal, $routeParams) {
 	
 		$scope.emailValidate = "Resend Email Validation";
+		$scope.isValidEmail = true;
 	
 		$scope.succ = function(data){
 			if(data.success != "ok"){
@@ -15,7 +16,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 					$scope.chk_email = true;
 					$scope.n_email = data.alertEmail;
 					$scope.str_email = data.alertEmail;
-					$scope.str_validEmail = data.validEmail;
+					$scope.isValidEmail = data.validEmail;
 				}
 				if(data.alertSMS != undefined && data.alertSMS != ""){
 					$scope.chk_sms = true;
@@ -45,7 +46,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 			
 			var succFunc = function(data){
 				if($scope.str_email != $scope.n_email);
-					$scope.str_validEmail = false;
+					$scope.isValidEmail = false;
 				$scope.open();
 		    	$scope.flag = false;
 				}

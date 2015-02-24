@@ -95,9 +95,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
     	
     	//check type
-    	var bookType = $(this).hasClass('reserved')? 1 :
-    					$(this).hasClass('pending')? 2:
-    					0;
+    	var bookType = $(this).hasClass('reserved')? 1:$(this).hasClass('pending')? 2:0;
 		sendMessage($scope.state,(new Date(event.start).getTime()));
 		$scope.currEvents = [];
 		var currentContent = {

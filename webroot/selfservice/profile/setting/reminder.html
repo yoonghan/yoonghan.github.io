@@ -46,9 +46,9 @@ Configure the preference of your calendar reminder here.
 					<label>
 						<input type="checkbox" ng-model="chk_email" name="chk_email">
 						<span ng-show="!chk_email">Email</span>
-						<p ng-show="chk_email && !str_validEmail" class="alert alert-warning">[[wr.emailver]]</p>
+						<p ng-show="chk_email && !isValidEmail" class="alert alert-warning">[[wr.emailver]]</p>
 						<input ng-show="chk_email" class="form-control" style="display:inline;width:initial" ng-show="chk_email"  name="n_email" type="email" ng-model="n_email" placeholder="e.g. abc@yahoo.com" maxlength="200">
-						<input type="button" ng-show="chk_email && !str_validEmail" ng-click="resentEmailValidator()" value="{{emailValidate}}" ng-disabled="emailValidateFlag" class="btn btn-success">
+						<input type="button" ng-show="chk_email && !isValidEmail" ng-click="resentEmailValidator()" value="{{emailValidate}}" ng-disabled="emailValidateFlag" class="btn btn-success">
 						<span id="emailInvalid" class="alert alert-danger alertmsg" ng-show="chk_email && setting.n_email.$error.email">Email provided is invalid!</span>
 						<span id="emailBlank" class="alert alert-danger alertmsg" ng-show="chk_email && (setting.n_email.$viewValue==='' || setting.n_email.$viewValue===undefined)">Email must not be blank</span>
 					</label>
