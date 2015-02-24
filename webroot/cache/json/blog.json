@@ -139,6 +139,11 @@
 "date":"Feb 17th, 2015",
 "task":"Used Array Embedded Elements in MongoDB", 
 "detail":"Huge changes to make CP available to request for more information on the user details."
+},
+{
+"date":"Feb 24th, 2015",
+"task":"Double Confirmation", 
+"detail":"Another major change, so that CP can consider double confirmation. Improved mongo keywords as well."
 }
 ]
 }

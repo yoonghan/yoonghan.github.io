@@ -147,7 +147,7 @@ setupConfApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http',  '$mo
     
     /**Check availability[S]**/
     $scope.userInfoAllow = function(value){
-    	var permission = ["","Email","Contact","Address"];
+    	var permission = ["","E","C","A"];
     	var ternary = value.toString(3);
     	
     	var permissionCnt = 0;

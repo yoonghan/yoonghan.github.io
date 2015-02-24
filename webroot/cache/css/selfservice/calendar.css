@@ -58,3 +58,14 @@ text-align:justify;
 border:1px dotted;
 padding:5px;
 }
+
+/**Events**/
+.unreserved{
+    color: white; background-color:#3071a9; padding: 3px 3px;
+}
+.reserved{
+    color: black; background-color:#dff0d8; padding: 3px 3px;
+}
+.pending{
+    color: black; background-color:#ffffb9; padding: 3px 3px;
+}

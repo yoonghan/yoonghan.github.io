@@ -33,9 +33,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 		$scope.fstName = data.firstName;
 		$scope.lstName = data.lastName;
 		$scope.email = data.email;
-		$scope.contactNo = data.contactNo;
-		$scope.addr = data.address;
-		$scope.postCode = data.postCode;
+		$scope.ctcNo = data.ctcNo;
+		$scope.addr = data.addr;
+		$scope.pstCd = data.pstCd;
 		$scope.state = data.state;
 
 		//get all states
@@ -67,7 +67,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     $scope.currEvents = [];	
     $scope.events = {
     		url:calendarURL,
-    		className: 'btn',
+    		className: 'btn unreserved',
     		xhrFields: {
     			withCredentials: true
     		}
@@ -75,9 +75,15 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     
     $scope.reservedEvents = {
     		url: reservationURL,
-            textColor: 'black',
-            color: '#dff0d8',
-    		className: 'btn',
+            className: 'btn reserved',
+    		xhrFields: {
+    			withCredentials: true
+    		}
+    };
+    
+    $scope.pendingEvents = {
+    		url: pendingURL,
+            className: 'btn pending',
     		xhrFields: {
     			withCredentials: true
     		}
@@ -87,6 +93,11 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 
     /**Each event clicks[S]**/
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
+    	
+    	//check type
+    	var bookType = $(this).hasClass('reserved')? 1 :
+    					$(this).hasClass('pending')? 2:
+    					0;
 		sendMessage($scope.state,(new Date(event.start).getTime()));
 		$scope.currEvents = [];
 		var currentContent = {
@@ -95,8 +106,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 				end: new Date(event.end),
 				allDay: event.allDay,
 				desc: event.desc,
-				booked: ($(this).css('color')=="rgb(0, 0, 0)"),
+				booked: bookType,
 				userInfo: (typeof event.userInfo === 'undefined')? 0:event.userInfo,
+				conf: event.conf,
 				id: event._id
 						};
 		$scope.currEvents.push(currentContent);
@@ -168,9 +180,8 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**DialogBox[E]**/
     
     /**DialogBox Ver 2[S]**/
-    $scope.openVer2 = function (userInfo, id, email, contactNo, addr, postCode, state, errors) {
+    $scope.openVer2 = function (userInfo, id, conf, email, ctcNo, addr, pstCd, state, errors) {
     	if(typeof userInfo === 'undefined') userInfo = 0;
-    	
     	 var modalInstance = $modal.open({
     	 templateUrl: 'usercontent.html',
     	 controller: 'ModalUserReqCtrl',
@@ -182,20 +193,23 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     		 id: function(){
     			 return id;
     		 },
+    		 conf: function(){
+    			 return conf;
+    		 },
     		 userInfo: function(){
     			 return userInfo;
     		 },
 	   	 	 email: function(){
 	   	 		 return email; 
 	   	 	 },
-	   	 	 contactNo: function(){
-	   	 		 return contactNo; 
+	   	 	 ctcNo: function(){
+	   	 		 return ctcNo; 
 	   	 	 },
 	   	 	 addr: function(){
 	   	 		 return addr; 
 	   	 	 },
-	   	 	 postCode: function(){
-	   	 		 return postCode; 
+	   	 	 pstCd: function(){
+	   	 		 return pstCd; 
 	   	 	 },
 	   	 	 state: function(){
 	   	 		 return state; 
@@ -216,11 +230,12 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     /**DialogBox Ver 2[E]**/
     
     /**Booking clicked**/
-    $scope.ok = function(id, userInfo){
+    $scope.ok = function(id, conf, userInfo){
     	if(userInfo == 0)
-    		$scope.confirmBooking("POST", {_id: id, userInfo: 0});
-    	else
-    		$scope.openVer2(userInfo, id, $scope.email, $scope.contactNo, $scope.addr, $scope.postCode, $scope.state);
+    		$scope.confirmBooking("POST", {_id: id, conf:conf, userInfo: 0});
+    	else{
+    		$scope.openVer2(userInfo, id, conf, $scope.email, $scope.ctcNo, $scope.addr, $scope.pstCd, $scope.state);
+    	}
     }
     
     /**Cancellation clicked**/
@@ -251,8 +266,8 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 	    }
 	    var errFunc = function(data){
 	    	$scope.flag = false;
-	    	if(method == "POST" || formData.userInfo !=0){
-	    		$scope.openVer2(formData.userInfo, formData._id, formData.email, formData.contactNo, formData.address, formData.postCode, formData.state, data.errors);
+	    	if(method == "POST" && formData.userInfo !=0){
+	    		$scope.openVer2(formData.userInfo, formData._id, formData.conf, formData.email, formData.ctcNo, formData.addr, formData.pstCd, formData.state, data.errors);
 	    	}else{
     			$scope.open('nak', data.error !== 'undefined' ? data.error : "Internal Server Error, please try again.");
 	    	}
@@ -267,7 +282,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
     	$scope.tutEvents = [];
     	$scope.eventSources = [$scope.tutEvents];
     }else{
-    	$scope.eventSources = [$scope.events,$scope.reservedEvents];
+    	$scope.eventSources = [$scope.events, $scope.reservedEvents, $scope.pendingEvents];
     }
     
 }]);
@@ -287,7 +302,7 @@ calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
   };
 });
 
-calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, errors, id, userInfo, email, contactNo, addr, postCode, state, listStates) {
+calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, errors, id, conf, userInfo, email, ctcNo, addr, pstCd, state, listStates) {
 
 	/**Check availability[S]**/
 	$scope.checkUserInfo = function(action){
@@ -325,9 +340,9 @@ calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, err
 	
 	$scope.userInfo = userInfo;
 	$scope.dtl_email = email;
-	$scope.dtl_ctcNo = contactNo;
+	$scope.dtl_ctcNo = ctcNo;
 	$scope.dtl_addr = addr;
-	$scope.dtl_pstCd = postCode;
+	$scope.dtl_pstCd = pstCd;
 	$scope.states = listStates;
 	if(errors.length != 0)
 		$scope.errors =  errors;
@@ -338,7 +353,6 @@ calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, err
 	var jsonState=eval("({'id':'"+state+"'})");
 	$scope.dtl_state = $scope.states[_.findIndex($scope.states, jsonState)];
 	
-	
 	$scope.isEmailShow = isActValid("Email");
 	$scope.isContactNoShow = isActValid("ContactNo");
 	$scope.isAddressShow = isActValid("Address");
@@ -348,24 +362,19 @@ calendarApp.controller('ModalUserReqCtrl', function ($scope, $modalInstance, err
 		if($scope.detail.$valid){
 			var formData = {
 				_id: id,
-				userInfo: $scope.userInfo,
-				state: $scope.dtl_state.id,
-				postCode: $scope.dtl_pstCd,
-				address: $scope.dtl_addr,
-				email: $scope.dtl_email,
-				contactNo: $scope.dtl_ctcNo
+				conf: conf,
+				userInfo: $scope.userInfo
 			};
 			
-			if($scope.isEmailShow == false)
-				delete formData.email;
-			if($scope.isContactNoShow == false)
-				delete formData.contactNo;
-			if($scope.isAddressShow == false){
-				delete formData.address;
-				delete formData.postCode;
-				delete formData.state;
+			if($scope.isEmailShow)
+				formData.email = $scope.dtl_email;
+			if($scope.isContactNoShow)
+				formData.ctcNo = $scope.dtl_ctcNo;
+			if($scope.isAddressShow){
+				formData.state = $scope.dtl_state.id;
+				formData.pstCd = $scope.dtl_pstCd;
+				formData.addr = $scope.dtl_addr;
 			}
-			
 			$modalInstance.close(formData);
 		}
 	    

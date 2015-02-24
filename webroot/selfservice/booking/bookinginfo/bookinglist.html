@@ -55,7 +55,7 @@
 				<td>{{e.desc}}</td>
 				<td>{{e.avail}}</td>
 				<td>
-					<button class="btn btn-success btn-sm" ng-click="exposeUsers($index,e.id)">View Subscribers</button>
+					<button class="btn btn-success btn-sm" ng-click="exposeUsers(e.id)">View Subscribers</button>
 					<table ng-repeat="f in bookingList[0].info">
 						<tr>
 						<td>{{f.firstName}}, {{f.lastName}}</td>

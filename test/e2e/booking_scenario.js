@@ -7,14 +7,22 @@ describe('Booking Test', function() {
   });
   
   describe('Enter Booking Site', function() {
-	  it('Make A booking / cancellation', function() {
-		//**Page one testing[S]**//
-		  runTest();
-	  });
-	  
-	  it('Redo A cancellation / booking', function() {
-		//**Page one testing[S]**//
-			runTest();
+	  it('Make A booking then cancel', function() {
+		browser.get('http://localhost:8000/selfservice/booking/calendar');
+		
+		//Book
+		var event = element.all(by.css('.reserved'));
+		event.get(0).click();
+		browser.sleep(200);
+		runTest();
+		  
+		browser.sleep(500);
+		
+		//Cancel
+		var event = element.all(by.css('.unreserved'));
+		event.get(0).click();
+		browser.sleep(200);
+		runTest();
 	  });
 	  
 	  it('Press the settings button', function() {
@@ -26,11 +34,7 @@ describe('Booking Test', function() {
 	  });
 	  
 	  function runTest(){
-		  browser.get('http://localhost:8000/selfservice/booking/calendar');
-			var event = element.all(by.css('.fc-event'));
-			event.get(0).click();
-			
-			browser.sleep(200);
+		    
 			$$('#btnCancelBook').count().then(
 					function(countCancelExist){
 						if(countCancelExist == 1){

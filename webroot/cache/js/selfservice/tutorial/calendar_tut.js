@@ -44,8 +44,8 @@ function tutorialInit($scope, $location){
 	/**Override all triggers**/
 	var overrideTriggers = function(){
 		
-		var addEvent = {title: 'My Demo Event',desc: 'This is just a demo event', start: new Date(),end: new Date(), allDay: true, id: 'demo', className:'tutorialblink'};
-		var removeEvent = {title: 'A new Demo Event',desc: 'This is just a demo event', start: new Date(),end: new Date(), allDay: true, id: 'demo', textColor:'rgb(0,0,0)', color:'rgb(223, 240, 216)'};
+		var addEvent = {title: 'My Demo Event',desc: 'This is just a demo event', start: new Date(),end: new Date(), allDay: true, id: 'demo', className:'tutorialblink unreserved'};
+		var removeEvent = {title: 'A new Demo Event',desc: 'This is just a demo event', start: new Date(),end: new Date(), allDay: true, id: 'demo', className:'reserved'};
 		
 		$scope.tutEvents.push(addEvent);
 	    

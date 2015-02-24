@@ -9,10 +9,10 @@ function createProfileJSON($scope){
 		gender: $scope.gender,
 		country: $scope.cntry,
 		state: $scope.state.id,
-		postCode: $scope.pstCd,
-		address: $scope.addr,
+		pstCd: $scope.pstCd,
+		addr: $scope.addr,
 		email: $scope.email,
-		contactNo: $scope.ctcNo
+		ctcNo: $scope.ctcNo
 	}
 }
 
@@ -41,10 +41,10 @@ function retrieveEditProfile($scope, $http){
 		$scope.midName = data.midName;
 		$scope.lstName = data.lastName;
 		$scope.gender = data.gender;
-		$scope.ctcNo = data.contactNo;
+		$scope.ctcNo = data.ctcNo;
 		$scope.cntry = data.country;
-		$scope.pstCd = data.postCode;
-		$scope.addr = data.address;
+		$scope.pstCd = data.pstCd;
+		$scope.addr = data.addr;
 		$scope.email = data.email;
 		
 		//Complex to select state, thanks to Angular :(

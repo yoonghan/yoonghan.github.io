@@ -37,7 +37,7 @@ bookinginfoApp.config(['$routeProvider', '$httpProvider',
 	        controller: 'BookingListCtrl',
 	        controllerAs: 'bookinglist'
 	      })
-	      .when('/user/:idx/:oid', {
+	      .when('/user/:oid', {
 	        templateUrl: 'bookinginfo/userlist',
 	        controller: 'UserListCtrl',
 	        controllerAs: 'userlist'
@@ -120,8 +120,9 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 				allDay: currElem.allDay,
 				title: currElem.title,
 				desc: currElem.desc,
-				avail: currElem.availability,
+				avail: currElem.avail,
 				id: currElem._id,
+				conf: currElem.conf,
 				close: true,
 				info: []
 				});
@@ -158,9 +159,9 @@ bookinginfoApp.controller('BookingListCtrl', ['$scope', '$routeParams', '$http',
 	    funcHTTP($http, "POST", reportGenUrl, {}, succFunc, failFunc, errFunc);
 	}
 	
-	$scope.exposeUsers = function(idx,id){
+	$scope.exposeUsers = function(id){
 		var oid = id.$oid;
-		$location.url('/user/'+idx+'/'+oid);
+		$location.url('/user/'+oid+'/');
 	}
 	
 	$scope.returnForm = function(){
@@ -179,8 +180,6 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 	
 	/**Expose user[S]**/
 	var oid = $routeParams.oid;
-	var idx = $routeParams.idx;
-
 
 	var userListFunc = function(data){
 		var value = data;		
@@ -189,8 +188,11 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 			var currElem = value[i];
 			
 			$scope.userList.push({
+				conf: currElem.conf,
 				firstName: currElem.firstName,
 				lastName: currElem.lastName,
+				email: currElem.email,
+				ctcNo: currElem.contactNo,
 				id: currElem.maskId
 				});
 		}
@@ -200,8 +202,9 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 	getHTTP($http, userInfoURL+"/"+oid, userListFunc);
 	/**Expose user[E]**/
 	
-	//Reuse old scope data[S]
-	$scope.calInfo = calendar[idx];
+	//Search value and replace
+	var jsonCalId=eval("({'id':{'$oid':'"+oid+"'}})");
+	$scope.calInfo = calendar[_.findIndex(calendar, jsonCalId)];
 	//Reuse old scope data[E]
 	
 	$scope.unsubuser = function(maskId){
@@ -210,6 +213,26 @@ bookinginfoApp.controller('UserListCtrl', ['$scope', '$routeParams', '$http',  '
 		/**booking confirmation [S]**/
 		$scope.formData = {_id: calId, userId: maskId};
 		$scope.open("delete","",$scope.formData, $scope.calInfo);
+		$scope.flag = false;
+	    /**booking confirmation [E]**/
+	}
+	
+	$scope.confirmuser = function(maskId){
+		$scope.flag = true;
+		var calId = $scope.calInfo.id;
+		/**booking confirmation [S]**/
+		var formData = {_id: calId, userId: maskId};
+		var succFunc = function(data){
+			$route.reload();
+			}
+	    var failFunc = function(data){
+	    	$scope.open("error",data.error)
+	    	}
+	    var errFunc = function(data){
+	    	$scope.open("error",data.error)
+	   		}
+	    
+	    funcHTTP($http, "POST", cmdreservationURL, formData, succFunc, failFunc, errFunc);
 		$scope.flag = false;
 	    /**booking confirmation [E]**/
 	}

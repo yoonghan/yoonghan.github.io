@@ -76,7 +76,7 @@
 				<div class="panel-body">
 					<ul class="unstyled" role="form">
 						<li ng-repeat="e in currEvents">
-							<div class="alert alert-info form-group" style="font-size:12pt;" ng-if="e.booked == false">
+							<div class="alert alert-info form-group" style="font-size:12pt;" ng-if="e.booked == 0">
 							
 							<div class="bookingNotice"><strong>NOTICE: </strong>For every successful reservations made, we shall provided your name to our client for simple identification purposes.</div><br>
 							
@@ -88,15 +88,34 @@
 								<dt>Activity:</dt>
 								<dd>{{e.title}}</dd>
 								<dt>Description:</dt>
-								<dd style="display:hidden">User Info</dd>
-								<dd style="display:hidden">{{e.userInfo}}</dd>
+								<dd style="visibility:hidden">User Info</dd>
+								<dd style="visibility:hidden">{{e.userInfo}}</dd>
 							</dl>
 							<hr>
-								<input type="button" id="btnBook" value="Book Now" ng-click="ok(e.id,e.userInfo)" class="btn btn-lg btn-primary" ng-disabled="flag">
+								<input type="button" id="btnBook" value="Book Now" ng-click="ok(e.id,e.conf,e.userInfo)" class="btn btn-lg btn-primary" ng-disabled="flag">
 							</div>
-							<div class="alert alert-success form-group" style="font-size:12pt;" ng-if="e.booked">
+							
+							<div class="alert alert-success form-group" style="font-size:12pt;" ng-if="e.booked == 1">
 							<h4>Reserved</h4>
 							<dl class="dl-horizontal">
+								<dt>Date:</dt>
+								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
+								<dt ng-show="e.allDay == false">Time:</dt>
+								<dd ng-show="e.allDay == false">{{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}</dd>
+								<dt>Activity:</dt>
+								<dd>{{e.title}}</dd>
+								<dt>Description:</dt>
+								<dd>{{e.desc}}</dd>
+							</dl>
+							<hr>
+								<input type="button" id="btnCancelBook" value="Cancel Booking" ng-click="cancel(e.id)" class="btn btn-lg btn-success" ng-disabled="flag">
+							</div>
+							
+							<div class="alert alert-warning form-group" style="font-size:12pt;" ng-if="e.booked == 2">
+							<h4>Pending</h4>
+							<dl class="dl-horizontal">
+								<dt>More Info:</dt>
+								<dd>Your reservation are still pending from the organizer's approval. Please wait.</dd>
 								<dt>Date:</dt>
 								<dd>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</dd>
 								<dt ng-show="e.allDay == false">Time:</dt>

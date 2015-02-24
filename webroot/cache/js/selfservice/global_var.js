@@ -9,13 +9,24 @@ var calSetupConfURL = "http://localhost:9000/tools/calendarconf";
 var bookingListURL = "http://localhost:9000/tools/reservationlist";
 var userInfoURL = "http://localhost:9000/tools/usersinreservation";
 var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
-var reportURL = 'http://localhost:9000/report/isAllow';
+var reportURL = 'http://localhost:9000/report/isallow';
 var reportGenUrl = 'http://localhost:9000/report/gen';
+
+//Re sent email for validation
 var emailVerificationURL = 'http://localhost:9000/reminder/resent';
 
-var reservationURL = 'http://localhost:9000/tools/reserve';
-var calendarURL = 'http://localhost:9000/tools/calendar';
+//Validate user input is valid when doing a calendar booking
 var validateEntryURL = 'http://localhost:9000/user/isvalidinput';
+
+//Reservation urls
+var reservationURL = 'http://localhost:9000/tools/reserve';
+
+//Pending urls
+var pendingURL = 'http://localhost:9000/tools/pending';
+
+//Calendar schedules
+var calendarURL = 'http://localhost:9000/tools/calendar';
+
 
 var basicURL = "http://localhost:9000/user/basicinfo";
 
