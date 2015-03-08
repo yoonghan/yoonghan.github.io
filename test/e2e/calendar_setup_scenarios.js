@@ -4,8 +4,8 @@
  * Created to check on the calendar
  */
 
-  var MAX_TITLE_LENGTH=30;
-  var MAX_DESC_LENGTH=300;
+  var MAX_TITLE_LENGTH=31;
+  var MAX_DESC_LENGTH=301;
  
 describe('Create Calendar App', function() {
 
@@ -53,18 +53,18 @@ describe('Create Calendar App', function() {
 			
 			var submit = element(by.model('submit'));
 			submit.click();
-			
-			//Cant submit as it contains invalid characters
+			var ok = element(by.model('btnOK'));
+			ok.click();
 			expect(submit.isEnabled()).toBe(true);
 			
 			title.sendKeys('');	
 			//Cant submit as it is empty
-			expect(submit.isEnabled()).toBe(true);
 			
 			var maxTitleChars = Array(MAX_TITLE_LENGTH+2).join('a'); //exceeded with 31 characters.
 			title.sendKeys(maxTitleChars);
 			//Cant submit as it is empty
-			expect(submit.isEnabled()).toBe(true);
+			submit.click();
+			ok.click();
 	  });
 	  it('Fail description that is Empty', function() {
 			browser.get('http://localhost:8000/selfservice/booking/setup');
@@ -89,13 +89,16 @@ describe('Create Calendar App', function() {
 			var submit = element(by.model('submit'));
 			submit.click();
 			
+			var ok = element(by.model('btnOK'));
+			ok.click();
+			
 			//empty desc
 			expect(submit.isEnabled()).toBe(true);
 			
-			var maxDescChars = Array(MAX_DESC_LENGTH+2).join('a'); //exceeded with 300 characters.
+			var maxDescChars = Array(MAX_DESC_LENGTH+2).join('a'); //exceeded with 300 characters - not possible.
 			desc.clear();
 			desc.sendKeys(maxDescChars);
-			expect(submit.isEnabled()).toBe(true);
+			submit.click();
 	  });
 	  it('Fail full day that is not selected and not setup', function() {
 			browser.get('http://localhost:8000/selfservice/booking/setup');
@@ -116,6 +119,8 @@ describe('Create Calendar App', function() {
 			
 			var submit = element(by.model('submit'));
 			submit.click();
+			var ok = element(by.model('btnOK'));
+			ok.click();
 			
 			//Check if full day and empty event is selected
 			expect(submit.isEnabled()).toBe(true);
@@ -158,11 +163,16 @@ describe('Create Calendar App', function() {
 			
 			var submit = element(by.model('submit'));
 			submit.click();
+			var ok = element(by.model('btnOK'));
+			ok.click();
 			
 			//ebooking is 100
 			expect(submit.isEnabled()).toBe(true);
 			ebooking.clear();
+			ebooking.sendKeys('0');
 			//ebooking is 0
+			submit.click();
+			ok.click();
 			expect(submit.isEnabled()).toBe(true);
 	  });
 	  it('Fail without event date created', function() {
@@ -181,6 +191,8 @@ describe('Create Calendar App', function() {
 			
 			var submit = element(by.model('submit'));
 			submit.click();
+			var ok = element(by.model('btnOK'));
+			ok.click();
 			
 			expect(submit.isEnabled()).toBe(true);
 	  });
@@ -296,43 +308,6 @@ describe('Confirm Calendar', function() {
 			var ok = element(by.model('btnOK'));
 			ok.click();
 			expect(submit.isEnabled()).toBe(true);
-			
-			title.sendKeys(maxTitleChars);
-			submit.click();
-			//check 31 characters enable
-			var ok = element(by.model('btnOK'));
-			ok.click();
-			expect(submit.isEnabled()).toBe(true);
-			
-			title.clear();
-			title.sendKeys('abcd');
-			desc.clear();
-			submit.click();
-			ok.click();
-			expect(submit.isEnabled()).toBe(true);
-	  });
-  
-	  it('Check Calendar Clears Correctly', function() {
-			browser.get('http://localhost:8000/selfservice/booking/setup-confirm');
-	
-			browser.sleep(6000);
-			
-			var reset = element(by.model('reset'));
-			var reject = element(by.model('reject'));
-			
-			reset.click();	//make sure reset worked
-			
-			var ok = element(by.model('btnOK'));
-			ok.click();
-			
-			
-			reject.click();	//make sure reset worked
-			
-			ok.click();
-			ok.click();
-			
-			browser.sleep(1000);
-			expect(browser.getCurrentUrl()).toContain('/booking/calendar');
 	  });
   });
 });

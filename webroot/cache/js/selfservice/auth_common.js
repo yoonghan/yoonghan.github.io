@@ -52,7 +52,8 @@ function errorAction(status){
  */
 function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
 
-	$("#auth_common_lbl").show();
+	//$("#auth_common_lbl").show();
+	angular.element(document.querySelector('#auth_common_lbl')).css('display','inline');
 
 	$http({
         method  : _method,
@@ -61,7 +62,8 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
         headers: {'Content-Type': 'application/json'}
     })
     .success(function(data) {
-    	$("#auth_common_lbl").hide();
+    	//$("#auth_common_lbl").hide();
+    	angular.element(document.querySelector('#auth_common_lbl')).css('display','none');
         if (data.success) {
         	succfunc(data);
         }else{
@@ -69,7 +71,8 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
         }
     })
     .error(function(data, status){
-    	$("#auth_common_lbl").hide();
+    	//$("#auth_common_lbl").hide();
+    	angular.element(document.querySelector('#auth_common_lbl')).css('display','none');
     	if(errorAction(status) == false){
     		if(data == null){
     			data={errors:["We encountered server exception, please try again."]};

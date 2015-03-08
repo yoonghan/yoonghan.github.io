@@ -75,6 +75,11 @@
 "detail":"MVC model based for client side."
 },
 {
+"tech":"AngularJS Material Design", 
+"deprecated":"false",
+"detail":"Material Design with Angular JS."
+},
+{
 "tech":"Play Framework", 
 "deprecated":"false",
 "detail":"Play framework with version Scala 2.11 and SBT."

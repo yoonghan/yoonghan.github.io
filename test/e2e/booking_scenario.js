@@ -11,7 +11,7 @@ describe('Booking Test', function() {
 		browser.get('http://localhost:8000/selfservice/booking/calendar');
 		
 		//Book
-		var event = element.all(by.css('.reserved'));
+		var event = element.all(by.css('.unreserved'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();
@@ -19,7 +19,7 @@ describe('Booking Test', function() {
 		browser.sleep(500);
 		
 		//Cancel
-		var event = element.all(by.css('.unreserved'));
+		var event = element.all(by.css('.reserved'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();

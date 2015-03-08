@@ -27,8 +27,11 @@ var pendingURL = 'http://localhost:9000/tools/pending';
 //Calendar schedules
 var calendarURL = 'http://localhost:9000/tools/calendar';
 
-
+//User info
 var basicURL = "http://localhost:9000/user/basicinfo";
+
+//Admin info
+var adminProfileUrl = "http://localhost:9000/admin/profile"
 
 var redirectURL			= "http://login.jomjaring.com";
 var initialStartURL		= "/notify/subscription";

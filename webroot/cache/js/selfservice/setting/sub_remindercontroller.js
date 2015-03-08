@@ -10,8 +10,8 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 	
 		$scope.succ = function(data){
 			if(data.success != "ok"){
-				$scope.r_day = (data.reminder!=undefined && data.reminder.indexOf(1) > -1);
-				$scope.r_week = (data.reminder!=undefined && data.reminder.indexOf(7) > -1);
+				$scope.r_day = (data.reminderDays!=undefined && data.reminderDays.indexOf(1) > -1);
+				$scope.r_week = (data.reminderDays!=undefined && data.reminderDays.indexOf(7) > -1);
 				if(data.alertEmail != undefined && data.alertEmail != ""){
 					$scope.chk_email = true;
 					$scope.n_email = data.alertEmail;

@@ -144,6 +144,11 @@
 "date":"Feb 24th, 2015",
 "task":"Double Confirmation", 
 "detail":"Another major change, so that CP can consider double confirmation. Improved mongo keywords as well."
+},
+{
+"date":"Mar 8th, 2015",
+"task":"Using Angular and Material Design", 
+"detail":"Revamped the Administration page and test usage with Material Design with Angular JS."
 }
 ]
 }

@@ -2,7 +2,6 @@
 <html lang="en" ng-app="calendarApp" id="top">
 <head>
 	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>My Events</title>
 	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
@@ -88,8 +87,9 @@
 								<dt>Activity:</dt>
 								<dd>{{e.title}}</dd>
 								<dt>Description:</dt>
-								<dd style="visibility:hidden">User Info</dd>
-								<dd style="visibility:hidden">{{e.userInfo}}</dd>
+								<dd>{{e.desc}}</dd>
+								<dt>User Info</dd>
+								<dd>{{e.userInfo}}</dd>
 							</dl>
 							<hr>
 								<input type="button" id="btnBook" value="Book Now" ng-click="ok(e.id,e.conf,e.userInfo)" class="btn btn-lg btn-primary" ng-disabled="flag">

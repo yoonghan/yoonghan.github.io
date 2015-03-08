@@ -1,0 +1,79 @@
+
+	<div class="panel panel-primary pnl-margin">
+		<md-toolbar><div class="md-toolbar-tools">Search Filter</div></md-toolbar>
+		<div class="panel-body">
+			<label>
+				<input ng-model="search.title" placeHolder="Title" class="form-control">
+			</label> <strong> AND </strong> 
+			<label> 
+				<input ng-model="search.desc" placeHolder="Description" class="form-control">
+			</label> <strong> AND </strong> 
+			<label>
+				<select ng-model="search.conf" class="form-control">
+					<option value="">Show All</option>
+					<option value="true">Requires Confirmation</option>
+					<option value="false">No Confirmation Required</option>
+				</select>
+			</label>
+		</div>
+	</div>
+
+<hr>
+
+	<form class="form-horizontal" role="form" name="list">
+	
+	<!-- Button [S] : Check where the tooltip disable. -->
+
+	&nbsp;&nbsp;
+	
+	<md-button class="md-raised md-primary" ng-click="genReport()"	 
+		ng-model="genReport" ng-disabled="!rpt_allowed||rpt_disabled">
+		<md-tooltip>
+          [[tt.reportgen]]
+        </md-tooltip>
+		Generate Report</md-button>
+	<!-- Button [E] -->
+	<br><br>
+	<div class="alert alert-warning" ng-show="!rpt_allowed" role="alert" tooltip-popup-delay="5"> 
+	<span>[[wr.reportgen]]</span>
+	</div>
+	<div class="alert alert-warning" ng-show="rpt_disabled" role="alert" tooltip-popup-delay="5"> 
+	<span>[[wr.reportgenerated]]</span>
+	</div>
+		
+		<table class="table table-hover table-bordered">
+		<thead>
+			<th><a href="" ng-click="predicate='start'; reverse=!reverse">Date<i class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}"></i></a></th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Title</th>
+			<th>Desc</th>
+			<th>Availability</th>
+			<th>Confirmation</th>
+			<th>Subscribers</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="e in bookingList | orderBy:predicate:reverse | filter:search">
+				<td>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</td>
+				<td>
+					<span ng-show="!e.allDay">{{e.start | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="e.allDay">Full Day</span>
+				</td>
+				<td>
+					<span ng-show="!e.allDay">{{e.end | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="e.allDay">-</span>
+				</td>
+				<td>{{e.title}}</td>
+				<td>{{e.desc}}</td>
+				<td>{{e.avail}}</td>
+				<td>
+					<span ng-show="e.conf">Req</span>
+					<span ng-show="!e.conf">Not</span>
+				</td>
+				<td>
+					<md-button class="md-raised md-primary minime" ng-click="listUsers(e.id)">View Subscribers</md-button>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</form>

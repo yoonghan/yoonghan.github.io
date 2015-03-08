@@ -138,15 +138,15 @@ var SampleApp = function() {
 			res.send(fs.readFileSync(webroot+'/favicon.ico'));
 		};
 		
-		self.routes['/selfservice/*:path'] = function(req, res) {
+		self.routes['/selfservice/admin'] = function(req, res) {
 			
 			var reqPath = self.replacePath(req.path.toString());
 			
 			res.setHeader(CONTENT_TYPE, mime(".html"));
-			res.send(self.cache_get(reqPath + ".html"));
+			res.send(self.cache_get(reqPath + "/index.html"));
 		};
 		
-		self.routes['/webby/special/*:path'] = function(req, res) {
+		self.routes['/selfservice/*:path'] = function(req, res) {
 			
 			var reqPath = self.replacePath(req.path.toString());
 			

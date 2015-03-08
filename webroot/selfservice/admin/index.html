@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en" ng-app="MainApp">
+  <head>
+  	<meta charset="ISO-8859-1">
+  	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Calendar Administration</title>
+	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/cache/css/angular/angular-material.min.css">
+	<link rel="stylesheet" href="/cache/css/selfservice/admin/admin.css">
+  </head>
+  <body layout="column" ng-controller="AppCtrl">
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md') && ($location.path()!='/settings')">
+      <md-toolbar>
+		<h1 class="md-toolbar-tools"><img src="/cache/img/branding/jomj/logo.png" style="height:30px;margin-right:10px"> Admin</h1>
+        
+      </md-toolbar>
+      <md-content ng-controller="MenuCtrl" ng-repeat="m in menuList">
+	  
+	  <md-button class="menu-button md-raised" ng-href="{{m.lnk}}">{{m.pg}}</md-button>
+        
+      </md-content>
+    </md-sidenav>
+    <div layout="column" layout-fill tabIndex="-1" role="main" flex>
+	  <md-toolbar>
+		<div class="md-toolbar-tools">
+		  <md-button ng-click="toggleMenu()" aria-label="Menu" ng-show="$media('gt-md') || ($location.path()=='/settings')">
+            <span class="glyphicon glyphicon-th-large"></span>
+          </md-button>
+		  <span>My App's Title</span>
+		  <span flex></span>
+		  <md-button ng-click="showBottomMenuSheet($event)" aria-label="Configuration">
+			<span class="glyphicon glyphicon-cog"></span>
+		  </md-button>
+		</div>
+	  </md-toolbar>
+	  <md-content ng-view md-scroll-y flex class="view-animate">
+	  </md-content>
+	  
+    </div>
+</section>
+
+	
+    <!-- Angular Material Dependencies -->
+	<script src="/cache/js/selfservice/global_var.js"></script>
+	<script src="/cache/js/selfservice/auth_common.js"></script>
+    
+	<script src="/cache/js/lodash/lodash.min.js"></script>
+	<script src="/cache/js/moment/moment.min.js"></script>
+    
+	<script src="/cache/js/angular/angular.min.js"></script>
+	<script src="/cache/js/angular/angular-animate.min.js"></script>
+	<script src="/cache/js/angular/angular-route.min.js"></script>
+	<script src="/cache/js/angular/angular-aria.min.js"></script>
+	<script src="/cache/js/angular/angular-material.min.js"></script>
+	<script src="/cache/js/angular/angular-messages.min.js"></script>
+	<script src="/cache/js/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
+	<script src="/cache/js/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+	
+	
+	<script src="/cache/js/selfservice/admin/main.js"></script>
+  </body>
+</html>

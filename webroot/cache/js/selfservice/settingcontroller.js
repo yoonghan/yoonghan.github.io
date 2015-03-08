@@ -30,11 +30,6 @@ settingApp.config(['$routeProvider', '$httpProvider',
 		    templateUrl: 'setting/profile',
 		    controller: 'ProfileCtrl',
 		    controllerAs: 'profile'
-		  })
-		  .when('/notify/reporting', {
-		    templateUrl: 'setting/reporting',
-		    controller: 'ReportCtrl',
-		    controllerAs: 'report'
 		  });
 }]);
 
@@ -43,11 +38,6 @@ settingApp.config(['$routeProvider', '$httpProvider',
  */
 settingApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$location', '$timeout',
     function ($scope, $route, $routeParams, $location, $timeout) {
-	
-		/**Check authorization[S]**/
-		$scope.allowSetup = cookieAccess("Cal_Ctrl");
-		/**Check authorization[E]**/
-	
 		/**Tutorial[S]**/
 		tutorialInit($scope, $location, $timeout)
 		/**Tutorial[E]**/
