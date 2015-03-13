@@ -57,12 +57,32 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
         .when('/eventempty', {
             templateUrl: 'admin/eventsubmit_e'
         })
+        .when('/statistics', {
+            templateUrl: 'admin/statistics',
+            controller: 'StatisticCtrl'
+        })
 /**Routing [E]**/
 })
 .controller('AppCtrl', function($scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
 
-  $scope.menuList=[{pg:"Events",lnk:"#/events"},{pg:"Setup",lnk:"#/eventsetup"},{pg:"Submission",lnk:"#/eventprogress"}];
-
+  $scope.menuList=[
+                   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
+                   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
+                   ];
+  
+  var previousPaths=[];
+  $scope.$on('$routeChangeSuccess', function() {
+	  previousPaths.push($location.$$path);
+	  if(previousPaths.length > 2){
+		  previousPaths.splice(0,1);
+	  }
+  });
+  
+  $scope.back =function(){
+	  var path = previousPaths.length > 1 ? previousPaths.splice(-2)[0] : "/home";
+	  $location.url(path);
+	  }
+  
   $scope.showMenu = true;
   
   $scope.md_checkopen = true;
@@ -97,9 +117,10 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
 .controller('BottomMenuCtrl', function($scope, $location, $mdBottomSheet) {
 
   $scope.items = [
+	{ name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
 	{ name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
-	{ name: 'Exit', icon: 'glyphicon-home', loc:homeURL },
-    { name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:'http://localhost:9000/user/logout' }	
+	{ name: 'Exit', icon: 'glyphicon-calendar', loc:homeURL },
+    { name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:logoutURL }	
   ];
   $scope.listItemClick = function(path) {
     $mdBottomSheet.hide("hi");
@@ -452,7 +473,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
 		if(validForm() == false){
 			$scope.flag = false;
 			$scope.showAlert(ev,"There are errors within your input.");
-			location.href="#";
+			$location.href="#/eventsetup";
 			return;
 		}
 	    
@@ -788,9 +809,29 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
 		return moment(time).format("HHmm");
 	}
 })
-.controller('SettingsCtrl', function($scope, $http, $route, $mdDialog) {
+.controller('StatisticCtrl', function($scope) {
+	$scope.list1 = {title: 'AngularJS - Drag Me'};
+	$scope.list2 = {title: 'AngularJS 2 - Drag Me'};
+	$scope.list3 = {title: 'AngularJS 3 - Drag Me'};
+		
+	  $scope.startCallback = function(event, ui) {};
+	                
+	  $scope.stopCallback = function(event, ui) {};
+
+	  $scope.dragCallback = function(event, ui) {};
+
+	  $scope.dropCallback = function(event, ui) {};
+
+	  $scope.overCallback = function(event, ui) {};
+
+	  $scope.outCallback = function(event, ui) {
+	  };
+})
+.controller('SettingsCtrl', function($scope, $http, $location, $route, $mdDialog) {
 	$scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 	$scope.ctcNo_pattern = /^\+?[0-9]{0,13}$/;
+
+	$scope.returnUser = function(){console.log("OO");}
 	
 	$scope.profileSucc = function(data){
 		$scope.cName = data.cName;

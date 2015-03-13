@@ -31,7 +31,9 @@
 		<md-tooltip>
           [[tt.reportgen]]
         </md-tooltip>
-		Generate Report</md-button>
+        <span class="glyphicon glyphicon-save btn-icon"></span>
+		Generate Report
+		</md-button>
 	<!-- Button [E] -->
 	<br><br>
 	<div class="alert alert-warning" ng-show="!rpt_allowed" role="alert" tooltip-popup-delay="5"> 
@@ -71,7 +73,7 @@
 					<span ng-show="!e.conf">Not</span>
 				</td>
 				<td>
-					<md-button class="md-raised md-primary minime" ng-click="listUsers(e.id)">View Subscribers</md-button>
+					<md-button class="md-raised md-primary minime" ng-click="listUsers(e.id)"><span class="glyphicon glyphicon-eye-open btn-icon" aria-hidden="true"></span>View Subscribers</md-button>
 				</td>
 			</tr>
 		</tbody>

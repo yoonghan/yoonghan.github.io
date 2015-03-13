@@ -52,7 +52,7 @@
 <hr>
 
 <p>
-	<md-button class='md-raised md-primary' ng-href="#/events"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back</md-button>
+	<md-button class='md-raised md-primary' ng-href="#/events"><span class="glyphicon glyphicon-arrow-left btn-icon" aria-hidden="true"></span>Back</md-button>
 </p>
 	<form class="form-horizontal" role="form" name="list">
 	
@@ -73,8 +73,8 @@
 				<td>{{e.email}}</td>
 				<td>{{e.ctcNo}}</td>
 				<td>
-					<md-button class="md-raised md-primary minime" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf">Confirm User</md-button>
-					<md-button class="md-raised md-warn minime" ng-click="unsubuser(e.id, $event)" ng-disabled="flag">Unsubscribe User</md-button>
+					<md-button class="md-raised md-primary minime" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf"><span class="glyphicon glyphicon-check btn-icon" aria-hidden="true"></span>Confirm User</md-button>
+					<md-button class="md-raised md-warn minime" ng-click="unsubuser(e.id, $event)" ng-disabled="flag"><span class="glyphicon glyphicon-ban-circle btn-icon" aria-hidden="true"></span>Unsubscribe User</md-button>
 				</td>
 			</tr>
 		</tbody>

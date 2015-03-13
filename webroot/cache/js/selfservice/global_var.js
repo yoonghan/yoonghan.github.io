@@ -12,6 +12,9 @@ var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
 var reportURL = 'http://localhost:9000/report/isallow';
 var reportGenUrl = 'http://localhost:9000/report/gen';
 
+//Logout
+var logoutURL = 'http://localhost:9000/user/logout';
+
 //Re sent email for validation
 var emailVerificationURL = 'http://localhost:9000/reminder/resent';
 
@@ -31,7 +34,10 @@ var calendarURL = 'http://localhost:9000/tools/calendar';
 var basicURL = "http://localhost:9000/user/basicinfo";
 
 //Admin info
-var adminProfileUrl = "http://localhost:9000/admin/profile"
+var adminProfileUrl = "http://localhost:9000/admin/profile";
+	
+//Temporarily Admin creation
+var adminCreateUrl = "http://localhost:9000/admin/create";
 
 var redirectURL			= "http://login.jomjaring.com";
 var initialStartURL		= "/notify/subscription";

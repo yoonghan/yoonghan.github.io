@@ -7,6 +7,11 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 	
 		$scope.emailValidate = "Resend Email Validation";
 		$scope.isValidEmail = true;
+		
+		//**Control for admin creation**/
+		$scope.clickCreate = adminCreateUrl;
+		$scope.allowSetup = !cookieAccess("Cal_Ctrl");
+		//**Control for admin creation**/
 	
 		$scope.succ = function(data){
 			if(data.success != "ok"){
@@ -27,7 +32,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 	    };
 	    
 	    getHTTP($http,subsReminderURL, $scope.succ);
-	
+	    /**Save User profile**/
 		$scope.save = function(){
 			
 			$scope.errors = undefined;

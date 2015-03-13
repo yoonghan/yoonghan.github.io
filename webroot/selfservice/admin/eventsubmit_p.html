@@ -1,16 +1,16 @@
-<div class="absolute-center">
+<md-content md-scroll-y flex>
 
-<div class="panel panel-primary md-padding">
+<div class="panel panel-primary pnl-margin">
 <br>
 <center style="font-size:12pt;"><span class="glyphicon glyphicon-thumbs-up"></span> Your <strong>Data</strong> is currently processing...</center>
-
+<center style="font-size:12pt;color:#f00">{{message}}</center>
 <br>
 
 <md-progress-linear md-mode="determinate" value="{{progressValue}}">
 </md-progress-linear>
 
-<center style="font-size:12pt;color:#f00">{{message}}</center>
+
 
 <br><br><br><br>
 </div>
-</div>
+</md-content>

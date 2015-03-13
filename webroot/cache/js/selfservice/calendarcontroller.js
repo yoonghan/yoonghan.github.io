@@ -8,7 +8,7 @@ var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
 initWebSocket(ws);
 /**Init [E]**/
 
-var calendarApp = angular.module('calendarApp', ['ui.calendar', 'ui.bootstrap','ngSanitize']);
+var calendarApp = angular.module('calendarApp', ['ui.calendar', 'ui.bootstrap', 'ngSanitize']);
 
 calendarApp.config(['$httpProvider', function($httpProvider) {
 	  $httpProvider.defaults.withCredentials = true;
@@ -256,7 +256,9 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 			$scope.flag = false;
 			$scope.currEvents=[];
         	$scope.myCalendar.fullCalendar( 'refetchEvents' );
-        	$scope.open('ok');
+        	$scope.open('ok',
+        			method=="DELETE" ? "Booking Cancelled." :
+        			formData.conf ? "Booked. Your booking is now pending approval from the organizer.":"Booking Confirmed.");
 		}
 	    var failFunc = function(data){
 	    	$scope.flag = false;
@@ -290,7 +292,7 @@ calendarApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, st
   $scope.status = status=='ok'?true:false;
  
   if($scope.status){
-	  $scope.statMsg = "Status Confirmed.";
+	  $scope.statMsg = message;
   }else{
 	  $scope.statMsg = message==""?"Booking Not Accepted.":message;
   }

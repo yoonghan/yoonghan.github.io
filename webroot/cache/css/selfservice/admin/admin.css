@@ -17,7 +17,7 @@ md-dialog{max-width:100%;max-height:100%;}
 md-content h2{font-weight:bold;text-transform:uppercase;}
 md-dialog .md-actions{border-top:1px solid;}
 .md-table td{padding:0px 10px 0px 10px;}
-.minime{font-size:8pt;}
+.minime{font-size:9pt;}
 .alt-color:nth-child(even) {background-color: #e7e7e7;}
 .flex{display:flex;}
 .red{color:#e33}
@@ -37,7 +37,7 @@ md-progress-linear .md-bar, md-progress-linear .md-container{height:40px;}
 
 md-bottom-sheet.md-grid{border-radius:15px;}
 md-bottom-sheet{padding-bottom:55px;}
-.md-button>.glyphicon,.md-icon-container>.glyphicon{font-size:30pt;}
+.md-icon-container>.glyphicon{font-size:30pt;}
 
 .view-animate.ng-enter{transition:opacity 0.3s linear;}
 .view-animate.ng-enter {opacity:0;}
@@ -53,3 +53,8 @@ md-bottom-sheet{padding-bottom:55px;}
 	border: 2px solid #000;
 	border-radius: 5px;
 }
+
+.stat-text{font-weight:bold;}
+.stat-main{height:300px}
+.stat-sub{height:100px;margin-right:10px}
+.btn-icon{padding-left:5px;padding-right:10px;}

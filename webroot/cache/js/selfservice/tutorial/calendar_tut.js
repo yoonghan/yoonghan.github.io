@@ -22,7 +22,7 @@ function tutorialInit($scope, $location){
 	           [8,"Your can change your view settings as well based on <strong>Day</strong>,<strong>Week</strong> and <strong>Month</strong> under the <strong>Calendar</strong> dialog."],
 	           [9,"If you noticed, there is a weather forecast under <strong>Weather Forecast</strong> dialog. The weather changes based on your selected dates.<br><strong>Note:</strong> Due to that this is a network based, the response will have display <strong>delays</strong>."],
 	           [10,"Click on any of the dates in the calendar and the <strong>weather prediction</strong> around your state will be displayed.<br><strong>Try it !</strong>"],
-	           [11,"You have completed your tutorial. To exit click on the button: <a class='btn btn-primary btnTutNextScreen' href='/selfservice/booking/calendar'>Complete</a>.<br>Thank you for your participation."]
+	           [11,"You have completed your tutorial. To exit click on the button: <a class='btn btn-primary btnTutNextScreen' href='/selfservice/booking/calendar?'>Complete</a>.<br>Thank you for your participation."]
 	           ];
 	var firstTrigger = false;
 	
