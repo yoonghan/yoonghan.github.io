@@ -16,6 +16,7 @@ h1{font-weight:bold;}
 md-dialog{max-width:100%;max-height:100%;}
 md-content h2{font-weight:bold;text-transform:uppercase;}
 md-dialog .md-actions{border-top:1px solid;}
+
 .md-table td{padding:0px 10px 0px 10px;}
 .minime{font-size:9pt;}
 .alt-color:nth-child(even) {background-color: #e7e7e7;}
@@ -53,8 +54,14 @@ md-bottom-sheet{padding-bottom:55px;}
 	border: 2px solid #000;
 	border-radius: 5px;
 }
+.borderdotted{border:1px dashed #222;}
 
 .stat-text{font-weight:bold;}
 .stat-main{height:300px}
 .stat-sub{height:100px;margin-right:10px}
 .btn-icon{padding-left:5px;padding-right:10px;}
+
+.upload-box{width:200px;height:100px}
+.upload-icon{font-size:35pt;}
+.upload-btn{color:#888;left:25px;top:15px}
+.image-icon{max-width:150px;max-height:100px}

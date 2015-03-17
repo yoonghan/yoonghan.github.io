@@ -280,7 +280,7 @@ To create test script using maven
 <hr>
 <table border=1>
 <thead>
-	<tr><td colspan=2><h2> Unix Commands</h2></td></tr>
+	<tr><td colspan=2><h2> Linux Commands</h2></td></tr>
 </thead>
 <tbody>
 <tr>
@@ -323,7 +323,15 @@ To create test script using maven
 </tr>
 <tr>
 	<td>tcpdump</td>
-	<td>sudo tcpdump -n dst host 203.87.166.59 #Execute tcp dump and get system output and input</td>
+	<td><strong>sudo tcpdump -n dst host 203.87.166.59</strong> #Execute tcp dump and get system output and input</td>
+</tr>
+<tr>
+	<td>ssh-copy-id</td>
+	<td>Using handshake between servers without prompting for authority. Usage, 1) Run for the Host ssh server 2) Run the command in the symbiot server ssh-copy-id -i ~/.ssh/id_rsa.pub &lt;&lt;user@server-symbiot-name&gt;&gt;</td>
+</tr>
+<tr>
+	<td>scp copy</td>
+	<td>Copy file via ssh with the command <strong>scp /path/to/file username@toServerName:/path/to/destination</strong></td>
 </tr>
 </tbody>
 </table>
@@ -363,8 +371,8 @@ To create test script using maven
 If you are interested, do not hesitate to <a href="#" ng-click="activateBtn()">contact us</a>.
 </div>
 </body>
-<script src="/cache/js/jquery.min.js"></script>
-<script src="/cache/js/date.js"></script>
+<script src="/cache/js/jquery/jquery.min.js"></script>
+<script src="/cache/js/date/date.js"></script>
 <script src="/cache/js/angular/angular.min.js"></script>
 <script src="/cache/js/angular/angular-sanitize.min.js"></script>
 <script src="/cache/js/angular/angular-animate.min.js"></script>

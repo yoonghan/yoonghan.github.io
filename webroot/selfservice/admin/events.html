@@ -1,6 +1,6 @@
 
 	<div class="panel panel-primary pnl-margin">
-		<md-toolbar><div class="md-toolbar-tools">Search Filter</div></md-toolbar>
+		<md-toolbar><div class="md-toolbar-tools"><span class="glyphicon glyphicon-search btn-icon"></span>Search Filter</div></md-toolbar>
 		<div class="panel-body">
 			<label>
 				<input ng-model="search.title" placeHolder="Title" class="form-control">
@@ -27,10 +27,8 @@
 	&nbsp;&nbsp;
 	
 	<md-button class="md-raised md-primary" ng-click="genReport()"	 
+		tooltip="[[tt.reportgen]]" tooltip-placement="top"
 		ng-model="genReport" ng-disabled="!rpt_allowed||rpt_disabled">
-		<md-tooltip>
-          [[tt.reportgen]]
-        </md-tooltip>
         <span class="glyphicon glyphicon-save btn-icon"></span>
 		Generate Report
 		</md-button>

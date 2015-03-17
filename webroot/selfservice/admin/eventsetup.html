@@ -1,3 +1,7 @@
+<div class="alert alert-warning">
+	<strong>WELCOME!</strong> We only still in experimental stage and we're not able to provide a help on this category. 
+	However be pleased to try it out, you can reject your scheduled configuration before publishing.
+</div>
 <form name="setup" class="pnl-margin">	
 	<div class="alert alert-danger" ng-show="errors" role="alert">
 	<strong>Oh Snap, </strong> please check if there's input errors:
@@ -12,7 +16,8 @@
       <div ng-messages="setup.title.$error">
           <div ng-message="required">Required.</div>
           <div ng-message="pattern">Only spaces, numbers[0-9] and characters[a-z] is allowed.</div>
-          <div ng-message="md-maxlength">Name has to be less than 30 characters long.</div>
+          <div ng-message="minlength">Has to be more than 3 characters.</div>
+          <div ng-message="md-maxlength">Has to be less than 30 characters long.</div>
       </div>
     </md-input-container>
     
@@ -21,7 +26,8 @@
       <textarea ng-model="desc" name="desc" columns="1" md-maxlength="300" ng-minlength="3" required></textarea>
       <div ng-messages="setup.desc.$error">
       	<div ng-message="required">Required.</div>
-        <div ng-message="md-maxlength">Description has to be less than 300 characters long.</div>
+      	<div ng-message="minlength">Has to be more than 3 characters.</div>
+        <div ng-message="md-maxlength">Has to be less than 300 characters long.</div>
       </div>
     </md-input-container>
 	
@@ -82,8 +88,8 @@
 			<div class="alert alert-danger alertmsg" ng-show="setup.submitted && timedEvents.length==0 && !fullday">
 					Please add a time range!
 			</div>
-			<div layout>
-				<md-button class="md-raised md-primary" ng-click="addTimeEvents()" ng-model="btnAddTime" ng-show="!fullday">Add a time</md-button>
+			<div class="col-sm-12">
+				<br><md-button class="md-raised md-primary" ng-click="addTimeEvents()" ng-model="btnAddTime" ng-show="!fullday">Add a time</md-button>
 				<md-input-container ng-show="fullday">
 			        <label>Allowed Bookings</label>
 			        <input required type="number" step="any" ng-model="abookings" id="abookings" name="abookings" min="1" max="99" maxlength="2">

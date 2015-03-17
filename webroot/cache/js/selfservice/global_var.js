@@ -12,6 +12,12 @@ var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
 var reportURL = 'http://localhost:9000/report/isallow';
 var reportGenUrl = 'http://localhost:9000/report/gen';
 
+//CP image get
+var cpImageURL = 'http://localhost:9000/subscription/image';
+
+//Upload Image to Subscription
+var subUploadImgURL = 'http://localhost:9000/subscription/imgupload'
+
 //Logout
 var logoutURL = 'http://localhost:9000/user/logout';
 
@@ -34,7 +40,7 @@ var calendarURL = 'http://localhost:9000/tools/calendar';
 var basicURL = "http://localhost:9000/user/basicinfo";
 
 //Admin info
-var adminProfileUrl = "http://localhost:9000/admin/profile";
+var adminProfileUrl = "http://localhost:9000/subscription/profile";
 	
 //Temporarily Admin creation
 var adminCreateUrl = "http://localhost:9000/admin/create";

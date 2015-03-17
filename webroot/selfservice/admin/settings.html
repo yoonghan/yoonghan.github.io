@@ -3,6 +3,15 @@
 	<md-tab label="Profile">
 	
 		<div layout="row">
+		
+			<div layout="column" class="pnl-margin">
+				<div class="thumbnail">
+			        <img fallback-src="http://www.placehold.it/100x100/EFEFEF/AAAAAA&text=no+image" ng-src="{{imageUrl}}" class="image-icon"/>
+			    </div>
+				<md-button class="md-primary md-raised" ng-click="open()">
+			    	Change Image
+				</md-button>
+			</div>
 			<div layout="column" class="pnl-margin" ng-form="profile" flex>
 				<div class="alert alert-danger" ng-show="profileErrors" role="alert">
 					<strong>Oh Snap, </strong> please check if there's input errors:
@@ -114,3 +123,45 @@
 	</md-tab>
 </md-tabs>
 </form>
+
+<!-- For image upload[S] -->
+	<script type="text/ng-template" id="popupdialog.html">
+			<div class="modal-header">
+            	<h3 class="modal-title">Upload</h3>
+        	</div>
+
+			<div class="modal-body" flow-init 
+						flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()] && !($file.size > 1*1024*1024)"
+						flow-complete="uploader($flow)">
+			    <div class="jumbotron borderdotted" flow-drop flow-drag-enter="style={border:'2px solid green'}" flow-drag-leave="style={}" ng-style="style" ng-show="!flag_upload">
+        			<span class="btn btn-success" flow-btn="">Upload Image<input type="file" multiple="multiple" style="visibility : hidden ; position : absolute ;"></span>
+        			<b>OR</b>
+        			Drop your image here.
+			    </div>
+				
+				<div ng-repeat="file in $flow.files" class="gallery-box ng-scope">
+					<div class="thumbnail" ng-show="$flow.files.length">
+						<img flow-img="file" class="image-icon">
+					</div>
+					<div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+						<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
+							<span class="sr-only ng-binding">1% Complete</span>
+            			</div>
+        			</div>
+					<div ng-show="flag_upload">
+						<md-button class="md-raised md-warn" ng-click="remove(file)" ng-show="flag_upload">Remove</md-button>
+						<md-button class="md-raised md-accent" ng-show="flag_upload" ng-disabled="flag" ng-click="register()">Set Picture</md-button>
+					</div>
+    			</div>
+
+				<div class="alert alert-warning">
+					<strong>NOTE!</strong> We only server <i>JPEG</i> and <i>PNG</i> files up to <i>1 MB</i>. All images will be resized to a max of <i>150 X 100 pixels</i>.
+				</div>
+			</div>
+
+			<div class="modal-footer">
+            	<md-button class="md-raised md-primary" ng-click="close()" id="btnOk">Close</md-button>
+			</div>
+		</div>
+	</script>
+<!-- For image upload[E] -->

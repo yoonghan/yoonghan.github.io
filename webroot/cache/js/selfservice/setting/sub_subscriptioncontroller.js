@@ -2,7 +2,7 @@
 /**
  * Subscription controller
  */
-settingApp.controller('SubscriptionCtrl', ['$scope', '$http', '$modal', '$routeParams',
+settingApp.controller('SubscriptionCtrl',
       function($scope, $http, $modal, $routeParams) {
 	
 		/**Init[S] **/
@@ -21,6 +21,7 @@ settingApp.controller('SubscriptionCtrl', ['$scope', '$http', '$modal', '$routeP
 					_id: currElem._id,
 					cDesc: currElem.cDesc,
 					cName: currElem.cName,
+					ext: currElem.ext,
 					initStat: currElem.subscribed,
 					currStat: currElem.subscribed,
 					});
@@ -73,7 +74,11 @@ settingApp.controller('SubscriptionCtrl', ['$scope', '$http', '$modal', '$routeP
 		   });
 		};
 		/**Open Modal[E]**/
-}]);
+		
+		/**Open Modal[S]**/
+		$scope.imageURL = cpImageURL;
+		/**Open Modal[E]**/
+});
 
 //Created so that updated status is corrected
 function switchStatus($scope){
@@ -110,5 +115,4 @@ function saveSubscription($scope){
 	}
 	
 	return returnval;
-	
 }

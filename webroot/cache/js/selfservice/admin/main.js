@@ -11,10 +11,28 @@ angular.module('calFilters', []).filter('calfilter', function() {
     return d.getFullYear() + " / " + month[d.getMonth()];
   };
 });
-angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','calFilters'])
+angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','flow','calFilters'])
 .factory("calendar",function(){
     return [];
 })
+.directive('fallbackSrc', function () {
+	var fallbackSrc = {
+			link: function postLink(scope, iElement, iAttrs) {
+				iElement.bind('error', function() {
+					angular.element(this).attr("src", iAttrs.fallbackSrc);
+				});
+			}
+	   }
+	   return fallbackSrc;
+	})
+.config(['flowFactoryProvider', function (flowFactoryProvider) {
+      flowFactoryProvider.defaults = {
+        target: 'http://localhost:9000/tools/upload',
+        withCredentials: true,
+        singleFile:true,
+        permanentErrors:[404, 500, 501]
+      };
+    }])
 .config(function($httpProvider, $routeProvider, $locationProvider, $mdThemingProvider) {
 /**Send Cookie [S]**/
 	$httpProvider.defaults.withCredentials = true;
@@ -827,11 +845,32 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
 	  $scope.outCallback = function(event, ui) {
 	  };
 })
-.controller('SettingsCtrl', function($scope, $http, $location, $route, $mdDialog) {
+.controller('SettingsCtrl', function($scope, $http, $location, $route, $modal, $mdDialog) {
 	$scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 	$scope.ctcNo_pattern = /^\+?[0-9]{0,13}$/;
 
-	$scope.returnUser = function(){console.log("OO");}
+	/**Image [S]**/
+    $scope.imageUrl = cpImageURL + '?' + new Date().getTime();
+
+	/**Image [E]**/
+	/**Dialog [S]**/
+	$scope.open = function(){
+		var modalInstance = $modal.open({
+		 	templateUrl: 'popupdialog.html',
+    	 	controller: 'ModalInstanceCtrl',
+    	 	resolve: {
+    	 		ver: function(){
+    	 			return $scope.ver;
+    	 		}
+    	 	}
+	 	});
+		
+		modalInstance.result.then(function () {
+			$route.reload();
+	    }, function () {
+	    });
+	}
+	/**Dialog [E]**/
 	
 	$scope.profileSucc = function(data){
 		$scope.cName = data.cName;
@@ -955,4 +994,49 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','c
 	    funcHTTP($http, "POST", subsReportURL, $scope.formData, succFunc, failFunc, errFunc);
 	}
 	/**Save report profile[E]**/
+})
+.controller('ModalInstanceCtrl', function ($scope, $http, $modalInstance, ver) {
+	$scope.ver = ver;
+	$scope.flag_upload=false;
+	
+	$scope.remove = function(file){
+		file.cancel();
+		$scope.flag_upload=false;
+	}
+	
+	$scope.uploader = function($flow){
+		var fileName = $flow.files[0].name;
+		$scope.ext = fileName.substring(fileName.lastIndexOf("."), fileName.length);
+		
+		$scope.flag_upload=true;
+	};
+	
+	$scope.register = function(){
+		$scope.flag=true;
+		
+
+		$scope.formData = {
+			ver: $scope.ver,
+			ext: $scope.ext
+		};
+		
+		var succFunc = function(data){
+			$scope.flag = false;
+			$modalInstance.close();
+			}
+	    var failFunc = function(data){
+	    	$scope.flag = false;
+	    	$scope.uploadErrors = data.errors;
+	    	}
+	    var errFunc = function(data){
+	    	$scope.flag = false;
+	    	$scope.uploadErrors = data.errors;
+	   		}
+	    
+	    funcHTTP($http, "POST", subUploadImgURL, $scope.formData, succFunc, failFunc, errFunc);
+	}
+	
+	$scope.close = function () {
+		$modalInstance.dismiss();
+	};
 });

@@ -193,6 +193,16 @@ var SampleApp = function() {
 			res.send(fs.readFileSync(reqPath));
 		};
 		
+		self.routes['/swagger/*:path'] = function(req, res) {
+			var reqPath = self.replacePath(req.path.toString());
+			
+			var header = {};
+			header[CONTENT_TYPE] = mime(reqPath);
+			header[ALLOW_ACCESS_ORIGIN] = '*';
+			res.set(header);
+			res.send(self.cache_get(reqPath));
+		};
+		
         self.routes['/'] = function(req, res) {
             res.setHeader("Content-Type" , mime(".html"));
             res.send( self.cache_get(webroot + 'webby/index.html') );
