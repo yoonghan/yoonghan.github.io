@@ -16,7 +16,10 @@ var reportGenUrl = 'http://localhost:9000/report/gen';
 var cpImageURL = 'http://localhost:9000/subscription/image';
 
 //Upload Image to Subscription
-var subUploadImgURL = 'http://localhost:9000/subscription/imgupload'
+var subUploadImgURL = 'http://localhost:9000/subscription/imgupload';
+	
+//Upload path
+var uploadURL = 'http://localhost:9000/tools/upload';
 
 //Logout
 var logoutURL = 'http://localhost:9000/user/logout';

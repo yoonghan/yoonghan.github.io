@@ -256,9 +256,7 @@ calendarApp.controller('calendarCtrl', ['$scope', '$http', '$modal', '$compile',
 			$scope.flag = false;
 			$scope.currEvents=[];
         	$scope.myCalendar.fullCalendar( 'refetchEvents' );
-        	$scope.open('ok',
-        			method=="DELETE" ? "Booking Cancelled." :
-        			formData.conf ? "Booked. Your booking is now pending approval from the organizer.":"Booking Confirmed.");
+        	$scope.open('ok', method=="DELETE" ? "Booking Cancelled." : formData.conf ? "Booked. Your booking is now pending approval from the organizer.":"Booking Confirmed.");
 		}
 	    var failFunc = function(data){
 	    	$scope.flag = false;

@@ -27,7 +27,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	})
 .config(['flowFactoryProvider', function (flowFactoryProvider) {
       flowFactoryProvider.defaults = {
-        target: 'http://localhost:9000/tools/upload',
+        target: uploadURL,
         withCredentials: true,
         singleFile:true,
         permanentErrors:[404, 500, 501]
