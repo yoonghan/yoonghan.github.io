@@ -93,5 +93,10 @@
 "tech":"Google Analytics", 
 "deprecated":"false",
 "detail":"Monitor the visitor frequency of the website."
+},
+{
+"tech":"Ng-FlowJS", 
+"deprecated":"false",
+"detail":"File uploading in javascript."
 }
 ]

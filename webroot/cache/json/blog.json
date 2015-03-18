@@ -149,6 +149,11 @@
 "date":"Mar 8th, 2015",
 "task":"Using Angular and Material Design", 
 "detail":"Revamped the Administration page and test usage with Material Design with Angular JS."
+},
+{
+"date":"Mar 18th, 2015",
+"task":"Completed image upload since weekend", 
+"detail":"Achieved nice image upload and enhanced image loading for the booking site."
 }
 ]
 }
