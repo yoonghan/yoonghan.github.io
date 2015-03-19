@@ -110,13 +110,11 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
   };
   
   $scope.showBottomMenuSheet = function($event) {
-    $scope.alert = '';
     $mdBottomSheet.show({
       templateUrl: 'admin/bottom_menu',
       controller: 'BottomMenuCtrl',
       targetEvent: $event
     }).then(function(clickedItem) {
-      $scope.alert = clickedItem.name + ' clicked!';
     });
   };
   
@@ -132,17 +130,29 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
     $mdSidenav('left').close();
   };
 })
-.controller('BottomMenuCtrl', function($scope, $location, $mdBottomSheet) {
+.controller('BottomMenuCtrl', function($scope, $location, $mdDialog, $mdBottomSheet) {
 
   $scope.items = [
 	{ name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
 	{ name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
+	{ name: 'About', icon: 'glyphicon-user', loc:'about' },
 	{ name: 'Exit', icon: 'glyphicon-calendar', loc:homeURL },
     { name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:logoutURL }	
   ];
   $scope.listItemClick = function(path) {
-    $mdBottomSheet.hide("hi");
-    location.href=path;
+	  
+	if(path != 'about'){
+		$mdBottomSheet.hide("");
+	    location.href=path;
+	}else{
+		$mdDialog.show(
+		  $mdDialog.alert()
+		    .title('About')
+		    .content('Administrator - All rights reserved to JOM Jaring 2015')
+		    .ariaLabel('About')
+		    .ok('Close')
+		);	
+	}
   };
 })
 .controller('EventsCtrl', function($scope, $http, $location, calendar) {

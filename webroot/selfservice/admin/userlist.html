@@ -62,7 +62,8 @@
 			<th>First Name</th>
 			<th>Email</th>
 			<th>Contact No</th>
-			<th>Action(s) 
+			<th>
+				Action(s) 
 				<span class="glyphicon glyphicon-question-sign" tooltip="[[tt.actionwarning]]" tooltip-trigger="mouseenter" tooltip-placement="top"></span>
 			</th>
 		</thead>
@@ -73,8 +74,18 @@
 				<td>{{e.email}}</td>
 				<td>{{e.ctcNo}}</td>
 				<td>
-					<md-button class="md-raised md-primary minime" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf"><span class="glyphicon glyphicon-check btn-icon" aria-hidden="true"></span>Confirm User</md-button>
-					<md-button class="md-raised md-warn minime" ng-click="unsubuser(e.id, $event)" ng-disabled="flag"><span class="glyphicon glyphicon-ban-circle btn-icon" aria-hidden="true"></span>Unsubscribe User</md-button>
+					<md-button class="md-fab md-primary" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf" aria-label="confirm user">
+						<span class="glyphicon glyphicon-check"></span>
+						<md-tooltip md-direction='top'>
+					        Confirm User
+						</md-tooltip>
+					</md-button>
+					<md-button class="md-fab md-warn" ng-click="unsubuser(e.id, $event)" ng-disabled="flag"  aria-label="unsubscribe user">
+						<span class="glyphicon glyphicon-ban-circle" font></span>
+						<md-tooltip md-direction='top'>
+					        Unsubscribe User
+						</md-tooltip>
+					</md-button>
 				</td>
 			</tr>
 		</tbody>

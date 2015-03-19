@@ -70,7 +70,7 @@
 			    Reset
 			</md-button>
 		</div>
-	
+		<br>
     </md-tab>
     <md-tab label="Report">
     	<div layout="column" class="pnl-margin" >
@@ -107,11 +107,11 @@
 					</div>
 				</md-input-container>
 			</div>
-			<hr>
-			<div align="center">
-			    <input type="submit" value="Save" id="save" class="btn btn-lg btn-success" ng-disabled="reportFlag" ng-click="processReportForm($event)">
-			</div>
-		</div>	
+		</div>
+		<hr>
+		<div align="center">
+		    <md-button class="md-primary md-raised" id="save" ng-disabled="reportFlag" ng-click="processReportForm($event)">Save</md-button>
+		</div>
     </md-tab>
     
     <md-tab label="User Management">
