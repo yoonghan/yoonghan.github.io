@@ -21,13 +21,13 @@
 	
 	<form class="form-horizontal" role="form" name="setup">
 	
-		<button class="btn btn-default btn-sm" ng-click="accordian_open = !accordian_open"
-		tooltip="[[tt.collapseAll]]" tooltip-placement="top" ng-model="btnCollapse"><span class="glyphicon glyphicon-ok-sign"></span> Collapse All For View</button>
+		<md-button class="md-raised" ng-click="accordian_open = !accordian_open"
+		tooltip="[[tt.collapseAll]]" tooltip-placement="top" ng-model="btnCollapse"><span class="glyphicon glyphicon-ok-sign"></span> Collapse All For View</md-button>
 		
 		<br></br>
 			
 		<accordion close-others="false" ng-repeat="(key, groups) in groupEvents">
-			<accordion-group is-open="accordian_open">
+			<accordion-group is-open="accordian_open" class="panel-success">
 				<accordion-heading>
 					{{key|calfilter}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordian_open, 'glyphicon-chevron-right': !accordian_open}"></i>
 				</accordion-heading>

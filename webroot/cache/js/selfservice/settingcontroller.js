@@ -1,14 +1,6 @@
 'use strict';
 
 var settingApp = angular.module('settingApp', ['ngRoute','ui.bootstrap','ngAnimate','ngSanitize']);
-/**
- * Image loader
- */
-function imgLoaded(img){
-    var imgWrapper = img.parentNode;
-
-    imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
-};
 
 /**
  * The main loader.

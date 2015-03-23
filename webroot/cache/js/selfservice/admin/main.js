@@ -844,19 +844,6 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	$scope.list1 = {title: 'AngularJS - Drag Me'};
 	$scope.list2 = {title: 'AngularJS 2 - Drag Me'};
 	$scope.list3 = {title: 'AngularJS 3 - Drag Me'};
-		
-	  $scope.startCallback = function(event, ui) {};
-	                
-	  $scope.stopCallback = function(event, ui) {};
-
-	  $scope.dragCallback = function(event, ui) {};
-
-	  $scope.dropCallback = function(event, ui) {};
-
-	  $scope.overCallback = function(event, ui) {};
-
-	  $scope.outCallback = function(event, ui) {
-	  };
 })
 .controller('SettingsCtrl', function($scope, $http, $location, $route, $modal, $mdDialog) {
 	$scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
@@ -865,6 +852,58 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	/**Image [S]**/
     $scope.imageUrl = cpImageURL + '?' + new Date().getTime();
 	/**Image [E]**/
+
+	/** React [S] **/
+	var reactFunc = undefined;
+
+	function getReact(){
+	    if(typeof reactFunc === 'undefined'){
+	        reactFunc = react_UserMgmt($scope);
+	        reactFunc.load();
+	    }
+	    return reactFunc.getReact();
+	}
+
+    $scope.successFunc = function(data){
+	    $scope.userMgmtList = data;
+        getReact().setState({data: data});
+    }
+
+    $scope.triggerLoad = function(){
+        getHTTP($http, userMgmtListUrl, $scope.successFunc);
+    }
+
+    $scope.removeUser = function(userId){
+        var confirm = $mdDialog.confirm()
+          .title('Remove user')
+          .content('Are you sure to remove the user from his subscription?')
+          .ariaLabel('User remove')
+          .ok('Yes')
+          .cancel('No');
+        $mdDialog.show(confirm).then(function() {
+            var succFunc = function(data){
+                //Manual remove of data.
+                var query=eval("({'maskId':'"+userId+"'})");
+                var listData = $scope.userMgmtList;
+                listData.splice(_.findIndex(listData, query),1);
+                getReact().setState({data: listData});
+                //getHTTP($http, userMgmtListUrl, $scope.successFunc);
+            }
+            var failFunc = function(data){
+                $scope.showAlert("error",data.errors);
+
+            }
+            var errFunc = function(data){
+                $scope.showAlert("error",data.errors);
+            }
+
+            funcHTTP($http, "DELETE", userMgmtUrl+"/"+userId, {}, succFunc, failFunc, errFunc);
+        }, function() {
+        });
+    }
+
+    $scope.triggerLoad();
+	/** React [E] **/
 	/**Dialog [S]**/
 	$scope.open = function(){
 		var modalInstance = $modal.open({
@@ -917,7 +956,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 		$mdDialog.show(
 			$mdDialog.alert()
 		    .title('Error')
-		    .content(message)
+		    .content((typeof message === 'string' ? message : message[0]))
 		    .ariaLabel('There is input error, please check.')
 		    .ok('Ok!')
 		    .targetEvent(ev)
@@ -941,19 +980,19 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	
 	/**Save CP profile[S]**/
 	$scope.processProfileForm = function(ev) {
-		
+		$scope.profileErrors = undefined;
+
 		if ($scope.profileFlag || $scope.setting.profile.$valid==false)
 			return;
 
 		$scope.profileFlag = true;
 		
 		$scope.formData = createProfileJSON($scope);
-		$scope.errors = undefined;
 
 		var succFunc = function(data){
 			$scope.profileFlag = false;
 			$scope.showUpdate(ev);
-			$scope.profileErrors = "User Added"
+			$route.reload();
 			}
 	    var failFunc = function(data){
 	    	$scope.profileFlag = false;
@@ -980,7 +1019,8 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	}
 
 	$scope.processReportForm = function(ev){
-		
+		$scope.reportErrors = undefined
+
 		if ($scope.reportFlag || $scope.setting.report.$valid == false){
 			return;
 		}
@@ -1009,15 +1049,17 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 
 	/**Add user to subscriber[S]**/
 	$scope.processUserMgmtForm = function(ev){
-	    if ($scope.userMgmtFlag || $scope.setting.usermgmt.$valid==false)
+	    $scope.userMgmtErrors = undefined;
+
+	    if ($scope.userMgmtFlag || $scope.setting.usermgmt.$valid==false ||
+	        (typeof $scope.setting.usermgmt.usercode.$viewValue === 'undefined' || $scope.setting.usermgmt.usercode.$viewValue === ''))
             return;
 
         $scope.userMgmtFlag = true;
 
-        $scope.errors = undefined;
-
         var succFunc = function(data){
             $scope.userMgmtFlag = false;
+			$scope.triggerLoad();
             $scope.showUpdate(ev);
             }
         var failFunc = function(data){
@@ -1031,7 +1073,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
             $scope.userMgmtErrors = data.errors;
             }
 
-        funcHTTP($http, "PUT", userMgmtAddUrl + "/" + $scope.setting.usermgmt.usercode.$viewValue, {}, succFunc, failFunc, errFunc);
+        funcHTTP($http, "PUT", userMgmtUrl + "/" + $scope.setting.usermgmt.usercode.$viewValue, {}, succFunc, failFunc, errFunc);
 	}
 	/**Add user to subscriber[E]**/
 })

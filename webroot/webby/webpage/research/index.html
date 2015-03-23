@@ -211,6 +211,13 @@ javascript:void(document.cookie = "UserId:xxx;sessionID=xxx");
 	<tr><td colspan=2><h2> Java</h2></td></tr></thead>
 <tbody>
 	<tr>
+		<td>Improve development</td>
+		<td>
+Use DCEVM in debug mode to improve server hotswapping. This will help development need not to restart the server.
+More documentation on https://github.com/yoonghan/selfserviceweb/tree/master/docs
+		</td>
+	</tr>
+	<tr>
 		<td>Analyzing Memory</td>
 		<td>
 Always set the heap space xMs(start) and xMx(maximum). Once the system reaches xMx or in a time, garbage collection will be executed. If it doesn't, boy we'll go to the PermGen space exception. Ideally not all PermGen space means a problem, sometimes the application just requires more memory. That's all.

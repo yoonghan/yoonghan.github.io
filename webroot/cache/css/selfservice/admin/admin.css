@@ -35,10 +35,11 @@ md-tooltip .md-content{background:black;}
 .cal-circle-mini:hover span.cal-backdrop:before{content:'X';margin-left:24px;}
 
 md-progress-linear .md-bar, md-progress-linear .md-container{height:40px;}
-.panel-default>.panel-heading{background-color:#5cb85c;color:#fff;border-color:#4ba74b;}
 .accordion-toggle>.ng-binding{font-weight: bold}
 
 .pnl-margin{margin:10px;}
+.pnl-accordian .panel-body{padding:0px;}
+.pnl-accordian .alert{margin-bottom:0px;}
 
 md-bottom-sheet.md-grid{border-radius:15px;}
 md-bottom-sheet{padding-bottom:55px;}

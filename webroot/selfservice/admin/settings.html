@@ -53,9 +53,9 @@
 			    
 			    <md-input-container class="alt-color">
 			      <label>Email</label>
-			      <input ng-model="cEmail" name="cEmail" columns="1" type="email" placeholder="e.g. invalid@email.com" ng-pattern="email_pattern" ng-maxlength="100"></input>
+			      <input ng-model="cEmail" name="cEmail" columns="1" type="email" placeholder="e.g. valid@email.com" ng-pattern="email_pattern" md-maxlength="100"></input>
 			      <div ng-messages="profile.cEmail.$error">
-			      	<div ng-message="md-maxLength">Email must be less than 100 characters long</div>
+			      	<div ng-message="md-maxlength">Email must be less than 100 characters long</div>
 			        <div ng-message="email">Invalid Email</div>
 			      </div>
 			    </md-input-container>
@@ -100,9 +100,9 @@
 					<label for="email">
 						Email for Report Posting 
 					</label>
-					<input name="rEmail" type="email" ng-model="rEmail" placeholder="e.g. abc@yahoo.com" maxlength="100" required>
-					<div ng-messages="basic.rEmail.$error">
-						<div ng-message="md-maxLength">Email must be less than 100 characters long</div>
+					<input name="rEmail" type="email" ng-model="rEmail" placeholder="e.g. abc@yahoo.com" md-maxlength="100">
+					<div ng-messages="report.rEmail.$error">
+						<div ng-message="md-maxlength">Email must be less than 100 characters long</div>
 					    <div ng-message="email">Invalid Email</div>
 					</div>
 				</md-input-container>
@@ -115,9 +115,39 @@
     </md-tab>
     
     <md-tab label="User Management">
-		<div layout="column" class="pnl-margin" >
-			TO BE PROVIDED
-		</div>
+        <accordion close-others="false">
+            <accordion-group class="pnl-margin panel-primary pnl-accordian" is-open="usrmgmt_add_open">
+                <accordion-heading>
+                    <i class="glyphicon" ng-class="{'glyphicon-chevron-down': usrmgmt_add_open, 'glyphicon-chevron-right': !usrmgmt_add_open}"></i> Add User to administer your schedule
+                </accordion-heading>
+                <div ng-form="usermgmt" layout="column">
+                    <div class="alert alert-danger" ng-show="userMgmtErrors" role="alert">
+                        <ul ng-repeat="error in userMgmtErrors">
+                            <li>{{error}}</li>
+                        </ul>
+                    </div>
+                    <md-content md-theme="docs-dark" class="md-padding" layout="row">
+                        <md-input-container layout="column" flex>
+                            <label for="usercode">
+                                User Code
+                            </label>
+                            <input name="usercode" ng-model="usercode" placeholder="e.g. given user code" md-maxlength="150" ng-minlength="5">
+                            <div ng-messages="usermgmt.usercode.$error">
+                                <div ng-message="md-maxlength">must be less than 150 characters long</div>
+                                <div ng-message="minlength">must be more than 5 characters long</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container>
+                            <div  align="center">
+                                <md-button class="md-primary md-raised" id="save" ng-disabled="userMgmtFlag" ng-click="processUserMgmtForm($event)">Add</md-button>
+                            </div>
+                        </md-input-container>
+                    </md-content>
+                </div>
+            </accordion-group>
+        </accordion>
+        <div id="userMgmtContent" class="pnl-margin"></div>
+        {{execUserMgmtReact()}}
     </md-tab>
 
 	</md-tab>
@@ -126,42 +156,41 @@
 
 <!-- For image upload[S] -->
 	<script type="text/ng-template" id="popupdialog.html">
-			<div class="modal-header">
-            	<h3 class="modal-title">Upload</h3>
-        	</div>
+        <div class="modal-header">
+            <h3 class="modal-title">Upload</h3>
+        </div>
 
-			<div class="modal-body" flow-init 
-						flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()] && !($file.size > 1*1024*1024)"
-						flow-complete="uploader($flow)">
-			    <div class="jumbotron borderdotted" flow-drop flow-drag-enter="style={border:'2px solid green'}" flow-drag-leave="style={}" ng-style="style" ng-show="!flag_upload">
-        			<span class="btn btn-success" flow-btn="">Upload Image<input type="file" multiple="multiple" style="visibility : hidden ; position : absolute ;"></span>
-        			<b>OR</b>
-        			Drop your image here.
-			    </div>
-				
-				<div ng-repeat="file in $flow.files" class="gallery-box ng-scope">
-					<div class="thumbnail" ng-show="$flow.files.length">
-						<img flow-img="file" class="image-icon">
-					</div>
-					<div class="progress progress-striped" ng-class="{active: file.isUploading()}">
-						<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
-							<span class="sr-only ng-binding">1% Complete</span>
-            			</div>
-        			</div>
-					<div ng-show="flag_upload">
-						<md-button class="md-raised md-warn" ng-click="remove(file)" ng-show="flag_upload">Remove</md-button>
-						<md-button class="md-raised md-accent" ng-show="flag_upload" ng-disabled="flag" ng-click="register()">Set Picture</md-button>
-					</div>
-    			</div>
+        <div class="modal-body" flow-init
+                    flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()] && !($file.size > 1*1024*1024)"
+                    flow-complete="uploader($flow)">
+            <div class="jumbotron borderdotted" flow-drop flow-drag-enter="style={border:'2px solid green'}" flow-drag-leave="style={}" ng-style="style" ng-show="!flag_upload">
+                <span class="btn btn-success" flow-btn="">Upload Image<input type="file" multiple="multiple" style="visibility : hidden ; position : absolute ;"></span>
+                <b>OR</b>
+                Drop your image here.
+            </div>
 
-				<div class="alert alert-warning">
-					<strong>NOTE!</strong> We only server <i>JPEG</i> and <i>PNG</i> files up to <i>1 MB</i>. All images will be resized to a max of <i>150 X 100 pixels</i>.
-				</div>
-			</div>
+            <div ng-repeat="file in $flow.files" class="gallery-box ng-scope">
+                <div class="thumbnail" ng-show="$flow.files.length">
+                    <img flow-img="file" class="image-icon">
+                </div>
+                <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
+                        <span class="sr-only ng-binding">1% Complete</span>
+                    </div>
+                </div>
+                <div ng-show="flag_upload">
+                    <md-button class="md-raised md-warn" ng-click="remove(file)" ng-show="flag_upload">Remove</md-button>
+                    <md-button class="md-raised md-accent" ng-show="flag_upload" ng-disabled="flag" ng-click="register()">Set Picture</md-button>
+                </div>
+            </div>
 
-			<div class="modal-footer">
-            	<md-button class="md-raised md-primary" ng-click="close()" id="btnOk">Close</md-button>
-			</div>
-		</div>
+            <div class="alert alert-warning">
+                <strong>NOTE!</strong> We only server <i>JPEG</i> and <i>PNG</i> files up to <i>1 MB</i>. All images will be resized to a max of <i>150 X 100 pixels</i>.
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <md-button class="md-raised md-primary" ng-click="close()" id="btnOk">Close</md-button>
+        </div>
 	</script>
 <!-- For image upload[E] -->

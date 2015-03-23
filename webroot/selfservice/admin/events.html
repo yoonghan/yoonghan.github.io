@@ -28,7 +28,7 @@
 	
 	<md-button class="md-raised md-primary" ng-click="genReport()"	 
 		tooltip="[[tt.reportgen]]" tooltip-placement="top"
-		ng-model="genReport" ng-disabled="!rpt_allowed||rpt_disabled">
+		ng-model="genReport" ng-disabled="!rpt_allowed||rpt_disabled" arial-label="generate report">
         <span class="glyphicon glyphicon-save btn-icon"></span>
 		Generate Report
 		</md-button>
@@ -71,7 +71,7 @@
 					<span ng-show="!e.conf">Not</span>
 				</td>
 				<td>
-					<md-button class="md-fab md-primary" ng-click="listUsers(e.id)">
+					<md-button class="md-fab md-primary" ng-click="listUsers(e.id)" aria-label="view user">
 					<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 					<md-tooltip md-direction='top'>
 						View Users

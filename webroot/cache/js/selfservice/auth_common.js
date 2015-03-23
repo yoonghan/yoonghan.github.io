@@ -81,3 +81,12 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
     	}
     });
 }
+
+/**
+ * Image loader
+ */
+function imgLoaded(img){
+    var imgWrapper = img.parentNode;
+
+    imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
+};

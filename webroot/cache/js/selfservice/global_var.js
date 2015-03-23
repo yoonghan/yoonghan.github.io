@@ -48,6 +48,13 @@ var adminProfileUrl = "http://localhost:9000/subscription/profile";
 //Temporarily Admin creation
 var adminCreateUrl = "http://localhost:9000/admin/create";
 
+//Obtain registration no
+var registrationNoURL = "http://localhost:9000/user/registrationno"
+
+//Add user to subscription
+var userMgmtUrl    = "http://localhost:9000/subscription/user"
+var userMgmtListUrl    = "http://localhost:9000/subscription/users"
+
 var redirectURL			= "http://login.jomjaring.com";
 var initialStartURL		= "/notify/subscription";
 var setupConfURL		= "/selfservice/booking/setup-confirm";

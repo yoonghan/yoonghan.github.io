@@ -50,7 +50,7 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 			$scope.formData = saveReminder($scope);
 			
 			var succFunc = function(data){
-				if($scope.str_email != $scope.n_email);
+				if($scope.str_email != $scope.n_email)
 					$scope.isValidEmail = false;
 				$scope.open();
 		    	$scope.flag = false;
