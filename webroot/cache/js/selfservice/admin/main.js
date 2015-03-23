@@ -39,6 +39,9 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	$httpProvider.defaults.useXDomain = true;
 /**Send Cookie [E]**/
 /**Theme [S]**/
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('green')
+        .dark();
 	$mdThemingProvider.theme('default')
 		.primaryPalette('blue',{'default':'800'})
 		.accentPalette('green',{'default':'500'});
@@ -861,7 +864,6 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 
 	/**Image [S]**/
     $scope.imageUrl = cpImageURL + '?' + new Date().getTime();
-
 	/**Image [E]**/
 	/**Dialog [S]**/
 	$scope.open = function(){
@@ -951,7 +953,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 		var succFunc = function(data){
 			$scope.profileFlag = false;
 			$scope.showUpdate(ev);
-			$route.reload();
+			$scope.profileErrors = "User Added"
 			}
 	    var failFunc = function(data){
 	    	$scope.profileFlag = false;
@@ -1004,6 +1006,34 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	    funcHTTP($http, "POST", subsReportURL, $scope.formData, succFunc, failFunc, errFunc);
 	}
 	/**Save report profile[E]**/
+
+	/**Add user to subscriber[S]**/
+	$scope.processUserMgmtForm = function(ev){
+	    if ($scope.userMgmtFlag || $scope.setting.usermgmt.$valid==false)
+            return;
+
+        $scope.userMgmtFlag = true;
+
+        $scope.errors = undefined;
+
+        var succFunc = function(data){
+            $scope.userMgmtFlag = false;
+            $scope.showUpdate(ev);
+            }
+        var failFunc = function(data){
+            $scope.userMgmtFlag = false;
+            $scope.showAlert(ev,"There are errors to the update.");
+            $scope.userMgmtErrors = data.errors;
+            }
+        var errFunc = function(data){
+            $scope.userMgmtFlag = false;
+            $scope.showAlert(ev,"There are errors to the update.");
+            $scope.userMgmtErrors = data.errors;
+            }
+
+        funcHTTP($http, "PUT", userMgmtAddUrl + "/" + $scope.setting.usermgmt.usercode.$viewValue, {}, succFunc, failFunc, errFunc);
+	}
+	/**Add user to subscriber[E]**/
 })
 .controller('ModalInstanceCtrl', function ($scope, $http, $modalInstance, ver) {
 	$scope.ver = ver;
