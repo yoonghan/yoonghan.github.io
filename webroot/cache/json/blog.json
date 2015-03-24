@@ -154,6 +154,11 @@
 "date":"Mar 18th, 2015",
 "task":"Completed image upload since weekend", 
 "detail":"Achieved nice image upload and enhanced image loading for the booking site."
+},
+{
+"date":"Mar 24th, 2015",
+"task":"Uploaded ReactJS", 
+"detail":"ReactJS(loaded 1000 records like a breeze in tables) is fast but to achieve the codes it's slower, using angularjs pagination can be cool too. Deciding factor still."
 }
 ]
 }

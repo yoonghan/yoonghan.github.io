@@ -5,15 +5,27 @@ var month=["January","February","March","April","May","June","July","August","Se
 /**
  * Filters
  */
-angular.module('calFilters', []).filter('calfilter', function() {
+angular.module('calFilters', [])
+.filter('calfilter', function() {
   return function(input) {
 	var d = new Date(eval(input));
     return d.getFullYear() + " / " + month[d.getMonth()];
   };
 });
+
 angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','flow','calFilters'])
 .factory("calendar",function(){
     return [];
+})
+.filter('startFrom', function() {
+  return function(input, start) {
+      start = +start; //parse to int
+      if(typeof input === 'undefined')
+        return [];
+      else{
+        return input.slice(start);
+      }
+  }
 })
 .directive('fallbackSrc', function () {
 	var fallbackSrc = {
@@ -158,19 +170,50 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	}
   };
 })
-.controller('EventsCtrl', function($scope, $http, $location, calendar) {
+.controller('EventsCtrl', function($scope, $http, $location, $filter, calendar) {
 	/**Init[S] **/
 	$scope.predicate = "start";
 	$scope.reverse = false;
+
+    $scope.currentPage = 1;
+    $scope.pageSize = 100;
+    $scope.totalAmt = 1;
+    $scope.pageChanged = function(){
+    }
+
 	if(calendar.length != 0) {
 		calendar.splice(0, calendar.length);
 	}
 	/**Init[E]**/
+
+	/**Creating Watch[S]**/
+    $scope.$watch('search.title', function (filter) {
+        $scope.currentPage = 1;
+        if(typeof $scope.search !== 'undefined'){
+            $scope.filtered = $filter('filter')($scope.bookingList, $scope.search.title);
+            $scope.totalAmt = $scope.filtered.length;
+        }
+    });
+    $scope.$watch('search.desc', function (filter) {
+        $scope.currentPage = 1;
+        if(typeof $scope.search !== 'undefined'){
+            $scope.filtered = $filter('filter')($scope.bookingList, $scope.search.desc);
+            $scope.totalAmt = $scope.filtered.length;
+        }
+    });
+    $scope.$watch('search.conf', function (filter) {
+        $scope.currentPage = 1;
+        if(typeof $scope.search !== 'undefined'){
+            $scope.filtered = $filter('filter')($scope.bookingList, $scope.search.conf);
+            $scope.totalAmt = $scope.filtered.length;
+        }
+    });
+	/**Creating Watch[E]**/
 	
 	/**Retrieve user profile[S]**/
 	var bookingListFunc = function(data){
 		$scope.bookingList=calendar;
-		
+		$scope.totalAmt = data.length;
 		for(var i=0; i < data.length; i++){
 			var currElem = data[i];
 			var info = {
@@ -185,7 +228,6 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 					close: true,
 					info: []
 					};
-			
 			$scope.bookingList.push(info);
 		}
 		data = null;
