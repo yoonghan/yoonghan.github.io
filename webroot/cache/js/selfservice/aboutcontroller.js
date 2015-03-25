@@ -7,6 +7,10 @@ aboutApp.config(['$httpProvider', function($httpProvider) {
 
 aboutApp.controller('aboutCtrl', ['$scope', '$http',
     function ($scope, $http) {
-        $scope.regNo = registrationNoURL;
+        //use user setting rather than server to redirect user for unnecessary usages.
+        if(cookieAccess(Exist))
+            $scope.regNo = registrationNoURL;
+        else
+            errorAction(401)
     }
 ]);
