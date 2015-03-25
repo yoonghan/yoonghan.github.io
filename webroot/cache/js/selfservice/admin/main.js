@@ -176,7 +176,7 @@ angular.module('MainApp', ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','f
 	$scope.reverse = false;
 
     $scope.currentPage = 1;
-    $scope.pageSize = 100;
+    $scope.pageSize = 50;
     $scope.totalAmt = 1;
     $scope.pageChanged = function(){
     }
