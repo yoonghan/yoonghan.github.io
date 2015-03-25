@@ -1,9 +1,5 @@
-"use strict";
-/**
- * Subscription controller
- */
-settingApp.controller('SubscriptionCtrl',
-      function($scope, $http, $modal, $routeParams) {
+define(['app','modalInstance'], function (app) {
+    app.controller('SubscriptionCtrl', function($scope, $http, $modal, $routeParams) {
 	
 		/**Init[S] **/
 		$scope.predicate = "cName";
@@ -78,41 +74,42 @@ settingApp.controller('SubscriptionCtrl',
 		/**Open Modal[S]**/
 		$scope.imageURL = cpImageURL;
 		/**Open Modal[E]**/
-});
+    });
 
 //Created so that updated status is corrected
-function switchStatus($scope){
-	for(var i=0; i < $scope.chkHostList.length; i++){
-		var currElem = $scope.chkHostList[i];
-		currElem.initStat = currElem.currStat;
-	}
-}
+    function switchStatus($scope){
+        for(var i=0; i < $scope.chkHostList.length; i++){
+            var currElem = $scope.chkHostList[i];
+            currElem.initStat = currElem.currStat;
+        }
+    }
 
-function saveSubscription($scope){
+    function saveSubscription($scope){
 
-	if(typeof $scope.chkHostList === 'undefined'){
-		return;
-	}
-	
-	var subList = [];
-	var unsubList = [];
-	for(var i=0; i < $scope.chkHostList.length; i++){
-		var currElem = $scope.chkHostList[i];
-		
-		if(currElem.currStat != currElem.initStat){
-			if(currElem.currStat == true){
-				subList.push(currElem._id.$oid);
-			}
-			if(currElem.currStat == false){
-				unsubList.push(currElem._id.$oid);
-			}
-		}
-	}
-	
-	var returnval = {
-		subs: subList,
-		unsubs: unsubList,
-	}
-	
-	return returnval;
-}
+        if(typeof $scope.chkHostList === 'undefined'){
+            return;
+        }
+
+        var subList = [];
+        var unsubList = [];
+        for(var i=0; i < $scope.chkHostList.length; i++){
+            var currElem = $scope.chkHostList[i];
+
+            if(currElem.currStat != currElem.initStat){
+                if(currElem.currStat == true){
+                    subList.push(currElem._id.$oid);
+                }
+                if(currElem.currStat == false){
+                    unsubList.push(currElem._id.$oid);
+                }
+            }
+        }
+
+        var returnval = {
+            subs: subList,
+            unsubs: unsubList,
+        }
+
+    	return returnval;
+    }
+});

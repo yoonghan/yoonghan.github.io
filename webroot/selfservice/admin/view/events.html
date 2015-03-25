@@ -81,12 +81,9 @@
 					<span ng-show="!e.conf">Not</span>
 				</td>
 				<td>
-					<md-button class="md-fab md-primary" ng-click="listUsers(e.id)" aria-label="view user">
+					<md-button class="md-fab md-primary" ng-click="listUsers(e.id)" aria-label="view user" tooltip="[[tt.viewUser]]" tooltip-placement="top">
 					<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-					<md-tooltip md-direction='top'>
-						View Users
-					</md-tooltip>
-					</md-button>
+                    </md-button>
 				</td>
 			</tr>
 		</tbody>

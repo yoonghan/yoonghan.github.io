@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/cache/css/selfservice/tutorial/common.css" />
 <link href="/cache/css/selfservice/setting.css" rel="stylesheet">
 </head>
-<body ng-app="settingApp" ng-controller="loaderCtrl" role="document">
+<body ng-controller="loaderCtrl" role="document">
 	<div class="viewDisplay container-fluid">
 		<h2><a href="" ng-click="cancel()"><span class="glyphicon glyphicon-arrow-left"></span> Settings</a></h2>
 		
@@ -36,22 +36,8 @@
 	</div>
 	
 </body>
-<script src="/cache/js/lib/jquery/jquery.min.js"></script>
-<script src="/cache/js/lib/jquery/jquery-ui/jquery-ui.min.js"></script>
-<script src="/cache/js/lib/lodash/lodash.min.js"></script>
-<script src="/cache/js/lib/angular/angular.min.js"></script>
-<script src="/cache/js/lib/angular/angular-route.min.js"></script>
-<script src="/cache/js/lib/angular/angular-animate.min.js"></script>
-<script src="/cache/js/lib/angular/angular-sanitize.min.js"></script>
-<script src="/cache/js/lib/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
-<script src="/cache/js/lib/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 <script src="/cache/js/selfservice/global_var.js"></script>
 <script src="/cache/js/selfservice/cookiereader.js"></script>
 <script src="/cache/js/selfservice/auth_common.js"></script>
-<script src="/cache/js/selfservice/settingcontroller.js"></script>
-<script src="/cache/js/selfservice/setting/sub_profilecontroller.js"></script>
-<script src="/cache/js/selfservice/setting/sub_subscriptioncontroller.js"></script>
-<script src="/cache/js/selfservice/setting/sub_remindercontroller.js"></script>
-<script src="/cache/js/selfservice/setting/sub_reportcontroller.js"></script>
-<script src="/cache/js/selfservice/tutorial/setting_tut.js"></script>
+<script data-main="/cache/js/apploader/setting/main" src="/cache/js/lib/requirejs/require.js"></script>
 </html>

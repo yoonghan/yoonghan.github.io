@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" ng-app="MainApp">
+<html lang="en">
   <head>
   	<meta charset="ISO-8859-1">
   	<meta name="robots" content="noindex">
@@ -54,25 +54,12 @@
     <!-- Angular Material Dependencies -->
 	<script src="/cache/js/selfservice/global_var.js"></script>
 	<script src="/cache/js/selfservice/auth_common.js"></script>
-    
 	<script src="/cache/js/lib/lodash/lodash.min.js"></script>
-	<script src="/cache/js/lib/moment/moment.min.js"></script>
-
-	<script src="/cache/js/lib/angular/angular.min.js"></script>
-	<script src="/cache/js/lib/angular/angular-animate.min.js"></script>
-	<script src="/cache/js/lib/angular/angular-route.min.js"></script>
-	<script src="/cache/js/lib/angular/angular-aria.min.js"></script>
-	<script src="/cache/js/lib/angular/angular-material.min.js"></script>
-	<script src="/cache/js/lib/angular/angular-messages.min.js"></script>
-	<script src="/cache/js/lib/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
-	<script src="/cache/js/lib/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 
     <script src="/cache/js/lib/reactjs/react.min.js"></script>
     <script src="/cache/js/lib/reactjs/JSXTransformer.js"></script>
-	
-	<script src="/cache/js/lib/ng-flow/ng-flow-standalone.js"></script>
+    <script src="/cache/js/apploader/admin/react/app-react.js" type="text/jsx"></script>
 
-    <script src="/cache/js/selfservice/admin/main_react.js" type="text/jsx"></script>
-	<script src="/cache/js/selfservice/admin/main.js"></script>
+    <script data-main="/cache/js/apploader/admin/main" src="/cache/js/lib/requirejs/require.js"></script>
   </body>
 </html>

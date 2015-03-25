@@ -74,17 +74,11 @@
 				<td>{{e.email}}</td>
 				<td>{{e.ctcNo}}</td>
 				<td>
-					<md-button class="md-fab md-primary" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf" aria-label="confirm user">
+					<md-button class="md-fab md-primary" ng-click="confirmuser(e.id)" ng-disabled="flag" ng-show="e.conf" aria-label="confirm user" tooltip="[[tt.confUser]]" tooltip-placement="top">
 						<span class="glyphicon glyphicon-check"></span>
-						<md-tooltip md-direction='top'>
-					        Confirm User
-						</md-tooltip>
 					</md-button>
-					<md-button class="md-fab md-warn" ng-click="unsubuser(e.id, $event)" ng-disabled="flag"  aria-label="unsubscribe user">
+					<md-button class="md-fab md-warn" ng-click="unsubuser(e.id, $event)" ng-disabled="flag"  aria-label="unsubscribe user" tooltip="[[tt.unsubUser]]" tooltip-placement="top">
 						<span class="glyphicon glyphicon-ban-circle" font></span>
-						<md-tooltip md-direction='top'>
-					        Unsubscribe User
-						</md-tooltip>
 					</md-button>
 				</td>
 			</tr>

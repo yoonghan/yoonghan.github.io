@@ -1,9 +1,5 @@
-"use strict";
-/**
- * Reminder controller
- */
-settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParams',
-      function($scope, $http, $modal, $routeParams) {
+define(['app','modalInstance'], function (app) {
+    app.controller('ReminderCtrl', function($scope, $http, $modal, $routeParams) {
 	
 		$scope.emailValidate = "Resend Email Validation";
 		$scope.isValidEmail = true;
@@ -94,36 +90,37 @@ settingApp.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParam
 		    getHTTP($http,emailVerificationURL, $scope.succ2);	
 		}
 		/**Reminder[E]**/
-}]);
+    });
 
-/**Copy user profiles**/
-function saveReminder($scope){
-	
-	//init value
-	$scope.r_day = $scope.r_day == undefined ? false: $scope.r_day;
-	$scope.r_week = $scope.r_week == undefined ? false: $scope.r_week;
-	$scope.chk_email = $scope.chk_email == undefined ? false: $scope.chk_email;
-	$scope.chk_sms = $scope.chk_sms == undefined ? false: $scope.chk_sms;
-	$scope.allowCreation = $scope.allowCreation == undefined ? false: $scope.allowCreation;
-	
-	var reminder = [];
-	if($scope.r_day) reminder.push(1)
-	if($scope.r_week) reminder.push(7)
-	
-	var jsonVal = {
-		reminderDays: reminder,
-	    alertEmail: ($scope.chk_email ? $scope.n_email : ""),
-	    //alertSMS: ($scope.chk_sms? $scope.n_sms: ""),//disabled
-	    allowCreation:$scope.allowCreation
-	};
-	
-	if(! $scope.chk_email)
-		delete jsonVal.alertEmail
-		
-	return jsonVal;
-}
+    /**Copy user profiles**/
+    function saveReminder($scope){
 
-/**Check extra fields that cannot be handled by angular**/
-function extraInvalidChk($scope){
-	return $scope.chk_email && ($scope.setting.n_email.$viewValue=='' || $scope.setting.n_email.$viewValue==undefined);
-}
+        //init value
+        $scope.r_day = $scope.r_day == undefined ? false: $scope.r_day;
+        $scope.r_week = $scope.r_week == undefined ? false: $scope.r_week;
+        $scope.chk_email = $scope.chk_email == undefined ? false: $scope.chk_email;
+        $scope.chk_sms = $scope.chk_sms == undefined ? false: $scope.chk_sms;
+        $scope.allowCreation = $scope.allowCreation == undefined ? false: $scope.allowCreation;
+
+        var reminder = [];
+        if($scope.r_day) reminder.push(1)
+        if($scope.r_week) reminder.push(7)
+
+        var jsonVal = {
+            reminderDays: reminder,
+            alertEmail: ($scope.chk_email ? $scope.n_email : ""),
+            //alertSMS: ($scope.chk_sms? $scope.n_sms: ""),//disabled
+            allowCreation:$scope.allowCreation
+        };
+
+        if(! $scope.chk_email)
+            delete jsonVal.alertEmail
+
+        return jsonVal;
+    }
+
+    /**Check extra fields that cannot be handled by angular**/
+    function extraInvalidChk($scope){
+        return $scope.chk_email && ($scope.setting.n_email.$viewValue=='' || $scope.setting.n_email.$viewValue==undefined);
+    }
+});

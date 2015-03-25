@@ -159,6 +159,11 @@
 "date":"Mar 24th, 2015",
 "task":"Uploaded ReactJS", 
 "detail":"ReactJS(loaded 1000 records like a breeze in tables) is fast but to achieve the codes it's slower, using angularjs pagination can be cool too. Deciding factor still."
+},
+{
+  "date":"Mar 26th, 2015",
+  "task":"RequireJS and AngularAMD",
+  "detail":"Sped up the admin page loading by 1/2 and organized the javascript better."
 }
 ]
 }
