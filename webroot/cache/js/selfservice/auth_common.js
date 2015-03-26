@@ -34,13 +34,13 @@ function getHTTP($http, url, succfunc){
 function errorAction(status){
 	
 	var redirectURL = "/errors/unauthorized_401";
-console.log(status);
-//	if(status == 401){
-//    	location.href=redirectURL;
-//    	return true;
-//    }else{
-//    	//should find a way to log error.
-//    }
+
+	if(status == 401){
+    	location.href=redirectURL;
+    	return true;
+    }else{
+    	//should find a way to log error.
+    }
 	return false;
 }
 
