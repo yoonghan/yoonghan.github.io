@@ -2,7 +2,7 @@ require.config({
     baseUrl: '/cache/js/apploader/setting/controller',
     paths: {
         'angular': '../../../lib/angular/angular.min',
-        'angularAMD': '../../../lib/angular/angularAMD',
+        'angularAMD': '../../../lib/angular/angularAMD.min',
 		'angular-animate': '../../../lib/angular/angular-animate.min',
 		'angular-sanitize': '../../../lib/angular/angular-sanitize.min',
         'angular-route': '../../../lib/angular/angular-route.min',
@@ -13,7 +13,6 @@ require.config({
         'tutorial': '../tutorial/setting_tut',
         'btnfunc': '../common/button-func',
         'modalInstance': '../common/ModalInstanceCtrl',
-        'async': '../../../lib/requirejs/async',
         'ngload': '../../../lib/requirejs/ngload',
         'app': '../app'
     },

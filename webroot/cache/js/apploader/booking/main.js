@@ -7,7 +7,7 @@ require.config({
         'jquery-ui': '../../lib/jquery/jquery-ui/jquery-ui.min',
         'moment': '../../lib/moment/moment.min',
         'angular': '../../lib/angular/angular.min',
-        'angularAMD': '../../lib/angular/angularAMD',
+        'angularAMD': '../../lib/angular/angularAMD.min',
         'angular-sanitize': '../../lib/angular/angular-sanitize.min',
         'ui-bootstrap-custom': '../../lib/angular/ui-bootstrap-custom-0.12.0.min',
         'ui-bootstrap-custom-tpls': '../../lib/angular/ui-bootstrap-custom-tpls-0.12.0.min',
@@ -18,7 +18,6 @@ require.config({
         'global_var': '../../selfservice/global_var',
         'cookiereader': '../../selfservice/cookiereader',
         'auth_common': '../../selfservice/auth_common',
-        'async': '../../../lib/requirejs/async',
         'ngload': '../../../lib/requirejs/ngload',
         'calendar_tut': 'tutorial/calendar_tut'
     },

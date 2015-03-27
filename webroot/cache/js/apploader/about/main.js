@@ -3,7 +3,7 @@ require.config({
     paths: {
         'app': 'app',
         'angular': '../../lib/angular/angular.min',
-        'angularAMD': '../../lib/angular/angularAMD',
+        'angularAMD': '../../lib/angular/angularAMD.min',
         'global_var': '../../selfservice/global_var',
         'cookiereader': '../../selfservice/cookiereader',
         'auth_common': '../../selfservice/auth_common'

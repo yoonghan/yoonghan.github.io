@@ -1,4 +1,4 @@
-define(['app', 'reactjs', 'jsxtransformers', 'reactloader', '../directive/ngflow'], function (app, react) {
+define(['app', 'reactjs', 'reactloader', '../directive/ngflow'], function (app, react) {
     app.controller('SettingsCtrl', function($scope, $http, $location, $route, $modal, $mdDialog) {
         $scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
         $scope.ctcNo_pattern = /^\+?[0-9]{0,13}$/;
