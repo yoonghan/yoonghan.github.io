@@ -1,5 +1,5 @@
 /**As angular triggers**/
-var react_UserMgmt = function($scope){
+var react_UserMgmt = function($scope, React){
 
     var reactFunc=undefined;
 

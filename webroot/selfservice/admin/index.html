@@ -6,32 +6,34 @@
   	<meta name="robots" content="noindex">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Calendar Administration</title>
+
+    <link rel="stylesheet" href="/cache/css/selfservice/common.css" />
 	<link rel="stylesheet" href="/cache/css/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/cache/css/angular/angular-material.min.css">
 	<link rel="stylesheet" href="/cache/css/selfservice/admin/admin.css">
   </head>
-  <body layout="column" ng-controller="AppCtrl" flow-prevent-drop>
+  <body layout="column" ng-controller="AppCtrl" flow-prevent-drop ng-cloak>
     <section layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md') && ($location.path()!='/settings')">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md') && openWindow">
           <md-toolbar>
             <h1 class="md-toolbar-tools">JOM Jaring</h1>
 
           </md-toolbar>
           <md-content ng-controller="MenuCtrl" ng-repeat="m in menuList">
 
-          <md-button class="menu-button md-raised" ng-href="{{m.lnk}}"><span class="glyphicon {{m.icon}} btn-icon"></span>{{m.pg}}</md-button>
+            <md-button class="menu-button md-raised" ng-href="{{m.lnk}}"><span class="glyphicon {{m.icon}} btn-icon"></span>{{m.pg}}</md-button>
 
           </md-content>
         </md-sidenav>
         <div layout="column" layout-fill tabIndex="-1" role="main" flex>
           <md-toolbar>
             <div class="md-toolbar-tools">
-              <md-button ng-click="back()" aria-label="Menu" ng-show="$location.path()=='/settings'">
+              <md-button ng-click="back()" aria-label="Menu" ng-show="!openWindow">
                 <div class="md-icon-container">
                     <span class="glyphicon glyphicon-arrow-left btn-icon"></span>
                 </div>
               </md-button>
-              <span ng-show="$location.path()!='/settings'">
+              <span ng-show="openWindow">
               <md-button ng-click="toggleMenu()" aria-label="Menu" hide-gt-md>
                 <div class="md-icon-container">
                     <span class="glyphicon glyphicon-th-large btn-icon"></span>
@@ -55,11 +57,6 @@
 	<script src="/cache/js/selfservice/global_var.js"></script>
 	<script src="/cache/js/selfservice/auth_common.js"></script>
 	<script src="/cache/js/lib/lodash/lodash.min.js"></script>
-
-    <script src="/cache/js/lib/reactjs/react.min.js"></script>
-    <script src="/cache/js/lib/reactjs/JSXTransformer.js"></script>
-    <script src="/cache/js/apploader/admin/react/app-react.js" type="text/jsx"></script>
-
     <script data-main="/cache/js/apploader/admin/main" src="/cache/js/lib/requirejs/require.js"></script>
   </body>
 </html>

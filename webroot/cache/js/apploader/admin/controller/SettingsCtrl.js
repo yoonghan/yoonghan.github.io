@@ -1,4 +1,4 @@
-define(['app', '../directive/ngflow'], function (app) {
+define(['app', 'reactjs', 'jsxtransformers', 'reactloader', '../directive/ngflow'], function (app, react) {
     app.controller('SettingsCtrl', function($scope, $http, $location, $route, $modal, $mdDialog) {
         $scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
         $scope.ctcNo_pattern = /^\+?[0-9]{0,13}$/;
@@ -12,7 +12,7 @@ define(['app', '../directive/ngflow'], function (app) {
 
         function getReact(){
             if(typeof reactFunc === 'undefined'){
-                reactFunc = react_UserMgmt($scope);
+                reactFunc = react_UserMgmt($scope, react);
                 reactFunc.load();
             }
             return reactFunc.getReact();

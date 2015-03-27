@@ -18,7 +18,7 @@
 
 	<h1>My Events</h1>
 	
-	<div class="jumbotron">
+	<div class="jumbotron" ng-cloak>
 		<span ng-show="!tutorialRun">
 		For more inquiries for our calendar usage, please refer to our <strong><a href="/selfservice/tutorial/calendar_tut">Calendar Help</a></strong> guide.
 		</span>
@@ -55,7 +55,7 @@
 		<!--WeatherForecasting[S]-->
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title"><span class="glyphicon glyphicon-globe"></span> Weather Forecast on your area</h3>
+					<h3 class="panel-title"><span class="glyphicon glyphicon-globe"></span> Weather Forecast of your area</h3>
 				</div>
 				<div class="panel-body">
 					<figure class="icons">
@@ -71,7 +71,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Scheduled Events</h3>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" ng-cloak>
 					<ul class="unstyled" role="form">
 						<li ng-repeat="e in currEvents">
 							<div class="alert alert-info form-group" style="font-size:12pt;" ng-if="e.booked == 0">

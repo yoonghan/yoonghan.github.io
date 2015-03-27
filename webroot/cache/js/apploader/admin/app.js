@@ -14,8 +14,8 @@ define(['angularAMD',
   var app = angular.module("ngreq-app", ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','flow','calFilters']);
   app.factory("calendar",function(){
     return [];
-    })
-    .filter('startFrom', function() {
+  })
+  .filter('startFrom', function() {
       return function(input, start) {
           start = +start; //parse to int
           if(typeof input === 'undefined')
@@ -24,8 +24,8 @@ define(['angularAMD',
             return input.slice(start);
           }
       }
-    })
-  app.config(['flowFactoryProvider', function (flowFactoryProvider) {
+  })
+  .config(['flowFactoryProvider', function (flowFactoryProvider) {
      flowFactoryProvider.defaults = {
          target: uploadURL,
          withCredentials: true,
@@ -80,13 +80,12 @@ define(['angularAMD',
 	  };
 	})
 
-  app.controller('AppCtrl', function($scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
-
-	  $scope.menuList=[
+  app.controller('AppCtrl', function($rootScope, $scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
+      $scope.menuList=[
 					   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
 					   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
 					   ];
-
+      $rootScope.openWindow = true;
 	  var previousPaths=[];
 	  $scope.$on('$routeChangeSuccess', function() {
 		  previousPaths.push($location.$$path);
@@ -98,11 +97,8 @@ define(['angularAMD',
 	  $scope.back =function(){
 		  var path = previousPaths.length > 1 ? previousPaths.splice(-2)[0] : "/home";
 		  $location.url(path);
-		  }
-
-	  $scope.showMenu = true;
-
-	  $scope.md_checkopen = true;
+		  $rootScope.openWindow = true;
+	  }
 
 	  $scope.toggleMenu = function() {
 		$mdSidenav('left').toggle();
@@ -118,7 +114,7 @@ define(['angularAMD',
 	  };
 	})
 
-    app.controller('BottomMenuCtrl', function($scope, $location, $mdDialog, $mdBottomSheet) {
+    app.controller('BottomMenuCtrl', function($rootScope, $scope, $location, $mdDialog, $mdBottomSheet) {
       $scope.items = [
         { name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
         { name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
@@ -130,6 +126,11 @@ define(['angularAMD',
 
         if(path != 'about'){
             $mdBottomSheet.hide("");
+            if(path == '#/settings'){
+               $rootScope.openWindow = false;
+            }else{
+               $rootScope.openWindow = true;
+            }
             location.href=path;
         }else{
             $mdDialog.show(

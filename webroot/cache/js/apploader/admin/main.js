@@ -10,11 +10,14 @@ require.config({
         'angular-route': '../../../lib/angular/angular-route.min',
 		'ui-bootstrap-custom': '../../../lib/angular/ui-bootstrap-custom-0.12.0.min',
 		'ui-bootstrap-custom-tpls': '../../../lib/angular/ui-bootstrap-custom-tpls-0.12.0.min',
+		'reactjs':'../../../lib/reactjs/react.min',
+		'jsxtransformers':'../../../lib/reactjs/JSXTransformer',
 		'ng-flow': '../../../lib/ng-flow/ng-flow-standalone.min',
         'moment': '../../../lib/moment/moment.min',
         'async': '../../../lib/requirejs/async',
         'ngload': '../../../lib/requirejs/ngload',
         'calendar-filter': '../filter/calendar-filter',
+        'reactloader': '../react/app-react',
         'app': '../app'
     },
 	shim: { 'angularAMD': ['angular'],
@@ -24,6 +27,7 @@ require.config({
 			'angular-material': ['angular'],
 			'angular-messages': ['angular'],
 			'ng-flow': ['angular'],
+			'reactloader' : ['reactjs', 'jsxtransformers'],
 			'ui-bootstrap-custom': ['angular'],
 			'ui-bootstrap-custom-tpls': ['angular','ui-bootstrap-custom']
 			},

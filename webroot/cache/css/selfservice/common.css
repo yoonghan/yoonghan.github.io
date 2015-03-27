@@ -61,6 +61,11 @@ ul .dropdown-menu{
 	padding:0 40px;
 }
 
+/**To cloak**/
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+/**To cloak**/
 
 /**ImageLoading[S]**/
 .imgIcon{
