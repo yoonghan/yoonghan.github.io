@@ -25,8 +25,8 @@ require.config({
     shim: { 'angularAMD': ['angular'],
             'angular-sanitize': ['angular'],
             'ui-bootstrap-custom': ['angular'],
-            'ui-bootstrap-custom-tpls': ['angular'],
-            'ui-calendar': ['angular','fullcalendar','ui-bootstrap-custom','ui-bootstrap-custom-tpls'],
+            'ui-bootstrap-custom-tpls': ['angular','ui-bootstrap-custom'],
+            'ui-calendar': ['angular','ui-bootstrap-custom','ui-bootstrap-custom-tpls','fullcalendar'],
             'calendar_tut': ['ui-calendar'],
             'jquery-ui': ['jquery']
             },

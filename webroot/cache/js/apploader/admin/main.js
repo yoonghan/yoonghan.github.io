@@ -25,7 +25,7 @@ require.config({
 			'angular-messages': ['angular'],
 			'ng-flow': ['angular'],
 			'ui-bootstrap-custom': ['angular'],
-			'ui-bootstrap-custom-tpls': ['angular']
+			'ui-bootstrap-custom-tpls': ['angular','ui-bootstrap-custom']
 			},
 	deps:['app']
 });

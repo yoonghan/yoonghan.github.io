@@ -23,12 +23,12 @@ function readCookie(type){
 }
 
 function cookieAccess(access){
-	
 	var cookieVal = readCookie(0);
 	var boolValid = false;
 	switch(access){
 	case Exist:
 	    boolValid=(cookieVal != 'undefined')
+	    break;
 	case Cal_AccType:
 		boolValid=(parseInt(cookieVal) & Cal_AccType_Val);
 		break;

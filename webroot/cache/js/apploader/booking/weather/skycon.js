@@ -7,7 +7,7 @@ define(['skycon','moment'], function (skycon, moment) {
     /**Start skycon[E]**/
 
     /**Init [S]**/
-    var ws = new WebSocket("ws://localhost:9000/tools/weatherinfo");
+    var ws = new WebSocket(weatherSocketURL);
     initWebSocket(ws);
     /**Init [E]**/
 

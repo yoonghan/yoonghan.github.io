@@ -1,10 +1,12 @@
 var userProfileURL = "http://localhost:9000/user/profile";
 
 var subsReminderURL = "http://localhost:9000/reminder/profile";
-var subsReportURL = "http://localhost:9000/report/setting";
 var subsHostListURL = "http://localhost:9000/subscription/hosts";
 
+var weatherSocketURL = "ws://localhost:9000/tools/weatherinfo";
+
 var calLoadURL = "http://localhost:9000/tools/calendarload";
+var subsReportURL = "http://localhost:9000/report/setting";
 var calSetupConfURL = "http://localhost:9000/tools/calendarconf"; 
 var bookingListURL = "http://localhost:9000/tools/reservationlist";
 var userInfoURL = "http://localhost:9000/tools/usersinreservation";
