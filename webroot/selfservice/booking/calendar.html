@@ -9,20 +9,27 @@
 	<link rel="stylesheet" href="/cache/css/selfservice/calendar.css" />
 	<link rel="stylesheet" href="/cache/css/selfservice/common.css" />
 	<link rel="stylesheet" href="/cache/css/selfservice/tutorial/common.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
 <div role="main" class="container-fluid" ng-controller="calendarCtrl">
-
-	<div ng-include="'/selfservice/common/header'"></div>
-
-	<h1>My Events</h1>
-	
+    <table width="100%">
+        <tr>
+            <td>
+	            <h1>My Events</h1>
+            </td>
+            <td>
+                <div ng-include="'/selfservice/common/header'"></div>
+            </td>
+        </tr>
+    </table>
 	<div class="jumbotron" ng-cloak>
 		<span ng-show="!tutorialRun">
 		For more inquiries for our calendar usage, please refer to our <strong><a href="/selfservice/tutorial/calendar_tut">Calendar Help</a></strong> guide.
 		</span>
-		<span ng-show="tutorialRun"><h2 class="tutorialH2">[ TUTORIAL ]</h2>
+		<span ng-show="tutorialRun"><h2 class="tutorialH2">TUTORIAL</h2>
 			<p ng-bind-html="tutorialMsg">
 			</p>
 			<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-disabled="tut_first">

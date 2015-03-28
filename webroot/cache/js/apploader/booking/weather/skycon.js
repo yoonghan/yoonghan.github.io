@@ -1,4 +1,4 @@
-
+(function(){
 define(['skycon','moment'], function (skycon, moment) {
     /**Start skycon[S]**/
     var skycons = new Skycons({"color": "#09F"});
@@ -102,3 +102,4 @@ define(['skycon','moment'], function (skycon, moment) {
     }
     /**Web socket only[E]**/
 });
+})();

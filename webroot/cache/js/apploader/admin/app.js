@@ -81,6 +81,7 @@ define(['angularAMD',
 	})
 
   app.controller('AppCtrl', function($rootScope, $scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
+      $rootScope.imageUrl = cpImageURL + "?" + new Date().getTime();
       $scope.menuList=[
 					   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
 					   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
@@ -96,7 +97,7 @@ define(['angularAMD',
 
 	  $scope.back =function(){
 		  var path = previousPaths.length > 1 ? previousPaths.splice(-2)[0] : "/home";
-		  $location.url(path);
+		  $location.url(path == '/settings'?"/home":path);
 		  $rootScope.openWindow = true;
 	  }
 

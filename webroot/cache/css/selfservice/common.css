@@ -1,5 +1,9 @@
 @import url("/cache/css/animate/animate.css");
 
+h1{
+font-family:'Lobster';
+}
+
 body {
   padding-top: 15px;
 }

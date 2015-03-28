@@ -10,6 +10,8 @@ padding:10px 0px 10px 20px;
 border-top:1px solid rgba(0,0,0,0.12);
 font-size:12pt;
 }
+.logo{font-family:'Lobster'}
+.thumbnail_main{padding:5px;text-align:center;background:#ddd;}
 .absolute-center {margin: 0px 50px;position: absolute;top:5%; left:0px; bottom:5%; right:0px;}
 .jumbotron{text-align:center;}
 h1{font-weight:bold;}

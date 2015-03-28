@@ -11,13 +11,14 @@
 <link href="/cache/css/selfservice/common.css" rel="stylesheet">
 <link rel="stylesheet" href="/cache/css/selfservice/tutorial/common.css" />
 <link href="/cache/css/selfservice/setting.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="loaderCtrl" role="document">
 	<div class="viewDisplay container-fluid">
-		<h2><a href="" ng-click="cancel()"><span class="glyphicon glyphicon-arrow-left"></span> Settings</a></h2>
-		
+		<h1><a href="" ng-click="cancel()"><span class="glyphicon glyphicon-arrow-left"></span> Settings</a></h1>
 		<div class="jumbotron" ng-show="tutorialRun" ng-cloak>
-			<span><h2 class="tutorialH2">[ TUTORIAL ]</h2>
+			<span><h2 class="tutorialH2">TUTORIAL</h2>
 				<p ng-bind-html="tutorialMsg">
 				</p>
 				<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-disabled="tut_first">

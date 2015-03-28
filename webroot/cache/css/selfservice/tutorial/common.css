@@ -1,4 +1,4 @@
-@keyframes blink {  
+@keyframes blink {
     0% { color: black; ; background-color:#fff }
     100% { color: white; background-color:#3071a9 }
 }
@@ -16,4 +16,5 @@
 .tutorialH2 {
 	color: blue;
 	font-weight: bold;
+	font-family: 'Shadows Into Light', cursive;
 }

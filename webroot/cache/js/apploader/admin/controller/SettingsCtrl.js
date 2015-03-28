@@ -1,11 +1,12 @@
 define(['app', 'reactjs', 'reactloader', '../directive/ngflow'], function (app, react) {
-    app.controller('SettingsCtrl', function($scope, $http, $location, $route, $modal, $mdDialog) {
+    app.controller('SettingsCtrl', function($rootScope, $scope, $http, $location, $route, $modal, $mdDialog) {
         $scope.url_pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
         $scope.ctcNo_pattern = /^\+?[0-9]{0,13}$/;
 
-        /**Image [S]**/
-        $scope.imageUrl = cpImageURL + '?' + new Date().getTime();
-        /**Image [E]**/
+        /**Root changes Image [S]**/
+        $rootScope.openWindow = false;
+        $rootScope.imageUrl = cpImageURL + '?' + new Date().getTime();
+        /**Root changes Image [E]**/
 
         /** React [S] **/
         var reactFunc = undefined;
@@ -231,7 +232,7 @@ define(['app', 'reactjs', 'reactloader', '../directive/ngflow'], function (app, 
         }
         /**Add user to subscriber[E]**/
     })
-    .controller('ModalInstanceCtrl', function ($scope, $http, $modalInstance, ver) {
+    .controller('ModalInstanceCtrl', function ($rootScope, $scope, $http, $modalInstance, ver) {
     	$scope.ver = ver;
     	$scope.flag_upload=false;
 
@@ -258,6 +259,7 @@ define(['app', 'reactjs', 'reactloader', '../directive/ngflow'], function (app, 
 
     		var succFunc = function(data){
     			$scope.flag = false;
+    			$rootScope.imageUrl = cpImageURL + '?' + new Date().getTime();
     			$modalInstance.close();
     			}
     	    var failFunc = function(data){
