@@ -120,7 +120,7 @@ define(['angularAMD',
         { name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
         { name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
         { name: 'About', icon: 'glyphicon-user', loc:'about' },
-        { name: 'Exit', icon: 'glyphicon-calendar', loc:homeURL },
+        { name: 'Calendar', icon: 'glyphicon-calendar', loc:homeURL },
         { name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:logoutURL }
       ];
       $scope.listItemClick = function(path) {

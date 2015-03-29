@@ -137,13 +137,13 @@
 			<div ng-show="reserveType=='opt2'" class="cal-show-hide">
 			    <div class="alert alert-danger alertmsg" ng-show="setup.submitted && !monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday">Please, select a day!</div>
 				<div>
-					<md-checkbox ng-model="monday" aria-label="monday">Monday</md-checkbox>
-					<md-checkbox ng-model="tuesday" aria-label="tuesday">Tuesday</md-checkbox>
-					<md-checkbox ng-model="wednesday" aria-label="wednesday">Wednesday</md-checkbox>
-					<md-checkbox ng-model="thursday" aria-label="thursday">Thursday</md-checkbox>
-					<md-checkbox ng-model="friday" aria-label="friday">Friday</md-checkbox>
-					<md-checkbox ng-model="saturday" aria-label="saturday" class="md-warn"><strong>Saturday</strong></md-checkbox>
-					<md-checkbox ng-model="sunday" aria-label="sunday" class="md-warn"><strong>Sunday</strong></md-checkbox>
+					<md-checkbox ng-model="monday" aria-label="monday">Every Monday</md-checkbox>
+					<md-checkbox ng-model="tuesday" aria-label="tuesday">Every Tuesday</md-checkbox>
+					<md-checkbox ng-model="wednesday" aria-label="wednesday">Every Wednesday</md-checkbox>
+					<md-checkbox ng-model="thursday" aria-label="thursday">Every Thursday</md-checkbox>
+					<md-checkbox ng-model="friday" aria-label="friday">Every Friday</md-checkbox>
+					<md-checkbox ng-model="saturday" aria-label="saturday" class="md-warn">Every <strong>Saturday</strong></md-checkbox>
+					<md-checkbox ng-model="sunday" aria-label="sunday" class="md-warn">Every <strong>Sunday</strong></md-checkbox>
 			    </div>			    
 			</div>
 			<div ng-show="reserveType=='opt1'" class="cal-show-hide">

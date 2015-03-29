@@ -15,19 +15,28 @@ describe('Settings App', function() {
 			
 			var cNameModel = element(by.model('cNameSearch'));
 			
-			cNameModel.sendKeys('Han');
+			cNameModel.sendKeys('Demo');
 			var hosts = element.all(by.repeater('e in chkHostList'));
 			expect(hosts.count()).toBe(1);
 			
 			var hostsName = element.all(by.repeater('e in chkHostList').column('e.cName'));
 			hostsName.then(function(cname){
-				expect(cname[0].getText()).toContain("Han");
+				expect(cname[0].getText()).toContain("Demo");
 			});
+
+            //Button is clicked.
+            var bln_statBtn = false;
+            //Click first page
+			var currStat = element.all(by.repeater('e in chkHostList').column('e.currStat'));
+            currStat.then(function(statBtn){
+                console.log(statBtn);
+            });
 			
 			element(by.id('save')).click();
 			
 			var ok = element(by.model('btnOK'));
-			ok.click();			
+			ok.click();
+
 	  });
 	  
 	  it('Check Reminder filter working', function() {

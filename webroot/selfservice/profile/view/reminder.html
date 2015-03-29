@@ -45,7 +45,7 @@ Configure the preference of your calendar reminder here.
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" ng-model="chk_email" name="chk_email">
-						<span ng-show="!chk_email">Email</span>
+						<span ng-show="!chk_email">via Email</span>
 						<p ng-show="chk_email && !isValidEmail" class="alert alert-warning">[[wr.emailver]]</p>
 						<input ng-show="chk_email" class="form-control" style="display:inline;width:initial" ng-show="chk_email"  name="n_email" type="email" ng-model="n_email" placeholder="e.g. abc@yahoo.com" maxlength="200">
 						<input type="button" ng-show="chk_email && !isValidEmail" ng-click="resentEmailValidator()" value="{{emailValidate}}" ng-disabled="emailValidateFlag" class="btn btn-success">
@@ -57,7 +57,7 @@ Configure the preference of your calendar reminder here.
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" ng-model="chk_sms" name="chk_sms">
-						<span ng-show="!chk_sms">SMS</span>
+						<span ng-show="!chk_sms"><strike>via SMS</strike></span>
 						<!-- input class="form-control" style="display:inline;width:initial" ng-show="chk_sms" name="n_sms" type="text" ng-model="n_sms" placeholder="e.g. +60123456789" ng-pattern="number" maxlength="13"-->
 						<span ng-show="chk_sms" style="color:red">Sorry, at the moment we do not support this.</span>
 						<!--span class="alert alert-danger alertmsg" ng-show="chk_sms && setting.n_sms.$error.pattern">Only +012345678 or 0123456 numbers allowed</span-->

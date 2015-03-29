@@ -168,7 +168,7 @@ define(['app','moment'], function (app, moment) {
 
         /**Setup confirmation [S]**/
         $scope.processForm = function(ev){
-
+        	$scope.errors = undefined;
             $scope.setup.submitted = true;
 
             if ($scope.flag) {
@@ -193,6 +193,7 @@ define(['app','moment'], function (app, moment) {
                 $scope.showAlert(ev,"There are errors within your input.");
                 $scope.flag = false;}
             var errFunc = function(data){
+            	$scope.showAlert(ev,"There are errors within your input.");
                 $scope.errors = data.errors;
                 $scope.flag = false;}
 
