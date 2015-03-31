@@ -8,8 +8,9 @@ var weatherSocketURL = "ws://localhost:9000/tools/weatherinfo";
 var calLoadURL = "http://localhost:9000/tools/calendarload";
 var subsReportURL = "http://localhost:9000/report/setting";
 var calSetupConfURL = "http://localhost:9000/tools/calendarconf"; 
-var bookingListURL = "http://localhost:9000/tools/reservationlist";
-var userInfoURL = "http://localhost:9000/tools/usersinreservation";
+var bookingListURL = "http://localhost:9000/tools/reservationlists";
+var bookingUsersURL = "http://localhost:9000/tools/reservationlist";
+
 var cmdreservationURL = 'http://localhost:9000/tools/cmd_reserve';
 var reportURL = 'http://localhost:9000/report/isallow';
 var reportGenUrl = 'http://localhost:9000/report/gen';

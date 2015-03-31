@@ -169,18 +169,8 @@ var SampleApp = function() {
 			res.setHeader(CONTENT_TYPE, mime(".html"));
 			res.send(self.cache_get(reqPath + ".html"));
 		};
-
-		self.routes['/cache/*:path'] = function(req, res) {
-
-			var reqPath = self.replacePath(req.path.toString());
-			var header = {};
-			header[CONTENT_TYPE] = mime(reqPath);
-			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
-
-			res.set(header);
-			res.send(fs.readFileSync(reqPath));
-		};
 		
+
 		self.routes['/cache/json/*:path'] = function(req, res) {
 			var reqPath = self.replacePath(req.path.toString());
 			
@@ -189,6 +179,17 @@ var SampleApp = function() {
 			header[ALLOW_ACCESS_ORIGIN] = '*';
 			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
 			
+			res.set(header);
+			res.send(fs.readFileSync(reqPath));
+		};
+
+		self.routes['/cache/*:path'] = function(req, res) {
+
+			var reqPath = self.replacePath(req.path.toString());
+			var header = {};
+			header[CONTENT_TYPE] = mime(reqPath);
+			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
+
 			res.set(header);
 			res.send(fs.readFileSync(reqPath));
 		};

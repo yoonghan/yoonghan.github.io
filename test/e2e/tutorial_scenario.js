@@ -3,7 +3,7 @@
 describe('Tutorial Scan', function() {
 
   beforeEach(function () {
-	  browser.driver.get('http://localhost:9000/user/testprofile'); //this will add cookie
+	  browser.driver.get('http://localhost:9000/test/testprofile'); //this will add cookie
   });
   
   describe('Check main page', function() {

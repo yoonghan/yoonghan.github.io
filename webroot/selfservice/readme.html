@@ -1,111 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>JOM Jaring - Login Help</title>
-<meta name="description" content="Login help.">
-<meta name="viewport" content="width=480">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<style>
- body{
- margin:10px;
- font-family: 'Roboto', arial;
- }
- h1{
- font-size:36px;
- }
- h2 {
- color: #FFF;
- background: none repeat scroll 0% 0% #444;
- margin: 10px -10px;
- padding: 20px 30px;
-}
-input[type=checkbox] {
- color: #00F;
-}
-.images {display:none; visibility:hidden;}
-#account:hover .images{
- position:absolute;
- 
- left:10px
- z-index:100;
- display:inline;
- visibility:visible;
- background-color:grey;
- padding:10px;
- valign:top;
- border:#222 1px solid;
-}
-a{
- text-decoration:none;
- font-style:bold;
- color:blue;
-}
-a:hover #return{
- background-color:rgb(13, 73, 08);
- margin-top:1px;
- box-shadow:#444 6px 6px 3px;
-}
-#return{
- margin-top:2px;
- font-size:20pt;
- background-color:rgb(30, 100, 35);
- border-radius:8px;
- border:#000 1px solid;
- color:#FFF;
- padding:10px;
- text-align:center;
- box-shadow:#444 5px 5px 3px;
-}
-</style>
+    <title>JOM JARING CALENDAR</title>
+    <meta name="description" content="A theme for Bespoke.js">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <style>
+        .exitBtn{
+            margin-top:2px;
+            font-size:20pt;
+            background-color:rgb(30, 100, 35);
+            border-radius:8px;
+            border:#000 1px solid;
+            color:#FFF;
+            padding:10px;
+            box-shadow:#444 5px 5px 3px;
+        }
+        .exitBtn:hover {
+            background-color: rgb(23, 93, 28);
+            box-shadow:#444 4px 4px 2px;
+            cursor:hand;
+        }
+    </style>
 </head>
 <body>
-<h1>JOM Jaring's Login Help</h1>
-<h2>How do you login?</h2>
-<div>
-<strong>Steps</strong>:
- <ol>
- <li>Visit <a href="http://login.jomjaring.com">JOM Jaring's Login page</a></li>
- <li>Choose your login preference, either Gmail or Facebook.</li>
- <li>Within Facebook or Gmail account, login or registered a service with them.</li>
- <li><a href="#" id="account">Allow
- <div class="images">
- <img src="/cache/img/branding/login/g_approval.png"/>
- <img src="/cache/img/branding/login/f_approval.png"/>
- </div>
- </a> JOM Jaring to authenticate your Facebook/Gmail account. <br>
- <span style="color:red;font-weight:bold">NOTE:</span>
-	<ul>
-	<li>Check that the address URL is from Google or Facebook</strong>.</li>
-	<li>Check the requested permission is from/to <strong>JOM Jaring</strong>.</li>
-	<li>JOM Jaring is only requesting for grant on your basic personal profile. <strong>Not</strong> your contacts.</li>
-	</ul>
- </li>
- <li>Done!</li>
- </ol>
-</div>
-<h2>Questionaires</h2>
- 
-<h3>What is an External Login?</h3>
-<div>
-We are not, nor planning, to maintain an internal login for JOM Jaring. JOM Jaring will be using your <i>Gmail</i> and <i>Facebook</i>
-account as the authentication and identification platform. We will not be taking any advantages from your Gmail/Facebook Account details. If you are in doubt and  requires in-depth details, please email and contact us via <a href="mailto:jomjaring@gmail.com">jomjaring@gmail.com</a>.
-</div>
- 
-<h3>Information Gathered</h3>
-	
-<div>
-We are only interested to verify your validity as an Internet user. JOM Jaring will and do respect 
-you privacy; hence, we will not reveal any of your information to any third parties without your consensus. We
- will ONLY keep the below information as references:
- <ul>
- <li>Your name</li>
- <li>Your gender</li>
- <li>Your email</li>
- <li>Your facebook or gmail identity number to JOM Jaring</li>
- </ul>
-</div>
-<a href="javascript:window.close();"><p id="return">Return</p></a>
-<br>
-<br>
+<article>
+    <section>
+        <h1>CALENDAR ORGANIER</h1>
+        <h6>
+            Created by Jom Jaring &copy;
+        </h6>
+        <h3>Swipe or press the &#8594; arrow key</h3>
+    </section>
+    <section>
+        <h1 class="bullet">Login</h1>
+        <ul>
+            <li>Create a login for <a href="http://gmail.google.com">Gmail</a> or <a href="http://facebook.com">Facebook</a>.</li>
+            <li>Login to JOM Jaring via http://login.jomjaring.com.</li>
+            <li>Allow JOM Jaring to validate and connect to your account.</li>
+        </ul>
+    </section>
+    <section>
+        <h1 class="bullet">Example</h1>
+        <ul>
+            <li>Choose your login preference</li>
+        </ul>
+        <img src="/cache/img/help/img_choose.png">
+    </section>
+    <section>
+        <h1 class="bullet">Allow Access</h1>
+        <ul>
+            <li>Do allow us to connect with your account. Your confidentiality will be kept private.</li>
+        </ul>
+        <img src="/cache/img/branding/login/g_approval.png">
+    </section>
+    <section>
+        <h1 class="bullet">Successful Login</h1>
+        <ul>
+            <li>For a first time users we will require you to register with our website.</li>
+            <li>After successful entries, you will be able to use the website.</li>
+        </ul>
+    </section>
+    <section>
+        <h1 class="bullet">Benefits ?</h1>
+    </section>
+    <section>
+        <h1 class="bullet">As User</h1>
+        <ul>
+            <li>Register to events organized by our organizers.</li>
+            <li>Get email notifications before the due date.</li>
+            <li>Check your availability vs organized event.</li>
+        </ul>
+    </section>
+    <section>
+        <h1 class="bullet">As Organizer</h1>
+        <ul>
+            <li>Manage participants of your events.</li>
+            <li>Allow confirmation of your participants.</li>
+        </ul>
+    </section>
+    <section>
+        <h1 class="bullet">Enjoy <span class='bullet'>:)</span></h1>
+        <h3>
+            You can close this window directly
+        </h3>
+        <a href="javascript:window.close()" class="exitBtn">EXIT</a>
+    </section>
+</article>
+<script src="/cache/js/lib/bespoke/build.js"></script>
 </body>
 </html>

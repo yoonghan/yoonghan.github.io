@@ -1,14 +1,14 @@
 define([
 'angularAMD',
 'tutorial',
+'btnfunc',
 'jquery',
 'angular-route',
 'angular-animate',
 'angular-sanitize',
 'ui-bootstrap-custom',
 'ui-bootstrap-custom-tpls',
-'btnfunc',
-], function (angularAMD, tutorial ) {
+], function (angularAMD, tutorial, btnfunc) {
   var defaultPath="view/"
 
   var app = angular.module("ngreq-app", ['ngRoute','ui.bootstrap','ngAnimate','ngSanitize']);
@@ -62,7 +62,7 @@ define([
 
   			//if this user no longer new, let it go.
   			if(!data.newUser){
-  				redirectPage();
+  				btnfunc.redirectPage();
   			}
   	    };
 

@@ -26,7 +26,7 @@ define(['app'], function (app) {
             value = null;
         }
 
-        getHTTP($http, userInfoURL+"/"+oid, userListFunc);
+        getHTTP($http, bookingUsersURL+"/"+oid+"/users", userListFunc);
         /**Expose user[E]**/
 
         //Search value and replace
