@@ -102,7 +102,7 @@
 			</div>
 			<div class="form-group col-sm-12 withborder" ng-repeat="e in timedEvents" id="time{{$index}}" ng-show="!fullday">
 				<div ng-class="{'alert-danger alertmsg':invalidTimeComparer($index)}" class="flex">
-					<a class="close" ng-click="removeTimeEvents($index)">X</a>
+					<a class="close" ng-click="removeTimeEvents($index)" id="btn_closeTime">X</a>
 					<label for="stime" class="col-sm-1">Start</label>
 					<timepicker class="col-sm-3" ng-model="e.stime" id="e.stime" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
 					
@@ -158,10 +158,10 @@
 							</td>
 						
 							<td valign="top">
-			    				<md-button class="md-raised md-primary" ng-click="addReserve($event)">Add</md-button> <span> {{reservedEvents.length}}/{{MAX}}</span>
+			    				<md-button class="md-raised md-primary" ng-click="addReserve($event)" id="btn_reserveType1">Add</md-button> <span> {{reservedEvents.length}}/{{MAX}}</span>
 			    				<div class="cal-listing">
 				    				<md-grid-list md-cols="5" md-gutter="1px" md-row-height="50px" style='width:250px'>
-				    					<md-grid-tile class="cal-circle-mini animated bounceIn" ng-repeat="r in reservedEvents" ng-click="removeReserve($index)"><span class="cal-frontdrop">{{r | date:"MM/dd"}}</span><span class="cal-backdrop">{{r | date:"yy"}}</span></md-grid-tile>
+				    					<md-grid-tile class="cal-circle-mini animated bounceIn" ng-repeat="r in reservedEvents" ng-click="removeReserve($index)" id="btn_reservedIcon"><span class="cal-frontdrop">{{r | date:"MM/dd"}}</span><span class="cal-backdrop">{{r | date:"yy"}}</span></md-grid-tile>
 				    				</md-grid-list>
 			    				</div>								
 							</td>

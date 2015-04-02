@@ -35,7 +35,7 @@ Subscribe yourself to the available event organizers. All your calendar settings
 				<td>JOM Jaring</td>
 				<td>For Sample</td>
 			</tr>
-			<tr ng-repeat="e in chkHostList | orderBy:predicate:reverse | filter:cNameSearch">
+			<tr class="repeated-item" ng-repeat="e in chkHostList | orderBy:predicate:reverse | filter:cNameSearch">
 				<td><input type="checkbox" ng-model="e.currStat"></td>
 				<td>
 					<div class="img_wrapper">

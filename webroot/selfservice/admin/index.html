@@ -24,7 +24,7 @@
                   <img fallback-src="http://www.placehold.it/100x100/EFEFEF/AAAAAA&text=no+image" ng-src="{{imageUrl}}" class="image-icon"/>
               </div>
               <div ng-repeat="m in menuList">
-                <md-button class="menu-button md-raised" ng-href="{{m.lnk}}"><span class="glyphicon {{m.icon}} btn-icon"></span>{{m.pg}}</md-button>
+                <md-button class="menu-button md-raised" ng-href="{{m.lnk}}" id="btn_menu"><span class="glyphicon {{m.icon}} btn-icon"></span>{{m.pg}}</md-button>
               </div>
           </md-content>
         </md-sidenav>
@@ -45,7 +45,7 @@
               </span>
               <span>My App's Title</span>
               <span flex></span>
-              <md-button ng-click="showBottomMenuSheet($event)" aria-label="Configuration">
+              <md-button ng-click="showBottomMenuSheet($event)" aria-label="Configuration" id="mnu_settings">
                 <div class="md-icon-container">
                     <span class="glyphicon glyphicon-cog"></span>
                 </div>

@@ -44,7 +44,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<tr ng-repeat="e in groups | orderBy:predicate:reverse | filter:search">
+					<tr class="repeated-item" ng-repeat="e in groups | orderBy:predicate:reverse | filter:search">
 						<td><input type="text" name="e.title" id="e.title" ng-model="e.title" maxlength="30" ng-pattern="word" required></td>
 						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
 						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>

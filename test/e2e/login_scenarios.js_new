@@ -3,7 +3,7 @@
 describe('Login App', function() {
 
   beforeEach(function () {
-	  browser.driver.get('http://localhost:9000/user/testprofile'); //this will add cookie
+	  browser.driver.get('http://localhost:9000/test/testprofile/2'); //this will add cookie
 	  //element(by.id("test")).style.display = "";;
   });
   

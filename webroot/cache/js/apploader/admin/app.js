@@ -29,8 +29,10 @@ define(['angularAMD',
      flowFactoryProvider.defaults = {
          target: uploadURL,
          withCredentials: true,
+         maxChunkRetries: 1,
+         chunkRetryInterval: 5000,
          singleFile:true,
-         permanentErrors:[404, 500, 501]
+         permanentErrors:[500, 501]
      };
   }])
   .config(function ($httpProvider, $routeProvider, $locationProvider, $mdThemingProvider) {

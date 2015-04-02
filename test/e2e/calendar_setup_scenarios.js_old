@@ -15,26 +15,24 @@ describe('Create Calendar App', function() {
   beforeEach(function () {
 	  browser.driver.get('http://localhost:9000/user/testprofile'); 
   });
-  
-  describe('Calendar Select', function() {
-  
-  
-	  it('Check calendar display correctly', function() {
-			browser.get('http://localhost:8000/selfservice/booking/calendar');
-	
-			//Can't do much here to test the functionality
-	
-			var weatherIcon = element(by.id('weatherIcon'));
-			var weatherMessage = element(by.id('weatherMessage'));
-			
-			expect(weatherIcon.isPresent()).toBe(true);		//make sure holder exist
-			expect(weatherMessage.isPresent()).toBe(true);	//make sure holder exist
-	  });
-  });
+
+//  describe('Calendar Select', function() {
+//    it('Check calendar display correctly', function() {
+//        browser.get('http://localhost:8000/selfservice/booking/calendar');
+//
+        //Can't do much here to test the functionality
+
+//        var weatherIcon = element(by.id('weatherIcon'));
+//        var weatherMessage = element(by.id('weatherMessage'));
+
+//        expect(weatherIcon.isPresent()).toBe(true);		//make sure holder exist
+//        expect(weatherMessage.isPresent()).toBe(true);	//make sure holder exist
+//	});
+//  });
 	  
   describe('Calendar Setup', function() {
 	  it('Fail title with invalid value', function() {
-			browser.get('http://localhost:8000/selfservice/booking/setup');
+			browser.get('http://localhost:8000/selfservice/admin');
 	
 			var title = element(by.model('title'));
 			title.sendKeys('TestEnv %Error');
