@@ -21,7 +21,7 @@
           </md-toolbar>
           <md-content ng-controller="MenuCtrl">
               <div class="thumbnail_main">
-                  <img fallback-src="http://www.placehold.it/100x100/EFEFEF/AAAAAA&text=no+image" ng-src="{{imageUrl}}" class="image-icon"/>
+                  <img ng-src="{{imageUrl}}" class="image-icon"/>
               </div>
               <div ng-repeat="m in menuList">
                 <md-button class="menu-button md-raised" ng-href="{{m.lnk}}" id="btn_menu"><span class="glyphicon {{m.icon}} btn-icon"></span>{{m.pg}}</md-button>

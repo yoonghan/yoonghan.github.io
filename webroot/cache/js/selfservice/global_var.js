@@ -58,7 +58,7 @@ var registrationNoURL = "http://localhost:9000/user/registrationno";
 var userMgmtUrl    = "http://localhost:9000/subscription/user";
 var userMgmtListUrl    = "http://localhost:9000/subscription/users";
 
-var redirectURL			= "http://login.jomjaring.com";
+var redirectURL			= "//login.jomjaring.com";
 var initialStartURL		= "/notify/subscription";
 var setupConfURL		= "/selfservice/booking/setup-confirm";
 var homeURL				= "/selfservice/booking/calendar";

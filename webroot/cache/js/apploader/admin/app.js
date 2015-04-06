@@ -76,19 +76,22 @@ define(['angularAMD',
     .otherwise({redirectTo: "/home"});
   });
 
-  app.controller('MenuCtrl', function($scope, $timeout, $mdSidenav) {
+  app.controller('MenuCtrl', function($rootScope, $scope, $timeout, $mdSidenav) {
+	  $rootScope.imageUrl = cpImageURL + "?" + new Date().getTime();
+	  
+      $scope.menuList=[
+		   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
+		   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
+	  ];
+      
+      $rootScope.openWindow = true;
+  
 	  $scope.close = function() {
 		$mdSidenav('left').close();
 	  };
 	})
 
   app.controller('AppCtrl', function($rootScope, $scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
-      $rootScope.imageUrl = cpImageURL + "?" + new Date().getTime();
-      $scope.menuList=[
-					   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
-					   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
-					   ];
-      $rootScope.openWindow = true;
 	  var previousPaths=[];
 	  $scope.$on('$routeChangeSuccess', function() {
 		  previousPaths.push($location.$$path);
