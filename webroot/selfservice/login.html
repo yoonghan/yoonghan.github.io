@@ -185,7 +185,7 @@
  g[1]),0.001<f&&k.arcTo(d,l,d,l-f,c-a),g=[d,a],f=b-a,0>f&&(f=0),g[1]+=f,k.lineTo(g[0],g[1]),0.001<f&&k.arcTo(d,a,d-f,a,b-a),g=[a,a],f=n-a,0>f&&(f=0),g[0]+=f,k.lineTo(g[0],g[1]),0.001<f?k.arcTo(a,a,a,a+f,n-a):k.lineTo(a,2*a))},F=function(c,a,k,f,e,d,l){c.save();l&&c.beginPath();c.translate(a,k);c.scale(f,e);c.arc(0,0,1,0,2*Math.PI,d);c.restore()};})();
  </script>
 	<script>
-	var login = "http://localhost:9000/service/oauth/send/";
+	var login = "//scala.jomjaring.com/service/oauth/send/";
 	var btnClick = false;
 	var timeVar; 
 	
@@ -213,7 +213,7 @@
 		clearTimeout(timeVar);
 		
 		$.ajax({
-			url:'http://localhost:9000/ping',
+			url:'//scala.jomjaring.com/ping',
 			type: 'GET',
 			async: false,
 			success:

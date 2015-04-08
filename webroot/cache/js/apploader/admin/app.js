@@ -35,48 +35,50 @@ define(['angularAMD',
          permanentErrors:[500, 501]
      };
   }])
-  .config(function ($httpProvider, $routeProvider, $locationProvider, $mdThemingProvider) {
-    /**Send Cookie [S]**/
-    	$httpProvider.defaults.withCredentials = true;
-    	$httpProvider.defaults.useXDomain = true;
-    /**Send Cookie [E]**/
-    /**Theme [S]**/
-        $mdThemingProvider.theme('docs-dark', 'default')
-            .primaryPalette('green')
-            .dark();
-    	$mdThemingProvider.theme('default')
-    		.primaryPalette('blue',{'default':'800'})
-    		.accentPalette('green',{'default':'500'});
-    /**Theme [E]**/
-    $routeProvider
-    .when("/home", angularAMD.route({
-        templateUrl: defaultPath+'home'
-    }))
-    .when("/settings", angularAMD.route({
-        templateUrl: defaultPath+'settings', controller: 'SettingsCtrl'
-    }))
-	.when('/events', angularAMD.route({
-        templateUrl: defaultPath+'events', controller: 'EventsCtrl'
-    }))
-    .when('/userlist/:oid', angularAMD.route({
-        templateUrl: defaultPath+'events_userlist', controller: 'UserListCtrl'
-    }))
-    .when('/eventsetup', angularAMD.route({
-        templateUrl: defaultPath+'eventsetup', controller: 'EventSetupCtrl'
-    }))
-    .when('/eventprogress', angularAMD.route({
-        templateUrl: defaultPath+'eventsetup_progress', controller: 'EventProgressCtrl'
-    }))
-    .when('/eventsubmit', angularAMD.route({
-        templateUrl: defaultPath+'eventsetup_submit', controller: 'EventSubmitCtrl'
-    }))
-    .when('/eventempty', angularAMD.route({
-        templateUrl: defaultPath+'eventsetup_empty'
-    }))
-    .otherwise({redirectTo: "/home"});
-  });
+  .config(['$httpProvider', '$routeProvider', '$locationProvider', '$mdThemingProvider', 
+	function ($httpProvider, $routeProvider, $locationProvider, $mdThemingProvider) {
+		/**Send Cookie [S]**/
+			$httpProvider.defaults.withCredentials = true;
+			$httpProvider.defaults.useXDomain = true;
+		/**Send Cookie [E]**/
+		/**Theme [S]**/
+			$mdThemingProvider.theme('docs-dark', 'default')
+				.primaryPalette('green')
+				.dark();
+			$mdThemingProvider.theme('default')
+				.primaryPalette('blue',{'default':'800'})
+				.accentPalette('green',{'default':'500'});
+		/**Theme [E]**/
+		$routeProvider
+		.when("/home", angularAMD.route({
+			templateUrl: defaultPath+'home'
+		}))
+		.when("/settings", angularAMD.route({
+			templateUrl: defaultPath+'settings', controller: 'SettingsCtrl'
+		}))
+		.when('/events', angularAMD.route({
+			templateUrl: defaultPath+'events', controller: 'EventsCtrl'
+		}))
+		.when('/userlist/:oid', angularAMD.route({
+			templateUrl: defaultPath+'events_userlist', controller: 'UserListCtrl'
+		}))
+		.when('/eventsetup', angularAMD.route({
+			templateUrl: defaultPath+'eventsetup', controller: 'EventSetupCtrl'
+		}))
+		.when('/eventprogress', angularAMD.route({
+			templateUrl: defaultPath+'eventsetup_progress', controller: 'EventProgressCtrl'
+		}))
+		.when('/eventsubmit', angularAMD.route({
+			templateUrl: defaultPath+'eventsetup_submit', controller: 'EventSubmitCtrl'
+		}))
+		.when('/eventempty', angularAMD.route({
+			templateUrl: defaultPath+'eventsetup_empty'
+		}))
+		.otherwise({redirectTo: "/home"});
+  }]);
 
-  app.controller('MenuCtrl', function($rootScope, $scope, $timeout, $mdSidenav) {
+  app.controller('MenuCtrl', ['$rootScope', '$scope', '$timeout', '$mdSidenav', 
+	function($rootScope, $scope, $timeout, $mdSidenav) {
 	  $rootScope.imageUrl = cpImageURL + "?" + new Date().getTime();
 	  
       $scope.menuList=[
@@ -89,9 +91,10 @@ define(['angularAMD',
 	  $scope.close = function() {
 		$mdSidenav('left').close();
 	  };
-	})
+  }])
 
-  app.controller('AppCtrl', function($rootScope, $scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
+  app.controller('AppCtrl', ['$rootScope', '$scope', '$route', '$routeParams', '$location', '$timeout', '$mdSidenav', '$mdBottomSheet', 
+	function($rootScope, $scope, $route, $routeParams, $location, $timeout, $mdSidenav, $mdBottomSheet) {
 	  var previousPaths=[];
 	  $scope.$on('$routeChangeSuccess', function() {
 		  previousPaths.push($location.$$path);
@@ -118,37 +121,38 @@ define(['angularAMD',
 		}).then(function(clickedItem) {
 		});
 	  };
-	})
+	}])
 
-    app.controller('BottomMenuCtrl', function($rootScope, $scope, $location, $mdDialog, $mdBottomSheet) {
-      $scope.items = [
-        { name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
-        { name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
-        { name: 'About', icon: 'glyphicon-user', loc:'about' },
-        { name: 'Calendar', icon: 'glyphicon-calendar', loc:homeURL },
-        { name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:logoutURL }
-      ];
-      $scope.listItemClick = function(path) {
+    app.controller('BottomMenuCtrl', ['$rootScope', '$scope', '$location', '$mdDialog', '$mdBottomSheet', 
+		function($rootScope, $scope, $location, $mdDialog, $mdBottomSheet) {
+		  $scope.items = [
+			{ name: 'Home', icon: 'glyphicon-home', loc:'#/home' },
+			{ name: 'Settings', icon: 'glyphicon-wrench', loc:'#/settings' },
+			{ name: 'About', icon: 'glyphicon-user', loc:'about' },
+			{ name: 'Calendar', icon: 'glyphicon-calendar', loc:homeURL },
+			{ name: 'LogOff', icon: 'glyphicon-remove-sign red', loc:logoutURL }
+		  ];
+		  $scope.listItemClick = function(path) {
 
-        if(path != 'about'){
-            $mdBottomSheet.hide("");
-            if(path == '#/settings'){
-               $rootScope.openWindow = false;
-            }else{
-               $rootScope.openWindow = true;
-            }
-            location.href=path;
-        }else{
-            $mdDialog.show(
-              $mdDialog.alert()
-                .title('About')
-                .content('Administrator - All rights reserved to JOM Jaring 2015')
-                .ariaLabel('About')
-                .ok('Close')
-            );
-        }
-      };
-    })
+			if(path != 'about'){
+				$mdBottomSheet.hide("");
+				if(path == '#/settings'){
+				   $rootScope.openWindow = false;
+				}else{
+				   $rootScope.openWindow = true;
+				}
+				location.href=path;
+			}else{
+				$mdDialog.show(
+				  $mdDialog.alert()
+					.title('About')
+					.content('Administrator - All rights reserved to JOM Jaring 2015')
+					.ariaLabel('About')
+					.ok('Close')
+				);
+			}
+		  };
+    }])
 
   return angularAMD.bootstrap(app);
 });

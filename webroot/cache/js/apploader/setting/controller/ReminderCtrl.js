@@ -1,96 +1,97 @@
 define(['app','modalInstance'], function (app) {
-    app.controller('ReminderCtrl', function($scope, $http, $modal, $routeParams) {
+    app.controller('ReminderCtrl', ['$scope', '$http', '$modal', '$routeParams', 
+		function($scope, $http, $modal, $routeParams) {
 	
-		$scope.emailValidate = "Resend Email Validation";
-		$scope.isValidEmail = true;
+			$scope.emailValidate = "Resend Email Validation";
+			$scope.isValidEmail = true;
+			
+			//**Control for admin creation**/
+			$scope.clickCreate = adminCreateUrl;
+			$scope.allowSetup = !cookieAccess("Cal_Ctrl");
+			//**Control for admin creation**/
 		
-		//**Control for admin creation**/
-		$scope.clickCreate = adminCreateUrl;
-		$scope.allowSetup = !cookieAccess("Cal_Ctrl");
-		//**Control for admin creation**/
-	
-		$scope.succ = function(data){
-			if(data.success != "ok"){
-				$scope.r_day = (data.reminderDays!=undefined && data.reminderDays.indexOf(1) > -1);
-				$scope.r_week = (data.reminderDays!=undefined && data.reminderDays.indexOf(7) > -1);
-				if(data.alertEmail != undefined && data.alertEmail != ""){
-					$scope.chk_email = true;
-					$scope.n_email = data.alertEmail;
-					$scope.str_email = data.alertEmail;
-					$scope.isValidEmail = data.validEmail;
+			$scope.succ = function(data){
+				if(data.success != "ok"){
+					$scope.r_day = (data.reminderDays!=undefined && data.reminderDays.indexOf(1) > -1);
+					$scope.r_week = (data.reminderDays!=undefined && data.reminderDays.indexOf(7) > -1);
+					if(data.alertEmail != undefined && data.alertEmail != ""){
+						$scope.chk_email = true;
+						$scope.n_email = data.alertEmail;
+						$scope.str_email = data.alertEmail;
+						$scope.isValidEmail = data.validEmail;
+					}
+					if(data.alertSMS != undefined && data.alertSMS != ""){
+						$scope.chk_sms = true;
+						$scope.n_sms = data.alertSMS;
+					}
+					$scope.allowCreation = data.allowCreation;
 				}
-				if(data.alertSMS != undefined && data.alertSMS != ""){
-					$scope.chk_sms = true;
-					$scope.n_sms = data.alertSMS;
+			};
+			
+			getHTTP($http,subsReminderURL, $scope.succ);
+			/**Save User profile**/
+			$scope.save = function(){
+				
+				$scope.errors = undefined;
+				
+				if ($scope.flag) {
+					return;
 				}
-				$scope.allowCreation = data.allowCreation;
+				
+				if ($scope.setting.$valid == false || extraInvalidChk($scope)){
+					$scope.flag = false;
+					return;
+				}
+		
+				$scope.flag = true;
+				$scope.formData = saveReminder($scope);
+				
+				var succFunc = function(data){
+					if($scope.str_email != $scope.n_email)
+						$scope.isValidEmail = false;
+					$scope.open();
+					$scope.flag = false;
+					}
+				var failFunc = function(data){
+					$scope.errors = data.errors;
+					$scope.flag = false;
+					}
+				var errFunc = function(data){
+					$scope.errors = data.errors;
+					$scope.flag = false;
+					}
+				
+				funcHTTP($http, "POST", subsReminderURL, $scope.formData, succFunc, failFunc, errFunc);
 			}
-	    };
-	    
-	    getHTTP($http,subsReminderURL, $scope.succ);
-	    /**Save User profile**/
-		$scope.save = function(){
+			/**Save user profile[E]**/
 			
-			$scope.errors = undefined;
+			/**Cancel button[S]**/
+			$scope.cancel = cancelBtn;
+			/**Cancel button[E]**/
 			
-			if ($scope.flag) {
-		        return;
-		    }
-			
-			if ($scope.setting.$valid == false || extraInvalidChk($scope)){
-				$scope.flag = false;
-				return;
+			/**Open Modal[S]**/
+			$scope.open = function () {
+			   var modalInstance = $modal.open({
+				 templateUrl: 'popupdialog.html',
+				 controller: 'ModalInstanceCtrl',
+				 backdrop: 'static',
+				 resolve: {}
+			   });
+			};
+			/**Open Modal[E]**/
+		
+			/**Reminder[S]**/
+			$scope.resentEmailValidator = function(){			
+				$scope.emailValidateFlag = true;
+				
+				$scope.succ2 = function(data){
+					$scope.emailValidate = "Sent";
+				};
+				
+				getHTTP($http,emailVerificationURL, $scope.succ2);	
 			}
-	
-			$scope.flag = true;
-			$scope.formData = saveReminder($scope);
-			
-			var succFunc = function(data){
-				if($scope.str_email != $scope.n_email)
-					$scope.isValidEmail = false;
-				$scope.open();
-		    	$scope.flag = false;
-				}
-		    var failFunc = function(data){
-		    	$scope.errors = data.errors;
-		        $scope.flag = false;
-		    	}
-		    var errFunc = function(data){
-		    	$scope.errors = data.errors;
-		    	$scope.flag = false;
-		   		}
-		    
-		    funcHTTP($http, "POST", subsReminderURL, $scope.formData, succFunc, failFunc, errFunc);
-		}
-		/**Save user profile[E]**/
-		
-		/**Cancel button[S]**/
-		$scope.cancel = cancelBtn;
-		/**Cancel button[E]**/
-		
-		/**Open Modal[S]**/
-		$scope.open = function () {
-		   var modalInstance = $modal.open({
-		     templateUrl: 'popupdialog.html',
-		     controller: 'ModalInstanceCtrl',
-		     backdrop: 'static',
-		     resolve: {}
-		   });
-		};
-		/**Open Modal[E]**/
-	
-		/**Reminder[S]**/
-		$scope.resentEmailValidator = function(){			
-			$scope.emailValidateFlag = true;
-			
-			$scope.succ2 = function(data){
-				$scope.emailValidate = "Sent";
-		    };
-		    
-		    getHTTP($http,emailVerificationURL, $scope.succ2);	
-		}
-		/**Reminder[E]**/
-    });
+			/**Reminder[E]**/
+    }]);
 
     /**Copy user profiles**/
     function saveReminder($scope){

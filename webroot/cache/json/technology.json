@@ -98,5 +98,15 @@
 "tech":"Ng-FlowJS", 
 "deprecated":"false",
 "detail":"File uploading in javascript."
+},
+{
+"tech":"ReactJS", 
+"deprecated":"false",
+"detail":"Similar javascript framework like React, it's just faster."
+},
+{
+"tech":"Gradle", 
+"deprecated":"false",
+"detail":"Deployment tools."
 }
 ]

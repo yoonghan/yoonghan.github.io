@@ -61,7 +61,8 @@ define(['app','modalInstance','lodash'], function (app) {
     }
 
     //Request is gathered from user session
-    app.controller('ProfileCtrl', function ($scope, $http, $modal, $routeParams) {
+    app.controller('ProfileCtrl', ['$scope', '$http', '$modal', '$routeParams', 
+		function ($scope, $http, $modal, $routeParams) {
 
         init($scope);
 
@@ -116,7 +117,7 @@ define(['app','modalInstance','lodash'], function (app) {
         /**Cancel button[S]**/
         $scope.cancel = cancelBtn;
         /**Cancel button[E]**/
-    });
+    }]);
 
     function insert($http, $scope){
 

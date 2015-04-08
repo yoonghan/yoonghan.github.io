@@ -290,7 +290,7 @@ define([
         }
 
     }])
-    .controller('ModalInstanceCtrl', function ($scope, $modalInstance, status, message) {
+    .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'status', 'message', function ($scope, $modalInstance, status, message) {
       $scope.status = status=='ok'?true:false;
 
       if($scope.status){
@@ -302,89 +302,89 @@ define([
       $scope.ok = function () {
         $modalInstance.close();
       };
-    })
-    .controller('ModalUserReqCtrl', function ($scope, $modalInstance, errors, id, conf, userInfo, email, ctcNo, addr, pstCd, state, listStates) {
+    }])
+    .controller('ModalUserReqCtrl', ['$scope', '$modalInstance', 'errors', 'id', 'conf', 'userInfo', 'email', 'ctcNo', 'addr', 'pstCd', 'state', 'listStates', 
+		function ($scope, $modalInstance, errors, id, conf, userInfo, email, ctcNo, addr, pstCd, state, listStates) {
 
-        /**Check availability[S]**/
-        $scope.checkUserInfo = function(action){
+			/**Check availability[S]**/
+			$scope.checkUserInfo = function(action){
 
-            var ternary = $scope.userInfo.toString(3);
-            var position = -1;
+				var ternary = $scope.userInfo.toString(3);
+				var position = -1;
 
-            switch(action){
-            case "Email":
-                position = ternary.length-2;
-                break;
-            case "ContactNo":
-                position = ternary.length-3;
-                break;
-            case "Address":
-                position = ternary.length-4;
-                break;
-            }
+				switch(action){
+				case "Email":
+					position = ternary.length-2;
+					break;
+				case "ContactNo":
+					position = ternary.length-3;
+					break;
+				case "Address":
+					position = ternary.length-4;
+					break;
+				}
 
-            return position < 0? 0 : parseInt(ternary.charAt(position),10);
-        }
+				return position < 0? 0 : parseInt(ternary.charAt(position),10);
+			}
 
-        var isActValid = function(action){
-            return ($scope.checkUserInfo(action) == 0 ? false : true);
-        }
+			var isActValid = function(action){
+				return ($scope.checkUserInfo(action) == 0 ? false : true);
+			}
 
-        $scope.isReq = function(action){
-            return ($scope.checkUserInfo(action) == 2 ? true : false);
-        }
-        /**Check availability[E]**/
+			$scope.isReq = function(action){
+				return ($scope.checkUserInfo(action) == 2 ? true : false);
+			}
+			/**Check availability[E]**/
 
-        /**Initialize[S]**/
-        $scope.postalCd = /^[1-9][0-9]{0,4}$/;
-        $scope.number = /^\+?[0-9]{0,13}$/;
+			/**Initialize[S]**/
+			$scope.postalCd = /^[1-9][0-9]{0,4}$/;
+			$scope.number = /^\+?[0-9]{0,13}$/;
 
-        $scope.userInfo = userInfo;
-        $scope.dtl_email = email;
-        $scope.dtl_ctcNo = ctcNo;
-        $scope.dtl_addr = addr;
-        $scope.dtl_pstCd = pstCd;
-        $scope.states = listStates;
-        if(errors.length != 0)
-            $scope.errors =  errors;
-        else
-            $scope.errors =  undefined;
+			$scope.userInfo = userInfo;
+			$scope.dtl_email = email;
+			$scope.dtl_ctcNo = ctcNo;
+			$scope.dtl_addr = addr;
+			$scope.dtl_pstCd = pstCd;
+			$scope.states = listStates;
+			if(errors.length != 0)
+				$scope.errors =  errors;
+			else
+				$scope.errors =  undefined;
 
-        //Complex to select state, thanks to Angular :(
-        var jsonState=eval("({'id':'"+state+"'})");
-        $scope.dtl_state = $scope.states[_.findIndex($scope.states, jsonState)];
+			//Complex to select state, thanks to Angular :(
+			var jsonState=eval("({'id':'"+state+"'})");
+			$scope.dtl_state = $scope.states[_.findIndex($scope.states, jsonState)];
 
-        $scope.isEmailShow = isActValid("Email");
-        $scope.isContactNoShow = isActValid("ContactNo");
-        $scope.isAddressShow = isActValid("Address");
-        /**Initialize[E]**/
+			$scope.isEmailShow = isActValid("Email");
+			$scope.isContactNoShow = isActValid("ContactNo");
+			$scope.isAddressShow = isActValid("Address");
+			/**Initialize[E]**/
 
-        $scope.dtl_ok = function () {
-            if($scope.detail.$valid){
-                var formData = {
-                    _id: id,
-                    conf: conf,
-                    userInfo: $scope.userInfo
-                };
+			$scope.dtl_ok = function () {
+				if($scope.detail.$valid){
+					var formData = {
+						_id: id,
+						conf: conf,
+						userInfo: $scope.userInfo
+					};
 
-                if($scope.isEmailShow)
-                    formData.email = $scope.dtl_email;
-                if($scope.isContactNoShow)
-                    formData.ctcNo = $scope.dtl_ctcNo;
-                if($scope.isAddressShow){
-                    formData.state = $scope.dtl_state.id;
-                    formData.pstCd = $scope.dtl_pstCd;
-                    formData.addr = $scope.dtl_addr;
-                }
-                $modalInstance.close(formData);
-            }
+					if($scope.isEmailShow)
+						formData.email = $scope.dtl_email;
+					if($scope.isContactNoShow)
+						formData.ctcNo = $scope.dtl_ctcNo;
+					if($scope.isAddressShow){
+						formData.state = $scope.dtl_state.id;
+						formData.pstCd = $scope.dtl_pstCd;
+						formData.addr = $scope.dtl_addr;
+					}
+					$modalInstance.close(formData);
+				}
 
-        };
-        $scope.dtl_cancel = function () {
-            $modalInstance.close();
-        };
-    });
-    /**Pop up dialog[E]**/
+			};
+			$scope.dtl_cancel = function () {
+				$modalInstance.close();
+			};
+    }]);
 
     function obtainDay(date){
         return moment(date).format("DD");

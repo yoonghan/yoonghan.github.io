@@ -103,7 +103,7 @@
 <!-- script for slider -->
 <script>
 $(function() {
- $.getJSON("http://localhost:9000/rest/image/intro",function(data)
+ $.getJSON(imageURL,function(data)
  {
 	$.vegas( 'slideshow', data)('overlay'); 
  }); 

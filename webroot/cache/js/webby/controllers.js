@@ -1,5 +1,7 @@
 'use strict';
 
+var imageURL = "http://localhost:9000/rest/image/intro";
+
 var contactus = "You can contact us via Email: "+
 	"<a href=\"mailto:jomjaring@gmail.com\">jomjaring@gmail.com</a>"+
 	" or "+ 

@@ -1,5 +1,5 @@
 define(['app'], function (app) {
-    app.controller('ModalInstanceCtrlProfile', function ($scope, $modalInstance, status) {
+    app.controller('ModalInstanceCtrlProfile', ['$scope', '$modalInstance', 'status', function ($scope, $modalInstance, status) {
       $scope.status = status;
 
       $scope.ok = function () {
@@ -7,11 +7,11 @@ define(['app'], function (app) {
             redirectPage();
         $modalInstance.close();
       };
-    });
+    }]);
 
-    app.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+    app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
       $scope.ok = function () {
     	$modalInstance.close();
       };
-    });
+    }]);
 });

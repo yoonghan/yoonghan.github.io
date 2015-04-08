@@ -5,7 +5,7 @@ proposalApp.config(['$routeProvider', '$httpProvider',
          	
          	    $routeProvider
          	      .when('/load/:loadId', {
-         	        templateUrl: 'proposal/loads',
+         	        templateUrl: 'special/proposal/',
          	        controller: 'ProgressCtrl',
          	        controllerAs: 'progress'
          	      });
@@ -31,8 +31,8 @@ proposalApp.controller('loaderCtrl', ['$scope', '$route', '$routeParams', '$loca
 proposalApp.controller('ProgressCtrl', ['$scope', '$http', '$interval', '$routeParams', '$location',
      function($scope, $http, $interval, $routeParams, $location) {
 	
-  	  var interval = 6000;
-  	  var MAX = 100;
+  	  var interval = 1000;
+  	  var MAX = 50;
   	  var stop;
   	
   	  $scope.progressValue = -1; 
