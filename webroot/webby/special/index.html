@@ -15,16 +15,10 @@ span {
   top: 40%; left: 0; bottom: 40%; right: 0;
 };
 </style>
-<script>
-function getTotalDurationInSeconds(){
-	return 10;
-}
-function pauseAnimationAt(time){
-	console.log(time);
-}
-</script>	
 </head>
 <body ng-app="proposalApp" ng-controller="loaderCtrl">
+
+<div id="change">This image to change</div>
 
 <div ng-view>
 
@@ -54,7 +48,5 @@ RELEASE 1.0
 <script src="/cache/js/lib/angular/angular.min.js"></script>
 <script src="/cache/js/lib/angular/angular-route.min.js"></script>
 <script src="/cache/js/lib/angular/angular-animate.min.js"></script>
-<script src="/cache/js/lib/angular/ui-bootstrap-custom-0.12.0.min.js"></script>
-<script src="/cache/js/lib/angular/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 <script src="/cache/js/webby/proposal.js"></script>
 </html>

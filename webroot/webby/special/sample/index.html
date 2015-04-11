@@ -1,0 +1,178 @@
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+	<style>
+		body{
+		  background-color:#333;
+		  margin:0;
+		}
+
+		#container{
+		  background-color:black;
+		  width:838px;
+		  height:400px;
+		  overflow:hidden;
+		  position:relative;
+		  
+		}
+
+		#playPause{
+		  position:absolute;
+		  left:720px;
+		  top:350px;
+		  z-index:1;
+		}
+
+		.creature{
+		  background:url(http://www.greensock.com/_img/codepen/bezierCreature/creature_red.png);
+		  width:27px;
+		  height:29px;
+		  
+		  position:absolute;
+		}
+		#slider{
+		  posistion:relative;  
+		  width:700px;
+		  top:20px;  
+		  left:25px;
+		}
+
+		.ui-slider .ui-slider-handle { 
+		  width: 40px !important; 
+		  margin-left: -20px !important; 
+		  height:40px !important; 
+		  margin-top:-10px !important;
+		}
+
+		button {
+		  width:100px;
+		  padding:10px;
+		}
+		
+		#second {
+			width:838px;
+			height:400px;
+			position:relative;
+			overflow:hidden;
+			display: none;
+		}
+		.box {
+		  width:100px;
+		  height:100px;
+		  position:relative;
+		  border-radius:6px;
+		  margin-top:4px;
+		  text-align:center;
+		  line-height:100px;
+		  color:black;
+		  font-size:80px;
+		}
+
+		.green{
+		  background-color:#6fb936;
+		}
+	</style>
+</head>
+<body>
+	<div id="first">
+		<button id="playPause">play</button>
+		<div id="container"></div>
+	</div>
+	<div id="second">
+		<div class="box green" id="greenBox">0</div>
+		<div id="result1" style="color:#fff">OFF1</div>
+		<div id="result2" style="color:#fff">OFF2</div>
+		<div id="result3" style="color:#fff">OFF3</div>
+	</div>
+</body>
+<script src="/cache/js/movie/jquery.min.js"></script>
+<script src="/cache/js/movie/jquery-ui/jquery-ui.min.js"></script>
+<script src="/cache/js/movie/TweenMax.min.js"></script>
+<script src="/cache/js/movie/TimeLineMax.min.js"></script>
+<script>
+	var container = $("#container"),tl;
+	var firstLoopTimes = 100;
+
+	function getAnimation() {
+	  var element = $('<div class="creature"/>');
+	  container.append(element);
+	  TweenLite.set(element, {x:-30, y:300})
+	  //bezier magic provided by GSAP BezierPlugin (included with TweenMax)
+	  //http://api.greensock.com/js/com/greensock/plugins/BezierPlugin.html
+	  
+	 //create a semi-random tween 
+	  var bezTween = new TweenMax(element, 6, {
+		bezier:{
+		  type:"soft", 
+		  values:[{x:60, y:80}, {x:150, y:30}, {x:400 + Math.random() *100, y:320*Math.random() + 50}, {x:500, y:320*Math.random() + 50}, {x:700, y:100}, {x:850, y:500}],
+		  autoRotate:true
+		},
+		ease:Linear.easeNone});
+	  return bezTween;
+	}
+
+	//create a bunch of Bezier tweens and add them to a timeline
+	function buildTimeline() {
+	  tl = new TimelineMax({repeat:firstLoopTimes, onUpdate:updateTime, delay:1});
+	  for (i = 0 ; i< 20; i++){
+		//start creature animation every 0.17 seconds
+		tl.add(getAnimation(), i * 0.17);
+	  }
+	}
+	
+	//Update the time
+	var counter=0;
+	function updateTime() {
+		if(tl.progress() > 0.9){
+			counter ++;
+		}
+		if(counter > firstLoopTimes){
+			tl.stop();
+			$("#first").hide();
+			$("#second").show();
+			makeSecondHappen();
+			tl.restart();
+			counter=0;
+		}
+	} 
+	
+	var makeSecondHappen = function(){
+		var box = document.getElementById("greenBox"),
+		count = 0,
+		tween;
+
+		tween = TweenMax.to(box, 2, {left:"200px", repeat:10, yoyo:true, onRepeat:onRepeat, repeatDelay:0.1, ease:Linear.easeNone});
+
+		function onRepeat() {
+		  count++;
+		  box.innerHTML = count;
+		  TweenLite.set(box, {backgroundColor:"hsl(" + Math.random() * 255 + ", 90%, 60%)"});
+		}
+
+		tl = new TimelineMax({repeat:firstLoopTimes, onUpdate:updateTime, delay:1});
+		tl.add(tween);
+	}
+	
+	//smoothe play pause by tweening the timeScale()
+	$("#playPause").click(function(){
+	  if(this.innerHTML === "play"){
+		this.innerHTML = "pause"
+		TweenLite.to(tl, 2, {timeScale:1})
+	  } else {
+		this.innerHTML = "play"
+		TweenLite.to(tl, 2, {timeScale:0})
+	  }
+	})
+	
+	buildTimeline();
+	tl.progress(0.5).timeScale(0);
+	
+	function getTotalDurationInSeconds(){
+		return 60;
+	}
+	function pauseAnimationAt(time){
+		tl.progress(time).timeScale(0);
+	}
+</script>
+</html>
