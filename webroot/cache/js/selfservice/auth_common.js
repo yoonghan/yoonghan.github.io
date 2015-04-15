@@ -61,10 +61,12 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
         data    : _data,
         headers: {'Content-Type': 'application/json'}
     })
-    .success(function(data) {
+    .success(function(data, status) {
     	//$("#auth_common_lbl").hide();
     	angular.element(document.querySelector('#auth_common_lbl')).css('display','none');
-        if (data.success) {
+    	if (status = 204) {
+    	    succfunc("ok");
+    	}else if (data.success) {
         	succfunc(data);
         }else{
         	failfunc(data);

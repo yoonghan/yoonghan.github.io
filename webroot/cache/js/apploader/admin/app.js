@@ -62,7 +62,7 @@ define(['angularAMD',
 		.when('/userlist/:oid', angularAMD.route({
 			templateUrl: defaultPath+'events_userlist', controller: 'UserListCtrl'
 		}))
-		.when('/eventsetup', angularAMD.route({
+		.when('/event-setup', angularAMD.route({
 			templateUrl: defaultPath+'eventsetup', controller: 'EventSetupCtrl'
 		}))
 		.when('/eventprogress', angularAMD.route({
@@ -74,6 +74,9 @@ define(['angularAMD',
 		.when('/eventempty', angularAMD.route({
 			templateUrl: defaultPath+'eventsetup_empty'
 		}))
+		.when('/events-edit', angularAMD.route({
+            templateUrl: defaultPath+'events_edit', controller: 'EventsEditCtrl'
+        }))
 		.otherwise({redirectTo: "/home"});
   }]);
 
@@ -83,7 +86,8 @@ define(['angularAMD',
 	  
       $scope.menuList=[
 		   {pg:"Events",icon:"glyphicon-tasks",lnk:"#/events"},
-		   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/eventsetup"}
+		   {pg:"Setup",icon:"glyphicon-wrench",lnk:"#/event-setup"},
+		   {pg:"Edit",icon:"glyphicon-wrench",lnk:"#/events-edit"}
 	  ];
       
       $rootScope.openWindow = true;

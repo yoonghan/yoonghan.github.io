@@ -52,20 +52,22 @@ define(['app'], function (app) {
 					$mdDialog.show(confirm).then(function() {
 						var succFunc = function(data){
 							$scope.calInfo.avail = $scope.calInfo.avail + 1;
+							$scope.flag = false;
 							$route.reload();
 							}
 						var failFunc = function(data){
-							$scope.showAlert(ev, data.error);
+							$scope.showAlert(ev, data.errors);
+							$scope.flag = false;
 							}
 						var errFunc = function(data){
 							$scope.showAlert(ev, "Please try again later, or inform the us.");
+							$scope.flag = false;
 							}
 
 						funcHTTP($http, "DELETE", cmdreservationURL, $scope.formData, succFunc, failFunc, errFunc);
 					}, function() {
+					    $scope.flag = false;
 					});
-
-				$scope.flag = false;
 				/**booking confirmation [E]**/
 			}
 
@@ -76,16 +78,18 @@ define(['app'], function (app) {
 				var formData = {_id: calId, userId: maskId};
 				var succFunc = function(data){
 					$route.reload();
+					$scope.flag = false;
 					}
 				var failFunc = function(data){
-					$scope.showAlert("error",data.error)
+					$scope.showAlert("error",data.errors)
+					$scope.flag = false;
 					}
 				var errFunc = function(data){
-					$scope.showAlert("error",data.error)
+					$scope.showAlert("error",data.errors)
+					$scope.flag = false;
 					}
 
 				funcHTTP($http, "POST", cmdreservationURL, formData, succFunc, failFunc, errFunc);
-				$scope.flag = false;
 				/**booking confirmation [E]**/
 			};
 
