@@ -64,7 +64,7 @@ function funcHTTP($http, _method, _url, _data, succfunc, failfunc, errfunc){
     .success(function(data, status) {
     	//$("#auth_common_lbl").hide();
     	angular.element(document.querySelector('#auth_common_lbl')).css('display','none');
-    	if (status = 204) {
+    	if (status === 204) {
     	    succfunc("ok");
     	}else if (data.success) {
         	succfunc(data);
