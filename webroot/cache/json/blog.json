@@ -169,6 +169,11 @@
   "date":"Apr 9th, 2015",
   "task":"Completion Stage 1",
   "detail":"Completed the whole scheduler which includes integration, deployment, minimization and load test. If possible would only push more data for a turrel testing."
+},
+{
+  "date":"Apr 21st, 2015",
+  "task":"Cloudflare for speed",
+  "detail":"Sped up loading using CloudFlare CDN as previous server is stationed in US."
 }
 ]
 }
