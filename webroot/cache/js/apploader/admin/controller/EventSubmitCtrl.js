@@ -46,7 +46,7 @@ define(['app','moment'], function (app, moment) {
 					})
 					.success(function(data) {
 						$scope.events = data;
-						$scope.groupEvents = _.groupBy($scope.events, function(num){ var d = new Date(num.start); var date = (new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0)); return date.getTime();});
+						$scope.groupEvents = groupEvent(data);
 					})
 					.error(function(data){
 						$scope.events = [];
@@ -55,7 +55,7 @@ define(['app','moment'], function (app, moment) {
 				}else{
 					var confFunc = function(data){
 						$scope.events = data;
-						$scope.groupEvents = _.groupBy($scope.events, function(num){ var d = new Date(num.start); var date = (new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0)); return date.getTime();});
+						$scope.groupEvents = groupEvent(data);
 					};
 					getHTTP($http, calSetupConfURL+"/0/0", confFunc);
 				}
@@ -177,6 +177,14 @@ define(['app','moment'], function (app, moment) {
 
 			function obtainTime(time){
 				return moment(time).format("HHmm");
+			}
+			
+			function groupEvent(data){
+				return _.groupBy(data, function(num){
+						var d = new Date(num.start); 
+						var date = (new Date(d.getUTCFullYear(), d.getUTCMonth(), 1, 0, 0, 0, 0)); 
+						return date.getTime();
+					});
 			}
     }]);
 });

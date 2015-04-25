@@ -66,11 +66,11 @@
 			<tr class="repeated-item" ng-repeat="e in bookingList | orderBy:predicate:reverse | filter:search | startFrom:(currentPage-1)*pageSize | limitTo:pageSize">
 				<td>{{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}</td>
 				<td>
-					<span ng-show="!e.allDay">{{e.start | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="!e.allDay">{{e.start | date:'hh:mm a' : 'UTC'}}</span>
 					<span ng-show="e.allDay">Full Day</span>
 				</td>
 				<td>
-					<span ng-show="!e.allDay">{{e.end | date:'HH:mm a' : 'UTC'}}</span>
+					<span ng-show="!e.allDay">{{e.end | date:'hh:mm a' : 'UTC'}}</span>
 					<span ng-show="e.allDay">-</span>
 				</td>
 				<td>{{e.title}}</td>

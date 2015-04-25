@@ -266,14 +266,14 @@ define([
             }
             var failFunc = function(data){
                 $scope.flag = false;
-                $scope.open('nak', data.error);
+                $scope.open('nak', data.errors);
             }
             var errFunc = function(data){
                 $scope.flag = false;
                 if(method == "POST" && formData.userInfo !=0){
                     $scope.openVer2(formData.userInfo, formData._id, formData.conf, formData.email, formData.ctcNo, formData.addr, formData.pstCd, formData.state, data.errors);
                 }else{
-                    $scope.open('nak', data.error !== 'undefined' ? data.error : "Internal Server Error, please try again.");
+                    $scope.open('nak', data.errors !== 'undefined' ? data.errors : "Internal Server Error, please try again.");
                 }
             }
 
@@ -292,11 +292,21 @@ define([
     }])
     .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'status', 'message', function ($scope, $modalInstance, status, message) {
       $scope.status = status=='ok'?true:false;
-
+		
       if($scope.status){
           $scope.statMsg = message;
       }else{
-          $scope.statMsg = message==""?"Booking Not Accepted.":message;
+    	  if(typeof message !== 'string'){
+    		var _messages = message;
+    		message="";
+    		for(var i=0; i<_messages.length; i++){
+    			message += _messages[i];
+    			if((i+1) < _messages.length){
+    				message += ",";
+    			}
+    		}
+    	  }
+          $scope.statMsg = message===""?"Booking Not Accepted.":message;
       }
 
       $scope.ok = function () {
