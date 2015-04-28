@@ -5,7 +5,7 @@ define(['jquery'], function ($) {
         tutorialInit:function ($scope, $location){
 
             var msg = [
-                       [0,"Let's begin our tutorial by navigate with the <strong>Right(&raquo;)</strong> buttons below to proceed.<br>To return to your previous step click the <strong>Left(&laquo;)</strong> button."],
+                       [0,"Let's begin our tutorial by navigate with the <strong>Right(&raquo;)</strong> buttons above to proceed.<br>To return to your previous step click the <strong>Left(&laquo;)</strong> button."],
                        [1,"To start, we will begin with the need to change your <strong>Profile Settings</strong>. Click on the blinking button on top right which indicates <strong>Settings</strong> or, click the button here to proceed: <a class='btn btn-primary' href="+settingsURL+"#/?tut=1'>Continue tutorial</a>."]
                       ];
 

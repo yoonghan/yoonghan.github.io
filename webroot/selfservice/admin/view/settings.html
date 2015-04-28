@@ -161,7 +161,7 @@
         </div>
 
         <div class="modal-body" flow-init
-                    flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()] && !($file.size > 1*1024*1024)"
+                    flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,jpg:1,jpeg:1}[$file.getExtension()] && !($file.size > 5*1024*1024)"
                     flow-complete="uploader($flow)">
             <div class="jumbotron borderdotted" flow-drop flow-drag-enter="style={border:'2px solid green'}" flow-drag-leave="style={}" ng-style="style" ng-show="!flag_upload">
                 <span class="btn btn-success" flow-btn="">Upload Image<input type="file" multiple="multiple" style="visibility : hidden ; position : absolute ;"></span>
@@ -185,7 +185,7 @@
             </div>
 
             <div class="alert alert-warning">
-                <strong>NOTE!</strong> We only server <i>JPEG</i> and <i>PNG</i> files up to <i>1 MB</i>. All images will be resized to a max of <i>150 X 100 pixels</i>.
+                <strong>NOTE!</strong> We only server <i>JPEG</i> and <i>PNG</i> files up to <i>5 MB</i>. All images will be resized to a max of <i>150 X 100 pixels</i>.
             </div>
         </div>
 

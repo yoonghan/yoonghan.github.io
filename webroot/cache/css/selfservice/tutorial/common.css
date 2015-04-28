@@ -17,4 +17,9 @@
 	color: blue;
 	font-weight: bold;
 	font-family: 'Shadows Into Light', cursive;
+	margin-right: 10px;
+	font-size: 24px;
+}
+.tutorialHeight{
+	height:280px;
 }

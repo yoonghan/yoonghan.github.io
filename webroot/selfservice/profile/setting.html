@@ -17,15 +17,17 @@
 <body ng-controller="loaderCtrl" role="document">
 	<div class="viewDisplay container-fluid">
 		<h1><a href="" ng-click="cancel()"><span class="glyphicon glyphicon-arrow-left"></span> Settings</a></h1>
-		<div class="jumbotron" ng-show="tutorialRun" ng-cloak>
+		<div class="jumbotron tutorialHeight" ng-show="tutorialRun" ng-cloak>
 			<span><h2 class="tutorialH2">TUTORIAL</h2>
-				<p ng-bind-html="tutorialMsg">
-				</p>
 				<input id="tutBtnPrv" type="button" value="&laquo;" ng-click="tutorialChgMessage(-1)" class="btn btn-default" ng-disabled="tut_first">
 				<input id="tutBtnNxt" type="button" value="&raquo;" ng-click="tutorialChgMessage(1)" class="btn btn-default" ng-disabled="tut_last">
+				<br>
+				<br>
+				<p ng-bind-html="tutorialMsg">
+				</p>
 			</span>
 		</div>
-		
+		<br>
 		<ul class="nav nav-pills">
 		  <li role="presentation" ng-class="{'active':a_nav===undefined||a_nav==='s'}"><a href="#notify/subscription" ng-click="a_nav='s'" id="lnk_subscription" >Subscription</a></li>
 		  <li role="presentation" ng-class="{'active':a_nav==='r'}"><a href="#notify/reminder" ng-click="a_nav='r'" id="lnk_reminder" >Reminder</a></li>
