@@ -68,7 +68,7 @@
 			</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="e in userList | orderBy:predicate:reverse">
+			<tr ng-repeat="e in userList | immutable | orderBy:predicate:reverse">
 				<td>{{e.lastName}}</td>
 				<td>{{e.firstName}}</td>
 				<td>{{e.email}}</td>

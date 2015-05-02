@@ -47,7 +47,7 @@ md-bottom-sheet.md-grid{border-radius:15px;}
 md-bottom-sheet{padding-bottom:55px;}
 .md-icon-container>.glyphicon{font-size:30pt;}
 
-.view-animate.ng-enter{transition:opacity 0.3s linear;}
+.view-animate.ng-enter{transition:opacity 0.1s linear;}
 .view-animate.ng-enter {opacity:0;}
 .view-animate.ng-enter.ng-enter-active{opacity:1;}
 

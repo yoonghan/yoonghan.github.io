@@ -1,83 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<title>About Us</title>
-<meta charset="utf-8">
-<meta name="description" content="About our venture.">
-<meta name="viewport" content="width=480">
-<link rel="author"	href="https://plus.google.com/u/1/114852108498604797792" />
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>	
-<link rel="stylesheet" href="/cache/css/webby/submenu.css">
-<link rel="stylesheet" href="/cache/css/webby/ssabout.css">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-55768924-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</head>
-<body ng-app="menuApp" ng-controller="subMenuListCtrl" ng-init="init('About Us')">
-	<menu>
-	  <ul>
-		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus" class="repeated-item">
-			<a ng-href="{{menu.link}}">{{menu.display}}</a>
-		</li>
-	  </ul>
-	</menu>
-	<div class="about" style="padding:10px 60px 20px 60px; margin:30px 40px;">
-		<h1>About JOM Jaring</h1>
-	    <intro>
-		<strong>JOM Jaring website was an idea created by 2 masterminds. A boy and a girl. Together we are trying to implement new technologies. While improving this, we plan to sell our photos by piggy-backing on this website. The ultimate goal is to have a user friendly program.</strong>
-		</intro>
-	</div>
+<html lang="en" ng-app="menuApp">
+  <head>
+  	<meta charset="utf-8">
+	<meta name="viewport" content="width=480">
+	<meta name="description" content="Our profile.">
+	<title>About Us</title>
+	<link rel="stylesheet" href="/cache/css/webby/ssabout.css"/>
+	<link rel="stylesheet" href="/cache/css/webby/submenu.css">
+	<link rel="stylesheet" href="/cache/css/tablestack/dialog.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
 	
-	<div id="container">
-		<div id="row">
-			<div id="desc">
-				<img class="profile" src="/cache/img/han.jpg" id="left"/>
-				<h2>Yoong Han</h2>
-				<intro>Came with an idea to start JOM Jaring after reading an inspiring book; titled, "The Monk Who Sold His Ferrari". He has decided
-				to take charge of his life rather than relying only on his job to make a living. He had spend most of his lifeline in Java. <br><br>
-				He's in charge of the architecture and technology of this website.<br><br>
-				Han's hobby varies from photography to outdoor hiking; which he believes out there, are many who shared the same interest as well.</intro>
-			</div>
-		</div>
-		<br>
-		<div id="row">
-			<div id="desc">
-				<img class="profile" src="/cache/img/leewan.jpg" id="right"/>
-				<h2>Gladys Lee Wan</h2>
-				<intro>She's the heart and soul of the project. She's a very young and talented web programmer. It's hard to find a lady programmer, any day, any time.
-				She's an experienced front-end designer and coder.<br><br>
-				She is the approver of the web page design and layouts.<br><br>
-				"Beauty is to an eye of the believer." Gladys is the inspiration to Han and that's how it all begin.</intro>
-			</div>
-		</div>
-		<br>
-	</div>
-	<br>
-	<div class="fullbar">
-	<h1> Interested About Us? </h1>
-	</div>
-	<div id="contactus" style="margin:20px;">
-		<h1>CONTACT US !</h1>
-		<description>If you are interested to contact us, either for the development, progress, advice, photos, freelance, etc. You may get to us via:</description>
-		<br/><br/>
-		<contact ng-bind-html="contactus"></contact>
-		<!--contact>Facebook:</contact-->
-	</div>
-	<br><br/>
+ </head> 
+	
+<body ng-controller="subMenuListCtrl" ng-init="init('About Us')">
+<!----- HEADER START--->   
+<header id="header">
+<div class="content">
+<div id="logo"><a href="/">ABOUT US</a></div>
+
+<nav id="nav">
+	<ul>
+		<li><a href="#slide2" class="active" title="Next Section" >The Guy</a></li>
+		<li><a href="#slide3" title="Next Section">The Girl</a></li>
+		<li><a href="#slide4" title="Next Section">Vision</a></li>
+	</ul>
+</nav>
+</div>
+</header>	
+<!----- HEADER END--->   
+
+<!----- SLIDES START --->   	
+	<div id="slide1">
+		<div class="content">
+			<h3 class="quotes">"There's a story behind every person. This is ours."</h3>
+		</div> 
+    </div> 
+
+	<div id="slide2">
+		<div class="content profile-container" >
+			<div id="row">
+				<div id="cell">
+					<img src="/cache/img/aboutus/han.jpg" id="left" class="profile-pic"/>
+					<h2>Yoong Han</h2>
+					<h3>
+						Came with an idea to start JOM Jaring after reading an inspiring book; titled, "The Monk Who Sold His Ferrari". He has decided
+						to take charge of his life rather than relying only on his job to make a living. He had spend most of his lifeline in Java. <br><br>
+						He's in charge of the architecture and technology of this website.<br><br>
+						Han's hobby varies from photography to outdoor hiking; which he believes out there, are many who shared the same interest as well.
+					</h3>
+				</div>
+			</div> 
+		</div> 
+    </div> 
+	
+	
+   <div id="slide3">
+		<div class="content">
+			<div id="row">
+				<div id="cell">
+					<img src="/cache/img/aboutus/gladys.jpg" id="right" class="profile-pic"/>
+					<h2>Gladys Tai</h2>
+					<h3>
+						She's the heart and soul of the project. She's a very young and talented web programmer. It's hard to find a lady programmer, any day, any time.
+						She's an experienced front-end designer and coder.<br><br>
+						She is the approver of the web page design and layouts.<br><br>
+						"Beauty is to an eye of the believer." Gladys is the inspiration to Han and that's how it all begin.
+					</h3>
+				</div>
+			</div> 
+		</div> 
+    </div> 
+	
+	
+	<div id="slide4">
+		<div class="content">
+            <h2>Our Vision</h2>
+			<h3><strong>The JOM Jaring website was an idea created by both of us; the masterminds. HTTP has continuously grown and started to evolve rapidly in our
+			era. Hence to take this opportunity, we are experimenting and are pushing ourselves to use new and advance technologies.</strong>
+			<h3 class="quotes">“Here is the playground for us to create a pavement to improve ourselves.” </h3>
+			</h3>
+		</div> 
+    </div> 
+	
+	
+	<div id="slide5">
+		<div class="content">
+           <div class="quotes_container">
+		    <h1>Interested with us?</h1>
+		    <h3 class="quotes">
+		    	If you are interested to contact us, either for the development, progress, advice, photos, freelance, etc. 
+		    	<br><br>
+		    	You may get to us via:<br>
+		    	<a id="contact" href="mailto:jomjaring@gmail.com">jomjaring@gmail.com</a> or <a id="contact" href="mailto:mailyoonghan@gmail.com">mailyoonghan@gmail.com</a>
+		    </h3>
+		  </div> 
+		</div> 
+    </div> 
+	
+<!----- SLIDES END --->
 	<div class="footnote">
-	  <ul id="menu">
-		<li ng-repeat="menu in menus" class="repeated-item">
-			<a ng-href="{{menu.link}}">{{menu.display}}</a>
-		</li>
-	  </ul>
-        <div ng-include="'../footer'"></div>
-	If you are interested, do not hesitate to contact us.
+		<ul id="menu">
+			<li ng-repeat="menu in menus" class="repeated-item">
+				<a ng-href="{{menu.link}}">{{menu.display}}</a>
+			</li>
+		</ul>
+		<div ng-include="'../footer'"></div>
 	</div>
 </body>
 <script src="/cache/js/lib/jquery/jquery.min.js"></script>
@@ -85,4 +116,32 @@
 <script src="/cache/js/lib/angular/angular-sanitize.min.js"></script>
 <script src="/cache/js/lib/angular/angular-animate.min.js"></script>
 <script src="/cache/js/webby/controllers.js"></script>
+
+<script>
+   
+$(document).ready(function() {
+  $('a[href*=#]').each(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+   
+         $(this).click(function() {
+            $("#nav li a").removeClass("active");
+            $(this).addClass('active');
+           $('html, body').animate({scrollTop: targetOffset}, 1000);
+           return false;
+         });
+      }
+    }
+  });
+
+});
+
+
+</script>
 </html>
+

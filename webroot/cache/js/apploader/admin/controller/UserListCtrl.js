@@ -11,11 +11,11 @@ define(['app'], function (app) {
 
 			var userListFunc = function(data){
 				var value = data;
-				$scope.userList = [];
+				userList = [];
 				for(var i=0; i < value.length; i++){
 					var currElem = value[i];
 
-					$scope.userList.push({
+					userList.push({
 						conf: currElem.conf,
 						firstName: currElem.firstName,
 						lastName: currElem.lastName,
@@ -24,6 +24,7 @@ define(['app'], function (app) {
 						id: currElem.maskId
 						});
 				}
+				$scope.userList = Immutable.List(userList);
 				value = null;
 			}
 

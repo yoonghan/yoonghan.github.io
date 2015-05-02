@@ -1,0 +1,3 @@
+Email validation test case
+Edit Event list, how to memorize all the search setting during delete?
+Setup does not work when there is many sub times and using occurrances. (able to check?)

@@ -42,7 +42,7 @@ define(['app'], function (app) {
 
 			/**Retrieve user profile[S]**/
 			var bookingListFunc = function(data){
-				$scope.bookingList=calendar;
+				var bookingList = calendar;
 				$scope.totalAmt = data.length;
 				for(var i=0; i < data.length; i++){
 					var currElem = data[i];
@@ -58,8 +58,10 @@ define(['app'], function (app) {
 							close: true,
 							info: []
 							};
-					$scope.bookingList.push(info);
+					bookingList.push(info);
 				}
+				
+				$scope.bookingList=Immutable.List(bookingList);
 				data = null;
 			}
 

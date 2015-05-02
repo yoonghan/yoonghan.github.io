@@ -7,11 +7,12 @@ define(['angularAMD',
 'ui-bootstrap-custom',
 'ui-bootstrap-custom-tpls',
 'ng-flow',
-'calendar-filter'
+'calendar-filter',
+'angular-immutable'
 ], function (angularAMD) {
   var defaultPath="admin/view/"
 
-  var app = angular.module("ngreq-app", ['ngMaterial','ui.bootstrap','ngMessages','ngRoute','flow','calFilters']);
+  var app = angular.module("ngreq-app", ['ngMaterial','immutable','ui.bootstrap','ngMessages','ngRoute','flow','calFilters']);
   app.factory("calendar",function(){
     return [];
   })
