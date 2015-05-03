@@ -141,7 +141,10 @@ define(['app','moment'], function (app, moment) {
 			/**Compare time[S]**/
 			$scope.invalidTimeComparer = function (idx){
 				var recolor=angular.element(document.querySelector("#time"+idx));
-				if($scope.timedEvents[idx].etime==null || $scope.timedEvents[idx].stime==null || $scope.timedEvents[idx].etime.getTime() <= $scope.timedEvents[idx].stime.getTime()){
+				if($scope.timedEvents[idx].etime==null 
+						|| $scope.timedEvents[idx].stime==null
+						|| obtainTime($scope.timedEvents[idx].stime.getTime()) == "0000"
+						|| $scope.timedEvents[idx].etime.getTime() <= $scope.timedEvents[idx].stime.getTime()){
 					recolor.css("border-color","#f00");
 					return true;
 				}else{

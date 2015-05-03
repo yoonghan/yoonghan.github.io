@@ -18,13 +18,14 @@
 		</div>
 	</div>
 	<br>
-	
 	<form class="form-horizontal" role="form" name="setup">
 	
 		<md-button class="md-raised" ng-click="accordian_open = !accordian_open"
 		tooltip="[[tt.collapseAll]]" tooltip-placement="top" ng-model="btnCollapse"><span class="glyphicon glyphicon-ok-sign"></span> Collapse All For View</md-button>
 		
 		<br></br>
+		
+		<div id="loader" ><center><img src="/cache/img/animated/loading.gif"></center></div>
 			
 		<accordion close-others="false" ng-repeat="(key, groups) in groupEvents">
 			<accordion-group is-open="accordian_open" class="panel-success">
@@ -44,7 +45,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<tr class="repeated-item" ng-repeat="e in groups | orderBy:predicate:reverse | filter:search">
+					<tr class="repeated-item" ng-repeat="e in groups | orderBy:predicate:reverse | filter:search" my-post-repeat-directive>
 						<td><input type="text" name="e.title" id="e.title" ng-model="e.title" maxlength="30" ng-pattern="word" required></td>
 						<td>{{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>
 						<td>{{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}</td>

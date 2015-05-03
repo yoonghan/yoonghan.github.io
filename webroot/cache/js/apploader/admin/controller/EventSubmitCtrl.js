@@ -1,4 +1,11 @@
 define(['app','moment'], function (app, moment) {
+	app.directive('myPostRepeatDirective', function() {
+		  return function(scope, element, attrs) {
+			    if (scope.$last){
+			    	angular.element(document.querySelector('#loader')).css('display','none');
+			    }
+			  };
+			});
     app.controller('EventSubmitCtrl', ['$scope', '$http', '$location', '$mdDialog',
 		function($scope, $http, $location, $mdDialog) {
 			var startD = new Date();
@@ -186,5 +193,6 @@ define(['app','moment'], function (app, moment) {
 						return date.getTime();
 					});
 			}
+			
     }]);
 });
