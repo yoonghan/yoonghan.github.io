@@ -1,0 +1,267 @@
+<html>
+<head>
+<title>Title</title>
+<style>
+	body{
+		height:100%;
+		padding:0%;
+		margin:0%;
+	}
+	.title{
+		top:50%;
+	}
+	
+	li{
+		
+		font-family:'Rock Salt',cursive;
+		zoom:1;
+	}
+	ul{
+		display:block;
+		margin:0;
+		padding:0;
+		list-style-type:none;
+	}
+	.box{
+	    height:100vh;
+		width:100%;
+		background:rgb(239,75,35);
+	}
+	
+	.flip-image {
+		background:rgb(219, 31,38);
+		background-size:cover;
+	}
+	
+	.layer1{
+		background: #000;
+    	perspective: 1000px;
+    	perspective-origin: 20% 20%;
+	}
+	.a-box{
+	    transform: rotateX(0deg);
+	}
+	.b-box{
+	    transform: rotateX(45deg);
+	}
+	.c-box{
+	    transform: rotateX(90deg);
+	}
+	.d-box{
+	    transform: rotateX(135deg);
+	}
+	.e-box{
+		transform: rotateX(180deg);
+	}
+	.smallbox{
+		margin: 20px;
+		height:10px;
+		width:10px;
+		background:#fcc;
+	}
+	.mediumbox{
+		margin: 20px 40px;
+		height:10px;
+		width:10px;
+		background:#cfc;
+	}
+	.largebox{
+		margin: 40px 60px;
+		height:10px;
+		width:10px;
+		background:#ccf;
+	}
+	.blogTable{
+		background:#66F;
+		color:white;
+		height:300px;
+		width: 100%;
+	}
+	.blogTable td{
+		padding:0px 20px;
+		line-height:20px;
+	}
+	.link{
+		font-size:24pt;
+		display:block;
+		font-weight:bold;
+		margin:10px;
+		text-align:justify;
+	}
+	.wrap{
+		text-align:justify;
+	}
+	.part3{
+		background:#000;
+	}
+	#content{
+		color:#fff;
+		padding:10%;
+	}
+	.reposition{
+		margin:0%;
+	}
+	.imageIcon{
+		margin:20px;
+	}
+</style>
+</head>
+<body>
+<div class="title">
+	Hello there<br>
+	Hello there
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	Hello thereHello thereHelloHello thereHello there
+	
+</div>
+	<div class="spacer s0"></div>
+	<div class="part3">
+		<div id="parallaxContainer">
+			<div class="layer1">
+				<div class="box">
+					<div class="reposition">
+						<table id='content'>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<a href="//mezzanine.jomjaring.com">
+<table class="blogTable">
+	<tr>
+		<td colspan="2">
+			<span  class="link">A MEZZANINE BLOG</span>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="smallbox" id="box1"></div>
+			<div class="mediumbox" id="box2"></div>
+			<div class="largebox" id="box3"></div>
+		</td>
+	
+		<td>
+			<div class="wrap">
+			Make a visit to Glady's personal blog. The Blog perceived about her interest in cooking, eateries, books of interest.
+			If you are a friendly blogger/reader, make a visit to the site or drop a comment or critics on the topics which interests you!
+			Get connected and expand your social network.
+			<br><br>
+			Her official website is @ <strong>http://mezzanine.jomjaring.com</strong>
+		</div>
+	</td>
+	<tr>
+</table>
+</a>
+<script src="/cache/js/lib/jquery/jquery.min.js"></script>
+<script src="/cache/js/lib/scrollmagic/scrollmagic.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.ui.min.js"></script>
+<script src="/cache/js/lib/velocityjs/animation.velocity.js"></script>
+<script>
+	
+	$('#box1').velocity({ scale: 1.5 }, [ 250, 15 ]);
+	$('#box2').velocity({ scale: 3.0 }, [ 500, 30 ]);
+	$('#box3').velocity({ scale: 4.5 }, [ 1000, 50 ]);
+	$('.wrap').velocity( 'transition.slideUpIn' );
+	
+	var content1 = 
+		"	<tr>"+
+		"		<td colspan='2'>"+
+		"			<span  class='link wrap'>A MEZZANINE BLOG</span>"+
+		"		</td>"+
+		"	</tr>"+
+		"	<tr>"+
+		"		<td>"+
+		"			<div class='imageIcon'>"+
+		"				<img src='/cache/img/blog.gif'>"+
+		"			</div>"+
+		"		</td>"+
+		"		<td>"+
+		"			<div>"+
+		"			Make a visit to Glady's personal blog. The Blog perceived about her interest in cooking, eateries, books of interest."+
+		"			If you are a friendly blogger/reader, make a visit to the site or drop a comment or critics on the topics which interests you!"+
+		"			Get connected and expand your social network."+
+		"			<br><br>"+
+		"			Her official website is @ <strong>http://mezzanine.jomjaring.com</strong>"+
+		"		</div>"+
+		"	</td>"+
+		"	<tr>";
+	var content2 = 
+		"	<tr>"+
+		"		<td colspan='2'>"+
+		"			<span  class='link wrap'>SCHEDULER</span>"+
+		"		</td>"+
+		"	</tr>"+
+		"	<tr>"+
+		"		<td>"+
+		"			<div class='imageIcon'>"+
+		"				<img src='/cache/img/calendar.png'>"+
+		"			</div>"+
+		"		</td>"+
+		"		<td>"+
+		"			<div>"+
+		"			A calendar made on interest for online reservation."+
+		"			It's free and it's public, the usage is way simpler than anything you can find online!"+
+		"			Check it out and have a try."+
+		"			<br><br>"+
+		"			Official website is @ <strong>http://login.jomjaring.com</strong>"+
+		"		</div>"+
+		"	</td>"+
+		"	<tr>";
+	
+	$("#content").html(content1);
+	var modified = false;
+	var flipper = 0;
+	var controller = new ScrollMagic.Controller();
+	var duration = $(".box").css("height");
+	var scene = new ScrollMagic.Scene({triggerElement: "#trigger2", duration: +duration.substring(0,duration.length-2)})
+				.on("progress", function () {
+					var progress = scene.progress();
+					
+					if(!modified && progress >= 0.5){
+						modified = true;
+						$("#content").html(content2);
+						$(".box").toggleClass("flip-image");
+					}
+					if(modified && progress < 0.5){
+						modified = false;
+						$("#content").html(content1);
+						$(".box").toggleClass("flip-image");
+					}
+					var newCount = (modified ? 1-progress : (progress)) * 180;
+					$(".box").css({transform:"rotateX("+newCount+"deg)"});
+				})
+				.setPin("#parallaxContainer")
+				.addTo(controller);
+</script>
+</body>
+</html>

@@ -1,123 +1,76 @@
-<!DOCTYPE html>
+<!DOCTYPE html>	
 <html lang="en">
 <head>
 <title>JOM Jaring Introductory</title>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <meta name="description" content="A basic company setup by Yoong Han and Lee Wan, used as a profile page.">
 <link rel="author" href="https://plus.google.com/u/1/114852108498604797792"/>
+<link rel="stylesheet" type="text/css" href="/cache/css/webby/ssmain.css" />
 <meta property="og:title" content="JOM Jaring"/>
 <meta property="og:type" content="profile"/>
 <meta property="og:image" content="http://www.jomjaring.com/cache/img/jomjaring.jpg"/>
 <meta property="og:description" content="An awesome site that introduce the capabilities we have."/>
 <meta property="fb:admins" content="jomjaring@gmail.com"/>
 </head>
-<body ng-app="mainApp" ng-controller="menuListCtrl">
-<div id="nav_listener" style="min-width:96%;min-height:96%;z-index:96;position:absolute;">
+<body>
+<div class="section main">
+	<div id="container"></div>
+	<h1 class="title">JOM Jaring</h1>
+	<h4 class="quote quote-shadow">" A playground full of candies and fun "</h4>
+	<div class="buttons">
+		<a href="/webby/webpage/about/" class="btn btn-primary">About Us</a>
+		<a href="/webby/webpage/architecture/" class="btn btn-primary">Architecture</a>
+		<a href="//mezzanine.jomjaring.com" class="btn btn-primary">Blog</a>
+		<a href="//login.jomjaring.com" class="btn btn-primary">Scheduler</a>
+	</div>
 </div>
-<button type="button" id="intro" class="button" ng-click="go(mainBtnSrc)">{{mainBtnName}}</button>
-<button type="button" id="show" class="button"><img src="/cache/img/nav.svg"></button>
-<div class="menupanel" id="nav">
-
-<hr/><hr/>
-
- <center class="navTitle">~JOM Jaring 
- <font color="#FF3800">L</font><font color="#FF6700">i</font><font color="#FF8400">n</font><font color="#FFAF00">k</font><font color="#FFD700">s</font>~</center>
-
-<hr/><hr/>
-
-<canvas id="hoverCanvas" width="200" height="100" style="position:absolute;top:0;left:0;"></canvas>
- <nav>
-  
- <ul id="menuList">
-	<li ng-repeat="menu in menus">
- 		<a ng-href="{{menu.link}}" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">{{menu.display}}</a>
-	</li>
- </ul>
- <hr>
- 
- <ul>
-	 <li><a ng-href="http://mysanctuary.jomjaring.com/" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">Personal Blog</a></li>
-	 <li><a ng-href="http://login.jomjaring.com/" onmouseover="targetme(event, this)" onmouseout="untargetme()" onmousedown="shrinkme()">Scheduling Prototype</a></li>
- </ul>
- <hr>
- <hr>
- <button type="button" id="hide" class="button_hide">&lt;&lt; Hide</button>
- </nav>
+<div class="spacer s0"></div>
+<div id="trigger1_1"></div>
+<div class="section part2_1 quote-shadow">
+	<img src="/cache/img/webby/time.png" class="imgTime">
+	<h2>JOM Jaring</h2>
+	The primary goal this site, is to try edge-cutting web technologies. More importantly,
+	to find ways to reduce development time in our actual daily jobs.
 </div>
-<footnote>
- To use the images in this site, please request from the author: mailyoonghan@gmail.com.
-</footnote>
-</body>
-
-
-<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="/cache/css/vegas.min.css" />
-<link rel="stylesheet" type="text/css" href="/cache/css/webby/ssmain.css" />
+<div class="spacer s0"></div>
+<div id="trigger1_2"></div>
+<div class="section part2_2">
+	<div class="part2head"><h2>"2 Heads are better than 1"</h2></div>
+	We are starting off small and we're already <span class="part2reactive">REACTIVE</span>.
+</div>
+<div class="spacer s0"></div>
+<div id="trigger1"></div>
+<div class="section part2">
+	<blockquote class="oval-thought-border quote-0 thought-of-the-day">
+		<p><span class="quote">"The only reason for time is so that everything doesn't happen at once."</span> <br>- Albert Einstein</p>
+	</blockquote>
+	<blockquote class="oval-thought-border quote-1 thought-of-the-day">
+		<p><span class="quote">"Time changes everything except something within us which is always surprised by change."</span> <br>- Thomas Hardy</p>
+	</blockquote>
+	<blockquote class="oval-thought-border quote-2 thought-of-the-day">
+		<p><span class="quote">"If you spend too much time thinking about a thing, you'll never get it done."</span> <br>- Bruce Lee</p>
+	</blockquote>
+	<blockquote class="oval-thought-border quote-3 thought-of-the-day">
+		<p><span class="quote">"Time is what we want most, but what we use worst."</span> <br>- William Penn</p>
+	</blockquote>
+</div>
+<div class="spacer s0"></div>
+<div class="section part3">
+	<div id="trigger2"></div>
+	<div id="parallaxContainer" style="height:100%">	
+		<div class="layer1">
+			<div class="box">
+				<div class="reposition" id='content'>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script src="/cache/js/lib/jquery/jquery.min.js"></script>
-<script src="/cache/js/lib/ext/vegas/jquery.vegas.min.js"></script>
-<script src="/cache/js/lib/angular/angular.min.js"></script>
-<script src="/cache/js/webby/controllers.js"></script>
-<!-- script for target [Execute this first] -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-55768924-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<script>
-	var c = document.getElementById("hoverCanvas");
-	var ctx = c.getContext("2d");
-	ctx.lineWidth = 2;
-	ctx.strokeStyle = '#fafafa';
-
-	function targetme(event, obj){
-		var objPos = obj.getBoundingClientRect();
-		var calcTop = objPos.top + ((objPos.bottom - objPos.top)/2)-20;
-		var calcLeft = objPos.left + ((objPos.right - objPos.left)/2)+25;
-		c.style.top = ""+calcTop+"px";
-		c.style.left = ""+calcLeft+"px";
-		ctx.beginPath();
-		ctx.arc(22,22,20,0,2*Math.PI);
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.arc(22,22,16,0,2*Math.PI);
-		ctx.stroke();
-	}
-	
-	function untargetme(){
-		ctx.beginPath();
-		ctx.clearRect(0,0,200,100);
-		ctx.closePath();
-	}
-	
-	function shrinkme(){
-		untargetme();
-		ctx.beginPath();
-		ctx.arc(20,20,15,0,2*Math.PI);
-		ctx.stroke();
-	}
-</script>
-<!-- script for slider -->
-<script>
-$(function() {
- $.getJSON(imageURL,function(data)
- {
-	$.vegas( 'slideshow', data)('overlay'); 
- }); 
-});
-$( document ).ready(function() {
- $('#show').on('click', function() {
- $('#nav').animate({'left':'0px'},100);
- });
- $('#hide').on('click', function() {
- $('#nav').animate({'left':'-500px'},100);
- });
- $('#nav_listener').on('click', function() {
- $('#nav').animate({'left':'-500px'},100);
- });
-});
-</script>
+<script src="/cache/js/lib/scrollmagic/scrollmagic.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.ui.min.js"></script>
+<script src="/cache/js/lib/velocityjs/animation.velocity.js"></script>
+<script src="/cache/js/webby/ssmain.js"></script>
+</body>
 </html>

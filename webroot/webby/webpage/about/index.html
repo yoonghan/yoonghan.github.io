@@ -21,13 +21,12 @@
 <header id="header">
 <div class="content">
 <div id="logo"><a href="/">ABOUT US</a></div>
-
 <nav id="nav">
 	<ul>
-		<li><a href="#slide2" class="active" title="Next Section" >The Guy</a></li>
-		<li><a href="#slide3" title="Next Section">The Girl</a></li>
-		<li><a href="#slide4" title="Next Section">Vision</a></li>
-	</ul>
+	  	<li ng-repeat="menu in menus" class="repeated-item">
+			<a ng-href="{{menu.link}}">{{menu.display}}</a>
+		</li>
+	  </ul>
 </nav>
 </div>
 </header>	
@@ -108,7 +107,7 @@
 				<a ng-href="{{menu.link}}">{{menu.display}}</a>
 			</li>
 		</ul>
-		<div ng-include="'../footer'"></div>
+		<div ng-include="'/webby/webpage/footer'"></div>
 	</div>
 </body>
 <script src="/cache/js/lib/jquery/jquery.min.js"></script>
@@ -116,32 +115,5 @@
 <script src="/cache/js/lib/angular/angular-sanitize.min.js"></script>
 <script src="/cache/js/lib/angular/angular-animate.min.js"></script>
 <script src="/cache/js/webby/controllers.js"></script>
-
-<script>
-   
-$(document).ready(function() {
-  $('a[href*=#]').each(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-    && location.hostname == this.hostname
-    && this.hash.replace(/#/,'') ) {
-      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
-      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
-       if ($target) {
-         var targetOffset = $target.offset().top;
-   
-         $(this).click(function() {
-            $("#nav li a").removeClass("active");
-            $(this).addClass('active');
-           $('html, body').animate({scrollTop: targetOffset}, 1000);
-           return false;
-         });
-      }
-    }
-  });
-
-});
-
-
-</script>
 </html>
 

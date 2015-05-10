@@ -316,7 +316,7 @@ To create test script using maven
 </tr>
 <tr>
 	<td>awk</td>
-	<td>grep "HEADER.*APN=" mythecube.log|awk '/APN=/ { print $0 }' #Select match from header and inverse checking.</td>
+	<td>grep "HEADER.*APN=" mythecube.log|awk '/APN=/ {print $1}' #Select match and print the first column data.</td>
 </tr>
 <tr>
 	<td>grep -v</td>
@@ -333,6 +333,10 @@ To create test script using maven
 <tr>
 	<td>vmstat</td>
 	<td>Show the processes, observe us, sy column. sy should be as low as possible. If it fails check with jstack or pstack.</td>
+</tr>
+<tr>
+	<td>ulimit -n</td>
+	<td>Show maximum no of file descriptors. If it's too low add it to /etc/security/limits.conf for both <strong>root soft nofile ####</strong>, <strong>root hard nofile ###</strong></td>
 </tr>
 <tr>
 	<td>sort file.txt|uniq</td>
@@ -388,7 +392,7 @@ To create test script using maven
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>
-    <div ng-include="'../footer'"></div>
+    <div ng-include="'/webby/webpage/footer'"></div>
 If you are interested, do not hesitate to <a href="#" ng-click="activateBtn()">contact us</a>.
 </div>
 </body>
