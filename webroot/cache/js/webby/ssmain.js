@@ -1,6 +1,14 @@
 'use strict';
 (function(global){
-	var $body = $('body');
+	var $body = document.getElementsByTagName('body')[0];
+	var $html = document.getElementsByTagName('html')[0];
+	var $section = document.getElementsByClassName('section');
+	var $layer1 = document.getElementById('layer1');
+	var $nav = document.getElementById('nav');
+	var $slides = $(".slider");
+	var $marker = document.getElementById('marker');
+	var $blog = document.getElementById('blog');
+	var $reactive = document.getElementById('reactive');
 		
 	function r(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -15,7 +23,7 @@
 		isIE = document.documentMode;
 	
 	var dotsCount,
-		dotsHtml = "",
+		dotsHtml = [],
 		$dots;
 	
 	if (window.location.hash) {
@@ -25,12 +33,16 @@
 	}
 	
 	for (var i = 0; i < dotsCount; i++) {
-		dotsHtml += "<div class='ball'></div>";
+		//"<div class='"+ballClass+"'></div>";
+		var attr = document.createAttribute("class");
+		attr.value = "ball";
+		var div = document.createElement("div");
+		div.setAttributeNode(attr);
+		dotsHtml.push(div);
 	}
+	$dots =dotsHtml;
 	
-	$dots = $(dotsHtml);
-	
-	var $container = $("#container");
+	var $container = document.getElementById('container');
 	
 	var screenWidth = window.screen.availWidth,
 		screenHeight = window.screen.availHeight,
@@ -40,11 +52,14 @@
 		translateZMax = 600;
 	
 	$container
-		.css("perspective-origin", screenWidth/2 + "px " + ((screenHeight * 0.45) - chromeHeight) + "px")
-		.css("perspective", "100px");
+		.style.perspectiveOrigin = (screenWidth/2 + "px " + ((screenHeight * 0.45) - chromeHeight) + "px");
+	$container
+		.style.perspective = "100px";
 	
 	if (isWebkit) {
-		$dots.css("boxShadow", "0px 0px 4px 0px #4bc2f1");
+		[].forEach.call($dots, function(el) {
+        	el.style.boxShadow = "0px 0px 4px 0px #4bc2f1";
+        });
 	}
 	
 	var loading = [
@@ -54,11 +69,16 @@
 	    { elements: $body, properties: { width: '100%' } },
 	    { elements: $body, properties: { height: '100%' }, options: { 
 	      complete: function () {
-	        $('html').css({ background: '#000' });
-	        $('body').css({ "min-width": '480px' });
-	        $('.section').css( {display:"block"} );
-	     	$dots.appendTo($container);
-			triggerScrollMagic(); 
+	        $html.style.background = '#000';
+	        $body.style.minWidth =  '480px';
+	        [].forEach.call($section, function(el) {
+	        	el.style.display = "block";
+	        });
+	        [].forEach.call($dots, function(el) {
+	        	$container.appendChild(el);
+	        });
+	        $layer1.style.display = 'block';
+	     	triggerScrollMagic();
 	      }
 	    }},
 	    { elements: $dots, properties: { 
@@ -83,95 +103,55 @@
 	
 	$.Velocity.RunSequence(loading);
 	
-	var modified = false;
-	var flipper = 0;
 	var controller = new ScrollMagic.Controller();
 	
 	function triggerScrollMagic(){
-		var duration = $(".box").css("height");
-		var split = $(".section").css("width");
 		
-		var content1 = 
-			"<a href='//login.jomjaring.com'>"+
-			"<table><tr>"+
-			"		<td colspan='2'>"+
-			"			<span class='link'>SCHEDULER</span>"+
-			"		</td>"+
-			"	</tr>"+
-			"	<tr>"+
-			"		<td width='100'>"+
-			"			<div class='imageIcon'>"+
-			"				<img src='/cache/img/calendar.png'>"+
-			"			</div>"+
-			"		</td>"+
-			"		<td>"+
-			"			<div>"+
-			"			Our first experimental but full scale reservation system."+
-			"			It's free and it's public, the usage is way simpler than anything you can find online!"+
-			"			Check it out and have a try."+
-			"			<br><br>"+
-			"			Official website is @ <strong>http://login.jomjaring.com</strong>"+
-			"		</div>"+
-			"	</td>"+
-			"	<tr></table>"
-			"</a>";
-			
-		var content2 =
-			"<table><tr>"+ 
-			"  <tr>"+
-			"    <td colspan='2'>"+
-			"      <span class='link footer-color'>JOM Jaring</span>"+
-			"    </td>"+
-			"  </tr>"+
-			"  <tr>"+
-			"    <td>"+
-			"      <div>"+
-			"        This link is created based on interest.<br>"+
-			"        It is currently hosted on <strong class='footer-color'>OpenShift</strong>, <strong class='footer-color'>Play Framework</strong> and <strong class='footer-color'>NodeJS</strong> platform."+
-			"		<br><br>You are welcomed to contact us via <a href='mailto:mailyoonghan@gmail.com'>mailyoonghan@gmail.com</a>"+
-			"      </div>"+
-			"      <div class='footer'>"+
-			"        This site was last updated on May 2015"+
-			"      </div>"+
-			"    </td>"+
-			"  <tr>";
+		prepareNav();
 		
+		$.Velocity($reactive, { opacity: 0.4 }, {duration: 500, loop:true});
 		
-		$("#content").html(content1);
-		
-		new ScrollMagic.Scene({triggerElement: '#trigger1_2'})
-					.setVelocity(".part2head", { colorRed: "100%" })
-					.addTo(controller);
-		
-		$(".part2reactive").velocity({ opacity: 0.2 }, {duration: 500, loop:true});
-
-		
-		var newSplit=Math.floor(((+split.substring(0,split.length-2))-300) / 4);
-		for(var cnt=3; cnt > -1; cnt--){
-			new ScrollMagic.Scene({triggerElement: "#trigger1", offset: cnt*50})
-					.setVelocity(".quote-"+cnt, { left: (cnt*newSplit)+"px", top: (cnt*30+20)+"px" }, [ 250, 15 ])
-					.addTo(controller);
-		}
-		
-		var newDuration=(+duration.substring(0,duration.length-2));
-		var scene = new ScrollMagic.Scene({triggerElement: "#trigger2", duration: newDuration, offset: Math.floor(newDuration/2)})
-					.on("progress", function () {
-						var progress = scene.progress();
-						
-						if(!modified && progress > 0.5){
-							modified = true;
-							$("#content").html(content2);
-							$(".box").toggleClass("flip-image");
-						}
-						if(modified && progress < 0.5){
-							modified = false;
-							$("#content").html(content1);
-							$(".box").toggleClass("flip-image");
-						}
-						var newCount = (modified? 1-progress:progress) * 180;
-						$(".box").css({transform:"rotateY("+newCount+"deg)"});
-					})
-					.setPin("#parallaxContainer")
-					.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: "#trigger", offset: 1})
+			.on("enter", function(){
+				$.Velocity($layer1, { opacity: 1 },{visibility:"visible"});
+				$.Velocity($nav, {height: "80px"});
+			})
+			.on("leave", function(){
+				$.Velocity($layer1, { opacity: 0 },{visibility:"hidden"});
+				$.Velocity($nav, {height: "0"});
+			})
+			.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: "#trigger_marker"})
+			.on("enter", function(){
+				$.Velocity($marker, "transition.flipBounceYIn");
+			})
+			.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: "#trigger_blog"})
+			.on("enter", function(){
+				$.Velocity($blog, "callout.shake");
+			})
+			.addTo(controller);
 	}
+	
+	   
+	function prepareNav() {
+	  $('a[href*=#]').each(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+	    && location.hostname == this.hostname
+	    && this.hash.replace(/#/,'') ) {
+	      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+	      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+	       if ($target) {
+	         var targetOffset = $target.offset().top-100;
+	         $(this).click(function() {
+	            $("#nav li a").removeClass("active");
+	            $(this).addClass('active');
+	           $('html, body').animate({scrollTop: targetOffset}, 1000);
+	           return false;
+	         });
+	      }
+	    }
+	  });
+	}
+	
 }(this));

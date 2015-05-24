@@ -6,6 +6,8 @@
 <meta name="description" content="A basic company setup by Yoong Han and Lee Wan, used as a profile page.">
 <link rel="author" href="https://plus.google.com/u/1/114852108498604797792"/>
 <link rel="stylesheet" type="text/css" href="/cache/css/webby/ssmain.css" />
+<!-- fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,900|Open+Sans+Condensed:700|Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
 <meta property="og:title" content="JOM Jaring"/>
 <meta property="og:type" content="profile"/>
 <meta property="og:image" content="http://www.jomjaring.com/cache/img/jomjaring.jpg"/>
@@ -13,56 +15,124 @@
 <meta property="fb:admins" content="jomjaring@gmail.com"/>
 </head>
 <body>
-<div class="section main">
-	<div id="container"></div>
-	<h1 class="title">JOM Jaring</h1>
-	<h4 class="quote quote-shadow">" A playground full of candies and fun "</h4>
-	<div class="buttons">
-		<a href="/webby/webpage/about/" class="btn btn-primary">About Us</a>
-		<a href="/webby/webpage/architecture/" class="btn btn-primary">Architecture</a>
-		<a href="//mezzanine.jomjaring.com" class="btn btn-primary">Blog</a>
-		<a href="//login.jomjaring.com" class="btn btn-primary">Scheduler</a>
+<div id="pin">
+	<div class="section main">
+		<h1 class="title">JOM Jaring</h1>
+		<div id="container"></div>
+		<h4 class="quote text-shadow">" A playground full of candies and fun "</h4>
+		<div class="center sitelink">
+			<a href="//login.jomjaring.com">Scheduler</a> | 
+			<a href="//mezzanine.jomjaring.com">Blog</a> |
+			<a href="/webby/webpage/about/">About Us</a>
+		</div>
 	</div>
 </div>
-<div class="spacer s0"></div>
-<div id="trigger1_1"></div>
-<div class="section part2_1 quote-shadow">
-	<img src="/cache/img/webby/time.png" class="imgTime">
-	<h2>JOM Jaring</h2>
-	The primary goal this site, is to try edge-cutting web technologies. More importantly,
-	to find ways to reduce development time in our actual daily jobs.
-</div>
-<div class="spacer s0"></div>
-<div id="trigger1_2"></div>
-<div class="section part2_2">
-	<div class="part2head"><h2>"2 Heads are better than 1"</h2></div>
-	We are starting off small and we're already <span class="part2reactive">REACTIVE</span>.
-</div>
-<div class="spacer s0"></div>
-<div id="trigger1"></div>
-<div class="section part2">
-	<blockquote class="oval-thought-border quote-0 thought-of-the-day">
-		<p><span class="quote">"The only reason for time is so that everything doesn't happen at once."</span> <br>- Albert Einstein</p>
-	</blockquote>
-	<blockquote class="oval-thought-border quote-1 thought-of-the-day">
-		<p><span class="quote">"Time changes everything except something within us which is always surprised by change."</span> <br>- Thomas Hardy</p>
-	</blockquote>
-	<blockquote class="oval-thought-border quote-2 thought-of-the-day">
-		<p><span class="quote">"If you spend too much time thinking about a thing, you'll never get it done."</span> <br>- Bruce Lee</p>
-	</blockquote>
-	<blockquote class="oval-thought-border quote-3 thought-of-the-day">
-		<p><span class="quote">"Time is what we want most, but what we use worst."</span> <br>- William Penn</p>
-	</blockquote>
-</div>
-<div class="spacer s0"></div>
-<div class="section part3">
-	<div id="trigger2"></div>
-	<div id="parallaxContainer" style="height:100%">	
-		<div class="layer1">
-			<div class="box">
-				<div class="reposition" id='content'>
+<div id="layer1">
+	<div id="nav">
+		<div><a href="/webby/webpage/about/">ABOUT THE PARTNERSHIP - "Kommanditgesellschaft"</a></div>
+		<ul>
+			<li><a href="#purpose" title="Purpose">Purpose</a></li>
+			<li><a href="#development" title="Development">Development</a></li>
+			<li><a href="#objective" title="Objective">Objective</a></li>
+		</ul>
+	</div>
+	<div id="depth-ruler"></div>
+	<div id="depth-background"></div>
+	<div class="section slider info">
+		<img src="/cache/img/webby/sprout.svg" class="center hcenter" >
+	</div>	
+	<div class="section slider info">
+		<hr>
+		<div class="message justify-message">
+			<h2 id="purpose">PURPOSE</h2>		
+			&nbsp;&nbsp;&nbsp;It is a pleasure for having you to visit our humble website, JOM Jaring. Thank you and welcome.
+			<br><br>		
+			Work have always be on the professional part and work builds have been "boring". Because of that, we decided on spice our life a little bit,
+			by having fun with programming.	Somewhere here; where we'll built our empire and discover new technologies here.
+			You will find quite some jargon and settings out of place in the homepage itself; which it's the distinguishable mark to have this site built in the first place.
+			<br><br>
+			<span class="quote">"Do all you can to make your dreams come true."</span> - Joel Osteen
+		</div> 
+		<div class="message">
+			<h2 id="development">Development</h2>
+			<div class="flexbox-container">
+				<div class="flexbox">
+					<div class="calendar">
+						<img src="/cache/img/webby/marker.svg" id="marker">
+					</div>
+				</div>
+				<div class="flexbox">
+					<h3 id="trigger_marker">Scheduler</h3>
+					<ul>
+						<li>Booking online</li>
+						<li>Login via Facebook/Gmail oAuth2</li>
+						<li>Materialized Design</li>
+						<li>Programmed as Functional and Concurrent</li>
+					</ul>
 				</div>
 			</div>
+			<div class="flexbox-container">
+				<div class="flexbox">
+					<h3 id="trigger_blog">Blog</h3>
+					<ul>
+						<li>Food recipes</li>
+						<li>Travel and Leisure</li>
+						<li>Books</li>
+					</ul>
+				</div>
+				<div class="flexbox">
+						<div id="blog">
+						{ BLOG }
+						</div>
+				</div>
+			</div>
+			
+			<h2 id="objective">Objective</h2>
+			<div class="flexbox-container">
+				<div class="flexbox">
+					<img src="/cache/img/webby/paw.svg" class="paw">
+					<h3 class="red2">Playful</h3>
+					<span class="teal">Interactive and colorful</span>
+				</div>
+				<div class="flexbox">
+					<img src="/cache/img/webby/paw.svg" class="paw">
+					<h3 id="reactive">Reactive</h3>
+					<span class="teal">Span over multiple processors</span>
+				</div>
+				<div class="flexbox">
+					<img src="/cache/img/webby/paw.svg" class="paw">
+					<h3>Technological</h3>
+					<span class="teal">Prototypes and test</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		A Jom Jaring &copy; site
+		<table width="400px">
+			<tr>
+				<td><h3>Site Map</h3></td>
+				<td><h3>Development</h3></td>
+			</tr>
+			<tr><td>
+				
+				<ul>
+					<li><a href="/webby/webpage/about/">About Us</a></li>
+					<li><a href="/webby/webpage/blog/">Site Blog</a></li>
+					<li><a href="/webby/webpage/architecture/">Architecture</a></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><a href="//login.jomjaring.com">Scheduler</a></li>
+					<li><a href="//mezzanine.jomjaring.com">Blog</a></li>
+				</ul>
+			</td>
+			</tr>
+		</table>
+	<div class="message center-message">
+		<hr>
+		<div class="lining">Updated on 2015 - Created by JOM Jaring &copy;</div>
 		</div>
 	</div>
 </div>

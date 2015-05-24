@@ -358,13 +358,22 @@ To create test script using maven
 	<td>scp copy</td>
 	<td>Copy file via ssh with the command <strong>scp /path/to/file username@toServerName:/path/to/destination</strong></td>
 </tr>
+<tr>
+	<td>loop</td>
+	<td>Sample code cd /logs/access
+for i in $( ls  201310*_CELCOM_PROD*.log ); do
+           echo $i >> $HOME/FileExtract.log
+           fgrep "kl-apac-sg-pim-jcore" $i | grep -v "neo-wap-admin" | awk -F "HTTP" '{print $2}' | awk '{sum +=$3 } END {print "Total Bytes:"sum}' >> $HOME/FileExtract.log
+done
+</td>
+</tr>
 </tbody>
 </table>
 
 <hr>
 <table border=1>
 <thead>
-	<tr><td><h2>Command</h2></td>
+	<tr><td><h2>Javascript Command</h2></td>
 	<td><h2>Description</h2></td></tr>
 </thead>
 <tbody>

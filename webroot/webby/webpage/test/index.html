@@ -1,267 +1,255 @@
 <html>
 <head>
 <title>Title</title>
+
 <style>
+	@font-face {
+	  font-family: 'Open Sans Condensed';
+	  font-style: normal;
+	  font-weight: 700;
+	  src: local('Open Sans Condensed Bold'), local('OpenSans-CondensedBold'), url(http://fonts.gstatic.com/s/opensanscondensed/v10/gk5FxslNkTTHtojXrkp-xIS898UBCVj0FEntoasBk6P3rGVtsTkPsbDajuO5ueQw.woff2) format('woff2');
+	  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+	}
+	@font-face {
+	  font-family: 'Goudy Bookletter 1911';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Goudy Bookletter 1911'), local('GoudyBookletter1911'), url(http://fonts.gstatic.com/s/goudybookletter1911/v6/l5lwlGTN3pEY5Bf-rQEuIAQibyVIKv8boZ0oFv0g-Lo.woff2) format('woff2');
+	  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+	}
+	.white{
+		color:white;
+	}
+	.red{
+		color:red;
+	}
+	.yellow{
+		color:#ff0;
+	}
+	.green{
+		color:#080;
+	}
+	.green1{
+		color:#447821;
+	}
+	.teal{
+		color:#008080;
+	}
+	.aqua{
+		color:#0ff;
+	}
+	.blue1{
+		color:#0088AA;
+	}
+	.purple{
+		color:800080;
+	}
+	.red1{
+		color:#500;
+	}
+	.red2{
+		color:#C83737;
+	}
 	body{
 		height:100%;
 		padding:0%;
 		margin:0%;
 	}
-	.title{
-		top:50%;
+	.section{
+		position: relative;
+		height:100vh;
+		min-height:480px;
 	}
-	
-	li{
-		
-		font-family:'Rock Salt',cursive;
-		zoom:1;
+	.center{
+		position: absolute;
+		margin: auto;
+		top:0;left:0;bottom:0;right:0;
 	}
-	ul{
-		display:block;
-		margin:0;
-		padding:0;
-		list-style-type:none;
+	.hcenter{
+		height: 50%;
 	}
-	.box{
-	    height:100vh;
-		width:100%;
-		background:rgb(239,75,35);
+	.leftbar{
+		margin:auto;
+		width:20%;
+		padding-left: 50px;
+		height: 100%;
 	}
-	
-	.flip-image {
-		background:rgb(219, 31,38);
-		background-size:cover;
+	h2{
+		font-size:40pt;
+		text-shadow: 0px 2px 3px #333;
+		line-height:20pt;
 	}
-	
-	.layer1{
-		background: #000;
-    	perspective: 1000px;
-    	perspective-origin: 20% 20%;
-	}
-	.a-box{
-	    transform: rotateX(0deg);
-	}
-	.b-box{
-	    transform: rotateX(45deg);
-	}
-	.c-box{
-	    transform: rotateX(90deg);
-	}
-	.d-box{
-	    transform: rotateX(135deg);
-	}
-	.e-box{
-		transform: rotateX(180deg);
-	}
-	.smallbox{
-		margin: 20px;
-		height:10px;
-		width:10px;
-		background:#fcc;
-	}
-	.mediumbox{
-		margin: 20px 40px;
-		height:10px;
-		width:10px;
-		background:#cfc;
-	}
-	.largebox{
-		margin: 40px 60px;
-		height:10px;
-		width:10px;
-		background:#ccf;
-	}
-	.blogTable{
-		background:#66F;
-		color:white;
-		height:300px;
-		width: 100%;
-	}
-	.blogTable td{
-		padding:0px 20px;
-		line-height:20px;
-	}
-	.link{
-		font-size:24pt;
-		display:block;
+	highlight{
 		font-weight:bold;
-		margin:10px;
-		text-align:justify;
+		color:#000;
+		text-shadow: 0px 1px 2px #fff;
 	}
-	.wrap{
-		text-align:justify;
+	.message{
+		font-size:16pt;
+		text-align: justify;
+		text-justify: inter-word;
 	}
-	.part3{
-		background:#000;
+	.quote{
+		font-family: 'Goudy Bookletter 1911', serif;
+		font-size:14pt;
+		font-style: italic;
+		padding: 10px;
 	}
-	#content{
-		color:#fff;
-		padding:10%;
+	.top{
+		width: 100%;
+  		height: 50px;
+  		background-color: #002255;
+  		position:absolute;
+  		opacity: 0.8;
+  		-webkit-box-shadow: 0 0px 10px #000;
+  		box-shadow: 0 0px 10px #000;
+  		text-align: center;
+  		padding-top:20px;
 	}
-	.reposition{
-		margin:0%;
+	.aboutSlide{
+		font-family: 'Open Sans Condensed', sans-serif;
+		background:#165044;
+		color:#80B3FF;
 	}
-	.imageIcon{
-		margin:20px;
+	.aboutControl{
+		left:20%;
+		margin-left:50px;
+		padding:0 50px 0px 50px;
+		max-width:600px;
+	}
+	#beansprout{
+		height:100%;
+	}
+	.funSlide{
+		background: url('/cache/img/webby/smiley.png');
+		font-family: 'Open Sans Condensed', sans-serif;
+		color: #000;
+		text-align:center;
+	}
+	.flexbox-container {
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+		align-items: center;
+	}
+	.flexbox{
+		flex-grow:1;
+		margin:0 30px;
+		background:#fff;
+		height:30%;
+		min-height:300px;
+		padding:5px 40px 40px 40px;
+	}
+	#fun_trigger1{
+		position:absolute;
+		top:10%;
+	}
+	#fun_trigger2{
+		position:absolute;
+		top:30%;
+	}
+	#fun_trigger3{
+		position:absolute;
+		top:60%;
 	}
 </style>
 </head>
 <body>
-<div class="title">
-	Hello there<br>
-	Hello there
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	Hello thereHello thereHelloHello thereHello there
-	
-</div>
-	<div class="spacer s0"></div>
-	<div class="part3">
-		<div id="parallaxContainer">
-			<div class="layer1">
-				<div class="box">
-					<div class="reposition">
-						<table id='content'>
-						</table>
+<div class="spacer s0"></div>
+<div id="triggerAbout"></div>
+	<div class="section aboutSlide">
+		<div class="top">
+			ABOUT THE PARTNERSHIP - "Kommanditgesellschaft"
+		</div>
+		<img src="/cache/img/webby/sprout.svg" class="leftbar" id="beansprout">
+		<div class="center hcenter aboutControl">
+			<h2 id="txtsprout">Sprout</h2>
+			<div class="message white">
+				Welcome to our freshly developed website. Work have always be on the professional part and builds have been "boring", hence we decided
+				to make our life a little bit fun with programming as our past time. So again, welcome to the site "jomjaring.com"; where we'll built our empire here.
+				<br><br>
+				<span class="quote">"Do all you can to make your dreams come true."</span> - Joel Osteen
+			</div>
+		</div>
+	</div>
+
+<div class="spacer s0"></div>
+<div id="triggerFun"></div>
+	<div class="section funSlide">
+		<div class="center">
+			<h2 id="txtfun">Principals</h2>
+			<div id="fun_trigger1"></div>
+			<div id="fun_trigger2"></div>
+			<div id="fun_trigger3"></div>
+			<div class="flexbox-container">
+				<div id="txtfun_tech" class="flexbox">
+					<h3 class="teal">Technology</h3>
+					<div>
+						We'll use up-to-date technology. Of course, this will come with
+						a risk on browser compatibility.
+					</div>
+				</div>
+				<div id="txtfun_present" class="flexbox">
+					<h3 class="red2">Presentation</h3>
+					<div class="">
+						There'll be a lot of color, images and animation to represent
+						our site. To ensure the site stays lively and visitors to stay happy!
+					</div>
+				</div>
+				<div id="txtfun_reactive" class="flexbox">
+					<h3 class="blue1">Re-active</h3>
+					<div class="">
+						Aside from technology; interactivity and responsiveness
+						of the site is important. We reduce the <highlight>SYNC</highlight> and <highlight>WAIT</highlight> code usages. 
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-<a href="//mezzanine.jomjaring.com">
-<table class="blogTable">
-	<tr>
-		<td colspan="2">
-			<span  class="link">A MEZZANINE BLOG</span>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div class="smallbox" id="box1"></div>
-			<div class="mediumbox" id="box2"></div>
-			<div class="largebox" id="box3"></div>
-		</td>
-	
-		<td>
-			<div class="wrap">
-			Make a visit to Glady's personal blog. The Blog perceived about her interest in cooking, eateries, books of interest.
-			If you are a friendly blogger/reader, make a visit to the site or drop a comment or critics on the topics which interests you!
-			Get connected and expand your social network.
-			<br><br>
-			Her official website is @ <strong>http://mezzanine.jomjaring.com</strong>
-		</div>
-	</td>
-	<tr>
-</table>
-</a>
 <script src="/cache/js/lib/jquery/jquery.min.js"></script>
 <script src="/cache/js/lib/scrollmagic/scrollmagic.min.js"></script>
 <script src="/cache/js/lib/velocityjs/velocity.min.js"></script>
 <script src="/cache/js/lib/velocityjs/velocity.ui.min.js"></script>
 <script src="/cache/js/lib/velocityjs/animation.velocity.js"></script>
 <script>
-	
-	$('#box1').velocity({ scale: 1.5 }, [ 250, 15 ]);
-	$('#box2').velocity({ scale: 3.0 }, [ 500, 30 ]);
-	$('#box3').velocity({ scale: 4.5 }, [ 1000, 50 ]);
-	$('.wrap').velocity( 'transition.slideUpIn' );
-	
-	var content1 = 
-		"	<tr>"+
-		"		<td colspan='2'>"+
-		"			<span  class='link wrap'>A MEZZANINE BLOG</span>"+
-		"		</td>"+
-		"	</tr>"+
-		"	<tr>"+
-		"		<td>"+
-		"			<div class='imageIcon'>"+
-		"				<img src='/cache/img/blog.gif'>"+
-		"			</div>"+
-		"		</td>"+
-		"		<td>"+
-		"			<div>"+
-		"			Make a visit to Glady's personal blog. The Blog perceived about her interest in cooking, eateries, books of interest."+
-		"			If you are a friendly blogger/reader, make a visit to the site or drop a comment or critics on the topics which interests you!"+
-		"			Get connected and expand your social network."+
-		"			<br><br>"+
-		"			Her official website is @ <strong>http://mezzanine.jomjaring.com</strong>"+
-		"		</div>"+
-		"	</td>"+
-		"	<tr>";
-	var content2 = 
-		"	<tr>"+
-		"		<td colspan='2'>"+
-		"			<span  class='link wrap'>SCHEDULER</span>"+
-		"		</td>"+
-		"	</tr>"+
-		"	<tr>"+
-		"		<td>"+
-		"			<div class='imageIcon'>"+
-		"				<img src='/cache/img/calendar.png'>"+
-		"			</div>"+
-		"		</td>"+
-		"		<td>"+
-		"			<div>"+
-		"			A calendar made on interest for online reservation."+
-		"			It's free and it's public, the usage is way simpler than anything you can find online!"+
-		"			Check it out and have a try."+
-		"			<br><br>"+
-		"			Official website is @ <strong>http://login.jomjaring.com</strong>"+
-		"		</div>"+
-		"	</td>"+
-		"	<tr>";
-	
-	$("#content").html(content1);
-	var modified = false;
-	var flipper = 0;
+	var $tech = $("#txtfun_tech");
+	var $present = $("#txtfun_present");
+	var $reactive = $("#txtfun_reactive");
 	var controller = new ScrollMagic.Controller();
-	var duration = $(".box").css("height");
-	var scene = new ScrollMagic.Scene({triggerElement: "#trigger2", duration: +duration.substring(0,duration.length-2)})
-				.on("progress", function () {
-					var progress = scene.progress();
-					
-					if(!modified && progress >= 0.5){
-						modified = true;
-						$("#content").html(content2);
-						$(".box").toggleClass("flip-image");
-					}
-					if(modified && progress < 0.5){
-						modified = false;
-						$("#content").html(content1);
-						$(".box").toggleClass("flip-image");
-					}
-					var newCount = (modified ? 1-progress : (progress)) * 180;
-					$(".box").css({transform:"rotateX("+newCount+"deg)"});
-				})
-				.setPin("#parallaxContainer")
-				.addTo(controller);
+	
+	new ScrollMagic.Scene({triggerElement: '#triggerAbout'})
+		.on("progress", function () {
+			$("#txtsprout").velocity( 'transition.flipYIn' );
+			$("#beansprout").velocity( 'transition.slideUpBigIn' );
+			$("highlight").velocity({ opacity: 0.4 }, {duration: 500, loop:true});
+		})
+		.addTo(controller);
+	new ScrollMagic.Scene({triggerElement: '#triggerFun'})
+		.on("enter", function (){
+			$("#txtfun").velocity( 'transition.flipYIn' );
+		})
+		.addTo(controller);
+	new ScrollMagic.Scene({triggerElement: '#fun_trigger1'})
+		.on("start", function(){
+			$tech.velocity({scale: 1.1});
+			$present.velocity({scale: 1});
+			$reactive.velocity({scale: 1});
+		}).addTo(controller);
+	new ScrollMagic.Scene({triggerElement: '#fun_trigger2'})
+		.on("start", function(){
+			$tech.velocity({scale: 1});
+			$present.velocity({scale: 1.1});
+			$reactive.velocity({scale: 1});
+		}).addTo(controller);
+	new ScrollMagic.Scene({triggerElement: '#fun_trigger3'})
+		.on("start", function(){
+			$tech.velocity({scale: 1});
+			$present.velocity({scale: 1});
+			$reactive.velocity({scale: 1.1});
+		}).addTo(controller);
 </script>
 </body>
 </html>
