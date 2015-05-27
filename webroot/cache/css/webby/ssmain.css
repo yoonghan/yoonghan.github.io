@@ -4,10 +4,21 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 1200px) {
-    .calendar{
-    	visibility:hidden;
+@media screen and (max-width: 1000px) {
+	.flexbox-container{
+		flex-direction:column;
+	}
+    .screen-ctrl{
+    	display:none;
     }
+}
+@media screen and (min-width: 1200px) {
+	.slider{
+		width:80%;
+	}
+	.flexbox{
+		min-height: 300px;
+	}
 }
 
 html, 
@@ -61,12 +72,6 @@ td{
 	.red{
 		color:red;
 	}
-	.yellow{
-		color:#ff0;
-	}
-	.green{
-		color:#74b73f;
-	}
 	.teal{
 		color:#008080;
 	}
@@ -78,9 +83,6 @@ td{
 	}
 	.purple{
 		color:800080;
-	}
-	.red1{
-		color:#500;
 	}
 	.red2{
 		color:#C83737;
@@ -95,6 +97,7 @@ td{
 	background:#343434;
 	color:#777;
 	height:300px;
+	z-index:3;
 }
 .buttons{
 	position:absolute;
@@ -162,15 +165,21 @@ td{
 }
 .slider {
 	margin:auto;
-	width:80%;
-	min-width:480px;
+	min-width:320px;
 	min-height:100vh;
 	height:100%;
 	padding:10px;
 }
 .info {
-	padding-top:120px;
 	background:#fff;
+}
+.logo-slide{
+	padding:0 10%;
+	padding-top:20%;
+	background:#fff;
+}
+.logo {
+	height:50px;
 }
 .sliderContainer{
 	display:none;
@@ -180,9 +189,10 @@ td{
 }
 
 .title {
+	margin:0;
+	padding:0;
 	text-shadow: 0px 2px 3px #555;
 	font-size:60pt;
-	line-height: 5px;
 }
 .center{
 	position: absolute;
@@ -200,6 +210,12 @@ td{
 	padding:5px 0;
 	font-size:18pt;
 }
+.sitelink > a:hover{
+	color:#fff;
+}
+.sitelink > a:hover{
+	color:#000;
+}
 .hcenter{
 	height: 50%;
 }
@@ -209,8 +225,8 @@ td{
 }
 h2{
 	font-size:30pt;
-	text-shadow: 0px 2px 3px #333;
 	line-height:20pt;
+	color:#000;
 }
 highlight{
 	font-weight:bold;
@@ -287,8 +303,19 @@ ul{
 	-webkit-align-items: center;
 	-webkit-box-align: center;
 	align-items: center;
+	
 }
-.calendar {
+.flexbox-logo{
+	flex-grow:1;
+}
+.flexbox{
+	flex-grow:1;
+	margin:0 30px;
+	background:#fff;
+	height:30%;
+	padding:5px 40px 40px 40px;
+}
+#calendar {
 	background: url('/cache/img/webby/calendar.svg');
 	height:200px;
 	width:200px;
@@ -312,26 +339,12 @@ ul{
 	border-radius:10px;
 	box-shadow: 0 0px 10px #000;
 }
-.flexbox{
-	flex-grow:1;
-	margin:0 30px;
-	background:#fff;
-	height:30%;
-	min-height:300px;
-	padding:5px 40px 40px 40px;
-}
 .trigger{
 	position:absolute;
 	top:10%;
 }
 .text-shadow {
 	text-shadow: 0px 0px 10px #000;
-}
-.wrap {
-  max-width: 60%;
-  min-width: 61.25rem;
-  margin: 2rem auto 0;
-  opacity: 0;
 }
 #container {
 	perspective: 50px;

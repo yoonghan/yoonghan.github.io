@@ -5,7 +5,6 @@
 	var $section = document.getElementsByClassName('section');
 	var $layer1 = document.getElementById('layer1');
 	var $nav = document.getElementById('nav');
-	var $slides = $(".slider");
 	var $marker = document.getElementById('marker');
 	var $blog = document.getElementById('blog');
 	var $reactive = document.getElementById('reactive');
@@ -34,10 +33,8 @@
 	
 	for (var i = 0; i < dotsCount; i++) {
 		//"<div class='"+ballClass+"'></div>";
-		var attr = document.createAttribute("class");
-		attr.value = "ball";
 		var div = document.createElement("div");
-		div.setAttributeNode(attr);
+		div.setAttribute("class", "ball");
 		dotsHtml.push(div);
 	}
 	$dots =dotsHtml;
@@ -63,8 +60,6 @@
 	}
 	
 	var loading = [
-	    { elements: $body, properties: { width: '20%' } },
-	    { elements: $body, properties: { width: '30%' } },
 	    { elements: $body, properties: { width: '50%' } },
 	    { elements: $body, properties: { width: '100%' } },
 	    { elements: $body, properties: { height: '100%' }, options: { 
