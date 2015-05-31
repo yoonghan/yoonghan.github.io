@@ -3,11 +3,15 @@
 	var $body = document.getElementsByTagName('body')[0];
 	var $html = document.getElementsByTagName('html')[0];
 	var $section = document.getElementsByClassName('section');
+	var $title = document.getElementsByClassName('title')[0];
 	var $layer1 = document.getElementById('layer1');
 	var $nav = document.getElementById('nav');
 	var $marker = document.getElementById('marker');
 	var $blog = document.getElementById('blog');
 	var $reactive = document.getElementById('reactive');
+	//var $fishImg = document.getElementsByClassName('fish-img');
+	var $allLinks = $(".floater > div");
+	var $floater = document.getElementsByClassName('floater')[0];
 		
 	function r(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,7 +32,7 @@
 	if (window.location.hash) {
 		dotsCount = window.location.hash.slice(1);
 	} else {
-		dotsCount = isMobile ? (isAndroid ? 40 : 60) : (isChrome ? 200 : 125);
+		dotsCount = isMobile ? (isAndroid ? 20 : 30) : (isChrome ? 100 : 60);
 	}
 	
 	for (var i = 0; i < dotsCount; i++) {
@@ -61,19 +65,24 @@
 	
 	var loading = [
 	    { elements: $body, properties: { width: '50%' } },
-	    { elements: $body, properties: { width: '100%' } },
+	    { elements: $body, properties: { width: '100%' }, options: { 
+		      complete: function () {
+			        $html.style.background = '#000';
+			        $body.style.minWidth =  '480px';
+
+			        [].forEach.call($section, function(el) {
+			        	el.style.display = "block";
+			        });
+
+			        $layer1.style.display = 'block';
+			      }
+			    }},
 	    { elements: $body, properties: { height: '100%' }, options: { 
 	      complete: function () {
-	        $html.style.background = '#000';
-	        $body.style.minWidth =  '480px';
-	        [].forEach.call($section, function(el) {
-	        	el.style.display = "block";
-	        });
-	        [].forEach.call($dots, function(el) {
-	        	$container.appendChild(el);
-	        });
-	        $layer1.style.display = 'block';
-	     	triggerScrollMagic();
+	        triggerScrollMagic();
+	        $html.style.background = '#008080';
+	        //trigger bubbles after completed all
+	        callBubbles();
 	      }
 	    }},
 	    { elements: $dots, properties: { 
@@ -104,7 +113,10 @@
 		
 		prepareNav();
 		
-		$.Velocity($reactive, { opacity: 0.4 }, {duration: 500, loop:true});
+		animateTitle();
+		animateReactive();
+		animateLinks();
+		//playFish();
 		
 		new ScrollMagic.Scene({triggerElement: "#trigger", offset: 1})
 			.on("enter", function(){
@@ -128,6 +140,36 @@
 			.addTo(controller);
 	}
 	
+	function callBubbles(){
+		setTimeout(function() {
+	        [].forEach.call($dots, function(el) {
+	        	$container.appendChild(el);
+	        })}
+        ,1000);
+	}
+	
+	function playFish(){
+		var fish=$fishImg[0];
+		var neededWidth = screenWidth-500;
+		setInterval(function(){
+			fish.style.transform="translate("+r(0,neededWidth)+"px,150px)";
+			fish.style.backgroundSize=(r(1,2)*100+r(10,90))+"px";
+			$.Velocity($fishImg, {opacity: 0.3,margin:"5px"}, {duration: 2000}).then($.Velocity($fishImg, "reverse"));
+		}, 5000);
+	}
+	
+	function animateTitle(){
+		$.Velocity($title, {display:"block"}).then($.Velocity($title, "transition.flipBounceYIn"));
+	}
+	function animateLinks(){
+		$.Velocity($floater, {display:"block"}).then($.Velocity($floater, "transition.swoopIn")).then(
+				$allLinks.velocity({"margin-top":"10px"},{duration:2000,loop:true})
+		);
+	}
+	function animateReactive(){
+		$.Velocity($reactive, { opacity: 0.4 }, {duration: 500, loop:true});
+	}
+	
 	   
 	function prepareNav() {
 	  $('a[href*=#]').each(function() {
@@ -148,5 +190,6 @@
 	    }
 	  });
 	}
+	
 	
 }(this));

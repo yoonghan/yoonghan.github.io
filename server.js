@@ -4,6 +4,8 @@ var express   		= require('express');
 var fs        		= require('fs');
 var mime	  		= require('mime/mime.js');
 var replacer		= require('replacer/textreplacer.js');
+var CACHE_INFO		= 'no-transform,public,max-age=3600,s-maxage=3600';
+
 
 /**
  *  Define the sample application.
@@ -134,7 +136,12 @@ var SampleApp = function() {
         self.routes = { };
 
 		self.routes['/favicon.ico'] = function(req, res) {
+			var header = {};
 			res.setHeader( CONTENT_TYPE,  mime(".ico"));
+			header[ALLOW_ACCESS_ORIGIN] = '*';
+			header[CACHE_CONTROL] = CACHE_INFO;
+			
+			res.set(header);
 			res.send(fs.readFileSync(webroot+'/favicon.ico'));
 		};
 		
@@ -177,7 +184,7 @@ var SampleApp = function() {
 			var header = {};
 			header[CONTENT_TYPE] = mime(".json");
 			header[ALLOW_ACCESS_ORIGIN] = '*';
-			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
+			header[CACHE_CONTROL] = CACHE_INFO;
 			
 			res.set(header);
 			res.send(fs.readFileSync(reqPath));
@@ -188,7 +195,7 @@ var SampleApp = function() {
 			var reqPath = self.replacePath(req.path.toString());
 			var header = {};
 			header[CONTENT_TYPE] = mime(reqPath);
-			header[CACHE_CONTROL] = 'no-transform,public,max-age=3600,s-maxage=3600';
+			header[CACHE_CONTROL] = CACHE_INFO;
 
 			res.set(header);
 			res.send(fs.readFileSync(reqPath));
