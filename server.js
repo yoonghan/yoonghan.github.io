@@ -135,16 +135,6 @@ var SampleApp = function() {
 		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
         self.routes = { };
 
-		self.routes['/favicon.ico'] = function(req, res) {
-			var header = {};
-			res.setHeader( CONTENT_TYPE,  mime(".ico"));
-			header[ALLOW_ACCESS_ORIGIN] = '*';
-			header[CACHE_CONTROL] = CACHE_INFO;
-			
-			res.set(header);
-			res.send(fs.readFileSync(webroot+'/favicon.ico'));
-		};
-		
 		self.routes['/selfservice/admin'] = function(req, res) {
 			
 			var reqPath = self.replacePath(req.path.toString());
@@ -261,7 +251,7 @@ var SampleApp = function() {
     self.initializeServer = function() {
         self.createRoutes();
         self.app = express();
-
+        self.app.use(express.favicon(webroot+'/favicon.ico', { maxAge: 2592000000 }));
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);

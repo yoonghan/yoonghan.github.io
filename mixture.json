@@ -4,9 +4,9 @@
     "preprocessorLocations": [
         "webroot"
     ],
-    "preprocessorScriptOutput": null,
-    "preprocessorStyleOutput": "webroot/cache/css",
-    "projectName": "Project Name",
+    "preprocessorScriptOutput": "webroot/cache/com/js",
+    "preprocessorStyleOutput": "webroot/cache/com/css",
+    "projectName": "JomJaring",
     "projectDescription": "Project Description",
     "publishedId": null,
     "serverHostname": null,
