@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=480">
 <link rel="author"	href="https://plus.google.com/u/1/114852108498604797792" />
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>	
-<link rel="stylesheet" href="/cache/css/common.css">
 <link rel="stylesheet" href="/cache/css/webby/submenu.css">
 <link rel="stylesheet" href="/cache/css/webby/ssresearch.css">
 </head>
@@ -20,7 +19,7 @@
 	<menu>
 	  <ul>
 		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus" class="repeated-item">
+	  	<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -205,11 +204,10 @@ javascript:void(document.cookie = "UserId:xxx;sessionID=xxx");
 		<td>Making movies</td>
 		<td>
 http://www.tweetbeam.com/blog/generating-facebook-lookback-style-dynamic-videos-html5-using-phantomjs-ffmpeg/
--	GreenTools/ GASP (payable if used commercially – one time)
--	Ffmpeg (runnable in all platform, I’m using Window’s version)
--	JSPhantom
--	CSS and HTML (should be runnable in IE 8 too)
-
+<br>-GreenTools/ GASP (payable if used commercially - one time)
+<br>-Ffmpeg (runnable in all platform, I'm using Window's version)
+<br>-JSPhantom
+<br>-CSS and HTML (should be runnable in IE 8 too)
 <br>Commands:<br>
 ffmpeg -i video.mp4 -i audio.mp3 -map 0:v -map 1:a -codec copy -shortest out.mp4<br>
 ffmpeg -y -r 30 -i frame_%05d.png -c:v libx264 -r 30 -pix_fmt yuv420p video.mp4
@@ -397,7 +395,7 @@ done
 </p>
 <div class="footnote">
 	<ul id="menu">
-		<li ng-repeat="menu in menus" class="repeated-item">
+		<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>

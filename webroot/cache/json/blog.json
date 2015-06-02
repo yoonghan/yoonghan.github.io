@@ -179,6 +179,11 @@
   "date":"May 2st, 2015",
   "task":"Parallax",
   "detail":"Modified the About Us page and parallax it."
+},
+{
+  "date":"May 30th, 2015",
+  "task":"Sass and Mixture",
+  "detail":"Using preprocessor to run all create CSS scripts."
 }
 ]
 }

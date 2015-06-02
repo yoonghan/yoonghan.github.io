@@ -1,0 +1,25 @@
+.tooltip::before 
+  content: attr(data-tip) 
+  font-size: $font-normal-size
+  position: absolute
+  z-index: 999
+  white-space: nowrap
+  bottom: 9999px
+  left: 0%
+  background: $color-grey-dark
+  color: $color-grey-soft
+  padding: 0px 7px
+  line-height: 24px
+  height: 24px
+  opacity: 3
+  transition: opacity 0.4s ease-out
+ 
+tooltip:hover::before
+  opacity: 1
+  bottom: -35px
+
+::-webkit-input-placeholder
+  font-style: italic
+input
+  &:-moz-placeholder, &:-ms-input-placeholder
+    font-style:italic

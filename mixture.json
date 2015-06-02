@@ -2,10 +2,10 @@
     "debug": false,
     "lintScripts": false,
     "preprocessorLocations": [
-        "webroot"
+        "webroot/cache/preprocess/css","webroot/cache/preprocess/js"
     ],
-    "preprocessorScriptOutput": "webroot/cache/com/js",
-    "preprocessorStyleOutput": "webroot/cache/com/css",
+    "preprocessorScriptOutput": "webroot/cache/js",
+    "preprocessorStyleOutput": "webroot/cache/css/webby",
     "projectName": "JomJaring",
     "projectDescription": "Project Description",
     "publishedId": null,
@@ -39,7 +39,12 @@
     ],
     "customTodos": null,
     "autoPrefixer": null,
-    "sass": null,
+"sass": {
+  "outputStyle": "nested",
+  "sourceMap": false,
+  "lineNumbers": false,
+  "useLibSass": true
+},
     "sitemap": false,
     "less": null,
     "optimiseSVG": true,

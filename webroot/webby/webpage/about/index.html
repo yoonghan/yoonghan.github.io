@@ -3,17 +3,12 @@
   <head>
   	<meta charset="utf-8">
 	<meta name="viewport" content="width=480">
-	<meta name="description" content="Our profile.">
+	<meta name="description" content="Jom Jaring creators and about us profile">
 	<title>About Us</title>
 	<link rel="stylesheet" href="/cache/css/webby/ssabout.css"/>
 	<link rel="stylesheet" href="/cache/css/webby/submenu.css">
 	<link rel="stylesheet" href="/cache/css/tablestack/dialog.css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
-	
+	<link href='http://fonts.googleapis.com/css?family=Roboto|Arvo:400,700,400italic,700italic|Wellfleet|Oswald|Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>	
  </head> 
 	
 <body ng-controller="subMenuListCtrl" ng-init="init('About Us')">
@@ -23,7 +18,7 @@
 <div id="logo"><a href="/">ABOUT US</a></div>
 <nav id="nav">
 	<ul>
-	  	<li ng-repeat="menu in menus" class="repeated-item">
+	  	<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -103,7 +98,7 @@
 <!----- SLIDES END --->
 	<div class="footnote">
 		<ul id="menu">
-			<li ng-repeat="menu in menus" class="repeated-item">
+			<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 				<a ng-href="{{menu.link}}">{{menu.display}}</a>
 			</li>
 		</ul>

@@ -23,7 +23,7 @@
    	<menu>
 	  <ul>
 		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus" class="repeated-item">
+	  	<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -71,7 +71,7 @@
 			
 			<td class="desc">
 			
-			<span ng-if="technology.deprecated === 'true'" class="deprecated_text">DEPRECATED<br></span>
+			<span ng-if="technology.deprecated === 'true'" class="deprecated-text">DEPRECATED<br></span>
 			
 			{{technology.detail}}
 			</td>
@@ -169,7 +169,7 @@
 <br/>
    <div class="footnote">
 	<ul id="menu">
-		<li ng-repeat="menu in menus" class="repeated-item">
+		<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>

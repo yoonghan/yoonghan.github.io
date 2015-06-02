@@ -1,0 +1,148 @@
+@import base
+
+.footnote
+  background: $color-grey-dark
+  margin: 0px
+  padding: 20px 80px
+  color: $color-grey-light
+  font-size: $font-small-size
+
+menu, #submenu
+  border-top-style: solid
+  border-bottom-style: solid
+  border-width: 1px
+  color: $color-grey-dark
+  margin: 40px 40px 50px 40px
+  padding: 10px 0px
+
+#submenu
+  margin: -40px 40px 40px 40px
+  padding: 0
+
+menu ul, #submenu ul, .footnote ul
+  list-style-type: none
+  line-height: 45px
+  padding: 0
+  margin: 0
+
+.displayMenu
+  display: inline
+  padding-right: 50px
+  padding-left: 0px
+  font-weight: bold
+  zoom: 1
+
+menu ul li, .footnote ul li
+  @extend .displayMenu
+  font-size: $font-title-menu-size
+  color: $color-green
+
+#submenu ul li
+  @extend .displayMenu
+  font-size: ($font-small-size + 1)
+
+a
+  color: $color-green
+  text-decoration: none
+
+  &:hover
+    color: $color-green-light
+
+.menuTitle
+  color: $color-grey-mid
+  font-size: $font-large-size
+  display: inline
+
+.fullbar
+  color: white
+  background: $color-grey-mid
+  margin: 0px
+  padding: 30px 120px
+
+.fullbar 
+  h1
+    display: inline
+
+  h3
+    display: inline
+    float: right
+    font-weight: normal
+
+.footnote ul .menuTitle
+  display: none
+  visibility: hidden
+
+.overlay
+  background: black
+  opacity: .5
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 100
+
+.box
+  position: fixed
+  bottom: -200px
+  left: 5px
+  background-color: white
+  color: $color-grey-light
+  padding: 20px
+  border: 2px solid $color-grey-soft
+  font-size: $font-normal-size
+  border-radius: 20px 20px 0 0
+  z-index: 101
+  
+  h1
+    border-bottom: 1px dashed $color-grey-light
+    margin: -20px -20px 0 -20px
+    padding: 10px
+    background-color: $color-grey-light
+    color: $color-green-light
+    border-radius: 20px 20px 0 0
+
+a.boxclose
+  float: right
+  margin-top: -30px
+  margin-right: -30px
+  cursor: pointer
+  color: white
+  border: 1px solid $color-grey-soft
+  border-radius: 30px
+  background: $color-grey-dark
+  font-size: $font-normal-size
+  font-weight: bold
+  display: inline-block
+  line-height: 5px
+  padding: 20px 3px 
+
+.boxclose:before 
+  font-weight: normal
+  content: "X"
+  padding: 12px
+
+
+//Angular css
+.repeated-item.ng-enter, .repeated-item.ng-move
+  -webkit-transition: 0.5s linear all
+  -moz-transition: 0.5s linear all
+  -o-transition: 0.5s linear all
+  transition: 0.5s linear all
+  opacity: 0
+
+.repeated-item.ng-enter.ng-enter-active, .repeated-item.ng-move.ng-move-active 
+  opacity: 1
+
+.repeated-item.ng-leave 
+  -webkit-animation: 0.5s my_animation
+  -moz-animation: 0.5s my_animation
+  -o-animation: 0.5s my_animation
+  animation: 0.5s my_animation
+
+
+@keyframes my_animation, @-webkit-keyframes my_animation, @-moz-keyframes my_animation, @-o-keyframes my_animation
+  from
+    opacity: 1
+  to
+    opacity: 0

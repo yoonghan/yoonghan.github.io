@@ -5,8 +5,7 @@
 <meta name="description" content="Website development.">
 <meta name="viewport" content="width=480">
 <link rel="author"	href="https://plus.google.com/u/1/114852108498604797792" />
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>	
-<link rel="stylesheet" href="/cache/css/common.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto|Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>	
 <link rel="stylesheet" href="/cache/css/webby/submenu.css">
 <link rel="stylesheet" href="/cache/css/webby/ssblog.css">
 </head>
@@ -20,7 +19,7 @@
 	<menu>
 	  <ul>
 		<li class="menuTitle">JOM Jaring</li>
-	  	<li ng-repeat="menu in menus" class="repeated-item">
+	  	<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	  </ul>
@@ -59,7 +58,7 @@
 </p>
 <div class="footnote">
 	<ul id="menu">
-		<li ng-repeat="menu in menus" class="repeated-item">
+		<li ng-repeat="menu in menus" class="repeated-item" ng-cloak>
 			<a ng-href="{{menu.link}}">{{menu.display}}</a>
 		</li>
 	</ul>

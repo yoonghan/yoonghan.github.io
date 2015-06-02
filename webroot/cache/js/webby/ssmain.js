@@ -68,7 +68,6 @@
 	    { elements: $body, properties: { width: '100%' }, options: { 
 		      complete: function () {
 			        $html.style.background = '#000';
-			        $body.style.minWidth =  '480px';
 
 			        [].forEach.call($section, function(el) {
 			        	el.style.display = "block";
@@ -163,7 +162,7 @@
 	}
 	function animateLinks(){
 		$.Velocity($floater, {display:"block"}).then($.Velocity($floater, "transition.swoopIn")).then(
-				$allLinks.velocity({"margin-top":"10px"},{duration:2000,loop:true})
+				$allLinks.velocity({"margin-top":"4px"},{duration:2000,loop:true})
 		);
 	}
 	function animateReactive(){
