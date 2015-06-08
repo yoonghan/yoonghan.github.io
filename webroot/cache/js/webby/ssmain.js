@@ -115,7 +115,6 @@
 		animateTitle();
 		animateReactive();
 		animateLinks();
-		//playFish();
 		
 		new ScrollMagic.Scene({triggerElement: "#trigger", offset: 1})
 			.on("enter", function(){
@@ -143,18 +142,32 @@
 		setTimeout(function() {
 	        [].forEach.call($dots, function(el) {
 	        	$container.appendChild(el);
-	        })}
+	        });
+	        playFish();
+			}
         ,1000);
 	}
 	
+	//called after bubble appears
 	function playFish(){
-		var fish=$fishImg[0];
-		var neededWidth = screenWidth-500;
-		setInterval(function(){
-			fish.style.transform="translate("+r(0,neededWidth)+"px,150px)";
-			fish.style.backgroundSize=(r(1,2)*100+r(10,90))+"px";
-			$.Velocity($fishImg, {opacity: 0.3,margin:"5px"}, {duration: 2000}).then($.Velocity($fishImg, "reverse"));
-		}, 5000);
+		var $whale = document.getElementsByClassName('whale');
+		var $whalefins = document.getElementsByClassName('whale-fin');
+		var $whaletail = document.getElementsByClassName('whale-tail');
+		
+		$whale[0].style.display = 'inline';
+		
+		[].forEach.call($whalefins, function(el) {
+	      var fin = el.getAttribute("class");
+	      var rotateAngle = "20deg";
+	      if(fin.indexOf("right") > -1){
+	      	rotateAngle = "-"+rotateAngle;
+	      }
+	      $.Velocity(el, {rotateZ: rotateAngle}, {duration:5000, loop:true});
+	    });
+	    
+	    $.Velocity($whaletail, {top: "-20px"}, {duration:5000, loop:true})
+	    $.Velocity($whale, {opacity: "0.5", "margin-top": "22px"}, {duration:5000, loop:5});
+	    
 	}
 	
 	function animateTitle(){

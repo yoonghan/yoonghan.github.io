@@ -3,65 +3,87 @@
 <title>Test website</title>
 
 <style>
-	ul{
-  margin:0;
-  padding:0;
-  background:#eee;
-  border:1px solid #999;
-  height:100px;
-  width:600px;
-  list-style:none;
-  overflow:hidden;
-}
-li{
-  height:100px;
-  list-style:none;
-  margin:0;
-  padding:0;
-  float:left;
-  width:75px;
-  background:#369;
-  border-top:1px solid #eee
-}
-li span{
-  position:absolute;
-  top:1em;
-  left:-9999px;
-}
-li:hover{
-  background:#69c;
-}
-li:hover span{
-  left:1em;
-}
+	.whale-sunray{
+		position: absolute;
+		background: url("/cache/img/webby/whale_sunray.svg") no-repeat;
+		background-size: 500px;
+		width: 500px;
+		height: 500px;
+		opacity: 0.5;
+	}
+	.whale{
+		position: absolute;
+		background: url("/cache/img/webby/whale.svg") no-repeat;
+		background-size: 400px 370px;
+		margin:20 200px 0 200px;
+		width: 100%;
+		height: 100%;
+	}
+	.whale-fin{
+		position: absolute;
+		background-size: 130px 130px;
+		width: 260px;
+		height: 260px;
+	}
+	.left-side{
+		background: url("/cache/img/webby/whale_fin_l.svg") no-repeat;
+		left: -100px;
+		
+	}
+	.right-side{
+		background: url("/cache/img/webby/whale_fin_r.svg") no-repeat;
+		left: 240px;
+	}
+	.whale-tail{
+		position: absolute;
+		background: url("/cache/img/webby/whale_tail.svg") no-repeat;
+		background-size: 280px 100px;
+		width: 280px;
+		height: 100px;
+		top: 0;
+		left: 60px; 
+	}
 </style>
 </head>
 <body>
-<ul>
-  <li style="border-top-width:0px">
-    <span>400</span>
-  </li>
-  <li style="border-top-width:95px">
-    <span>20</span>
-  </li>
-  <li style="border-top-width:92px">
-    <span>30</span>
-  </li>
-  <li style="border-top-width:41px">
-    <span>233</span>
-  </li>
-  <li style="border-top-width:22px">
-    <span>312</span>
-  </li>
-  <li style="border-top-width:80px">
-    <span>78</span>
-  </li>
-  <li style="border-top-width:95px">
-    <span>20</span>
-  </li>
-  <li style="border-top-width:83px">
-    <span>67</span>
-  </li>
-</ul>
+hello;<br>
+thisdf
+s
+dfsd
+f
+	
+		<div class="whale">
+			<div class="whale-tail"></div>
+			<div class="whale-fin left-side"></div>
+			<div class="whale-fin right-side"></div>
+			
+			<div class="whale-sunray">
+			</div>
+		</div>
+	
 </body>
+<script src="/cache/js/lib/jquery/jquery.min.js"></script>
+<script src="/cache/js/lib/scrollmagic/scrollmagic.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.min.js"></script>
+<script src="/cache/js/lib/velocityjs/velocity.ui.min.js"></script>
+<script src="/cache/js/lib/velocityjs/animation.velocity.min.js"></script>
+<script>
+	var $whale = document.getElementsByClassName('whale');
+	var $whalefins = document.getElementsByClassName('whale-fin');
+	var $whaletail = document.getElementsByClassName('whale-tail');
+	var $sunlight = document.getElementsByClassName('whale-sunray');
+	
+	[].forEach.call($whalefins, function(el) {
+      var fin = el.getAttribute("class");
+      var rotateAngle = "20deg";
+      if(fin.indexOf("right") > -1){
+      	rotateAngle = "-"+rotateAngle;
+      }
+      $.Velocity(el, {rotateZ: rotateAngle}, {duration:5000, loop:true});
+    });
+    
+    $.Velocity($whaletail, {top: "-20"}, {duration:5000, loop:true})
+    $.Velocity($whale, {opacity: "0.5", "margin-top": "22px"}, {duration:5000, loop:true});
+    $.Velocity($sunlight, {margin: "10px"}, {duration:5000, loop:true});
+</script>
 </html>

@@ -9,27 +9,27 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="400"
-   height="370"
-   viewBox="0 0 400 370"
-   id="svg2"
+   width="280"
+   height="100"
+   viewBox="0 0 280 100"
+   id="svg4950"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="whale.svg">
+   sodipodi:docname="whale_tail.svg">
   <defs
-     id="defs4">
+     id="defs4952">
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
-       id="filter4280"
-       x="-0.025214212"
-       width="1.0504284"
-       y="-0.027702823"
-       height="1.0554056">
+       id="filter4935"
+       x="-0.022020698"
+       width="1.0440414"
+       y="-0.070861742"
+       height="1.1417235">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="3.9906387"
-         id="feGaussianBlur4282" />
+         stdDeviation="2.4724842"
+         id="feGaussianBlur4937" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -39,20 +39,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="342.4776"
-     inkscape:cy="196.62781"
+     inkscape:zoom="1.4"
+     inkscape:cx="181.86233"
+     inkscape:cy="60.854257"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
      inkscape:window-width="686"
-     inkscape:window-height="569"
-     inkscape:window-x="601"
-     inkscape:window-y="16"
-     inkscape:window-maximized="1" />
+     inkscape:window-height="405"
+     inkscape:window-x="439"
+     inkscape:window-y="175"
+     inkscape:window-maximized="0" />
   <metadata
-     id="metadata7">
+     id="metadata4955">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -67,12 +67,12 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-682.36216)">
+     transform="translate(0,-952.3622)">
     <path
-       style="fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4280)"
-       d="m 155.71429,712.36217 c 47.77967,-29.11426 66.8565,-13.57187 97.14286,4.2857 22.77175,13.42679 66.7778,4.66993 109.99999,38.57144 15.52952,6.17216 16.71368,20.15782 13.77767,47.6506 35.68655,11.85621 5.91815,188.48485 -106.63482,216.63519 -15.58487,3.898 -35.86477,22.783 -57.13304,22.3617 -21.71581,-0.4303 -57.31957,-18.8321 -77.15266,-23.7904 C 61.51717,999.52707 -19.858337,883.50741 22.857143,798.07645 c 5.42911,-10.85822 -4.99106,-31.78562 17.142857,-50 34.18282,-28.12963 100.54341,-24.36682 115.71429,-35.71428 z"
-       id="path4136"
+       style="fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4935)"
+       d="m 137.98144,1047.7176 c -16.38248,12.1405 -149.823328,-57.31948 -129.9999983,-77.14278 7.3369103,-7.33698 113.9251683,22.4098 121.4285683,24.2857 15.25788,3.81441 14.91037,-3.2591 21.42857,0 8.72083,4.36041 119.38173,-36.95086 124.28572,-27.1429 7.44656,14.8931 -114.92253,96.66528 -137.14286,79.99998 z"
+       id="path4905"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csccsssssc" />
+       sodipodi:nodetypes="cssssc" />
   </g>
 </svg>
