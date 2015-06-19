@@ -6,6 +6,8 @@
 <meta name=viewport content="width=device-width, initial-scale=1">
 <meta name="description" content="Walcron is a basic company setup by Yoong Han and Lee Wan, used as a profile page.">
 <link rel="author" href="https://plus.google.com/u/1/114852108498604797792"/>
+<link rel="stylesheet" type="text/css" href="/cache/css/webby/ssmain.css" />
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,900|Open+Sans+Condensed:700|Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
 <meta property="og:title" content="Walcron"/>
 <meta property="og:type" content="profile"/>
 <meta property="og:image" content="http://www.walcron.com/cache/img/jomjaring.jpg"/>
@@ -146,41 +148,15 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	
-	var cb = function() {
-		var loadScripts = ["/cache/css/webby/ssmain.css",
-			"http://fonts.googleapis.com/css?family=Roboto:400,900|Open+Sans+Condensed:700|Goudy+Bookletter+1911"];
-		for(var cnt=0; cnt < loadScripts.length; cnt++){
-			var l = document.createElement('link'); l.rel = 'stylesheet';
-			l.href = loadScripts[cnt];
-			var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-		}
-	};
-	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-	webkitRequestAnimationFrame || msRequestAnimationFrame;
-	if (raf) raf(cb);
-		else window.addEventListener('load', cb);
-	
-	function downloadJSAtOnload() {
-		var loadScripts = ["/cache/js/lib/jquery/jquery.min.js", 
-			"/cache/js/lib/scrollmagic/scrollmagic.min.js", 
-			"/cache/js/lib/velocityjs/velocity.min.js",
-			"/cache/js/lib/velocityjs/velocity.ui.min.js",
-			"/cache/js/lib/velocityjs/animation.velocity.min.js",
-			"/cache/js/webby/ssmain.js"];
-		for(var cnt=0; cnt < loadScripts.length; cnt++){
-			var element = document.createElement("script");
-			element.src = loadScripts[cnt];
-			document.body.appendChild(element);
-		}
-	}
-	
-	if (window.addEventListener)
-		window.addEventListener("load", downloadJSAtOnload, false);
-	else if (window.attachEvent)
-		window.attachEvent("onload", downloadJSAtOnload);
-	else window.onload = downloadJSAtOnload;
+<script src="/cache/js/lib/labjs/LAB.min.js" ></script>
+<script>
+	$LAB
+	.script("/cache/js/lib/jquery/jquery.min.js")
+	.script("/cache/js/lib/scrollmagic/scrollmagic.min.js")
+	.script("/cache/js/lib/velocityjs/velocity.min.js")
+	.script("/cache/js/lib/velocityjs/velocity.ui.min.js").wait()
+	.script("/cache/js/lib/velocityjs/animation.velocity.min.js").wait()
+	.script("/cache/js/webby/ssmain.js").wait()
 </script>
 </body>
 </html>
