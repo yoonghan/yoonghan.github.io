@@ -4,7 +4,7 @@ var express   		= require('express');
 var fs        		= require('fs');
 var mime	  		= require('mime/mime.js');
 var replacer		= require('replacer/textreplacer.js');
-var CACHE_INFO		= 'no-transform,public,max-age=3600,s-maxage=3600';
+var CACHE_INFO		= 'no-transform,public,max-age=86400,s-maxage=86400';
 
 
 /**
