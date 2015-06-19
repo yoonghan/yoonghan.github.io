@@ -151,7 +151,7 @@ define(['angularAMD',
 				$mdDialog.show(
 				  $mdDialog.alert()
 					.title('About')
-					.content('Administrator - All rights reserved to JOM Jaring 2015')
+					.content('Administrator - All rights reserved to Walcron Coorporate 2015')
 					.ariaLabel('About')
 					.ok('Close')
 				);

@@ -11,7 +11,7 @@ define(['jquery'], function ($) {
 
             var msg_2 = [
                        [0,"After you've changed your settings, your booking will be made here with this link/screen.<br>All available events that you have subscribed to will be displayed here."],
-                       [1,"As tutorial, you've subscribed to <strong><i>JOM Jaring</i></strong>&copy; account in your subscription profile. Check out <strong>Today's</strong> <i>My Demo Event</i>."],
+                       [1,"As tutorial, you've subscribed to <strong><i>Walcron</i></strong>&copy; account in your subscription profile. Check out <strong>Today's</strong> <i>My Demo Event</i>."],
                        [2,"<i>Now, let's start a reservation!</i> Click on the blinking event and you'll see the event being displayed in <strong>Scheduled Events</strong> dialog.<br><strong>Try it !</strong>"],
                        [3,"The <strong>Scheduled Events</strong> dialog, displays your booking status, which includes the date, time(as demo this a full day event, hence the unavailability) and an explanation of the event by the publisher."],
                        [4,"Click on the <strong>Book</strong> button under Scheduled Event and you will be confirmed.<br><strong>Try it !</strong>"],

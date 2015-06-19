@@ -9,7 +9,7 @@ describe('Introduction App', function() {
 	element(by.id('show')).click();
 	
 	//check if browser is correct.
-    expect(browser.getTitle()).toEqual('JOM Jaring Introductory Page');
+    expect(browser.getTitle()).toEqual('Walcron Introductory Page');
 	
 	//check navigation is possible
 	element(by.id('nav')).getLocation().then(function (navLocation) {

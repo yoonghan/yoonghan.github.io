@@ -61,7 +61,7 @@ var userMgmtListUrl    = "http://localhost:9000/subscription/users";
 //Ediable tEvent lists
 var editableEventListUrl    = "http://localhost:9000/tools/editableevents";
 
-var redirectURL			= "//login.jomjaring.com";
+var redirectURL			= "//login.walcron.com";
 var initialStartURL		= "/notify/subscription";
 var setupConfURL		= "/selfservice/booking/setup-confirm";
 var homeURL				= "/selfservice/booking/calendar";

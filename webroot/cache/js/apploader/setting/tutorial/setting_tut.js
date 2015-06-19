@@ -14,7 +14,7 @@ define(['jquery'], function ($) {
                        [7,"Some fields provide a filter. By entering your search text, the list will match your search text. Removing the text in the search fields will show all the datas."],
                        [8,"Let's try it on the <strong>Filter Company Name:</strong> text box.<br><strong>Try it!</strong>"],
                        [9,"Take note, all changes are <strong>not modified</strong> when the filter is used <i>(unless specified)</i>. Hence everything you have selected previously will still remain.<br>"],
-                       [10,"Lastly as tutorial, you are subscribed to <strong><i>JOM Jaring&copy;</i></strong> account for this demo.<br><strong>Optional:</strong> Subscribe to one of the Company's event and click save, if you are ready. This way you are ready to do your reservation after the tutorial ended."],
+                       [10,"Lastly as tutorial, you are subscribed to <strong><i>Walcron&copy;</i></strong> account for this demo.<br><strong>Optional:</strong> Subscribe to one of the Company's event and click save, if you are ready. This way you are ready to do your reservation after the tutorial ended."],
                        [11,"This completes the Settings. Let us return to the Calendar page, by clicking on the button here: <a class='btn btn-primary btnTutNextScreen' href='/selfservice/booking/calendar#/?tut=2'>Continue tutorial</a>."]
                        ];
 

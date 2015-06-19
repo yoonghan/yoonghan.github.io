@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head data-gwd-animation-mode="quickMode">
- <title>JOM Jaring Login</title>
+ <title>Walcron Login</title>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/cache/js/lib/jquery/jquery.min.js"></script>
@@ -9,7 +9,7 @@
      <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 
 	<script>
-	var login = "//scala.jomjaring.com/service/oauth/send/";
+	var login = "//scala.walcron.com/service/oauth/send/";
 	var btnClick = false;
 	var timeVar; 
 	
@@ -37,7 +37,7 @@
 		clearTimeout(timeVar);
 		
 		$.ajax({
-			url:'//scala.jomjaring.com/ping',
+			url:'//scala.walcron.com/ping',
 			type: 'GET',
 			async: false,
 			success:
