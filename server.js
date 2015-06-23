@@ -4,8 +4,8 @@ var express   		= require('express');
 var fs        		= require('fs');
 var mime	  		= require('mime/mime.js');
 var replacer		= require('replacer/textreplacer.js');
+var etag			= require('etag');
 var CACHE_INFO		= 'no-transform,public,max-age=86400,s-maxage=86400';
-
 
 /**
  *  Define the sample application.
@@ -132,6 +132,7 @@ var SampleApp = function() {
     self.createRoutes = function() {
 		var CONTENT_TYPE='Content-Type';
 		var CACHE_CONTROL='Cache-Control';
+		var ETAG='ETag';
 		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
         self.routes = { };
 
@@ -171,24 +172,30 @@ var SampleApp = function() {
 		self.routes['/cache/json/*:path'] = function(req, res) {
 			var reqPath = self.replacePath(req.path.toString());
 			
+			var resource = fs.readFileSync(reqPath);
+			
 			var header = {};
 			header[CONTENT_TYPE] = mime(".json");
 			header[ALLOW_ACCESS_ORIGIN] = '*';
 			header[CACHE_CONTROL] = CACHE_INFO;
+			header[ETAG] = etag(resource);
 			
 			res.set(header);
-			res.send(fs.readFileSync(reqPath));
+			res.send(resource);
 		};
 
 		self.routes['/cache/*:path'] = function(req, res) {
-
 			var reqPath = self.replacePath(req.path.toString());
+			
+			var resource = fs.readFileSync(reqPath);
+			
 			var header = {};
 			header[CONTENT_TYPE] = mime(reqPath);
 			header[CACHE_CONTROL] = CACHE_INFO;
+			header[ETAG] = etag(resource);
 
 			res.set(header);
-			res.send(fs.readFileSync(reqPath));
+			res.send(resource);
 		};
 		
 		self.routes['/swagger/*:path'] = function(req, res) {

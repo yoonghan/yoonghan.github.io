@@ -165,8 +165,7 @@
 	      $.Velocity(el, {rotateZ: rotateAngle}, {duration:5000, loop:true});
 	    });
 	    
-	    $.Velocity($whaletail, {top: "-20px"}, {duration:5000, loop:true})
-	    $.Velocity($whale, {opacity: "0.5", "margin-top": "22px"}, {duration:5000, loop:5});
+	    $.Velocity($whale, {opacity: "0.3", "margin-top": "22px"}, {duration:5000, loop:5});
 	    
 	}
 	
