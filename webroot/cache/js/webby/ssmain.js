@@ -4,20 +4,23 @@
 	var $html = document.getElementsByTagName('html')[0];
 	var $section = document.getElementsByClassName('section');
 	var $title = document.getElementsByClassName('title')[0];
+	var $triangles = document.getElementsByClassName('triangle');
 	var $layer1 = document.getElementById('layer1');
 	var $nav = document.getElementById('nav');
+	var $fab = document.getElementById('fab');
 	var $marker = document.getElementById('marker');
+	var $triggerImg = document.getElementsByClassName('triggerImg');
 	var $blog = document.getElementById('blog');
 	var $reactive = document.getElementById('reactive');
-	//var $fishImg = document.getElementsByClassName('fish-img');
 	var $allLinks = $(".floater > div");
 	var $floater = document.getElementsByClassName('floater')[0];
+	var $texts = $(".texts");
 		
 	function r(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	
-	$.Velocity.defaults.easing = "easeInOutsine";
+	$.Velocity.defaults.easing = "easeOutsine";
 	
 	var isWebkit = /Webkit/i.test(navigator.userAgent),
 		isChrome = /Chrome/i.test(navigator.userAgent),
@@ -78,9 +81,10 @@
 			    }},
 	    { elements: $body, properties: { height: '100%' }, options: { 
 	      complete: function () {
+	    	$html.style.background = '#1976D2';
+	    	$.Velocity($fab, "transition.fadeIn");
+	    	triggerTriangles();
 	        triggerScrollMagic();
-	        $html.style.background = '#008080';
-	        //trigger bubbles after completed all
 	        callBubbles();
 	      }
 	    }},
@@ -118,12 +122,24 @@
 		
 		new ScrollMagic.Scene({triggerElement: "#trigger", offset: 1})
 			.on("enter", function(){
-				$.Velocity($layer1, { opacity: 1 },{visibility:"visible"});
-				$.Velocity($nav, {height: "80px"});
+				$layer1.style.top = 0;
+				var mySequence = [
+				                  { e: $fab, p: {top:0, left:0, height:"100%", width:"100%", "border-radius":0} },
+				                  { e: $layer1, p: { opacity: 1}, o: { duration: 200 } },
+				                  { e: $nav, p: {height: "80px"}, o: { duration: 200 } },
+				                  { e: $texts, p: "transition.fadeIn" }
+				              ];
+				$.Velocity.RunSequence(mySequence);
 			})
 			.on("leave", function(){
-				$.Velocity($layer1, { opacity: 0 },{visibility:"hidden"});
-				$.Velocity($nav, {height: "0"});
+				$layer1.style.top = "100vh";
+				var mySequence = [
+				                  { e: $texts, p: "transition.fadeOut", o: { duration: 100 } },
+				                  { e: $nav, p: {height: "0"}, o: { duration: 200 } },
+				                  { e: $layer1, p: { opacity: 0}, o: { duration: 200 } },
+				                  { e: $fab, p: {top:"90vh", left:"90vw", height:"54px", width:"54px", "border-radius":"50px"}},
+				              ];
+				$.Velocity.RunSequence(mySequence);
 			})
 			.addTo(controller);
 		new ScrollMagic.Scene({triggerElement: "#trigger_marker"})
@@ -134,6 +150,16 @@
 		new ScrollMagic.Scene({triggerElement: "#trigger_blog"})
 			.on("enter", function(){
 				$.Velocity($blog, "callout.shake");
+			})
+			.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: "#trigger_images"})
+			.on("enter", function(){
+				var pos = 0;
+				[].forEach.call($triggerImg, function(el) {
+					var position = pos+"px";
+					$.Velocity(el, {top: position, left: position});
+					pos += 20;
+		        });
 			})
 			.addTo(controller);
 	}
@@ -165,7 +191,7 @@
 	      $.Velocity(el, {rotateZ: rotateAngle}, {duration:5000, loop:true});
 	    });
 	    
-	    $.Velocity($whale, {opacity: "0.3", "margin-top": "22px"}, {duration:5000, loop:5});
+	    $.Velocity($whale, {"margin-top": "22px"}, {duration:5000, loop:5});
 	    
 	}
 	
@@ -181,6 +207,11 @@
 		$.Velocity($reactive, { opacity: 0.4 }, {duration: 500, loop:true});
 	}
 	
+	function triggerTriangles(){
+		[].forEach.call($triangles, function(el) {
+        	el.style.opacity = 1;
+        });
+	}
 	   
 	function prepareNav() {
 	  $('a[href*=#]').each(function() {
@@ -190,7 +221,7 @@
 	      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
 	      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
 	       if ($target) {
-	         var targetOffset = $target.offset().top-100;
+	         var targetOffset = $target.offset().top-650;
 	         $(this).click(function() {
 	            $("#nav li a").removeClass("active");
 	            $(this).addClass('active');
@@ -201,6 +232,5 @@
 	    }
 	  });
 	}
-	
 	
 }(this));

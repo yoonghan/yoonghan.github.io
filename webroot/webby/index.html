@@ -15,10 +15,12 @@
 </head>
 <body>
 <div id="pin">
+	<div class="triangle triangle-left"></div>
+	<div class="triangle triangle-right"></div>
+	<a href="javascript:$('html, body').animate({scrollTop: 10}, 1000);"><div id="fab"><svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M6 13c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 .5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM6 5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm15 5.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM14 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-3.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zm-11 10c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm7 7c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm0-17c.28 0 .5-.22.5-.5s-.22-.5-.5-.5-.5.22-.5.5.22.5.5.5zM10 7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 5.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm8 .5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-8c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 8.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zM14 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0 3.5c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-4-12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0 8.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm4-4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M0 0h24v24H0z" fill="none"/></svg></div></a>
 	<div class="section main">
 		<h1 class="title">Walcron</h1>
 		<div id="container"></div>
-		<!-- >div class="fish-img"></div-->
 		<div class="whale">
 			<div class="whale-tail"></div>
 			<div class="whale-fin left-side"></div>
@@ -28,36 +30,39 @@
 			<div><a href="//login.walcron.com"><svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg> Scheduler</a></div>
 			<div><a href="//mezzanine.walcron.com"><svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg> Blog</a></div>
 			<div><a href="/webby/webpage/about"><svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5.5 22v-7.5H4V9c0-1.1.9-2 2-2h3c1.1 0 2 .9 2 2v5.5H9.5V22h-4zM18 22v-6h3l-2.54-7.63C18.18 7.55 17.42 7 16.56 7h-.12c-.86 0-1.63.55-1.9 1.37L12 16h3v6h3zM7.5 6c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2zm9 0c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2z"/></svg> About Us</a></div>
-		</div>	
+		</div>
 	</div>
 </div>
 <div id="layer1">
-	<div id="nav">
-		<div><a href="/webby/webpage/about/">ABOUT THE PARTNERSHIP<span class="screen-ctrl"> - "Kommanditgesellschaft"</span></a></div>
-		<ul>
-			<li><a href="#purpose" title="Purpose">Purpose</a></li>
-			<li><a href="#development" title="Development">Development</a></li>
-			<li><a href="#objective" title="Objective">Objective</a></li>
-		</ul>
+	<div id="nav" class="add-shadow">
+		<div class="texts">
+			<div><a href="/webby/webpage/about/">ABOUT THE PARTNERSHIP<span class="screen-ctrl"> - "Kommanditgesellschaft"</span></a></div>
+			<ul>
+				<li><a href="#purpose" title="Purpose">Purpose</a></li>
+				<li><a href="#development" title="Development">Development</a></li>
+				<li><a href="#objective" title="Objective">Objective</a></li>
+			</ul>
+		</div>
 	</div>
-	<div id="depth-background"></div>
-	<div class="section slider logo-slide">
-		<h3>THIS SITE IS BUILT AND RUN ON</h3>
+	<div class="section slider logo-slide add-shadow">
+		<h3>This site was made thanks to:</h3>
 		<hr>
 		<div class="flexbox-container">
 			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/scala/scala.svg" alt="scala"></div>
 			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/play/play.png" alt="play"></div>
 			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/openshift/openshift.png"  alt="openshift"></div>
 			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/nodejs/nodejs-light.gif" alt="nodejs"></div>
+			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/mixture/mixture.svg" alt="mixture"></div>
+			<div class="flexbox-logo"><img class="logo" src="/cache/img/branding/blender/blender.png" alt="blender"></div>
 		</div>
-		<hr>
 	</div>	
-	<div class="section slider info">
+	<div class="border-split"></div>
+	<div class="section slider info add-shadow">
 		<br>
-		<hr class="screen-ctrl">
+		<div class="screen-ctrl"></div>
 		<div class="message justify-message">
 			<h2 id="purpose">PURPOSE</h2>		
-			&nbsp;&nbsp;&nbsp;It is a pleasure for having you to visit our humble website, Walcron. Thank you and welcome.
+			<strong>I</strong>t is a pleasure for having you to visit our humble website, Walcron. Thank you and welcome.
 			<br><br>		
 			Work have always be on the professional part and work builds have been "boring". Because of that, we decided on spice our life a little bit,
 			by having fun with programming.	Somewhere here; where we'll built our empire and discover new technologies here.
@@ -79,7 +84,7 @@
 						<li>Booking online</li>
 						<li>Login via Facebook/Gmail oAuth2</li>
 						<li>Materialized Design</li>
-						<li>Programmed as Functional and Concurrent</li>
+						<li>Functional and Concurrent</li>
 					</ul>
 				</div>
 			</div>
@@ -98,7 +103,25 @@
 						</div>
 				</div>
 			</div>
-			
+			<div class="flexbox-container">
+				<div class="flexbox screen-ctrl">
+					<div style="position:relative">
+					<img src="/cache/img/webby/img1.jpg" class="triggerImg">
+					<img src="/cache/img/webby/img2.jpg" class="triggerImg">
+					<img src="/cache/img/webby/img3.jpg" class="triggerImg">
+					<img src="/cache/img/webby/img4.jpg" class="triggerImg">
+					</div>
+					
+				</div>
+				<div class="flexbox">
+					<h3 id="trigger_images">Modelling</h3>
+					<ul>
+						<li>3D Meshing</li>
+						<li>Animation</li>
+						<li>Photography</li>
+					</ul>
+				</div>
+			</div>
 			<h2 id="objective">Objective</h2>
 			<div class="flexbox-container">
 				<div class="flexbox-border">
