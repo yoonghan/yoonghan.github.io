@@ -16,3 +16,5 @@ Installation required
 ========
 -Install protractor by for development
 	npm install protractor
+-Production
+npm install etag
