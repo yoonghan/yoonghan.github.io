@@ -199,12 +199,19 @@
 	}
 
 	function animateTitle(){
-		$.Velocity($title, {display:"block"}).then($.Velocity($title, "transition.flipBounceYIn"));
+		var mySequence = [
+											{ e: $title, p: {display:"block"} },
+											{ e: $title, p: "transition.flipBounceYIn" }
+									];
+		$.Velocity.RunSequence(mySequence);
 	}
 	function animateLinks(){
-		$.Velocity($floater, {display:"block"}).then($.Velocity($floater, "transition.swoopIn")).then(
-				$allLinks.velocity({"margin-top":"4px"},{duration:2000,loop:true})
-		);
+		var mySequence = [
+											{ e: $floater, p: {display:"block"} },
+											{ e: $floater, p: "transition.swoopIn" },
+											{ e: $allLinks, p: {"margin-top":"4px"}, o: {duration:2000,loop:true} }
+									];
+		$.Velocity.RunSequence(mySequence);
 	}
 	function animateReactive(){
 		$.Velocity($reactive, { opacity: 0.4 }, {duration: 500, loop:true});
