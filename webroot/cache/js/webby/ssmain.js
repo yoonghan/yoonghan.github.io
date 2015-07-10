@@ -140,7 +140,7 @@
 				                  { e: $texts, p: "transition.fadeOut", o: { duration: 100 } },
 				                  { e: $nav, p: {height: "0"}, o: { duration: 200 } },
 				                  { e: $layer1, p: { opacity: 0}, o: { duration: 200 } },
-				                  { e: $fab, p: {top:"90vh", left:"90vw", height:"54px", width:"54px", "border-radius":"50px"}},
+				                  { e: $fab, p: {top:"90vh", left:"90vw", height:"54px", width:"54px", "border-radius":"50px"}}
 				              ];
 				$.Velocity.RunSequence(mySequence);
 			})
