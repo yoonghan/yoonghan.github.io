@@ -17,16 +17,36 @@
 	var $floater = document.getElementsByClassName('floater')[0];
 	var $texts = $(".texts");
 
+
 	function r(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
+  function getBubbleMath(){
+		return { elements: $dots, properties: {
+			translateX: [
+				function() { return "+=" + r(-screenWidth/2.5, screenWidth/2.5) },
+				function() { return r(0, screenWidth) }
+			],
+			translateY: [
+				function() { return "+=" + r(-screenHeight/2.75, screenHeight/2.75) },
+				function() { return r(0, screenHeight) }
+			],
+			translateZ: [
+				function() { return "+=" + r(translateZMin, translateZMax) },
+				function() { return r(translateZMin, translateZMax) }
+			],
+			opacity: [
+				function() { return Math.random() },
+				function() { return Math.random() + 0.1 }
+			]
+		}, options: { duration: 6000, loop:true, delay: 200 } };
+	}
 	$fab.onclick=function(){$('html, body').animate({scrollTop: 10}, 1000)};
 
 	$.Velocity.defaults.easing = "easeOutsine";
 
 	var isWebkit = /Webkit/i.test(navigator.userAgent),
-		isChrome = /Chrome/i.test(navigator.userAgent),
 		isMobile = !!("ontouchstart" in window),
 		isAndroid = /Android/i.test(navigator.userAgent),
 		isIE = document.documentMode;
@@ -38,7 +58,7 @@
 	if (window.location.hash) {
 		dotsCount = window.location.hash.slice(1);
 	} else {
-		dotsCount = isMobile ? (isAndroid ? 20 : 30) : (isChrome ? 100 : 60);
+		dotsCount = isMobile ? (isAndroid ? 10 : 20) : 60;
 	}
 
 	for (var i = 0; i < dotsCount; i++) {
@@ -91,24 +111,7 @@
 					callBubbles();
 	      }
 	    }},
-	    { elements: $dots, properties: {
-				translateX: [
-					function() { return "+=" + r(-screenWidth/2.5, screenWidth/2.5) },
-					function() { return r(0, screenWidth) }
-				],
-				translateY: [
-					function() { return "+=" + r(-screenHeight/2.75, screenHeight/2.75) },
-					function() { return r(0, screenHeight) }
-				],
-				translateZ: [
-					function() { return "+=" + r(translateZMin, translateZMax) },
-					function() { return r(translateZMin, translateZMax) }
-				],
-				opacity: [
-					function() { return Math.random() },
-					function() { return Math.random() + 0.1 }
-				]
-			}, options: { duration: 6000, loop:true, delay: 200 } }
+			getBubbleMath()
 	];
 
 	$.Velocity.RunSequence(loading);
@@ -126,6 +129,8 @@
 		new ScrollMagic.Scene({triggerElement: "#trigger", offset: 1})
 			.on("enter", function(){
 				$layer1.style.top = 0;
+				$.Velocity($allLinks, "stop");
+				$.Velocity($dots, "stop");
 				var mySequence = [
 				                  { e: $fab, p: {top:0, left:0, height:"100%", width:"100%", "border-radius":0} },
 				                  { e: $layer1, p: { opacity: 1}, o: { duration: 200 } },
@@ -136,9 +141,11 @@
 			})
 			.on("leave", function(){
 				$layer1.style.top = "100vh";
+				$.Velocity($allLinks, "reverse", {loop:true});
+				$.Velocity($dots, "reverse", {loop:true});
 				var mySequence = [
 				                  { e: $texts, p: "transition.fadeOut", o: { duration: 100 } },
-				                  { e: $nav, p: {height: "0"}, o: { duration: 200 } },
+				                  { e: $nav, p: {height: 0}, o: { duration: 200 } },
 				                  { e: $layer1, p: { opacity: 0}, o: { duration: 200 } },
 				                  { e: $fab, p: {top:"90vh", left:"90vw", height:"54px", width:"54px", "border-radius":"50px"}}
 				              ];
@@ -173,17 +180,17 @@
 	        	$container.appendChild(el);
 	        });
 	        playFish();
+					blurAnimate();
 			}
         ,1000);
 	}
 
 	//called after bubble appears
 	function playFish(){
-		var $whale = document.getElementsByClassName('whale');
+		var $whale = document.getElementById('whale');
 		var $whalefins = document.getElementsByClassName('whale-fin');
-		var $whaletail = document.getElementsByClassName('whale-tail');
 
-		$whale[0].style.display = 'inline';
+		$whale.style.display = 'inline';
 
 		[].forEach.call($whalefins, function(el) {
 	      var fin = el.getAttribute("class");
@@ -196,6 +203,33 @@
 
 	    $.Velocity($whale, {"margin-top": "22px"}, {duration:5000, loop:5});
 
+
+	}
+
+	function blurAnimate(){
+		var $floaterLinks = $(".floater > div > a");
+		var $whale = document.getElementById('whale');
+		var $triangles = document.getElementsByClassName('triangle');
+		var blurVal = "blur(2px)";
+		var initState = "none";
+
+		function changeState(state){
+			$whale.style.filter = state;
+			$whale.style.webkitFilter = state;
+			[].forEach.call($triangles, function(fl){
+				fl.style.filter = state;
+				fl.style.webkitFilter = state;
+			});
+		}
+
+		[].forEach.call($floaterLinks, function(el) {
+			el.onmouseover=function(){
+				changeState(blurVal);
+			};
+			el.onmouseout=function(){
+				changeState(initState);
+			};
+		});
 	}
 
 	function animateTitle(){

@@ -1,163 +1,163 @@
-{"posts": 
+{"posts":
 [
 {
 "date":"Jun 2nd, 2014",
-"task":"Independence and Freedom", 
-"detail":"Discovered that I need independence; an eager drama to escape myselft from this dreaded and stupid management. I started to talk with Lee Wan(my marvelous girlfriend) the idea to start up a business online. Hence a simple profile website idea came to us." 
+"task":"Independence and Freedom",
+"detail":"Discovered that I need independence; an eager drama to escape myselft from this dreaded and stupid management. I started to talk with Lee Wan(my marvelous girlfriend) the idea to start up a business online. Hence a simple profile website idea came to us."
 },
 {
 "date":"Jun 3rd, 2014",
-"task":"The Awakening", 
-"detail":"As all the necessary tools had been available online. I had decided that it is time. <strong>Openshift</strong> came to mind and a database structure was then built." 
+"task":"The Awakening",
+"detail":"As all the necessary tools had been available online. I had decided that it is time. <strong>Openshift</strong> came to mind and a database structure was then built."
 },
 {
 "date":"Jun 4th, 2014",
-"task":"The Rise", 
-"detail":"With PAAS available, the first setup and installation of tools kick started. Henceforth, the coding begins." 
+"task":"The Rise",
+"detail":"With PAAS available, the first setup and installation of tools kick started. Henceforth, the coding begins."
 },
 {
 "date":"Jun 6th, 2014",
-"task":"Addressing A Name", 
+"task":"Addressing A Name",
 "detail":"I gave a thought, in the car, then McDonalds(the place I had always hanged out) to register a domain for this! I started to chat with my girlfriend and decided we do give it a name; we start giving funky names like citycloud, sagariacloud. Then Lee Wan exclaimed &quot;MicroJaring&quot;! To make it easier, I said JomJaring."
 },
 {
 "date":"Jun 11th, 2014",
-"task":"Setup Completed", 
-"detail":"First deployment to the cloud server. It look messy, but we were happy!" 
+"task":"Setup Completed",
+"detail":"First deployment to the cloud server. It look messy, but we were happy!"
 },
 {
 "date":"Jun 13th, 2014",
-"task":"Registered", 
-"detail":"We finally registered an agreed domain(since 6th June) to name it <strong>JomJaring&copy;</strong>." 
+"task":"Registered",
+"detail":"We finally registered an agreed domain(since 6th June) to name it <strong>JomJaring&copy;</strong>."
 },
 {
 "date":"Jun 14th, 2014",
-"task":"It Lives", 
-"detail":"After the domain registration and setup, the link attachment came to life. The site jomjaring is officially <strong>ONLINE.</strong>" 
+"task":"It Lives",
+"detail":"After the domain registration and setup, the link attachment came to life. The site jomjaring is officially <strong>ONLINE.</strong>"
 },
 {
 "date":"Jun 17th, 2014",
-"task":"Code Improvement", 
-"detail":"I gave vert.x a run and image along static libraries loaded splendidly!" 
+"task":"Code Improvement",
+"detail":"I gave vert.x a run and image along static libraries loaded splendidly!"
 },
 {
 "date":"Jun 18th, 2014",
-"task":"We Just Got Faster", 
-"detail":"Switched all the static contents to use vert.x servers and loading was smooth and acceptably fast. The need of secondary server is no longer serving a purpose for deployment as well." 
+"task":"We Just Got Faster",
+"detail":"Switched all the static contents to use vert.x servers and loading was smooth and acceptably fast. The need of secondary server is no longer serving a purpose for deployment as well."
 },
 {
 "date":"Jun 19th, 2014",
-"task":"Blog it", 
-"detail":"Officially, a full version JSON blog was deployed to keep track on the project's progress. Fix gmail and add application-specific password." 
+"task":"Blog it",
+"detail":"Officially, a full version JSON blog was deployed to keep track on the project's progress. Fix gmail and add application-specific password."
 },
 {
 "date":"Jun 26th, 2014",
-"task":"UI changes", 
-"detail":"After 4 days of changes, main page UI has been official modified." 
+"task":"UI changes",
+"detail":"After 4 days of changes, main page UI has been official modified."
 },
 {
 "date":"Jun 29th, 2014",
-"task":"UI changes", 
-"detail":"Modified all remaining pages." 
+"task":"UI changes",
+"detail":"Modified all remaining pages."
 },
 {
 "date":"Jul 2nd, 2014",
-"task":"Release of version 2", 
-"detail":"Made all HTML codes independent and trigger server as rest services. Hence to introduce Angular JS." 
+"task":"Release of version 2",
+"detail":"Made all HTML codes independent and trigger server as rest services. Hence to introduce Angular JS."
 },
 {
 "date":"Jul 6th, 2014",
-"task":"Code move to Angular JS, version 3", 
-"detail":"Changed codes to angular JS with less dependency on the server. Loading time and interactivity improved! Now for test cases." 
+"task":"Code move to Angular JS, version 3",
+"detail":"Changed codes to angular JS with less dependency on the server. Loading time and interactivity improved! Now for test cases."
 },
 {
 "date":"Jul 11th, 2014",
-"task":"Connect to facebook and google account", 
-"detail":"Created services so that login uses facebook and google, there will be no internal login - not now nor in future." 
+"task":"Connect to facebook and google account",
+"detail":"Created services so that login uses facebook and google, there will be no internal login - not now nor in future."
 },
 {
 "date":"Jul 15th, 2014",
-"task":"Static file copy", 
-"detail":"Created a simple JAVA program that copies static(HTML/CSS/JS/IMG) files into prod server. Added enhancement to reduce file size." 
+"task":"Static file copy",
+"detail":"Created a simple JAVA program that copies static(HTML/CSS/JS/IMG) files into prod server. Added enhancement to reduce file size."
 },
 {
 "date":"Sep 21st, 2014",
-"task":"Scala", 
-"detail":"Been taking <strong>Scala</strong> for a month now. Completed the book and examination on Functional Programming with Scala has begun. Pass 10/10 for first 2 weeks of examination." 
+"task":"Scala",
+"detail":"Been taking <strong>Scala</strong> for a month now. Completed the book and examination on Functional Programming with Scala has begun. Pass 10/10 for first 2 weeks of examination."
 },
 {
 "date":"Oct 1st, 2014",
-"task":"Scala, version 4", 
-"detail":"Migrated full source to scala <strong>Play</strong> as the architecture background, rather than using pure J2EE container. To migrate codes from Vert.x to NodeJS as well. It's inevitable, that technology has catched up; and so are the needs for me." 
+"task":"Scala, version 4",
+"detail":"Migrated full source to scala <strong>Play</strong> as the architecture background, rather than using pure J2EE container. To migrate codes from Vert.x to NodeJS as well. It's inevitable, that technology has catched up; and so are the needs for me."
 },
 {
 "date":"Oct 9th, 2014",
-"task":"Swagger", 
-"detail":"Implemented swagger into scala play. The purpose of REST API (swagger) is to provide human readable form, in this case I'll slowly work my way to expose those REST services I have as a usable service." 
+"task":"Swagger",
+"detail":"Implemented swagger into scala play. The purpose of REST API (swagger) is to provide human readable form, in this case I'll slowly work my way to expose those REST services I have as a usable service."
 },
 {
 "date":"Oct 13th, 2014",
-"task":"Node JS", 
-"detail":"Migrated the front-end server to Node JS. Reason to move this is that vert.x has lack of libraries and test. More ever there are more functionalities, plugins and most importantly a test to use Node JS." 
+"task":"Node JS",
+"detail":"Migrated the front-end server to Node JS. Reason to move this is that vert.x has lack of libraries and test. More ever there are more functionalities, plugins and most importantly a test to use Node JS."
 },
 {
 "date":"Oct 22th, 2014",
-"task":"Profile sign in", 
-"detail":"Completed a page to record user profile for first timer. Used bootstrap and angular." 
+"task":"Profile sign in",
+"detail":"Completed a page to record user profile for first timer. Used bootstrap and angular."
 },
 {
 "date":"Dec 5th, 2014",
-"task":"Tied with project", 
-"detail":"Work got complicated among the months and was in Philipphines for a whole month. During the work there, I've completed my <strong>'Functional Programming'</strong> course. Created a BETA booking system and <strong>improved</strong> AngularJS. <br> Least to say, I'm now even good with Futures and Promises." 
+"task":"Tied with project",
+"detail":"Work got complicated among the months and was in Philipphines for a whole month. During the work there, I've completed my <strong>'Functional Programming'</strong> course. Created a BETA booking system and <strong>improved</strong> AngularJS. <br> Least to say, I'm now even good with Futures and Promises."
 },
 {
 "date":"Dec 5th, 2014",
-"task":"Tied with project - Pt 2", 
-"detail":"Just for introduction. The swagger UI can be used here in <a href='http://petstore.swagger.wordnik.com/'>http://petstore.swagger.wordnik.com/</a> and key in <strong>http://scala.jomjaring.com/api-docs</strong> . Total awesomeness." 
+"task":"Tied with project - Pt 2",
+"detail":"Just for introduction. The swagger UI can be used here in <a href='http://petstore.swagger.wordnik.com/'>http://petstore.swagger.wordnik.com/</a> and key in <strong>http://scala.jomjaring.com/api-docs</strong> . Total awesomeness."
 },
 {
 "date":"Dec 24th, 2014",
-"task":"Implemented Rest Assured", 
+"task":"Implemented Rest Assured",
 "detail":"Used RESTAssured to test all REST services. Complete and seperation of UAT has been achieved."
 },
 {
 "date":"Jan 5th, 2015",
-"task":"Authentication and Tutorial", 
+"task":"Authentication and Tutorial",
 "detail":"Biggest add on yet, a live tutorial on calendar tools and added on/off switch for authentication. Then found out only that mongoDB in openshift is still version 2.4, a <b>dissappointment</b>."
 },
 {
 "date":"Jan 7th, 2015",
-"task":"Added Email Pooling", 
+"task":"Added Email Pooling",
 "detail":"Added email pooling so that reminder works. This way all the email will be send nicely."
 },
 {
 "date":"Feb 8th, 2015",
-"task":"Improvement", 
+"task":"Improvement",
 "detail":"After some android studies and development, it's back to the web. Improved an animated.css and made error messages displayed better."
 },
 {
 "date":"Feb 17th, 2015",
-"task":"Used Array Embedded Elements in MongoDB", 
+"task":"Used Array Embedded Elements in MongoDB",
 "detail":"Huge changes to make CP available to request for more information on the user details."
 },
 {
 "date":"Feb 24th, 2015",
-"task":"Double Confirmation", 
+"task":"Double Confirmation",
 "detail":"Another major change, so that CP can consider double confirmation. Improved mongo keywords as well."
 },
 {
 "date":"Mar 8th, 2015",
-"task":"Using Angular and Material Design", 
+"task":"Using Angular and Material Design",
 "detail":"Revamped the Administration page and test usage with Material Design with Angular JS."
 },
 {
 "date":"Mar 18th, 2015",
-"task":"Completed image upload since weekend", 
+"task":"Completed image upload since weekend",
 "detail":"Achieved nice image upload and enhanced image loading for the booking site."
 },
 {
 "date":"Mar 24th, 2015",
-"task":"Uploaded ReactJS", 
+"task":"Uploaded ReactJS",
 "detail":"ReactJS(loaded 1000 records like a breeze in tables) is fast but to achieve the codes it's slower, using angularjs pagination can be cool too. Deciding factor still."
 },
 {
@@ -189,6 +189,11 @@
 	  "date":"Jun 13th, 2015",
 	  "task":"Rebranding",
 	  "detail":"As JOM Jaring was too localized, we rebranded it as Walcron - reprenting Whale time. It points our direction, more or less making it more of a company name."
+},
+{
+	  "date":"July 16th, 2015",
+	  "task":"Officially Registered",
+	  "detail":"As of today, this company has been registered with Suruhanjaya Syarikat Malaysia(SSM) under the name Walcron Consultation."
 }
 ]
 }

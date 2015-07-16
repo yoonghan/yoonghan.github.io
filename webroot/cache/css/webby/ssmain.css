@@ -405,7 +405,7 @@ h2 {
   display: block;
   background: radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 74%, white 80%, white 84%, rgba(255, 255, 255, 0) 100%); }
 
-.whale {
+#whale {
   position: absolute;
   background: url("/cache/img/webby/whale_body.png") no-repeat;
   background-size: 400px 370px;
@@ -415,9 +415,9 @@ h2 {
   left: 50%;
   width: 100%;
   height: 100%; }
-  .whale .whale-fin {
+  #whale .whale-fin {
     position: absolute; }
-  .whale .right-side {
+  #whale .right-side {
     width: 256px;
     height: 78px;
     background: url("/cache/img/webby/whalefin_left.png") no-repeat;
