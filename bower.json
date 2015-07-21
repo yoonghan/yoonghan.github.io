@@ -1,0 +1,12 @@
+{
+  "name": "Walcron project",
+  "description": "Walcron Self Servicing project",
+  "version": "1.0.0",
+  "homepage": "http://www.walcron.com",
+  "license": "None",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-mocks": "1.4.x"
+  }
+}

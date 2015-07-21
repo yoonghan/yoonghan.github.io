@@ -14,7 +14,7 @@ Supports
 
 Installation required
 ========
--Install protractor by for development
-	npm install protractor
--Production
-npm install etag
+sudo npm install -g bower
+bower install
+npm install
+copy node_modules/webdriver-manager/selenium/ to node_modules/protractor/selenium/
