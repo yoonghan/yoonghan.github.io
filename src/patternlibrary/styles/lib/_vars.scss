@@ -1,0 +1,57 @@
+//Fonts
+$base-font : 'Lato', sans-serif;
+
+//Font size
+$fontsize-base: 14pt;
+$fontsize-focus: 16pt;
+$fontsize-title: 18pt;
+
+//Logo
+$logo-color: #fc0;
+
+//Colors
+$foreground-blue : #55ddff;
+$background-blue : #00ccff;
+$foreground-sea : #1e88e5;
+$background-sea : #1976d2;
+$foreground-orange : #fc0;
+$background-orange : #ff8415;
+$foreground-red : #ff5555;
+$background-red : #F27064;
+$foreground-grey : #b3b3b3;
+$background-grey : #555555;
+$foreground-green : #aad400;
+$background-green : #88aa00;
+$foreground-yellow : #fff6d5;
+$background-yellow : #ffeeaa;
+$foreground-white : #ffffff;
+$background-white : #aaa;
+$shadow-grey: #666666;
+$font-white: #fff;
+$font-black: #000;
+$font-logo: #ff8415;
+
+//blue themes
+$thm-blue-light: #7BB3DE;
+$thm-blue-mid: #48769A;
+$thm-blue-dark: #132D41;
+$thm-blue-black: #040D14;
+$thm-blue-base: #004455;
+
+//Themes
+$theme-text-foreground: $foreground-white;
+$theme-text-title: $foreground-white;
+$theme-text-background-title: $background-red;
+$theme-text-unchecked-foreground: $background-white;
+$theme-foreground: $foreground-white;
+$theme-background: $thm-blue-mid;
+$theme-background-darker: $thm-blue-dark;
+$theme-background-unchecked-darker: $thm-blue-black;
+
+//breakpoints
+$basic: 543px;
+$pair: 456px 794px;
+
+//cover image
+$cover-img-blur: '/images/cover_small.jpg';
+$cover-img: '/images/cover.jpg';

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description" content="Walcron is a basic company setup by Yoong Han and Lee Wan, used as a profile page.")
+    meta(name="og:title" content="Walcron")
+    meta(name="og:type" content="profile")
+    meta(name="og:image" content="http://www.walcron.com/cache/img/jomjaring.jpg")
+    meta(name="og:description" content="Walcron is a basic company setup by Yoong Han and Lee Wan, used as a profile page.")
+    meta(name="fb:admins" content="jomjaring@gmail.com")
+    link(rel="author" href="https://plus.google.com/u/1/114852108498604797792")
+    title Title
+    include ../incl/header.incl
+  body(class="wal")
+    div Gridded Layer
+      //div(class="mini-layer")
+        //div(class="plain")
+          //iv(class="grid-left") First
+          //div(class="grid-right") Second
+      div(class="grid-container")
+        div(class="section")
+          div(class="title")
+              div Concurrency
+                p Based on functional programming and akka.<br>Everything runs asynchronous.
+          div(class="image")
+            img(id="lyr-atom", src="/images/atom.svg")
+        div(class="section")
+          div(class="image")
+            img(id="lyr-fixer", src="/images/fixure.svg", style="border-bottom: 5px solid;")
+          div(class="title")
+            div Maintained
+              p Only 2 based programmers to keep this up and running.
+        div(class="section")
+          div(class="title")
+            div Open Sourced
+              p All codes are not closed, as if we do care. visit us.
+          div(class="image")
+            img(src="/images/GitHub_Logo.svg")
+        div(class="section")
+          div(class="image")
+            img(id="lyr-blog", src="/images/blog.svg")
+          div(class="title")
+            div Blogs
+              p We don't maintain codes only; We write. visit us.
+        div(class="section")
+          div(class="title")
+            div Techno geek
+              p Covering scala, play, reactive, websockets and etc.<br>Maybe..
+          div(class="image")
+            img(src="/images/whatgives.svg")
+            
+      div(class="grid-container")
+        div(class="force-awakens")
+          h2 Walcron website is created in accordance to the big bang theory. 
+          div(class="panel")
+            div(class="desc underline") <i class="fa fa-globe" style="font-size: 40pt; display:inline-block"></i> Our vision is to uncover and rediscover ways to advance our normal daily lifes as programmers. With internet, technologies has been moving like an expanding universe; new tech terms are created like stars. As before the big crunch happens, we will continue to improve this humble site in whichever way possible.
+            div
+              a(class="button red",id="scroll")
+                i(class="fa fa-users") 
+                span About Us
+        div(class="force-awakens")
+          h2 We want it efficient
+          div(class="panel")
+            div(class="desc") Our main objectives for development are:
+            div(class="table center")
+              div(class="row")
+                div(class="cell") <i class="fa fa-cogs"></i>
+                div(class="cell") Reactive
+                div(class="cell") The website is in asynchronous, threaded and served concurrently.
+              div(class="row")
+                div(class="cell") <i class="fa fa-gamepad"></i>
+                div(class="cell") Responsive
+                div(class="cell") Interactive, animated and always indicated.
+        div(class="force-awakens")
+          div(class="panel")
+            div(class="t-panel")
+              img(src="/images/calendar.svg")
+            div(class="t-panel")
+              img(src="/images/blog.svg")
+            div(class="t-panel")
+              img(src="/images/GitHub_Logo.svg")
+            div(class="t-panel") Events
+            div(class="t-panel") Our blogging site
+            div(class="t-panel") Shared source
+            div(class="t-panel")
+              a(class="button red" href="#")
+                span Manage
+            div(class="t-panel")
+              a(class="button red" href="#")
+                span Visit
+            div(class="t-panel")
+              a(class="button red" href="#")
+                span View
+      div(class="screen-section footer")
+        table
+          tr
+            th Site Map
+          tr
+            td
+              div
+                ul
+                  li <a href="">About Us</a>
+                  li <a href="">Site Blog</a>
+            td
+              ul
+                li <a href="">Events</a>
+                li <a href="">Blog</a>
+            td
+              ul
+                li <a href="mailto:mailyoonghan@gmail.com">Contact Me</a>
+              
+    script(src="/public/js/gsap/TweenMax.js")
+    script(src="/public/js/gsap/plugins/ScrollToPlugin.js")
+    script.
+      (function() {
+        console.log("XXX");
+      
+        document.getElementById('scroll').addEventListener('click',function() {
+          console.log(this);
+          var position = this.offsetTop;
+          TweenMax.to(window, 1, {scrollTo:{y:position}, ease:Power2.easeOut});
+        });
+      })();

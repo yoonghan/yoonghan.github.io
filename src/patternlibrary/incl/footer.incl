@@ -1,0 +1,28 @@
+<!-- inject:js -->
+<div id="footer">
+  <div class="footer-pointer"> </div>
+  <div class="footer-info">
+    <span style="font-style:italic">Webpage coded with:</span>
+    <div style="display:table">
+      <div style="display:table-cell">
+        <ul>
+          <li>NodeJS</li>
+          <li>Sass</li>
+          <li>Typescript</li>
+        </ul>
+      </div>
+      <div style="display:table-cell">
+        <ul>
+          <li>AngularJS</li>
+          <li>GSocks</li>
+          <li>RequireJS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-trade">
+    <span class="footer-trademark">2016 - Walcron Coorporate &copy;</span>
+  </div>
+<div>
+<script data-main="/js/config" src="/public/js/requirejs/require.js"></script>
+<!-- endinject -->

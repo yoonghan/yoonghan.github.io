@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "module": "AMD",
+        "noImplicitAny": false,
+        "target": "es5",
+        "outDir": "tsoutput/"
+    }
+}

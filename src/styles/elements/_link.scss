@@ -1,0 +1,68 @@
+.menu-links {
+  background-image: linear-gradient(to bottom, $thm-blue-base, $thm-blue-dark);
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px $shadow-grey;
+  opacity: 0.8;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  ul {
+    list-style-type: none;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 0 10px 0 10px;
+
+    li {
+      display: inline;
+      color: $foreground-white;
+
+      a {
+        padding: 15px;
+        &:hover {
+          text-shadow: 0 0 5px $foreground-grey;
+        }
+      }
+    }
+
+    li:nth-child(n+2) {
+      a {
+        border-left: 1px solid $foreground-white;
+      }
+    }
+  }
+
+
+  a {
+    ul {
+      list-style-type: none;
+
+      li {
+        display: block;
+        color: $foreground-white;
+      }
+    }
+  }
+}
+
+
+a {
+  color: $foreground-blue;
+  text-decoration: none;
+
+  &:hover {
+    color: $theme-text-foreground;
+  }
+
+  &:visited {
+    color: $foreground-blue;
+  }
+
+  &:active {
+    color: $foreground-blue;
+  }
+
+  &:focus {
+    color: $foreground-grey;
+  }
+}

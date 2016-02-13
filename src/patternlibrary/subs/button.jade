@@ -1,0 +1,136 @@
+html
+  head
+    title Layers
+    include ../incl/header.incl
+    style.
+      #footer {
+        position: absolute;
+        bottom: 0;
+      }
+      .wrap {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .button {
+        display: inline-block;
+        margin: 0.3em;
+        padding: 1.2em 5em;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-radius: 3px;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border: none; 
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .button:hover {
+        box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+      }
+
+      .green {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      .red {
+        background-color: #F44336;
+        color: white;
+      }
+
+      .blue {
+        background-color: #03A9F4;
+        color: white;
+      }
+
+      .ripple {
+        position: absolute;
+        background: rgba(0,0,0,.25);
+        border-radius: 100%;
+        transform: scale(0.2);
+        opacity:0;
+        pointer-events: none;
+        -webkit-animation: ripple .75s ease-out;
+        -moz-animation: ripple .75s ease-out;
+        animation: ripple .75s ease-out;
+      }
+
+      @-webkit-keyframes ripple {
+        from {
+          opacity:1;
+        }
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      @-moz-keyframes ripple {
+        from {
+          opacity:1;
+        }
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      @keyframes ripple {
+        from {
+          opacity:1;
+        }
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+  body(class="wal")
+    div
+      Buttons
+        div(class="btn classic") Hello There
+
+    div
+      Icon Layer
+        div(class="btn icon")
+          span Text
+    
+    div(class="wrap")
+      h1 Material Design Button
+      a(class="button blue" href="#") Hover Me
+      a(class="button red" href="#") Click Me
+      a(class="button green" href="#") Love Me
+    script.
+      var init = function() {
+        var buttons = document.getElementsByClassName('button'),
+            rippleName = 'ripple';
+            
+        [].forEach.call(buttons, function(element) {
+          element.addEventListener('mousedown', function(event) {
+            var target = event.target,
+                rect = target.getBoundingClientRect(),
+                ripple = target.getElementsByClassName(rippleName);
+                
+            [].forEach.call(ripple, function(ele) {
+              ele.classList.remove(rippleName);
+            });
+            
+            ripple = document.createElement('span');
+            ripple.className = rippleName;
+            ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
+            target.appendChild(ripple);
+            var top = event.pageY - rect.top - ripple.offsetHeight / 2 -  document.body.scrollTop;
+            var left = event.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
+            ripple.style.top = top + 'px';
+            ripple.style.left = left + 'px';
+            return false;
+          });
+        });
+      }();

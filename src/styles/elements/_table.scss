@@ -1,0 +1,39 @@
+table {
+
+}
+
+td {
+  text-align: left;
+  vertical-align: top;
+}
+
+.table {
+  display: table;
+  .row {
+    display: table-row;
+
+    .cell {
+      display: table-cell;
+    }
+  }
+}
+
+.table-line {
+  display: table;
+  .row {
+    display: table-row;
+
+    .cell:last-child {
+      border-right: 0;
+    }
+
+    .cell {
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      align-items: flex-start;
+      display: table-cell;
+      text-align: left;
+      padding: 10px;
+    }
+  }
+}

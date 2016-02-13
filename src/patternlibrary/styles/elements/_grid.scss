@@ -1,0 +1,122 @@
+.grid-left {
+  @include span(2);
+  overflow: hidden;
+}
+
+.grid-right {
+  @include span(10 last);
+}
+
+.grid-container {
+  .force-awakens {
+    color: $theme-foreground;
+    background: $theme-background;
+    text-align: center;
+    padding: 0 0 50px 0;
+
+    h2 {
+      padding: 30px 0;
+    }
+    .panel {
+      display: inline-block;
+      padding: 20px 20px;
+      text-align: center;
+      width: 100%;
+
+      @include breakpoint($breakpoint-phone) {
+        padding: 20px 0;
+      }
+
+      .center {
+        margin: 0 auto;
+      }
+
+      .desc {
+        margin: 0 auto 20px auto;
+        text-align: justify;
+        width: 80%;
+        max-width: 1000px;
+
+        &.underline {
+          border-bottom: 1px solid;
+          padding-bottom: 30px;
+        }
+      }
+
+      .t-panel {
+        @include span(4);
+        overflow: hidden;
+        padding-bottom: 10px;
+
+        img {
+          width: 30%;
+        }
+      }
+      .t-panel:nth-child(3n) {
+        @include span(4 last);
+        overflow: hidden;
+      }
+    }
+  }
+
+  .section {
+    height: 250px;
+
+    .title {
+      height: 90%;
+      text-align: center;
+      display: table;
+
+      div {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        font-weight: bold;
+        font-size: $fontsize-title;
+        p {
+          font-size: $fontsize-base;
+          font-weight: normal;
+        }
+      }
+    }
+    .image {
+      height: 90%;
+      img {
+        height: 90%;
+      }
+    }
+    .title:nth-child(odd) {
+      @include span(8);
+      text-align: right;
+    }
+    .title:nth-child(even) {
+      @include span(8 last);
+      text-align: left;
+    }
+    .image:nth-child(odd) {
+      @include span(4);
+      img {
+        float: right;
+      }
+    }
+    .image:nth-child(even) {
+      @include span(4 last);
+    }
+
+    @include breakpoint($breakpoint-phone) {
+     .image {
+       img {
+         display: none;
+       }
+       &:after {
+         content:'';
+         background: url('/images/logo.svg') no-repeat;
+         width: 90px;
+         height: 100px;
+         position: absolute;
+         margin: 25% 25px;
+       }
+     }
+   }
+  }
+}

@@ -1,0 +1,247 @@
+@import "lib/sprites";
+
+&.about-layer {
+  font-family: $base-font;
+
+  .slides {
+    color: $font-black;
+    box-sizing: content-box;
+    padding: 50px 0 50px 0;
+    position: relative;
+
+    .content {
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    h1 {
+      font-weight: normal;
+      text-align: center;
+      margin: 0;
+      padding: 0; }
+
+    h2 {
+      color: $font-black;
+      margin: 0 10%;
+      padding: 0 0 10px 0;
+      text-shadow: none;
+    }
+
+    h3 {
+      font-weight: normal;
+      margin: 5px 10%;
+      padding: 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    &:nth-child(even) {
+      height: 400px;
+      margin: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-attachment: fixed;
+    }
+
+    &:nth-child(odd) {
+      background-color: $foreground-white;
+      height: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    &.slide1 {
+      background-image: url("/images/slide1.jpg");
+      color:  $font-white;
+      height: 500px;
+
+      .bottom {
+        bottom: 50px;
+        color:  $font-white;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+      }
+    }
+    &.slide2 {
+      text-align: justify;
+    }
+    &.slide3 {
+      background-image: url("/images/slide3.jpg");
+      color:  $font-white;
+      text-align: justify;
+    }
+    &.slide4 {
+      background-color: $theme-foreground;
+      height: 200px;
+    }
+    &.slide5 {
+      background-image: url("/images/slide5.jpg");
+      padding: 100px 0;
+    }
+
+    .quotes_container {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .left {
+      float:none;
+      @include breakpoint($breakpoint-phone) {
+        float: left;
+      }
+    }
+
+    .right {
+      float:none;
+      @include breakpoint($breakpoint-phone) {
+        float: right;
+      }
+    }
+
+    .profile-pic {
+      @include breakpoint($breakpoint-tablet) {
+        width: 220px;
+        margin-bottom: 20px;
+      }
+      @include breakpoint($breakpoint-phone $breakpoint-tablet) {
+        width: 100px;
+      }
+      width: 50px;
+      border-radius: 50%;
+      margin: 0px 10%;
+    }
+  }
+}
+
+.screen-section {
+  position: relative;
+  &.cover {
+    height: 100vh;
+    background: url($cover-img) no-repeat;
+    background-size: cover;
+  }
+  &.plain {
+    background-color: $theme-background;
+  }
+  &.first {
+    height: 100vh;
+  }
+  &.second {
+    box-shadow: 10px 10px 5px #888888;
+    height: 200px;
+    margin-top: -5px;
+  }
+  &.third {
+    background-color: #ffffff;
+  }
+  &.fourth {
+    margin-top: 40px;
+    border-top: 2px solid;
+    &:before {
+      content: '';
+      background: url('/images/pagebreak.svg') no-repeat;
+      background-position: right;
+      margin-top: -60px;
+      height:60px;
+      display:block;
+    }
+  }
+  &.footer {
+    background: $theme-background-darker;
+    padding: 30px 40px;
+    table {
+      width: 30%;
+      text-align: left;
+      display: inline-flex;
+
+      ul {
+        margin: 5px 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.mini-layer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  opacity: 0.9;
+
+  .transparent {
+    background-color: rgba(100, 100, 100, 0.5);
+    color: $foreground-white;
+    height: 80%;
+    padding: 0 40px;
+
+    >.middle {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .plain {
+    background-color: $thm-blue-base;
+    color: $foreground-white;
+    height: 100%;
+    padding: 40px;
+    top: 10px;
+    box-shadow: 10px 10px 5px #888888;
+  }
+
+  .center {
+    background-color: $thm-blue-base;
+    border-radius: 0 0 10px 10px;
+    color: $foreground-white;
+    font-size: $fontsize-focus;
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+    padding: 30px;
+    position: relative;
+    text-align: justify;
+    text-shadow: 2px 2px $thm-blue-black;
+    box-shadow: 10px 10px 5px #888888;
+  }
+
+  .divider {
+    background: url('data:image/svg+xml;charset=UTF-8,<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" id="svg2" version="1.1"><g id="layer1" transform="translate(0,-1042.3622)"><rect  style="fill:#29506D"  id="rect3352"  width="5"  height="5"  x="0"  y="1042.4517" /><rect  style="fill:#29506D"  id="rect3352-2"  width="5"  height="5"  x="4.9868565"  y="1047.3646" /></g></svg>') repeat;
+    height: 10px;
+    position: absolute;
+    top: -10px;
+    width: 100%;
+  }
+}
+
+.splash-layer {
+  @include span(12);
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 50%;
+
+  div {
+    left:50%;
+    position: absolute;
+  }
+
+  h1 {
+    font-size: 10vw;
+    left:0;
+    margin-bottom: 5px;
+    position: relative;
+    text-shadow: 1px 5px 5px $font-black;
+  }
+  .desc{
+    font-weight: bold;
+    @include text-resize($fontsize-title);
+    text-shadow: 0 0 8px $font-black;
+    left:0;
+
+    top: -2px;
+    position: relative;
+  }
+}

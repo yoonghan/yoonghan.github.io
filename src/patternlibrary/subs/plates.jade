@@ -1,0 +1,93 @@
+html
+  head
+    title Changing layers
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    style.
+      .plate-container {
+        background: #000;
+        font-family: 'Lato', sans-serif;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+      .plate {
+        background: #045;
+        color: #fff;
+        display: none;
+        margin: auto;
+        padding: 10px;
+        position: absolute;
+      }
+      .plate > h1 {
+        font-weight: bold;
+        text-align: center;
+      }
+  body
+    div(class="plate-listing")
+      a(href="#1", class="plate-trigger active") First
+      a(href="#2", class="plate-trigger") Second
+      a(href="#3", class="plate-trigger") Third
+      div(class="plate-container")
+        div(class="plate")
+          h1 "First"
+          span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        div(class="plate")
+          h1 "Second"
+          span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          
+    div(class="plate-listing")
+      a(href="#1", class="plate-trigger active") First
+      a(href="#2", class="plate-trigger") Second
+      a(href="#3", class="plate-trigger") Third
+      div(class="plate-container")
+        div(class="plate")
+          h1 "First"
+          span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        div(class="plate")
+          h1 "Second"
+          span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    script.
+      var init = function () {
+        
+        var plateListing = document.getElementsByClassName('plate-listing'),
+            activeOn = "active";
+        
+        var initPlate = function(plateElements, platesContainer) {
+          var showElement = function(element, idx) {
+            var container = platesContainer[idx];
+            if(typeof container !== 'undefined') {
+              closeAllPlates();
+              element.classList.add(activeOn);
+              container.style.display = 'block';
+            }
+          };
+          
+          var checkElement = function(element, idx) {
+            if(element.classList.contains(activeOn)) {
+                showElement(element, idx);
+            }
+          };
+          
+          var closeAllPlates = function() {
+            [].forEach.call(plateElements, function(element) {
+              element.classList.remove(activeOn);
+            });
+            [].forEach.call(platesContainer, function(element) {
+              element.style.display = "none";
+            });
+          };
+          
+          [].forEach.call(plateElements, function(element, idx) {
+            element.addEventListener('click', function() {
+              showElement(this, idx);
+            });
+            checkElement(element, idx);
+          });
+        };
+        
+        [].forEach.call(plateListing, function(element, idx) {
+          var plateElements = element.getElementsByClassName('plate-trigger'),
+              platesContainer = element.getElementsByClassName('plate');
+          initPlate(plateElements, platesContainer);
+        });
+      }();

@@ -1,0 +1,10 @@
+@mixin text-resize($font-size) {
+    font-size: $font-size - 4 ;
+
+    @include breakpoint($breakpoint-tablet) {
+      font-size: $font-size ;
+    }
+    @include breakpoint($breakpoint-phone $breakpoint-tablet) {
+      font-size: $font-size - 2;
+    }
+}

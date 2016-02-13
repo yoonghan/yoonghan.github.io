@@ -1,0 +1,50 @@
+.oval {
+  width: 90vw;
+  height: 8vw;
+  margin-left: -45vw;
+  border-radius: 100px / 50px;
+  border: 4px solid $theme-background;;
+  top: 20%;
+
+  .oval2 {
+    width: 80vw;
+    height: 6vw;
+    margin-left: -40vw;
+    border-radius: 100px / 50px;
+    border: 2px dashed #000;
+    top: 1vw;
+  }
+}
+
+.stage {
+  position: absolute;
+  margin: 50px 50px;
+  width: 300px; height: 300px;
+  -webkit-perspective: 800px;
+  -webkit-perspective-origin: 50% -120px;
+}
+
+figure {
+  display: block; position: absolute;
+  width: 200px; height: 200px;
+  background-color: #60c2ef;
+  transform-origin: 50% 50% 0;
+}
+
+.cube {
+  transform-style: preserve-3d;
+  transform: rotateY(50deg);
+
+  .front { transform: translateZ(100px); }
+  .back { transform: rotateY(180deg) translateZ(100px); }
+
+  .top { transform: rotateX(90deg) translateZ(100px); }
+  .bottom { transform: rotateX(-90deg) translateZ(100px); }
+  .left { transform: rotateY(-90deg) translateZ(100px); }
+  .right { transform: rotateY(90deg) translateZ(100px); }
+}
+
+@-webkit-keyframes rotate {
+  0% { transform: rotateY(0); }
+  100% { transform: rotateY(360deg); }
+}

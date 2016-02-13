@@ -1,0 +1,92 @@
+@import "lib/vars";
+@import "lib/breakpoint";
+@import "lib/sizing";
+@import "mixin/text";
+@import "../../../bower_components/susy/sass/susy";
+@import "../../../bower_components/breakpoint-sass/stylesheets/breakpoint";
+
+$susy: (
+  columns: 12,
+  container: 100%,
+  gutters: 1/12,
+  global-box-sizing: border-box,
+  flow: ltr
+);
+
+@include border-box-sizing;
+@import "elements/table";
+body {
+  color: $theme-foreground;
+  margin: 0;
+  padding: 0;
+  font-family: $base-font;
+  min-width: $breakpoint-fit;
+
+  &.cover_blur {
+    height: 100vh;
+    background: url($cover-img-blur) no-repeat;
+    background-size: cover;
+  }
+
+  @include text-resize($fontsize-base);
+}
+
+.wal {
+  @include container;
+  @import "elements/css4js";
+  @import "elements/text";
+  @import "elements/section";
+  @import "elements/link";
+  @import "elements/list";
+  @import "elements/button";
+  @import "elements/shapes";
+  @import "elements/grid";
+
+  #breadcrumb {
+    position: relative;
+    height: 60px;
+    background: $theme-background;
+    padding: 20px 10px;
+
+    .logo {
+      font-size: 20pt;
+      float: left;
+      text-shadow: 0 0 3px $shadow-grey;
+    }
+  }
+  #footer {
+    background: $theme-background-darker;
+    color: $font-white;
+    height: 65px;
+    padding: 2px 10px 10px 10px;
+    text-shadow: 2px 2px $thm-blue-black;
+    width: 100%;
+
+    &:hover {
+      background: $theme-background-unchecked-darker;
+    }
+
+    .footer-pointer {
+      background: url('/images/goup.svg') no-repeat;
+      background-position: top center;
+      background-size: 50px 25px;
+      content:'';
+      height:30px;
+    }
+
+    .footer-trade {
+      border-top: 1px solid $theme-foreground;
+      right: 0;
+      text-align: right;
+    }
+    .footer-info {
+      display: none;
+    }
+    .footer-trademark {
+      font-size: $fontsize-base - 2;
+    }
+    .footer-top {
+      float: right;
+    }
+  }
+}
