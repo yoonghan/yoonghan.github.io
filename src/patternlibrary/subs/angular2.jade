@@ -1,0 +1,31 @@
+html
+  head
+    base(href="/patternlibrary/subs/")
+    
+    title Angular 2 QuickStart
+     
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    script(src="/public/js/es6-shim/es6-shim.min.js")
+    script(src="/public/js/systemjs/dist/system-polyfills.js")
+    
+    script(src="/public/js/angular2/bundles/angular2-polyfills.js")
+    script(src="/public/js/systemjs/dist/system.src.js")
+    script(src="/public/js/rxjs/bundles/Rx.js")
+    script(src="/public/js/angular2/bundles/angular2.dev.js")
+    
+    script(src="/public/js/angular2/bundles/router.dev.js")
+    
+    script.  
+      System.config({
+        packages: { 
+          '/patternlibrary/js/app':{
+            format: 'register',
+            defaultExtension: 'js'
+          } 
+        } 
+      });
+      System.import('/patternlibrary/js/app/main').then(null, console.error.bind(console));
+
+  body
+    my-app Loading..
+  

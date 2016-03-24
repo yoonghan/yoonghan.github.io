@@ -11,6 +11,7 @@
 
     .content {
       margin: 0 auto;
+      max-width: $max-width;
       width: 100%;
     }
 
@@ -61,6 +62,7 @@
         color:  $font-white;
         margin: 0;
         position: absolute;
+        text-align: center;
         width: 100%;
       }
     }
@@ -110,7 +112,7 @@
       }
       width: 50px;
       border-radius: 50%;
-      margin: 0px 10%;
+      margin: 0px 50px;
     }
   }
 }
@@ -146,20 +148,6 @@
       margin-top: -60px;
       height:60px;
       display:block;
-    }
-  }
-  &.footer {
-    background: $theme-background-darker;
-    padding: 30px 40px;
-    table {
-      width: 30%;
-      text-align: left;
-      display: inline-flex;
-
-      ul {
-        margin: 5px 0;
-        padding: 0;
-      }
     }
   }
 }

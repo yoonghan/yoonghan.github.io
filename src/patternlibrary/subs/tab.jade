@@ -1,0 +1,82 @@
+html
+  head
+    link(href='/public/css/material-lite/material.min.css' rel='stylesheet')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel='stylesheet')
+    style.
+      .tab-container {
+        position: relative;
+        height: 48px;
+        width: 100%;
+        border: none;
+        margin: 0;
+        z-index: 2;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .tab-container .tab-bar {
+        height: 96px;
+        margin: 0;
+        display: flex;
+        background-color: #3f51b5;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        width: calc(100% - 60px);
+        padding: 0 0 0 60px;
+      }
+      .tab-container .tab-bar .tab {
+        font-size: 12pt;
+        color: grey;
+        padding: 0 12px;
+        margin: 0;
+        border: none;
+        float: left;
+        position: relative;
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 0;
+        text-decoration: none;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+        overflow: hidden;
+    
+      }
+      .tab-container .tab-bar .tab.is-active {
+        color: white;
+      }
+      .tab-container .tab-bar .tab.is-active::after {
+        height: 2px;
+        width: 100%;
+        display: block;
+        content: '';
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        background: #ff4081;
+      }
+        
+  body
+  
+    div(class="tab-container")
+      div(class="tab-bar")
+        a(class="tab is-active") Hello Something Long
+        a(class="tab") Second
+        a(class="tab") Third
+  
+    div(class="mdl-layout mdl-js-layout mdl-layout--fixed-header")
+      header(class="mdl-layout__header")
+        div(class="mdl-layout__tab-bar mdl-js-ripple-effect")
+          a(href="#scroll-tab-1", class="mdl-layout__tab is-active") Tab1
+          a(href="#scroll-tab-2", class="mdl-layout__tab") Tab2
+          a(href="#scroll-tab-3", class="mdl-layout__tab") Tab3
+      main(class="mdl-layout__content")
+        section(class="mdl-layout__tab-panel is-active" id="scroll-tab-1")
+          div(class="page-content") First content
+        section(class="mdl-layout__tab-panel" id="scroll-tab-2")
+          div(class="page-content") Secpnd content
+        section(class="mdl-layout__tab-panel" id="scroll-tab-3")
+          div(class="page-content") Third content
+          
+    script(defer src='/public/js/material-lite/material.min.js')

@@ -9,18 +9,36 @@ html
         position: relative;
         width: 100%;
         height: 100vh;
+        overflow: hidden;
       }
       .plate {
         background: #045;
         color: #fff;
-        display: none;
         margin: auto;
         padding: 10px;
         position: absolute;
+        top: 0;
+        transform : translateX(100%);
+        transition : transform 0.3s ease-in;
+        z-index: 0;
       }
       .plate > h1 {
         font-weight: bold;
         text-align: center;
+      }
+      
+      .plate.active {
+        position: relative;
+        transform: translateX(0);
+        z-index: 1;
+      }
+      
+      .plate.move-right {
+        transform : translateX(100%);
+      }
+      
+      .plate.move-left {
+        transform : translateX(-100%);
       }
   body
     div(class="plate-listing")
@@ -34,7 +52,10 @@ html
         div(class="plate")
           h1 "Second"
           span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          
+        div(class="plate")
+          h1 "Third"
+          span Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            
     div(class="plate-listing")
       a(href="#1", class="plate-trigger active") First
       a(href="#2", class="plate-trigger") Second
@@ -50,30 +71,54 @@ html
       var init = function () {
         
         var plateListing = document.getElementsByClassName('plate-listing'),
-            activeOn = "active";
+            activeOnCls = 'active',
+            moveLeftCls = 'move-left';
+            moveRightCls = 'move-right';
         
         var initPlate = function(plateElements, platesContainer) {
           var showElement = function(element, idx) {
-            var container = platesContainer[idx];
-            if(typeof container !== 'undefined') {
-              closeAllPlates();
-              element.classList.add(activeOn);
-              container.style.display = 'block';
+            var plate = platesContainer[idx];
+            if(typeof plate !== 'undefined') {
+              closeAllPlates(idx);
+              openPlate(plate);
             }
           };
           
+          var closePlate = function(plateElement, moveLeft) {
+            plateElement.classList.remove(activeOnCls);
+            if(moveLeft) {
+              plateElement.classList.remove(moveRightCls);
+              plateElement.classList.add(moveLeftCls);
+            } else {
+              plateElement.classList.remove(moveLeftCls);
+              plateElement.classList.add(moveRightCls);
+            }
+          }
+          
+          var openPlate = function(plateElement) {
+            plateElement.classList.remove(moveLeftCls);
+            plateElement.classList.remove(moveRightCls);
+            plateElement.classList.add(activeOnCls);
+          }
+          
           var checkElement = function(element, idx) {
-            if(element.classList.contains(activeOn)) {
+            if(element.classList.contains(activeOnCls)) {
                 showElement(element, idx);
             }
           };
           
-          var closeAllPlates = function() {
-            [].forEach.call(plateElements, function(element) {
-              element.classList.remove(activeOn);
+          var isMoveLeft = function(idx, plateIdx) {
+            return idx < plateIdx;
+          }
+          
+          var closeAllPlates = function(plateIdx) {
+            [].forEach.call(plateElements, function(element, idx) {
+              element.classList.remove(activeOnCls);
             });
-            [].forEach.call(platesContainer, function(element) {
-              element.style.display = "none";
+            [].forEach.call(platesContainer, function(element, idx) {
+              if(idx !== plateIdx) {
+                closePlate(element, isMoveLeft(idx, plateIdx));
+              }
             });
           };
           

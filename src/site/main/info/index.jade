@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    base(href="./")
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description" content="Information about this website.")
+    title Blog
+    include ../../../incl/header.incl 
+  body(class="wal")
+    div(class="page-wrap")
+      include ../../../incl/breadcrumb.incl 
+      <wal-info></wal-info>
+    
+    script(src="/public/js/lodash/lodash.min.js")      
+    script(src="/public/js/moment/moment.min.js")
+    script(src="/public/js/es6-shim/es6-shim.min.js")
+    script(src="/public/js/systemjs/dist/system-polyfills.js")
+    script(src="/public/js/angular2/bundles/angular2-polyfills.js")
+    script(src="/public/js/systemjs/dist/system.src.js")
+    script(src="/public/js/rxjs/bundles/Rx.js")
+    script(src="/public/js/angular2/bundles/http.dev.js")
+    script(src="/public/js/angular2/bundles/angular2.dev.js")
+    script(src="/public/js/angular2/bundles/router.dev.js")
+    script.
+      System.config({
+        packages: { 
+          '/js/main/info':{
+            format: 'register',
+            defaultExtension: 'js'
+          },
+          '/js/main/directive':{
+            format: 'register',
+            defaultExtension: 'js'
+          },
+          '/js/main/component':{
+            format: 'register',
+            defaultExtension: 'js'
+          } 
+        } 
+      });
+      System.import('/js/main/info/info').then(null, console.error.bind(console));
+    include ../../../incl/footer.incl
+    

@@ -5,6 +5,7 @@
 @import "../../bower_components/susy/sass/susy";
 @import "../../bower_components/breakpoint-sass/stylesheets/breakpoint";
 
+
 $susy: (
   columns: 12,
   container: 100%,
@@ -14,8 +15,24 @@ $susy: (
 );
 
 @include border-box-sizing;
+
+//HTML components
 @import "elements/table";
+
+//Form components
+@import "component/switch";
+@import "component/button";
+@import "component/textfield";
+@import "component/tab";
+@import "component/tooltip";
+@import "component/ripple";
+
+html, body {
+  height: 100%;
+}
+
 body {
+  background-color: $theme-background;
   color: $theme-foreground;
   font-family: $base-font;
   margin: 0;
@@ -38,7 +55,6 @@ body {
   @import "elements/section";
   @import "elements/link";
   @import "elements/list";
-  @import "elements/button";
   @import "elements/shapes";
   @import "elements/grid";
 
@@ -56,7 +72,39 @@ body {
     }
   }
 
+  .page-wrap {
+    min-height: 100%;
+    margin-bottom: -$footer-height;
+
+    &:after {
+      content: "";
+      display: block;
+      height: $footer-height;
+    }
+  }
+
   #footer {
+    height: $footer-height;
+
+    .affiliate {
+      background: $theme-background-darker;
+      padding: 30px 40px;
+
+      table {
+        display: inline-block;
+        min-width: 100px;
+        width: 30%;
+        text-align: left;
+        vertical-align: top;
+
+        ul {
+          margin: 5px 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .technology {
     background: $theme-background-darker;
     color: $font-white;
     height: 65px;

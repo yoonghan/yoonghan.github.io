@@ -22,6 +22,8 @@ class InnerPlate {
   private plateElements;
   private platesContainer;
   private activeOn:string = "active";
+  private moveLeft:string = "move-left";
+  private moveRight:string = "move-right";
 
   constructor(plateElements, platesContainer) {
     var self = this;
@@ -33,6 +35,7 @@ class InnerPlate {
       element.addEventListener('click', function() {
         self.showElement(this, idx);
       });
+
       self.checkElement(element, idx);
     });
   }
@@ -40,9 +43,8 @@ class InnerPlate {
   showElement(element, idx) {
     var container = this.platesContainer[idx];
     if(typeof container !== 'undefined') {
-      this.closeAllPlates();
-      element.classList.add(this.activeOn);
-      container.style.display = 'block';
+      this.closeAllPlates(idx);
+      this.openPlate(container);
     }
   };
 
@@ -52,13 +54,38 @@ class InnerPlate {
     }
   };
 
-  closeAllPlates() {
+  closeAllPlates(plateIdx: Number) {
+    var self = this;
+
     [].forEach.call(this.plateElements, function(element) {
       element.classList.remove(this.activeOn);
     });
-    [].forEach.call(this.platesContainer, function(element) {
-      element.style.display = "none";
+    [].forEach.call(this.platesContainer, function(element, idx) {
+      if(idx !== plateIdx) {
+        self.closePlate(element, self.isMoveLeft(idx, plateIdx));
+      }
     });
+  };
+
+  isMoveLeft(idx: Number, plateIdx: Number) {
+    return idx < plateIdx;
+  };
+
+  openPlate(plateElement) {
+    plateElement.classList.remove(this.moveLeft);
+    plateElement.classList.remove(this.moveRight);
+    plateElement.classList.add(this.activeOn);
+  };
+
+  closePlate(plateElement, moveLeft: Boolean) {
+    plateElement.classList.remove(this.activeOn);
+    if(moveLeft) {
+      plateElement.classList.remove(this.moveRight);
+      plateElement.classList.add(this.moveLeft);
+    } else {
+      plateElement.classList.remove(this.moveLeft);
+      plateElement.classList.add(this.moveRight);
+    }
   };
 
 }

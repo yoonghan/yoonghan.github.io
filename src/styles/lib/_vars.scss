@@ -5,6 +5,8 @@ $base-font : 'Lato', sans-serif;
 $fontsize-base: 14pt;
 $fontsize-focus: 16pt;
 $fontsize-title: 18pt;
+$fontsize-button: 14pt;
+$fontsize-tab: $fontsize-button;
 $fontsize-h1: 44pt;
 
 //Logo
@@ -12,12 +14,13 @@ $logo-color: #fc0;
 
 //Colors
 $foreground-blue : #55ddff;
-$background-blue : #00ccff;
+$background-blue : #008CE9;
 $foreground-sea : #1e88e5;
 $background-sea : #1976d2;
 $foreground-orange : #fc0;
 $background-orange : #ff8415;
 $foreground-red : #ff5555;
+$foreground-red-2 : #ff4444;
 $background-red : #F27064;
 $foreground-grey : #b3b3b3;
 $background-grey : #555555;
@@ -26,7 +29,7 @@ $background-green : #88aa00;
 $foreground-yellow : #fff6d5;
 $background-yellow : #ffeeaa;
 $foreground-white : #ffffff;
-$background-white : #aaa;
+$background-white : rgba(255,255,255,.6);
 $shadow-grey: #666666;
 $font-white: #fff;
 $font-black: #000;
@@ -35,19 +38,34 @@ $font-logo: #ff8415;
 //blue themes
 $thm-blue-light: #7BB3DE;
 $thm-blue-mid: #48769A;
+$thm-blue-mid-alternate: #3A688C;
 $thm-blue-dark: #132D41;
 $thm-blue-black: #040D14;
 $thm-blue-base: #004455;
 
 //Themes
 $theme-text-foreground: $foreground-white;
+$theme-text-foreground-unchecked: $background-white;
+$theme-text-foreground-selected: $background-red;
 $theme-text-title: $foreground-white;
 $theme-text-background-title: $background-red;
-$theme-text-unchecked-foreground: $background-white;
+$theme-text-background-title-alternate: $background-blue;
 $theme-foreground: $foreground-white;
 $theme-background: $thm-blue-mid;
+$theme-background-alternate: $thm-blue-mid-alternate;
 $theme-background-darker: $thm-blue-dark;
 $theme-background-unchecked-darker: $thm-blue-black;
+$theme-foreground-disabled: $foreground-grey;
+$theme-background-disabled: $background-grey;
+
+$theme-foreground-text-error: $background-red;
+$theme-foreground-text-disabled-transparent: unquote("rgba(10, 10, 10, 0.3)");
+
+//max width.
+$max-width: 1000px;
+
+//footer height:
+$footer-height: 200px;
 
 //breakpoints
 $basic: 543px;

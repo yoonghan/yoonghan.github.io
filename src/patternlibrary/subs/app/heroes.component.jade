@@ -1,0 +1,8 @@
+h3 My Heroes
+ul(class="heroes")
+  li(*ngFor="#hero of heroes", [class.selected]="hero === selectedHero", (click)="onSelect(hero)")
+    span(class="badge") {{hero.id}} {{hero.name}}
+  
+div(*ngIf="selectedHero")
+  h2 {{selectedHero.name | uppercase}} is my hero
+  button((click)="gotoDetail()") View Details

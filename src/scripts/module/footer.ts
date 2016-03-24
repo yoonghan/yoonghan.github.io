@@ -2,41 +2,36 @@ class Footer {
 
   private body = document.body;
   private dupFooter;
-  private tweenMax;
-  private timelineMax;
+  private dupFooterPointer;
+  private height = 10;
+  private degrees = 0;
 
-  constructor(tweenMax, timelineMax) {
-    var footer = document.getElementById('footer');
-
-    this.dupFooter = footer.cloneNode(true);
-    this.tweenMax = tweenMax;
-    this.timelineMax = timelineMax;
-
+  constructor() {
+    let footer = document.getElementById('footer');
+    let footerExpand = footer.getElementsByClassName("technology")[0];
+    this.dupFooter = footerExpand.cloneNode(true);
     this.duplicateFooter();
-
     this.addClick(footer, this.dupFooter);
   }
 
   duplicateFooter() {
-    var dupFooter = this.dupFooter;
-    dupFooter.style.bottom = 0;
-    dupFooter.style.position = 'fixed';
-    dupFooter.style.display = 'none';
-    dupFooter.style.zIndex = "100";
-
-    var trademark = dupFooter.getElementsByClassName('footer-trade')[0];
+    this.dupFooter.style.bottom = 0;
+    this.dupFooter.style.position = 'fixed';
+    this.dupFooter.style.zIndex = 99;
+    this.dupFooter.style.display = 'none';
+    var trademark = this.dupFooter.getElementsByClassName('footer-trade')[0];
     trademark.style.position ='fixed';
     trademark.style.bottom = 0;
-
-    var comment = dupFooter.getElementsByClassName('footer-info')[0];
+    var comment = this.dupFooter.getElementsByClassName('footer-info')[0];
     comment.style.display = 'block';
-    document.body.appendChild(dupFooter);
+    document.body.appendChild(this.dupFooter);
   }
 
   addClick(footer, dupFooter) {
     var footerClickOpen = footer.getElementsByClassName('footer-pointer')[0],
-      footerClickClose = dupFooter.getElementsByClassName('footer-pointer')[0],
-      that = this;
+        that = this;
+    this.dupFooterPointer = dupFooter.getElementsByClassName('footer-pointer')[0];
+
     footer.addEventListener(
       'click',
       function(event) {
@@ -52,21 +47,38 @@ class Footer {
   }
 
   execOpen(that) {
-    var dupFooter = that.dupFooter,
-        pointer = dupFooter.getElementsByClassName('footer-pointer')[0],
-        tweenMax = that.tweenMax;
-    dupFooter.style.display = 'block';
-    tweenMax.to(pointer, 0.3, {rotation:'180'});
-    tweenMax.to(dupFooter, 0.3, {height: '100vh'});
+    that.setTimerOpen(that.dupFooter, that.dupFooterPointer, true, that);
   }
 
   execClose(that) {
-    var dupFooter = that.dupFooter,
-        pointer = dupFooter.getElementsByClassName('footer-pointer')[0],
-        tweenMax = that.tweenMax;
-    tweenMax.to(pointer, 0.3, {rotation:'0'});
-    tweenMax.to(dupFooter, 0.3, {height: '50px', onComplete: function(){dupFooter.style.display = 'none';}});
+    that.setTimerOpen(that.dupFooter, that.dupFooterPointer, false, that);
+  }
+
+  setTimerOpen(dupFooter, pointer, open, that) {
+    var action = -1;
+
+    if(open) {
+      action = 1;
+      that.dupFooter.style.display = 'block';
+    };
+
+    if(that.timer) {
+      window.clearTimeout(that.timer);
+    };
+
+    that.timer = setInterval(function() {
+      that.height += (5 * action) ; //adjusted according to smoothness
+      that.degrees += (10 * action); //adjust according to time.
+      that.dupFooter.style.height = that.height + 'vh';
+      pointer.style.transform = "rotate(" + that.degrees + "deg)"
+      if(that.height <= 10 || that.height >= 100) {
+        clearTimeout(that.timer);
+        if(that.height <= 10) {
+          dupFooter.style.display = 'none';
+        }
+      }
+    }, 5);
   }
 }
 
-export = Footer;
+new Footer();
