@@ -35,17 +35,17 @@ html
               svg
                 use(xlink:href="#atom")
               div Projects
-    div(class="screen-section")
-      div(class="grid-container")
-        div(class="force-awakens plate")
+    div(class="screen-section grid-container plate-container")
+      div(class="force-awakens")
+        div(class="plate active")
           h2 Created in accordance to the big bang theory. 
           div(class="panel")
             div(class="desc underline") <i class="fa fa-globe" style="font-size: 40pt; display:inline-block"></i> Our vision is to uncover and rediscover ways to advance our normal daily lifes as programmers. With internet, technologies has been moving like an expanding universe; new tech terms are created like stars. As before the big crunch happens, we will continue to improve this humble site in whichever way possible.
             div
-              a(class="button red" href="/html/main/about/")
+              a(class="button red" href="/site/main/about/")
                 i(class="fa fa-users") 
                 span About Us
-        div(class="force-awakens plate")
+        div(class="plate")
           h2 We aim for efficiency.
           div(class="panel")
             div(class="desc") Our main objectives for development are:
@@ -61,7 +61,7 @@ html
             div(style="font-size: 50pt; padding-top: 12pt;") - <i class="fa fa-space-shuttle"></i> - -  
             div 
               i [ "Don't wish, try!" ]
-        div(class="force-awakens plate")
+        div(class="plate")
           h2 Our projects.
           div(class="panel")
             div(class="t-panel")
@@ -82,23 +82,5 @@ html
             div(class="t-panel")
               a(class="button red" href="//www.github.com/yoonghan")
                 span View
-    div(class="screen-section footer")
-      table
-        tr
-          th Site Map
-        tr
-          td
-            ul
-              li <a href="/html/main/about/">About Us</a>
-              li <a href="/webby/webpage/blog/">Site Blog</a>
-      table
-        tr
-          th Afflitates
-        tr
-          td
-            ul
-              li <a href="//login.walcron.com">Events</a>
-              li <a href="//mezzanine.walcron.com">Blog</a>
-              li <a href="mailto:mailyoonghan@gmail.com">Contact Us</a>
     include ./incl/footer.incl
-    <script data-main="/js/main/main" src="/public/js/requirejs/require.js"></script>
+    script(data-main="/js/main/main" src="/public/js/requirejs/require.js")

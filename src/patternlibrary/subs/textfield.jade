@@ -1,0 +1,162 @@
+html
+  head
+    title Text Inputs
+    link(href='/public/css/material-lite/material.min.css' rel='stylesheet')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel='stylesheet')
+
+  body
+    form(action="#")
+      div(class="mdl-textfield mdl-js-textfield")
+        input(class="mdl-textfield__input" type="text" id="sample1")
+        label(class="mdl-textfield__label" for="sample1") Text...
+    <!--script(defer src='/public/js/material-lite/material.min.js')-->
+    script.
+      var anonymous = function() {
+        var element_;
+        var label_;
+        var input_;
+        var maxRows;
+        var boundUpdateClassesHandler;
+        var boundFocusHandler;
+        var boundBlurHandler;
+        var boundResetHandler;
+        var boundKeyDownHandler;
+        
+        var CssClasses_ = {
+          LABEL: 'mdl-textfield__label',
+          INPUT: 'mdl-textfield__input',
+          IS_DIRTY: 'is-dirty',
+          IS_FOCUSED: 'is-focused',
+          IS_DISABLED: 'is-disabled',
+          IS_INVALID: 'is-invalid',
+          IS_UPGRADED: 'is-upgraded'
+        };
+        
+        var onKeyDown_ = function(event) {
+          var currentRowCount = event.target.value.split('\n').length;
+          if (event.keyCode === 13) {
+            if (currentRowCount >= maxRows) {
+              event.preventDefault();
+            }
+          }
+        };
+
+        var onFocus_ = function(event) {
+          element_.classList.add(CssClasses_.IS_FOCUSED);
+        };
+
+        var onBlur_ = function(event) {
+          element_.classList.remove(CssClasses_.IS_FOCUSED);
+        };
+
+        var onReset_ = function(event) {
+          updateClasses_();
+        };
+
+        var updateClasses_ = function() {
+          checkDisabled();
+          checkValidity();
+          checkDirty();
+          checkFocus();
+        };
+
+        // Public methods.
+
+        var checkDisabled = function() {
+          if (input_.disabled) {
+            element_.classList.add(CssClasses_.IS_DISABLED);
+          } else {
+            element_.classList.remove(CssClasses_.IS_DISABLED);
+          }
+        };
+
+        var checkFocus = function() {
+          if (Boolean(element_.querySelector(':focus'))) {
+            element_.classList.add(CssClasses_.IS_FOCUSED);
+          } else {
+            element_.classList.remove(CssClasses_.IS_FOCUSED);
+          }
+        };
+        
+        var checkValidity = function() {
+          if (input_.validity) {
+            if (input_.validity.valid) {
+              element_.classList.remove(CssClasses_.IS_INVALID);
+            } else {
+              element_.classList.add(CssClasses_.IS_INVALID);
+            }
+          }
+        };
+        
+        var checkDirty = function() {
+          if (input_.value && input_.value.length > 0) {
+            element_.classList.add(CssClasses_.IS_DIRTY);
+          } else {
+            element_.classList.remove(CssClasses_.IS_DIRTY);
+          }
+        };
+        
+        var disable = function() {
+          input_.disabled = true;
+          updateClasses_();
+        };
+        
+        var enable = function() {
+          input_.disabled = false;
+          updateClasses_();
+        };
+        
+        var change = function(value) {
+
+          input_.value = value || '';
+          updateClasses_();
+        };
+                
+        var init = function() {
+          element_ = document.querySelector('.mdl-textfield');
+          if (element_) {
+            label_ = element_.querySelector('.mdl-textfield__label');
+            input_ = element_.querySelector('.mdl-textfield__input');
+
+            if (input_) {
+              if (input_.hasAttribute(
+                    /** @type {string} */ ('maxrows'))) {
+                maxRows = parseInt(input_.getAttribute(
+                    /** @type {string} */ ('maxrows')), 10);
+                if (isNaN(maxRows)) {
+                  maxRows = -1;
+                }
+              }
+
+              boundUpdateClassesHandler = updateClasses_.bind(this);
+              boundFocusHandler = onFocus_.bind(this);
+              boundBlurHandler = onBlur_.bind(this);
+              boundResetHandler = onReset_.bind(this);
+              input_.addEventListener('input', boundUpdateClassesHandler);
+              input_.addEventListener('focus', boundFocusHandler);
+              input_.addEventListener('blur', boundBlurHandler);
+              input_.addEventListener('reset', boundResetHandler);
+
+              if (maxRows !== -1) {
+                // TODO: This should handle pasting multi line text.
+                // Currently doesn't.
+                boundKeyDownHandler = onKeyDown_.bind(this);
+                input_.addEventListener('keydown', boundKeyDownHandler);
+              }
+              var invalid = element_.classList
+                .contains('is-invalid');
+              updateClasses_();
+              element_.classList.add('is-upgraded');
+              if (invalid) {
+                element_.classList.add('is-invalid');
+              }
+              if (input_.hasAttribute('autofocus')) {
+                element_.focus();
+                checkFocus();
+              }
+            }
+          }
+        };
+        
+        init();
+      }();

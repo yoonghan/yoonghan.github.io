@@ -1,0 +1,18 @@
+div(class="grid-container")
+  div(class="force-awakens", style="padding:0")
+    div(class="panel", style="width:100%")
+      label Search :
+      md-textfield([label]="'filter'" [idname]="'keyword'", (result)="searchKeyword($event)")
+      md-switch([label]="''", [idname]="'orderSwitch'", (result)="reorder($event)", [toolTipMessage]="'Sort By Date'", [checked]="true")
+  div(class="tableLike")
+    h2 <i class="fa fa-book"></i> Log
+    table(*ngIf="initialized", style="border-top:1px solid")
+      tr
+        th Date
+        th Summary
+        th Recorded Detail
+      tr(*ngFor="#writing of writings | search: searchKey")
+        td {{writing.date}}
+        td {{writing.task}}
+        td([innerHTML]="writing.detail")
+    

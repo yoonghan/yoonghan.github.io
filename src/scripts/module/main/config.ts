@@ -3,7 +3,6 @@ requirejs.config({
     'scrollToPlugin': '/public/js/gsap/plugins/ScrollToPlugin',
     'tweenMax': '/public/js/gsap/TweenMax',
     'timelineMax': '/public/js/gsap/TimelineMax',
-    'footer':'../footer',
     'button':'../button',
     'sectionselect':'../sectionselect',
     'plateselect':'../plateselect'

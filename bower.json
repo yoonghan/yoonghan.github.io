@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "angular": "1.4.x",
+    "material-design-lite": "latest",
     "requirejs-bower": "2.1.9",
     "susy": "latest",
     "breakpoint-sass": "latest"

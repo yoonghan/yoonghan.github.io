@@ -38,7 +38,7 @@
 }
 .icon {
   background: $theme-background-darker;
-  color: $theme-text-unchecked-foreground;
+  color: $theme-text-foreground-unchecked;
   height: 70px;
   width: 80px;
   padding: 10px 10px 15px 10px;
@@ -52,7 +52,7 @@
   }
 
   &:hover {
-    cursor: hand;
+    cursor: pointer;
     color: $theme-foreground;
   }
 

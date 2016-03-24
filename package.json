@@ -3,9 +3,17 @@
   "version": "2.0.0",
   "dependencies": {
     "express": "^3.4.8",
-    "etag": "1.7.0"
+    "etag": "1.7.0",
+    "angular2": "2.0.0-beta.6",
+    "systemjs": "0.19.20",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "zone.js": "0.5.14"
   },
   "devDependencies": {
+    "concurrently": "^1.0.0",
     "debowerify": "^0.7.1",
     "del": "^1.1.1",
     "gulp": "^3.8.1",
@@ -26,6 +34,7 @@
     "karma-chrome-launcher": "~0.1.5",
     "karma": "~0.12.24",
     "karma-jasmine": "~0.1.5",
+    "lodash": "4.5.1",
     "protractor": "^2.1.0",
     "run-sequence": "~1.1.5",
     "opn": "^0.1.2",

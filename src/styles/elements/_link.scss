@@ -45,24 +45,42 @@
   }
 }
 
+a {
+  text-decoration: none;
+}
+
+.links {
+  a {
+    color: $foreground-blue;
+
+    &:hover {
+      color: $theme-text-foreground;
+    }
+
+    &:active {
+      color: $foreground-blue;
+    }
+
+    &:focus {
+      color: $foreground-grey;
+    }
+  }
+}
 
 a {
-  color: $foreground-blue;
-  text-decoration: none;
-
-  &:hover {
-    color: $theme-text-foreground;
-  }
-
-  &:visited {
+  &.links {
     color: $foreground-blue;
-  }
 
-  &:active {
-    color: $foreground-blue;
-  }
+    &:hover {
+      color: $theme-text-foreground;
+    }
 
-  &:focus {
-    color: $foreground-grey;
+    &:active {
+      color: $foreground-blue;
+    }
+
+    &:focus {
+      color: $foreground-grey;
+    }
   }
 }

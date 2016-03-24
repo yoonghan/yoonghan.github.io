@@ -8,23 +8,101 @@
 }
 
 .grid-container {
+
+  h1, h2 {
+    background: $theme-text-background-title;
+    margin: 0;
+    padding: 30px 0;
+  }
+
+  .tableLike {
+    color: $theme-foreground;
+    background: $theme-background;
+    font-size: 10pt;
+    padding: 0;
+
+    pre {
+      white-space: pre-wrap;
+    }
+
+    h1, h2 {
+      border-bottom: 1px solid;
+      padding-left: 20px;
+      position: relative;
+      text-align: left;
+      background-color: $theme-background-darker;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+
+      &.clickable {
+        background-color: $theme-text-background-title; 
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        transition: 0.3s;
+
+        &:hover {
+          cursor: pointer;
+          text-shadow: 1px 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        &.alternate {
+          background: $theme-text-background-title-alternate;
+        }
+      }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td {
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+    }
+
+    td:nth-child(odd) {
+      font-style: italic;
+      font-weight: bold;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    td:nth-child(even) {
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: $theme-background-alternate;
+    }
+
+    th {
+      border-bottom: 1px double;
+      border-right: 1px solid;
+      color: $theme-text-foreground;
+      font-weight: bold;
+      @include text-resize($fontsize-title);
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
   .force-awakens {
     color: $theme-foreground;
     background: $theme-background;
     text-align: center;
     padding: 0 0 50px 0;
 
-    h2 {
-      background: $theme-text-background-title;
-      margin: 0;
-      padding: 30px 0;
-    }
-
     .panel {
       display: inline-block;
       padding: 20px 20px;
       text-align: center;
-      width: 100%;
+      max-width: $max-width;
 
       @include breakpoint($breakpoint-phone) {
         padding: 20px 0;
@@ -38,7 +116,7 @@
         margin: 0 auto 20px auto;
         text-align: justify;
         width: 80%;
-        max-width: 1000px;
+        max-width: $max-width;
 
         &.underline {
           border-bottom: 1px solid;

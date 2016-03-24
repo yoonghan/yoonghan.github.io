@@ -1,0 +1,242 @@
+html
+  head
+    link(href='/public/css/material-lite/material.min.css' rel='stylesheet')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel='stylesheet')
+    style.
+      .switch {
+        position: relative;
+        z-index: 1;
+        vertical-align: middle;
+        display: inline-block;
+        box-sizing: border-box;
+        width: 100%;
+        height: 24px;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+      .switch.is-upgraded {
+        padding-left: 28px; 
+      }
+
+      .switch-input {
+        line-height: 24px; }
+        .switch.is-upgraded .switch-input {
+          position: absolute;
+          width: 0;
+          height: 0;
+          margin: 0;
+          padding: 0;
+          opacity: 0;
+          -ms-appearance: none;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          appearance: none;
+          border: none; }
+
+      .switch-track {
+        background: rgba(0,0,0, 0.26);
+        position: absolute;
+        left: 0;
+        top: 5px;
+        height: 14px;
+        width: 36px;
+        border-radius: 14px;
+        cursor: pointer; }
+        .switch.is-checked .switch-track {
+          background: rgba(63,81,181, 0.5); }
+        .switch-track fieldset[disabled] .switch,
+        .switch.is-disabled .switch-track {
+          background: rgba(0,0,0, 0.12);
+          cursor: auto; }
+
+      .switch-thumb {
+        background: rgb(250,250,250);
+        position: absolute;
+        left: 0;
+        top: 2px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        transition-duration: 0.28s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-property: left; }
+        .switch.is-checked .switch-thumb {
+          background: rgb(63,81,181);
+          left: 16px;
+          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12); }
+        .switch-thumb fieldset[disabled] .switch,
+        .switch.is-disabled .switch-thumb {
+          background: rgb(189,189,189);
+          cursor: auto; }
+
+      .switch-focus-helper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-4px, -4px);
+                transform: translate(-4px, -4px);
+        display: inline-block;
+        box-sizing: border-box;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: transparent; }
+        .switch.is-focused .switch-focus-helper {
+          box-shadow: 0 0 0px 20px rgba(0, 0, 0, 0.1);
+          background-color: rgba(0, 0, 0, 0.1); }
+        .switch.is-focused.is-checked .switch-focus-helper {
+          box-shadow: 0 0 0px 20px rgba(63,81,181, 0.26);
+          background-color: rgba(63,81,181, 0.26); }
+
+      .switch-label {
+        position: relative;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+        left: 24px; }
+        .switch-label fieldset[disabled] .switch,
+        .switch.is-disabled .switch-label {
+          color: rgb(189,189,189);
+          cursor: auto; }
+
+      .switch-ripple-container {
+        position: absolute;
+        z-index: 2;
+        top: -12px;
+        left: -14px;
+        box-sizing: border-box;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        cursor: pointer;
+        overflow: hidden;
+        -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+        transition-duration: 0.40s;
+        transition-timing-function: step-end;
+        transition-property: left; }
+        .switch-ripple-container .mdl-ripple {
+          background: rgb(63,81,181); }
+        .switch-ripple-container fieldset[disabled] .switch,
+        .switch.is-disabled .switch-ripple-container {
+          cursor: auto; }
+        fieldset[disabled] .switch .switch-ripple-container .mdl-ripple,
+        .switch.is-disabled .switch-ripple-container .mdl-ripple {
+          background: transparent; }
+        .switch.is-checked .switch-ripple-container {
+          left: 2px; }
+
+
+  body
+  
+
+    label(class="switch" for="switch-1" id="hello")
+      input(type="checkbox" id="switch-1", class="switch-input", checked)
+      span(class="switch-label")
+      
+    div(class="mdl-tooltip" for="hello") Follow
+    script(defer src='/public/js/material-lite/material.min.js')  
+    script.
+      var element_,
+          inputElement_,
+          boundMouseUpHandler,
+          boundChangeHandler,
+          boundFocusHandler,
+          boundBlurHandler;
+          
+      var exec = function() {
+        var checkDisabled = function() {
+          if (inputElement_.disabled) {
+            element_.classList.add('is-disabled');
+          } else {
+            element_.classList.remove('is-disabled');
+          }
+        };
+        
+        var checkToggleState = function() {
+          if (inputElement_.checked) {
+            element_.classList.add('is-checked');
+          } else {
+            element_.classList.remove('is-checked');
+          }
+        };
+        
+        var updateClasses_ = function() {
+          checkDisabled();
+          checkToggleState();
+        };
+        
+        var onChange_ = function(event) {
+          updateClasses_();
+        };
+        
+        var blur_ = function() {
+          window.setTimeout(function() {
+            inputElement_.blur();
+          }.bind(this), /** @type {number} */ 100);
+        };
+        
+        var onMouseUp_ = function(event) {
+          blur_();
+        };
+        
+        var onFocus_ = function(event) {
+          element_.classList.add('is-focused');
+        };
+        
+        var onBlur_ = function(event) {
+          element_.classList.remove('is-focused');
+        };
+        
+        var updateClasses_ = function() {
+          checkDisabled();
+          checkToggleState();
+        };
+        
+        var init = function() {
+          element_ = document.querySelector('.switch');
+          inputElement_ = document.querySelector('.switch-input');
+
+          var track = document.createElement('div');
+          track.classList.add("switch-track");
+
+          var thumb = document.createElement('div');
+          thumb.classList.add("switch-thumb");
+
+          var focusHelper = document.createElement('span');
+          focusHelper.classList.add("switch-focus-helper");
+
+          thumb.appendChild(focusHelper);
+
+          this.element_.appendChild(track);
+          this.element_.appendChild(thumb);
+
+          this.boundMouseUpHandler = onMouseUp_.bind(this);
+
+          this.boundChangeHandler = onChange_.bind(this);
+          this.boundFocusHandler = onFocus_.bind(this);
+          this.boundBlurHandler = onBlur_.bind(this);
+          
+          //Rippling effect[S]
+          //not rippling
+          //Rippling effect[E]
+
+          this.inputElement_.addEventListener('change', this.boundChangeHandler);
+          this.inputElement_.addEventListener('focus', this.boundFocusHandler);
+          this.inputElement_.addEventListener('blur', this.boundBlurHandler);
+          this.element_.addEventListener('mouseup', this.boundMouseUpHandler);
+
+          updateClasses_();
+          this.element_.classList.add('is-upgraded');
+        };
+        
+        init();
+      }();
+    <!--script(defer src='/public/js/material-lite/material.min.js')-->

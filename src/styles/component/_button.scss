@@ -1,0 +1,81 @@
+.btn {
+  margin: 0 1px 1px 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px $shadow-grey;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  overflow: hidden;
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 3px 5px $shadow-grey;
+  }
+
+  &:active {
+    margin: 1px 0 0 1px;
+    box-shadow: 0 2px 3px $shadow-grey;
+  }
+
+  &.classic {
+    color: $font-white;
+    background: $background-orange;
+    background-image: linear-gradient(45deg, $background-orange, $foreground-orange);
+
+    &:hover {
+      background: $foreground-orange;
+      color: $font-white;
+    }
+  }
+}
+
+.button {
+  display: inline-block;
+  margin: 0.3em;
+  overflow: hidden;
+  padding: 1em 0.8em;
+  position: relative;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  border: none;
+  @include text-resize($fontsize-button);
+  text-align: center;
+  text-transform: uppercase;
+
+  @include breakpoint($breakpoint-tablet) {
+    padding: 1em 2em;
+  }
+
+  i {
+    padding-right: 10px;
+    font-size: 16pt;
+  }
+
+  &.green {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  &.red {
+    background-color: $background-red;
+    color: white;
+  }
+
+  &.blue {
+    background-color: $background-blue;
+    color: white;
+  }
+
+  &:hover {
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+  }
+}

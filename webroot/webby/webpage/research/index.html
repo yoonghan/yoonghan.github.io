@@ -5,7 +5,7 @@
 <meta name="description" content="Website development.">
 <meta name="viewport" content="width=480">
 <link rel="author"	href="https://plus.google.com/u/1/114852108498604797792" />
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>	
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/cache/css/webby/submenu.css">
 <link rel="stylesheet" href="/cache/css/webby/ssresearch.css">
 </head>
@@ -25,7 +25,7 @@
 	  </ul>
 	</menu>
 
-	
+
 <div class="fullbar" id="T2">
  <h1>Research And Development</h1>
 </div>
@@ -40,13 +40,13 @@
 	<td>
 		<pre>
 select
-  object_name, 
-  object_type, 
-  session_id, 
+  object_name,
+  object_type,
+  session_id,
   type,           -- Type or system/user lock
   lmode,        -- lock mode in which session holds lock
-  request, 
-  block, 
+  request,
+  block,
   ctime          -- Time since current mode was granted
 from
   v$locked_object, all_objects, v$lock
@@ -81,9 +81,9 @@ order by s.sid,t.piece;
 	<td>
 		<pre>
 COLUMN percent FORMAT 999.99 ;
- 
-SELECT sid, to_char(start_time,'hh24:mi:ss') stime, 
-message,( sofar/totalwork)* 100 percent 
+
+SELECT sid, to_char(start_time,'hh24:mi:ss') stime,
+message,( sofar/totalwork)* 100 percent
 FROM v$session_longops
 WHERE sofar/totalwork < 1;
 		</pre>
@@ -120,8 +120,8 @@ select site_id, page_id, ip_address from sg_pim.pim_access_history, sg_mdip.dev@
 * Updating database with Java(limit the maximum records to update to avoid memory hogging) is using addBatch in either:
 -- Statement
 -- PreparedStatement
-* Noted however any failed update with batch update will cause 
-inconsistency as only successful (did not fail in unique indexing, duplicate, correct records) will the data gets into database. 
+* Noted however any failed update with batch update will cause
+inconsistency as only successful (did not fail in unique indexing, duplicate, correct records) will the data gets into database.
 Arrays read are returned with the code.
 	int[] affectedRecords = preparedStatement.executeBatch();
 * Where every row of array represents the order of batch execution.
@@ -137,8 +137,8 @@ EXECUTE_FAILED = Update fail.
 -- Savepoint save1 = con.setSavepoint(); //dehydrate the transaction
 -- con.rollback(save1);//rehydrate the transaction
 -- Connection.releaseSavepoint(save1); //release the savepoint
-*Oracle(I guess all Databases) provided something called the dirty read. 
-Reading database is the fastest with this method, but unreliable, if the data is not to be used regularly(i.e. Country) use this as data consistency is not important. 
+*Oracle(I guess all Databases) provided something called the dirty read.
+Reading database is the fastest with this method, but unreliable, if the data is not to be used regularly(i.e. Country) use this as data consistency is not important.
 Then there is repeated read(guaranteed) and phantom read(not guaranteed but effective for new insert data).
 	</pre>
 	</td>
@@ -189,7 +189,7 @@ Fiddler - Change incoming response to browser and outgoing responses.
 tag1 &gt; tag { color: #fff }
 		</td>
 		<td>
-nested tags means &lt;tag1&gt;&lt;tag&gt;APPLY&lt;/tag&gt;&lt;/tag1&gt;. 
+nested tags means &lt;tag1&gt;&lt;tag&gt;APPLY&lt;/tag&gt;&lt;/tag1&gt;.
 		</td>
 	</tr>
 	<tr>
@@ -245,10 +245,10 @@ java -Dcom.sun.management.jmxremote.port=5000
 Force tread dumps with the command (in Weblogic this is available in the Node itself).
 jstack pid > filename
 jmap -dump:file=<file_name> <pid>
-<br> 
+<br>
 or adding this to the startup
 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/disk2/dumps
-<br> 
+<br>
 Do not kill process that hangs in unix, try killing with command (-3) "kill -3 pid". This actually helps the program to dump errors to the catalina.out or server.out files. If started with nohup command, look into nohup.out or the file it's redirected if there is. > /dev/null will means not redirecting to anywhere (not recommended).
 <br>
 Heap dump and thread dump are both seperated things.
@@ -285,7 +285,7 @@ To create test script using maven
           ---> src
               ---> main
               ---> test
-    d) Maven will execute classes with name *Test* in the test package when installing or testing. 
+    d) Maven will execute classes with name *Test* in the test package when installing or testing.
     The class have to include @Test on the method and Assert.assertEquals("something","something"); to do comparison
 		</pre>
 		</td>
