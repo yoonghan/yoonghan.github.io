@@ -58,6 +58,6 @@
     </div>
   </div>
 <div>
-<script src="/js/footer.js"></script>
-<script src="/js/screenrefresh.js"></script>
+<script src='/cache/js/footer.js'></script>
+<script src='/cache/js/screenrefresh.js'></script>
 <!-- endinject -->

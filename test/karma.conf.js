@@ -4,14 +4,14 @@ module.exports = function(config){
     basePath : '../',
 
     files : [
-      'webroot/cache/js/angular/angular.min.js',
-	  'webroot/cache/js/angular/angular-sanitize.min.js',
-	  'webroot/cache/js/angular/ui-bootstrap-0.11.2.min.js',
-	  'webroot/cache/js/angular/ui-bootstrap-custom-tpls-0.10.0.min.js',
+      '/cache/js/angular/angular.min.js',
+	  '/cache/js/angular/angular-sanitize.min.js',
+	  '/cache/js/angular/ui-bootstrap-0.11.2.min.js',
+	  '/cache/js/angular/ui-bootstrap-custom-tpls-0.10.0.min.js',
 	  'test/js/angular-resource/angular-resource.js',
       'test/js/angular/angular-mocks.js',
      // 'webroot/cache/js/webby/*.js',
-      'webroot/cache/js/selfservice/*.js',
+      '/cache/js/apploader/*.js',
       'test/unit/**/*.js'
     ],
 

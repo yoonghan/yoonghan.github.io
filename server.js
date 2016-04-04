@@ -12,7 +12,7 @@ var CACHE_INFO		= 'no-transform,public,max-age=86400,s-maxage=86400';
  */
 var SampleApp = function() {
 	// Default folder
-	var webroot = "./webroot/";
+	var webroot = "./dist/";
   //  Scope.
   var self = this;
   var testEnv = false;
@@ -48,7 +48,6 @@ var SampleApp = function() {
 	        self.zcache = { 'index.html': '' };
 	    }
 	};
-
 
   /**
    *  Retrieve entry (content) from cache.
@@ -97,30 +96,30 @@ var SampleApp = function() {
    *  Terminate server on receipt of the specified signal.
    *  @param {string} sig  Signal to terminate on.
    */
-		self.terminator = function(sig){
-		    if (typeof sig === "string") {
-		       console.log('%s: Received %s - terminating sample app ...',
-		                   Date(Date.now()), sig);
-		       process.exit(1);
-		    }
-		    console.log('%s: Node server stopped.', Date(Date.now()) );
-		};
+	self.terminator = function(sig){
+	    if (typeof sig === "string") {
+	       console.log('%s: Received %s - terminating sample app ...',
+	                   Date(Date.now()), sig);
+	       process.exit(1);
+	    }
+	    console.log('%s: Node server stopped.', Date(Date.now()) );
+	};
 
 
     /**
      *  Setup termination handlers (for exit and a list of signals).
      */
-    self.setupTerminationHandlers = function(){
-        //  Process on exit and signals.
-        process.on('exit', function() { self.terminator(); });
+  self.setupTerminationHandlers = function(){
+      //  Process on exit and signals.
+      process.on('exit', function() { self.terminator(); });
 
-        // Removed 'SIGPIPE' from the list - bugz 852598.
-        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-        ].forEach(function(element, index, array) {
-            process.on(element, function() { self.terminator(element); });
-        });
-    };
+      // Removed 'SIGPIPE' from the list - bugz 852598.
+      ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+       'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+      ].forEach(function(element, index, array) {
+          process.on(element, function() { self.terminator(element); });
+      });
+  };
 
     /*  ================================================================  */
     /*  App server functions (main app logic here).                       */
@@ -129,99 +128,85 @@ var SampleApp = function() {
     /**
      *  Create the routing table entries + handlers for the application.
      */
-    self.createRoutes = function() {
+  self.createRoutes = function() {
 		var CONTENT_TYPE='Content-Type';
 		var CACHE_CONTROL='Cache-Control';
 		var ETAG='ETag';
 		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
-        self.routes = { };
+    self.routes = { };
+		self.routes['/site/selfservice/admin'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		res.setHeader(CONTENT_TYPE, mime(".html"));
+		res.send(self.cache_get(reqPath + "/index.html"));
+	};
 
-		self.routes['/selfservice/admin'] = function(req, res) {
+	self.routes['/site/selfservice/*:path'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		res.setHeader(CONTENT_TYPE, mime(".html"));
+		res.send(self.cache_get(reqPath + ".html"));
+	};
 
-			var reqPath = self.replacePath(req.path.toString());
-
-			res.setHeader(CONTENT_TYPE, mime(".html"));
-			res.send(self.cache_get(reqPath + "/index.html"));
-		};
-
-		self.routes['/selfservice/*:path'] = function(req, res) {
-
-			var reqPath = self.replacePath(req.path.toString());
-
-			res.setHeader(CONTENT_TYPE, mime(".html"));
-			res.send(self.cache_get(reqPath + ".html"));
-		};
-
-		self.routes['/webby/*:path'] = function(req, res) {
-
-			var reqPath = self.replacePath(req.path.toString());
-
-			res.setHeader(CONTENT_TYPE, mime(".html"));
-			res.send(self.cache_get(reqPath + "/index.html"));
-		};
-
-		self.routes['/errors/*:path'] = function(req, res) {
-
-			var reqPath = self.replacePath(req.path.toString());
-
-			res.setHeader(CONTENT_TYPE, mime(".html"));
-			res.send(self.cache_get(reqPath + ".html"));
-		};
+	self.routes['/errors/*:path'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		res.setHeader(CONTENT_TYPE, mime(".html"));
+		res.send(self.cache_get(reqPath + ".html"));
+	};
 
 
-		self.routes['/cache/json/*:path'] = function(req, res) {
-			var reqPath = self.replacePath(req.path.toString());
+	self.routes['/cache/json/*:path'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		var resource = fs.readFileSync(reqPath);
+		var header = {};
+		header[CONTENT_TYPE] = mime(".json");
+		header[ALLOW_ACCESS_ORIGIN] = '*';
+		header[CACHE_CONTROL] = CACHE_INFO;
+		header[ETAG] = etag(resource);
+		res.set(header);
+		res.send(resource);
+	};
 
-			var resource = fs.readFileSync(reqPath);
+	self.routes['/cache/*:path'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		var resource = fs.readFileSync(reqPath);
+		var header = {};
+		header[CONTENT_TYPE] = mime(reqPath);
+		header[CACHE_CONTROL] = CACHE_INFO;
+		header[ETAG] = etag(resource);
+		res.set(header);
+		res.send(resource);
+	};
 
-			var header = {};
-			header[CONTENT_TYPE] = mime(".json");
-			header[ALLOW_ACCESS_ORIGIN] = '*';
-			header[CACHE_CONTROL] = CACHE_INFO;
-			header[ETAG] = etag(resource);
+	self.routes['/swagger/*:path'] = function(req, res) {
+		var reqPath = self.replacePath(req.path.toString());
+		var header = {};
+		header[CONTENT_TYPE] = mime(reqPath);
+		header[ALLOW_ACCESS_ORIGIN] = '*';
+		res.set(header);
+		res.send(self.cache_get(reqPath));
+	};
 
-			res.set(header);
-			res.send(resource);
-		};
+  self.routes['/'] = function(req, res) {
+      res.setHeader("Content-Type" , mime(".html"));
+      res.send( self.cache_get(webroot + 'index.html') );
+  };
 
-		self.routes['/cache/*:path'] = function(req, res) {
-			var reqPath = self.replacePath(req.path.toString());
+	self.routes['/*:path'] = function(req, res) {
 
-			var resource = fs.readFileSync(reqPath);
+		var reqPath = self.replacePath(req.path.toString());
 
-			var header = {};
-			header[CONTENT_TYPE] = mime(reqPath);
-			header[CACHE_CONTROL] = CACHE_INFO;
-			header[ETAG] = etag(resource);
+		res.setHeader(CONTENT_TYPE, mime(".html"));
+		res.send(self.cache_get(reqPath + "/index.html"));
+	};
+};
 
-			res.set(header);
-			res.send(resource);
-		};
+self.replacePath = function(path){
+	path = webroot + path
+	return path.replace(/\/\//g, "/").replace(/\.\./g, "/");
+}
 
-		self.routes['/swagger/*:path'] = function(req, res) {
-			var reqPath = self.replacePath(req.path.toString());
-
-			var header = {};
-			header[CONTENT_TYPE] = mime(reqPath);
-			header[ALLOW_ACCESS_ORIGIN] = '*';
-			res.set(header);
-			res.send(self.cache_get(reqPath));
-		};
-
-        self.routes['/'] = function(req, res) {
-            res.setHeader("Content-Type" , mime(".html"));
-            res.send( self.cache_get(webroot + 'webby/index.html') );
-        };
-    };
-
-	self.replacePath = function(path){
-		path = webroot + path
-		return path.replace(/\/\//g, "/").replace(/\.\./g, "/");
-	}
-
-	/**
-	 * Determine content-type to send.
-	**/
+/**
+ * Determine content-type to send.
+**/
 //	self.checkfileHeader = function(val){
 //		var ext = val.substring(val.lastIndexOf("."), val.length)
 //
@@ -251,44 +236,44 @@ var SampleApp = function() {
 //		}
 //	}
 
-    /**
-     *  Initialize the server (express) and create the routes and register
-     *  the handlers.
-     */
-    self.initializeServer = function() {
-        self.createRoutes();
-        self.app = express();
-        self.app.use(express.favicon(webroot+'/favicon.ico', { maxAge: 2592000000 }));
-        //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
-        }
-    };
+  /**
+   *  Initialize the server (express) and create the routes and register
+   *  the handlers.
+   */
+  self.initializeServer = function() {
+      self.createRoutes();
+      self.app = express();
+      self.app.use(express.favicon(webroot+'/favicon.ico', { maxAge: 2592000000 }));
+      //  Add handlers for the app (from the routes).
+      for (var r in self.routes) {
+        self.app.get(r, self.routes[r]);
+      }
+  };
 
 
-    /**
-     *  Initializes the sample application.
-     */
-    self.initialize = function() {
-        self.setupVariables();
-        self.populateCache();
-        self.setupTerminationHandlers();
+  /**
+   *  Initializes the sample application.
+   */
+  self.initialize = function() {
+      self.setupVariables();
+      self.populateCache();
+      self.setupTerminationHandlers();
 
-        // Create the express server and routes.
-        self.initializeServer();
-    };
+      // Create the express server and routes.
+      self.initializeServer();
+  };
 
 
-    /**
-     *  Start the server (starts up the sample application).
-     */
-    self.start = function() {
-        //  Start the app on the specific interface (and port).
-        self.app.listen(self.port, self.ipaddress, function() {
-            console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), self.ipaddress, self.port);
-        });
-    };
+  /**
+   *  Start the server (starts up the sample application).
+   */
+  self.start = function() {
+    //  Start the app on the specific interface (and port).
+    self.app.listen(self.port, self.ipaddress, function() {
+        console.log('%s: Node server started on %s:%d ...',
+                    Date(Date.now() ), self.ipaddress, self.port);
+    });
+  };
 
 };   /*  Sample Application.  */
 

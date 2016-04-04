@@ -11,7 +11,7 @@ class Footer {
     let footerExpand = footer.getElementsByClassName("technology")[0];
     this.dupFooter = footerExpand.cloneNode(true);
     this.duplicateFooter();
-    this.addClick(footer, this.dupFooter);
+    this.addClick(footerExpand, this.dupFooter);
   }
 
   duplicateFooter() {
@@ -27,12 +27,12 @@ class Footer {
     document.body.appendChild(this.dupFooter);
   }
 
-  addClick(footer, dupFooter) {
-    var footerClickOpen = footer.getElementsByClassName('footer-pointer')[0],
+  addClick(footerExpand, dupFooter) {
+    var footerClickOpen = footerExpand.getElementsByClassName('footer-pointer')[0],
         that = this;
     this.dupFooterPointer = dupFooter.getElementsByClassName('footer-pointer')[0];
 
-    footer.addEventListener(
+    footerExpand.addEventListener(
       'click',
       function(event) {
         that.execOpen(that);

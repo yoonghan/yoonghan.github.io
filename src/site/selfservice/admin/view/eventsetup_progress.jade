@@ -1,0 +1,15 @@
+md-content(md-scroll-y='', flex='')
+  .panel.panel-primary.pnl-margin
+    br
+    center(style='font-size:12pt;')
+      span.glyphicon.glyphicon-thumbs-up
+      |  Your 
+      strong Data
+      |  is currently processing...
+    center(style='font-size:12pt;color:#f00') {{message}}
+    br
+    md-progress-linear(md-mode='determinate', value='{{progressValue}}')
+    br
+    br
+    br
+    br

@@ -83,6 +83,18 @@ body {
     }
   }
 
+  //optimized using vertical height only. Color is fixed to white.
+  .wal-refresh {
+    bottom: 0px;
+    position: fixed;
+    z-index: 999;
+    display: none;
+    background: white;
+    border-radius: 200vh;
+    top: -50%;
+    right: -50%;
+  }
+
   #footer {
     height: $footer-height;
 
@@ -104,6 +116,7 @@ body {
       }
     }
   }
+
   .technology {
     background: $theme-background-darker;
     color: $font-white;
@@ -117,7 +130,7 @@ body {
     }
 
     .footer-pointer {
-      background: url('/images/goup.svg') no-repeat;
+      background: url('/cache/images/goup.svg') no-repeat;
       background-position: top center;
       background-size: 50px 25px;
       content:'';

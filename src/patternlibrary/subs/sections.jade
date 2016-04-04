@@ -24,10 +24,10 @@ html
               div Concurrency
                 p Based on functional programming and akka.<br>Everything runs asynchronous.
           div(class="image")
-            img(id="lyr-atom", src="/images/atom.svg")
+            img(id="lyr-atom", src='/cache/images/atom.svg')
         div(class="section")
           div(class="image")
-            img(id="lyr-fixer", src="/images/fixure.svg", style="border-bottom: 5px solid;")
+            img(id="lyr-fixer", src='/cache/images/fixure.svg', style="border-bottom: 5px solid;")
           div(class="title")
             div Maintained
               p Only 2 based programmers to keep this up and running.
@@ -36,10 +36,10 @@ html
             div Open Sourced
               p All codes are not closed, as if we do care. visit us.
           div(class="image")
-            img(src="/images/GitHub_Logo.svg")
+            img(src='/cache/images/GitHub_Logo.svg')
         div(class="section")
           div(class="image")
-            img(id="lyr-blog", src="/images/blog.svg")
+            img(id="lyr-blog", src='/cache/images/blog.svg')
           div(class="title")
             div Blogs
               p We don't maintain codes only; We write. visit us.
@@ -48,7 +48,7 @@ html
             div Techno geek
               p Covering scala, play, reactive, websockets and etc.<br>Maybe..
           div(class="image")
-            img(src="/images/whatgives.svg")
+            img(src='/cache/images/whatgives.svg')
             
       div(class="grid-container")
         div(class="force-awakens")
@@ -75,11 +75,11 @@ html
         div(class="force-awakens")
           div(class="panel")
             div(class="t-panel")
-              img(src="/images/calendar.svg")
+              img(src='/cache/images/calendar.svg')
             div(class="t-panel")
-              img(src="/images/blog.svg")
+              img(src='/cache/images/blog.svg')
             div(class="t-panel")
-              img(src="/images/GitHub_Logo.svg")
+              img(src='/cache/images/GitHub_Logo.svg')
             div(class="t-panel") Events
             div(class="t-panel") Our blogging site
             div(class="t-panel") Shared source
@@ -110,12 +110,10 @@ html
               ul
                 li <a href="mailto:mailyoonghan@gmail.com">Contact Me</a>
               
-    script(src="/public/js/gsap/TweenMax.js")
-    script(src="/public/js/gsap/plugins/ScrollToPlugin.js")
+    script(src='/cache/public/js/gsap/TweenMax.js')
+    script(src='/cache/public/js/gsap/plugins/ScrollToPlugin.js')
     script.
       (function() {
-        console.log("XXX");
-      
         document.getElementById('scroll').addEventListener('click',function() {
           console.log(this);
           var position = this.offsetTop;

@@ -1,0 +1,73 @@
+p
+  .jumbotron
+    | Configure the preference of your calendar reminder here.
+.alert.alert-danger(ng-show='errors', role='alert', ng-cloak='')
+  strong Oh Snap, 
+  |  there is an error:
+  ul(ng-repeat='error in errors')
+    li {{error}}
+form.form-horizontal(role='form', name='setting')
+  .form-group
+    label.col-sm-2.control-label
+      span.glyphicon.glyphicon-question-sign(tooltip='[[tt.reminder]]', tooltip-trigger='mouseenter', tooltip-placement='bottom')
+      | 			Reminder
+    label.col-sm-10
+      .checkbox
+        label
+          input(type='checkbox', ng-model='r_day', name='r_day', autofocus='')
+          | One Day Before
+      br
+      .checkbox
+        label
+          input(type='checkbox', ng-model='r_week', name='r_week')
+          | One Week Before
+  hr
+  .form-group
+    label.col-sm-2.control-label
+      span.glyphicon.glyphicon-question-sign(tooltip='[[tt.notification]]', tooltip-trigger='mouseenter', tooltip-placement='bottom')
+      | 			Notification
+    label.col-sm-10
+      .checkbox
+        label
+          input(type='checkbox', ng-model='chk_email', name='chk_email')
+          span(ng-show='!chk_email') via Email
+          p.alert.alert-warning(ng-show='chk_email && !isValidEmail') [[wr.emailver]]
+          input.form-control(ng-show='chk_email', style='display:inline;width:initial', name='n_email', type='email', ng-model='n_email', placeholder='e.g. abc@yahoo.com', maxlength='200')
+          input.btn.btn-success(type='button', ng-show='chk_email && !isValidEmail', ng-click='resentEmailValidator()', value='{{emailValidate}}', ng-disabled='emailValidateFlag')
+          span#emailInvalid.alert.alert-danger.alertmsg(ng-show='chk_email && setting.n_email.$error.email') Email provided is invalid!
+          span#emailBlank.alert.alert-danger.alertmsg(ng-show="chk_email && (setting.n_email.$viewValue==='' || setting.n_email.$viewValue===undefined)") Email must not be blank
+      br
+      .checkbox
+        label
+          input(type='checkbox', ng-model='chk_sms', name='chk_sms')
+          span(ng-show='!chk_sms')
+            strike via SMS
+          // input class="form-control" style="display:inline;width:initial" ng-show="chk_sms" name="n_sms" type="text" ng-model="n_sms" placeholder="e.g. +60123456789" ng-pattern="number" maxlength="13"
+          span(ng-show='chk_sms', style='color:red') Sorry, at the moment we do not support this.
+          // span class="alert alert-danger alertmsg" ng-show="chk_sms && setting.n_sms.$error.pattern">Only +012345678 or 0123456 numbers allowed</span
+  hr
+  .checkbox(ng-show='allowSetup')
+    label.col-sm-1
+    label.col-sm-11
+      input(type='checkbox', ng-model='allowCreation', name='allowCreation')
+      span Request for access rights to set up a calendar schedule.
+      br
+      span(ng-show='allowCreation')
+        | We're Opening this for User subscription 
+        a.btn.btn-primary(ng-href='{{clickCreate}}') Make me an Admin
+        | .
+  hr
+  div(colspan='2', align='center')
+    input#save.btn.btn-lg.btn-success(type='submit', value='Save', ng-disabled='flag', ng-click='save()')
+    button#cancel.btn.btn-lg.btn-primary(type='button', ng-click='cancel()', ng-disabled='tutorialRun') Return
+  br
+  script(type='text/ng-template', id='popupdialog.html').
+    <div class="modal-header">
+    <h3 class="modal-title">Saved</h3>
+    </div>
+    <div class="modal-body">
+    Your reminder has been saved.
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
+    </div>

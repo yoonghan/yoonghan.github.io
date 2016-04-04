@@ -7,10 +7,10 @@ describe('Settings App', function() {
 	  browser.driver.get('http://localhost:9000/test/prepareSetting'); //this will prepare the settings
 	  //element(by.id("test")).style.display = "";;
   });
-  
+
   describe('Check Settings App', function() {
 	  it('Check Subscription filter working', function() {
-        browser.get('http://localhost:8000/selfservice/profile/setting');
+        browser.get('http://localhost:8000/site/selfservice/profile/setting');
 
         element(by.id('lnk_subscription')).click();
 
@@ -40,15 +40,15 @@ describe('Settings App', function() {
         var ok = element(by.model('btnOK'));
         ok.click();
 
-        browser.get('http://localhost:8000/selfservice/profile/setting');
+        browser.get('http://localhost:8000/site/selfservice/profile/setting');
 
         cNameModel.sendKeys('Demo');
         var chkBtn = (element.all(by.model('e.currStat'))).get(0);
         expect(chkBtn.isSelected()).toBe(bln_statBtn);
 	  });
-	  
+
 	  it('Check Reminder filter working', function() {
-	    browser.get('http://localhost:8000/selfservice/profile/setting');
+	    browser.get('http://localhost:8000/site/selfservice/profile/setting');
         element(by.id('lnk_reminder')).click();
 
         var chk_email = element(by.model('chk_email'));
@@ -95,7 +95,7 @@ describe('Settings App', function() {
 	  });
 
 	  it('Check Profile filter working', function() {
-			browser.get('http://localhost:8000/selfservice/profile/setting');
+			browser.get('http://localhost:8000/site/selfservice/profile/setting');
 
 			element(by.id('lnk_profile')).click();
 

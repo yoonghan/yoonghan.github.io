@@ -1,0 +1,36 @@
+doctype html
+html#top(lang='en')
+  head
+    meta(charset='ISO-8859-1')
+    meta(name='robots', content='noindex')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Unauthorized Access
+    link(rel='stylesheet', href='/cache/public/css/bootstrap/css/bootstrap.min.css')
+    style.
+      html, body {
+      height: 100%;
+      margin: 0px;
+      }
+      .Absolute-Center {
+      margin: 0px 50px;
+      position: absolute;
+      top: 20%; left: 0; bottom: 40%; right: 0;
+      }
+      .jumbotron{
+      text-align:center;
+      }
+      h1{
+      font-weight:bold;
+      }
+  body
+    .Absolute-Center
+      br
+      .jumbotron
+        h1 UNAUTHORIZED ACCESS
+        h3 Your session has either tripped and timed out! Please relogin.
+        | .
+      center
+        a(href='http://login.walcron.com/')
+          input.btn.btn-lg.btn-success(type='button', value='Please bring me for login!')
+      br
+      br

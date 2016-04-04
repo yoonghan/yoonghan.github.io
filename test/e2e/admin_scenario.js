@@ -6,7 +6,7 @@
 
   var MAX_TITLE_LENGTH=31;
   var MAX_DESC_LENGTH=301;
- 
+
 describe('Create Calendar App', function() {
 
   var SUCCESS_PAGE = "/booking/setup-confirm";
@@ -22,7 +22,7 @@ describe('Create Calendar App', function() {
 
   describe('Admin Page', function() {
     it('Check Events', function() {
-    	browser.get('http://localhost:8000/selfservice/admin');
+    	browser.get('http://localhost:8000/site/selfservice/admin');
     	var menuBtn = element.all(by.id('btn_menu')).get(pos_btn_EVENT);
         menuBtn.click()
 
@@ -43,7 +43,7 @@ describe('Create Calendar App', function() {
     });
 
     it('Check Events to Edit', function() {
-        browser.get('http://localhost:8000/selfservice/admin');
+        browser.get('http://localhost:8000/site/selfservice/admin');
         var menuBtn = element.all(by.id('btn_menu')).get(pos_btn_EVENTEDIT);
         menuBtn.click()
 
@@ -64,7 +64,7 @@ describe('Create Calendar App', function() {
     });
 
     it('Check Setup', function() {
-	    browser.get('http://localhost:8000/selfservice/admin');
+	    browser.get('http://localhost:8000/site/selfservice/admin');
 
         var menuBtn = element.all(by.id('btn_menu')).get(pos_btn_SETUP);
         menuBtn.click()
@@ -150,7 +150,7 @@ describe('Create Calendar App', function() {
 	});
 
     it('Check Setting - Settings', function() {
-        browser.get('http://localhost:8000/selfservice/admin');
+        browser.get('http://localhost:8000/site/selfservice/admin');
 
         element(by.id('mnu_settings')).click();
         element.all(by.id('btnSettings')).get(0).click();
@@ -169,13 +169,13 @@ describe('Create Calendar App', function() {
     });
 
     it('Check Setting - Logout', function() {
-        browser.get('http://localhost:8000/selfservice/admin');
+        browser.get('http://localhost:8000/site/selfservice/admin');
 
         element(by.id('mnu_settings')).click();
         element.all(by.id('btnSettings')).get(4).click();
-        
+
         //expect(browser.getCurrentUrl()).toContain("/logout");
-        
+
     });
   });
 });

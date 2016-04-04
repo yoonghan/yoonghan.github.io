@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    meta(charset='ISO-8859-1')
+    meta(name='robots', content='noindex')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Settings
+    link(href='/cache/public/css/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/cache/public/css/bootstrap/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(href='/cache/css/selfservice/common.css', rel='stylesheet')
+    link(rel='stylesheet', href='/cache/css/selfservice/tutorial/common.css')
+    link(href='/cache/css/selfservice/setting.css', rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=Lobster', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Shadows+Into+Light', rel='stylesheet', type='text/css')
+  body(ng-controller='loaderCtrl', role='document')
+    .viewDisplay.container-fluid
+      h1
+        a(href='', ng-click='cancel()')
+          span.glyphicon.glyphicon-arrow-left
+          |  Settings
+      .jumbotron.tutorialHeight(ng-show='tutorialRun', ng-cloak='')
+        span
+          h2.tutorialH2 TUTORIAL
+          input#tutBtnPrv.btn.btn-default(type='button', value='<', ng-click='tutorialChgMessage(-1)', ng-disabled='tut_first')
+          input#tutBtnNxt.btn.btn-default(type='button', value='>', ng-click='tutorialChgMessage(1)', ng-disabled='tut_last')
+          br
+          br
+          p(ng-bind-html='tutorialMsg')
+      br
+      ul.nav.nav-pills
+        li(role='presentation', ng-class="{'active':a_nav===undefined||a_nav==='s'}")
+          a#lnk_subscription(href='#notify/subscription', ng-click="a_nav='s'") Subscription
+        li(role='presentation', ng-class="{'active':a_nav==='r'}")
+          a#lnk_reminder(href='#notify/reminder', ng-click="a_nav='r'") Reminder
+        li(role='presentation', ng-class="{'active':a_nav==='p'}")
+          a#lnk_profile(href='#notify/profile/1', ng-click="a_nav='p'") Profile
+      div(ng-view='')
+  script(src='/cache/js/apploader/global_var.js')
+  script(src='/cache/js/apploader/cookiereader.js')
+  script(src='/cache/js/apploader/auth_common.js')
+  script(data-main='/cache/js/apploader/setting/main', src='/cache/public/js/requirejs/require.js')

@@ -32,7 +32,7 @@ export class TooltipDirective{
   }
 
   onMouseEnter(event) {
-    var ele = this.toolTipElement,
+    var ele = this.toolTipElement;
     if(ele) {
       var element = this.element.nativeElement,
           props = element.getBoundingClientRect(),

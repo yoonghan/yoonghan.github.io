@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta(charset='ISO-8859-1')
+    meta(name='robots', content='noindex')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Signing up
+    link(href='/cache/public/css/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/cache/public/css/bootstrap/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(href='/cache/css/selfservice/common.css', rel='stylesheet')
+  body(role='document')
+    // Greetings
+    .container.theme-showcase(role='main', ng-controller='profileController')
+      .jumbotron
+        h3
+          | Hello
+          strong(ng-cloak='') {{fstName}} {{lstName}},
+        p
+          | Welcome and thank you for registering with Walcron.
+          | Please spend some time to fill up your necessary information.
+          | We would like to thank you for trusting in us; we from Walcron will always be looking forward to serve you better.
+          br
+          br
+          strong Notice:
+          |  All datas of yours will be treated with confidentiality; only to be shared with your consensus.
+      div(ng-view='')
+  script(src='/cache/js/apploader/global_var.js')
+  script(src='/cache/js/apploader/auth_common.js')
+  script(data-main='/cache/js/apploader/setting/main', src='/cache/public/js/requirejs/require.js')
