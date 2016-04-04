@@ -26,14 +26,14 @@
     }
 
     &.slide1 {
-      background: url("/images/slide1.jpg") 50% 0 no-repeat fixed;
+      background: url('/cache/images/slide1.jpg') 50% 0 no-repeat fixed;
     }
     &.slide3 {
-      background: url("/images/slide3.jpg") 50% 0 no-repeat fixed;
+      background: url('/cache/images/slide3.jpg') 50% 0 no-repeat fixed;
       padding: 150px 0 0 0;
     }
     &.slide5 {
-      background: url("/images/slide5.jpg") 50% 0 no-repeat fixed;
+      background: url('/cache/images/slide5.jpg') 50% 0 no-repeat fixed;
       padding: 100px 0;
     }
 
@@ -70,7 +70,7 @@
     border-top: 2px solid;
     &:before {
       content: '';
-      background: url('/images/pagebreak.svg') no-repeat;
+      background: url('/cache/images/pagebreak.svg') no-repeat;
       background-position: right;
       margin-top: -60px;
       height:60px;

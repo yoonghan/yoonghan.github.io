@@ -1,0 +1,207 @@
+doctype html
+html#top(lang='en')
+  head
+    meta(charset='ISO-8859-1')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title My Events 
+    link(rel='stylesheet', href='/cache/public/css/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/cache/public/css/calendar/fullcalendar.css')
+    link(rel='stylesheet', href='/cache/css/selfservice/calendar.css')
+    link(rel='stylesheet', href='/cache/css/selfservice/common.css')
+    link(rel='stylesheet', href='/cache/css/selfservice/tutorial/common.css')
+    link(href='http://fonts.googleapis.com/css?family=Lobster', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Shadows+Into+Light', rel='stylesheet', type='text/css')
+  body
+    .container-fluid(role='main', ng-controller='calendarCtrl')
+      table(width='100%')
+        tr
+          td
+            h1 My Events
+          td
+            div(ng-include="'/site/selfservice/common/header'")
+      .jumbotron(ng-class="{'tutorialHeight': tutorialRun}", ng-cloak='')
+        span(ng-show='!tutorialRun', ng-cloak='')
+          | Need help? Click on 
+          strong
+            a(href='/site/selfservice/tutorial/calendar_tut')
+              span.glyphicon.glyphicon-calendar
+              |  Calendar Guide/Help
+          | .
+        span(ng-show='tutorialRun')
+          h2.tutorialH2 TUTORIAL
+          input#tutBtnPrv.btn.btn-default(type='button', value='<', ng-click='tutorialChgMessage(-1)', ng-disabled='tut_first')
+          input#tutBtnNxt.btn.btn-default(type='button', value='>', ng-click='tutorialChgMessage(1)', ng-disabled='tut_last')
+          br
+          br
+          p(ng-bind-html='tutorialMsg')
+      hr
+      .row
+        // calendar[S]
+        .col-md-5
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                span.glyphicon.glyphicon-calendar
+                |  Booking Calendar
+            .panel-body
+              .btn-toolbar
+                .btn-group(style='float:right; padding-bottom:4px;')
+                  button.btn.fc-state-default(ng-click="changeView('agendaDay')") Day
+                  button.btn.fc-state-default(ng-click="changeView('agendaWeek')") Week
+                  button.btn.fc-state-default(ng-click="changeView('month')") Month
+              .calendar(ng-model='eventSources', calendar='myCalendar', config='uiConfig.calendar', ui-calendar='uiConfig.calendar')
+              br
+              div
+                strong Legend:
+                span.unreserved Available
+                span.reserved Reserved
+                span.pending Pending
+        // calendar[E]
+        #booking.col-md-5
+          // WeatherForecasting[S]
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                span.glyphicon.glyphicon-globe
+                |  Weather Forecast of your area
+            .panel-body
+              figure.icons
+                canvas#weatherIcon(width='100', height='100')
+              span
+                strong#weatherMessage Loading...
+              | 					- estimate for 
+              span#weatherDate Loading...
+          // WeatherForecasting[E]
+          // BookingDates[S]
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                span.glyphicon.glyphicon-info-sign
+                |  Scheduled Events
+            .panel-body(ng-cloak='')
+              ul.unstyled(role='form')
+                li(ng-repeat='e in currEvents')
+                  .alert.alert-info.form-group(style='font-size:12pt;', ng-if='e.booked == 0')
+                    .bookingNotice
+                      strong NOTICE: 
+                      | For every successful reservations made, we shall provided your name to our client for simple identification purposes.
+                    br
+                    dl.dl-horizontal
+                      dt Date:
+                      dd {{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}
+                      dt(ng-show='e.allDay == false') Time:
+                      dd(ng-show='e.allDay == false') {{e.start | date:'hh:mm a' : 'UTC'}} to {{e.end | date:'hh:mm a' : 'UTC'}}
+                      dt Activity:
+                      dd {{e.title}}
+                      dt Description:
+                      dd {{e.desc}}
+                      dt.hidetext
+                        | User Info:
+                        dd.hidetext {{e.userInfo}}
+                    hr
+                    input#btnBook.btn.btn-lg.btn-primary(type='button', value='Book Now', ng-click='ok(e.id,e.conf,e.userInfo)', ng-disabled='flag')
+                  .alert.alert-success.form-group(style='font-size:12pt;', ng-if='e.booked == 1')
+                    h4 Reserved
+                    dl.dl-horizontal
+                      dt Date:
+                      dd {{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}
+                      dt(ng-show='e.allDay == false') Time:
+                      dd(ng-show='e.allDay == false') {{e.start | date:'hh:mm a' : 'UTC'}} to {{e.end | date:'hh:mm a' : 'UTC'}}
+                      dt Activity:
+                      dd {{e.title}}
+                      dt Description:
+                      dd {{e.desc}}
+                    hr
+                    input#btnCancelBook.btn.btn-lg.btn-success(type='button', value='Cancel Booking', ng-click='cancel(e.id)', ng-disabled='flag')
+                  .alert.alert-warning.form-group(style='font-size:12pt;', ng-if='e.booked == 2')
+                    h4 Pending
+                    dl.dl-horizontal
+                      dt More Info:
+                      dd Your reservation are still pending from the organizer's approval. Please wait.
+                      dt Date:
+                      dd {{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}
+                      dt(ng-show='e.allDay == false') Time:
+                      dd(ng-show='e.allDay == false') {{e.start | date:'HH:mm a' : 'UTC'}} to {{e.end | date:'HH:mm a' : 'UTC'}}
+                      dt Activity:
+                      dd {{e.title}}
+                      dt Description:
+                      dd {{e.desc}}
+                    hr
+                    input#btnCancelBook.btn.btn-lg.btn-success(type='button', value='Cancel Booking', ng-click='cancel(e.id)', ng-disabled='flag')
+          // BookingDates[E]
+    script(type='text/ng-template', id='usercontent.html').
+      <div>
+      <div class="modal-header bg-primary">
+      <h3 class="modal-title">Confirmation Details</h3>
+      </div>
+      <div class="modal-body">
+      <h4>Our client would wish to have these following details from you.</h4>
+      <div class="alert alert-danger" ng-show="errors" role="alert">
+      <strong>Oh Snap, </strong> please check if there''s some input errors:
+      <ul ng-repeat="error in errors">
+      <li>{{error}}</li>
+      </ul>
+      </div>
+      <form name="detail">
+      <div class="form-group" ng-show="isEmailShow">
+      <label for="dtl_email">Email address</label>
+      <input type="email" class="form-control" name="dtl_email" ng-model="dtl_email" placeholder="e.g. somebody@email.com" ng-required="isReq('Email')">
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_email.$error.required">Required!</span>
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_email.$error.email">Invalid email</span>
+      </div>
+      <div class="form-group" ng-show="isContactNoShow">
+      <label for="dtl_ctcNo">Contact No</label>
+      <input type="text" class="form-control" name="dtl_ctcNo" ng-model="dtl_ctcNo" placeholder="e.g. +0123456789" ng-pattern="number" ng-required="isReq('ContactNo')">
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_ctcNo.$error.required">Required!</span>
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_ctcNo.$error.pattern">Only (+)012345678 with 13 numbers are allowed</span>
+      </div>
+      <div class="form-group" ng-show="isAddressShow">
+      <label for="dtl_addr">Address</label>
+      <input type="text" class="form-control" name="dtl_addr" ng-model="dtl_addr" placeholder="e.g. Hse No, Street Name, City" ng-required="isReq('Address')">
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_addr.$error.required">Required!</span>
+      </div>
+      <div class="form-group" ng-show="isAddressShow">
+      <label for="dtl_pstCd">PostCode</label>
+      <input type="text" class="form-control" name="dtl_pstCd" ng-model="dtl_pstCd" placeholder="e.g. +56000" ng-pattern="postalCd" ng-required="isReq('Address')">
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_pstCd.$error.required">Required!</span>
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_pstCd.$error.pattern">Invalid Postal Code</span>
+      </div>
+      <div class="form-group" ng-show="isAddressShow">
+      <label for="dtl_state">State</label>
+      <select name="dtl_state" class="form-control" ng-model="dtl_state" ng-options="stat.value for stat in states" ng-required="isAddressShow">
+      <option value="">-- Choose a State --</option>
+      </select>
+      <span class="alert alertmsg alert-danger" ng-show="detail.dtl_state.$error.required">Required!</span>
+      </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="dtl_ok()" id="dtl_btnOK">Confirm</button>
+      <button class="btn btn-success" ng-click="dtl_cancel()" id="dtl_btnCancel">Cancel</button>
+      </div>
+      </div>
+    script(type='text/ng-template', id='popupdialog.html').
+      <div ng-if="status==false">
+      <div class="modal-header">
+      <h3 class="modal-title">Oops, we can''t proceed</h3>
+      </div>
+      <div class="modal-body bg-danger">
+      <h4>{{statMsg}}</h4>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-danger" ng-click="ok()" id="btnOK_Error">Error</button>
+      </div>
+      </div>
+      <div ng-if="status">
+      <div class="modal-header">
+      <h3 class="modal-title">Confirmation</h3>
+      </div>
+      <div class="modal-body bg-primary">
+      <h4>{{statMsg}}</h4>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()" id="btnOK_Success">Confirm</button>
+      </div>
+      </div>
+    div(ng-include="'/site/selfservice/common/footer'")
+    script(data-main='/cache/js/apploader/booking/main', src='/cache/public/js/requirejs/require.js')

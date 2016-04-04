@@ -1,0 +1,109 @@
+p
+  .jumbotron(ng-show='edit')
+    | Re-Setup your profile here.
+.alert.alert-danger(ng-show='errors', role='alert', ng-cloak='')
+  strong Oh Snap,  
+  |  please check if there's some input errors:
+  ul(ng-repeat='error in errors')
+    li {{error}}
+// Input form for user
+form.form-inline(name='profile')
+  table.table.table-striped
+    // First Name
+    tbody
+      tr
+        td
+          label.required(for='fstName') First Name:
+        td
+          input.form-control(name='fstName', type='text', ng-model='fstName', required='', ngmaxlength='30', autofocus='')
+          span.alert.alert-danger.alertmsg(ng-show='profile.fstName.$error.required') Required!
+      // Middle Name
+      tr
+        td
+          label(for='midName') Middle Name:
+        td
+          input.form-control(name='midName', type='text', ng-model='midName', ngmaxlength='30')
+      // Last Name
+      tr
+        td
+          label.required(for='lstName') Last Name:
+        td
+          input.form-control(name='lstName', type='text', ng-model='lstName', required='', ngmaxlength='30')
+          span.alert.alertmsg.alert-danger(ng-show='profile.lstName.$error.required') Required!
+      // Gender
+      tr
+        td
+          label.required(for='gender') Gender:
+        td
+          .radio
+            label
+              input(type='radio', ng-model='gender', value='M')
+              |  Male
+            label
+              input(type='radio', ng-model='gender', value='F')
+              |  Female
+            label
+              input(type='radio', ng-model='gender', value='O')
+              |  Not to be specified
+      // Email
+      tr
+        td
+          label.required(for='email') Email Contact
+        td
+          input.form-control(name='email', type='email', ng-model='email', placeholder='e.g. abc@yahoo.com', ng-maxlength='100')
+          span.alert.alertmsg.alert-danger(ng-show='profile.email.$error.maxlength') Maximum 100 characters
+          span.alert.alertmsg.alert-danger(ng-show='profile.email.$error.email') Invalid email
+      // Contact No
+      tr
+        td
+          label(for='ctcNo') Contact No:
+        td(width='80%')
+          input.form-control(name='ctcNo', type='text', ng-model='ctcNo', placeholder='e.g. +60123456789', ng-pattern='number')
+          span.alert.alertmsg.alert-danger(ng-show='profile.ctcNo.$error.pattern') Only (+)012345678 with 13 numbers are allowed
+      // Country
+      tr
+        td
+          label.required(for='cntry') Country
+        td
+          select.form-control(name='cntry', ng-model='cntry', required='')
+            option(value='MY') Malaysia
+      // State [Hard coded reason being it's never changed]
+      tr
+        td
+          label.required(for='state') State
+        td
+          select.form-control(name='state', ng-model='state', required='', ng-options='stat.value for stat in states', autofocus='')
+            option(value='') -- Choose a State --
+          span.alert.alertmsg.alert-danger(ng-show='profile.state.$error.required') Required!
+      // Postal Code
+      tr
+        td
+          label.required(for='pstCd') Postal Code
+        td
+          input.form-control(name='pstCd', type='text', ng-model='pstCd', placeholder='e.g. 45000', ng-pattern='postalCd')
+          span.alert.alertmsg.alert-danger(ng-show='profile.pstCd.$error.pattern') Invalid Postal Code
+      // Address
+      tr
+        td
+          label.required(for='addr') Address
+        td
+          input.form-control(name='addr', type='text', ng-model='addr', placeholder='e.g. House No, Street Address, City', ng-maxlength='100', style='width:100%')
+          span.alert.alertmsg.alert-danger(ng-show='profile.addr.$error.maxlength') Maximum 100 characters
+      tr
+        td(colspan='2', align='center')
+          input#submit.btn.btn-lg.btn-success(type='submit', value='Submit', ng-disabled='flag', ng-show='!edit', ng-click='processForm()')
+          input#save.btn.btn-lg.btn-success(type='submit', value='Save', ng-disabled='flag', ng-show='edit', ng-click='processForm()')
+          button#cancel.btn.btn-lg.btn-primary(type='button', ng-click='cancel()', ng-show='edit', ng-disabled='tutorialRun') Return
+script(type='text/ng-template', id='popupdialog.html').
+  <div class="modal-header">
+  <h3 class="modal-title">Thank you for registering with us!</h3>
+  </div>
+  <div class="modal-body" ng-show="status=='new'">
+  Your registration has been completed. You can now proceed to the site.
+  </div>
+  <div class="modal-body" ng-show="status!='new'">
+  Your registration has been saved.
+  </div>
+  <div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
+  </div>

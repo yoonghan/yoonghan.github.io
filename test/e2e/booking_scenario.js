@@ -5,56 +5,56 @@ describe('Booking Test', function() {
   beforeEach(function () {
 	 browser.driver.get('http://localhost:9000/test/testprofile/6'); //this will add cookie
   });
-  
+
   describe('Enter Booking Site', function() {
 	  it('Make A confirm booking then cancel', function() {
 		browser.driver.get('http://localhost:9000/test/prepareBooking/true');
 		browser.sleep(2000);
-		browser.get('http://localhost:8000/selfservice/booking/calendar');
-		
+		browser.get('http://localhost:8000/site/selfservice/booking/calendar');
+
 		//Book
 		var event = element.all(by.css('.unreserved'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();
-		  
+
 		browser.sleep(500);
-		
+
 		//Cancel Pending
 		var event = element.all(by.css('.pending'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();
 	  });
-	  
+
 	  it('Make A booking then cancel', function() {
 		browser.driver.get('http://localhost:9000/test/prepareBooking/false');
 		browser.sleep(2000);
-		browser.get('http://localhost:8000/selfservice/booking/calendar');
-		
+		browser.get('http://localhost:8000/site/selfservice/booking/calendar');
+
 		//Book
 		var event = element.all(by.css('.unreserved'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();
-		  
+
 		browser.sleep(500);
-		
+
 		//Cancel Pending
 		var event = element.all(by.css('.reserved'));
 		event.get(0).click();
 		browser.sleep(200);
 		runTest();
 	  });
-	  
+
 	  it('Press the settings button', function() {
 		  var PROFILE_PAGE = "/profile/setting";
-		  
-		  browser.get('http://localhost:8000/selfservice/booking/calendar');
+
+		  browser.get('http://localhost:8000/site/selfservice/booking/calendar');
 		  element.all(by.id('btnSetting')).click();
 		  expect(browser.getCurrentUrl()).toContain(PROFILE_PAGE);
 	  });
-	  
+
 	  function runTest(){
 			$$('#btnCancelBook').count().then(
 				function(countCancelExist){
@@ -66,9 +66,9 @@ describe('Booking Test', function() {
 						var blogList = element.all(by.repeater('e in currEvents').column('e.userInfo'));
 						blogList.then(function(e){
 							e[0].getText().then(function(userInfoCode){
-								
+
 								element(by.id('btnBook')).click();
-								
+
 								var ternary = parseInt(userInfoCode,10).toString(3);
 								var returnVal = function(pos){ return (ternary.length-pos < 0) ? 0: parseInt(ternary.charAt(ternary.length-pos),10)}
 								var input_Email;
@@ -99,7 +99,7 @@ describe('Booking Test', function() {
 									input_PstCd.clear();
 									input_PstCd.sendKeys("10000");
 								}
-					
+
 								element(by.id('dtl_btnOK')).click();
 								browser.sleep(1000);
 								element(by.id('btnOK_Success')).click();

@@ -1,0 +1,189 @@
+doctype html
+html
+  head(data-gwd-animation-mode='quickMode')
+    title Walcron Login
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src='/cache/public/js/jquery/jquery.min.js')
+    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Shadows+Into+Light', rel='stylesheet', type='text/css')
+    script.
+      var login = "//scala.walcron.com/service/oauth/send/";
+      var btnClick = false;
+      var timeVar;
+      function clickButton(postUrl){
+      if(btnClick)
+      return;
+      else{
+      btnClick=true;
+      $('#loader').css('display','inline');
+      $('#info').text('is loading...');
+      checkServerStarted(postUrl);
+      }
+      }
+      function executeLogin(postUrl){
+      location.href=login+postUrl;
+      }
+      function poolServlet(postUrl){
+      $('#info').text('initializing login...');
+      timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 8000);
+      }
+      function checkServerStarted(postUrl){
+      clearTimeout(timeVar);
+      $.ajax({
+      url:'//scala.walcron.com/ping',
+      type: 'GET',
+      async: false,
+      success:
+      function(result){
+      executeLogin(postUrl);
+      },
+      error:
+      function(result, status , obj){
+      if(status = "timeout"){
+      poolServlet(postUrl);
+      }else{
+      btnClick=false;
+      }
+      }
+      });
+      }
+      $( document ).ready(function() {
+      $('#google-btn').on('click', function() {
+      clickButton("G");
+      });
+      $('#facebook-btn').on('click', function() {
+      clickButton("F");
+      });
+      $('#help-btn').on('click', function() {
+      window.open("/site/selfservice/readme","selfservice");
+      });
+      });
+    style(type='text/css').
+      body {
+      margin:50px 0px; padding:0px;
+      color: #fff;
+      text-align:center;
+      background:url('/cache/images/login_bg.jpg') no-repeat fixed center;
+      width:100%;
+      height:100%;
+      background-size:cover;
+      }
+      .customBtn {
+      display: inline-block;
+      color: white;
+      width: 165px;
+      border-radius: 2px;
+      white-space: nowrap;
+      box-shadow: #333 -5px 5px 3px;
+      }
+      #facebook-btn {
+      background: #3b5998;
+      }
+      #google-btn {
+      background: #dd4b39;
+      }
+      #customBtn:hover {
+      cursor:pointer; cursor:hand;
+      }
+      #google-btn:hover {
+      background: #e74b37;
+      cursor:pointer; cursor:hand;
+      box-shadow: #333 -4px 6px 3px;
+      }
+      #facebook-btn:hover {
+      background: #4c5a99;
+      cursor:pointer; cursor:hand;
+      box-shadow: #333 -4px 6px 3px;
+      }
+      span.label {
+      font-weight: bold;
+      }
+      span.icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 35px;
+      height: 35px;
+      }
+      span.google-icon {
+      background: url('/cache/images/branding/+/btn_red_32.png') transparent 1px 50% no-repeat;
+      border-right: #bb3f30 1px solid;
+      }
+      span.facebook-icon {
+      background: url('/cache/images/branding/fb/btn_fb_32.png') transparent 1px 50% no-repeat;
+      border-right: #2a4887 1px solid;
+      }
+      span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Roboto',arial,sans-serif;
+      }
+      span.google-text {
+      padding-left: 35px;
+      padding-right: 35px;
+      }
+      span.facebook-text {
+      padding-left: 25px;
+      padding-right: 45px;
+      }
+      #help-btn{
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding:10px 0px;
+      box-shadow: #444 -5px 5px 3px;
+      font-weight: bold;
+      background-color: #3CB371;
+      }
+      #help-btn:hover {
+      background-color: #9ACD32;
+      cursor:pointer; cursor:hand;
+      box-shadow: #333 -4px 6px 3px;
+      }
+      .display{
+      font-family: 'Roboto',arial,sans-serif;
+      font-size: 18pt;
+      }
+      .Absolute-Center {
+      margin: auto;
+      position: absolute;
+      top: 15%; left: 0; bottom: 0; right: 0;
+      }
+      .loader-animation{
+      height:30px;
+      display:none;
+      }
+      .container{
+      padding:30px;
+      width:200px;
+      border: 1px solid;
+      margin:auto;
+      background-color:rgba(90,90,90,0.9);
+      }
+      h1{
+      padding:0px;
+      margin:0px;
+      font-family: 'Shadows Into Light', cursive;
+      }
+  body
+    .Absolute-Center
+      .container
+        .display
+          h1.title Sign in
+          br
+        img#loader.loader-animation(src='/cache/images/loading.gif')
+        span#load
+        br
+        div
+          #facebook-btn.customBtn.customFacebookSignIn
+            span.icon.facebook-icon
+            span.buttonText.facebook-text Facebook
+        br
+        div
+          #google-btn.customBtn.customGPlusSignIn
+            span.icon.google-icon
+            span.buttonText.google-text Google
+        br
+        #help-btn.customBtn
+          span.buttonText HELP

@@ -1,8 +1,8 @@
 requirejs.config({
   paths:{
-    'scrollToPlugin': '/public/js/gsap/plugins/ScrollToPlugin',
-    'tweenMax': '/public/js/gsap/TweenMax',
-    'timelineMax': '/public/js/gsap/TimelineMax',
+    'scrollToPlugin': '/cache/public/js/gsap/plugins/ScrollToPlugin',
+    'tweenMax': '/cache/public/js/gsap/TweenMax',
+    'timelineMax': '/cache/public/js/gsap/TimelineMax',
     'button':'../button',
     'sectionselect':'../sectionselect',
     'plateselect':'../plateselect'

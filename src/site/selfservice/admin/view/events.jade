@@ -1,0 +1,70 @@
+.panel.panel-primary.pnl-margin
+  md-toolbar
+    .md-toolbar-tools
+      span.glyphicon.glyphicon-search.btn-icon
+      | Search Filter
+  .panel-body
+    label
+      input.form-control(ng-model='search.title', placeholder='Title')
+    strong  AND 
+    label
+      input.form-control(ng-model='search.desc', placeholder='Description')
+    strong  AND 
+    label
+      select.form-control(ng-model='search.conf')
+        option(value='') Show All
+        option(value='true') Requires Confirmation
+        option(value='false') No Confirmation Required
+    br
+    strong  PageView 
+    label
+      select.form-control(ng-model='pageSize')
+        option(value='50') 50
+        option(value='100') 100
+        option(value='500') 500
+        option(value='1000') 1000
+hr
+form.form-horizontal(role='form', name='list')
+  // Button [S] : Check where the tooltip disable.
+  md-button.md-raised.md-primary(ng-click='genReport()', tooltip='[[tt.reportgen]]', tooltip-placement='top', ng-model='genReport', ng-disabled='!rpt_allowed||rpt_disabled', arial-label='generate report')
+    span.glyphicon.glyphicon-save.btn-icon
+    | 		Generate Report
+  // Button [E]
+  br
+  br
+  .alert.alert-warning(ng-show='!rpt_allowed', role='alert', tooltip-popup-delay='5')
+    span [[wr.reportgen]]
+  .alert.alert-warning(ng-show='rpt_disabled', role='alert', tooltip-popup-delay='5')
+    span [[wr.reportgenerated]]
+  table.table.table-hover.table-bordered
+    thead
+      th
+        a(href='', ng-click="predicate='start'; reverse=!reverse")
+          | Date
+          i.glyphicon(ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}")
+      th Start Time
+      th End Time
+      th Title
+      th Desc
+      th Availability
+      th Confirmation
+      th Subscribers
+    tbody
+      tr.repeated-item(ng-repeat='e in bookingList | immutable | orderBy:predicate:reverse | filter:search | startFrom:(currentPage-1)*pageSize | limitTo:pageSize')
+        td {{e.start | date:'EEE - dd/MMM/yyyy' : 'UTC'}}
+        td
+          span(ng-show='!e.allDay') {{e.start | date:'hh:mm a' : 'UTC'}}
+          span(ng-show='e.allDay') Full Day
+        td
+          span(ng-show='!e.allDay') {{e.end | date:'hh:mm a' : 'UTC'}}
+          span(ng-show='e.allDay') -
+        td {{e.title}}
+        td {{e.desc}}
+        td {{e.avail}}
+        td
+          span(ng-show='e.conf') Req
+          span(ng-show='!e.conf') Not
+        td
+          md-button.md-fab.md-primary(ng-click='listUsers(e.id)', aria-label='view user', tooltip='[[tt.viewUser]]', tooltip-placement='top')
+            span.glyphicon.glyphicon-eye-open(aria-hidden='true')
+  pagination(total-items='totalAmt', items-per-page='pageSize', ng-model='currentPage', ng-change='pageChanged()')

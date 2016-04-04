@@ -30,7 +30,7 @@ export class Search {
 export class ProgressService {
   constructor(private http: Http) {}
 
-  private _writingUrl = '/json/writing.json';
+  private _writingUrl = '/cache/json/writing.json';
 
   getWritings () {
     return this.http.get(this._writingUrl)
@@ -47,7 +47,7 @@ export class ProgressService {
 @Component({
   selector: 'wal-progress',
   pipes: [Search],
-  templateUrl: './progress.html',
+  templateUrl: './progress',
   providers: [ProgressService, HTTP_PROVIDERS],
   directives: [
     MdSwitch,

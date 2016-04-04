@@ -1,0 +1,53 @@
+p
+  .jumbotron
+    | Subscribe yourself to the available event organizers. All your calendar settings are based on this.
+.alert.alert-danger(ng-show='errors', role='alert', ng-cloak='')
+  strong Oh Snap, 
+  |  there is an error:
+  ul(ng-repeat='error in errors')
+    li {{error}}
+form.form-inline(role='form', name='setting', style='margin:0px 10px')
+  .form-group
+    label(for='cNameSearch') Filter Company Name :
+    input#cNameSearch.form-control(ng-model='cNameSearch', placeholder='search', autofocus='')
+  p
+    table.table.table-striped.table-bordered
+      thead
+        th #
+        th.imgIcon_h Logo
+        th
+          a(href='', ng-click="predicate='cName'; reverse=!reverse")
+            | Company Name 
+            i.glyphicon(ng-class="{'glyphicon-sort-by-alphabet': predicate==='cName'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='cName'&&reverse}")
+        th Description
+      tbody
+        tr#tutSpecialRec(ng-show='tutSample')
+          td Special
+          td
+            img(src='http://www.placehold.it/50x50/EFEFEF/AAAAAA&text=no+image')
+          td Walcron
+          td For Sample
+        tr.repeated-item(ng-repeat='e in chkHostList | orderBy:predicate:reverse | filter:cNameSearch')
+          td
+            input(type='checkbox', ng-model='e.currStat')
+          td
+            .img_wrapper
+              .css_spinner
+              img.imgIcon(ng-src="{{e.ext!=undefined && imageURL+'/'+e.ext+'/'+e._id.$oid || 'http://www.placehold.it/50x50/EFEFEF/AAAAAA&text=no+image'}}", alt='Image', onload='imgLoaded(this)')
+          td {{e.cName}}
+          td {{e.cDesc}}
+    hr
+    div(colspan='2', align='center')
+      input#save.btn.btn-lg.btn-success(type='submit', value='Save', ng-disabled='flag', ng-click='save()')
+      button#cancel.btn.btn-lg.btn-primary(type='button', ng-click='cancel()', ng-disabled='tutorialRun') Return
+    br
+    script(type='text/ng-template', id='popupdialog.html').
+      <div class="modal-header">
+      <h3 class="modal-title">Saved</h3>
+      </div>
+      <div class="modal-body">
+      Your subscription has been saved.
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()" ng-model="btnOK">OK</button>
+      </div>

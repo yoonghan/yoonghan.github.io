@@ -194,6 +194,11 @@
 	  "date":"July 16th, 2015",
 	  "task":"Officially Registered",
 	  "detail":"As of today, this company has been registered with Suruhanjaya Syarikat Malaysia(SSM) under the name Walcron Consultation."
+},
+{
+	  "date":"March 25, 2016",
+	  "task":"Page Modification",
+	  "detail":"With the lauch of 2016 fot Angular JS2, I decided to rewrite the whole page."
 }
 ]
 }

@@ -3,7 +3,7 @@ import {MdButton} from '../component/md-button';
 
 @Component({
   selector: 'wal-research',
-  templateUrl: './research.html',
+  templateUrl: './research',
   styles: ['.hide {display:none}'],
   directives: [
     MdButton

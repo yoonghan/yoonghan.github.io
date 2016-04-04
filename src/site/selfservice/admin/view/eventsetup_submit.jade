@@ -1,0 +1,70 @@
+.panel.panel-primary.pnl-margin
+  md-toolbar
+    .md-toolbar-tools
+      span.glyphicon.glyphicon-search.btn-icon
+      | Filter
+  .panel-body
+    label
+      input.form-control(ng-model='search.title', placeholder='Title')
+    strong  AND 
+    label
+      input.form-control(ng-model='search.desc', placeholder='Description')
+    strong  AND 
+    label
+      select.form-control(ng-model='search.virtualDel')
+        option(value='') Show All
+        option(value='true') Deleted
+        option(value='false') Not Deleted
+br
+form.form-horizontal(role='form', name='setup')
+  md-button.md-raised(ng-click='accordian_open = !accordian_open', tooltip='[[tt.collapseAll]]', tooltip-placement='top', ng-model='btnCollapse')
+    span.glyphicon.glyphicon-ok-sign
+    |  Collapse All For View
+  br
+  br
+  #loader
+    center
+      img(src='/cache/images/loading.gif')
+  accordion(close-others='false', ng-repeat='(key, groups) in groupEvents')
+    accordion-group.panel-success(is-open='accordian_open')
+      accordion-heading
+        | {{key|calfilter}}
+        i.pull-right.glyphicon(ng-class="{'glyphicon-chevron-down': accordian_open, 'glyphicon-chevron-right': !accordian_open}")
+      table.table.table-striped
+        thead
+          tr
+            th
+              a(href='', ng-click="predicate='title'; reverse=!reverse")
+                | Title 
+                i.glyphicon(ng-class="{'glyphicon-sort-by-alphabet': predicate==='title'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='title'&&reverse}")
+            th
+              a(href='', ng-click="predicate='start'; reverse=!reverse")
+                | Start Date 
+                i.glyphicon(ng-class="{'glyphicon-sort-by-alphabet': predicate==='start'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='start'&&reverse}")
+            th
+              a(href='', ng-click="predicate='end'; reverse=!reverse")
+                | End Date 
+                i.glyphicon(ng-class="{'glyphicon-sort-by-alphabet': predicate==='end'&&!reverse, 'glyphicon-sort-by-alphabet-alt': predicate==='end'&&reverse}")
+            th Description
+            th
+              | User Info
+              span.glyphicon.glyphicon-question-sign(tooltip='E=Email, A=Address, C=Contact No (with) [Opt]=Optional', tooltip-trigger='mouseenter', tooltip-placement='bottom')
+            th To Confirm?
+            th Deletion ?
+        tbody
+          tr.repeated-item(ng-repeat='e in groups | orderBy:predicate:reverse | filter:search', my-post-repeat-directive='')
+            td
+              input(type='text', name='e.title', id='e.title', ng-model='e.title', maxlength='30', ng-pattern='word', required='')
+            td {{e.start | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}
+            td {{e.end | date:'EEE - dd/MMM/yyyy HH:mm' : 'UTC'}}
+            td
+              input(type='text', name='e.desc', id='e.desc', ng-model='e.desc', maxlength='300', required='')
+            td {{userInfoAllow(e.userInfo)}}
+            td
+              input(type='checkbox', ng-model='e.conf')
+            td
+              input(type='checkbox', ng-model='e.virtualDel')
+  div(align='center')
+    md-button.md-raised.md-primary(type='submit', ng-disabled='flag', ng-click='processForm($event)', tooltip='Publish Reservations For Public View.', tooltip-placement='top', ng-model='submit') Submit
+    md-button.md-raised.md-warn(type='submit', ng-disabled='flag', ng-click='resetForm($event)', tooltip='Reset Changes And Start All Over Again.', tooltip-placement='top', ng-model='reset') Reset
+    md-button.md-raised.md-accent(type='submit', ng-disabled='flag', ng-click='rejectForm($event)', tooltip='Reject Reservation Creation.', tooltip-placement='top', ng-model='reject') Reject

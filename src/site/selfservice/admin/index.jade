@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='ISO-8859-1')
+    meta(name='robots', content='noindex')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Calendar Administration
+    link(rel='stylesheet', href='/cache/css/selfservice/common.css')
+    link(rel='stylesheet', href='/cache/public/css/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/cache/public/css/angular/angular-material.min.css')
+    link(rel='stylesheet', href='/cache/css/selfservice/admin/admin.css')
+    link(href='http://fonts.googleapis.com/css?family=Lobster', rel='stylesheet', type='text/css')
+  body(layout='column', ng-controller='AppCtrl', flow-prevent-drop='', ng-cloak='')
+    section(layout='row', flex='')
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left', md-is-locked-open="$media('gt-md') && openWindow")
+        md-toolbar
+          h1.md-toolbar-tools.logo Walcron Coorporate ©
+        md-content(ng-controller='MenuCtrl')
+          .thumbnail_main
+            img.image-icon(ng-src='{{imageUrl}}')
+          div(ng-repeat='m in menuList')
+            md-button#btn_menu.menu-button.md-raised(ng-href='{{m.lnk}}')
+              span.glyphicon.btn-icon(class='{{m.icon}}')
+              | {{m.pg}}
+      div(layout='column', layout-fill='', tabindex='-1', role='main', flex='')
+        md-toolbar
+          .md-toolbar-tools
+            md-button(ng-click='back()', aria-label='Menu', ng-show='!openWindow')
+              .md-icon-container
+                span.glyphicon.glyphicon-arrow-left.btn-icon
+            span(ng-show='openWindow')
+              md-button(ng-click='toggleMenu()', aria-label='Menu', hide-gt-md='')
+                .md-icon-container
+                  span.glyphicon.glyphicon-th-large.btn-icon
+            span My App's Title
+            span(flex='')
+            md-button#mnu_settings(ng-click='showBottomMenuSheet($event)', aria-label='Configuration')
+              .md-icon-container
+                span.glyphicon.glyphicon-cog
+        .view-animate(ng-view='', md-scroll-y='', flex='')
+    // Angular Material Dependencies
+    script(src='/cache/js/apploader/global_var.js')
+    script(src='/cache/js/apploader/auth_common.js')
+    script(src='/cache/public/js/lodash/lodash.min.js')
+    script(src='/cache/public/js/immutable/immutable.min.js')
+    script(data-main='/cache/js/apploader/admin/main', src='/cache/public/js/requirejs/require.js')
