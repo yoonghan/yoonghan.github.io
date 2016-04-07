@@ -3,7 +3,7 @@ import {Directive, ElementRef} from 'angular2/core';
 @Directive({
   selector: '[ripple]',
   host: {
-    '(mousedown)': 'onMouseDown($event)',
+    '(mousedown)': 'onMouseDown($event)'
   }
 })
 

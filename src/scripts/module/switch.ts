@@ -38,7 +38,7 @@ class Switch {
   blur_() {
     window.setTimeout(function() {
       this.inputElement_.blur();
-    }.bind(this), /** @type {number} */ 100);
+    }.bind(this), 100);
   }
 
   onMouseUp_(event) {

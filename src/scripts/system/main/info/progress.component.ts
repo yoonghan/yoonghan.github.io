@@ -34,14 +34,14 @@ export class ProgressService {
 
   getWritings () {
     return this.http.get(this._writingUrl)
-              .map(res => res.json().posts)
-              .catch(this.handleError);
+              .map(res => res.json().posts);
+              //do not catch error
   }
 
-  private handleError (error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
-  }
+//  private handleError (error: Response) {
+//    console.error(error);
+//    return Observable.throw(error.json().error || 'Server error');
+//  }
 }
 
 @Component({

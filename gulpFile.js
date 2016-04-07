@@ -45,7 +45,7 @@ gulp.task('svgstore', function () {
 //Javascript
 var vanillajs = function(location) {
   return function(){
-    return gulp.src('src'+location+'/scripts/**/*.js')
+    return gulp.src('src'+location+'/scripts/apploader/**/*.js')
       .pipe(isDist ? through() : plumber())
       .pipe(through())
       .pipe(gulp.dest('dist/cache'+location+'/js'))
@@ -132,6 +132,7 @@ gulp.task('html-plain', function() {
     .pipe(connect.reload());
 });
 gulp.task('html', [], html('/patternlibrary'));
+//TO FIX: Not sure how to exclude pattern library
 gulp.task('html-main', ['html-plain'], html('/'));
 
 //SASS

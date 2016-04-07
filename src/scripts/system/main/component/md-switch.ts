@@ -63,7 +63,7 @@ export class MdSwitch implements OnInit{
       this.classFocus = 'is-focused';
       window.setTimeout(function() {
         this.classFocus = '';
-      }.bind(this), /** @type {number} */ 100);
+      }.bind(this), 100);
     }
   }
 
