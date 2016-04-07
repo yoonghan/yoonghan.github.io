@@ -49,6 +49,6 @@ export class InfoComponent {
   private tabVal:Tab[] = [
     { "routeLink": ['/Research'], active: true, "label": "Research" },
     { "routeLink": ['/Architecture'], active: false, "label": "Architecture" },
-    { "routeLink": ['/Progress'], active: false, "label": "Progress" },
+    { "routeLink": ['/Progress'], active: false, "label": "Progress" }
     ];
 }
