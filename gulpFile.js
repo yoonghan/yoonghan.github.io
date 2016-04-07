@@ -48,7 +48,7 @@ var vanillajs = function(location) {
     return gulp.src('src'+location+'/scripts/apploader/**/*.js')
       .pipe(isDist ? through() : plumber())
       .pipe(through())
-      .pipe(gulp.dest('dist/cache'+location+'/js'))
+      .pipe(gulp.dest('dist/cache'+location+'/js/apploader/'))
       .pipe(connect.reload());
   };
 };
