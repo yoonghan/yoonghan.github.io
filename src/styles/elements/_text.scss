@@ -5,6 +5,7 @@
   a{
     &:hover, &:visited, &:active, &:focus {
       color: $logo-color !important;
+      zoom: 1.01;
     }
   }
 }

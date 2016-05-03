@@ -8,55 +8,55 @@ html
     link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Shadows+Into+Light', rel='stylesheet', type='text/css')
     script.
-      var login = "//scala.walcron.com/service/oauth/send/";
-      var btnClick = false;
-      var timeVar;
+      var login = "//scala.walcron.com/service/oauth/send/",
+          btnClick = false,
+          timeVar;
       function clickButton(postUrl){
-      if(btnClick)
-      return;
-      else{
-      btnClick=true;
-      $('#loader').css('display','inline');
-      $('#info').text('is loading...');
-      checkServerStarted(postUrl);
-      }
+        if(btnClick)
+          return;
+        else{
+          btnClick=true;
+          $('#loader').css('display','inline');
+          $('#info').text('is loading...');
+          checkServerStarted(postUrl);
+        }
       }
       function executeLogin(postUrl){
-      location.href=login+postUrl;
+        location.href=login+postUrl;
       }
       function poolServlet(postUrl){
-      $('#info').text('initializing login...');
-      timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 8000);
+        $('#info').text('initializing login...');
+        timeVar = setTimeout(function(){checkServerStarted(postUrl);}, 8000);
       }
       function checkServerStarted(postUrl){
-      clearTimeout(timeVar);
-      $.ajax({
-      url:'//scala.walcron.com/ping',
-      type: 'GET',
-      async: false,
-      success:
-      function(result){
-      executeLogin(postUrl);
-      },
-      error:
-      function(result, status , obj){
-      if(status = "timeout"){
-      poolServlet(postUrl);
-      }else{
-      btnClick=false;
-      }
-      }
-      });
+        clearTimeout(timeVar);
+        $.ajax({
+        url:'//scala.walcron.com/ping',
+        type: 'GET',
+        async: false,
+        success:
+          function(result){
+          executeLogin(postUrl);
+          },
+        error:
+          function(result, status , obj){
+            if(status = "timeout"){
+              poolServlet(postUrl);
+            }else{
+              btnClick=false;
+            }
+          }
+        });
       }
       $( document ).ready(function() {
       $('#google-btn').on('click', function() {
-      clickButton("G");
+        clickButton("G");
       });
       $('#facebook-btn').on('click', function() {
-      clickButton("F");
+        clickButton("F");
       });
       $('#help-btn').on('click', function() {
-      window.open("/site/selfservice/readme","selfservice");
+        window.open("/site/selfservice/readme","selfservice");
       });
       });
     style(type='text/css').
