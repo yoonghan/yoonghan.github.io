@@ -119,11 +119,29 @@
 
 .screen-section {
   position: relative;
+
   &.cover {
     height: 100vh;
-    background: url($cover-img) no-repeat;
-    background-size: cover;
+    overflow: hidden;
+
+    .cover-img {
+      animation-name: zoom;
+      animation-duration: 10s;
+      animation-direction: normal;
+      animation-iteration-count: infinite;
+      animation-fill-mode: forwards;
+      background: url($cover-img) no-repeat;
+      background-size: cover;
+      height: 100vh;
+    }
   }
+
+  @keyframes zoom {
+    0% {transform: scale(1,1); z-index: 2;}
+    50% {transform: scale(1.1,1.1);}
+    99% {transform: scale(1,1)}
+  }
+
   &.plain {
     background-color: $theme-background;
   }
