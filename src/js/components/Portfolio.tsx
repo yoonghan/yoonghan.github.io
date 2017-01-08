@@ -34,7 +34,7 @@ export class Portfolio extends React.Component<{}, {}> {
             <Header/>
             <MeTitle {...metitleInfo}/>
             <div className={styles['divider']}></div>
-            <StickyTitle text="Work" pos={0} />
+            <StickyTitle text="WORK SPACE" pos={0} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
@@ -75,7 +75,7 @@ export class Portfolio extends React.Component<{}, {}> {
                 />
               </Card>
             </div>
-            <StickyTitle text="Miscellanous" pos={1} />
+            <StickyTitle text="LEISURE / EXPLORER" pos={1} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle

@@ -13,6 +13,20 @@ $height: 50px;
   height: $height + 5;
   text-align: left;
 
+  h3 {
+    font-size: 15pt;
+    margin: $margin;
+    text-align: center;
+  }
+
+  .stickytitle-static {
+    color: $color-stickytitle-background;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    z-index: 997;
+  }
+
   .stickytitle-anim {
     background: $color-stickytitle-background;
     color: $color-stickytitle-foreground;
@@ -23,12 +37,6 @@ $height: 50px;
     text-align: left;
     width: 100%;
     z-index: 998;
-
-    h3 {
-      font-size: 15pt;
-      margin: $margin;
-      text-align: center;
-    }
 
     &.stickytitle-pushbackward {
       animation: pushwidth 0.1s;

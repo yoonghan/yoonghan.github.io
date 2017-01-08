@@ -40,7 +40,7 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     if (node) {
       this.setState({
         stickyTitleElement: node,
-        topPosition: (this.props.pos * startTopPosition + startTopPosition)
+        topPosition: (this.props.pos * startTopPosition + 10)
       });
     }
   };
@@ -95,6 +95,9 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     return (
       <div ref={this.mountScroll} onClick={this.handleTitleClick}>
         <div className={styles.stickytitle}>
+          <div className={styles['stickytitle-static']}>
+            <h3>{acroynm}{full_acroynm}</h3>
+          </div>
           <div className={styles['stickytitle-anim']} ref={this.mountStickyTitle}>
             <h3>{acroynm}<span className={styles['stickytitle-hide']}>{full_acroynm}</span></h3>
           </div>
