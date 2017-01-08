@@ -1,0 +1,28 @@
+@import '../lib/fonts';
+
+@mixin font-header($fontSize, $letterSpacing: 1px, $fontFamily: $font-family) {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  letter-spacing: $letterSpacing;
+  margin: 0;
+}
+
+h1 {
+  @include font-header($fontSize: $font-size-h1);
+}
+
+h2 {
+  @include font-header($fontSize: $font-size-h2);
+}
+
+h3 {
+  @include font-header($fontSize: $font-size-h3);
+}
+
+h4 {
+  @include font-header($fontSize: $font-size-h4, $letterSpacing: 2px);
+}
+
+h5 {
+  @include font-header($fontSize: $font-size-h5);
+}

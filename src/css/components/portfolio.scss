@@ -1,0 +1,25 @@
+@import "../../patternlibrary/css/lib/breakpoints";
+
+.card-section {
+  margin: auto;
+  max-width: 800px;
+  width: 80%;
+
+  @include breakpoint(max-width $breakpoint-phone) {
+    width: 95%;
+  }
+
+  .card-split {
+    margin-bottom: 20px;
+  }
+}
+
+.divider {
+  height: 20px;
+}
+
+:global {
+  body {
+    background-color: #FFF;
+  }
+}

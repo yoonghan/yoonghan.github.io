@@ -1,12 +1,2 @@
-npm-debug.log
-
-!node_modules/
-node_modules/*
-!node_modules/mime/
-!node_modules/replacer/
-
-/dist
-.bowerrc
-bower_components/
-
-**/tsoutput
+dist
+node_modules/

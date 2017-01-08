@@ -2,15 +2,14 @@
 //  OpenShift sample Node application
 var express   		= require('express');
 var fs        		= require('fs');
-var mime	  		= require('mime/mime.js');
-var replacer		= require('replacer/textreplacer.js');
-var etag			= require('etag');
+var mime	  		= require('./util/mime/mime.js');
 var CACHE_INFO		= 'no-transform,public,max-age=86400,s-maxage=86400';
+var env          = process.env;
 
 /**
  *  Define the sample application.
  */
-var SampleApp = function() {
+var NodeApp = function() {
 	// Default folder
 	var webroot = "./dist/";
   //  Scope.
@@ -27,13 +26,13 @@ var SampleApp = function() {
    */
   self.setupVariables = function() {
       //  Set the environment variables we need.
-      self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-      self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8000;
+			self.ipaddress = env.NODE_IP || 'localhost';
+			self.port      = env.NODE_PORT || 8000;
 
       if (typeof self.ipaddress === "undefined") {
           //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
           //  allows us to run/test the app locally.
-          console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
+          console.warn('No NODE_OP var, using 127.0.0.1');
           self.ipaddress = "127.0.0.1";
           testEnv=true;
       };
@@ -72,8 +71,6 @@ var SampleApp = function() {
 				cache = fs.readFileSync(webroot + "error.html");
 			}
 
-			cache = self.replaceText(path, cache);
-
 			self.zcache[path] = cache
 		}
 		return cache;
@@ -90,37 +87,6 @@ var SampleApp = function() {
 		return replacer(tmp_path, buff);
 	};
 
-
-  /**
-   *  terminator === the termination handler
-   *  Terminate server on receipt of the specified signal.
-   *  @param {string} sig  Signal to terminate on.
-   */
-	self.terminator = function(sig){
-	    if (typeof sig === "string") {
-	       console.log('%s: Received %s - terminating sample app ...',
-	                   Date(Date.now()), sig);
-	       process.exit(1);
-	    }
-	    console.log('%s: Node server stopped.', Date(Date.now()) );
-	};
-
-
-    /**
-     *  Setup termination handlers (for exit and a list of signals).
-     */
-  self.setupTerminationHandlers = function(){
-      //  Process on exit and signals.
-      process.on('exit', function() { self.terminator(); });
-
-      // Removed 'SIGPIPE' from the list - bugz 852598.
-      ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-       'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-      ].forEach(function(element, index, array) {
-          process.on(element, function() { self.terminator(element); });
-      });
-  };
-
     /*  ================================================================  */
     /*  App server functions (main app logic here).                       */
     /*  ================================================================  */
@@ -131,110 +97,37 @@ var SampleApp = function() {
   self.createRoutes = function() {
 		var CONTENT_TYPE='Content-Type';
 		var CACHE_CONTROL='Cache-Control';
-		var ETAG='ETag';
 		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
     self.routes = { };
-		self.routes['/site/selfservice/admin'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		res.setHeader(CONTENT_TYPE, mime(".html"));
-		res.send(self.cache_get(reqPath + "/index.html"));
+
+	  self.routes['/'] = function(req, res) {
+	      res.setHeader("Content-Type" , "text/html");
+	      res.send( self.cache_get(webroot + 'index.html') );
+	  };
+
+		self.routes['/ext/**/*:path'] = function(req, res) {
+			var reqPath = self.replacePath(req.path.toString());
+			var resource = fs.readFileSync(reqPath);
+			var header = {};
+			header[CONTENT_TYPE] = mime(reqPath);
+			header[CACHE_CONTROL] = CACHE_INFO;
+			res.set(header);
+			res.send(resource);
+		};
+
+		self.routes['/*:path'] = function(req, res) {
+
+			var reqPath = self.replacePath(req.path.toString());
+
+			res.setHeader(CONTENT_TYPE, "text/html");
+			res.send(self.cache_get(reqPath + ".html"));
+		};
 	};
 
-	self.routes['/site/selfservice/*:path'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		res.setHeader(CONTENT_TYPE, mime(".html"));
-		res.send(self.cache_get(reqPath + ".html"));
+	self.replacePath = function(path){
+		path = webroot + path
+		return path.replace(/\/\//g, "/").replace(/\.\./g, "/").replace(/\/$/, "");
 	};
-
-	self.routes['/errors/*:path'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		res.setHeader(CONTENT_TYPE, mime(".html"));
-		res.send(self.cache_get(reqPath + ".html"));
-	};
-
-
-	self.routes['/cache/json/*:path'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		var resource = fs.readFileSync(reqPath);
-		var header = {};
-		header[CONTENT_TYPE] = mime(".json");
-		header[ALLOW_ACCESS_ORIGIN] = '*';
-		header[CACHE_CONTROL] = CACHE_INFO;
-		header[ETAG] = etag(resource);
-		res.set(header);
-		res.send(resource);
-	};
-
-	self.routes['/cache/*:path'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		var resource = fs.readFileSync(reqPath);
-		var header = {};
-		header[CONTENT_TYPE] = mime(reqPath);
-		header[CACHE_CONTROL] = CACHE_INFO;
-		header[ETAG] = etag(resource);
-		res.set(header);
-		res.send(resource);
-	};
-
-	self.routes['/swagger/*:path'] = function(req, res) {
-		var reqPath = self.replacePath(req.path.toString());
-		var header = {};
-		header[CONTENT_TYPE] = mime(reqPath);
-		header[ALLOW_ACCESS_ORIGIN] = '*';
-		res.set(header);
-		res.send(self.cache_get(reqPath));
-	};
-
-  self.routes['/'] = function(req, res) {
-      res.setHeader("Content-Type" , mime(".html"));
-      res.send( self.cache_get(webroot + 'index.html') );
-  };
-
-	self.routes['/*:path'] = function(req, res) {
-
-		var reqPath = self.replacePath(req.path.toString());
-
-		res.setHeader(CONTENT_TYPE, mime(".html"));
-		res.send(self.cache_get(reqPath + "/index.html"));
-	};
-};
-
-self.replacePath = function(path){
-	path = webroot + path
-	return path.replace(/\/\//g, "/").replace(/\.\./g, "/");
-}
-
-/**
- * Determine content-type to send.
-**/
-//	self.checkfileHeader = function(val){
-//		var ext = val.substring(val.lastIndexOf("."), val.length)
-//
-//		switch(ext){
-//			case ".css":
-//				return 'text/css';
-//			case ".jpg": case ".jpeg":
-//				return 'image/jpeg';
-//			case ".gif":
-//				return 'image/gif';
-//			case ".js":
-//				return "application/javascript";
-//			case ".svg":
-//				return "image/svg+xml";
-//			case ".ico":
-//				return "image/x-icon";
-//			case ".png":
-//				return "image/png";
-//			case ".json":
-//				return "application/json";
-//			case ".html":
-//				return "text/html";
-//			case ".woff":
-//				return "application/x-font-woff";
-//			default:
-//				return "application/stream";
-//		}
-//	}
 
   /**
    *  Initialize the server (express) and create the routes and register
@@ -257,8 +150,6 @@ self.replacePath = function(path){
   self.initialize = function() {
       self.setupVariables();
       self.populateCache();
-      self.setupTerminationHandlers();
-
       // Create the express server and routes.
       self.initializeServer();
   };
@@ -282,6 +173,6 @@ self.replacePath = function(path){
 /**
  *  main():  Main code.
  */
-var zapp = new SampleApp();
+var zapp = new NodeApp();
 zapp.initialize();
 zapp.start();

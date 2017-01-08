@@ -1,0 +1,18 @@
+$font-family: Arial,sans-serif;
+
+$font-size-link: 12pt;
+$font-size-post: 11pt;
+
+$font-size-h1: 3em;
+$font-size-h2: 21pt;
+$font-size-h3: 18pt;
+$font-size-h4: 15pt;
+$font-size-h5: 12pt;
+
+$font-size-footnote: 8pt;
+$font-size-foot-link: 10pt;
+
+@mixin font-normal($fontSize: 12pt) {
+  font-family: $font-family;
+  font-size: $fontSize;
+}
