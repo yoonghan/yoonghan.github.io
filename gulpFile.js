@@ -6,7 +6,7 @@ var pkg = require('./package.json'),
   plumber = require('gulp-plumber'),
   connect = require('gulp-connect'),
   server = require('gulp-express'),
-  jade = require('gulp-jade'),
+  pug = require('gulp-pug'),
   sass = require('gulp-sass'),
 
   runSequence = require('run-sequence'),
@@ -38,23 +38,23 @@ gulp.task('webpack', ['webpack:html', 'webpack:patternlibrary']);
 
 /*
  *
- * JADE converstion functionality
+ * PUG converstion functionality
  *
  */
-var jade_func =  function(loc) {
+var pug_func =  function(loc) {
   const location = loc;
   const dest_location = (location==='html' ? '' : location);
   return function() {
-    return gulp.src('src/' + location + '/**/*.jade')
+    return gulp.src('src/' + location + '/**/*.pug')
       .pipe(isDist ? through() : plumber())
-      .pipe(jade({ pretty: true }))
+      .pipe(pug({ pretty: !isDist }))
       .pipe(gulp.dest('dist/' + dest_location))
       .pipe(connect.reload());
   };
 };
-gulp.task('jade:html', jade_func('html'));
-gulp.task('jade:patternlibrary', jade_func('patternlibrary'));
-gulp.task('jade', ['jade:html', 'jade:patternlibrary']);
+gulp.task('pug:html', pug_func('html'));
+gulp.task('pug:patternlibrary', pug_func('patternlibrary'));
+gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
 
 /*
  *
@@ -107,6 +107,7 @@ gulp.task('clean:js', function(done) {
 });
 
 gulp.task('clean:images', function(done) {
+
   return del('dist/cache/images', done);
 });
 
@@ -116,12 +117,12 @@ gulp.task('watch', function() {
   gulp.watch('src/css/**/*.scss', ['webpack:html']);
   gulp.watch('src/patternlibrary/**/*.tsx', ['webpack:patternlibrary']);
   gulp.watch('src/patternlibrary/**/*.scss', ['webpack:patternlibrary']);
-  gulp.watch('src/**/*.jade', ['jade']);
+  gulp.watch('src/**/*.pug', ['pug']);
   gulp.watch('src/img/', ['image:html']);
   gulp.watch('src/patternlibrary/img/', ['image:patternlibrary']);
 });
 
 //Task open to public
-gulp.task('build', function(callback) {runSequence('clean', 'copy', 'webpack', 'jade', 'image', callback)});
+gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'webpack', callback)});
 gulp.task('serve', function(callback) {runSequence('build', 'open', 'watch')});
 gulp.task('default', ['serve']);
