@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+doctype html
 html
   head
-    title Material Design
+    title Header
     include ../incl/meta.incl
+    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/header.css")
     link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet", type="text/css", href="/patternlibrary/ext/css/material.css")
-    link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
     style.
       body {
         color: #000;
@@ -15,8 +14,8 @@ html
         margin: 0;
       }
   body
-    div(id='material')
+    div(id='header')
     include ../incl/backhome.incl
     script(src='/ext/js/lib/react-with-addons.js')
     script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/material.bundle.js')
+    script(src='/patternlibrary/ext/js/header.bundle.js')

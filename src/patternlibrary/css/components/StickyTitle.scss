@@ -4,42 +4,51 @@
 
 $minimum-width: 8px;
 $border-radius: 0 25px 25px 0;
-$margin: 10px 0 10px -8px;
+$margin: 13px 0 13px -8px;
+$height: 50px;
 
 .stickytitle {
-  background: $color-stickytitle-background;
-  color: $color-stickytitle-foreground;
   display: block;
-  filter: drop-shadow($shadow-depth $color-shadow);
   position: relative;
-  padding: 5px 10px;
+  height: $height + 5;
   text-align: left;
-  z-index: 998;
 
-  h3 {
-    font-size: 15pt;
-    margin: $margin;
-    text-align: center;
-  }
+  .stickytitle-anim {
+    background: $color-stickytitle-background;
+    color: $color-stickytitle-foreground;
+    filter: drop-shadow($shadow-depth $color-shadow);
+    padding: 0 10px;
+    position: absolute;
+    height: $height;
+    text-align: left;
+    width: 100%;
+    z-index: 998;
 
-  &.stickytitle-pushbackward {
-    animation: pushwidth 0.1s;
-  }
-
-  &.stickytitle-pullbackward {
-    animation: pullwidth 0.1s;
-    border-radius: $border-radius;
-    position: fixed;
-    width: $minimum-width;
-
-    &:hover {
-      background: $color-stickytitle-hover-background;
-      cursor: pointer;
-      z-index: 999;
+    h3 {
+      font-size: 15pt;
+      margin: $margin;
+      text-align: center;
     }
 
-    h3 span.stickytitle-hide {
-        display: none;
+    &.stickytitle-pushbackward {
+      animation: pushwidth 0.1s;
+    }
+
+    &.stickytitle-pullbackward {
+      animation: pullwidth 0.1s;
+      border-radius: $border-radius;
+      position: fixed;
+      width: $minimum-width;
+
+      &:hover {
+        background: $color-stickytitle-hover-background;
+        cursor: pointer;
+        z-index: 999;
+      }
+
+      h3 span.stickytitle-hide {
+          display: none;
+      }
     }
   }
 }

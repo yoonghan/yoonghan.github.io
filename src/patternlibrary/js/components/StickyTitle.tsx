@@ -94,8 +94,10 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
 
     return (
       <div ref={this.mountScroll} onClick={this.handleTitleClick}>
-        <div className={styles.stickytitle} ref={this.mountStickyTitle}>
-          <h3>{acroynm}<span className={styles['stickytitle-hide']}>{full_acroynm}</span></h3>
+        <div className={styles.stickytitle}>
+          <div className={styles['stickytitle-anim']} ref={this.mountStickyTitle}>
+            <h3>{acroynm}<span className={styles['stickytitle-hide']}>{full_acroynm}</span></h3>
+          </div>
         </div>
       </div>
     );
