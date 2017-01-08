@@ -1,0 +1,7 @@
+{
+  "globalDependencies": {
+    "material-ui": "registry:dt/material-ui#0.16.0+20161212190028",
+    "react-slick": "registry:dt/react-slick#0.0.0+20161121205806",
+    "trianglify": "file:typings/custom/trianglify.d.ts"
+  }
+}

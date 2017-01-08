@@ -1,0 +1,15 @@
+@import "../lib/breakpoints";
+
+.material {
+  margin: auto;
+  max-width: 640px;
+  width: 80%;
+
+  @include breakpoint(max-width $breakpoint-phone) {
+    width: 95%;
+  }
+
+  .material-split {
+      margin-bottom: 20px;
+  }
+}

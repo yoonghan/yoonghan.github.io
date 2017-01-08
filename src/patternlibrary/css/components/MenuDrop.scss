@@ -1,0 +1,76 @@
+@import "../lib/breakpoints";
+@import "../lib/colors";
+@import "../lib/shadows";
+
+.mnudrop {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 100%;
+
+  .mnudrop-lst {
+    background-color: $color-title-bar;
+    box-shadow: $shadow-depth;
+    padding: 10px 10px 10px 20px;
+    text-align: right;
+
+    a {
+      letter-spacing: 1px;
+      padding-right: 20px;
+
+      &.mnudrop-lst-big {
+        display: inline-block;
+      }
+      &.mnudrop-lst-small {
+        display: none;
+      }
+
+      @include breakpoint(max-width $breakpoint-phone) {
+        &.mnudrop-lst-big {
+          display: none;
+        }
+        &.mnudrop-lst-small {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .mnudrop-mob {
+    background-color: $color-title-mob-bar;
+    box-shadow: $shadow-depth $color-shadow;
+    display: none;
+    filter: opacity(90%);
+    padding: 10px 10px 10px 10px;
+    text-align: left;
+
+    ul {
+      line-height: 30px;
+      list-style: none;
+      margin-left: -20px;
+
+    }
+
+    @include breakpoint(max-width $breakpoint-phone) {
+      display: block;
+    }
+  }
+
+  .mnudropmobile-enter {
+    opacity: 0.01;
+  }
+
+  .mnudropmobile-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+  }
+
+  .mnudropmobile-leave {
+    opacity: 1;
+  }
+
+  .mnudropmobile-leave-active {
+    opacity: 0.01;
+    transition: opacity 200ms ease-in;
+  }
+}

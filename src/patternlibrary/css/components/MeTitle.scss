@@ -1,0 +1,38 @@
+@import "../lib/breakpoints";
+@import "../lib/colors";
+@import "../lib/fonts";
+
+.metitle {
+  padding-top: 50px;
+  @include screen-fit();
+
+  h1, h2 {
+    margin-bottom: 5px;
+  }
+
+  & > div {
+
+    @include font-normal();
+
+    h1 {
+      color: $color-metitle-sub-header-foreground;
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      margin: 30px auto 30px auto;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+    }
+  }
+
+  hr {
+    margin: 20px 0 40px 0;
+  }
+
+}

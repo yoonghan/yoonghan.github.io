@@ -1,0 +1,69 @@
+@import "../lib/colors";
+@import "../lib/fonts";
+
+:global{
+  a {
+    color: $color-links;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: $font-family;
+
+    &:hover {
+      color: $color-links-hover;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: $color-links-active;
+    }
+
+    &.links {
+      &:hover {
+        color: $color-links-hover;
+        text-decoration: none;
+      }
+
+      &:active {
+        color: $color-links-active;
+      }
+    }
+  }
+
+
+  .links-white-background {
+    a {
+      color: $color-links-white-background;
+      font-weight: 500;
+      text-decoration: none;
+      font-family: $font-family;
+
+      &:hover {
+        color: $color-links-hover-white-background;
+        text-decoration: underline;
+      }
+
+      &:active {
+        color: $color-links-active-white-background;
+      }
+    }
+
+    a {
+      &.links {
+        color: $color-foreground;
+
+        &:hover {
+          color: $color-links-hover-white-background;
+          text-decoration: none;
+        }
+
+        &:active {
+          color: $color-links-active-white-background;
+        }
+
+        i.fa {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

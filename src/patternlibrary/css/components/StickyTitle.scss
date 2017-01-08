@@ -1,0 +1,68 @@
+@import "../lib/colors";
+@import "../lib/animations";
+@import "../lib/shadows";
+
+$minimum-width: 8px;
+$border-radius: 0 25px 25px 0;
+$margin: 10px 0 10px -8px;
+
+.stickytitle {
+  background: $color-stickytitle-background;
+  color: $color-stickytitle-foreground;
+  display: block;
+  filter: drop-shadow($shadow-depth $color-shadow);
+  position: relative;
+  padding: 5px 10px;
+  text-align: left;
+  z-index: 998;
+
+  h3 {
+    font-size: 15pt;
+    margin: $margin;
+    text-align: center;
+  }
+
+  &.stickytitle-pushbackward {
+    animation: pushwidth 0.1s;
+  }
+
+  &.stickytitle-pullbackward {
+    animation: pullwidth 0.1s;
+    border-radius: $border-radius;
+    position: fixed;
+    width: $minimum-width;
+
+    &:hover {
+      background: $color-stickytitle-hover-background;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    h3 span.stickytitle-hide {
+        display: none;
+    }
+  }
+}
+
+
+@keyframes pushwidth {
+  from {
+    border-radius: $border-radius;
+    width: $minimum-width;
+  }
+  to {
+    border-radius: 0;
+    width: 90%;
+  }
+}
+
+@keyframes pullwidth {
+  from {
+    width: 90%;
+    border-radius: 0;
+  }
+  to {
+    width: $minimum-width;
+    border-radius: $border-radius;
+  }
+}

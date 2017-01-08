@@ -1,0 +1,66 @@
+@import "../lib/colors";
+@import "../lib/breakpoints";
+@import "../lib/fonts";
+
+.minipost {
+
+  h2 {
+    color: $color-minipost-header-foreground;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  padding: 25px 0 25px 0;
+
+  .minipost-hdr {
+    display: block;
+    margin-bottom: -1px;
+
+    i {
+      font-size: 20pt;
+    }
+  }
+
+  .minipost-itm {
+    border-left: 3px solid #000;
+    margin-left: 11px;
+    padding: 5px 10px;
+    text-align: justify;
+    @include font-normal();
+
+    h4 {
+      font-style: italic;
+      margin-bottom: 10px;
+      text-align: center;
+
+      &::before, &::after{
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 5px;
+        height: 1px;
+        background: #c0d3da;
+        margin: 0 5px;
+      }
+
+      @include breakpoint($breakpoint-tablet) {
+        &::before, &::after{
+          width: 46px;
+          margin: 0 30px;
+        }
+      }
+    }
+
+    li {
+      span:first-child {
+        color: $color-minipost-sub-header-foreground;
+        font-style: italic;
+      }
+    }
+
+    span {
+        padding-top: 5px;
+        @include font-normal($font-size-post);
+    }
+  }
+}

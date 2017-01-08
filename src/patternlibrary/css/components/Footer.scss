@@ -1,0 +1,88 @@
+@import "../lib/colors";
+@import "../lib/fonts";
+@import "../lib/breakpoints";
+@import "../lib/shadows";
+
+.footer {
+  color: $color-footer-foreground;
+  background: $color-footer-background;
+
+  .footer-divider {
+    background-color: $color-footer-divider;
+    box-shadow: $shadow-depth;
+    height: 30px;
+  }
+
+  .footer-container {
+    padding: 10px;
+    @include breakpoint($breakpoint-phone) {
+      padding: 10px 30px 30px 30px;
+    }
+
+    .footer-section-one {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      height: 40px;
+      justify-content: flex-start;
+      padding-top: 10px;
+
+      a, img {
+        flex: 0 1 auto;
+        height: inherit;
+      }
+      div {
+        flex: 1 1 auto;
+        text-align: right;
+        padding-left: 10px;
+      }
+    }
+
+    .footer-section-two {
+      padding-left: 10px;
+
+      a {
+        font-size: $font-size-foot-link;
+        padding: 0 10px 0 0;
+      }
+    }
+
+    .footer-section-three {
+      padding-top: 5px;
+      padding-left: 10px;
+    }
+
+    .footer-contact {
+      padding-top: 40px;
+      padding-bottom: 20px;
+
+      div {
+        padding-top: 10px;
+        @include font-normal(11pt);
+
+        a {
+          font-weight: bold;
+          color: $color-links-email;
+        }
+      }
+    }
+  }
+
+  .footercontactemail-enter {
+    opacity: 0.01;
+  }
+
+  .footercontactemail-enter.footercontactemail-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+  }
+
+  .footercontactemail-leave {
+    opacity: 1;
+  }
+
+  .footercontactemail-leave.footercontactemail-leave-active {
+    opacity: 0.01;
+    transition: opacity 200ms ease-in;
+  }
+}

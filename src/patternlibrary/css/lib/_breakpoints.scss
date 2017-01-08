@@ -1,0 +1,17 @@
+@import "../../../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+
+$breakpoint-fit: 320px;
+$breakpoint-phone: 480px;
+$breakpoint-tablet: 700px;
+$breakpoint-big-screen: 960px;
+$breakpoint-not-phones: 0 319px;
+
+@mixin screen-fit() {
+  margin: auto;
+  max-width: 800px;
+  width: 80%;
+
+  @include breakpoint(max-width $breakpoint-phone) {
+    width: 95%;
+  }
+}

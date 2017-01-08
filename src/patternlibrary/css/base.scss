@@ -1,0 +1,30 @@
+@import "./elements/links";
+@import "./elements/headers";
+
+:global {
+
+  body {
+    color: #000;
+    position: relative;
+    min-width: 320px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .base-footnote {
+    font-family: $font-family;
+    font-size: $font-size-footnote;
+    color: $color-footnote-foreground;
+  }
+
+  .base-refresh {
+    bottom: 0px;
+    position: fixed;
+    z-index: 999;
+    display: none;
+    background: white;
+    border-radius: 200vh;
+    top: -50%;
+    right: -50%;
+  }
+}
