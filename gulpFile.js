@@ -8,7 +8,7 @@ var pkg = require('./package.json'),
   server = require('gulp-express'),
   pug = require('gulp-pug'),
   sass = require('gulp-sass'),
-
+  cachebust = require('gulp-cache-bust'),
   runSequence = require('run-sequence'),
   del = require('del'),
   opn = require('opn'),
@@ -73,7 +73,6 @@ gulp.task('image:html', image_func(''));
 gulp.task('image:patternlibrary', image_func('patternlibrary'));
 gulp.task('image', ['image:html', 'image:patternlibrary']);
 
-
 //Basic file copy
 gulp.task('copy:basic', function () {
     return gulp.src(['./src/**/lib/**']).pipe(gulp.dest('dist/ext/'));
@@ -82,6 +81,15 @@ gulp.task('copy:favicon', function () {
     return gulp.src(['./src/favicon.ico']).pipe(gulp.dest('dist/'));
 });
 gulp.task('copy', ['copy:basic', 'copy:favicon']);
+
+//Cache Busting for production release
+gulp.task('cachebust', function () {
+  return gulp.src('./dist/*.html')
+    .pipe(cachebust({
+      type: 'timestamp'
+    }))
+    .pipe(gulp.dest('./dist'));
+});
 
 //Task connection
 gulp.task('connect', function() {
@@ -123,6 +131,6 @@ gulp.task('watch', function() {
 });
 
 //Task open to public
-gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'webpack', callback)});
+gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'cachebust', 'webpack', callback)});
 gulp.task('serve', function(callback) {runSequence('build', 'open', 'watch')});
 gulp.task('default', ['serve']);

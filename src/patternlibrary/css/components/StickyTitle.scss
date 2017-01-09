@@ -6,6 +6,8 @@ $minimum-width: 8px;
 $border-radius: 0 25px 25px 0;
 $margin: 13px 0 13px -8px;
 $height: 50px;
+$width: 100%;
+$padding-pull: 0 10px;
 
 .stickytitle {
   display: block;
@@ -20,22 +22,21 @@ $height: 50px;
   }
 
   .stickytitle-static {
-    color: $color-stickytitle-background;
+    color: $color-stickytitle-static-foreground;
     position: absolute;
     text-align: left;
-    width: 100%;
+    width: $width;
     z-index: 997;
   }
 
   .stickytitle-anim {
-    background: $color-stickytitle-background;
-    color: $color-stickytitle-foreground;
-    filter: drop-shadow($shadow-depth $color-shadow);
-    padding: 0 10px;
+    @include bgcolor-gradient();
+    color: $color-stickytitle-anim-foreground;
+    box-shadow: $shadow-depth $color-shadow;
     position: absolute;
     height: $height;
     text-align: left;
-    width: 100%;
+    width: $width;
     z-index: 998;
 
     &.stickytitle-pushbackward {
@@ -46,6 +47,7 @@ $height: 50px;
       animation: pullwidth 0.1s;
       border-radius: $border-radius;
       position: fixed;
+      padding:$padding-pull;
       width: $minimum-width;
 
       &:hover {
@@ -64,21 +66,25 @@ $height: 50px;
 
 @keyframes pushwidth {
   from {
+    padding: $padding-pull;
     border-radius: $border-radius;
     width: $minimum-width;
   }
   to {
+    padding: 0;
     border-radius: 0;
-    width: 90%;
+    width: $width;
   }
 }
 
 @keyframes pullwidth {
   from {
-    width: 90%;
+    padding: 0;
+    width: $width;
     border-radius: 0;
   }
   to {
+    padding: $padding-pull;
     width: $minimum-width;
     border-radius: $border-radius;
   }

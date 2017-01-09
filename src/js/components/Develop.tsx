@@ -18,7 +18,7 @@ const metitleInfo  = {
       title: 'The First',
       icon: 'battery-empty',
       titlePost: true,
-      text: 'As a start-off, the site was wrote in vanillaJS. Nothing much is to be brag about, the site was built on tomcat.'
+      text: 'As a start-off, the site was wrote in vanillaJS. The site was ported within tomcat -> Wildfly, JBoss -> vert.x. The latter created the realization on introducing non-block I/O services to this website.'
     },
     {
       title: 'Second Iteration',

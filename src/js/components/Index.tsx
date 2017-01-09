@@ -3,7 +3,7 @@ import { MainScreen } from '../../patternlibrary/js/components/MainScreen';
 import { Post } from '../../patternlibrary/js/components/Post';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import {Button} from 'react-toolbox/lib/button';
+import { Button} from 'react-toolbox/lib/button';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 
@@ -12,7 +12,7 @@ declare function require(path: string): any;
 
 const posts = [
 {
-  title: 'Motives', 
+  title: 'Motives',
   text: 'We are exploring latest technologies that can be implemented into ' +
         'any company. What is more to that, is that we are exploring the ' +
         'missing capabilities in most developers ' +
@@ -77,6 +77,10 @@ export class Index extends React.Component<{}, {}> {
                 />
               </Card>
               <Card className={styles['card-split']} raised>
+                <CardMedia
+                  aspectRatio="wide"
+                  image="/ext/img/index/uiux.jpg"
+                />
                 <CardTitle
                   title="UIUX"
                   subtitle={'Studying on user interface and user experience. Ever notice that this page is parallax ?!'}
@@ -127,7 +131,7 @@ export class Index extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardMedia
                   aspectRatio="wide"
-                  image="https://placeimg.com/640/250/nature"
+                  image="/ext/img/index/girl.jpg"
                 />
                 <CardTitle
                   title="Deutsch from Malaysia"
@@ -137,7 +141,7 @@ export class Index extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardMedia
                   aspectRatio="wide"
-                  image="https://placeimg.com/640/250/people"
+                  image="/ext/img/index/mezzanine.jpg"
                 />
                 <CardTitle
                   title="Lee Wan's Journal"

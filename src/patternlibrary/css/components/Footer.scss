@@ -8,7 +8,7 @@
   background: $color-footer-background;
 
   .footer-divider {
-    background-color: $color-footer-divider;
+    @include bgcolor-gradient();
     box-shadow: $shadow-depth;
     height: 30px;
   }

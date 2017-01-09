@@ -11,7 +11,8 @@ module.exports = {
       mainscreen: "./src/patternlibrary/js/mainscreen.tsx",
       material: "./src/patternlibrary/js/material.tsx",
       stickytitle: "./src/patternlibrary/js/stickytitle.tsx",
-      metitle: "./src/patternlibrary/js/metitle.tsx"
+      metitle: "./src/patternlibrary/js/metitle.tsx",
+      tile: "./src/patternlibrary/js/tile.tsx"
     },
     output: {
         filename: "[name].bundle.js",
