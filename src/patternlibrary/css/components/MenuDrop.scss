@@ -9,7 +9,7 @@
   width: 100%;
 
   .mnudrop-lst {
-    background-color: $color-title-bar;
+    @include bgcolor-gradient();
     box-shadow: $shadow-depth;
     padding: 10px 10px 10px 20px;
     text-align: right;

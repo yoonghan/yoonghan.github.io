@@ -3,7 +3,7 @@ $color-links-hover: #55ddff;
 $color-links-active: #fff;
 
 $color-links-white-background: #000;
-$color-links-hover-white-background: #55ddff;
+$color-links-hover-white-background: #1976d2;
 $color-links-active-white-background: #000;
 
 $color-shadow: #222;
@@ -16,7 +16,6 @@ $color-mainscr-foreground: #fff;
 
 $color-footer-background: #fff;
 $color-footer-foreground: #000;
-$color-footer-divider: #1976d2;
 
 $color-footnote-foreground: #aaa;
 
@@ -26,8 +25,8 @@ $color-background: #fff;
 
 $color-links-email: #55ddff;
 
-$color-stickytitle-foreground: #fff;
-$color-stickytitle-background: #1976d2;
+$color-stickytitle-anim-foreground: #fff;
+$color-stickytitle-static-foreground: #1976d2;
 $color-stickytitle-hover-background: #55ddff;
 
 $color-hdr-background: #fff;
@@ -38,3 +37,8 @@ $color-minipost-sub-header-foreground: #1976d2;
 $color-minipost-header-foreground: #777;
 
 $color-post-header-foreground: #777;
+
+@mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
+  background: $tocolor;
+  background: linear-gradient(to bottom right, $fromcolor,  $tocolor);
+}

@@ -16,7 +16,7 @@ const metitleInfo  = {
     title: 'Making Footsteps',
     description: [
       'We\'re still in progress in making a name here, nevertheless, the aim is still to learn and make this site fabulous under Walcron Cooperation.' +
-      'Written below however are both Yoong Han and Lee Wan\'s portfolio as of now.'
+      ' Written below however are both Yoong Han and Lee Wan\'s portfolio as of now.'
     ]
   }
 }
@@ -47,7 +47,7 @@ export class Portfolio extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="C#"
-                  subtitle={'Experience on C# for past 4 years on-hands experience, knowledgeable on MVC 4. Certified MSDC developer.'}
+                  subtitle={'Experience on C# for past 3 years on-hands experience, knowledgeable on MVC 4. Microsoft Certified Professional.'}
                 />
               </Card>
             </div>
@@ -91,7 +91,7 @@ export class Portfolio extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Functional Programming"
-                  subtitle={'Have fun with Scala/Playframework/Akka. Development for old Booking system.'}
+                  subtitle={'Have fun with Scala/Playframework/Akka/LinQ. Developed a booking system using Play framework.'}
                 />
                 <CardActions>
                   <Button label="Download" href='https://github.com/yoonghan/selfservice' accent/>
@@ -103,6 +103,14 @@ export class Portfolio extends React.Component<{}, {}> {
                 <CardTitle
                   title="Batch jobs"
                   subtitle={'Simple scripts, written and implemented in real companies.'}
+                />
+              </Card>
+            </div>
+            <div className={styles['card-section']}>
+              <Card className={styles['card-split']} raised>
+                <CardTitle
+                  title="Imagery"
+                  subtitle={'Interest with photography and art development. Basics on Blender and Gimp.'}
                 />
               </Card>
             </div>
