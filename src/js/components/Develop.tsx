@@ -18,7 +18,7 @@ const metitleInfo  = {
       title: 'The First',
       icon: 'battery-empty',
       titlePost: true,
-      text: 'As a start-off, the site was wrote in vanillaJS. The site was ported within tomcat -> Wildfly, JBoss -> vert.x. The latter created the realization on introducing non-block I/O services to this website.'
+      text: 'As a start-off, the site was wrote in vanillaJS. The site was ported from Tomcat to Wildfly, JBoss to vert.x web servers. The latter created the realization on importance on non-block I/O services, which marks for 2nd iteration.'
     },
     {
       title: 'Second Iteration',
@@ -44,7 +44,7 @@ const metitleInfo  = {
       title: 'Third Iteration',
       icon: 'battery-2',
       titlePost: true,
-      text: 'Rewrote under NodeJS again, but introduced a pattern library for JS/CSS references. A beta version of AngularJS 2 was used in other pages.',
+      text: 'Rewrote under NodeJS again, but introduced a pattern library for JS/CSS references. A beta version of AngularJS 2 was used in some of the developed pages.',
       concept: [
         {
           header: 'Reference',
@@ -69,6 +69,10 @@ const metitleInfo  = {
         {
           header: 'Harmony',
           description: 'Created themes to create better harmonization.'
+        },
+        {
+          header: 'Routing',
+          description: 'Using the famous Angular routing to create and SPA. But this badly affects the SEO, which is decidedly to be dropped on fourth iteration.'
         }
       ]
     },
@@ -76,7 +80,7 @@ const metitleInfo  = {
       title: 'Fourth Iteration',
       icon: 'battery-3',
       titlePost: true,
-      text: 'Given the experience with AngularJS2 and React Native(another project), we decided to use ReactJS. The transition and the concept of ReactJS blew what we had in our previous, 3rd, iteration.',
+      text: 'Given the experience with AngularJS2 and React Native on this round; we decided to go with ReactJS. The transition and the concept of ReactJS blew what we had in our previous, 3rd, iteration.',
       concept: [
         {
           header: 'Reference',

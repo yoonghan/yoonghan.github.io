@@ -16,7 +16,7 @@ const posts = [
   text: 'We are exploring latest technologies that can be implemented into ' +
         'any company. What is more to that, is that we are exploring the ' +
         'missing capabilities in most developers ' +
-        '- <strong>understanding both frontend and backend system.</strong>',
+        '- <strong>a good full-stack developer.</strong>',
   icon: 'quote-right'
 },
 {
@@ -66,14 +66,14 @@ export class Index extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Parallel Processings"
-                  subtitle={'I had been focusing this mostly, but still have not get my grip on it. Had been touching Scala, RxJS, Akka.'
-                  + ' My ultimate goal now is having Apache Sparks with Deep Learning, working.'}
+                  subtitle={'Han had been focusing this mostly, but still have not get my grip on it. Had been touching Scala, RxJS, Akka.'
+                  + ' Our ultimate goal now is having Apache Sparks with Deep Learning, working.'}
                 />
               </Card>
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Progressive App"
-                  subtitle={'An available offline webpage that still works offline without being online with precache! I need one seriously!'}
+                  subtitle={'An available offline webpage that still works offline without being online with precache! We need one seriously!'}
                 />
               </Card>
               <Card className={styles['card-split']} raised>
@@ -93,7 +93,7 @@ export class Index extends React.Component<{}, {}> {
                 <CardTitle
                   title="React and javascripts"
                   subtitle={'This website has went through 3 interations, and the recent technology used in ReactJS.' +
-                  ' I had been writing this in AngularJS, AngularJS2 and vanilla JS; but I\'m prefering ReactJS out of these.' +
+                  ' Previously, we had been writing this in AngularJS, AngularJS2 and vanilla JS; but today, we\'re prefering ReactJS.' +
                   ' This site\'s CSS is build based on CSS modules.'}
                 />
                 <CardActions>
@@ -105,8 +105,8 @@ export class Index extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="React Native"
-                  subtitle={'Writing react native was extremely wonderful as I learn Android, iOS and Javascripts writing formats with React Native. ' +
-                  'The only problem I had is to override the background color. On my job basis, I am still writing native Android and iOS codes.' +
+                  subtitle={'Writing react native was extremely wonderful as we learnt Android, iOS and Javascripts with React Native. ' +
+                  'The only problem we had is to override the main backdrop color. On our job basis, Han still writing native Android and iOS codes.' +
                   'Advice to anyone writing React Native/Nativescript: it is very important to learn native language to harness it\'s potential.'}
                 />
                 <CardActions>
@@ -117,7 +117,7 @@ export class Index extends React.Component<{}, {}> {
                 <CardTitle
                   title="Scala, C# and Java"
                   subtitle={'Han has been writing Java for about 10 years, but jumping on the current site, the backend is using PlayFramework written in' +
-                  ' Scala. Lee Wan on the other hand has been writing in C#, don\'t see a reason why other languages needs to be replaced on this vast language.' }
+                  ' Scala. Lee Wan on the other hand has been writing in C#.' }
                 />
                 <CardActions>
                   <Button href='https://github.com/yoonghan' target="_blank" primary>
@@ -146,7 +146,7 @@ export class Index extends React.Component<{}, {}> {
                 <CardTitle
                   title="Lee Wan's Journal"
                   subtitle={'A journal Lee Wan kept, it\'s unfortunately not being updated as there\'s no followers on this.' +
-                  ' I guess nobody actually goes much to bloggin nowadays, as there is already facebook.' }
+                  ' I guess nobody actually goes much to bloggin nowadays, ever since the born of facebook.' }
                 />
                 <CardActions>
                   <Button label="Bragging Blog" href='http://mezzanine.walcron.com/' accent/>
