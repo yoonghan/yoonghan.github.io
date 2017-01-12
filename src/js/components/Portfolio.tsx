@@ -39,7 +39,7 @@ export class Portfolio extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Java"
-                  subtitle={'Experience on Java for past 10 years on-hands experience, knowledgeable in both J2EE frameworks and POJO. Certified Java developer.'}
+                  subtitle={'An Experience on Java for past 10 years, knowledgeable in both J2EE frameworks and POJO. Certified Java developer.'}
                 />
               </Card>
             </div>
@@ -110,7 +110,7 @@ export class Portfolio extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Imagery"
-                  subtitle={'Interest with photography and art development. Basics on Blender and Gimp.'}
+                  subtitle={'Interest with photography and art development. Basics on Blender and Gimp software.'}
                 />
               </Card>
             </div>
