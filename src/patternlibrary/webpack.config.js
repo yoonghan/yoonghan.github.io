@@ -12,7 +12,7 @@ module.exports = {
       material: "./src/patternlibrary/js/material.tsx",
       stickytitle: "./src/patternlibrary/js/stickytitle.tsx",
       metitle: "./src/patternlibrary/js/metitle.tsx",
-      tile: "./src/patternlibrary/js/tile.tsx"
+      gallery: "./src/patternlibrary/js/gallery.tsx"
     },
     output: {
         filename: "[name].bundle.js",
@@ -62,6 +62,7 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM",
         "react-addons-css-transition-group": "var React.addons.CSSTransitionGroup",
+        "react-addons-transition-group": "var React.addons.TransitionGroup",
         "trianglify": "Trianglify"
     },
 };

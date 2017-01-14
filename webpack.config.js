@@ -48,6 +48,7 @@ module.exports = {
       "react": "React",
       "react-dom": "ReactDOM",
       "react-addons-css-transition-group": "var React.addons.CSSTransitionGroup",
+      "react-addons-transition-group": "var React.addons.TransitionGroup",
       "trianglify": "Trianglify"
     },
 };
