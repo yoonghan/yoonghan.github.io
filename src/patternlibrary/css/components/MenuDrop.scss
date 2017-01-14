@@ -62,7 +62,7 @@
 
   .mnudropmobile-enter-active {
     opacity: 1;
-    transition: opacity 200ms ease-in;
+    transition: opacity 100ms ease-in;
   }
 
   .mnudropmobile-leave {
@@ -71,6 +71,6 @@
 
   .mnudropmobile-leave-active {
     opacity: 0.01;
-    transition: opacity 200ms ease-in;
+    transition: opacity 100ms ease-in;
   }
 }

@@ -1,0 +1,100 @@
+@import "../lib/colors";
+@import "../lib/fonts";
+@import "../lib/breakpoints";
+
+$moziac-width: 120px;
+$moziac-height: 150px;
+$moziac-margin: 5px;
+$width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
+
+.gallery {
+  align-content: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px auto;
+  max-width: $width-display;
+  min-height: 100vh;
+  //justify-content: center;
+
+  .moziac {
+    background: #2E2E2E;
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px #2E2E2E;
+    flex: none;
+    height: $moziac-height;
+    width: $moziac-width;
+    margin: $moziac-margin;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0px 0px 5px #2E2E2E;
+    }
+
+    &:active {
+      box-shadow: 1px 3px 8px #2E2E2E;
+    }
+
+    .moziac-image {
+      height: 100px;
+      margin-top: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .moziac-title {
+      bottom: 0;
+      color: #fff;
+      position: absolute;
+      margin: 0 0 10px 15px;
+      @include font-normal(10pt);
+    }
+  }
+
+  .overlay {
+    position:absolute;
+    z-index:9999;
+    left:0;
+    width:100%;
+    height:100%;
+    top:0;
+    opacity: 1;
+    transition: opacity 100ms ease-in;
+
+    .overlay-background {
+      background-color:#000000;
+      height:100%;
+      opacity: 0.8;
+      position:absolute;
+      width:100%;
+      z-index:0;
+    }
+
+    .overlaycard {
+      background-color: #FFFFFF;
+      height: 90vh;
+      position:absolute;
+      width: $moziac-width;
+      transform: translateX(-50%);
+      transition: top 100ms, left 100ms, width 100ms;
+      z-index:1;
+    }
+  }
+
+  .overlay-enter {
+    opacity: 0.01;
+
+    .overlaycard {
+      width: 98%;
+      max-width: $breakpoint-phone;
+    }
+  }
+
+  .overlay-enter-active {
+    opacity: 1;
+  }
+
+  .overlay-leave-active {
+    opacity: 0.01;
+  }
+}
