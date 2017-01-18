@@ -7,6 +7,7 @@ const footerInfo = {
   {link:'/about', label: 'About'},
   {link:'//mezzanine.walcron.com/', label: 'Blog'},
   {link:'/develop', label: 'Development'},
+  {link:'/technology', label: 'Technology'},
   ],
   updatedYear: 2017,
   emailLabel: 'Contact Us',

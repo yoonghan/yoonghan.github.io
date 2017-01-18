@@ -6,6 +6,7 @@ $moziac-width: 120px;
 $moziac-height: 150px;
 $moziac-margin: 5px;
 $width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
+$indicator-img-size: 360px;
 
 .gallery {
   align-content: flex-start;
@@ -13,11 +14,10 @@ $width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
   flex-flow: row wrap;
   margin: 20px auto;
   max-width: $width-display;
-  min-height: 100vh;
   //justify-content: center;
 
   .moziac {
-    background: #2E2E2E;
+    background: $color-moziac-background;
     border-radius: 2px;
     box-shadow: 3px 3px 5px #2E2E2E;
     flex: none;
@@ -35,7 +35,7 @@ $width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
     }
 
     .moziac-image {
-      height: 100px;
+      width: 100px;
       margin-top: 10px;
       display: block;
       margin-left: auto;
@@ -44,10 +44,11 @@ $width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
 
     .moziac-title {
       bottom: 0;
-      color: #fff;
+      color: $color-moziac-foreground;
+      font-style: italic;
       position: absolute;
       margin: 0 0 10px 15px;
-      @include font-normal(10pt);
+      @include font-normal(11pt);
     }
   }
 
@@ -58,35 +59,119 @@ $width-display: (($moziac-width + $moziac-margin + $moziac-margin) * 5);
     width:100%;
     height:100%;
     top:0;
-    opacity: 1;
+    opacity: 0.01;
     transition: opacity 100ms ease-in;
 
     .overlay-background {
-      background-color:#000000;
+      background-color:$color-overlay-background;
       height:100%;
-      opacity: 0.8;
+      opacity: 0.9;
       position:absolute;
       width:100%;
       z-index:0;
     }
 
     .overlaycard {
-      background-color: #FFFFFF;
-      height: 90vh;
+      max-width: $breakpoint-phone;
       position:absolute;
-      width: $moziac-width;
       transform: translateX(-50%);
       transition: top 100ms, left 100ms, width 100ms;
-      z-index:1;
-    }
-  }
-
-  .overlay-enter {
-    opacity: 0.01;
-
-    .overlaycard {
       width: 98%;
-      max-width: $breakpoint-phone;
+      z-index:1;
+
+      .overlaycard-bg {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+
+        .overlaycard-bg-indicator {
+          background:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIiB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDY5OS45OTk5OCA2OTkuOTk5OTciIGlkPSJzdmcyIiB2ZXJzaW9uPSIxLjEiIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEzNzI1IiBzb2RpcG9kaTpkb2NuYW1lPSJiYXNlNjRfdGFyZ2V0LnN2ZyI+PGRlZnMgaWQ9ImRlZnM0Ij48bWFya2VyIGlua3NjYXBlOmlzc3RvY2s9InRydWUiIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlIiBpZD0ibWFya2VyNDc3NCIgcmVmWD0iMCIgcmVmWT0iMCIgb3JpZW50PSJhdXRvIiBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFMc3RhcnQiPjxwYXRoIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIHRyYW5zZm9ybT0ibWF0cml4KDAuOCwwLDAsMC44LDEwLDApIiBzdHlsZT0iZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojZmZmZmZmO3N0cm9rZS13aWR0aDoxcHQ7c3Ryb2tlLW9wYWNpdHk6MSIgZD0iTSAwLDAgNSwtNSAtMTIuNSwwIDUsNSAwLDAgWiIgaWQ9InBhdGg0Nzc2Ii8+PC9tYXJrZXI+PG1hcmtlciBpbmtzY2FwZTppc3N0b2NrPSJ0cnVlIiBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIgaWQ9Im1hcmtlcjQ3NTYiIHJlZlg9IjAiIHJlZlk9IjAiIG9yaWVudD0iYXV0byIgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cxTHN0YXJ0Ij48cGF0aCBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjgsMCwwLDAuOCwxMCwwKSIgc3R5bGU9ImZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDBmZjtzdHJva2Utd2lkdGg6MXB0O3N0cm9rZS1vcGFjaXR5OjEiIGQ9Ik0gMCwwIDUsLTUgLTEyLjUsMCA1LDUgMCwwIFoiIGlkPSJwYXRoNDc1OCIvPjwvbWFya2VyPjxpbmtzY2FwZTpwYXRoLWVmZmVjdCBlZmZlY3Q9InNwaXJvIiBpZD0icGF0aC1lZmZlY3Q0MTQ0IiBpc192aXNpYmxlPSJ0cnVlIi8+PC9kZWZzPjxzb2RpcG9kaTpuYW1lZHZpZXcgaWQ9ImJhc2UiIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIgYm9yZGVyY29sb3I9IiM2NjY2NjYiIGJvcmRlcm9wYWNpdHk9IjEuMCIgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIgaW5rc2NhcGU6em9vbT0iMC43IiBpbmtzY2FwZTpjeD0iODcuMDc2NjI0IiBpbmtzY2FwZTpjeT0iMzA0LjA2NjYyIiBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0icHgiIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImxheWVyMSIgc2hvd2dyaWQ9InRydWUiIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTkyMCIgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNyIgaW5rc2NhcGU6d2luZG93LXg9IjE5MTIiIGlua3NjYXBlOndpbmRvdy15PSItOCIgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIgdW5pdHM9InB4IiBzaG93Z3VpZGVzPSJmYWxzZSI+PGlua3NjYXBlOmdyaWQgdHlwZT0ieHlncmlkIiBpZD0iZ3JpZDQxNDYiLz48L3NvZGlwb2RpOm5hbWVkdmlldz48bWV0YWRhdGEgaWQ9Im1ldGFkYXRhNyI+PHJkZjpSREY+PGNjOldvcmsgcmRmOmFib3V0PSIiPjxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PjxkYzp0eXBlIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiLz48ZGM6dGl0bGUvPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZyBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIgaWQ9ImxheWVyMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtMzUyLjM2MjI3KSI+PGVsbGlwc2Ugcnk9IjI5NS44NzI4MyIgcng9IjI5NC42NzI3IiBjeT0iNzAxLjI1NTA3IiBjeD0iMzUyLjI2NDE5IiBpZD0iZWxsaXBzZTQ0NTQiIHN0eWxlPSJvcGFjaXR5OjE7ZmlsbDpub25lO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTojMzc3MWM4O3N0cm9rZS13aWR0aDoxMDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6NC45OTk5OTk5OCwgNC45OTk5OTk5ODAwMDAwMDAxMDtzdHJva2UtZGFzaG9mZnNldDowO3N0cm9rZS1vcGFjaXR5OjEiLz48ZWxsaXBzZSBzdHlsZT0ib3BhY2l0eToxO2ZpbGw6bm9uZTtmaWxsLW9wYWNpdHk6MTtzdHJva2U6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MTA7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLWRhc2hvZmZzZXQ6MDtzdHJva2Utb3BhY2l0eToxIiBpZD0icGF0aDQxMzYiIGN4PSIzNTAuNzk1NzUiIGN5PSI3MDIuNzI5NDMiIHJ4PSIzMTYuMDYxMzciIHJ5PSIzMTcuMzQ3MTciLz48cGF0aCBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojZmZmZmZmO3N0cm9rZS13aWR0aDo1O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1kYXNob2Zmc2V0OjA7c3Ryb2tlLW9wYWNpdHk6MTttYXJrZXItc3RhcnQ6dXJsKCNtYXJrZXI0Nzc0KSIgZD0ibSAzNTcuOTk5OTksNDMxLjE1Njg1IDEuMjU1MjYsLTUzLjIzNzE1IiBpZD0icGF0aDQxNDIiIGlua3NjYXBlOnBhdGgtZWZmZWN0PSIjcGF0aC1lZmZlY3Q0MTQ0IiBpbmtzY2FwZTpvcmlnaW5hbC1kPSJtIDM1Ny45OTk5OSw0MzEuMTU2ODUgMS4yNTUyNiwtNTMuMjM3MTUiIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIHNvZGlwb2RpOm5vZGV0eXBlcz0iY2MiLz48L2c+PC9zdmc+Cg==');
+          background-repeat: no-repeat;
+          background-size: auto $indicator-img-size;
+          background-position-x: center;
+          height: $indicator-img-size;
+          width: $indicator-img-size;
+        }
+      }
+
+
+      .overlaycard-image {
+        height:($indicator-img-size / 2 + 10);
+        text-align:center;
+        position: relative;
+        z-index: 2;
+
+        .overlaycard-image-adj {
+          bottom: 0;
+          position: absolute;
+          width: 100%;
+
+          img {
+            margin-bottom: -15px;
+            height:140px;
+          }
+        }
+      }
+      .overlaycard-placement {
+        background-color: $color-overlay-foreground;
+        border-radius: 5px;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+
+        .overlaycard-button {
+          text-align: center;
+          padding: 10px 0;
+        }
+
+        .overlaycard-content {
+          @include font-normal();
+
+          h2, h5 {
+            text-align: center;
+            padding-bottom: 10px;
+          }
+
+          .overlaycard-content-features {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+
+            i, span {
+              color: $color-checkbox;
+            }
+          }
+
+
+          .overlaycard-content-keyfeature {
+            text-align: center;
+          }
+
+          ul {
+            list-style: none;
+          }
+
+          div {
+            padding: 0 5px;
+            span {
+              color: $color-overlay-text-foreground;
+            }
+          }
+
+          hr {
+            margin: 20px 0;
+            border-top: 1px solid #EEE;
+          }
+
+          .overlaycard-content-desc {
+            padding-top: 10px;
+            text-align: justify;
+          }
+        }
+      }
     }
   }
 
