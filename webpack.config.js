@@ -6,7 +6,8 @@ module.exports = {
       index: "./src/js/index.tsx",
       about: "./src/js/about.tsx",
       develop: "./src/js/develop.tsx",
-      portfolio: "./src/js/portfolio.tsx"
+      portfolio: "./src/js/portfolio.tsx",
+      technology: "./src/js/technology.tsx"
     },
     output: {
       filename: "[name].bundle.js",

@@ -38,6 +38,17 @@ $color-minipost-header-foreground: #777;
 
 $color-post-header-foreground: #777;
 
+$color-moziac-background: #333;
+$color-moziac-foreground: #fff;
+
+$color-overlay-background: #000;
+$color-overlay-foreground: #fff;
+$color-overlay-text-foreground: #999;
+
+$color-checkbox: #2CA05A;
+
+
+
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;
   background: linear-gradient(to bottom right, $fromcolor,  $tocolor);
