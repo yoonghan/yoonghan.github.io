@@ -47,11 +47,7 @@ const items = [
 	{title: 'Animate.css',
 		imgSrc: '/ext/img/technology/npm.png',
 		nature:['css', 'library'], key:'Lightweight, Easy',
-		desc:'Gone are the days where CSS animations are slower than Javascript. The best thing with this library is that it is pure CSS without the hassle of javascript plugin.'},
-	{title: 'React Slick',
-		imgSrc: '/ext/img/technology/npm.png',
-		nature:['plugin', 'library', 'javascript'], key:'Stable, Fast, Animated',
-		desc:'An all-ready plugin written in React, that is stable and provides the needed carousel function. Though I\'ve plan to rewrite a custom carousel.'}
+		desc:'Gone are the days where CSS animations are slower than Javascript. The best thing with this library is that it is pure CSS without the hassle of javascript plugin.'}
 ];
 
 ReactDOM.render(

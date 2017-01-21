@@ -242,11 +242,20 @@ class OverlayIndicator extends React.Component<OverlayIndicatorProps, {}> {
 
   render() {
     const {total, selection} = this.props;
-    const angle = (Math.floor(180 / (total - 1)) * selection) - OverlayIndicator.imageAngleStart;
-    const rotation = {transform: 'rotate(' + angle + 'deg)'};
+    const adjTotal = total - 1;
+
+    const angle = Math.floor(180 / adjTotal * selection);
+    const adjAngle = angle - OverlayIndicator.imageAngleStart;
+    const degInRad = angle * (Math.PI / 180.0);
+    const translateY = (Math.sin(degInRad) * 160 * -1) - 20;
+    const translateX = ((Math.cos(degInRad) * 160) - 160) * -1;
+    const rotation = {transform: 'translate(' +translateX + 'px,' + translateY + 'px) rotate(' + adjAngle + 'deg)'};
 
     return (
-      <div className={styles['overlaycard-bg-indicator']} style={rotation}></div>
+      <div className={styles['overlaycard-bg-big']}>
+        <div className={styles['overlaycard-bg-indicator']} style={rotation}>
+        </div>
+      </div>
     )
   }
 }
