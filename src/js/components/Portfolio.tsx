@@ -1,3 +1,5 @@
+`use strict`
+
 import * as React from 'react';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';

@@ -1,3 +1,5 @@
+`use strict`
+
 import * as React from 'react';
 import { Header } from './Header';
 import { MeTitle } from '../../patternlibrary/js/components/MeTitle';

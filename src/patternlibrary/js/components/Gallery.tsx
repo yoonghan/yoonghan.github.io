@@ -1,3 +1,5 @@
+`use strict`
+
 /**
 *Rotating image background for Overlay Indicator is saved as based 64 in scss
 **/

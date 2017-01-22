@@ -1,3 +1,5 @@
+`use strict`
+
 import * as React from 'react';
 import { MainScreen } from '../../patternlibrary/js/components/MainScreen';
 import { Post } from '../../patternlibrary/js/components/Post';
