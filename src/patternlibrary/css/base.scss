@@ -2,6 +2,10 @@
 @import "./elements/headers";
 
 :global {
+  //Set for rem font sizes.
+  html {
+    font-size: 80%;
+  }
 
   body {
     color: #000;
@@ -9,6 +13,11 @@
     min-width: 320px;
     padding: 0;
     margin: 0;
+  }
+
+  //Remove focus outline on selected item.
+  div {
+    outline: 0;
   }
 
   .base-footnote {

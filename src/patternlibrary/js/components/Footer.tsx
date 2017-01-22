@@ -1,5 +1,8 @@
+`use strict`
+
 import * as React from "react";
 import * as ReactDom from "react-dom";
+import { Localize } from "./Localize";
 import * as ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import '../../css/base';
@@ -108,6 +111,9 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
             <a href="/">
               <img src="/ext/img/logo/logoOnWhiteBg.svg"/>
             </a>
+            <div>
+              <Localize/>
+            </div>
             <div>
               <a href="javascript:;" onClick={this.clickContact} className='links'>
                 <i className={'fa fa-' + this.state.contactIcon}></i>

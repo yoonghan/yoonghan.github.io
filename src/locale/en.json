@@ -1,0 +1,28 @@
+{
+  "index": {
+    "title": "Walcron Coorperation"
+  },
+  "about": {
+    "title": "About Us",
+    "classicQuote": "There's a story behind every person; this is ours.",
+    "userhan": {
+      "intro": "He has decided to take charge of his life rather than relying only on his job to make a living. He had spend most of his programming lifeline in Java.",
+      "hobby": "Han's hobby varies from photography to outdoor hiking; which he believes out there, are many who shared the same interest as well."
+    },
+    "usertai": {
+      "intro": "She's the heart and soul of the project. She's a young and talented web programmer. Well, it's difficult to find a lady programmer, any day, any time. She's an experienced front-end designer and coder.",
+      "quote": "\"Beauty is to an eye of the believer.\" Gladys is the inspiration to Han and that's how it all begin."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "desc": "The Walcron website was an idea invented by the both of us. Internet has continuously grown and started to evolve rapidly in our era. We take this opportunity, to experiment and pushing ourselves to use new and advance technologies."
+    },
+    "interest": {
+      "title": "Interested with us ?",
+      "detail": "If you are interested to contact us, either for the development, progress, advice, photos, freelance, etc. Find more information about us at the bottom section."
+    }
+  },
+  "technology": {
+    "title": "Technology"
+  }
+}

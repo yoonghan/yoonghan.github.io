@@ -4,6 +4,7 @@
 @import "../lib/shadows";
 
 .footer {
+  @include font-normal($font-size-foot);
   color: $color-footer-foreground;
   background: $color-footer-background;
 
@@ -58,7 +59,7 @@
 
       div {
         padding-top: 10px;
-        @include font-normal(11pt);
+        @include font-normal($font-size-foot-link);
 
         a {
           font-weight: bold;
@@ -69,12 +70,12 @@
   }
 
   .footercontactemail-enter {
-    opacity: 0.01;
+    height: 0;
   }
 
   .footercontactemail-enter.footercontactemail-enter-active {
-    opacity: 1;
-    transition: opacity 200ms ease-in;
+    height: 100%;
+    transition: height 200ms;
   }
 
   .footercontactemail-leave {
