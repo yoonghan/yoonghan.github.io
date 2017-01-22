@@ -11,10 +11,13 @@ var env          = process.env;
  */
 var NodeApp = function() {
 	// Default folder
-	var webroot = "./dist/";
-  //  Scope.
-  var self = this;
-  var testEnv = false;
+	var webroot = "./dist/",
+	// Default language
+		defaultLanguage = "en",
+		defaultLanguageRegex = new RegExp("\\/"+ defaultLanguage +"\\/|\\/"+ defaultLanguage +"$"),
+	//  Scope.
+		self = this,
+		testEnv = false;
 
 
   /*  ================================================================  */
@@ -26,16 +29,15 @@ var NodeApp = function() {
    */
   self.setupVariables = function() {
       //  Set the environment variables we need.
+
+			if(typeof self.ipaddress === "undefined") {
+				testEnv=true;
+				console.warn('Executing local environment run');
+			}
+
 			self.ipaddress = env.NODE_IP || 'localhost';
 			self.port      = env.NODE_PORT || 8000;
 
-      if (typeof self.ipaddress === "undefined") {
-          //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-          //  allows us to run/test the app locally.
-          console.warn('No NODE_OP var, using 127.0.0.1');
-          self.ipaddress = "127.0.0.1";
-          testEnv=true;
-      };
   };
 
 
@@ -56,9 +58,7 @@ var NodeApp = function() {
   self.cache_get = function(path) {
 
 		var cache = self.zcache[path];
-
-		if(cache == undefined || testEnv){
-
+		if(cache == undefined || testEnv) {
 			/**
 			 * TODO: Create dynamic reading for pages and put into cache.
 			 * Useful for tooltips, but never for multilingua.
@@ -100,9 +100,18 @@ var NodeApp = function() {
 		var ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin';
     self.routes = { };
 
-	  self.routes['/'] = function(req, res) {
-	      res.setHeader("Content-Type" , "text/html");
-	      res.send( self.cache_get(webroot + 'index.html') );
+		self.routes['/'] = function(req, res) {
+			var path = req.path.toString(),
+				localeObj = self.getLocaleAndRedirect(path, req.headers['referer']);
+
+			res.setHeader(CONTENT_TYPE, "text/html");
+
+			if(localeObj.locale != '' && localeObj.locale !== defaultLanguage) {
+				res.redirect('/' + localeObj.locale + '/');
+			}
+			else {
+	    	res.send( self.cache_get(webroot + 'index.html') );
+			}
 	  };
 
 		self.routes['/ext/**/*:path'] = function(req, res) {
@@ -116,17 +125,52 @@ var NodeApp = function() {
 		};
 
 		self.routes['/*:path'] = function(req, res) {
-
-			var reqPath = self.replacePath(req.path.toString());
+			var path = req.path.toString(),
+				reqPath = self.replacePath(path),
+				localeObj = self.getLocaleAndRedirect(path, req.headers['referer']);
 
 			res.setHeader(CONTENT_TYPE, "text/html");
-			res.send(self.cache_get(reqPath + ".html"));
+
+			if (localeObj.locale === defaultLanguage) {
+				localeObj.shouldRedirect = false;
+			}
+
+			if(localeObj.shouldRedirect) {
+				res.redirect('/' + localeObj.locale + path);
+			}
+			else {
+				if(localeObj.locale !== '') {
+					if(reqPath.endsWith('/' + localeObj.locale)) {
+							reqPath = reqPath + "/index";
+					}
+					reqPath = reqPath.replace(defaultLanguageRegex, "/");
+				}
+
+				res.send(self.cache_get(reqPath + ".html"));
+			}
 		};
 	};
 
 	self.replacePath = function(path){
 		path = webroot + path
 		return path.replace(/\/\//g, "/").replace(/\.\./g, "/").replace(/\/$/, "");
+	};
+
+	self.getLocaleAndRedirect = function(path, refererHeader) {
+		var locale = "", shouldRedirect = false;
+		var localeFromPath = path.match(/^\/([a-z]{2})\//);
+		if(localeFromPath && localeFromPath.length > 1) {
+			locale = localeFromPath[1];
+		}
+		else {
+			var fixReferer = (refererHeader || ""),
+				localeFromReferer = fixReferer.match(/:\/\/[a-z|0-9|\:]+\/([a-z]{2})\//);
+			if(localeFromReferer && localeFromReferer.length > 1) {
+				locale = localeFromReferer[1];
+				shouldRedirect = true;
+			}
+		}
+		return {"shouldRedirect": shouldRedirect, "locale": locale};
 	};
 
   /**
