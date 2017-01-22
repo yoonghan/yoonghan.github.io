@@ -6,7 +6,7 @@ var pkg = require('./package.json'),
   plumber = require('gulp-plumber'),
   connect = require('gulp-connect'),
   server = require('gulp-express'),
-  pug = require('gulp-pug'),
+  pug = require('gulp-pug-i18n'),
   sass = require('gulp-sass'),
   cachebust = require('gulp-cache-bust'),
   runSequence = require('run-sequence'),
@@ -47,7 +47,14 @@ var pug_func =  function(loc) {
   return function() {
     return gulp.src('src/' + location + '/**/*.pug')
       .pipe(isDist ? through() : plumber())
-      .pipe(pug({ pretty: !isDist }))
+      .pipe(pug({
+        i18n: {
+          default: 'en',
+          locales: 'src/locale/*',
+          filename: '{{{lang}}/}{{basename}}.html'
+        },
+        pretty: !isDist
+      }))
       .pipe(gulp.dest('dist/' + dest_location))
       .pipe(connect.reload());
   };

@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title Localization
+    include ../incl/meta.incl
+    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/localize.css")
+    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    style.
+      body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto,sans-serif;
+        font-size: 1.6rem;
+      }
+  body
+    div Some text to test out the text
+    div(style="font-size:1.6rem") Some text to test out the text
+    div
+      div(id='localize')
+    include ../incl/backhome.incl
+    script(src='/ext/js/lib/react.js')
+    script(src='/ext/js/lib/react-dom.js')
+    script(src='/patternlibrary/ext/js/localize.bundle.js')
