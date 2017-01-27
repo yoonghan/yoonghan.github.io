@@ -1,6 +1,7 @@
 `use strict`
 
 import * as React from 'react';
+import { IndexLocale } from '../util/Locale';
 import { MainScreen } from '../../patternlibrary/js/components/MainScreen';
 import { Post } from '../../patternlibrary/js/components/Post';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
@@ -12,18 +13,22 @@ import { Footer } from "./Footer";
 var styles = require('../../css/components/index');
 declare function require(path: string): any;
 
+const locale = new IndexLocale();
+
 const posts = [
 {
-  title: 'Motives',
-  text: 'We are exploring latest technologies that can be implemented into ' +
-        'any company. What is more to that, is that we are exploring the ' +
-        'missing capabilities in most developers ' +
-        '- <strong>a good full-stack developer.</strong>',
+  title: locale.translate('post.1.title'),
+  text: locale.translate('post.1.text'),
   icon: 'quote-right'
 },
 {
-  title: 'Who we are',
-  text: 'Below explains throughly who we are and what we are exploring.',
+  title: locale.translate('post.2.title'),
+  text: locale.translate('post.2.text'),
+  icon: 'binoculars'
+},
+{
+  title: locale.translate('post.3.title'),
+  text: locale.translate('post.3.text'),
   icon: 'wpexplorer'
 }]
 
@@ -49,7 +54,7 @@ export class Index extends React.Component<{}, {}> {
             <MainScreen itemArray={tech}/>
             <Post postItems={posts}/>
 
-            <StickyTitle text="RESEARCH" pos={0} />
+            <StickyTitle text={locale.translate('title.research')} pos={0} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardMedia
@@ -57,25 +62,23 @@ export class Index extends React.Component<{}, {}> {
                   image="/ext/img/index/dl.svg"
                 />
                 <CardTitle
-                  title="Deep Learning"
-                  subtitle={'Won a hackaton based on image scanning to identify a vehicle model using a mobile.'+
-                  ' Will be dedicating this year 2017 in research on deep learning using Scala programming language.'}
+                  title={locale.translate('card.1.title')}
+                  subtitle={locale.translate('card.1.desc')}
                 />
                 <CardActions>
-                  <Button label="Read More" href='http://blog.walcron.com' accent/>
+                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' accent/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Parallel Processings"
-                  subtitle={'Han had been focusing this mostly, but still have not get my grip on it. Had been touching Scala, RxJS, Akka.'
-                  + ' Our ultimate goal now is having Apache Sparks with Deep Learning, working.'}
+                  title={locale.translate('card.2.title')}
+                  subtitle={locale.translate('card.2.desc')}
                 />
               </Card>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Progressive App"
-                  subtitle={'An available offline webpage that still works offline without being online with precache! We need one seriously!'}
+                  title={locale.translate('card.3.title')}
+                  subtitle={locale.translate('card.3.desc')}
                 />
               </Card>
               <Card className={styles['card-split']} raised>
@@ -84,19 +87,17 @@ export class Index extends React.Component<{}, {}> {
                   image="/ext/img/index/uiux.jpg"
                 />
                 <CardTitle
-                  title="UIUX"
-                  subtitle={'Studying on user interface and user experience. Ever notice that this page is parallax ?!'}
+                  title={locale.translate('card.4.title')}
+                  subtitle={locale.translate('card.4.desc')}
                 />
               </Card>
             </div>
-            <StickyTitle text="DEVELOPMENT" pos={1} />
+            <StickyTitle text={locale.translate('title.development')} pos={1} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="React and javascripts"
-                  subtitle={'This website has went through 3 interations, and the recent technology used in ReactJS.' +
-                  ' Previously, we had been writing this in AngularJS, AngularJS2 and vanilla JS; but today, we\'re prefering ReactJS.' +
-                  ' This site\'s CSS is build based on CSS modules.'}
+                  title={locale.translate('card.5.title')}
+                  subtitle={locale.translate('card.5.desc')}
                 />
                 <CardActions>
                   <Button href='https://github.com/yoonghan' target="_blank" primary>
@@ -106,20 +107,17 @@ export class Index extends React.Component<{}, {}> {
               </Card>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="React Native"
-                  subtitle={'Writing react native was extremely wonderful as we learnt Android, iOS and Javascripts with React Native. ' +
-                  'The only problem we had is to override the main backdrop color. On our job basis, Han still writing native Android and iOS codes.' +
-                  'Advice to anyone writing React Native/Nativescript: it is very important to learn native language to harness it\'s potential.'}
+                  title={locale.translate('card.6.title')}
+                  subtitle={locale.translate('card.6.desc')}
                 />
                 <CardActions>
-                  <Button label="Download" href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target="_blank" accent/>
+                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target="_blank" accent/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Scala, C# and Java"
-                  subtitle={'Han has been writing Java for about 10 years, but jumping on the current site, the backend is using PlayFramework written in' +
-                  ' Scala. Lee Wan on the other hand has been writing in C#.' }
+                  title={locale.translate('card.7.title')}
+                  subtitle={locale.translate('card.7.desc')}
                 />
                 <CardActions>
                   <Button href='https://github.com/yoonghan' target="_blank" primary>
@@ -128,7 +126,7 @@ export class Index extends React.Component<{}, {}> {
                 </CardActions>
               </Card>
             </div>
-            <StickyTitle text="LEISURE" pos={2}/>
+            <StickyTitle text={locale.translate('title.leisure')} pos={2}/>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardMedia
@@ -136,8 +134,8 @@ export class Index extends React.Component<{}, {}> {
                   image="/ext/img/index/girl.jpg"
                 />
                 <CardTitle
-                  title="Deutsch from Malaysia"
-                  subtitle={'Wir lernen gemainsam am Wochenende Deutsch. Wir lieben Deutsch.' }
+                  title={locale.translate('card.8.title')}
+                  subtitle={locale.translate('card.8.desc')}
                 />
               </Card>
               <Card className={styles['card-split']} raised>
@@ -146,12 +144,11 @@ export class Index extends React.Component<{}, {}> {
                   image="/ext/img/index/mezzanine.jpg"
                 />
                 <CardTitle
-                  title="Lee Wan's Journal"
-                  subtitle={'A journal Lee Wan kept, it\'s unfortunately not being updated as there\'s no followers on this.' +
-                  ' I guess nobody actually goes much to bloggin nowadays, ever since the born of facebook.' }
+                  title={locale.translate('card.9.title')}
+                  subtitle={locale.translate('card.9.desc')}
                 />
                 <CardActions>
-                  <Button label="Bragging Blog" href='http://mezzanine.walcron.com/' accent/>
+                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' accent/>
                 </CardActions>
               </Card>
             </div>

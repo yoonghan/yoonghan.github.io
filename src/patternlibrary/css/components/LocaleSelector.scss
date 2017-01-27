@@ -2,11 +2,11 @@
 @import "../lib/fonts";
 @import "../lib/breakpoints";
 
-.localize {
+.localeselector {
 
   width: 150px;
 
-  .localize-dropdown {
+  .localeselector-dropdown {
     input, li {
       font-size: $font-size-localize-dropdown;
       text-align: left;
