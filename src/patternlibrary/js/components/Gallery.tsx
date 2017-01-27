@@ -53,7 +53,7 @@ interface OverlayIndicatorProps {
   selection: number;
 }
 
-interface GalleryProps {
+export interface GalleryProps {
   items: Array<Item>;
 }
 

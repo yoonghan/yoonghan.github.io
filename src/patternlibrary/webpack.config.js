@@ -8,7 +8,7 @@ module.exports = {
       header: "./src/patternlibrary/js/header.tsx",
       post: "./src/patternlibrary/js/post.tsx",
       footer: "./src/patternlibrary/js/footer.tsx",
-      localize: "./src/patternlibrary/js/localize.tsx",
+      localeselector: "./src/patternlibrary/js/localeselector.tsx",
       mainscreen: "./src/patternlibrary/js/mainscreen.tsx",
       material: "./src/patternlibrary/js/material.tsx",
       stickytitle: "./src/patternlibrary/js/stickytitle.tsx",

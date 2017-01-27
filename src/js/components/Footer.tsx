@@ -3,19 +3,23 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Footer as FooterPat }  from "../../patternlibrary/js/components/Footer";
+import { FooterLocale } from "../util/Locale";
+
+
+const locale = new FooterLocale();
 
 const footerInfo = {
   links: [
-  {link:'/about', label: 'About'},
-  {link:'//mezzanine.walcron.com/', label: 'Blog'},
-  {link:'/develop', label: 'Development'},
-  {link:'/technology', label: 'Technology'},
+  {link:'/about', label: locale.translate('about')},
+  {link:'//mezzanine.walcron.com/', label: locale.translate('blog')},
+  {link:'/develop', label: locale.translate('develop')},
+  {link:'/technology', label: locale.translate('tech')},
   ],
   updatedYear: 2017,
-  emailLabel: 'Contact Us',
-  emailTitle: 'GET US VIA EMAIL',
+  emailLabel: locale.translate('contactus'),
+  emailTitle: locale.translate('contactus.title'),
   emailAddress: 'walcoorperation@gmail.com',
-  emailMsg: 'We\'ll definitely get back in touch with you, upon the received email.'
+  emailMsg: locale.translate('contactus.msg')
 };
 
 export class Footer extends React.Component<{}, {}> {
