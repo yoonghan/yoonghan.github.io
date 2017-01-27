@@ -1,6 +1,7 @@
 `use strict`
 
 import * as React from 'react';
+import { PorfolioLocale } from '../util/Locale';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { MeTitle } from '../../patternlibrary/js/components/MeTitle';
@@ -11,14 +12,15 @@ import { Footer } from "./Footer";
 var styles = require('../../css/components/index');
 declare function require(path: string): any;
 
+const locale = new PorfolioLocale();
+
 const metitleInfo  = {
-  title: 'Our Portfolio',
+  title: locale.translate('title'),
   imgSrc: '/ext/img/logo/logoOnlyWhiteBg.svg',
   introSection: {
-    title: 'Making Footsteps',
+    title: locale.translate('subtitle'),
     description: [
-      'We\'re still in progress in making a name here, nevertheless, the aim is still to learn and make this site fabulous under Walcron Cooperation.' +
-      ' Written below however are both Yoong Han and Lee Wan\'s portfolio as of now.'
+      locale.translate('desc')
     ]
   }
 }
@@ -36,12 +38,12 @@ export class Portfolio extends React.Component<{}, {}> {
             <Header/>
             <MeTitle {...metitleInfo}/>
             <div className={styles['divider']}></div>
-            <StickyTitle text="WORK SPACE" pos={0} />
+            <StickyTitle text={locale.translate('dvd.workspace')} pos={0} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="Java"
-                  subtitle={'An Experience on Java for past 10 years, knowledgeable in both J2EE frameworks and POJO. Certified Java developer.'}
+                  subtitle={locale.translate('java.desc')}
                 />
               </Card>
             </div>
@@ -49,70 +51,70 @@ export class Portfolio extends React.Component<{}, {}> {
               <Card className={styles['card-split']} raised>
                 <CardTitle
                   title="C#"
-                  subtitle={'Experience on C# for past 3 years on-hands experience, knowledgeable on MVC 4. Microsoft Certified Professional.'}
+                  subtitle={locale.translate('csharp.desc')}
                 />
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Android development and iOS development"
-                  subtitle={'Experience on C# for past 1 year on-hands experience. Certified iOS and Android developer - not world recognized, maybe.'}
+                  title={locale.translate('mobile.title')}
+                  subtitle={locale.translate('mobile.desc')}
                 />
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Web development"
-                  subtitle={'On job experience on frontend web development. VanillaJS, AngularJS and SASS was more of the focus.'}
+                  title={locale.translate('web.title')}
+                  subtitle={locale.translate('web.desc')}
                 />
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Middleware/SOA"
-                  subtitle={'Experience on Tibco, Seagate, Oracle\'s SOA. Migrated and with training attendance on SOA development.'}
+                  title={locale.translate('middleware.title')}
+                  subtitle={locale.translate('middleware.desc')}
                 />
               </Card>
             </div>
-            <StickyTitle text="LEISURE / EXPLORER" pos={1} />
+            <StickyTitle text={locale.translate('dvd.leisure')} pos={1} />
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="React and React Native Development"
-                  subtitle={'Develop react and react native(for mobile).'}
+                  title={locale.translate('react.title')}
+                  subtitle={locale.translate('react.desc')}
                 />
                 <CardActions>
-                  <Button label="Download" href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' accent/>
+                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' accent/>
                 </CardActions>
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Functional Programming"
-                  subtitle={'Have fun with Scala/Playframework/Akka/LinQ. Developed a booking system using Play framework.'}
+                  title={locale.translate('functional.title')}
+                  subtitle={locale.translate('functional.desc')}
                 />
                 <CardActions>
-                  <Button label="Download" href='https://github.com/yoonghan/selfservice' accent/>
+                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' accent/>
                 </CardActions>
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Batch jobs"
-                  subtitle={'Simple scripts, written and implemented in real companies.'}
+                  title={locale.translate('batch.title')}
+                  subtitle={locale.translate('batch.desc')}
                 />
               </Card>
             </div>
             <div className={styles['card-section']}>
               <Card className={styles['card-split']} raised>
                 <CardTitle
-                  title="Imagery"
-                  subtitle={'Interest with photography and art development. Basics on Blender and Gimp software.'}
+                  title={locale.translate('imagery.title')}
+                  subtitle={locale.translate('imagery.desc')}
                 />
               </Card>
             </div>

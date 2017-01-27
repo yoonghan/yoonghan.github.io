@@ -11,6 +11,6 @@ const menuItems = [
 ];
 
 ReactDOM.render(
-    <Header menus={menuItems}/>,
+    <Header menus={menuItems} headerTitle={'A DEVELOPER SITE'}/>,
     document.getElementById("header")
 );
