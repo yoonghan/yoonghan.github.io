@@ -30,7 +30,7 @@ var NodeApp = function() {
   self.setupVariables = function() {
       //  Set the environment variables we need.
 
-			if(typeof self.ipaddress === "undefined") {
+			if(typeof env.NODE_IP === "undefined") {
 				testEnv=true;
 				console.warn('Executing local environment run');
 			}
@@ -55,7 +55,7 @@ var NodeApp = function() {
    *  Only test environment is not cached.
    *  @param {string} key  Key identifying content to retrieve from cache.
    */
-  self.cache_get = function(path) {
+  self.cache_get = function(path, useragent) {
 
 		var cache = self.zcache[path];
 		if(cache == undefined || testEnv) {
@@ -67,7 +67,7 @@ var NodeApp = function() {
 			try{
 				cache = fs.readFileSync(path);
 			}catch(e){
-				console.log("ERROR:-"+e)
+				console.log("ERROR: req: "+useragent+",error: "+e);
 				cache = fs.readFileSync(webroot + "error.html");
 			}
 
@@ -110,8 +110,16 @@ var NodeApp = function() {
 				res.redirect('/' + localeObj.locale + '/');
 			}
 			else {
-	    	res.send( self.cache_get(webroot + 'index.html') );
+	    	res.send( self.cache_get(webroot + 'index.html', req.headers['user-agent']));
 			}
+	  };
+
+		self.routes['/robots.txt'] = function(req, res) {
+			var path = req.path.toString(),
+				localeObj = self.getLocaleAndRedirect(path, req.headers['referer']);
+
+			res.setHeader(CONTENT_TYPE, "text/html");
+    	res.send( self.cache_get(webroot + 'robots.txt', req.headers['user-agent']));
 	  };
 
 		self.routes['/ext/**/*:path'] = function(req, res) {
@@ -146,7 +154,7 @@ var NodeApp = function() {
 					reqPath = reqPath.replace(defaultLanguageRegex, "/");
 				}
 
-				res.send(self.cache_get(reqPath + ".html"));
+				res.send(self.cache_get(reqPath + ".html", req.headers['user-agent']));
 			}
 		};
 	};
@@ -164,7 +172,7 @@ var NodeApp = function() {
 		}
 		else {
 			var fixReferer = (refererHeader || ""),
-				localeFromReferer = fixReferer.match(/:\/\/[a-z|0-9|\:]+\/([a-z]{2})\//);
+				localeFromReferer = fixReferer.match(/:\/\/[a-z|0-9|\:|\.]+\/([a-z]{2})\//);
 			if(localeFromReferer && localeFromReferer.length > 1) {
 				locale = localeFromReferer[1];
 				shouldRedirect = true;

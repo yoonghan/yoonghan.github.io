@@ -87,7 +87,10 @@ gulp.task('copy:basic', function () {
 gulp.task('copy:favicon', function () {
     return gulp.src(['./src/favicon.ico']).pipe(gulp.dest('dist/'));
 });
-gulp.task('copy', ['copy:basic', 'copy:favicon']);
+gulp.task('copy:robots', function () {
+    return gulp.src(['./src/robots.txt']).pipe(gulp.dest('dist/'));
+});
+gulp.task('copy', ['copy:basic', 'copy:favicon', 'copy:robots']);
 
 //Cache Busting for production release
 gulp.task('cachebust', function () {
