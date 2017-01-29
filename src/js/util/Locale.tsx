@@ -57,7 +57,7 @@ export class FooterLocale extends AbstractLocale {
       'tech': 'Technology',
       'contactus': 'Contact Us',
       'contactus.title': 'CONTACT US VIA EMAIL',
-      'contactus.mag': 'We will gladly reply your email once received. Please be patient with us.'
+      'contactus.msg': 'We will gladly reply your email once received. Please be patient with us.'
     },
     my: {
       'about': 'Berkenalan',
