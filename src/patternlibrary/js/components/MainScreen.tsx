@@ -74,6 +74,8 @@ export class MainScreen extends React.Component<SliderDisplayItemProps, {}> {
 }
 
 export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, TrianglifyCanvasState> {
+  private canvas:HTMLElement;
+
   constructor(props:any) {
     super(props);
     this.state = {
@@ -90,14 +92,13 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
   }
 
   updateImageFilter = () => {
-    var canvas = ReactDom.findDOMNode(this) as HTMLElement;
-    let pos = canvas.getBoundingClientRect().top * -1;
+    let pos = this.canvas.getBoundingClientRect().top * -1;
 
     if(pos > -1 && pos < 201) {
-      canvas.style.filter = 'grayscale(' + pos + '%)';
+      this.canvas.style.filter = 'grayscale(' + pos + '%)';
     }
     else if (pos < -1){
-      canvas.style.filter = null;
+      this.canvas.style.filter = null;
     }
   };
 
@@ -133,14 +134,13 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
       x_colors: 'YlGnBu',
       height: this.getOffsetHeight(),
       width: document.body.offsetWidth});
-    var canvas = ReactDom.findDOMNode(this);
-    trianglify.canvas(canvas);
+    trianglify.canvas(this.canvas);
   }
 
   render() {
     const {className} = this.props;
     return (
-      <canvas className={className}/>
+      <canvas ref={node => this.canvas=node} className={className}/>
     );
   };
 }

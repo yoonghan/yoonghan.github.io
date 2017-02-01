@@ -29,6 +29,9 @@ export interface FooterProps {
 }
 
 export class Footer extends React.Component<FooterProps, ContactOpenState> {
+
+  private node: HTMLElement;
+
   constructor(props:any) {
     super(props);
 
@@ -51,7 +54,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
   componentDidUpdate() {
     if(this.state.isContactOpen) {
       const scrollDuration = 500;
-      const self = ReactDom.findDOMNode(this) as HTMLElement;
+      const self = this.node;
       const pos = self.getBoundingClientRect().height;
 
       if(pos > 0) {
@@ -81,7 +84,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
     const {emailAddress, emailTitle, emailMsg} = this.props;
 
     return (
-      <div className={styles['footer-contact']}>
+      <div ref={node => this.node = node} className={styles['footer-contact']}>
         <h4>{emailTitle}</h4>
         <div>
           <a href={'mailto:' + emailAddress}>
@@ -114,7 +117,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
             <div>
               <LocaleSelector/>
             </div>
-            <div>
+            <div className={styles['footer-section-one-link']}>
               <a href="javascript:;" onClick={this.clickContact} className='links'>
                 <i className={'fa fa-' + this.state.contactIcon}></i>
                 {!this.state.isContactOpen && emailLabel}
