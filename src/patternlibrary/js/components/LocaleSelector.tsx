@@ -9,8 +9,8 @@ var styles = require('../../css/components/LocaleSelector');
 declare function require(path: string): any;
 
 const countries = [
-  { value: 'my', label: 'B. Melayu'},
-  { value: 'en', label: 'English' }
+  { value: 'my', label: 'Bahasa: Melayu'},
+  { value: 'en', label: 'Language: English' }
 ];
 
 /**
@@ -58,13 +58,17 @@ export class LocaleSelector extends React.Component<{}, LocaleSelectorState> {
   render() {
     return (
       <div className={styles['localeselector']}>
-        <Dropdown
-          auto
-          onChange={this.handleChange}
-          source={countries}
-          value={this.state.lang}
-          className={styles['localeselector-dropdown']}
-        />
+        <div className={styles['localeselector-table']}>
+          <div className={styles['localeselector-cell']}>
+            <Dropdown
+              auto
+              onChange={this.handleChange}
+              source={countries}
+              value={this.state.lang}
+              className={styles['localeselector-dropdown']}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -114,7 +114,7 @@ export class Gallery extends React.Component<GalleryProps, GalleryState> {
 }
 
 class Overlay extends React.Component<OverlayProps, {}> {
-
+  private node:HTMLElement;
   static leaveTime = 100;
 
   handleClickHandler = () => {
@@ -126,12 +126,12 @@ class Overlay extends React.Component<OverlayProps, {}> {
   };
 
   componentDidEnter() {
-    const el = ReactDom.findDOMNode(this);
+    const el = this.node;
     el.classList.add(styles['overlay-enter-active']);
   };
 
   componentWillLeave (callback:any) {
-    const el = ReactDom.findDOMNode(this);
+    const el = this.node;
     el.classList.add(styles['overlay-leave-active']);
     setTimeout(function(){callback();}, Overlay.leaveTime);
   };
@@ -139,7 +139,7 @@ class Overlay extends React.Component<OverlayProps, {}> {
   render() {
     const {animLeft, animTop, items, selectedIdx} = this.props;
     return (
-      <div className={styles.overlay}>
+      <div ref={node => this.node = node} className={styles.overlay}>
         <div className={styles['overlay-background']} onClick={this.handleClickHandler}></div>
         <OverlayCard animLeft={animLeft} animTop={animTop} clickHandler={this.handleClickHandler} items={items} selectedIdx={selectedIdx}/>
       </div>
@@ -148,12 +148,14 @@ class Overlay extends React.Component<OverlayProps, {}> {
 }
 
 class OverlayCard extends React.Component<OverlayCardProps, {}> {
+  private node:HTMLElement;
+
   handleClickHandler = () => {
     this.props.clickHandler();
   };
 
   componentDidMount () {
-    const el = ReactDom.findDOMNode(this) as HTMLElement;
+    const el = this.node;
     const heightAllow = el.getBoundingClientRect().height + 10;
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
@@ -202,7 +204,7 @@ class OverlayCard extends React.Component<OverlayCardProps, {}> {
 
     const animateStartPos = (animLeft && animTop) ? {top: animTop, left:animLeft} : {};
     return (
-      <div className={styles.overlaycard} style={animateStartPos}>
+      <div ref={node => this.node=node} className={styles.overlaycard} style={animateStartPos}>
         <div className={styles['overlaycard-bg']}>
           <OverlayIndicator total={items.length} selection={selectedIdx}/>
         </div>
@@ -263,12 +265,13 @@ class OverlayIndicator extends React.Component<OverlayIndicatorProps, {}> {
 }
 
 class OverlayCardImageAnimated extends React.Component<OverlayCardAnimatedProps, {}> {
-  static animation="jello";
+  private animation = "jello";
+  private node:HTMLElement;
 
   componentDidMount () {
-    const el = ReactDom.findDOMNode(this);
+    const el = this.node;
     setTimeout(function(){
-      el.classList.add(OverlayCardImageAnimated.animation);
+      el.classList.add(this.animation);
     },
     Overlay.leaveTime);
   }
@@ -277,14 +280,16 @@ class OverlayCardImageAnimated extends React.Component<OverlayCardAnimatedProps,
     const {imgSrc} = this.props;
 
     return (
-      <img src={imgSrc} className="animated"/>
+      <img src={imgSrc} className="animated" ref={node => this.node=node}/>
     )
   }
 }
 
 class Moziac extends React.Component<MoziacProps, {}> {
+  private node:HTMLElement;
+  
   handleClickHandler = () => {
-    const el = ReactDom.findDOMNode(this);
+    const el = this.node;
     const posTop = el.getBoundingClientRect().top;
     const posLeft = el.getBoundingClientRect().left;
     this.props.clickHandler(posTop, posLeft, this.props.idx);
@@ -293,7 +298,7 @@ class Moziac extends React.Component<MoziacProps, {}> {
   render() {
     const {title, imgSrc} = this.props;
     return (
-      <div className={styles.moziac} onClick={this.handleClickHandler}>
+      <div ref={node => this.node=node} className={styles.moziac} onClick={this.handleClickHandler}>
         <img className={styles['moziac-image']} src={imgSrc}></img>
         <div className={styles['moziac-title']}>{title}</div>
       </div>

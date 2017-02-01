@@ -32,10 +32,17 @@
         flex: 0 1 auto;
         height: inherit;
       }
-      div {
+      div:last-child {
         flex: 1 1 auto;
         text-align: right;
-        padding-left: 10px;
+      }
+
+      .footer-section-one-link {
+        @include breakpoint(max-width $breakpoint-phone) {
+          span {
+            display: none;
+          }
+        }
       }
     }
 

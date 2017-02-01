@@ -47,7 +47,7 @@ $color-overlay-text-foreground: #999;
 
 $color-checkbox: #2CA05A;
 
-
+$color-dropdown-background: #EDEDED;
 
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;
