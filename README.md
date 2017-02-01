@@ -26,6 +26,6 @@ typings install dt~react-slick --global --save
 1. ~~Caching - To append versioning release to js/css cached files ?v=1.0.~~
 1.1 To rewrite cache that is able to append the same timestamp for production built!
 1.2 Disable caching for Express Node for development
-2. Localization - Target is to generate different files for different languages, rathen than dynamic loading and rely on nodejs to locate the correct files.
+2. ~Localization - Target is to generate different files for different languages, rathen than dynamic loading and rely on nodejs to locate the correct files.~
 3. Minimization - Javascript minification.
-4. Bundling - Bundling javascript into 1 common file? To be considered.
+4. ~Bundling - Bundling javascript into 1 common file? To be considered.~
