@@ -4,8 +4,6 @@ html(lang="en")
     include ../incl/meta.incl
     title #{$i18n.about.title}
     meta(name="description" content="Profiles about the developers in Walcron Coorperation.")
-    link(rel="stylesheet" type="text/css" href="/ext/css/about.css")
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
   body
     div(id="aboutHeader")
     div(class="about-layer")
@@ -45,8 +43,23 @@ html(lang="en")
         div(class="content")
           div(class="quotes_container")
             h1 #{$i18n.about.interest.title}
-            h3 #{$i18n.about.interest.detail} 
+            h3 #{$i18n.about.interest.detail}
     div(id="aboutFooter")
+    noscript(id="deferred-styles")
+      link(rel="stylesheet" type="text/css" href="/ext/css/about.css")
+      link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+    script.
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
     script(src='/ext/js/lib/react-with-addons.min.js')
     script(src='/ext/js/lib/react-dom.min.js')
     script(src='/ext/js/about.bundle.js')
