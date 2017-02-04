@@ -9,8 +9,8 @@ var styles = require('../../css/components/LocaleSelector');
 declare function require(path: string): any;
 
 const countries = [
-  { value: 'my', label: 'Bahasa: Melayu'},
-  { value: 'en', label: 'Language: English' }
+  { value: 'my', label: 'Bahasa Melayu'},
+  { value: 'en', label: 'English Language' }
 ];
 
 /**

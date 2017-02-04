@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -39,7 +40,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin(__dirname + './../ext/css/[name].css')
+      new webpack.optimize.UglifyJsPlugin(),
+      new ExtractTextPlugin(__dirname + './../ext/css/[name].css')
     ],
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
