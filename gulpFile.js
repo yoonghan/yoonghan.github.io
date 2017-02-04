@@ -61,7 +61,9 @@ var pug_func =  function(loc) {
 };
 gulp.task('pug:html', pug_func('html'));
 gulp.task('pug:patternlibrary', pug_func('patternlibrary'));
-gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
+gulp.task('pug', function(callback) {
+  runSequence(['pug:html', 'pug:patternlibrary'], callback)
+});
 
 /*
  *
@@ -94,7 +96,7 @@ gulp.task('copy', ['copy:basic', 'copy:favicon', 'copy:robots']);
 
 //Cache Busting for production release
 gulp.task('cachebust', function () {
-  return gulp.src('./dist/*.html')
+  return gulp.src(['./dist/!(patternlibrary)/*.html','./dist/*.html'])
     .pipe(cachebust({
       type: 'timestamp'
     }))
