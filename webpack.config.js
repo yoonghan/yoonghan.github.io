@@ -40,7 +40,11 @@ module.exports = {
         ]
     },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
       new ExtractTextPlugin(__dirname + './../ext/css/[name].css')
     ],
     // When importing a module whose path matches one of the following, just
