@@ -1,7 +1,6 @@
 `use strict`
 
 import * as React from "react";
-import * as ReactDom from "react-dom";
 import * as Slider from "react-slick";
 import * as Trianglify from "trianglify";
 

@@ -1,7 +1,6 @@
 `use strict`
 
 import * as React from "react";
-import * as ReactDom from "react-dom";
 import { LocaleSelector } from "./LocaleSelector";
 import * as ReactCSSTransitionGroup from "react-addons-css-transition-group";
 

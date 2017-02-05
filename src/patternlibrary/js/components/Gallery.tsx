@@ -5,7 +5,6 @@
 **/
 
 import * as React from "react";
-import * as ReactDom from "react-dom";
 import * as ReactTransitionGroup from "react-addons-transition-group";
 
 import {Button} from 'react-toolbox/lib/button';
@@ -287,7 +286,7 @@ class OverlayCardImageAnimated extends React.Component<OverlayCardAnimatedProps,
 
 class Moziac extends React.Component<MoziacProps, {}> {
   private node:HTMLElement;
-  
+
   handleClickHandler = () => {
     const el = this.node;
     const posTop = el.getBoundingClientRect().top;
