@@ -31,3 +31,5 @@ typings install dt~react-slick --global --save
 ~3.1 Use webpack for minification~
 4. ~Bundling - Bundling javascript into 1 common file? To be considered.~
 5. Migrate webpack to webpack 2.0
+6. Implement HTTPs
+7. Implements sharing
