@@ -134,7 +134,6 @@ var NodeApp = function() {
       var header = {};
       header[CONTENT_TYPE] = mime(reqPath);
       header[CACHE_CONTROL] = CACHE_INFO;
-      console.log("set cache");
       res.set(header);
       res.send(resource);
     };
@@ -145,6 +144,7 @@ var NodeApp = function() {
     };
 
     //Created to handle iOS/Android app links
+    //For android test with https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=http://www.walcron.com&relation=delegate_permission/common.handle_all_urls
     const wellknownRoute = function(req, res, path) {
       res.setHeader(CONTENT_TYPE, "application/json");
       self.sendContentWithCacheHandler(path, req.headers[USER_AGENT], res);
