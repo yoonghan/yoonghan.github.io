@@ -14,8 +14,6 @@ var NodeApp = function() {
   // Default language
     DEFAULT_LANGUAGE = "en",
     DEFAULT_LANGUAGE_REGEX = new RegExp("\\/"+ DEFAULT_LANGUAGE +"\\/|\\/"+ DEFAULT_LANGUAGE +"$"),
-  // Caching
-    CACHE_INFO    = 'no-transform,public,max-age=86400,s-maxage=86400',
   //  Scope.
     self = this;
   //Define test environment
@@ -32,7 +30,7 @@ var NodeApp = function() {
   self.setupVariables = function() {
       //  Set the environment variables we need.
       if(typeof env.NODE_IP === "undefined") {
-        testEnv=false;
+        testEnv = false;
         console.warn('Executing local environment run');
       }
       self.ipaddress = env.NODE_IP || 'localhost';
@@ -113,6 +111,7 @@ var NodeApp = function() {
   self.createRoutes = function() {
     const CONTENT_TYPE='Content-Type',
       CACHE_CONTROL='Cache-Control',
+      CACHE_INFO    = 'no-transform,public,max-age=86400,s-maxage=86400',
       ALLOW_ACCESS_ORIGIN = 'Access-Control-Allow-Origin',
       USER_AGENT = 'user-agent',
       REFERER = 'referer';
@@ -135,14 +134,20 @@ var NodeApp = function() {
       var header = {};
       header[CONTENT_TYPE] = mime(reqPath);
       header[CACHE_CONTROL] = CACHE_INFO;
+      console.log("set cache");
       res.set(header);
       res.send(resource);
     };
 
     const robotsRoute = function(req, res) {
-      var path = req.path.toString();
       res.setHeader(CONTENT_TYPE, "text/plain");
       self.sendContentWithCacheHandler('robots.txt', req.headers[USER_AGENT], res);
+    };
+
+    //Created to handle iOS/Android app links
+    const wellknownRoute = function(req, res, path) {
+      res.setHeader(CONTENT_TYPE, "application/json");
+      self.sendContentWithCacheHandler(path, req.headers[USER_AGENT], res);
     };
 
     const htmlRoute = function(req, res, path) {
@@ -172,6 +177,9 @@ var NodeApp = function() {
     };
     routes['/robots.txt'] = function(req, res) {
       robotsRoute(req, res);
+    };
+    routes['/.well-known/*:path'] = function(req, res) {
+      wellknownRoute(req, res, req.path.toString());
     };
     routes['/ext/**/*:path'] = function(req, res) {
       libraryRoute(req, res, req.path.toString());

@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.walcron.hanleewan.weddingplanner",
+    "sha256_cert_fingerprints":
+    ["FF:EF:B2:D5:D0:11:66:4D:CC:AA:5C:EF:5A:50:B7:A3:75:99:D4:2C:74:F5:CA:2D:DA:4B:94:40:71:72:94:4C"]
+  }
+}]
