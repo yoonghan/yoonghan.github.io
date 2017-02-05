@@ -92,7 +92,10 @@ gulp.task('copy:favicon', function () {
 gulp.task('copy:robots', function () {
     return gulp.src(['./src/robots.txt']).pipe(gulp.dest('dist/'));
 });
-gulp.task('copy', ['copy:basic', 'copy:favicon', 'copy:robots']);
+gulp.task('copy:wellknowninfo', function () {
+    return gulp.src(['./src/.well-known/*']).pipe(gulp.dest('dist/.well-known/'));
+});
+gulp.task('copy', ['copy:basic', 'copy:favicon', 'copy:robots', 'copy:wellknowninfo']);
 
 //Cache Busting for production release
 gulp.task('cachebust', function () {
