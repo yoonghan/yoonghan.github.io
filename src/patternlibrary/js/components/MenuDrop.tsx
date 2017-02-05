@@ -22,10 +22,17 @@ interface MenuDropState {
   menuIcon: string;
 }
 
+interface MobileMenuProps {
+  listing: Array<MenuDropListing>;
+  closeHandler: ()=>void;
+  ignorableRefNode: HTMLElement;
+}
+
 /**
  * Created only for menu listing.
  */
 export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
+  private clickRef:HTMLElement;
 
   constructor(props:any) {
     super(props);
@@ -61,6 +68,57 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
     });
   }
 
+  render() {
+    const listOfMenus = this.createMenu();
+
+    return (
+      <div className={styles.mnudrop}>
+        <div className={styles['mnudrop-lst']}>
+          {listOfMenus}
+          <a className={'links ' + styles['mnudrop-lst-small']}
+          onClick={this.handleMenuClick} ref={node => this.clickRef = node}>
+            <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>
+          </a>
+        </div>
+        <ReactCSSTransitionGroup
+          transitionName={ {
+            enter: styles['mnudropmobile-enter'],
+            enterActive: styles['mnudropmobile-enter-active'],
+            leave: styles['mnudropmobile-leave'],
+            leaveActive: styles['mnudropmobile-leave-active']
+          } }
+          transitionEnterTimeout = {200}
+          transitionLeaveTimeout = {200}>
+          {this.state.isMenuOpened && <MobileMenu listing={this.props.listing} closeHandler={this.handleMenuClick} ignorableRefNode={this.clickRef}/>}
+        </ReactCSSTransitionGroup>
+      </div>
+    );
+  }
+};
+
+class MobileMenu extends React.Component<MobileMenuProps, {}> {
+  private node:HTMLElement;
+
+  constructor(props:any) {
+    super(props);
+  }
+
+  handleClick = (e:Event) => {
+    const target:HTMLElement = e.target as HTMLElement,
+      {ignorableRefNode, closeHandler} = this.props;
+    if(!this.node.contains(target) && !ignorableRefNode.contains(target)) {
+      closeHandler();
+    }
+  }
+
+  componentWillMount = () => {
+    document.addEventListener('click', this.handleClick, false);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('click', this.handleClick, false);
+  }
+
   createMobileListing = ():JSX.Element[] => {
     const mnuListing = this.props.listing;
 
@@ -77,42 +135,14 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
     });
   }
 
-  createMobileMenu = ():JSX.Element => {
+  render() {
     const listOfMobMenus = this.createMobileListing();
     return (
-        <div className={styles['mnudrop-mob']}>
-          <ul>
-            {listOfMobMenus}
-          </ul>
-        </div>
-    );
-  }
-
-  render() {
-    const listOfMenus = this.createMenu();
-    const listOfMobMenus = this.createMobileMenu();
-
-    return (
-      <div className={styles.mnudrop}>
-        <div className={styles['mnudrop-lst']}>
-          {listOfMenus}
-          <a className={'links ' + styles['mnudrop-lst-small']}
-          onClick={this.handleMenuClick}>
-            <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>
-          </a>
-        </div>
-        <ReactCSSTransitionGroup
-          transitionName={ {
-            enter: styles['mnudropmobile-enter'],
-            enterActive: styles['mnudropmobile-enter-active'],
-            leave: styles['mnudropmobile-leave'],
-            leaveActive: styles['mnudropmobile-leave-active']
-          } }
-          transitionEnterTimeout = {200}
-          transitionLeaveTimeout = {200}>
-          {this.state.isMenuOpened && listOfMobMenus}
-        </ReactCSSTransitionGroup>
+      <div className={styles['mnudrop-mob']} ref={node => this.node = node}>
+        <ul>
+          {listOfMobMenus}
+        </ul>
       </div>
     );
   }
-}
+};
