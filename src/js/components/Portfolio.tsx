@@ -5,7 +5,7 @@ import { PorfolioLocale } from '../util/Locale';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { MeTitle } from '../../patternlibrary/js/components/MeTitle';
-import {Button} from 'react-toolbox/lib/button';
+import { Button } from 'react-toolbox/lib/button';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 
@@ -87,7 +87,7 @@ export class Portfolio extends React.Component<{}, {}> {
                   subtitle={locale.translate('react.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' accent/>
+                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' primary/>
                 </CardActions>
               </Card>
             </div>
@@ -98,7 +98,7 @@ export class Portfolio extends React.Component<{}, {}> {
                   subtitle={locale.translate('functional.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' accent/>
+                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' primary/>
                 </CardActions>
               </Card>
             </div>

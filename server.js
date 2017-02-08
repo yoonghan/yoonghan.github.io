@@ -30,7 +30,7 @@ var NodeApp = function() {
   self.setupVariables = function() {
       //  Set the environment variables we need.
       if(typeof env.NODE_IP === "undefined") {
-        testEnv = false;
+        testEnv = true;
         console.warn('Executing local environment run');
       }
       self.ipaddress = env.NODE_IP || 'localhost';
