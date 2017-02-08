@@ -49,17 +49,6 @@
 
     a {
       &.links {
-        color: $color-foreground;
-
-        &:hover {
-          color: $color-links-hover-white-background;
-          text-decoration: none;
-        }
-
-        &:active {
-          color: $color-links-active-white-background;
-        }
-
         i.fa {
           padding-right: 10px;
         }

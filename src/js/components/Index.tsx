@@ -6,7 +6,7 @@ import { MainScreen } from '../../patternlibrary/js/components/MainScreen';
 import { Post } from '../../patternlibrary/js/components/Post';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { Button} from 'react-toolbox/lib/button';
+import { Button } from 'react-toolbox/lib/button';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 
@@ -66,7 +66,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.1.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' accent/>
+                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' primary/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
@@ -111,7 +111,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.6.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target="_blank" accent/>
+                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target="_blank" primary/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
@@ -148,7 +148,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.9.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' accent/>
+                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' primary/>
                 </CardActions>
               </Card>
             </div>
