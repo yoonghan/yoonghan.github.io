@@ -94,6 +94,7 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     const acroynm = text.charAt(0),
           full_acroynm = text.substring(1);
 
+          console.log(document.body.offsetWidth);
     return (
       <div ref={this.mountScroll} onClick={this.handleTitleClick}>
         <div className={styles.stickytitle}>

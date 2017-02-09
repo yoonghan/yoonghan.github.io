@@ -9,7 +9,7 @@ import { Button } from 'react-toolbox/lib/button';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 
-var styles = require('../../css/components/index');
+var styles = require('../../css/components/portfolio');
 declare function require(path: string): any;
 
 const locale = new PorfolioLocale();
@@ -34,7 +34,7 @@ const GithubIcon = () => (
 export class Portfolio extends React.Component<{}, {}> {
     render() {
         return (
-          <div>
+          <div className={styles['reacttoolbox']}>
             <Header/>
             <MeTitle {...metitleInfo}/>
             <div className={styles['divider']}></div>
@@ -87,7 +87,7 @@ export class Portfolio extends React.Component<{}, {}> {
                   subtitle={locale.translate('react.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' primary/>
+                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} primary/>
                 </CardActions>
               </Card>
             </div>
@@ -98,7 +98,7 @@ export class Portfolio extends React.Component<{}, {}> {
                   subtitle={locale.translate('functional.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' primary/>
+                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' theme={styles} primary/>
                 </CardActions>
               </Card>
             </div>

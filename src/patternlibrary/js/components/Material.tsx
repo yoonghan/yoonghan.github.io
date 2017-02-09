@@ -24,7 +24,7 @@ export class Material extends React.Component<{}, {}> {
 
   render() {
     return (
-    <div className={styles['material']}>
+    <div className={styles['material'] + ' ' + styles['reacttoolbox']}>
       <Card className={styles['material-split']}>
         <CardMedia
           aspectRatio="wide"
@@ -36,7 +36,7 @@ export class Material extends React.Component<{}, {}> {
           ' Will be dedicating this year 2017 in research on deep learning using Scala programming language.'}
         />
         <CardActions>
-          <Button label="Read More" href='http://blog.walcron.com' accent/>
+          <Button label="Read More" href='http://blog.walcron.com' theme={styles} primary/>
         </CardActions>
       </Card>
       <Card className={styles['material-split']}>

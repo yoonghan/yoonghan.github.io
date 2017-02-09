@@ -57,11 +57,12 @@ export class LocaleSelector extends React.Component<{}, LocaleSelectorState> {
 
   render() {
     return (
-      <div className={styles['localeselector']}>
+      <div className={styles['localeselector'] + ' ' + styles['reacttoolbox']}>
         <div className={styles['localeselector-table']}>
           <div className={styles['localeselector-cell']}>
             <Dropdown
               auto
+              theme={styles}
               onChange={this.handleChange}
               source={countries}
               value={this.state.lang}

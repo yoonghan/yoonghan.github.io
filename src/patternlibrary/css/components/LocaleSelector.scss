@@ -1,8 +1,10 @@
 @import "../lib/colors";
 @import "../lib/fonts";
 @import "../lib/breakpoints";
+@import "../vendor/reacttoolbox";
 
 .localeselector {
+
   .localeselector-table {
     display: table;
     text-align: left;

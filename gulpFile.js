@@ -109,8 +109,7 @@ gulp.task('cachebust', function () {
 //Task connection
 gulp.task('connect', function() {
   connect.server({
-    root: 'dist/',
-    livereload: true
+    root: 'dist/'
   });
 });
 gulp.task('connect-server', function() {

@@ -4,27 +4,12 @@ html(lang="en")
     title #{$i18n.index.title}
     meta(name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.")
     include ../incl/meta.incl
-    include ../incl/link.incl
+    link(rel="stylesheet" type="text/css" href="/ext/css/index.css")
+    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+    link(rel="stylesheet" type="text/css" href="/ext/css/lib/slick.min.css" )
+    link(rel="stylesheet" type="text/css" href="/ext/css/lib/slick-theme.min.css" )
   body
     div(id='index')
-    noscript(id="deferred-styles")
-      link(rel="stylesheet" type="text/css" href="/ext/css/index.css")
-      link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-      link(rel="stylesheet" type="text/css" href="/ext/css/lib/slick.min.css" )
-      link(rel="stylesheet" type="text/css" href="/ext/css/lib/slick-theme.min.css" )
-    script.
-      var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement)
-        addStylesNode.parentElement.removeChild(addStylesNode);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-      else window.addEventListener('load', loadDeferredStyles);
-
     script(src='/ext/js/lib/react-with-addons.min.js')
     script(src='/ext/js/lib/react-dom.min.js')
     script(src='/ext/js/lib/trianglify.min.js')
