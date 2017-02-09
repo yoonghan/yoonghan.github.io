@@ -124,8 +124,8 @@ export class DevelopLocale extends AbstractLocale {
     my: {
       'title': 'Pembinaan Laman',
       'intro': 'Pengenalan',
-      'desc.1': 'Laman web Walcron Coorperation mempunyai untuk menjadi laman yang kaya dengan ilmu, berdasarkan front-end framework dan library. Matlamat utama kami adalah untuk mencapai satu perkembangan yang tidak berkaitan dengan kerja kami.',
-      'desc.2': 'Laman web ini telah dikitar sebanyak 4 kali dengan penggunaan framework atau library yang berbeza. UX juga melalui pelbagai perubahan. Setiap kali, laman ini di tulis semula dari permulaan, demi mengelakkan kebergantungan dari projek terdahulu; dengan pengecualian site "Kenalan". Setiap iterasi baru yang dibuat, terdapatnya sifat-sifat dan ciri-ciri baik yang diwarisi dari iterasi sebelumnya.',
+      'desc.1': 'Laman web Walcron Coorperation dicipta sebagai sumber yang kaya dengan informasi, berdasarkan front-end framework dan library. Matlamat utama kami adalah untuk mencapai satu perkembangan yang tidak berkaitan dengan kerja kami.',
+      'desc.2': 'Laman web ini telah dikitar sebanyak 4 kali dengan penggunaan framework atau library yang berbeza. UX(pengalaman pengguna) juga melalui pelbagai perubahan. Setiap kali, laman ini di tulis semula dari permulaan, demi mengelakkan kebergantungan dari projek terdahulu; dengan pengecualian site "Kenalan". Setiap iterasi baru yang dibuat, terdapatnya sifat-sifat dan ciri-ciri baik yang diwarisi dari iterasi sebelumnya.',
       'first': 'Permulaan',
       'first.text': 'Sebagai permulaan, laman web ini dikodkan dengan penggunaan vanillaJS. Laman ini telah dialihkan dari Tomcat ke Wildfly, JBoss, kemudiannya ke vert.x pelayan web. Ciptaan akhir menyebabkan kesedaran mengenai kepentingan perkhidmantan tanpa I/O-block, yang menandakan untuk kitaran kedua.',
       'second': 'Iterasi Kedua',
@@ -182,20 +182,20 @@ export class IndexLocale extends AbstractLocale {
       'label.blog': 'Bragging Blog',
       'label.read': 'Read More',
       'post.1.title': 'Motives',
-      'post.1.text': 'We are exploring latest technologies that can be implemented into any company. What is more to that, is that we are exploring the missing capabilities in most developers - <strong>a good full-stack developer.</strong>',
-      'post.2.title': 'Free to surf',
-      'post.2.text': 'We do not track you. We have even go thru extra lengths to translate this website without tracking anyone.',
+      'post.1.text': 'We are keen to explore the latest technologies that can be reused in our daily programming life. What is more to that, is that, we are exploring the missing developer link - <strong>a good full-stack developer.</strong>',
+      'post.2.title': 'Browse without restrictions',
+      'post.2.text': 'We do not track you. We have even go thru an extra procedure to translate this website without tracking YOU!',
       'post.3.title': 'Who we are',
-      'post.3.text': 'Below explains throughly who we are and what we are exploring.',
+      'post.3.text': 'We are explorers and programmers. Below may leave you some insights on who we are:',
       'card.1.title': 'Deep Learning',
-      'card.1.desc': 'Won a hackaton, the team created an image scanning to identify a vehicle model using a mobile. We will be dedicating year 2017 to research deep learning using Scala programming language.',
+      'card.1.desc': 'Won a hackaton, our team created an image scanning to identify a vehicle model using a mobile. We will be dedicating the year 2017 into deep learning research using Scala programming language.',
       'card.2.title': 'Parallel Processings',
       'card.2.desc': 'Han had been focusing threading, but have not get a good grip on it yet. He had been programming in Scala, RxJS, Akka.'
             + ' Our ultimate goal now is having Apache Sparks with Deep Learning, working.',
       'card.3.title': 'Progressive App',
       'card.3.desc': 'An available offline webpage that still works offline without being online with precache! We need one seriously!',
       'card.4.title': 'UIUX',
-      'card.4.desc': 'Studying on user interface and user experience. Ever notice that this page is parallax ?!',
+      'card.4.desc': 'Studying on user interface and user experience. This site will have modification over time, based on the book "Don\'t Make Me Think". Have you notice that this page is parallaxed ?!',
       'card.5.title': 'React and Javascript',
       'card.5.desc': 'This website has went through 4 interations, and we are now using the ReactJS technology.' +
           ' Previously, we had been writing this in AngularJS, AngularJS2 and pure JS; but today, we\'re prefering ReactJS.' +
@@ -203,7 +203,7 @@ export class IndexLocale extends AbstractLocale {
       'card.6.title': 'React Native',
       'card.6.desc': 'Coding react native was an extremely wonderful experience as we learnt Android, iOS and Javascripts at the same time. ' +
           'The only problem we had is to override the main backdrop color. On our job basis, Han still writing native Android and iOS codes.' +
-          'Advice to anyone writing React Native/Nativescript: it is very important to learn native language to harness it\'s potential.',
+          'An advice to anyone writing React Native/Nativescript: it is very important to learn native language to harness it\'s true potential.',
       'card.7.title': 'Scala, C# and Java',
       'card.7.desc': 'Han and Gladys have different programming preferences. Han likes opensources while Gladys likes Microsoft products.',
       'card.8.title': 'Deutsch from Malaysia',
@@ -214,26 +214,26 @@ export class IndexLocale extends AbstractLocale {
     },
     my: {
       'title.research': 'PENYELIDIKAN',
-      'title.development': 'PEMBINAAN',
+      'title.development': 'BINAAN LAMAN',
       'title.leisure': 'MASA LAPANG',
       'label.download': 'Muat Turun',
       'label.blog': 'Bragging Blog',
       'label.read': 'Ketahui',
       'post.1.title': 'Motif',
-      'post.1.text': 'Kami sedang meneroka teknologi yang boleh dilaksanakan di sebarang kompeni. Di samping it, kami mahu mengkaji keupayaan yang penting untuk setiap developer - <strong>full-stack developer yang baik.</strong>',
-      'post.2.title': 'Layar dengan aman',
-      'post.2.text': 'Kami tidak menjejaki anda. Kami menterjemahkan laman web ini tanpa session/cookie pengesanan.',
+      'post.1.text': 'Kami sedang meneroka teknologi baru yang boleh diguna. Di samping it, kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>',
+      'post.2.title': 'Layar tanpa sekatan',
+      'post.2.text': 'Kami tidak menjejaki anda. Laman web ini tidak menggunakan session mahupun cookie.',
       'post.3.title': 'Siapa kami',
-      'post.3.text': 'Dibawah menjelaskan kami dan apa yand sedang dikaji kami:',
+      'post.3.text': 'Kami peneroka dan juga programmer. Seksyen dibawah menjelaskan apa yang gemar dikaji kami:',
       'card.1.title': 'Deep Learning',
-      'card.1.desc': 'Memenangi hackaton, kumpulan kami mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning dalam tahun 2017.',
+      'card.1.desc': 'Memenangi hackaton; kumpulan kami mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning dalam tahun 2017 ini.',
       'card.2.title': 'Proses dalam masa yang sama',
-      'card.2.desc': 'Fokus Han adalah membina proses dengan multi-threading. Code dia difokus mengunakan Scala, RxJS, Akka.'
+      'card.2.desc': 'Fokus Han adalah membina proses dengan multi-threading. Kod dia difokus mengunakan Scala, RxJS, Akka.'
             + ' Matlamat utama kami sekarang adalah membolehkan Apache Sparks berjalan dengan Deep Learning.',
       'card.3.title': 'Aplikasi Progressive',
       'card.3.desc': 'Kami memerlukan sistem yang dapat berjalan tanpa internet, laman ini akan dicipta berdasarkan konsep ini!',
       'card.4.title': 'UIUX',
-      'card.4.desc': 'Kami sedang mengaji penggunaan dan pengalaman design untuk penguna. Sedarkah anda, laman ini mengandungi parallaxing ?!',
+      'card.4.desc': 'Kami sedang mengaji penggunaan dan pengalaman design untuk penguna. Laman ini akan diubah dari masa-ke-semasa mengikuti buku "Don\'t Make Me Think". Sedarkah anda, laman ini mengandungi parallaxing ?!',
       'card.5.title': 'React dan Javascript',
       'card.5.desc': 'Laman ini telah mengalami 4 interasi, kini kami mengkodkan dengan penggunaan ReactJS.' +
           ' Pernah kami kod dengan AngularJS, AngularJS2 dan JS asal; tetapi kami sekarang gemar dengan ReactJS.' +
@@ -247,7 +247,7 @@ export class IndexLocale extends AbstractLocale {
       'card.8.title': 'Deutsch dari Malaysia',
       'card.8.desc': 'Wir lernen gemainsam am Wochenende Deutsch. Wir lieben Deutsch.',
       'card.9.title': 'Jurnal Gladys\'s',
-      'card.9.desc': 'Blog gladys, malangnya kebanyakan di kalangan kami lebih gemar menggunakan facebook daripada blog.'
+      'card.9.desc': 'Blog Gladys, tentang and daripadanya.'
     }
   };
 
@@ -286,13 +286,13 @@ export class PorfolioLocale extends AbstractLocale {
     my: {
       'title': 'Portfolio Kami',
       'subtitle': 'Percubaan',
-      'desc': 'Kami masih dalam proses membuat nama dan dikenali, akan tetapi ia tetap penting untuk belajar dan membuat laman ini terkenal dengan nama Walcron Cooperation.' +
+      'desc': 'Kami masih dalam perjejahan menbina status, akan tetapi ia tetap penting untuk terus belajar dan membuat laman ini terkenal dengan nama Walcron Cooperation.' +
         ' Bahan di bawah adalah portfolio Yoong Han dan Lee Wan.',
       'btnlabel': 'Muat Turun',
-      'dvd.workspace': 'WORKSPACE',
+      'dvd.workspace': 'PENGALAMAN',
       'dvd.leisure': 'MINAT / MASA LAPANG',
       'java.desc': 'Berpengalaman dengan Java lebih daripada 10 tahun. Mempunyai sijil sebagai Java developer.',
-      'csharp.desc': 'Berpengalaman dengan C# dalam masa 3 tahun dan mengenali MVC 4. Mempunyai sijil sebagai Microsoft Certified Professional.',
+      'csharp.desc': 'Berpengalaman dengan C# lebin dari 3 tahun dan mengenali MVC 4. Mempunyai sijil sebagai Microsoft Certified Professional.',
       'mobile.title': 'WML, Android dan iOS developer',
       'mobile.desc': 'Berpengalaman dalam telefon bimbit termasuk penggunaan React Native. Mempunyai sijil Android dan iOS(Swift 4).',
       'web.title': 'Pembinaan Laman Website',
@@ -341,7 +341,7 @@ export class TechnologyLocale extends AbstractLocale {
 			'gulp.key': 'Easy, Fast',
 			'gulp.desc': 'Still using gulp in parallel with the use of Webpack as there are still functionalities for required compilers, i.e. Pug.',
 			'pug.key': 'Easy, Readability',
-			'pug.desc': 'We loved Jade which is now renamed as Pug. The usage has been trimmed down to minimal due to JSX usage. Nevertheless, it\'s still fun to write in Pug.',
+			'pug.desc': 'We loved Jade that has now been renamed as Pug. The usage has been trimmed down to minimal due to JSX usage. Nevertheless, it\'s still fun to write in Pug.',
 			'animate.key': 'Lightweight, Easy',
 			'animate.desc': 'Gone are the days where CSS animations are slower than Javascript. The best thing with this library is that it is pure CSS without the hassle of javascript plugin.',
 			'reactslick.key': 'Stable, Fast, Animated',
