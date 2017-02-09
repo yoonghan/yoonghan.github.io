@@ -30,7 +30,7 @@ $padding-pull: 0 10px;
   }
 
   .stickytitle-anim {
-    @include bgcolor-gradient();
+    background: $color-stickytitle-anim-background;
     color: $color-stickytitle-anim-foreground;
     box-shadow: $shadow-depth $color-shadow;
     position: absolute;

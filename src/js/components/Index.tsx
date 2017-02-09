@@ -49,7 +49,7 @@ const GithubIcon = () => (
 export class Index extends React.Component<{}, {}> {
     render() {
         return (
-          <div>
+          <div className={styles['reacttoolbox']}>
             <Header/>
             <MainScreen itemArray={tech}/>
             <Post postItems={posts}/>
@@ -66,7 +66,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.1.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' primary/>
+                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' theme={styles} primary/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
@@ -100,7 +100,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.5.desc')}
                 />
                 <CardActions>
-                  <Button href='https://github.com/yoonghan' target="_blank" primary>
+                  <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
                     <GithubIcon /> Github
                   </Button>
                 </CardActions>
@@ -111,7 +111,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.6.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target="_blank" primary/>
+                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} target="_blank" primary/>
                 </CardActions>
               </Card>
               <Card className={styles['card-split']} raised>
@@ -120,7 +120,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.7.desc')}
                 />
                 <CardActions>
-                  <Button href='https://github.com/yoonghan' target="_blank" primary>
+                  <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
                     <GithubIcon /> Github
                   </Button>
                 </CardActions>
@@ -148,7 +148,7 @@ export class Index extends React.Component<{}, {}> {
                   subtitle={locale.translate('card.9.desc')}
                 />
                 <CardActions>
-                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' primary/>
+                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' theme={styles} primary/>
                 </CardActions>
               </Card>
             </div>
