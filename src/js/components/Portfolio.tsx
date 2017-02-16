@@ -9,7 +9,7 @@ import { Button } from 'react-toolbox/lib/button';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 
-var styles = require('../../css/components/portfolio');
+var styles = require('../../css/components/index');
 declare function require(path: string): any;
 
 const locale = new PorfolioLocale();
@@ -38,85 +38,87 @@ export class Portfolio extends React.Component<{}, {}> {
             <Header/>
             <MeTitle {...metitleInfo}/>
             <div className={styles['divider']}></div>
-            <StickyTitle text={locale.translate('dvd.workspace')} pos={0} />
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title="Java"
-                  subtitle={locale.translate('java.desc')}
-                />
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title="C#"
-                  subtitle={locale.translate('csharp.desc')}
-                />
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('mobile.title')}
-                  subtitle={locale.translate('mobile.desc')}
-                />
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('web.title')}
-                  subtitle={locale.translate('web.desc')}
-                />
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('middleware.title')}
-                  subtitle={locale.translate('middleware.desc')}
-                />
-              </Card>
-            </div>
-            <StickyTitle text={locale.translate('dvd.leisure')} pos={1} />
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('react.title')}
-                  subtitle={locale.translate('react.desc')}
-                />
-                <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} primary/>
-                </CardActions>
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('functional.title')}
-                  subtitle={locale.translate('functional.desc')}
-                />
-                <CardActions>
-                  <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' theme={styles} primary/>
-                </CardActions>
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('batch.title')}
-                  subtitle={locale.translate('batch.desc')}
-                />
-              </Card>
-            </div>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('imagery.title')}
-                  subtitle={locale.translate('imagery.desc')}
-                />
-              </Card>
+            <div className="posting">
+              <StickyTitle text={locale.translate('dvd.workspace')} pos={0} />
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title="Java"
+                    subtitle={locale.translate('java.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title="C#"
+                    subtitle={locale.translate('csharp.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('mobile.title')}
+                    subtitle={locale.translate('mobile.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('web.title')}
+                    subtitle={locale.translate('web.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('middleware.title')}
+                    subtitle={locale.translate('middleware.desc')}
+                  />
+                </Card>
+              </div>
+              <StickyTitle text={locale.translate('dvd.leisure')} pos={1} />
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('react.title')}
+                    subtitle={locale.translate('react.desc')}
+                  />
+                  <CardActions>
+                    <Button label={locale.translate('btnlabel')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} primary/>
+                  </CardActions>
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('functional.title')}
+                    subtitle={locale.translate('functional.desc')}
+                  />
+                  <CardActions>
+                    <Button label={locale.translate('btnlabel')} href='https://github.com/yoonghan/selfservice' theme={styles} primary/>
+                  </CardActions>
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('batch.title')}
+                    subtitle={locale.translate('batch.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('imagery.title')}
+                    subtitle={locale.translate('imagery.desc')}
+                  />
+                </Card>
+              </div>
             </div>
             <Footer/>
           </div>

@@ -47,113 +47,114 @@ const GithubIcon = () => (
 );
 
 export class Index extends React.Component<{}, {}> {
-    render() {
-        return (
-          <div className={styles['reacttoolbox']}>
-            <Header/>
-            <MainScreen itemArray={tech}/>
-            <Post postItems={posts}/>
-
-            <StickyTitle text={locale.translate('title.research')} pos={0} />
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardMedia
-                  aspectRatio="wide"
-                  image="/ext/img/index/dl.svg"
-                />
-                <CardTitle
-                  title={locale.translate('card.1.title')}
-                  subtitle={locale.translate('card.1.desc')}
-                />
-                <CardActions>
-                  <Button label={locale.translate('label.read')} href='http://blog.walcron.com' theme={styles} primary/>
-                </CardActions>
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('card.2.title')}
-                  subtitle={locale.translate('card.2.desc')}
-                />
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('card.3.title')}
-                  subtitle={locale.translate('card.3.desc')}
-                />
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardMedia
-                  aspectRatio="wide"
-                  image="/ext/img/index/uiux.jpg"
-                />
-                <CardTitle
-                  title={locale.translate('card.4.title')}
-                  subtitle={locale.translate('card.4.desc')}
-                />
-              </Card>
-            </div>
-            <StickyTitle text={locale.translate('title.development')} pos={1} />
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('card.5.title')}
-                  subtitle={locale.translate('card.5.desc')}
-                />
-                <CardActions>
-                  <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
-                    <GithubIcon /> Github
-                  </Button>
-                </CardActions>
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('card.6.title')}
-                  subtitle={locale.translate('card.6.desc')}
-                />
-                <CardActions>
-                  <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} target="_blank" primary/>
-                </CardActions>
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardTitle
-                  title={locale.translate('card.7.title')}
-                  subtitle={locale.translate('card.7.desc')}
-                />
-                <CardActions>
-                  <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
-                    <GithubIcon /> Github
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-            <StickyTitle text={locale.translate('title.leisure')} pos={2}/>
-            <div className={styles['card-section']}>
-              <Card className={styles['card-split']} raised>
-                <CardMedia
-                  aspectRatio="wide"
-                  image="/ext/img/index/girl.jpg"
-                />
-                <CardTitle
-                  title={locale.translate('card.8.title')}
-                  subtitle={locale.translate('card.8.desc')}
-                />
-              </Card>
-              <Card className={styles['card-split']} raised>
-                <CardMedia
-                  aspectRatio="wide"
-                  image="/ext/img/index/mezzanine.jpg"
-                />
-                <CardTitle
-                  title={locale.translate('card.9.title')}
-                  subtitle={locale.translate('card.9.desc')}
-                />
-                <CardActions>
-                  <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' theme={styles} primary/>
-                </CardActions>
-              </Card>
-            </div>
-            <Footer/>
+  render() {
+    return (
+      <div className={styles['reacttoolbox']}>
+        <Header/>
+        <MainScreen itemArray={tech}/>
+        <Post postItems={posts}/>
+        <div className="posting">
+          <StickyTitle text={locale.translate('title.research')} pos={0} />
+          <div className={styles['card-section']}>
+            <Card className={styles['card-split']} raised>
+              <CardMedia
+                aspectRatio="wide"
+                image="/ext/img/index/dl.svg"
+              />
+              <CardTitle
+                title={locale.translate('card.1.title')}
+                subtitle={locale.translate('card.1.desc')}
+              />
+              <CardActions>
+                <Button label={locale.translate('label.read')} href='http://blog.walcron.com' theme={styles} primary/>
+              </CardActions>
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.2.title')}
+                subtitle={locale.translate('card.2.desc')}
+              />
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.3.title')}
+                subtitle={locale.translate('card.3.desc')}
+              />
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardMedia
+                aspectRatio="wide"
+                image="/ext/img/index/uiux.jpg"
+              />
+              <CardTitle
+                title={locale.translate('card.4.title')}
+                subtitle={locale.translate('card.4.desc')}
+              />
+            </Card>
           </div>
-        );
-    }
+          <StickyTitle text={locale.translate('title.development')} pos={1} />
+          <div className={styles['card-section']}>
+            <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.5.title')}
+                subtitle={locale.translate('card.5.desc')}
+              />
+              <CardActions>
+                <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
+                  <GithubIcon /> Github
+                </Button>
+              </CardActions>
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.6.title')}
+                subtitle={locale.translate('card.6.desc')}
+              />
+              <CardActions>
+                <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} target="_blank" primary/>
+              </CardActions>
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.7.title')}
+                subtitle={locale.translate('card.7.desc')}
+              />
+              <CardActions>
+                <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
+                  <GithubIcon /> Github
+                </Button>
+              </CardActions>
+            </Card>
+          </div>
+          <StickyTitle text={locale.translate('title.leisure')} pos={2}/>
+          <div className={styles['card-section']}>
+            <Card className={styles['card-split']} raised>
+              <CardMedia
+                aspectRatio="wide"
+                image="/ext/img/index/girl.jpg"
+              />
+              <CardTitle
+                title={locale.translate('card.8.title')}
+                subtitle={locale.translate('card.8.desc')}
+              />
+            </Card>
+            <Card className={styles['card-split']} raised>
+              <CardMedia
+                aspectRatio="wide"
+                image="/ext/img/index/mezzanine.jpg"
+              />
+              <CardTitle
+                title={locale.translate('card.9.title')}
+                subtitle={locale.translate('card.9.desc')}
+              />
+              <CardActions>
+                <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' theme={styles} primary/>
+              </CardActions>
+            </Card>
+          </div>
+        </div>
+        <Footer/>
+      </div>
+    );
+  }
 }
