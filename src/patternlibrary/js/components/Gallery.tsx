@@ -290,8 +290,17 @@ class Moziac extends React.Component<MoziacProps, {}> {
   handleClickHandler = () => {
     const el = this.node;
     const posTop = el.getBoundingClientRect().top;
-    const posLeft = el.getBoundingClientRect().left;
+    const posLeft = this.adjustedLeft(el.getBoundingClientRect().left);
     this.props.clickHandler(posTop, posLeft, this.props.idx);
+  };
+
+  adjustedLeft = (posLeft:Int) => {
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    const adjWindowWidth = Math.floor(windowWidth/2);
+    if(posLeft > adjWindowWidth) {
+      return adjWindowWidth;
+    }
+    return posLeft;
   };
 
   render() {
