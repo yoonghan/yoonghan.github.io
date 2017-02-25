@@ -22,6 +22,7 @@
         display: inline-block;
       }
       &.mnudrop-lst-small {
+        padding-left: 20px;
         display: none;
       }
 
@@ -32,6 +33,14 @@
         &.mnudrop-lst-small {
           display: inline-block;
         }
+      }
+    }
+
+    h5 {
+      display: inline-block;
+      font-weight: 100;
+      a {
+        padding: 0;
       }
     }
   }

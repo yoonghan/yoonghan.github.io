@@ -8,7 +8,8 @@ module.exports = {
       about: "./src/js/about.tsx",
       develop: "./src/js/develop.tsx",
       portfolio: "./src/js/portfolio.tsx",
-      technology: "./src/js/technology.tsx"
+      technology: "./src/js/technology.tsx",
+      progressive: "./src/js/progressive.tsx"
     },
     output: {
       filename: "[name].bundle.js",

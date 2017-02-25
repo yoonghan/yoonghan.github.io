@@ -1,6 +1,8 @@
 `use strict`
 
 import * as React from "react";
+import { UtilLocale } from "../util/UtilLocale";
+import { LocaleSelector, LocaleSelectorTypes } from "./LocaleSelector";
 import * as ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import '../../css/base.scss';
@@ -14,7 +16,8 @@ export interface MenuDropListing {
 }
 
 export interface MenuDropProps {
-  listing: Array<MenuDropListing>
+  mobileOpensOnLoad?: Boolean;
+  listing: Array<MenuDropListing>;
 }
 
 interface MenuDropState {
@@ -54,6 +57,12 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
     return (state ? 'toggle-down' : 'list' )
   }
 
+  componentDidMount = () => {
+    if(this.props.mobileOpensOnLoad) {
+      this.clickRef.click();
+    }
+  }
+
   createMenu = ():JSX.Element[] => {
     const mnuListing = this.props.listing;
     return mnuListing.map(function(mnuItem) {
@@ -61,7 +70,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
       const icon = mnuItem.icon ? 'fa fa-' + mnuItem.icon:'';
 
       return (
-        <a className={'links ' + styles['mnudrop-lst-big']} href={mnuItem.location} key={key}>
+        <a className={'links ' + styles['mnudrop-lst-big']} href={UtilLocale.getLocalizedHref(mnuItem.location)} key={key}>
           <i className={icon}></i> {mnuItem.label}
         </a>
         );
@@ -75,6 +84,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
       <div className={styles.mnudrop}>
         <div className={styles['mnudrop-lst']}>
           {listOfMenus}
+          <h5>[ <LocaleSelector type={LocaleSelectorTypes.Link}/ >]</h5>
           <a className={'links ' + styles['mnudrop-lst-small']}
           onClick={this.handleMenuClick} ref={node => this.clickRef = node}>
             <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>
@@ -106,7 +116,8 @@ class MobileMenu extends React.Component<MobileMenuProps, {}> {
   handleClick = (e:Event) => {
     const target:HTMLElement = e.target as HTMLElement,
       {ignorableRefNode, closeHandler} = this.props;
-    if(!this.node.contains(target) && !ignorableRefNode.contains(target)) {
+
+    if(!this.node.contains(target) && (ignorableRefNode && !ignorableRefNode.contains(target))) {
       closeHandler();
     }
   }
@@ -127,13 +138,13 @@ class MobileMenu extends React.Component<MobileMenuProps, {}> {
       const icon = mnuItem.icon ? 'fa fa-' + mnuItem.icon:'';
       return (
         <li key={key}>
-          <a className={'links ' + styles['mnudrop-lst-big']} href={mnuItem.location}>
+          <a className={'links ' + styles['mnudrop-lst-big']} href={UtilLocale.getLocalizedHref(mnuItem.location)}>
             <i className={icon}></i> {mnuItem.label}
           </a>
         </li>
         );
     });
-  }
+  };
 
   render() {
     const listOfMobMenus = this.createMobileListing();

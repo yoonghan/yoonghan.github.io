@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    title #{$i18n.progressive.title}
+    meta(name="description" content="Progressive Web and Offline enabled.")
+    include ../incl/meta.incl
+    include ../incl/link.incl
+    link(rel="stylesheet" type="text/css" href="/ext/css/progressive.css")
+    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+  body
+    div(id='progressive')
+    script(src='/ext/js/lib/react-with-addons.min.js')
+    script(src='/ext/js/lib/react-dom.min.js')
+    script(src='/ext/js/progressive.bundle.js')

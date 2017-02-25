@@ -14,7 +14,21 @@ var pkg = require('./package.json'),
   opn = require('opn'),
   through = require('through'),
   webpack = require('webpack-stream'),
+  path = require('path'),
+  swPrecache = require('./gulptools/sw-precache'),
   isDist = process.argv.indexOf('default') === -1 && process.argv.indexOf('serve') === -1;
+
+/*
+ * Web precaching
+ */
+gulp.task('service-worker', function(callback) {
+ var rootDir = 'dist';
+
+ swPrecache.write(`${rootDir}/service-worker.js`, {
+   staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}'],
+   stripPrefix: rootDir
+ }, callback);
+});
 
 /*
  *
@@ -145,6 +159,7 @@ gulp.task('watch', function() {
 });
 
 //Task open to public
-gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'cachebust', 'webpack', callback)});
+gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'webpack', 'service-worker', callback)});
+gulp.task('buildprod', function(callback) {runSequence('clean', 'copy', 'image:html', 'pug:html', 'webpack:html', 'service-worker', callback)});
 gulp.task('serve', function(callback) {runSequence('build', 'open', 'watch')});
 gulp.task('default', ['serve']);

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { IndexLocale } from '../util/Locale';
+import { UtilLocale } from "../../patternlibrary/js/util/UtilLocale";
 import { MainScreen } from '../../patternlibrary/js/components/MainScreen';
 import { Post } from '../../patternlibrary/js/components/Post';
 import { StickyTitle } from '../../patternlibrary/js/components/StickyTitle';
@@ -50,17 +51,13 @@ export class Index extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
-        <Header/>
+        <Header menuOpened={true}/>
         <MainScreen itemArray={tech}/>
         <Post postItems={posts}/>
         <div className="posting">
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
             <Card className={styles['card-split']} raised>
-              <CardMedia
-                aspectRatio="wide"
-                image="/ext/img/index/dl.svg"
-              />
               <CardTitle
                 title={locale.translate('card.1.title')}
                 subtitle={locale.translate('card.1.desc')}
@@ -80,6 +77,9 @@ export class Index extends React.Component<{}, {}> {
                 title={locale.translate('card.3.title')}
                 subtitle={locale.translate('card.3.desc')}
               />
+              <CardActions>
+                <Button label={locale.translate('label.read')} href={UtilLocale.getLocalizedHref('progressive')} theme={styles} primary/>
+              </CardActions>
             </Card>
             <Card className={styles['card-split']} raised>
               <CardMedia

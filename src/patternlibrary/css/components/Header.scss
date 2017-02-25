@@ -1,6 +1,7 @@
 @import "../lib/breakpoints";
 @import "../lib/animations";
 @import "../lib/colors";
+@import "../lib/fonts";
 @import "../lib/shadows";
 
 $header-margin: 20px;
@@ -49,6 +50,10 @@ $logo-left-pos : $header-margin;
       position: absolute;
       right: $header-margin;
       top: 20px;
+      @include breakpoint(max-width $breakpoint-phone) {
+        font-size: $font-size-squeeze-mobile;
+        right: 0;
+      }
     }
   }
 }

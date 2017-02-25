@@ -1,24 +1,22 @@
 doctype html
 html
   head
-    title Header
+    title Tile
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/header.css")
     link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+    link(rel="stylesheet", type="text/css", href="/patternlibrary/ext/css/progressivebutton.css")
+    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     style.
       body {
         color: #000;
-        background-color: #fff;
+        background-color: #aaa;
         position: relative;
         padding: 0;
         margin: 0;
       }
   body
-    div(id='header')
-    br
-    p Note:
-      ul In mobile view, the menu dropdowns display as open upon first load.
+    div(id='progressivebutton')
     include ../incl/backhome.incl
     script(src='/ext/js/lib/react-with-addons.js')
     script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/header.bundle.js')
+    script(src='/patternlibrary/ext/js/progressivebutton.bundle.js')

@@ -1,7 +1,8 @@
 `use strict`
 
 import * as React from "react";
-import { LocaleSelector } from "./LocaleSelector";
+import { LocaleSelector, LocaleSelectorTypes } from "./LocaleSelector";
+import { UtilLocale } from "../util/UtilLocale";
 import * as ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import '../../css/base';
@@ -101,7 +102,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
     const linkList = links.map(function(item) {
       const {link, label} = item;
       return (
-        <a href={link} key={label}>{label}</a>
+        <a href={UtilLocale.getLocalizedHref(link)} key={label}>{label}</a>
       );
     });
 
@@ -110,11 +111,11 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
         <div className={styles['footer-divider']}/>
         <div className={styles['footer-container']}>
           <div className={styles['footer-section-one']}>
-            <a href="/">
+            <a href={UtilLocale.getLocalizedHref('/')}>
               <img src="/ext/img/logo/logoOnWhiteBg.svg"/>
             </a>
             <div>
-              <LocaleSelector/>
+              <LocaleSelector type={LocaleSelectorTypes.Dropdown}/>
             </div>
             <div className={styles['footer-section-one-link']}>
               <a href="javascript:;" onClick={this.clickContact} className='links'>
