@@ -72,7 +72,12 @@ const items = [
 		imgSrc: '/ext/img/technology/npm.png',
 		nature:['plugin', 'library', 'javascript'],
 		key: locale.translate('reactslick.key'),
-		desc: locale.translate('reactslick.desc')}
+		desc: locale.translate('reactslick.desc')},
+	{title: 'Sw Precache',
+		imgSrc: '/ext/img/technology/npm.png',
+		nature:['javascript', 'non Internet Explorer'],
+		key: locale.translate('precache.key'),
+		desc: locale.translate('precache.desc')}
 ];
 
 const metitleInfo  = {

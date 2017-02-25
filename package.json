@@ -49,6 +49,7 @@
     "sass-loader": "^4.0.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
+    "sw-precache": "^5.0.0",
     "through": "^2.3.4",
     "ts-loader": "^1.2.2",
     "typescript": "^2.1.4",

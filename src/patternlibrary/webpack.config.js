@@ -13,7 +13,8 @@ module.exports = {
       material: "./src/patternlibrary/js/material.tsx",
       stickytitle: "./src/patternlibrary/js/stickytitle.tsx",
       metitle: "./src/patternlibrary/js/metitle.tsx",
-      gallery: "./src/patternlibrary/js/gallery.tsx"
+      gallery: "./src/patternlibrary/js/gallery.tsx",
+      progressivebutton: "./src/patternlibrary/js/progressivebutton.tsx"
     },
     output: {
         filename: "[name].bundle.js",

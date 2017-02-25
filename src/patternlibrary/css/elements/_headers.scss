@@ -20,7 +20,7 @@ h3 {
 }
 
 h4 {
-  @include font-header($fontSize: $font-size-h4, $letterSpacing: 2px);
+  @include font-header($fontSize: $font-size-h4);
 }
 
 h5 {

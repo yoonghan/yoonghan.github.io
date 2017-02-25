@@ -19,10 +19,13 @@ export class Post extends React.Component<PostProps, {}> {
   createPostListing = ():JSX.Element[] => {
     const postListing = this.props.postItems;
 
-    return postListing.map(function(post) {
-      return (
-        <MiniPost key={post.icon} {...post}/>
-      );
+    let counter = 0;
+    return postListing.map(
+      (post) => {
+        counter++;
+        return (
+          <MiniPost key={counter} {...post}/>
+        );
     });
   }
 

@@ -8,14 +8,14 @@ var styles = require('../../css/components/MeTitle.scss');
 declare function require(path: string): any;
 
 interface ISection {
-  title: string;
+  title?: string;
   description?: Array<string>;
 }
 
 export interface MeTitleProps {
   title: string;
   imgSrc: string;
-  introSection: ISection;
+  introSection?: ISection;
   posts?: Array<MiniPostProps>;
 }
 
@@ -31,7 +31,7 @@ export class MeTitle extends React.Component<MeTitleProps, {}> {
 
   createIntroSection = (sectionMap:ISection) => {
     const title = sectionMap.title;
-    const keyPrefix = title.replace(/\s/g,'');
+    const keyPrefix = title? title.replace(/\s/g,''): '';
 
     var runningNo = 0;
     const intro = sectionMap.description.map(
@@ -43,7 +43,7 @@ export class MeTitle extends React.Component<MeTitleProps, {}> {
 
     return (
       <div key={title}>
-        <h2>{title}</h2>
+        {title && <h2>{title}</h2>}
         {intro}
       </div>
       );
@@ -51,7 +51,7 @@ export class MeTitle extends React.Component<MeTitleProps, {}> {
 
   render() {
     const {title, imgSrc, introSection, posts} = this.props;
-    const introductionSection = this.createIntroSection(introSection);
+    const introductionSection = introSection ? this.createIntroSection(introSection) : <div></div>;
 
     let postsArray = posts ? posts:[];
     const postElements = postsArray.map(

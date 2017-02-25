@@ -34,5 +34,8 @@
       "desc": "The page you are looking for could not be located. Please check if you had entered the correct url.",
       "link": "If you are lost please click on this 'sentence' to redirect yourself to the main site"
     }
+  },
+  "progressive": {
+    "title": "Progressive Web"
   }
 }

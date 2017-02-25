@@ -11,9 +11,8 @@ const locale = new FooterLocale();
 const footerInfo = {
   links: [
   {link:'/about', label: locale.translate('about')},
-  {link:'//mezzanine.walcron.com/', label: locale.translate('blog')},
-  {link:'/develop', label: locale.translate('develop')},
-  {link:'/technology', label: locale.translate('tech')},
+  {link:'http://mezzanine.walcron.com/', label: locale.translate('blog')},
+  {link:'/develop', label: locale.translate('develop')}
   ],
   updatedYear: 2017,
   emailLabel: locale.translate('contactus'),

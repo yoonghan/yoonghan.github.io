@@ -14,3 +14,12 @@ html(lang="en")
     script(src='/ext/js/lib/react-dom.min.js')
     script(src='/ext/js/lib/trianglify.min.js')
     script(src='/ext/js/index.bundle.js')
+    script.
+      console.log('register service worker');
+      self.addEventListener('activate', function(event) {
+        var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
+        console.log('ok');
+        event.waitUntil(
+          console.log('activate')
+        );
+      });

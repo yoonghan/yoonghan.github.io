@@ -47,6 +47,18 @@ var NodeApp = function() {
   };
 
   /**
+   * Enable HTTPS only
+   **/
+  self.redirectSec = function(req, res, next) {
+    console.log('https://' + req.headers.host + req.path);
+    if (req.headers['x-forwarded-proto'] == 'http') {
+        res.redirect('https://' + req.headers.host + req.path);
+    } else {
+        return next();
+    }
+  };
+
+  /**
    *  Retrieve entry (content) from cache.
    *  Only test environment is not cached.
    *  @param {string} key  Key identifying content to retrieve from cache.
@@ -117,15 +129,8 @@ var NodeApp = function() {
       REFERER = 'referer';
 
     const indexRoute = function(req, res) {
-      var localeObj = self.getLocaleAndRedirect('/', req.headers[REFERER]);
       res.setHeader(CONTENT_TYPE, "text/html");
-      if(localeObj.locale != '' && localeObj.locale !== DEFAULT_LANGUAGE) {
-        const redirectPath = '/' + localeObj.locale + '/';
-        self.redirectWithInfinityPrevention(res, redirectPath, req.headers[REFERER]);
-      }
-      else {
-        self.sendContentWithCacheHandler('index.html', req.headers[USER_AGENT], res);
-      }
+      self.sendContentWithCacheHandler('index.html', req.headers[USER_AGENT], res);
     };
 
     const libraryRoute = function(req, res, path) {
@@ -155,28 +160,32 @@ var NodeApp = function() {
         localeObj = self.getLocaleAndRedirect(path, req.headers[REFERER]);
 
       res.setHeader(CONTENT_TYPE, "text/html");
-      if(localeObj.shouldRedirect && localeObj.locale !== DEFAULT_LANGUAGE) {
-        const redirectPath = '/' + localeObj.locale + path;
-        self.redirectWithInfinityPrevention(res, redirectPath, req.headers[REFERER]);
-      }
-      else {
-        if(localeObj.locale !== '') {
-          if(reqPath.endsWith('/' + localeObj.locale)) {
-              reqPath = reqPath + "/index";
-          }
-          reqPath = reqPath.replace(DEFAULT_LANGUAGE_REGEX, "/");
-        }
 
-        self.sendContentWithCacheHandler(reqPath + ".html", req.headers[USER_AGENT], res);
+      if(localeObj.locale !== '') {
+        if(reqPath.endsWith('/' + localeObj.locale)) {
+            reqPath = reqPath + "/index";
+        }
+        if(reqPath.endsWith('index.html')) {
+          reqPath = reqPath.substr(0, reqPath.length-5);
+        }
+        reqPath = reqPath.replace(DEFAULT_LANGUAGE_REGEX, "/");
       }
+
+      self.sendContentWithCacheHandler(reqPath + ".html", req.headers[USER_AGENT], res);
     };
 
     var routes = {};
     routes['/'] = function(req, res) {
       indexRoute(req, res);
     };
+    routes['/index.html'] = function(req, res) {
+      indexRoute(req, res);
+    };
     routes['/robots.txt'] = function(req, res) {
       robotsRoute(req, res);
+    };
+    routes['/service-worker.js'] = function(req, res) {
+      libraryRoute(req, res, 'service-worker.js');
     };
     routes['/.well-known/*:path'] = function(req, res) {
       wellknownRoute(req, res, req.path.toString());
@@ -207,16 +216,18 @@ var NodeApp = function() {
 
     if(localeFromPath && localeFromPath.length > 1) {
       locale = localeFromPath[1];
+
     }
-    else {
-      const fixReferer = (refererHeader || ""),
-        localeFromReferer = fixReferer.match(/:\/\/[a-z|0-9|\:|\.]+\/([a-z]{2})\//);
-      if(localeFromReferer && localeFromReferer.length > 1) {
-        locale = localeFromReferer[1];
-        shouldRedirect = true;
-      }
-    }
-    return {"shouldRedirect": shouldRedirect, "locale": locale};
+    return {"shouldRedirect": false, "locale": locale};
+    // else {
+    //   const fixReferer = (refererHeader || ""),
+    //     localeFromReferer = fixReferer.match(/:\/\/[a-z|0-9|\:|\.]+\/([a-z]{2})\//);
+    //   if(localeFromReferer && localeFromReferer.length > 1) {
+    //     locale = localeFromReferer[1];
+    //     shouldRedirect = true;
+    //   }
+    // }
+    // return {"shouldRedirect": shouldRedirect, "locale": locale};
   };
 
   /**

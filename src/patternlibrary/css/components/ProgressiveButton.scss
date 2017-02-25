@@ -1,0 +1,13 @@
+@import "../vendor/reacttoolbox";
+@import "~react-toolbox/lib/colors";
+
+.progressive {
+  text-align: center;
+
+  .error {
+    background: $palette-pink-500 !important;
+  }
+  .success {
+    background: $palette-green-500  !important;
+  }
+}

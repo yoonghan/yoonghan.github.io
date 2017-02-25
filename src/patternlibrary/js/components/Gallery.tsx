@@ -220,12 +220,12 @@ class OverlayCard extends React.Component<OverlayCardProps, {}> {
             </div>
             <hr/>
             <div className={styles['overlaycard-content-keyfeature']}>
-              <h5>Key Features</h5>
+              <h4>Key Features</h4>
               <span>{key}</span>
             </div>
             <hr/>
             <div className={styles['overlaycard-content-desc']}>
-              <h5>Description</h5>
+              <h4>Description</h4>
               <span>{desc}</span>
             </div>
             <hr/>
@@ -294,7 +294,7 @@ class Moziac extends React.Component<MoziacProps, {}> {
     this.props.clickHandler(posTop, posLeft, this.props.idx);
   };
 
-  adjustedLeft = (posLeft:Int) => {
+  adjustedLeft = (posLeft:number) => {
     const windowWidth = window.innerWidth || document.documentElement.clientWidth;
     const adjWindowWidth = Math.floor(windowWidth/2);
     if(posLeft > adjWindowWidth) {

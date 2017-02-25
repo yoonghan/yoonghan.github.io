@@ -3,22 +3,23 @@
  **/
 export class UtilLocale {
   static regLangInPath = /\/([a-z]{2})\//;
+  static defaultLang = 'en';
 
-  public static redirectBrowser = (lang:string, path:string = window.location.pathname) => {
+  public static redirectBrowser = (lang:string, path:string = window.location.pathname):string => {
     path = UtilLocale.removeLanguageFromPath(path);
     var newLoc = path;
     if(/^\/patternlibrary/.test(path)) {
       var replacePatternString = "/patternlibrary/docs/";
       newLoc = replacePatternString + lang + path.substring(replacePatternString.length - 1 , path.length);
     }
-    else {
+    else if(lang !== UtilLocale.defaultLang){
       newLoc = "/" + lang + path;
     }
 
     return newLoc;
   }
 
-  public static extractLanguageFromPath = (path:string = window.location.pathname) => {
+  public static extractLanguageFromPath = (path:string = window.location.pathname):string => {
     var defaultLang = 'en',
       lang = defaultLang,
       pathLanguage = path.match(UtilLocale.regLangInPath);
@@ -30,7 +31,7 @@ export class UtilLocale {
     return lang;
   }
 
-  public static removeLanguageFromPath = (path:string = window.location.pathname) => {
+  public static removeLanguageFromPath = (path:string = window.location.pathname):string => {
     var newPath = path,
       pathContainsLanguage = (UtilLocale.regLangInPath).test(path);
 
@@ -39,5 +40,18 @@ export class UtilLocale {
     }
 
     return newPath;
+  }
+
+  public static getLocalizedHref = (hrefPath:string, path:string = window.location.pathname):string => {
+    if(UtilLocale.escapePath(hrefPath, path)) {
+      return hrefPath;
+    }
+
+    const lang = UtilLocale.extractLanguageFromPath(path);
+    return '/' + lang + (hrefPath.substr(0, 1) === '/' ? '':'/') + hrefPath;
+  }
+
+  private static escapePath = (pathToReplace:string, path:string):Boolean => {
+    return pathToReplace.substr(0, 2) === '//' || UtilLocale.extractLanguageFromPath(path) === UtilLocale.defaultLang;
   }
 }

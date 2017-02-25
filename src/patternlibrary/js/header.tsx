@@ -11,6 +11,6 @@ const menuItems = [
 ];
 
 ReactDOM.render(
-    <Header menus={menuItems} headerTitle={'A DEVELOPER SITE'}/>,
+    <Header menus={menuItems} headerTitle={'FULL-STACK DEVELOPER FOR HIRE'}/>,
     document.getElementById("header")
 );
