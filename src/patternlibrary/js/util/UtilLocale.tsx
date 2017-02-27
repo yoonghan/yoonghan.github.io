@@ -52,6 +52,6 @@ export class UtilLocale {
   }
 
   private static escapePath = (pathToReplace:string, path:string):Boolean => {
-    return pathToReplace.substr(0, 2) === '//' || UtilLocale.extractLanguageFromPath(path) === UtilLocale.defaultLang;
+    return pathToReplace.substr(0, 2) === '//' || pathToReplace.substr(0, 7) === 'http://' || UtilLocale.extractLanguageFromPath(path) === UtilLocale.defaultLang;
   }
 }
