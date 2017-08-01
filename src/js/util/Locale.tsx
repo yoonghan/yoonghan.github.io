@@ -333,6 +333,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'We do not track you. We have even go thru an extra procedure to translate this website WITHOUT tracking you!',
       my: 'Kami tidak menjejaki anda. Laman web ini tidak menggunakan session mahupun cookie.'
     },
+    'card.0.title': {
+      en: 'Design Thinking Workshop',
+      my: 'Design Thinking Workshop'
+    },
+    'card.0.desc': {
+      en: 'Han attended Design Thinking workshop/Garage which was organized by the company in Beijing, China. The concept of this workshop is to present an end customer solution by working together with various experts on different fields. The end result was fabulous as we manage to create a Proof-Of-Concept game in just 5 days time.',
+      my: 'Han menghadiri Design Thinking workshop yang dianjurkan di Beijing, China. Konsep bengkel in adalah untuk membentangkan penyelesaian pelanggan dengan bekerjasama dengan pelbagai pakar dalam bidang yang berbeza. Hasilnya adalah hebat kerana kami berjaya mencipta Game Proof-Of-Concept hanya dalam masa 5 hari.'
+    },
     'card.1.title': {
       en: 'Deep Learning',
       my: 'Deep Learning'
@@ -566,7 +574,7 @@ export class ProgressiveLocale extends AbstractLocalev2 {
     },
     'offline.desc.step3': {
       en: 'Now you are ready to go offline and have this site running. <strong>Bookmark this page.</strong>',
-      my: 'Sekarang anda boleh melayar website ini tanpa internet. <strong>Bookmark this page.</strong>'
+      my: 'Sekarang anda boleh melayar website ini tanpa internet. <strong>Bookmark laman ini.</strong>'
     },
     'ready': {
       en: 'Install Now',
@@ -577,8 +585,8 @@ export class ProgressiveLocale extends AbstractLocalev2 {
       my: 'Pelayar Tidak Disokong'
     },
     'installing': {
-      en: 'Installing',
-      my: 'Processing'
+      en: 'Installing. Please Wait',
+      my: 'Processing. Sila Tunggu.'
     },
     'installed': {
       en: 'Installed And Ready',
