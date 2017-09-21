@@ -333,6 +333,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'We do not track you. We have even go thru an extra procedure to translate this website WITHOUT tracking you!',
       my: 'Kami tidak menjejaki anda. Laman web ini tidak menggunakan session mahupun cookie.'
     },
+    'card.10.title': {
+      en: '2017 Hackathon with IOT',
+      my: '2017 Hackathon bersamaan Internet Of Thing'
+    },
+    'card.10.desc': {
+      en: 'Won the hackathon competition this year. With 5 person within the team. the idea this year was related to autonomous car reaction for heart-attack drivers.',
+      my: 'Han dengan rakan sekerjanya memenangi Hackathon 2017. Idea dalam kumpulan untuk tahun ini adalah bekenaan dengan "Automonous Car", di mana kereta akan secara automatik berbalas apabila pesakit jantung mengalami kecemasan.'
+    },
     'card.0.title': {
       en: 'Design Thinking Workshop',
       my: 'Design Thinking Workshop'
@@ -342,12 +350,12 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Han menghadiri Design Thinking workshop yang dianjurkan di Beijing, China. Konsep bengkel in adalah untuk membentangkan penyelesaian pelanggan dengan bekerjasama dengan pelbagai pakar dalam bidang yang berbeza. Hasilnya adalah hebat kerana kami berjaya mencipta Game Proof-Of-Concept hanya dalam masa 5 hari.'
     },
     'card.1.title': {
-      en: 'Deep Learning',
-      my: 'Deep Learning'
+      en: '2016 Hackathon with Deep Learning',
+      my: 'Than 2016 dengan Deep Learning'
     },
     'card.1.desc': {
-      en: 'Won a hackaton, our team created an image scanning to identify a vehicle model using a mobile. We will be dedicating the year 2017 into deep learning research using Scala programming language.',
-      my: 'Memenangi hackaton; kumpulan kami mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning dalam tahun 2017 ini.'
+      en: 'Won a hackathon, the 5 person team created an image scanning to identify a vehicle model using a mobile. We will be dedicating the year 2017 into deep learning research using Scala programming language.',
+      my: 'Memenangi hackathon; kumpulan 5 orang mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning dalam tahun 2017 ini.'
     },
     'card.2.title': {
       en: 'Parallel Processings',

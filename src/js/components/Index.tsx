@@ -58,6 +58,12 @@ export class Index extends React.Component<{}, {}> {
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
             <Card className={styles['card-split']} raised>
+              <CardTitle
+                title={locale.translate('card.10.title')}
+                subtitle={locale.translate('card.10.desc')}
+              />
+            </Card>
+            <Card className={styles['card-split']} raised>
               <CardMedia
                 aspectRatio="wide"
                 image="/ext/img/index/designthinking.png"
