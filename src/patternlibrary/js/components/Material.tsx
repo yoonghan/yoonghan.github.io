@@ -104,7 +104,7 @@ export class Material extends React.Component<{}, {}> {
           ' I guess nobody actually goes much to bloggin nowadays, as there is already facebook.' }
         />
         <CardActions>
-          <Button label="Bragging Blog" href='http://mezzanine.walcron.com/' accent/>
+          <Button label="Bragging Blog" href='http://tf.walcron.com/' accent/>
         </CardActions>
       </Card>
     </div>

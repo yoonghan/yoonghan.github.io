@@ -31,7 +31,7 @@ const posts = [
   title: locale.translate('post.3.title'),
   text: locale.translate('post.3.text'),
   icon: 'wpexplorer'
-}]
+}];
 
 const tech = [
   {text:'ReactJS', link:'https://facebook.github.io/react/'},
@@ -58,6 +58,10 @@ export class Index extends React.Component<{}, {}> {
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
             <Card className={styles['card-split']} raised>
+              <CardMedia
+                aspectRatio="wide"
+                image="/ext/img/index/prize_hackathon.jpg"
+              />
               <CardTitle
                 title={locale.translate('card.10.title')}
                 subtitle={locale.translate('card.10.desc')}
@@ -116,7 +120,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.5.desc')}
               />
               <CardActions>
-                <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
+                <Button href='https://github.com/yoonghan' theme={styles} primary>
                   <GithubIcon /> Github
                 </Button>
               </CardActions>
@@ -127,7 +131,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.6.desc')}
               />
               <CardActions>
-                <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} target="_blank" primary/>
+                <Button label={locale.translate('label.download')} href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' theme={styles} primary/>
               </CardActions>
             </Card>
             <Card className={styles['card-split']} raised>
@@ -136,7 +140,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.7.desc')}
               />
               <CardActions>
-                <Button href='https://github.com/yoonghan' target="_blank" theme={styles} primary>
+                <Button href='https://github.com/yoonghan' theme={styles} primary>
                   <GithubIcon /> Github
                 </Button>
               </CardActions>
@@ -164,7 +168,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.9.desc')}
               />
               <CardActions>
-                <Button label={locale.translate('label.blog')} href='http://mezzanine.walcron.com/' theme={styles} primary/>
+                <Button label={locale.translate('label.blog')} href='http://tf.walcron.com/' theme={styles} primary/>
               </CardActions>
             </Card>
           </div>

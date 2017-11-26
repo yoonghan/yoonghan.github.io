@@ -338,8 +338,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: '2017 Hackathon bersamaan Internet Of Thing'
     },
     'card.10.desc': {
-      en: 'Won the hackathon competition this year. With 5 person within the team. the idea this year was related to autonomous car reaction for heart-attack drivers.',
-      my: 'Han dengan rakan sekerjanya memenangi Hackathon 2017. Idea dalam kumpulan untuk tahun ini adalah bekenaan dengan "Automonous Car", di mana kereta akan secara automatik berbalas apabila pesakit jantung mengalami kecemasan.'
+      en: 'Won an Echodot in this year\'s competition. The team consists of 5 person, we came up with the idea related to autonomous car reaction for heart-attack drivers.',
+      my: 'Han dengan 4 rakan sekerjanya memenangi sebiji Echodot/setiap orang untuk Hackathon 2017. Idea kami adalah bekenaan dengan "Automonous Car", di mana kereta akan secara automatik berbalas apabila pesakit jantung mengalami kecemasan.'
     },
     'card.0.title': {
       en: 'Design Thinking Workshop',
@@ -424,13 +424,13 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Wir lernen gemainsam am Wochenende Deutsch. Wir lieben Deutsch.'
     },
     'card.9.title': {
-      en: 'Gladys\'s Journal',
-      my: 'Jurnal Gladys\'s'
+      en: 'Transformers Journal',
+      my: 'Jurnal Transformers'
     },
     'card.9.desc': {
-      en: 'A journal Lee Wan kept, it\'s unfortunately not being updated as there\'s no followers on this.' +
-          ' I guess nobody actually goes much to bloggin nowadays, ever since the born of facebook.',
-      my: 'Blog Gladys, tentang and daripadanya.'
+      en: 'A journal about Transformers collected, it\'s unfortunately not being updated as there\'s no followers on this.' +
+          ' I guess nobody actually goes much to bloggin nowadays, ever since the born of facebook. This was suppose to be Gladys\'s profile.',
+      my: 'Blog tentang Transformers. Ianya sepatutnya Blog tentang Gladys, akan tetapi kesukaran untuk memaparkan laman website percuma, akhirnya website ini ditukar.'
     }
   };
 
