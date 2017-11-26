@@ -60,12 +60,6 @@ export class MainScreen extends React.Component<SliderDisplayItemProps, {}> {
         <div className={styles['mainscr-container']}>
           <img className={styles['mainscr-company']} src="/ext/img/logo/companyName.svg"/>
           <TrianglifyCanvas className={styles['mainscr-cover']}/>
-          <div className={styles['mainscr-engine']}>Site built with: </div>
-        </div>
-        <div className={styles['mainscr-slider-container']}>
-          <Slider {...settings}>
-            {this.renderItems()}
-          </Slider>
         </div>
       </div>
     );

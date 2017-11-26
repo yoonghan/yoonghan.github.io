@@ -28,13 +28,15 @@ var NodeApp = function() {
    *  Set up server IP address and port # using env variables/defaults.
    */
   self.setupVariables = function() {
-      //  Set the environment variables we need.
-      if(typeof env.NODE_IP === "undefined") {
-        testEnv = true;
-        console.warn('Executing local environment run');
-      }
-      self.ipaddress = env.NODE_IP || 'localhost';
-      self.port      = env.NODE_PORT || 8000;
+    const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+        IP   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+    //  Set the environment variables we need.
+    if(typeof env.NODE_IP === "undefined") {
+      testEnv = true;
+      console.warn('Executing local environment run');
+    }
+    self.ipaddress = IP;
+    self.port      = PORT;
   };
 
   /**
