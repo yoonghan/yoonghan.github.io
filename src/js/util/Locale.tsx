@@ -464,7 +464,7 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'Percubaan'
     },
     'desc': {
-      en: 'We\'re still in progress in making a name here, nevertheless, the aim is still to learn and make this site fabulous under Walcron Cooperation.' +
+      en: 'We\'re still in progress in making a name here, nevertheless, the aim is to learn continously and make this site fabulous under Walcron Cooperation.' +
         ' Written below are both Yoong Han and Lee Wan\'s portfolio.',
       my: 'Kami masih dalam perjejahan menbina status, akan tetapi ia tetap penting untuk terus belajar dan membuat laman ini terkenal dengan nama Walcron Cooperation.' +
         ' Bahan di bawah adalah portfolio Yoong Han dan Lee Wan.'
@@ -518,8 +518,8 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'Bina React dan React Native'
     },
     'react.desc': {
-      en: 'Develop react and react native(for mobile).',
-      my: 'Bina react dan react native untuk applikasi mobil.'
+      en: 'Develop react and react native(for mobile). Real application includes "Ez-Postcard" and "Han & Leewan" hosted in Google Playstore.',
+      my: 'Bina react dan react native untuk applikasi mobil. Applikasi termasuk "Ez-Postcard" dan "Han & Lee Wan" di Google Playstore.'
     },
     'functional.title': {
       en: 'Functional Programming',
