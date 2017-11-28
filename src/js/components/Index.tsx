@@ -57,15 +57,33 @@ export class Index extends React.Component<{}, {}> {
         <div className="posting">
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
+          <Card className={styles['card-split']} raised>
+            <CardTitle
+              title={locale.translate('card.11.title')}
+              subtitle={locale.translate('card.11.desc')}
+            />
+            <CardActions>
+              <Button label={locale.translate('label.read')} href='https://github.com/yoonghan/presentation/tree/master/2017' target="presentation" theme={styles} primary/>
+            </CardActions>
+          </Card>
             <Card className={styles['card-split']} raised>
               <CardMedia
                 aspectRatio="wide"
-                image="/ext/img/index/prize_hackathon.jpg"
+                image="/ext/img/index/hackathon_solutiondiagram.png"
               />
               <CardTitle
                 title={locale.translate('card.10.title')}
                 subtitle={locale.translate('card.10.desc')}
               />
+              <CardActions>
+                <Button label={locale.translate('label.read')} href='/ext/img/index/hackathon_solutiondiagram.png' target="hackathon2017" theme={styles} primary/>
+              </CardActions>
+              <CardActions>
+                <Button label={locale.translate('label.download') + '-Client'} href='https://github.com/yoonghan/HackathonMobileApp' target="hackathon2017" theme={styles} primary/>
+              </CardActions>
+              <CardActions>
+                <Button label={locale.translate('label.download') + '-Server'} href='https://github.com/yoonghan/HackathonBridge' target="hackathon2017" theme={styles} primary/>
+              </CardActions>
             </Card>
             <Card className={styles['card-split']} raised>
               <CardMedia
@@ -83,7 +101,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.1.desc')}
               />
               <CardActions>
-                <Button label={locale.translate('label.read')} href='http://blog.walcron.com' theme={styles} primary/>
+                <Button label={locale.translate('label.read')} href='http://blog.walcron.com' target="_blank" theme={styles} primary/>
               </CardActions>
             </Card>
             <Card className={styles['card-split']} raised>
@@ -98,7 +116,7 @@ export class Index extends React.Component<{}, {}> {
                 subtitle={locale.translate('card.3.desc')}
               />
               <CardActions>
-                <Button label={locale.translate('label.read')} href={UtilLocale.getLocalizedHref('progressive')} theme={styles} primary/>
+                <Button label={locale.translate('label.read')} href={UtilLocale.getLocalizedHref('progressive')} target="_blank" theme={styles} primary/>
               </CardActions>
             </Card>
             <Card className={styles['card-split']} raised>

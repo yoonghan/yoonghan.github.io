@@ -127,7 +127,7 @@ gulp.task('connect', function() {
   });
 });
 gulp.task('connect-server', function() {
-  server.run(['start.js']);
+  server.run(['server.js']);
 });
 gulp.task('open', ['connect-server', 'connect'], function (done) {
   opn('http://localhost:8000', done);

@@ -18,6 +18,9 @@ export abstract class AbstractLocale {
 
   public translate(key: string): string {
     const langTranslated = this.getData();
+    if(!langTranslated[this.getLocale()]) {
+      console.warn("Key untranslated for:"+key);
+    }
     return langTranslated[this.getLocale()][key];
   }
 
@@ -47,6 +50,9 @@ export abstract class AbstractLocalev2 {
 
   public translate(key: string): string {
     const langTranslated = this.getData();
+    if(!langTranslated[key]) {
+      console.warn("Key untranslated for:"+key);
+    }
     return langTranslated[key][this.getLocale()];
   }
 
@@ -333,6 +339,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'We do not track you. We have even go thru an extra procedure to translate this website WITHOUT tracking you!',
       my: 'Kami tidak menjejaki anda. Laman web ini tidak menggunakan session mahupun cookie.'
     },
+    'card.11.title': {
+      en: 'Presentation on Bitcoin',
+      my: 'Presentasi tentang Bitcoin'
+    },
+    'card.11.desc': {
+      en: 'To achieve personal goal(to present every year), Han have decided to host a presentation on Bitcoin and Blockchain, 24 people attended and the result was great!',
+      my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Seramai 24 orang hadir and hasilnya amat dialu-alukan.'
+    },
     'card.10.title': {
       en: '2017 Hackathon with IOT',
       my: '2017 Hackathon bersamaan Internet Of Thing'
@@ -346,8 +360,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Design Thinking Workshop'
     },
     'card.0.desc': {
-      en: 'Han attended Design Thinking workshop/Garage which was organized by the company in Beijing, China. The concept of this workshop is to present an end customer solution by working together with various experts on different fields. The end result was fabulous as we manage to create a Proof-Of-Concept game in just 5 days time.',
-      my: 'Han menghadiri Design Thinking workshop yang dianjurkan di Beijing, China. Konsep bengkel in adalah untuk membentangkan penyelesaian pelanggan dengan bekerjasama dengan pelbagai pakar dalam bidang yang berbeza. Hasilnya adalah hebat kerana kami berjaya mencipta Game Proof-Of-Concept hanya dalam masa 5 hari.'
+      en: 'Han attended Design Thinking workshop/Garage which was organized by the company in Beijing, China. The concept of this workshop is to present an end customer solution by working together with various experts on different fields. The end result was fabulous as we manage to create a Proof-Of-Concept game in just 5 days time using Unity software.',
+      my: 'Han menghadiri Design Thinking workshop yang dianjurkan di Beijing, China. Konsep bengkel in adalah untuk membentangkan penyelesaian pelanggan dengan bekerjasama dengan pelbagai pakar dalam bidang yang berbeza. Hasilnya adalah hebat kerana kami berjaya mencipta Game Proof-Of-Concept menggunakan Unity hanya dalam masa 5 hari.'
     },
     'card.1.title': {
       en: '2016 Hackathon with Deep Learning',
