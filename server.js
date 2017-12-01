@@ -31,9 +31,9 @@ var NodeApp = function() {
     const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8000;
     var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
     //  Set the environment variables we need.
-    if(typeof PORT === 8000) {
+    if(PORT === 8000) {
       testEnv = true;
-      ip = 'localhost'; 
+      ip = 'localhost';
       console.warn('Executing local environment run');
     }
     self.ipaddress = ip;
@@ -197,8 +197,24 @@ var NodeApp = function() {
       libraryRoute(req, res, req.path.toString());
     };
     routes['/*:path'] = function(req, res) {
-      htmlRoute(req, res, req.path.toString());
+      if(testEnv && req.path.toString().indexOf('/patternlibrary') === 0) {
+        if(req.path.toString() === '/patternlibrary' || req.path.toString() === '/patternlibrary/') {
+          self.redirectWithInfinityPrevention(res, '/patternlibrary/index');
+        }
+        else if(req.path.toString().indexOf('/patternlibrary/ext/') === 0){
+          libraryRoute(req, res, req.path.toString());
+        }
+        else {
+          htmlRoute(req, res, req.path.toString());
+        }
+      }
+      else {
+        htmlRoute(req, res, req.path.toString());
+      }
+
     };
+
+
     return routes;
   };
 
