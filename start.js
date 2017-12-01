@@ -19,17 +19,16 @@ cluster.on('disconnect', function(worker) {
 
 if (cluster.isMaster) {
   const workerCount = process.env.NODE_CLUSTER_WORKERS || 1;
-  console.log(`Starting ${workerCount} workers...`);
+
   for (let i = 0; i < workerCount; i++) {
     cluster.fork();
   }
   if (production) {
     stopSignals.forEach(function (signal) {
       process.on(signal, function () {
-        console.log(`Got ${signal}, stopping workers...`);
+
         stopping = true;
         cluster.disconnect(function () {
-          console.log('All workers stopped, exiting.');
           process.exit(0);
         });
       });
