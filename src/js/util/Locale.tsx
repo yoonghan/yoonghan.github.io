@@ -398,8 +398,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Kami sedang mengaji penggunaan dan pengalaman design untuk penguna. Laman ini akan diubah dari masa-ke-semasa mengikuti buku "Don\'t Make Me Think". Sedarkah anda, laman ini mengandungi parallaxing ?!'
     },
     'card.5.title': {
-      en: 'React and Javascript',
-      my: 'React dan Javascript'
+      en: 'Javascript with ReactJS',
+      my: 'Javascript with ReactJS'
     },
     'card.5.desc': {
       en: 'This website has went through 4 interations, and we are now using the ReactJS technology.' +
@@ -410,8 +410,8 @@ export class IndexLocale extends AbstractLocalev2 {
           ' CSS laman ini dibina dengan konsep CSS modules.'
     },
     'card.6.title': {
-      en: 'React Native',
-      my: 'React Native'
+      en: 'Mobile with React Native',
+      my: 'Mobile with React Native'
     },
     'card.6.desc': {
       en: 'Coding react native was an extremely wonderful experience as we learnt Android, iOS and Javascripts at the same time. ' +
@@ -434,8 +434,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Deutsch dari Malaysia'
     },
     'card.8.desc': {
-      en: 'Wir lernen gemainsam am Wochenende Deutsch. Wir lieben Deutsch.',
-      my: 'Wir lernen gemainsam am Wochenende Deutsch. Wir lieben Deutsch.'
+      en: 'Wir haben an den Wochenenden drei Jahre Deutsch gelernt, aber unsere Deutch ist immer noch nicht gut. Wir konnen ein bisseren Deutsch sprechen und schreiben.',
+      my: 'Wir haben an den Wochenenden drei Jahre Deutsch gelernt, aber unsere Deutch ist immer noch nicht gut. Wir konnen ein bisseren Deutsch sprechen und schreiben.'
     },
     'card.9.title': {
       en: 'Transformers Journal',
