@@ -1,62 +1,114 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const extractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
+const reactToolboxVariables = {
+  'color-primary-dark': 'var(--palette-bs)',
+  'color-text': '#444548',
+  'color-primary': 'var(--palette-blue-500)',
+  'button-height': '30px',
+};
+
+const extractSass = new extractTextPlugin({
+  filename: "[name].style.css"
+});
+
 module.exports = {
     entry: {
-      index: "./src/js/index.tsx",
-      about: "./src/js/about.tsx",
-      develop: "./src/js/develop.tsx",
-      portfolio: "./src/js/portfolio.tsx",
-      technology: "./src/js/technology.tsx",
-      progressive: "./src/js/progressive.tsx"
+      index: "./src/tsx/index.tsx",
+      portfolio: "./src/tsx/portfolio.tsx",
+      technology: "./src/tsx/technology.tsx",
+      about: "./src/tsx/about.tsx",
+      develop: "./src/tsx/develop.tsx",
+      progressive: "./src/tsx/progressive.tsx"
     },
     output: {
-      filename: "[name].bundle.js",
-      path: __dirname + "/ext"
+        filename: "[name].bundle.js",
+        publicPath: "/extw/",
+        path: __dirname + "/dist/main/extw/"
     },
 
+    devtool: "source-map",
+
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".scss", '.css']
+        extensions: [".ts", ".tsx", ".js", ".json", ".scss"]
     },
 
     module: {
-        loaders: [
-          // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-          { test: /\.tsx?$/, loader: "ts-loader" },
-          {
-            test: /(\.scss)$/,
-            //loader: ExtractTextPlugin.extract('css!sass'),
-            //loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
-            loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass')
-          },
-          {
-            test: /\.(svg|woff|woff2|ttf|eot)(\?.*$|$)/,
-            loader: 'file-loader?name=../ext/font/[name].[ext]&publicPath=../'
-          }
-        ],
-        postcss: [autoprefixer],
-        preLoaders: [
+        rules: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            {
+              test: /\.tsx?$/,
+              loader: "awesome-typescript-loader",
+              exclude: ['/node_modules/','/src/patternlibrary']
+            },
+            // All files with a '.scss' are precompiled
+            {
+              test: /(\.scss)$/,
+              use: extractSass.extract({
+                use: [{
+                  loader: "css-loader",
+                    options: {
+                      modules: true,
+                      localIdentName: '[name]_[local]--[hash:base64:5]'
+                    }
+                },
+                {
+                  loader: "postcss-loader"
+                },
+                {
+                  loader: "sass-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+              })
+            },
+            {
+              test: /\.css$/,
+              use: [
+                "style-loader",
+                {
+                  loader: "css-loader",
+                  options: {
+                    modules: true, // default is false
+                    sourceMap: true,
+                    importLoaders: 1,
+                    localIdentName: "[name]--[local]--[hash:base64:8]"
+                  }
+                },
+                "postcss-loader"
+              ]
+            },
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            {
+              enforce: "pre",
+              test: /\.js$/,
+              loader: "source-map-loader"
+            }
         ]
     },
+
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
+      extractSass,
+      new webpack.LoaderOptionsPlugin({
+        postcss: () => {
+            return [
+                require('postcss-cssnext')({
+                    features: {
+                        customProperties: {
+                            variables: reactToolboxVariables,
+                        },
+                    },
+                }),
+            ];
         }
-      }),
-      new ExtractTextPlugin(__dirname + './../ext/css/[name].css')
+      })
     ],
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
+
     externals: {
-      "react": "React",
-      "react-dom": "ReactDOM",
-      "react-addons-css-transition-group": "var React.addons.CSSTransitionGroup",
-      "react-addons-transition-group": "var React.addons.TransitionGroup",
-      "trianglify": "Trianglify"
-    },
+        "react": "React",
+        "react-dom": "ReactDOM",
+        "trianglify": "Trianglify"
+
+    }
 };

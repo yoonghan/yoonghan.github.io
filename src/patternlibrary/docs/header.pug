@@ -1,10 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Header
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/header.css")
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
+    +stylesheet("header")
     style.
       body {
         color: #000;
@@ -19,6 +19,4 @@ html
     p Note:
       ul In mobile view, the menu dropdowns display as open upon first load.
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/header.bundle.js')
+    +script("header")

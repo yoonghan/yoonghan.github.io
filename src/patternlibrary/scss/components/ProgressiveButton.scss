@@ -1,0 +1,12 @@
+@import "~react-toolbox/lib/colors";
+
+.progressive {
+  text-align: center;
+
+  .error {
+    background: var(--palette-pink-500) !important;
+  }
+  .success {
+    background: var(--palette-green-500)  !important;
+  }
+}

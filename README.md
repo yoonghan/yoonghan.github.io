@@ -1,35 +1,22 @@
-Node JS 4th Iteration
-========
-Complete program of Node JS for front end.
+# Walcron's own nodeJS
 
-This was used over vert.x due to the incredible and vast library available.
-Selenium testing has been removed.
-
-Supports
-========
-Caching of html pages
-Mime Headers identification
-
-Installation required
-========
-npm install
-
-Installation required
-========
-1) To install custom typescript definition:
+## 1.0 Usage
+1. Execute
 ```
-typings install dt~react-slick --global --save
+  gulp
 ```
+2. Once run, there will be two links visible => http://localhost:8080/webpack-dev-server/ and http://localhost:8081/webpack-dev-server/. The latter is for pattern library usage.
 
-## Pending tasks
-======
-1. ~~Caching - To append versioning release to js/css cached files ?v=1.0.~~
-  1. ~To rewrite cache that is able to append the same timestamp for production built!~
-  2. ~Disable caching for Express Node for development~
-2. ~Localization - Target is to generate different files for different languages, rather than dynamic loading and rely on nodejs to locate the correct files.~
-3. ~Minimization - Javascript minification.~
-  1. ~Use webpack for minification~
-4. ~Bundling - Bundling javascript into 1 common file? To be considered.~
-5. ~Migrate webpack to webpack 2.0~
-6. ~Implement HTTPs~
-7. Implements sharing
+## 1.1 Pattern Library
+To know more of the available styles usage, point to http://localhost:8081/webpack-dev-server/ after gulp is started.
+
+1. Pattern Library common libraries are pointed to main project. The reason doing this is to eliminate missing ext or libraries in the main project.
+
+## Typescript
+If there are custom typescript, allow the changes by placing the d.tx under patternlibrary(or src/typings) folder. Typescript configured under webpack will take all .ts(x) and control it's output.
+
+Remember to add to webpack.config.js to exclude the external javascript to be included into your script, provided the JS cannot be provided.
+
+## Node Server
+NodeJS server is moved into /dist/main/ folder. To start, either execute build-dev-progressive or buildprod. Before executing npm start.
+All NodeJS server are stored in npm/ folder.

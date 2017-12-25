@@ -1,14 +1,13 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Tile
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/gallery.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/header.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/footer.css")
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/animate.min.css")
-    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    +stylesheet("gallery")
+    +stylesheet("header")
+    +stylesheet("footer")
+    link(rel="stylesheet" type="text/css" href="/ext/css/animate.min.css")
     style.
       body {
         color: #000;
@@ -22,8 +21,6 @@ html
     div(id='gallery')
     div(id='footer')
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/gallery.bundle.js')
-    script(src='/patternlibrary/ext/js/header.bundle.js')
-    script(src='/patternlibrary/ext/js/footer.bundle.js')
+    +script("gallery")
+    +script("header")
+    +script("footer")
