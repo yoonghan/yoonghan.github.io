@@ -1,0 +1,125 @@
+@import "../../patternlibrary/scss/lib/breakpoints";
+@import "../../patternlibrary/scss/lib/fonts";
+
+:global {
+  .about-layer {
+
+    @include font-normal();
+
+    .slides {
+      color: #000;
+      box-sizing: content-box;
+      padding: 50px 0 50px 0;
+      position: relative;
+
+      .content {
+        margin: 0 auto;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 44pt;
+        font-weight: normal;
+        text-align: center;
+        padding: 0; }
+
+      h2 {
+        color: #000;
+        margin: 0 10%;
+        padding: 0 0 10px 0;
+        text-shadow: none;
+      }
+
+      h3 {
+        font-size: 12pt;
+        font-weight: normal;
+        margin: 5px 10%;
+        padding: 0;
+        z-index: 1;
+        position: relative;
+      }
+
+      &:nth-child(odd) {
+        height: 400px;
+        margin: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-attachment: fixed;
+      }
+
+      &:nth-child(even) {
+        background-color: #ffffff;
+        height: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      &.slide1 {
+        background-image: url('/ext/img/about/slide1.jpg');
+        color:  #fff;
+        height: 500px;
+
+        .bottom {
+          bottom: 50px;
+          color:  #fff;
+          margin: 0;
+          position: absolute;
+          text-align: center;
+          width: 100%;
+        }
+      }
+      &.slide2 {
+        text-align: justify;
+      }
+      &.slide3 {
+        background-image: url('/ext/img/about/slide3.jpg');
+        color:  #fff;
+        text-align: justify;
+      }
+      &.slide4 {
+        background-color: #fff;
+        height: 200px;
+      }
+      &.slide5 {
+        background-image: url('/ext/img/about/slide5.jpg');
+        color: #fff;
+        padding: 100px 0;
+        text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
+      }
+
+      .quotes_container {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .left {
+        float:none;
+        @include breakpoint($breakpoint-phone) {
+          float: left;
+        }
+      }
+
+      .right {
+        float:none;
+        @include breakpoint($breakpoint-phone) {
+          float: right;
+        }
+      }
+
+      .profile-pic {
+        @include breakpoint($breakpoint-tablet) {
+          width: 220px;
+          margin-bottom: 20px;
+        }
+        @include breakpoint($breakpoint-phone $breakpoint-tablet) {
+          width: 100px;
+        }
+        width: 50px;
+        border-radius: 50%;
+        margin: 0px 50px;
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Posts
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/post.css")
+    +stylesheet("post")
     style.
       body {
         color: #000;
@@ -83,6 +83,4 @@ html
     div Filler<br>
     div Filler<br>
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/post.bundle.js')
+    +script("post")

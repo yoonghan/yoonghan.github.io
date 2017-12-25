@@ -1,70 +1,97 @@
-/**
- * For development on patternlibrary only.
- **/
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const extractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+
+const extractSass = new extractTextPlugin({
+  filename: "[name].style.css"
+});
+
 module.exports = {
     entry: {
-      header: "./src/patternlibrary/js/header.tsx",
-      post: "./src/patternlibrary/js/post.tsx",
-      footer: "./src/patternlibrary/js/footer.tsx",
-      localeselector: "./src/patternlibrary/js/localeselector.tsx",
-      mainscreen: "./src/patternlibrary/js/mainscreen.tsx",
-      material: "./src/patternlibrary/js/material.tsx",
-      stickytitle: "./src/patternlibrary/js/stickytitle.tsx",
-      metitle: "./src/patternlibrary/js/metitle.tsx",
-      gallery: "./src/patternlibrary/js/gallery.tsx",
-      progressivebutton: "./src/patternlibrary/js/progressivebutton.tsx"
+      header: "./src/patternlibrary/tsx/header.tsx",
+      post: "./src/patternlibrary/tsx/post.tsx",
+      mainscreen: "./src/patternlibrary/tsx/mainscreen.tsx",
+      footer: "./src/patternlibrary/tsx/footer.tsx",
+      stickytitle: "./src/patternlibrary/tsx/stickytitle.tsx",
+      material: "./src/patternlibrary/tsx/material.tsx",
+      metitle: "./src/patternlibrary/tsx/metitle.tsx",
+      progressivebutton: "./src/patternlibrary/tsx/progressivebutton.tsx",
+      localeselector: "./src/patternlibrary/tsx/localeselector.tsx",
+      gallery: "./src/patternlibrary/tsx/gallery.tsx"
     },
     output: {
         filename: "[name].bundle.js",
-        path: __dirname + "/ext"
+        publicPath: "/extw/",
+        path: __dirname + "/../../patternlibrary/dist/patternlibrary/"
     },
 
-    // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".scss", '.css']
+        extensions: [".ts", ".tsx", ".js", ".json", ".scss"]
     },
 
     module: {
-        loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            { test: /\.tsx?$/,
-              loader: "ts-loader" },
+        rules: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            {
+              test: /\.tsx?$/,
+              loader: "awesome-typescript-loader",
+              exclude: ['/node_modules/','/src/tsx/']
+            },
+            // All files with a '.scss' are precompiled
             {
               test: /(\.scss)$/,
-              //loader: ExtractTextPlugin.extract('css!sass'),
-              //loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
-              loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!sass')
+              use: extractSass.extract({
+                use: [{
+                  loader: "css-loader",
+                    options: {
+                      modules: true,
+                      localIdentName: '[name]_[local]--[hash:base64:5]'
+                    }
+                },
+                {
+                  loader: "postcss-loader"
+                },
+                {
+                  loader: "sass-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+              })
             },
             {
-              test: /\.(svg|woff|woff2|ttf|eot)(\?.*$|$)/,
-              loader: 'file-loader?name=../ext/font/[name].[ext]&publicPath=../'
-            }
-        ],
-        postcss: [autoprefixer],
-        preLoaders: [
+              test: /\.css$/,
+              use: [
+                "style-loader",
+                {
+                  loader: "css-loader",
+                  options: {
+                    modules: true, // default is false
+                    sourceMap: true,
+                    importLoaders: 1,
+                    localIdentName: "[name]--[local]--[hash:base64:8]"
+                  }
+                },
+                "postcss-loader"
+              ]
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { test: /\.js$/, loader: "source-map-loader" }
+            {
+              enforce: "pre",
+              test: /\.js$/,
+              loader: "source-map-loader"
+            }
         ]
     },
 
     plugins: [
-        new ExtractTextPlugin(__dirname + './../ext/css/[name].css')
+      extractSass
     ],
 
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "react-addons-css-transition-group": "var React.addons.CSSTransitionGroup",
-        "react-addons-transition-group": "var React.addons.TransitionGroup",
         "trianglify": "Trianglify"
-    },
+    }
 };

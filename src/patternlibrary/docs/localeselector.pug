@@ -1,10 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Localization
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/localeselector.css")
+    +stylesheet("localeselector")
     link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     style.
       body {
@@ -14,16 +14,13 @@ html
         padding: 0;
         margin: 0;
         font-family: Roboto,sans-serif;
-        font-size: 1.6rem;
       }
-  body
-    div Some text to test out the text
+  body(style="font-size: 10pt")
+    div Some text to test out the text on body's real value
     div(style="font-size:1.6rem") Some text to test out the text
     div
       div(id='localeselector')
       div(class='links-white-background')
         div(id='localeselector2')
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/react.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/localeselector.bundle.js')
+    +script("localeselector")

@@ -1,10 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Tile
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet", type="text/css", href="/patternlibrary/ext/css/progressivebutton.css")
+    +stylesheet("progressivebutton")
     link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     style.
       body {
@@ -17,6 +17,4 @@ html
   body
     div(id='progressivebutton')
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/progressivebutton.bundle.js')
+    +script("progressivebutton")

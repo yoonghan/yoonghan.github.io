@@ -1,12 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
-    title Header
+    title Main Screen
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/mainscreen.css")
-    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" )
-    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" )
+    +stylesheet("mainscreen")
     style.
       body {
         color: #000;
@@ -74,7 +72,5 @@ html
     div Filler
     div Filler
     include ../incl/backhome.incl
-    script(src='/ext/js/lib/trianglify.min.js')
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/mainscreen.bundle.js')
+    script(src="http://localhost:8080/ext/js/trianglify.min.js")
+    +script("mainscreen")

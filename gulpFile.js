@@ -1,28 +1,26 @@
 'use strict';
 
-var pkg = require('./package.json'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  plumber = require('gulp-plumber'),
-  connect = require('gulp-connect'),
-  server = require('gulp-express'),
+var gulp = require('gulp'),
+  gulpUtil = require('gulp-util'),
+  gulpSequence = require('gulp-sequence'),
   pug = require('gulp-pug-i18n'),
-  sass = require('gulp-sass'),
-  cachebust = require('gulp-cache-bust'),
-  runSequence = require('run-sequence'),
+  plumber = require('gulp-plumber'),
+  through = require('gulp-through'),
   del = require('del'),
   opn = require('opn'),
-  through = require('through'),
-  webpack = require('webpack-stream'),
-  path = require('path'),
-  swPrecache = require('./gulptools/sw-precache'),
-  isDist = process.argv.indexOf('default') === -1 && process.argv.indexOf('serve') === -1;
+  webpack = require('webpack'),
+  webpackConfig = require("./webpack.config.js"),
+  webpackDevServer = require("webpack-dev-server"),
+  swPrecache = require('sw-precache');
+
+var isDist = false;
+var dev = "main";
 
 /*
- * Web precaching
+ * Web precaching/progressive app
  */
-gulp.task('service-worker', function(callback) {
- var rootDir = 'dist';
+gulp.task('serviceworker:build', function(callback) {
+ var rootDir = './dist/main';
 
  swPrecache.write(`${rootDir}/service-worker.js`, {
    staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}'],
@@ -30,34 +28,50 @@ gulp.task('service-worker', function(callback) {
  }, callback);
 });
 
-/*
- *
- * WEBPACK converstion functionality
- *
- */
-var webpack_func = function(loc) {
-  const location = loc;
-  const webpack_location = (location === '' ? '.' : './src/' + location)
-  return function() {
-    return gulp.src('src/' + location + '/js/*.tsx')
-      .pipe(isDist ? through() : plumber())
-      .pipe(webpack(require(webpack_location + '/webpack.config.js')))
-      .pipe(gulp.dest('dist/' + location + '/ext/js/'))
-      .pipe(connect.reload());
-  }
-};
-gulp.task('webpack:html', ['clean:js'], webpack_func(''));
-gulp.task('webpack:patternlibrary', webpack_func('patternlibrary'));
-gulp.task('webpack', ['webpack:html', 'webpack:patternlibrary']);
+/**
+ * Webpack for production bundle
+ **/
+gulp.task("webpack:build", function() {
+	var myConfig = Object.create(webpackConfig);
+  webpack(myConfig, function(err, stats) {
+		if(err) throw new gulpUtil.PluginError("webpack:build", err);
+		gulpUtil.log("[webpack:build]", stats.toString({
+			colors: true
+		}));
+	});
+});
 
-/*
- *
- * PUG converstion functionality
- *
- */
-var pug_func =  function(loc) {
+/**
+ * Webpack for development
+ **/
+var webpackFunc =  function(loc) {
+  var myConfig = (loc === 'html') ? Object.create(webpackConfig) : Object.create(require("./src/patternlibrary/webpack.config.js"));
+  var contentBasePath = (loc === 'html') ? "main" : loc;
+  var port = (loc === 'html') ? 8080: 8081;
+
+  var compiler = webpack(myConfig);
+  new webpackDevServer(compiler, {
+    publicPath: myConfig.output.publicPath,
+    contentBase: "dist/" + contentBasePath + "/",
+    hot: true,
+    stats: {
+      colors: true
+    }
+  }).listen(port, "localhost", function(err) {
+      if(err) throw new gulpUtil.PluginError("webpack-dev-server", err);
+      gulpUtil.log("[webpack-dev-server]", "DEVELOPMENT: http://localhost:" + port + "/webpack-dev-server/index.html");
+  });
+};
+gulp.task('webpack-dev-server:html', function(){webpackFunc('html')});
+gulp.task('webpack-dev-server:patternlibrary', function(){webpackFunc('patternlibrary')});
+gulp.task('webpack-dev-server', ['webpack-dev-server:html', 'webpack-dev-server:patternlibrary']);
+
+/**
+ * Pug to HTML converstion functionality
+ **/
+var pugFunc =  function(loc) {
   const location = loc;
-  const dest_location = (location==='html' ? '' : location);
+  const dest_location = (location==='html' ? 'main' : location);
   return function() {
     return gulp.src('src/' + location + '/**/*.pug')
       .pipe(isDist ? through() : plumber())
@@ -69,97 +83,88 @@ var pug_func =  function(loc) {
         },
         pretty: !isDist
       }))
-      .pipe(gulp.dest('dist/' + dest_location))
-      .pipe(connect.reload());
+      .pipe(gulp.dest('dist/' + dest_location));
   };
 };
-gulp.task('pug:html', pug_func('html'));
-gulp.task('pug:patternlibrary', pug_func('patternlibrary'));
-gulp.task('pug', function(callback) {
-  runSequence(['pug:html', 'pug:patternlibrary'], callback)
-});
+gulp.task('pug:html', pugFunc('html'));
+gulp.task('pug:patternlibrary', pugFunc('patternlibrary'));
+gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
 
-/*
- *
- * IMAGE COPIER
- *
- */
+/**
+ * Copy Images
+ **/
 var image_func = function(loc) {
   const location = loc;
-  return function() {
-    return gulp.src(['./src/' + location + '/img/**/*'])
-      .pipe(gulp.dest('dist/' + location + '/ext/img'))
-      .pipe(connect.reload());
-  };
+  const func = (location === 'html' ?
+    (
+      function() {
+        return gulp.src(['./src/img/**/*'])
+          .pipe(gulp.dest('dist/main/ext/img'));
+      }
+    )
+    :
+    (
+      function() {
+        return gulp.src(['./src/' + loc + '/img/**/*'])
+          .pipe(gulp.dest('dist/main/ext/img'))
+          .pipe(gulp.dest('dist/' + loc + '/ext/img'));
+      }
+    )
+  );
+  return func;
 };
-gulp.task('image:html', image_func(''));
+gulp.task('image:html', image_func('html'));
 gulp.task('image:patternlibrary', image_func('patternlibrary'));
 gulp.task('image', ['image:html', 'image:patternlibrary']);
 
-//Basic file copy
+/**
+ * Basic file copy
+ **/
+ gulp.task('copy:patternlibcss', function () {
+     return gulp.src(['./src/lib/css/**']).pipe(gulp.dest('dist/patternlibrary/ext/css'));
+ });
 gulp.task('copy:basic', function () {
-    return gulp.src(['./src/**/lib/**']).pipe(gulp.dest('dist/ext/'));
+    return gulp.src(['./src/lib/**']).pipe(gulp.dest('dist/main/ext/'));
 });
 gulp.task('copy:favicon', function () {
-    return gulp.src(['./src/favicon.ico']).pipe(gulp.dest('dist/'));
+    return gulp.src(['./src/favicon.ico']).pipe(gulp.dest('dist/main/'));
 });
 gulp.task('copy:robots', function () {
-    return gulp.src(['./src/robots.txt']).pipe(gulp.dest('dist/'));
+    return gulp.src(['./src/robots.txt']).pipe(gulp.dest('dist/main/'));
 });
 gulp.task('copy:wellknowninfo', function () {
-    return gulp.src(['./src/.well-known/*']).pipe(gulp.dest('dist/.well-known/'));
+    return gulp.src(['./src/.well-known/*']).pipe(gulp.dest('dist/main/.well-known/'));
 });
-gulp.task('copy', ['copy:basic', 'copy:favicon', 'copy:robots', 'copy:wellknowninfo']);
+gulp.task('copy', ['copy:basic', 'copy:patternlibcss', 'copy:favicon', 'copy:robots', 'copy:wellknowninfo']);
 
-//Cache Busting for production release
-gulp.task('cachebust', function () {
-  return gulp.src(['./dist/!(patternlibrary)/*.html','./dist/*.html'])
-    .pipe(cachebust({
-      type: 'timestamp'
-    }))
-    .pipe(gulp.dest('./dist'));
+/**
+ * Clean directory
+ **/
+gulp.task('clean', function() {
+  return del('dist');
 });
-
-//Task connection
-gulp.task('connect', function() {
-  connect.server({
-    root: 'dist/'
-  });
+gulp.task('clean:js', function() {
+  return del('dist/ext/js/*.js');
 });
-gulp.task('connect-server', function() {
-  server.run(['server.js']);
-});
-gulp.task('open', ['connect-server', 'connect'], function (done) {
-  opn('http://localhost:8000', done);
+gulp.task('clean:images', function() {
+  return del('dist/cache/images');
 });
 
-//Task Cleaning
-gulp.task('clean', function(done) {
-  return del('dist', done);
-});
-
-gulp.task('clean:js', function(done) {
-  return del('dist/ext/js/*.js', done);
-});
-
-gulp.task('clean:images', function(done) {
-
-  return del('dist/cache/images', done);
-});
-
-//Task Watcher
+/**
+ * Task Watcher
+ **/
 gulp.task('watch', function() {
-  gulp.watch('src/js/**/*.tsx', ['webpack:html']);
-  gulp.watch('src/css/**/*.scss', ['webpack:html']);
-  gulp.watch('src/patternlibrary/**/*.tsx', ['webpack:patternlibrary']);
-  gulp.watch('src/patternlibrary/**/*.scss', ['webpack:patternlibrary']);
   gulp.watch('src/**/*.pug', ['pug']);
   gulp.watch('src/img/', ['image:html']);
   gulp.watch('src/patternlibrary/img/', ['image:patternlibrary']);
 });
 
-//Task open to public
-gulp.task('build', function(callback) {runSequence('clean', 'copy', 'image', 'pug', 'webpack', 'service-worker', callback)});
-gulp.task('buildprod', function(callback) {runSequence('clean', 'copy', 'image:html', 'pug:html', 'webpack:html', 'service-worker', callback)});
-gulp.task('serve', function(callback) {runSequence('build', 'open', 'watch')});
-gulp.task('default', ['serve']);
+/**
+ * Build scripts
+ **/
+gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
+gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build'))
+gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack:build', 'serviceworker:build'));
+gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch']));
+gulp.task('default', ['build-dev']);
+//gulp.task('default', gulpSequence('clean', ['pug', 'copy', 'image', 'webpack-dev-server', 'watch'], 'generate-service-worker'));

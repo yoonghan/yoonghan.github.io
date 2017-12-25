@@ -1,10 +1,10 @@
 doctype html
+include ../incl/reactcode
 html
   head
     title Footer
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/ext/css/lib/font-awesome.css")
-    link(rel="stylesheet" type="text/css" href="/patternlibrary/ext/css/footer.css")
+    +stylesheet("footer")
     style.
       body {
         color: #000;
@@ -16,6 +16,4 @@ html
   body
     include ../incl/backhome.incl
     div(id='footer')
-    script(src='/ext/js/lib/react-with-addons.js')
-    script(src='/ext/js/lib/react-dom.js')
-    script(src='/patternlibrary/ext/js/footer.bundle.js')
+    +script("footer")
