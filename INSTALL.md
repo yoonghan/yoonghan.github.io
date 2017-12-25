@@ -19,7 +19,7 @@ https://github.com/webpack/webpack-with-common-libs/blob/master/gulpfile.js
 
 ## Manual Configuration
 *React-Toolbox*
-Change the settings for Button.d.ts within /node-modules and included the properties.
+Change the settings for Button.d.ts within /node-modules/react-toolbox/lib/Button.d.ts and included the properties.
 ```
 /**
  * Creates a link for the button.

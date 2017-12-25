@@ -126,7 +126,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
             <div className={styles['footer-section-one-link']}>
               <a href="javascript:;" onClick={this.clickContact} className='links'>
                 <i className={'fa fa-' + this.state.contactIcon}></i>
-                {!this.state.isContactOpen && emailLabel}
+                <span>{!this.state.isContactOpen && emailLabel}</span>
               </a>
             </div>
           </div>
@@ -153,7 +153,7 @@ export class Footer extends React.Component<FooterProps, ContactOpenState> {
             {linkList}
           </div>
           <div className={styles['footer-section-three'] + ' base-footnote'}>
-            2016-{updatedYear} Walcron Coorperation &copy; 
+            2016-{updatedYear} Walcron Coorperation &copy;
           </div>
         </div>
       </div>
