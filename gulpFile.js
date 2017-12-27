@@ -33,6 +33,17 @@ gulp.task('serviceworker:build', function(callback) {
  **/
 gulp.task("webpack:build", function() {
 	var myConfig = Object.create(webpackConfig);
+
+  myConfig.plugins = myConfig.plugins.concat (
+    new webpack.DefinePlugin({
+      "process.env": {
+        //Reduction for React
+        "NODE_ENV": JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  );
+
   webpack(myConfig, function(err, stats) {
 		if(err) throw new gulpUtil.PluginError("webpack:build", err);
 		gulpUtil.log("[webpack:build]", stats.toString({
