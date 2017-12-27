@@ -46,21 +46,11 @@ html(lang="en")
             h1 #{$i18n.about.interest.title}
             h3 #{$i18n.about.interest.detail}
     div(id="aboutFooter")
-    noscript(id="deferred-styles")
-      link(rel="stylesheet" type="text/css" href="/extw/about.style.css")
-      link(rel="stylesheet" type="text/css" href="/ext/css/font-awesome.css")
-    script.
-      var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement)
-        addStylesNode.parentElement.removeChild(addStylesNode);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-      else window.addEventListener('load', loadDeferredStyles);
-    script(src='/ext/js/react.production.min.js')
-    script(src='/ext/js/react-dom.production.min.js')
-    script(src='/extw/about.bundle.js')
+    link(rel="preload" as="style" href="/extw/about.style.css" onload="this.rel='stylesheet'")
+    link(rel="preload" as="style" href="/ext/css/font-awesome.css" onload="this.rel='stylesheet'")
+    noscript
+      link(rel="stylesheet" href="/extw/about.style.css")
+      link(rel="stylesheet" href="/ext/css/font-awesome.css")
+    script(src='/ext/js/react.production.min.js' defer="defer")
+    script(src='/ext/js/react-dom.production.min.js' defer="defer")
+    script(src='/extw/about.bundle.js' defer="defer")

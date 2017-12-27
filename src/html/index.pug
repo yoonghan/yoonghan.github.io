@@ -4,11 +4,14 @@ html(lang="en")
     title #{$i18n.index.title}
     meta(name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.")
     include ../incl/meta.incl
-    link(rel="stylesheet" type="text/css" href="/extw/index.style.css")
-    link(rel="stylesheet" type="text/css" href="/ext/css/font-awesome.css")
+    link(rel="preload" as="style" href="/extw/index.style.css" onload="this.rel='stylesheet'")
+    link(rel="preload" as="style" href="/ext/css/font-awesome.css" onload="this.rel='stylesheet'")
+    noscript
+      link(rel="stylesheet" href="/extw/index.style.css")
+      link(rel="stylesheet" href="/ext/css/font-awesome.css")
   body
     div(id='index')
-    script(src='/ext/js/react.production.min.js')
-    script(src='/ext/js/react-dom.production.min.js')
-    script(src='/ext/js/trianglify.min.js')
-    script(src='/extw/index.bundle.js')
+    script(src='/ext/js/react.production.min.js' defer="defer")
+    script(src='/ext/js/react-dom.production.min.js' defer="defer")
+    script(src='/ext/js/trianglify.min.js' defer="defer")
+    script(src='/extw/index.bundle.js' defer="defer")
