@@ -5,23 +5,13 @@ html(lang="en")
     meta(name="description" content="Portfolio of Walcron Coorperation developers.")
     include ../incl/meta.incl
     include ../incl/link.incl
+    link(rel="preload" as="style" href="/extw/portfolio.style.css" onload="this.rel='stylesheet'")
+    link(rel="preload" as="style" href="/ext/css/font-awesome.css" onload="this.rel='stylesheet'")
+    noscript
+      link(rel="stylesheet" href="/extw/portfolio.style.css")
+      link(rel="stylesheet" href="/ext/css/font-awesome.css")
   body
     div(id='portfolio')
-    noscript(id="deferred-styles")
-      link(rel="stylesheet" type="text/css" href="/extw/portfolio.style.css")
-      link(rel="stylesheet" type="text/css" href="/ext/css/font-awesome.css")
-    script.
-      var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement)
-        addStylesNode.parentElement.removeChild(addStylesNode);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-      else window.addEventListener('load', loadDeferredStyles);
-    script(src='/ext/js/react.production.min.js')
-    script(src='/ext/js/react-dom.production.min.js')
-    script(src='/extw/portfolio.bundle.js')
+    script(src='/ext/js/react.production.min.js' defer="defer")
+    script(src='/ext/js/react-dom.production.min.js' defer="defer")
+    script(src='/extw/portfolio.bundle.js' defer="defer")

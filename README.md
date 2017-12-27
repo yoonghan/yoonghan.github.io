@@ -20,3 +20,8 @@ Remember to add to webpack.config.js to exclude the external javascript to be in
 ## Node Server
 NodeJS server is moved into /dist/main/ folder. To start, either execute build-dev-progressive or buildprod. Before executing npm start.
 All NodeJS server are stored in npm/ folder.
+
+##Enhance Image performance.
+Install magickImage and execute the command:
+export FILE=bg-pattern.gif
+magick convert $FILE -strip -sampling-factor 4:2:0 -quality 85 -colorspace sRGB $FILE
