@@ -15,6 +15,7 @@ const locale = new HeaderLocale();
 
 export interface HeaderProps {
   menuOpened?: Boolean;
+  isHomepage?: Boolean;
 }
 
 export class Header extends React.Component<HeaderProps, {}> {
@@ -24,7 +25,7 @@ export class Header extends React.Component<HeaderProps, {}> {
 
   render() {
     return (
-      <HeaderPat menus={headerMenu} mobileOpensOnLoad={this.props.menuOpened} headerTitle={locale.translate('title')}/>
+      <HeaderPat menus={headerMenu} mobileOpensOnLoad={this.props.menuOpened} isHomepage={this.props.isHomepage} headerTitle={locale.translate('title')}/>
     )
   }
 }

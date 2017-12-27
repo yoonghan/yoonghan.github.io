@@ -57,7 +57,7 @@ export class Index extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
-        <Header menuOpened={true}/>
+        <Header menuOpened={true} isHomepage={true}/>
         <MainScreen itemArray={tech}/>
         <Post postItems={posts}/>
         <div className="posting">

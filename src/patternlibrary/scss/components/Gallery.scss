@@ -69,9 +69,11 @@ $indicator-img-size: 360px;
       position:absolute;
       width:100%;
       z-index:0;
+      min-width: $indicator-img-size;
     }
 
     .overlaycard {
+      min-width: $indicator-img-size;
       max-width: $breakpoint-phone;
       position:absolute;
       transform: translateX(-50%);

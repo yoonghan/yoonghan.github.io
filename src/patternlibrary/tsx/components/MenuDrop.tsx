@@ -46,10 +46,10 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
   }
 
   handleMenuClick = () => {
-    const inverseMenuState = !this.state.isMenuOpened,
-      self = this;
+    const self = this;
     this.setState(
       (prevState, props) => {
+        const inverseMenuState = !prevState.isMenuOpened;
         return {
           isMenuOpened: inverseMenuState,
           menuIcon: self.toggleIcon(inverseMenuState)
@@ -63,7 +63,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
   }
 
   componentDidMount() {
-    if(this.props.mobileOpensOnLoad) {
+    if(!this.props.mobileOpensOnLoad) {
       this.clickRef.click();
     }
   }
