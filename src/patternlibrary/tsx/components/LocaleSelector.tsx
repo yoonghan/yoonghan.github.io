@@ -74,7 +74,6 @@ export class LocaleSelector extends React.Component<LocaleSelectorProps, LocaleS
         <div className={styles['localeselector-cell']}>
           <Dropdown
             auto
-            theme={styles}
             onChange={this.handleChange}
             source={countries}
             value={this.state.lang}

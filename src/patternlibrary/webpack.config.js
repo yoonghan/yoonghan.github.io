@@ -47,7 +47,8 @@ module.exports = {
                   loader: "css-loader",
                     options: {
                       modules: true,
-                      localIdentName: '[name]_[local]--[hash:base64:5]'
+                      importLoaders: 1,
+                      localIdentName: '[name]_[local]--[hash:base64:8]'
                     }
                 },
                 {
@@ -84,9 +85,21 @@ module.exports = {
             }
         ]
     },
-
+    /*devServer: {
+      contentBase: path.resolve("src/www"),
+      publicPath: "https://localhost:8081",
+      quiet: false,
+      hot: true,
+      historyApiFallback: true,
+      inline: false
+    },*/
     plugins: [
-      extractSass
+      extractSass,
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
+      new webpack.LoaderOptionsPlugin({
+        debug: true
+      })
     ],
 
     externals: {

@@ -16,13 +16,13 @@
 
     a {
       letter-spacing: 1px;
-      padding-right: 20px;
+      padding-right: 10px;
 
       &.mnudrop-lst-big {
         display: inline-block;
       }
       &.mnudrop-lst-small {
-        padding-left: 20px;
+        padding-left: 30px;
         display: none;
       }
 
@@ -62,6 +62,13 @@
 
     @include breakpoint(max-width $breakpoint-phone) {
       display: block;
+    }
+
+    :global .links {
+      font-size: 1.2rem;
+      i {
+        padding-right: 10px;
+      }
     }
   }
 
