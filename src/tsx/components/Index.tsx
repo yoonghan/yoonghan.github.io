@@ -152,10 +152,10 @@ export class Index extends React.Component<{}, {}> {
               />
               <CardActions>
                 <Button href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target='playstore' theme={styles} primary>
-                  <GoogleIcon />
+                  <i className={"fa fa-google"} aria-hidden="true"></i> Playstore
                 </Button>
                 <Button href='https://play.google.com/store/apps/details?id=com.theezpost.postcard' target='playstore' theme={styles} primary>
-                  <GoogleIcon />
+                  <i className={"fa fa-google"} aria-hidden="true"></i> Playstore
                 </Button>
               </CardActions>
             </Card>

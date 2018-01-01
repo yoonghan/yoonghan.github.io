@@ -59,7 +59,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
   }
 
   toggleIcon = (state:boolean):string => {
-    return (state ? 'toggle-down' : 'list' )
+    return (state ? 'ellipsis-v' : 'ellipsis-v' )
   }
 
   componentDidMount() {
@@ -89,7 +89,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
       <div className={styles.mnudrop}>
         <div className={styles['mnudrop-lst']}>
           {listOfMenus}
-          <h5>[ <LocaleSelector type={LocaleSelectorTypes.Link}/ >]</h5>
+          <h5>[ <LocaleSelector type={LocaleSelectorTypes.Link} />]</h5>
           <a className={'links ' + styles['mnudrop-lst-small']}
             onClick={this.handleMenuClick} ref={node => this.clickRef = node}>
             <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>

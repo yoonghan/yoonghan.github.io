@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   gulpSequence = require('gulp-sequence'),
   pug = require('gulp-pug-i18n'),
   plumber = require('gulp-plumber'),
-  through = require('gulp-through'),
+  through = require('through'),
   del = require('del'),
   opn = require('opn'),
   webpack = require('webpack'),
@@ -13,7 +13,6 @@ var gulp = require('gulp'),
   webpackDevServer = require("webpack-dev-server"),
   swPrecache = require('sw-precache');
 
-var isDist = false;
 var dev = "main";
 
 /*
@@ -85,14 +84,13 @@ var pugFunc =  function(loc) {
   const dest_location = (location==='html' ? 'main' : location);
   return function() {
     return gulp.src('src/' + location + '/**/*.pug')
-      .pipe(isDist ? through() : plumber())
+      .pipe(plumber())
       .pipe(pug({
         i18n: {
           default: 'en',
           locales: 'src/locale/*',
           filename: '{{{lang}}/}{{basename}}.html'
-        },
-        pretty: !isDist
+        }
       }))
       .pipe(gulp.dest('dist/' + dest_location));
   };
