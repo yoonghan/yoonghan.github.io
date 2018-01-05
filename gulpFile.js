@@ -11,6 +11,7 @@ var gulp = require('gulp'),
   webpack = require('webpack'),
   webpackConfig = require("./webpack.config.js"),
   webpackDevServer = require("webpack-dev-server"),
+  cachebust = require('gulp-cache-bust'),
   swPrecache = require('sw-precache');
 
 var dev = "main";
@@ -100,6 +101,22 @@ gulp.task('pug:patternlibrary', pugFunc('patternlibrary'));
 gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
 
 /**
+ * Add cache buster, so that the cache are rewritten
+ **/
+ gulp.task('bustCache', function () {
+   return gulp.src('./dist/**/*.html')
+    .pipe(cachebust({
+        type: 'timestamp'
+    }))
+    .pipe(gulp.dest('./dist'));
+ });
+
+/**
+ * Simplify call
+ **/
+ gulp.task('pugAndBustCache', gulpSequence('pug', 'bustCache'));
+
+/**
  * Copy Images
  **/
 var image_func = function(loc) {
@@ -163,7 +180,7 @@ gulp.task('clean:images', function() {
  * Task Watcher
  **/
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.pug', ['pug']);
+  gulp.watch('src/**/*.pug', ['pugAndBustCache']);
   gulp.watch('src/img/', ['image:html']);
   gulp.watch('src/patternlibrary/img/', ['image:patternlibrary']);
 });
@@ -171,9 +188,8 @@ gulp.task('watch', function() {
 /**
  * Build scripts
  **/
-gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
+gulp.task('build-basic', gulpSequence('clean', ['pugAndBustCache', 'copy', 'image']));
 gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build'))
 gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack:build', 'serviceworker:build'));
 gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch']));
 gulp.task('default', ['build-dev']);
-//gulp.task('default', gulpSequence('clean', ['pug', 'copy', 'image', 'webpack-dev-server', 'watch'], 'generate-service-worker'));
