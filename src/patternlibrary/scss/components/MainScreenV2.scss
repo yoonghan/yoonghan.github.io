@@ -1,0 +1,74 @@
+@import "../lib/colors";
+@import "../lib/fonts";
+
+.mainscr {
+  .mainscr-container {
+    position: relative;
+
+    .mainscr-banner {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translate(0, -50%);
+
+      h3,h4 {
+        text-align: center;
+        font-style: italic;
+      }
+    }
+
+    .mainscr-content {
+      position: absolute;
+      display: -ms-flexbox;
+      -ms-flex-direction: row;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+    }
+
+    .logo-container {
+      height: 200px;
+      margin: 20px 50px;
+    }
+
+    .mainscr-divider {
+      border-bottom: 1px solid #FFFFFF;
+      height: 20px;
+      margin: 0 5px;
+    }
+
+    .mainscr-description {
+      width: 320px;
+      text-align: justify;
+      padding: 40px;
+      color: $color-mainscr-description;
+      @include font-normal($font-size-h4);
+      background: rgba(1, 87, 155, 0.4);
+      border-radius: 5px;
+      margin-left: 30px;
+      border: 2px solid $color-mainscr-description-border;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      position: relative;
+
+      &:before {
+        content: '';
+        border-left: 8px solid $color-mainscr-description-border;
+        border-bottom: 10px solid transparent;
+        border-top: 10px solid transparent;
+        height: 100px;
+        left: -1px;
+        top: 50px;
+        position: absolute;
+      }
+
+      :global {
+        .mainscr-know-us {
+          margin: 20px 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

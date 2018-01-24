@@ -1,0 +1,55 @@
+@import "../lib/breakpoints";
+@import "../lib/animations";
+@import "../lib/colors";
+@import "../lib/fonts";
+@import "../lib/shadows";
+
+.menu-icon {
+  padding: 0 5px;
+  color: $color-menu-icon-inner;
+  font-family: $font-family;
+  font-weight: bold;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 2px solid $color-menu-icon;
+    position: relative;
+    margin: auto;
+
+    // :global {
+    //   i {
+    //     &.fa {
+    //       color: $color-menu-icon;
+    //     }
+    //   }
+    // }
+
+    .icon-inner {
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      border: 1px solid $color-menu-icon;
+      position: absolute;
+      padding: 3px;
+      top: 1px;
+      left: 1px;
+    }
+
+    .image {
+      text-align: center;
+      font-size: 14pt;
+      position: absolute;
+      top: 4px;
+      width: 100%;
+      color: $color-menu-icon-inner;
+    }
+  }
+
+  .title {
+    margin-top: 3px;
+    text-align: center;
+    font-size: 11pt;
+  }
+}
