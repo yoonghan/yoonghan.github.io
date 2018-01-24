@@ -85,7 +85,7 @@ var pugFunc =  function(loc) {
   const dest_location = (location==='html' ? 'main' : location);
   return function() {
     return gulp.src('src/' + location + '/**/*.pug')
-      .pipe(plumber())
+      .pipe(through())
       .pipe(pug({
         i18n: {
           default: 'en',
@@ -105,16 +105,12 @@ gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
  **/
  gulp.task('bustCache', function () {
    return gulp.src('./dist/**/*.html')
+    .pipe(through())
     .pipe(cachebust({
         type: 'timestamp'
     }))
     .pipe(gulp.dest('./dist'));
  });
-
-/**
- * Simplify call
- **/
- gulp.task('pugAndBustCache', gulpSequence('pug', 'bustCache'));
 
 /**
  * Copy Images
@@ -180,7 +176,7 @@ gulp.task('clean:images', function() {
  * Task Watcher
  **/
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.pug', ['pugAndBustCache']);
+  gulp.watch('src/**/*.pug', ['pug']);
   gulp.watch('src/img/', ['image:html']);
   gulp.watch('src/patternlibrary/img/', ['image:patternlibrary']);
 });
@@ -188,8 +184,8 @@ gulp.task('watch', function() {
 /**
  * Build scripts
  **/
-gulp.task('build-basic', gulpSequence('clean', ['pugAndBustCache', 'copy', 'image']));
-gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build'))
+gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
+gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build', 'bustCache'))
 gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack:build', 'serviceworker:build'));
 gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch']));
 gulp.task('default', ['build-dev']);

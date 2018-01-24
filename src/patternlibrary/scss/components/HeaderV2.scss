@@ -1,0 +1,42 @@
+@import "../lib/breakpoints";
+@import "../lib/animations";
+@import "../lib/colors";
+@import "../lib/fonts";
+@import "../lib/shadows";
+
+.hdr {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 900px;
+  margin: 10px auto;
+  box-sizing: border-box;
+
+  .icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100%;
+
+    & > div {
+      margin-right: 10px;
+    }
+  }
+
+  .title-container {
+    flex: 3 0px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: bold;
+    color: $color-menu-title;
+    @include font-normal($font-size-h2);
+  }
+
+  .logo-container {
+    height: 50px;
+    padding: 5px;
+  }
+}

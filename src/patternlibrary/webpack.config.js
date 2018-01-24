@@ -17,7 +17,9 @@ module.exports = {
       metitle: "./src/patternlibrary/tsx/metitle.tsx",
       progressivebutton: "./src/patternlibrary/tsx/progressivebutton.tsx",
       localeselector: "./src/patternlibrary/tsx/localeselector.tsx",
-      gallery: "./src/patternlibrary/tsx/gallery.tsx"
+      gallery: "./src/patternlibrary/tsx/gallery.tsx",
+      headerv2: "./src/patternlibrary/tsx/headerv2.tsx",
+      mainscreenv2: "./src/patternlibrary/tsx/mainscreenv2.tsx"
     },
     output: {
         filename: "[name].bundle.js",

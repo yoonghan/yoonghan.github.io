@@ -1,6 +1,6 @@
 reactToolboxVariables = {
-  'color-primary' : 'var(--palette-blue-500)',
-  'color-primary-dark:' : 'var(--palette-blue-700)',
+  'color-primary' : 'var(--palette-yellow-900)',
+  'color-primary-dark:' : 'var(--palette-yellow-900)',
   'dropdown-value-hover-background' : 'var(--palette-blue-200)'
 };
 

@@ -51,6 +51,15 @@ $color-checkbox: #2CA05A;
 
 $color-dropdown-background: var(--palette-blue-50);
 
+$color-hdr-v2-btn-border: #2196f3;
+
+$color-menu-icon: #2196f3;
+$color-menu-icon-inner: #F57F17;
+$color-menu-title: #616161;
+
+$color-mainscr-description: #FFFFFF;
+$color-mainscr-description-border: #4FC3F7;
+
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;
   background: linear-gradient(to bottom right, $fromcolor,  $tocolor);
