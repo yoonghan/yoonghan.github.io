@@ -6,22 +6,46 @@ import {MenuIcon} from './MenuIcon';
 import '../../scss/base';
 var styles = require('../../scss/components/HeaderV2');
 
-export class HeaderV2 extends React.Component<{}, {}> {
+interface ILinks {
+  icon: string;
+  title: string;
+  path: string;
+}
+
+export interface HeaderV2Props {
+  linkArray: Array<ILinks>;
+}
+
+export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
   constructor(props:any) {
-    console.log("TRIGGER X");
     super(props);
   }
 
+  generateIcons = (links:Array<ILinks>) => {
+    const linkAsHtml = links.map(
+      (linkItem) => {
+        const {title, path, icon} =  linkItem;
+        return (
+          <MenuIcon icon={icon} title={title} key={title} path={path}/>
+        );
+      }
+    );
+    return linkAsHtml
+  };
+
+  clickAndReturnHome = () => {
+    window.location.href = "/";
+  }
+
   render() {
+    const generatedIcons = this.generateIcons(this.props.linkArray);
+
     return (
       <div className={styles.hdr}>
-        <img src='/ext/img/logo/v2/logo-color.svg' className={styles['logo-container']}/>
-        <div className={styles['title-container']}>
-          "SIMPLE SMALL STARTUP SITE"
-        </div>
+        <img src='/ext/img/logo/v2/logo-color.svg' className={styles['logo-container']} onClick={this.clickAndReturnHome}/>
+        <div className={styles['title-container']}></div>
         <div className={styles['icon-container']}>
-          <MenuIcon icon={'question'} title={'About'}/>
-          <MenuIcon icon={'file-text-o'} title={'Blog'}/>
+          {generatedIcons}
         </div>
       </div>
       );
