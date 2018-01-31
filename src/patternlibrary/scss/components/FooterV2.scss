@@ -1,0 +1,134 @@
+@import "../lib/breakpoints";
+@import "../lib/animations";
+@import "../lib/colors";
+@import "../lib/fonts";
+@import "../lib/shadows";
+
+$fixed-email-height: 150px;
+
+.ftr {
+  color: $color-ftr-foreground;
+  background: $color-ftr-background;
+  padding: 15px 10px;
+  @include font-normal($font-size-foot-link);
+
+  .ftr-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .ftr-divider {
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  .ftr-links {
+    display: flex;
+    margin: 5px 0;
+
+    a {
+      margin-right: 10px;
+      color: $color-links-v2;
+    }
+  }
+
+  .ftr-contact {
+    margin: 0 0 15px 0;
+
+    .ftr-contact-open-deco {
+      width: 106px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3px;
+
+      .ftr-contact-open-btn {
+        text-align: center;
+        display: block;
+        border: 1px solid;
+        padding: 10px 0;
+        border-radius: 3px;
+
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .ftr-contact-close-container {
+      height: $fixed-email-height;
+
+      .ftr-contact-email-content {
+        width: 320px;
+        margin: auto;
+
+        a {
+          padding: 5px 0;
+        }
+
+        .ftr-contact-email-contact {
+          display: flex;
+          justify-content: space-evenly;
+          font-size: 2rem;
+        }
+
+        .ftr-contact-email-information {
+          padding: 60px 0 10px 0;
+        }
+      }
+
+      .ftr-contact-close-deco {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, .1);
+        padding: 2px;
+        float: right;
+
+        .ftr-contact-close-btn {
+          display: block;
+          text-align: center;
+          padding: 10px;
+          width: 10px;
+          margin: auto;
+          height: 10px;
+          border: 1px solid;
+          border-radius: 20px;
+          position: relative;
+
+          i {
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+          }
+        }
+      }
+
+    }
+  }
+
+  .footercontactemail-enter {
+    height: 0;
+    opacity: 0;
+  }
+
+  .footercontactemail-enter.footercontactemail-enter-active {
+    height: $fixed-email-height;
+    opacity: 1;
+    transition: height 200ms ease-in, opacity 200ms ease 200ms;
+  }
+
+  .footercontactemail-leave {
+    height: $fixed-email-height;
+    opacity: 0;
+  }
+
+  .footercontactemail-leave.footercontactemail-leave-active {
+    height: 0;
+    transition: height 200ms ease-in;
+  }
+
+}

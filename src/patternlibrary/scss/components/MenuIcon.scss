@@ -6,9 +6,11 @@
 
 .menu-icon {
   padding: 0 5px;
-  color: $color-menu-icon-inner;
+  color: $color-links-v2;
   font-family: $font-family;
   font-weight: bold;
+  cursor: pointer;
+  user-select: none; 
 
   .icon {
     width: 30px;
@@ -43,7 +45,7 @@
       position: absolute;
       top: 4px;
       width: 100%;
-      color: $color-menu-icon-inner;
+      color: $color-links-v2;
     }
   }
 

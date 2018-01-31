@@ -4,6 +4,8 @@ $color-links: #fff;
 $color-links-hover: #90CAF9;
 $color-links-active: #fff;
 
+$color-links-v2: #F57F17;
+
 $color-links-white-background: #2196f3;
 $color-links-hover-white-background: #64B5F6;
 $color-links-active-white-background: #2196f3;
@@ -18,6 +20,9 @@ $color-mainscr-foreground: #fff;
 
 $color-footer-background: #fff;
 $color-footer-foreground: #000;
+
+$color-ftr-background: #1976D2;
+$color-ftr-foreground: #ffffff;
 
 $color-footnote-foreground: #aaa;
 
@@ -54,11 +59,15 @@ $color-dropdown-background: var(--palette-blue-50);
 $color-hdr-v2-btn-border: #2196f3;
 
 $color-menu-icon: #2196f3;
-$color-menu-icon-inner: #F57F17;
 $color-menu-title: #616161;
 
 $color-mainscr-description: #FFFFFF;
 $color-mainscr-description-border: #4FC3F7;
+
+$color-midpart-title-font: #80D8FF;
+$color-midpart-font: #FFFFFF;
+$color-midpart-border: #039BE5;
+$color-midpart-background: #1976D2;
 
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;

@@ -1,0 +1,19 @@
+doctype html
+include ../incl/reactcode
+html
+  head
+    title Footer V2
+    include ../incl/meta.incl
+    +stylesheet("footerv2")
+    style.
+      body {
+        color: #000;
+        background-color: #fff;
+        position: relative;
+        padding: 0;
+        margin: 0;
+      }
+  body
+    div(id="footerv2")
+    include ../incl/backhome.incl
+    +script("footerv2")

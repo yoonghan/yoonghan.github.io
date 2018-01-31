@@ -1,5 +1,13 @@
 @import "../lib/colors";
 @import "../lib/fonts";
+@import "../lib/breakpoints";
+
+/*
+$breakpoint-fit: 320px;
+$breakpoint-phone: 480px;
+$breakpoint-tablet: 700px;
+$breakpoint-big-screen: 960px;
+*/
 
 .mainscr {
   .mainscr-container {
@@ -8,24 +16,49 @@
     .mainscr-banner {
       position: absolute;
       top: 50%;
-      left: 10%;
       transform: translate(0, -50%);
+      width: 50%;
+      padding-right: 50px;
+
+      @include breakpoint(max-width $breakpoint-tablet) {
+        top: 20%;
+        width: 100%;
+        padding-right: 0;
+      }
 
       h3,h4 {
         text-align: center;
         font-style: italic;
       }
+
+      .mainscr-banner-inner {
+          padding-right: 15%;
+
+          @include breakpoint(max-width $breakpoint-tablet) {
+            padding-right: 0;
+          }
+
+          h2,h3,h4 {
+            text-align: right;
+
+            @include breakpoint(max-width $breakpoint-tablet) {
+              text-align: center;
+            }
+          }
+      }
     }
 
     .mainscr-content {
-      position: absolute;
-      display: -ms-flexbox;
-      -ms-flex-direction: row;
       margin: 0;
       position: absolute;
       top: 50%;
       left: 70%;
       transform: translate(-50%, -50%);
+
+      @include breakpoint(max-width $breakpoint-tablet) {
+        left: 50%;
+        transform: translate(-50%, -30%);
+      }
     }
 
     .logo-container {
@@ -40,17 +73,21 @@
     }
 
     .mainscr-description {
-      width: 320px;
+      width: 310px;
       text-align: justify;
       padding: 40px;
       color: $color-mainscr-description;
       @include font-normal($font-size-h4);
       background: rgba(1, 87, 155, 0.4);
       border-radius: 5px;
-      margin-left: 30px;
+      margin-left: 20px;
       border: 2px solid $color-mainscr-description-border;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       position: relative;
+
+      @include breakpoint(max-width $breakpoint-tablet) {
+        margin-left: 0;
+      }
 
       &:before {
         content: '';

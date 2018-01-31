@@ -19,6 +19,19 @@ interface TrianglifyCanvasProps {
   className: string;
 }
 
+const linkArray = [
+  {
+    title: "About",
+    icon: "question",
+    path: "about"
+  },
+  {
+    title: "Blog",
+    icon: "file-text-o",
+    path: "blog"
+  }
+];
+
 export class MainScreenV2 extends React.Component<{}, {}> {
   constructor(props:any) {
     super(props);
@@ -27,12 +40,14 @@ export class MainScreenV2 extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles.mainscr}>
-        <HeaderV2/>
+        <HeaderV2 linkArray={linkArray}/>
         <div className={styles['mainscr-container']}>
           <TrianglifyCanvas className={styles['mainscr-cover']}/>
           <div className={styles['mainscr-banner']}>
-            <h2>A Simple Start Up Site</h2>
-            <h4>"Inspired by the Ikigai Concept"</h4>
+            <div className={styles['mainscr-banner-inner']}>
+              <h2>A Simple Start Up Site</h2>
+              <h4>"Inspired by the Ikigai Concept"</h4>
+            </div>
           </div>
           <div className={styles['mainscr-content']}>
             <div className={styles['mainscr-description']}>
@@ -110,7 +125,7 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
 
   getOffsetHeight = () => {
     const expectedSize = Number((window.innerHeight/2).toFixed(0)),
-      minSize = 200;
+      minSize = 480;
     var height = expectedSize < minSize? minSize: expectedSize;
     return height;
   }
