@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   viewBox="0 0 199.99999 200"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ikigai.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="213.40991"
+     inkscape:cy="38.234747"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4138" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-852.36216)">
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;fill-rule:evenodd;stroke:#b3b3b3;stroke-width:4.02288583;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path4136"
+       sodipodi:cx="92.142853"
+       sodipodi:cy="958.07648"
+       sodipodi:expansion="1.0700001"
+       sodipodi:revolution="3.26"
+       sodipodi:radius="105.31052"
+       sodipodi:argument="-19.577595"
+       sodipodi:t0="0"
+       d="m 92.142853,958.07648 c 2.954783,-2.63387 5.029795,2.87416 4.489645,5.03666 -1.629202,6.52253 -10.12483,7.18088 -15.063794,4.38905 -9.171753,-5.18449 -9.623025,-17.81852 -3.971455,-25.74357 8.512283,-11.93655 25.865311,-12.16302 36.745321,-3.4708 14.79053,11.8164 14.76492,34.1269 2.92551,47.97516 -15.13747,17.70592 -42.544488,17.41182 -59.383478,2.35102 -20.667289,-18.48476 -20.093932,-51.08554 -1.755383,-70.93909 21.859663,-23.66556 59.729281,-22.80533 82.620471,-1.14339 26.69471,25.26121 25.54177,68.46115 0.51818,94.41178 -28.68783,29.7505 -77.270381,28.3002 -106.300712,-0.1181 C 0.1371369,978.68738 1.8888299,924.67655 33.730834,892.54748 69.340456,856.61682 128.8202,858.6732 164.06577,893.96497 c 39.05056,39.10174 36.68656,104.08707 -2.07854,142.46583 -1.56697,1.5513 -3.18289,3.0532 -4.8444,4.5028"
+       transform="matrix(0.96880841,0,0,1.0204851,2.425443,-20.60743)" />
+  </g>
+</svg>
