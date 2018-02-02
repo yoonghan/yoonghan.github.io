@@ -14,11 +14,13 @@ $padding-pull: 0 10px;
   position: relative;
   height: $height + 5;
   text-align: left;
+  user-select: none;
 
   h3 {
     font-size: 15pt;
     margin: $margin;
     text-align: center;
+    user-select: none;
   }
 
   .stickytitle-static {
@@ -57,7 +59,8 @@ $padding-pull: 0 10px;
       }
 
       h3 span.stickytitle-hide {
-          display: none;
+        display: none;
+        user-select: none;
       }
     }
   }

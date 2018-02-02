@@ -64,6 +64,26 @@ export abstract class AbstractLocalev2 {
 
 export class HeaderLocale extends AbstractLocalev2 {
   private lang:LocaleFormatv2 = {
+    'about': {
+      en: 'About',
+      my: 'Kenal'
+    },
+    'profile': {
+      en: 'Profile',
+      my: 'Profile'
+    },
+    'blog': {
+      en: 'Blog',
+      my: 'Blog'
+    },
+    'develop': {
+      en: 'Build',
+      my: 'Bina'
+    },
+    'tech': {
+      en: 'Tech',
+      my: 'Tech'
+    },
     'title': {
       en: 'Full-stack Developer For Hire',
       my: 'Full-stack Developer Untuk Disenggara'
@@ -79,19 +99,23 @@ export class FooterLocale extends AbstractLocalev2 {
   private lang:LocaleFormatv2 = {
     'about': {
       en: 'About',
-      my: 'Berkenalan'
+      my: 'Kenal'
+    },
+    'profile': {
+      en: 'Portfolio',
+      my: 'Portfolio'
     },
     'blog': {
       en: 'Blog',
       my: 'Blog'
     },
     'develop': {
-      en: 'Development',
-      my: 'Pembinaan'
+      en: 'Build',
+      my: 'Bina'
     },
     'tech': {
-      en: 'Technology',
-      my: 'Teknologi'
+      en: 'Tech',
+      my: 'Tech'
     },
     'contactus': {
       en: 'Contact Us',
@@ -102,8 +126,8 @@ export class FooterLocale extends AbstractLocalev2 {
       my: 'HUBUNGI KAMI MELALUI EMAIL'
     },
     'contactus.msg': {
-      en: 'We will gladly reply your email once received. Please be patient with us.',
-      my: 'Kami akan hubungi and selepas menerima email anda. Sila bersabar dengan kami.'
+      en: 'We are glad to respond. You can get in contact with us from the links below.',
+      my: 'Kami bangga menjawab anda. Sila hubungi kami melalui rangkaian di bawah.'
     }
   };
 
@@ -303,6 +327,22 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'LEISURE',
       my: 'MASA LAPANG'
     },
+    'header.text': {
+      en: "A Simple Start Up Site",
+      my: "Laman Rangkaian Ringkas"
+    },
+    'header.concepttext': {
+      en: "\"Inspired by the Ikigai concept\"",
+      my: "\"Inspirasi berdasarkan konsep Ikigai\""
+    },
+    'header.description': {
+      en: "is a dedicated website created by Han & Lee Wan to represent our life as a programmer.",
+      my: "adalah laman yang dicipta oleh Han & Lee Wan yang melambangkan hidup kami sebagai programmer."
+    },
+    'header.button': {
+      en: "GET TO KNOW US",
+      my: "KENALI KAMI"
+    },
     'label.download': {
       en: 'Download',
       my: 'Muat Turun'
@@ -316,28 +356,28 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Ketahui Lebih'
     },
     'post.1.title': {
-      en: 'Who are we?',
-      my: 'Siapa kami?'
+      en: 'Who we are',
+      my: 'Kami siapa'
     },
     'post.1.text': {
-      en: 'We are freelance programmers for hire and we are keen to learn modern web and mobile technologies.',
-      my: 'Kami programmer untuk diupah. Kami peneroka dan juga programmer dalam teknologi smartphone dan laman web.'
+      en: 'We are keen to learn modern web and mobile technologies.',
+      my: 'Kami peneroka dalam teknologi smartphone dan laman web.'
     },
     'post.2.title': {
       en: 'Motive',
       my: 'Motif'
     },
     'post.2.text': {
-      en: 'We are keen to explore the latest technologies that can be reused in our daily programming life. What is more to that, is that, we are exploring the missing developer link - <strong>a good full-stack developer.</strong>',
-      my: 'Kami sedang meneroka teknologi baru yang boleh diguna. Di samping it, kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>'
+      en: 'We are exploring the missing developer link - <strong>a good full-stack developer.</strong>',
+      my: 'Kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>'
     },
     'post.3.title': {
-      en: 'Browse without restrictions',
+      en: 'No cookies',
       my: 'Layar tanpa sekatan'
     },
     'post.3.text': {
-      en: 'We do not track you. We have even go thru an extra procedure to translate this website WITHOUT tracking you!',
-      my: 'Kami tidak menjejaki anda. Laman web ini tidak menggunakan session mahupun cookie.'
+      en: 'We do not track you. Enjoy your exploration here.',
+      my: 'Kami tidak menjejaki anda. Harap anda gembira menyambut kami.'
     },
     'card.11.title': {
       en: 'Presentation on Bitcoin',

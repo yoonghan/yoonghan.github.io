@@ -9,8 +9,8 @@ var styles = require('../../scss/components/LocaleSelector');
 declare function require(path: string): any;
 
 const countries = [
-  { value: 'en', label: 'English Language' },
-  { value: 'my', label: 'Bahasa Melayu'}
+  { value: 'en', label: 'English' },
+  { value: 'my', label: 'Malay'}
 ];
 
 /**
@@ -96,7 +96,7 @@ export class LocaleSelector extends React.Component<LocaleSelectorProps, LocaleS
                     { currLanguage === lang && lang.toUpperCase()}
                     { currLanguage !== lang &&
                       <a href={UtilLocale.redirectBrowser(lang, window.location.pathname)}>
-                        {lang.toUpperCase()}
+                        {country.label}
                       </a>
                     }
                   </span>);

@@ -7,7 +7,7 @@ import '../../scss/base';
 var styles = require('../../scss/components/Midpart');
 
 interface IConcept {
-  header: string;
+  title: string;
   description: string;
 }
 
@@ -83,8 +83,8 @@ class MidpartPostContainer extends React.Component<MidpartPostContainerProps, {}
     return (
       <div  className={styles['midpartpostcontainer-dialog-deco']} key={key}>
         <div className={styles['midpartpostcontainer-dialog']}>
-          <h3>{conceptMap.header}</h3>
-          <div>{conceptMap.description}</div>
+          <h3>{conceptMap.title}</h3>
+          <div dangerouslySetInnerHTML={{__html: conceptMap.description}}></div>
         </div>
       </div>
     );

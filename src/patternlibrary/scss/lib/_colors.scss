@@ -1,10 +1,11 @@
 @import "react-toolbox/lib/colors.css";
 
-$color-links: #fff;
+$color-links: #F57F17;
 $color-links-hover: #90CAF9;
 $color-links-active: #fff;
 
 $color-links-v2: #F57F17;
+$color-links-light-v2: #FFAB40;
 
 $color-links-white-background: #2196f3;
 $color-links-hover-white-background: #64B5F6;
@@ -33,11 +34,12 @@ $color-background: #fff;
 $color-links-email: #ff80ab;
 
 $color-stickytitle-anim-foreground: #fff;
-$color-stickytitle-anim-background: #2196F3;
+$color-stickytitle-anim-background: #1976D2;
 $color-stickytitle-static-foreground: #1976d2;
-$color-stickytitle-hover-background: #90CAF9;
+$color-stickytitle-hover-background: #2196F3;
 
 $color-hdr-background: #fff;
+$color-ftr-links-foreground: #fff;
 
 $color-metitle-sub-header-foreground: #1976d2;
 

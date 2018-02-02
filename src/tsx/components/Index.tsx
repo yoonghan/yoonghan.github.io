@@ -1,10 +1,11 @@
 `use strict`
 
 import * as React from 'react';
-import { IndexLocale } from '../util/Locale';
+import { IndexLocale, HeaderLocale } from '../util/Locale';
 import { UtilLocale } from "../../patternlibrary/tsx/util/UtilLocale";
-import { MainScreen } from '../../patternlibrary/tsx/components/MainScreen';
+import { MainScreenV2 } from '../../patternlibrary/tsx/components/MainScreenV2';
 import { Post } from '../../patternlibrary/tsx/components/Post';
+import { Midpart } from '../../patternlibrary/tsx/components/Midpart';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
@@ -15,31 +16,58 @@ var styles = require('../../scss/components/index');
 declare function require(path: string): any;
 
 const locale = new IndexLocale();
+const headerLocale = new HeaderLocale();
 
-const posts = [
+const conceptPosts = [
 {
   title: locale.translate('post.1.title'),
-  text: locale.translate('post.1.text'),
-  icon: 'quote-right'
+  description: locale.translate('post.1.text')
 },
 {
   title: locale.translate('post.2.title'),
-  text: locale.translate('post.2.text'),
-  icon: 'binoculars'
+  description: locale.translate('post.2.text')
 },
 {
   title: locale.translate('post.3.title'),
-  text: locale.translate('post.3.text'),
-  icon: 'wpexplorer'
+  description: locale.translate('post.3.text')
 }];
 
-const tech = [
-  {text:'ReactJS', link:'https://facebook.github.io/react/'},
-  {text:'Typescript', link:'https://www.typescriptlang.org/'},
-  {text:'NodeJS', link:'https://nodejs.org/en/'},
-  {text:'PostCSS', link:'//sass-lang.com/'},
-  {text:'ReactToolbox', link:'//react-toolbox.com/'}
-];
+const headerProps = {linkArray: [
+  {
+    title: headerLocale.translate('about'),
+    icon: "question",
+    path: "/about.html"
+  },
+  {
+    title: headerLocale.translate('profile'),
+    icon: "superpowers",
+    path: "/portfolio.html"
+  },
+  {
+    title: headerLocale.translate('tech'),
+    icon: "cog",
+    path: "/technology.html"
+  },
+  {
+    title: headerLocale.translate('develop'),
+    icon: "microchip",
+    path: "/develop.html"
+  },
+  {
+    title: headerLocale.translate('blog'),
+    icon: "file-text-o",
+    path: "http://tf.walcron.com"
+  }
+]};
+
+const mainScreenProps = {
+  headerProps: headerProps,
+  mainScreenV2Text: locale.translate('header.text'),
+  mainScreenV2ConceptText: locale.translate('header.concepttext'),
+  mainScreenV2Description: locale.translate('header.description'),
+  mainScreenV2BtnText: locale.translate('header.button'),
+  mainScreenV2BtnLink: '/about.html'
+};
 
 const GithubIcon = () => (
   <svg viewBox="0 0 284 277">
@@ -57,9 +85,8 @@ export class Index extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
-        <Header menuOpened={true} isHomepage={true}/>
-        <MainScreen itemArray={tech}/>
-        <Post postItems={posts}/>
+        <MainScreenV2 {...mainScreenProps}/>
+        <Midpart conceptArray={conceptPosts}/>
         <div className="posting">
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>

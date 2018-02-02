@@ -36,7 +36,7 @@ export class FooterV2 extends React.Component<FooterProps, {}> {
       (linkItem) => {
         const {text, path} =  linkItem;
         return (
-          <a href={path} key={text}>{text}</a>
+           <a href={path} key={text}><ul><li>{text}</li></ul></a>
         );
       }
     );
@@ -122,6 +122,9 @@ class ContactDisplay extends React.Component<ContactOpenProps, ContactOpenState>
   }
 
   clickContact = () => {
+
+    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+
     this.setState(
       (prevState, props) => {
         return {

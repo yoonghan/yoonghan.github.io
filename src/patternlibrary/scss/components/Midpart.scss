@@ -4,7 +4,8 @@
 
 .midpart {
   position: relative;
-  background: $color-midpart-background;
+  background: url('/ext/img/common/background.jpg');
+  background-size: cover;
 
   canvas {
     display: block;
@@ -12,7 +13,7 @@
 
   h2 {
     color: $color-midpart-title-font;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(13, 71, 161, 0.66667);
     padding: 10px;
     text-align: center;
   }
@@ -20,9 +21,11 @@
   .midpartpostcontainer {
     top: 0;
     width: 100%;
-    padding: 18px 8px 8px 8px;
+    margin: auto;
     display: flex;
+    max-width: 900px;
     box-sizing: border-box;
+    padding: 18px 8px 18px 8px;
 
     @include breakpoint(max-width $breakpoint-tablet) {
       flex-direction: column;
@@ -50,6 +53,8 @@
       border-radius: 3px;
       margin: 5px;
       position: relative;
+      height: 100%;
+      box-sizing: border-box;
 
       @include breakpoint(max-width $breakpoint-tablet) {
         border: none;

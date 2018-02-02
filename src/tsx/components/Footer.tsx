@@ -2,24 +2,33 @@
 
 import * as React from "react";
 import * as ReactDom from "react-dom";
-import { Footer as FooterPat }  from "../../patternlibrary/tsx/components/Footer";
+import { FooterV2 }  from "../../patternlibrary/tsx/components/FooterV2";
 import { FooterLocale } from "../util/Locale";
-
 
 const locale = new FooterLocale();
 
-const footerInfo = {
-  links: [
-  {link:'/about.html', label: locale.translate('about')},
-  {link:'http://tf.walcron.com/', label: locale.translate('blog')},
-  {link:'/develop.html', label: locale.translate('develop')}
-  ],
-  updatedYear: 2018,
-  emailLabel: locale.translate('contactus'),
-  emailTitle: locale.translate('contactus.title'),
-  emailAddress: 'walcoorperation@gmail.com',
-  emailMsg: locale.translate('contactus.msg')
-};
+const links = [
+  {
+    text: locale.translate('about'),
+    path: "/about.html"
+  },
+  {
+    text: locale.translate('profile'),
+    path: "/portfolio.html"
+  },
+  {
+    text: locale.translate('tech'),
+    path: "/technology.html"
+  },
+  {
+    text: locale.translate('develop'),
+    path: "/develop.html"
+  },
+  {
+    text: locale.translate('blog'),
+    path: "http://tf.walcron.com"
+  }
+];
 
 export class Footer extends React.Component<{}, {}> {
   constructor(props:any) {
@@ -28,7 +37,7 @@ export class Footer extends React.Component<{}, {}> {
 
   render() {
     return (
-      <FooterPat {...footerInfo}/>
+      <FooterV2 updatedYear={2018} linkArray={links} contactInformation={locale.translate('contactus.msg')}/>
     )
   }
 }

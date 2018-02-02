@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as Trianglify from "trianglify";
-import {HeaderV2} from "./HeaderV2";
+import {HeaderV2, HeaderV2Props} from "./HeaderV2";
 import {Button} from 'react-toolbox/lib/button';
 
 import '../../scss/base';
@@ -19,41 +19,40 @@ interface TrianglifyCanvasProps {
   className: string;
 }
 
-const linkArray = [
-  {
-    title: "About",
-    icon: "question",
-    path: "about"
-  },
-  {
-    title: "Blog",
-    icon: "file-text-o",
-    path: "blog"
-  }
-];
+export interface MainScreenV2Props {
+  headerProps: HeaderV2Props,
+  mainScreenV2Text: string,
+  mainScreenV2ConceptText: string,
+  mainScreenV2Description: string,
+  mainScreenV2BtnText: string,
+  mainScreenV2BtnLink: string
+}
 
-export class MainScreenV2 extends React.Component<{}, {}> {
+export class MainScreenV2 extends React.Component<MainScreenV2Props, {}> {
   constructor(props:any) {
     super(props);
   }
 
   render() {
+
+    const {mainScreenV2Description, mainScreenV2Text, mainScreenV2ConceptText, mainScreenV2BtnText, mainScreenV2BtnLink} = this.props;
+
     return (
       <div className={styles.mainscr}>
-        <HeaderV2 linkArray={linkArray}/>
+        <HeaderV2 {...this.props.headerProps} />
         <div className={styles['mainscr-container']}>
           <TrianglifyCanvas className={styles['mainscr-cover']}/>
           <div className={styles['mainscr-banner']}>
             <div className={styles['mainscr-banner-inner']}>
-              <h2>A Simple Start Up Site</h2>
-              <h4>"Inspired by the Ikigai Concept"</h4>
+              <h2>{mainScreenV2Text}</h2>
+              <h4>{mainScreenV2ConceptText}</h4>
             </div>
           </div>
           <div className={styles['mainscr-content']}>
             <div className={styles['mainscr-description']}>
-              <span>Wal</span><span>cron</span> is a dedicated website created by Han &amp; Lee Wan to represent their life as a programmer.
+              <span>Wal</span><span>cron</span> {mainScreenV2Description}
               <div className={styles['mainscr-divider']}/>
-              <Button label={"Get to know us !"} className={'mainscr-know-us'} raised primary/>
+              <Button label={mainScreenV2BtnText} className={'mainscr-know-us'} href={mainScreenV2BtnLink} raised primary/>
             </div>
           </div>
         </div>

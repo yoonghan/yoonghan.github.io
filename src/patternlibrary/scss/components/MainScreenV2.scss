@@ -10,6 +10,11 @@ $breakpoint-big-screen: 960px;
 */
 
 .mainscr {
+
+  canvas {
+    vertical-align: bottom;
+  }
+
   .mainscr-container {
     position: relative;
 
@@ -75,9 +80,9 @@ $breakpoint-big-screen: 960px;
     .mainscr-description {
       width: 310px;
       text-align: justify;
-      padding: 40px;
+      padding: 30px 30px 20px 30px;
       color: $color-mainscr-description;
-      @include font-normal($font-size-h4);
+      @include font-normal($font-size-headerV2-description); 
       background: rgba(1, 87, 155, 0.4);
       border-radius: 5px;
       margin-left: 20px;
