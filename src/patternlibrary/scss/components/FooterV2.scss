@@ -23,18 +23,26 @@ $fixed-email-height: 150px;
     margin-bottom: 10px;
   }
 
+  .ftr-footnote {
+    @include font-normal($font-size-footnote);
+    font-style: italic;
+  }
+
   .ftr-links {
     display: flex;
     margin: 5px 0;
 
     a {
-      margin-right: 10px;
-      color: $color-links-v2;
+      color: $color-links-light-v2;;
     }
   }
 
   .ftr-contact {
     margin: 0 0 15px 0;
+
+    a{
+      color: $color-ftr-links-foreground;  
+    }
 
     .ftr-contact-open-deco {
       width: 106px;

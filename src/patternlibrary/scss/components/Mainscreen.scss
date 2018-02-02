@@ -6,6 +6,10 @@
   background-color: $color-mainscr-background;
   color: $color-mainscr-foreground;
 
+  canvas {
+    vertical-align: bottom;
+  }
+
   div.mainscr-container {
     position: relative;
 
