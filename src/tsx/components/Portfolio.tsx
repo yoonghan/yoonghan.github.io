@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { PorfolioLocale } from '../util/Locale';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
-import { MeTitle } from '../../patternlibrary/tsx/components/MeTitle';
+import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
 import { Header } from './Header';
@@ -16,7 +16,6 @@ const locale = new PorfolioLocale();
 
 const metitleInfo  = {
   title: locale.translate('title'),
-  imgSrc: '/ext/img/logo/logoOnlyWhiteBg.svg',
   introSection: {
     title: locale.translate('subtitle'),
     description: [
@@ -36,7 +35,7 @@ export class Portfolio extends React.Component<{}, {}> {
         return (
           <div className={styles['reacttoolbox']}>
             <Header/>
-            <MeTitle {...metitleInfo}/>
+            <MeTitleV2 {...metitleInfo}/>
             <div className={styles['divider']}></div>
             <div className="posting">
               <StickyTitle text={locale.translate('dvd.workspace')} pos={0} />

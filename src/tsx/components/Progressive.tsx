@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Header } from './Header';
 import { ProgressiveLocale } from '../util/Locale';
-import { MeTitle } from '../../patternlibrary/tsx/components/MeTitle';
+import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Post } from '../../patternlibrary/tsx/components/Post';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Footer } from "./Footer";
@@ -23,7 +23,6 @@ const progressiveProp = {
 
 const progressiveInfo  = {
   title: locale.translate('title'),
-  imgSrc: '/ext/img/logo/logoOnlyWhiteBg.svg',
   introSection: {
     description: [
       locale.translate('desc.1'),
@@ -74,7 +73,7 @@ export class Progressive extends React.Component<{}, ProgressiveState> {
     return (
       <div>
         <Header/>
-        <MeTitle {...progressiveInfo}/>
+        <MeTitleV2 {...progressiveInfo}/>
         <StickyTitle text={locale.translate('offline.stickytitle')} pos={0} />
         <Post postItems={offlineInfo1}/>
         <ProgressiveButton {...progressiveProp} successfulCallback={this.handleSuccessfulCall}/>

@@ -9,7 +9,7 @@ import { Midpart } from '../../patternlibrary/tsx/components/Midpart';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
-import { Header } from './Header';
+import { Header } from "./Header";
 import { Footer } from "./Footer";
 
 var styles = require('../../scss/components/index');
@@ -32,36 +32,7 @@ const conceptPosts = [
   description: locale.translate('post.3.text')
 }];
 
-const headerProps = {linkArray: [
-  {
-    title: headerLocale.translate('about'),
-    icon: "question",
-    path: "/about.html"
-  },
-  {
-    title: headerLocale.translate('profile'),
-    icon: "superpowers",
-    path: "/portfolio.html"
-  },
-  {
-    title: headerLocale.translate('tech'),
-    icon: "cog",
-    path: "/technology.html"
-  },
-  {
-    title: headerLocale.translate('develop'),
-    icon: "microchip",
-    path: "/develop.html"
-  },
-  {
-    title: headerLocale.translate('blog'),
-    icon: "file-text-o",
-    path: "http://tf.walcron.com"
-  }
-]};
-
 const mainScreenProps = {
-  headerProps: headerProps,
   mainScreenV2Text: locale.translate('header.text'),
   mainScreenV2ConceptText: locale.translate('header.concepttext'),
   mainScreenV2Description: locale.translate('header.description'),
@@ -85,6 +56,7 @@ export class Index extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
+        <Header/>
         <MainScreenV2 {...mainScreenProps}/>
         <Midpart conceptArray={conceptPosts}/>
         <div className="posting">

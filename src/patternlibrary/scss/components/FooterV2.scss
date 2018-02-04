@@ -33,7 +33,8 @@ $fixed-email-height: 150px;
     margin: 5px 0;
 
     a {
-      color: $color-links-light-v2;;
+      color: $color-links-light-v2;
+      padding-right: 10px;
     }
   }
 
@@ -41,7 +42,7 @@ $fixed-email-height: 150px;
     margin: 0 0 15px 0;
 
     a{
-      color: $color-ftr-links-foreground;  
+      color: $color-ftr-links-foreground;
     }
 
     .ftr-contact-open-deco {

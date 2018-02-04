@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import * as Trianglify from "trianglify";
-import {HeaderV2, HeaderV2Props} from "./HeaderV2";
 import {Button} from 'react-toolbox/lib/button';
 
 import '../../scss/base';
@@ -20,7 +19,6 @@ interface TrianglifyCanvasProps {
 }
 
 export interface MainScreenV2Props {
-  headerProps: HeaderV2Props,
   mainScreenV2Text: string,
   mainScreenV2ConceptText: string,
   mainScreenV2Description: string,
@@ -39,7 +37,6 @@ export class MainScreenV2 extends React.Component<MainScreenV2Props, {}> {
 
     return (
       <div className={styles.mainscr}>
-        <HeaderV2 {...this.props.headerProps} />
         <div className={styles['mainscr-container']}>
           <TrianglifyCanvas className={styles['mainscr-cover']}/>
           <div className={styles['mainscr-banner']}>

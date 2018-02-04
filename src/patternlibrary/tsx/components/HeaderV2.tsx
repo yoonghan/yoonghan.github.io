@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {MenuIcon} from './MenuIcon';
+import {MenuDropV2} from './MenuDropV2';
 import {LocaleSelector, LocaleSelectorTypes} from './LocaleSelector';
 
 import '../../scss/base';
@@ -22,34 +23,18 @@ export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
     super(props);
   }
 
-  generateIcons = (links:Array<ILinks>) => {
-    const linkAsHtml = links.map(
-      (linkItem) => {
-        const {title, path, icon} =  linkItem;
-        return (
-          <MenuIcon icon={icon} title={title} key={title} path={path}/>
-        );
-      }
-    );
-    return linkAsHtml
-  };
-
   clickAndReturnHome = () => {
     window.location.href = "/";
   }
 
   render() {
-    const generatedIcons = this.generateIcons(this.props.linkArray);
-
     return (
       <div className={styles.hdr}>
         <img src='/ext/img/logo/v2/logo-color.svg' className={styles['logo-container']} onClick={this.clickAndReturnHome}/>
         <div className={styles['title-container']}>
           <LocaleSelector type={LocaleSelectorTypes.Link}/>
         </div>
-        <div className={styles['icon-container']}>
-          {generatedIcons}
-        </div>
+        <MenuDropV2 linkArray={this.props.linkArray}/>
       </div>
       );
   }

@@ -3,15 +3,32 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { HeaderLocale } from "../util/Locale";
-import { Header as HeaderPat }  from "../../patternlibrary/tsx/components/Header";
-
-const headerMenu = [
-{location: 'http://tf.walcron.com/', label:'BLOG' , icon:'camera-retro'},
-{location: '/portfolio.html', label:'PORTFOLIO' , icon:'superpowers'},
-{location: '/technology.html', label:'TECHNOLOGY' , icon:'cog'}
-];
+import { HeaderV2, HeaderV2Props }  from "../../patternlibrary/tsx/components/HeaderV2";
 
 const locale = new HeaderLocale();
+
+const headerProps = {linkArray: [
+  {
+    title: locale.translate('about'),
+    icon: "question",
+    path: "/about.html"
+  },
+  {
+    title: locale.translate('profile'),
+    icon: "superpowers",
+    path: "/portfolio.html"
+  },
+  {
+    title: locale.translate('tech'),
+    icon: "cog",
+    path: "/technology.html"
+  },
+  {
+    title: locale.translate('develop'),
+    icon: "microchip",
+    path: "/develop.html"
+  }
+]};
 
 export interface HeaderProps {
   menuOpened?: Boolean;
@@ -25,7 +42,7 @@ export class Header extends React.Component<HeaderProps, {}> {
 
   render() {
     return (
-      <HeaderPat menus={headerMenu} mobileOpensOnLoad={this.props.menuOpened} isHomepage={this.props.isHomepage} headerTitle={locale.translate('title')}/>
+      <HeaderV2 linkArray={headerProps.linkArray}/>
     )
   }
 }

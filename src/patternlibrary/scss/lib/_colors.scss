@@ -41,7 +41,9 @@ $color-stickytitle-hover-background: #2196F3;
 $color-hdr-background: #fff;
 $color-ftr-links-foreground: #fff;
 
-$color-metitle-sub-header-foreground: #1976d2;
+$color-metitle-sub-header-foreground: #80D8FF;
+$color-metitle-sub-header-background: rgba(13, 71, 161, 0.9);
+$color-metitle-introsection: #81D4FA;
 
 $color-minipost-header-foreground: #777;
 
@@ -70,6 +72,8 @@ $color-midpart-title-font: #80D8FF;
 $color-midpart-font: #FFFFFF;
 $color-midpart-border: #039BE5;
 $color-midpart-background: #1976D2;
+
+$color-mnudrp-mob-border: #039BE5;
 
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;
