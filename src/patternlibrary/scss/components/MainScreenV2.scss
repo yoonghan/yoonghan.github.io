@@ -78,7 +78,7 @@ $breakpoint-big-screen: 960px;
     }
 
     .mainscr-description {
-      width: 280px;
+      width: 310px;
       text-align: justify;
       padding: 30px 30px 20px 30px;
       color: $color-mainscr-description;
@@ -92,6 +92,8 @@ $breakpoint-big-screen: 960px;
 
       @include breakpoint(max-width $breakpoint-tablet) {
         margin-left: 0;
+        width: 270px;
+        padding: 30px 20px 20px 20px;
       }
 
       &:before {
