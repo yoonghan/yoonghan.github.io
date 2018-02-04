@@ -5,11 +5,8 @@ html(lang="en")
     meta(name="description" content="Development of Walcron website.")
     include ../incl/meta.incl
     include ../incl/link.incl
-    link(rel="preload" as="style" href="/extw/develop.style.css" onload="this.rel='stylesheet'")
-    link(rel="preload" as="style" href="/ext/css/font-awesome.css" onload="this.rel='stylesheet'")
-    noscript
-      link(rel="stylesheet" href="/extw/develop.style.css")
-      link(rel="stylesheet" href="/ext/css/font-awesome.css")
+    link(rel="stylesheet" href="/extw/develop.style.css" as="style")
+    link(rel="stylesheet" href="/ext/css/font-awesome.css" as="style")
   body
     div(id='develop')
     script(src='/ext/js/react.production.min.js' defer="defer")

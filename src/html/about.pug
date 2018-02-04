@@ -5,6 +5,8 @@ html(lang="en")
     meta(name="description" content="Profiles about the developers in Walcron Coorperation.")
     include ../incl/meta.incl
     include ../incl/link.incl
+    link(rel="stylesheet" href="/extw/about.style.css" as="style")
+    link(rel="stylesheet" href="/ext/css/font-awesome.css" as="style")
   body
     div(id="aboutHeader")
     div(class="about-layer")
@@ -46,11 +48,6 @@ html(lang="en")
             h1 #{$i18n.about.interest.title}
             h3 #{$i18n.about.interest.detail}
     div(id="aboutFooter")
-    link(rel="preload" as="style" href="/extw/about.style.css" onload="this.rel='stylesheet'")
-    link(rel="preload" as="style" href="/ext/css/font-awesome.css" onload="this.rel='stylesheet'")
-    noscript
-      link(rel="stylesheet" href="/extw/about.style.css")
-      link(rel="stylesheet" href="/ext/css/font-awesome.css")
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
     script(src='/extw/about.bundle.js' defer="defer")
