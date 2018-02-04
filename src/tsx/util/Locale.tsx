@@ -82,7 +82,11 @@ export class HeaderLocale extends AbstractLocalev2 {
     },
     'tech': {
       en: 'Tech',
-      my: 'Tech'
+      my: 'Tek'
+    },
+    'home': {
+      en: 'Home',
+      my: 'Home'
     },
     'title': {
       en: 'Full-stack Developer For Hire',
@@ -147,11 +151,11 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Pengenalan'
     },
     'desc.1': {
-      en: 'The Walcron Coorperation web site has to become a website rich learning resource, based on known front-end framework or libraries.The ultimate goal for us, is to achieve an out-of-work-environment development.',
-      my: 'Laman web Walcron Coorperation dicipta sebagai sumber yang kaya dengan informasi, berdasarkan front-end framework dan library. Matlamat utama kami adalah untuk mencapai satu perkembangan yang tidak berkaitan dengan kerja kami.'
+      en: 'The Walcron Coorperation web site would become a website rich of web resources; it\'ll be based on known front-end framework and libraries. Our ultimate goal is to create an out-of-work development.',
+      my: 'Laman web Walcron Coorperation dicipta sebagai sumber yang kaya dengan informasi; berdasarkan front-end framework dan library. Matlamat utama kami adalah untuk mencapai satu perkembangan yang tidak berkaitan dengan kerja kami.'
     },
     'desc.2': {
-      en: 'This website has gone through it\'s 4th iteration with usage of different frameworks or libraries. The UX has gone through various changes as well. Each rewrite of the website is rewritten from scratch, this is to avoid dependencies stacked from previous projects; with the exception of the "About Me" page. For every new iteration made, it does however inherits good traits and characteristics from the previous iterations.',
+      en: 'This website has gone through it\'s 4th iteration with usage of different frameworks or libraries. The UX has gone through various changes as well. Each rewrite of the website is rewritten from scratch up, this prevents dependencies from the previous projects to stack; with an exception on "About Me" page. For every new iteration made, it will inherits good traits and characteristics learnt from the previous iterations.',
       my: 'Laman web ini telah dikitar sebanyak 4 kali dengan penggunaan framework atau library yang berbeza. UX(pengalaman pengguna) juga melalui pelbagai perubahan. Setiap kali, laman ini di tulis semula dari permulaan, demi mengelakkan kebergantungan dari projek terdahulu; dengan pengecualian site "Kenalan". Setiap iterasi baru yang dibuat, terdapatnya sifat-sifat dan ciri-ciri baik yang diwarisi dari iterasi sebelumnya.'
     },
     'first': {
@@ -159,7 +163,7 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Permulaan'
     },
     'first.text': {
-      en: 'As a start-off, the site was wrote in vanillaJS. The site was ported from Tomcat to Wildfly, JBoss to vert.x web servers. The latter created the realization on importance on non-block I/O services, which marks for 2nd iteration.',
+      en: 'As a start-off, the site was wrote in VanillaJS. The site was ported from Tomcat to Wildfly, JBoss to vert.x web servers. The latter(vert.x) made us realize on the importance on non-block I/O services. This marks for a 2nd iteration.',
       my: 'Sebagai permulaan, laman web ini dikodkan dengan penggunaan vanillaJS. Laman ini telah dialihkan dari Tomcat ke Wildfly, JBoss, kemudiannya ke vert.x pelayan web. Ciptaan akhir menyebabkan kesedaran mengenai kepentingan perkhidmantan tanpa I/O-block, yang menandakan untuk kitaran kedua.'
     },
     'second': {
@@ -167,16 +171,16 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Iterasi Kedua'
     },
     'second.text': {
-      en: 'Again the second site was wrote with vanillaJS, but few new features were added in. Firstly it ran on NodeJS and the site is already using UX of parallax.However it was displaying some slow rendering.',
-      my: 'Sekali lagi laman yang kedua ditulis dengan vanillaJS, tetapi beberapa ciri-ciri baru telah ditambah dalamnya. Pertama sekali, ia diintegrasi dengan NodeJS dan laman web ini telah mempergunakan UX parallax. Akan tetapi, kelajuan laman ini terjejas.'
+      en: 'Again the second site was wrote in vanillaJS, with some alteration. It now ran on NodeJS. We have added parallax UX, but the rendering was slow.',
+      my: 'Sekali lagi laman yang kedua ditulis dengan vanillaJS, tetapi beberapa ciri-ciri baru telah ditambah dalamnya. Pertama sekali, ia diintegrasi dengan NodeJS. Kami menambah parallax UX ke atas laman kami, akan tetapi, kelajuan laman ini terjejas.'
     },
     'second.1.title': {
       en: 'Startup',
       my: 'Sistem dihidupkan'
     },
     'second.1.desc': {
-      en: 'As the hosting cloud servers restarted every day, NodeJS speed startup, 2-3 seconds, saved our day.',
-      my: 'Laman ini dihostkan di cloud dan ia dimatikan setiap hari. NodeJS dapat dihidupkan dengan kelajuan, 2-3 saat, ini menyelamatkan laman kami.'
+      en: 'As the hosting cloud servers restarted every day, NodeJS speed startup at 2-3 seconds, saved our cost.',
+      my: 'Laman ini dihostkan di cloud dan ia dimatikan setiap hari. NodeJS dapat dihidupkan dengan kelajuan 2-3 saat, ini menyelamatkan kos kami.'
     },
     'second.2.title': {
       en: 'Styling',
@@ -191,7 +195,7 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Interaktiviti'
     },
     'second.3.desc': {
-      en: 'With parallaxing, shows a smoother and more interactive user response.',
+      en: 'With parallaxing, more interactive to user response.',
       my: 'Dengan pengunaan parallaxing, terdapatnya interaktiviti dengan pengguna.'
     },
     'third': {
@@ -215,7 +219,7 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Teknologi Experimen'
     },
     'third.2.desc': {
-      en: 'Even as beta, Angular 2 concept was good and easy and solve some of the pattern library plugging issues.',
+      en: 'Even as beta, Angular 2 concept was good. It made ease to the pattern library plug-in issues.',
       my: 'Pengunaan versi beta Angular 2 dapat menyelesaikan masalah plug-in dalam pattern library.'
     },
     'third.3.title': {
@@ -263,7 +267,7 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Iterasi Keempat'
     },
     'fourth.text': {
-      en: 'Given the experience with AngularJS2 and React Native in this iteration; we decided to go with ReactJS. The transition and the concept of ReactJS blow us out of the water, wow!',
+      en: 'Given the experience with AngularJS2 and React Native in this iteration; we decided to go with ReactJS. The transition and the concept of ReactJS blew us out of the water, wow!',
       my: 'Memandangkan pengalaman dengan AngularJS2 dan React Native pada iterasi ini; kami mengambil keputusan untuk menggunakan ReactJS. Peralihan dan konsep ReactJS mengejutkan kami. Hidup React!'
     },
     'fourth.1.title': {
@@ -384,7 +388,7 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Presentasi tentang Bitcoin'
     },
     'card.11.desc': {
-      en: 'To achieve personal goal(to present every year), Han have decided to host a presentation on Bitcoin and Blockchain, 24 people attended and the result was great!',
+      en: 'To achieve his personal goal(to present every year), Han have decided to host a presentation on Bitcoin and Blockchain, 24 people attended and the reaction was great!',
       my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Seramai 24 orang hadir and hasilnya amat dialu-alukan.'
     },
     'card.10.title': {
@@ -504,7 +508,7 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'Percubaan'
     },
     'desc': {
-      en: 'We\'re still in progress in making a name here, nevertheless, the aim is to learn continously and make this site fabulous under Walcron Cooperation.' +
+      en: 'We\'re still in progress in making a name here, nevertheless, the aim is to learn continously and make this site fabulous under the Walcron Cooperation roof.' +
         ' Written below are both Yoong Han and Lee Wan\'s portfolio.',
       my: 'Kami masih dalam perjejahan menbina status, akan tetapi ia tetap penting untuk terus belajar dan membuat laman ini terkenal dengan nama Walcron Cooperation.' +
         ' Bahan di bawah adalah portfolio Yoong Han dan Lee Wan.'
@@ -603,11 +607,11 @@ export class ProgressiveLocale extends AbstractLocalev2 {
       my: 'Laman Diloadkan Secara Peringkat'
     },
     'desc.1': {
-      en: 'Progressive web is a UX format used to enable staged loading of a webpage and make it loads in stages. This is to ensure user feels confortable with the page loading.',
-      my: 'Progressive web adalah satu format UX yang diperkenalkan demi membolehkan pengguna menggalami website diloadkan secara berperingkat dan beransur-ansuran.'
+      en: 'Progressive web let the page loads in every browser and feels app-like.',
+      my: 'Progressive web membolehkan laman diloadkan seandaikan anda menggunakan app.'
     },
     'desc.2': {
-      en: 'A technology was introduced, called as Service Workers, limited to certain browsers, enabled the user load a webpage in offline mode.',
+      en: 'A technology was introduced, called as Service Workers, limited to certain browsers, it allows the user to load a webpage in offline mode.',
       my: 'Satu teknologi telah diperkenalkan, iaitu Service Workers. Ia membolehkan pengguna mengunakan laman website tanpa internet.'
     },
     'offline.stickytitle': {
@@ -627,7 +631,7 @@ export class ProgressiveLocale extends AbstractLocalev2 {
       my: 'Langkah 2'
     },
     'offline.desc.step2': {
-      en: 'Click on the "Install" button below, if your browser support service workers, the button "INSTALL NOW" will be show.',
+      en: 'Click on the "Install" button below, if your browser support service workers, the button "INSTALL NOW" will be shown.',
       my: 'Klik butang "Install" di bawah, jikalau pelayar anda menyokong Service Worker butang "INSTALL SEKARANG" akan dipaparkan.'
     },
     'offline.title.step3': {
@@ -647,8 +651,8 @@ export class ProgressiveLocale extends AbstractLocalev2 {
       my: 'Pelayar Tidak Disokong'
     },
     'installing': {
-      en: 'Installing. Please Wait',
-      my: 'Processing. Sila Tunggu.'
+      en: 'Installing. Please wait for about 5 minutes.',
+      my: 'Processing. Sila tunggu, anggar 5 minit.'
     },
     'installed': {
       en: 'Installed And Ready',
@@ -786,7 +790,7 @@ export class TechnologyLocale extends AbstractLocalev2 {
       my: 'Plugin ReactJS yang mudah diintegrasi dengan ReactJS, ianya stabil dan animasinya cantik. Kami ada rancangan untuk menulis semula carousel dalam React.'
     },
     'precache.key' : {
-      en: 'SW Precache',
+      en: 'Offline mode',
       my: 'Offline mode'
     },
     'precache.desc' : {

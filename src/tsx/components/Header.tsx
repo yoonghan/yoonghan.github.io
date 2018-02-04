@@ -27,12 +27,17 @@ const headerProps = {linkArray: [
     title: locale.translate('develop'),
     icon: "microchip",
     path: "/develop.html"
+  },
+  {
+    title: locale.translate('home'),
+    icon: "home",
+    path: "/"
   }
 ]};
 
 export interface HeaderProps {
   menuOpened?: Boolean;
-  isHomepage?: Boolean;
+  isHomepage?: boolean;
 }
 
 export class Header extends React.Component<HeaderProps, {}> {
@@ -42,7 +47,7 @@ export class Header extends React.Component<HeaderProps, {}> {
 
   render() {
     return (
-      <HeaderV2 linkArray={headerProps.linkArray}/>
+      <HeaderV2 linkArray={headerProps.linkArray} isHomepage={this.props.isHomepage}/>
     )
   }
 }

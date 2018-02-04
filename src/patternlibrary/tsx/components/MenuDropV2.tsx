@@ -17,6 +17,7 @@ export interface ILinks {
 
 export interface MenuDropV2Props {
   mobileOpensOnLoad?: Boolean;
+  isHomepage?: Boolean;
   linkArray: Array<ILinks>;
 }
 
@@ -27,7 +28,9 @@ interface MenuDropV2State {
 
 interface MobileMenuV2Props {
   linkArray: Array<ILinks>;
+  isOwnPage: (pathToCheck:string)=>Boolean;
   closeHandler: ()=>void;
+  isHomepage?: Boolean;
   ignorableRefNode: HTMLElement;
 }
 
@@ -69,10 +72,33 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
     }
   }
 
+  _isOwnPage = (pathToCheck:string) => {
+    const pathName = location.pathname;
+    if(pathName.indexOf('/') === -1 || pathToCheck === '/') {
+      return;
+    }
+
+    const currentPageIdx = pathName.lastIndexOf('/'),
+      path = pathName.substring(currentPageIdx);
+
+    return path.indexOf(pathToCheck) === 0;
+  }
+
   generateIcons = (links:Array<ILinks>) => {
+    const {isHomepage} = this.props;
+
     const linkAsHtml = links.map(
       (linkItem) => {
         const {title, path, icon} =  linkItem;
+
+        if(path==='/' && isHomepage) {
+          return;
+        }
+
+        if(this._isOwnPage(path)) {
+          return;
+        }
+
         return (
           <MenuIcon icon={icon} title={title} key={title} path={path}/>
         );
@@ -113,7 +139,14 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
             exit: 200,
           }}>
           <div>
-            {this.state.isMenuOpened && <MobileMenuV2 linkArray={this.props.linkArray} closeHandler={this.handleMenuClick} ignorableRefNode={this.clickRef}/>}
+            {this.state.isMenuOpened &&
+              <MobileMenuV2 linkArray={this.props.linkArray}
+              closeHandler={this.handleMenuClick}
+              ignorableRefNode={this.clickRef}
+              isHomepage={this.props.isHomepage}
+              isOwnPage={this._isOwnPage}
+              />
+            }
           </div>
         </CSSTransition>
       </div>
@@ -146,11 +179,20 @@ class MobileMenuV2 extends React.Component<MobileMenuV2Props, {}> {
   }
 
   generateMobileListing = ():JSX.Element[] => {
-    const mnuListing = this.props.linkArray;
+    const {linkArray, isHomepage, isOwnPage} = this.props;
 
-    return mnuListing.map(function(mnuItem) {
+    return linkArray.map(function(mnuItem) {
       const key= 'mnu-mob' + mnuItem.title;
       const icon = mnuItem.icon ? 'fa fa-' + mnuItem.icon:'';
+
+      if(mnuItem.path==='/' && isHomepage) {
+        return;
+      }
+
+      if(isOwnPage(mnuItem.path)) {
+        return;
+      }
+
       return (
         <li key={key}>
           <a className={'links ' + styles['mnudrop-lst-big']} href={UtilLocale.getLocalizedHref(mnuItem.path)}>

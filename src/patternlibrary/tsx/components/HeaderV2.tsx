@@ -16,6 +16,7 @@ interface ILinks {
 
 export interface HeaderV2Props {
   linkArray: Array<ILinks>;
+  isHomepage?: boolean;
 }
 
 export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
@@ -34,7 +35,7 @@ export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
         <div className={styles['title-container']}>
           <LocaleSelector type={LocaleSelectorTypes.Link}/>
         </div>
-        <MenuDropV2 linkArray={this.props.linkArray}/>
+        <MenuDropV2 linkArray={this.props.linkArray} isHomepage={this.props.isHomepage}/>
       </div>
       );
   }
