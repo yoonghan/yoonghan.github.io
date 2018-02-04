@@ -70,8 +70,12 @@ $fixed-email-height: 150px;
       height: $fixed-email-height;
 
       .ftr-contact-email-content {
-        width: 260px;
+        width: 320px;
         margin: auto;
+
+        @include breakpoint(max-width $breakpoint-tablet) {
+          width: 260px;
+        }
 
         a {
           padding: 5px 0;
