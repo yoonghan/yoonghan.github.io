@@ -78,11 +78,11 @@ $breakpoint-big-screen: 960px;
     }
 
     .mainscr-description {
-      width: 310px;
+      width: 280px;
       text-align: justify;
       padding: 30px 30px 20px 30px;
       color: $color-mainscr-description;
-      @include font-normal($font-size-headerV2-description); 
+      @include font-normal($font-size-headerV2-description);
       background: rgba(1, 87, 155, 0.4);
       border-radius: 5px;
       margin-left: 20px;
