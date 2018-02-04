@@ -56,7 +56,7 @@ export class Index extends React.Component<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
-        <Header/>
+        <Header isHomepage={true}/>
         <MainScreenV2 {...mainScreenProps}/>
         <Midpart conceptArray={conceptPosts}/>
         <div className="posting">
