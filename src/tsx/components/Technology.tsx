@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Header } from './Header';
 import { Footer } from "./Footer";
 import { TechnologyLocale } from '../util/Locale';
-import { MeTitle } from '../../patternlibrary/tsx/components/MeTitle';
+import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Gallery } from '../../patternlibrary/tsx/components/Gallery';
 
 var styles = require('../../scss/components/index');
@@ -82,7 +82,6 @@ const items = [
 
 const metitleInfo  = {
   title: locale.translate('title'),
-  imgSrc: '/ext/img/logo/logoOnlyWhiteBg.svg',
   introSection: {
     title: locale.translate('subtitle'),
     description: [
@@ -96,7 +95,7 @@ export class Technology extends React.Component<{}, {}> {
     return (
       <div>
         <Header/>
-        <MeTitle {...metitleInfo}/>
+        <MeTitleV2 {...metitleInfo}/>
         <Gallery items={items}/>
         <Footer/>
       </div>

@@ -3,14 +3,13 @@
 import * as React from 'react';
 import { Header } from './Header';
 import { DevelopLocale } from '../util/Locale';
-import { MeTitle } from '../../patternlibrary/tsx/components/MeTitle';
+import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Footer } from "./Footer";
 
 const locale = new DevelopLocale();
 
 const metitleInfo  = {
   title: locale.translate('title'),
-  imgSrc: '/ext/img/logo/logoOnlyWhiteBg.svg',
   introSection: {
     title: locale.translate('intro'),
     description: [
@@ -117,7 +116,7 @@ export class Develop extends React.Component<{}, {}> {
         return (
           <div>
             <Header/>
-            <MeTitle {...metitleInfo}/>
+            <MeTitleV2 {...metitleInfo}/>
             <Footer/>
           </div>
         );

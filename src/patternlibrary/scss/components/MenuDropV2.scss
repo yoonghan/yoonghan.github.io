@@ -1,0 +1,138 @@
+@import "../lib/breakpoints";
+@import "../lib/colors";
+@import "../lib/fonts";
+
+$mob-bar-width: 300px;
+
+.mnudrp {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  margin-right: 10px;
+
+  &.mnudrp-fullscreen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mnudrp-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 100%;
+    margin-right: 10px;
+  }
+
+  .mnudrp-desktop-deco {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 15px 40px 0 0;
+
+    @include breakpoint(max-width $breakpoint-tablet) {
+      display: none;
+    }
+
+    & > div {
+      margin-right: 10px;
+    }
+  }
+
+  .mnudrp-mobile-btn {
+    display: none;
+    @include breakpoint(max-width $breakpoint-tablet) {
+      display: block;
+    }
+  }
+
+  .mnudrp-btn-deco {
+    background: rgba(255, 248, 225, 0.66667);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    padding: 3px;
+    margin-top: 15px;
+
+    .mnudrp-btn {
+      text-align: center;
+      display: block;
+      border: 1px solid;
+      padding: 10px;
+      border-radius: 3px;
+    }
+  }
+
+  .mnudrp-mob-container {
+
+    .mnudrop-mob-close {
+      width: 50px;
+      @include font-normal(20pt);
+      padding: 10px;
+      text-align: right;
+      margin-right: unset;
+      margin-left: auto;
+    }
+
+    .mnudrp-mob-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      background: rgba(50, 50, 50, .9);
+    }
+
+    .mnudrp-mob-bar {
+      height: 100%;
+      width: $mob-bar-width;
+      position: absolute;
+      top: 0;
+      background: #FFFFFF;
+      right: 0;
+
+      ul {
+        list-style: none;
+        padding: 10px 30px;
+        margin: 0;
+        @include font-normal($font-size-h4);
+
+        li {
+          border-bottom: 1px dotted $color-mnudrp-mob-border;
+          border-left: 1px solid $color-mnudrp-mob-border;
+          margin-bottom: 15px;
+          width: 80px;
+          border-radius: 0 5px;
+          padding: 5px 10px 10px 20px;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+
+  .mnudrpmobile-enter {
+    opacity: 0.01;
+    .mnudrp-mob-bar {
+      width: 0;
+    }
+  }
+
+  .mnudrpmobile-enter-active {
+    opacity: 1;
+    transition: opacity 100ms ease-in;
+
+    .mnudrp-mob-bar {
+      width: $mob-bar-width;
+      transition: width 100ms ease-in 50ms;
+    }
+  }
+
+  .mnudrpmobile-leave {
+    opacity: 1;
+  }
+
+  .mnudrpmobile-leave-active {
+    opacity: 0.01;
+    transition: opacity 100ms ease-in;
+  }
+}

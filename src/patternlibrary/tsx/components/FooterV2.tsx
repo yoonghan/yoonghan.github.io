@@ -36,7 +36,7 @@ export class FooterV2 extends React.Component<FooterProps, {}> {
       (linkItem) => {
         const {text, path} =  linkItem;
         return (
-           <a href={path} key={text}><ul><li>{text}</li></ul></a>
+           <a href={path} key={text}>&bull; {text}</a>
         );
       }
     );
