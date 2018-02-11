@@ -14,7 +14,9 @@ $indicator-img-size: 360px;
   flex-flow: row wrap;
   margin: 20px auto;
   max-width: $width-display;
-  //justify-content: center;
+  @include breakpoint(max-width $breakpoint-tablet) {
+    justify-content: center;
+  }
 
   .moziac {
     background: $color-moziac-background;

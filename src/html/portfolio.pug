@@ -1,14 +1,19 @@
 doctype html
+include ../incl/defer
 html(lang="en")
   head
     title Portfolio
     meta(name="description" content="Portfolio of Walcron Coorperation developers.")
     include ../incl/meta.incl
     include ../incl/link.incl
-    link(rel="stylesheet" href="/extw/portfolio.style.css" as="style")
-    link(rel="stylesheet" href="/ext/css/font-awesome.css" as="style")
   body
     div(id='portfolio')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
-    script(src='/extw/portfolio.bundle.js' defer="defer")
+    script(src='ASSET{/extw/portfolio.bundle.js}' defer="defer")
+    +deferStylesheet()
+    script.
+      (function() {
+        deferStylesheet("ASSET{/extw/portfolio.style.css}");
+        deferStylesheet("ASSET{/ext/css/font-awesome.css}");
+      })();

@@ -1,16 +1,21 @@
 doctype html
+include ../incl/defer
 html(lang="en")
   head
     title #{$i18n.progressive.title}
     meta(name="description" content="Progressive Web and Offline enabled.")
     include ../incl/meta.incl
     include ../incl/link.incl
-    link(rel="stylesheet" href="/extw/progressive.style.css" as="style")
-    link(rel="stylesheet" href="/ext/css/font-awesome.css" as="style")
-    link(rel="stylesheet" href="/ext/css/animate.min.css" as="style")
-    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style")
   body
     div(id='progressive')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
-    script(src='/extw/progressive.bundle.js' defer="defer")
+    script(src='ASSET{/extw/progressive.bundle.js}' defer="defer")
+    +deferStylesheet()
+    script.
+      (function() {
+        deferStylesheet("ASSET{/extw/progressive.style.css}");
+        deferStylesheet("ASSET{/ext/css/font-awesome.css}");
+        deferStylesheet("ASSET{/ext/css/animate.min.css}");
+        deferStylesheet("https://fonts.googleapis.com/icon?family=Material+Icons");
+      })();

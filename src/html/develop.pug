@@ -1,14 +1,19 @@
 doctype html
+include ../incl/defer
 html(lang="en")
   head
     title #{$i18n.development.title}
     meta(name="description" content="Development of Walcron website.")
     include ../incl/meta.incl
     include ../incl/link.incl
-    link(rel="stylesheet" href="/extw/develop.style.css" as="style")
-    link(rel="stylesheet" href="/ext/css/font-awesome.css" as="style")
   body
     div(id='develop')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
-    script(src='/extw/develop.bundle.js' defer="defer")
+    script(src='ASSET{/extw/develop.bundle.js}' defer="defer")
+    +deferStylesheet()
+    script.
+      (function() {
+        deferStylesheet("ASSET{/extw/develop.style.css}");
+        deferStylesheet("ASSET{/ext/css/font-awesome.css}");
+      })();
