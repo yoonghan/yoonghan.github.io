@@ -142,7 +142,11 @@ $indicator-img-size: 360px;
         }
 
         .overlaycard-content {
-          @include font-normal();
+          @include font-normal(1rem);
+
+          @include breakpoint($breakpoint-phone) {
+            @include font-normal();
+          }
 
           h2, h5 {
             text-align: center;
