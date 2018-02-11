@@ -11,7 +11,7 @@ var gulp = require('gulp'),
   webpack = require('webpack'),
   webpackConfig = require("./webpack.config.js"),
   webpackDevServer = require("webpack-dev-server"),
-  cachebust = require('gulp-cache-bust'),
+  cachebust = require('./npm/util/cache-buster'),
   swPrecache = require('sw-precache');
 
 var dev = "main";
@@ -79,6 +79,7 @@ gulp.task('webpack-dev-server', ['webpack-dev-server:html', 'webpack-dev-server:
 
 /**
  * Pug to HTML converstion functionality
+ * Also to do cache busting
  **/
 var pugFunc =  function(loc) {
   const location = loc;
@@ -93,24 +94,13 @@ var pugFunc =  function(loc) {
           filename: '{{{lang}}/}{{basename}}.html'
         }
       }))
+      .pipe(cachebust({})) //do cache busting
       .pipe(gulp.dest('dist/' + dest_location));
   };
 };
 gulp.task('pug:html', pugFunc('html'));
 gulp.task('pug:patternlibrary', pugFunc('patternlibrary'));
 gulp.task('pug', ['pug:html', 'pug:patternlibrary']);
-
-/**
- * Add cache buster, so that the cache are rewritten
- **/
- gulp.task('bustCache', function () {
-   return gulp.src('./dist/**/*.html')
-    .pipe(through())
-    .pipe(cachebust({
-        type: 'timestamp'
-    }))
-    .pipe(gulp.dest('./dist'));
- });
 
 /**
  * Copy Images
@@ -185,7 +175,7 @@ gulp.task('watch', function() {
  * Build scripts
  **/
 gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
-gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build', 'bustCache'))
+gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build'))
 gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack:build', 'serviceworker:build'));
 gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch']));
 gulp.task('default', ['build-dev']);

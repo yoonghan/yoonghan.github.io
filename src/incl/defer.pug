@@ -1,0 +1,9 @@
+mixin deferStylesheet()
+  script.
+    function deferStylesheet(componentName) {
+      var stylesheet = document.createElement('link');
+      stylesheet.href = componentName;
+      stylesheet.rel = "stylesheet";
+      stylesheet.type = "text/css";
+      document.getElementsByTagName("head")[0].appendChild(stylesheet);
+    };
