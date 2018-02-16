@@ -268,8 +268,8 @@ class OverlayIndicator extends React.Component<OverlayIndicatorProps, {}> {
     const angle = Math.floor(180 / adjTotal * selection);
     const adjAngle = angle - OverlayIndicator.imageAngleStart;
     const degInRad = angle * (Math.PI / 180.0);
-    const translateY = (Math.sin(degInRad) * 160 * -1) - 20;
-    const translateX = ((Math.cos(degInRad) * 160) - 160) * -1;
+    const translateY = (Math.sin(degInRad) * 140 * -1) - 20;
+    const translateX = ((Math.cos(degInRad) * 140) - 140) * -1;
     const rotation = {transform: 'translate(' +translateX + 'px,' + translateY + 'px) rotate(' + adjAngle + 'deg)'};
 
     return (
