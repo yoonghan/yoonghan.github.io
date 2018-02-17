@@ -24,6 +24,7 @@ export interface FooterProps {
   updatedYear: number;
   contactInformation: string;
   linkArray: Array<ILinks>;
+  isHomepage?: boolean;
 }
 
 export class FooterV2 extends React.Component<FooterProps, {}> {
@@ -31,21 +32,43 @@ export class FooterV2 extends React.Component<FooterProps, {}> {
     super(props);
   }
 
-  generateLinks = (links:Array<ILinks>) => {
+  _isOwnPage = (pathToCheck:string) => {
+    const pathName = location.pathname;
+    if(pathName.indexOf('/') === -1 || pathToCheck === '/') {
+      return false;
+    }
+
+    const currentPageIdx = pathName.lastIndexOf('/'),
+      path = pathName.substring(currentPageIdx);
+
+    return path.indexOf(pathToCheck) === 0;
+  }
+
+  _generateLinks = (links:Array<ILinks>) => {
     const linkAsHtml = links.map(
       (linkItem) => {
         const {text, path} =  linkItem;
+
+        if(this._isOwnPage(path)) {
+          return;
+        }
+
         return (
            <a href={path} key={text}>&bull; {text}</a>
         );
       }
     );
-    return linkAsHtml
+
+    if(!this.props.isHomepage) {
+      linkAsHtml.unshift(<a href="/" className={styles['ftr-back-arrow']}><i className={"fa fa-arrow-circle-left"}></i></a>);
+    }
+
+    return linkAsHtml;
   };
 
   render() {
     const {updatedYear, linkArray, contactInformation} = this.props;
-    const generatedLinks = this.generateLinks(linkArray);
+    const generatedLinks = this._generateLinks(linkArray);
 
     return (
       <div className={styles.ftr}>
@@ -78,12 +101,12 @@ class ContactDisplay extends React.Component<ContactOpenProps, ContactOpenState>
     };
   }
 
-  generateContactOpen = () => {
+  _generateContactOpen = () => {
     return (
       <div className={styles['ftr-contact-close-container']}>
         <div className={styles['ftr-contact-email-content']}>
           <div className={styles['ftr-contact-close-deco']}>
-            <a href="javascript:;" className={styles['ftr-contact-close-btn'] + ' links'} onClick={this.clickContact}>
+            <a href="javascript:;" className={styles['ftr-contact-close-btn'] + ' links'} onClick={this._clickContact}>
               <i className={"fa fa-remove"}></i>
             </a>
           </div>
@@ -106,10 +129,10 @@ class ContactDisplay extends React.Component<ContactOpenProps, ContactOpenState>
     );
   }
 
-  generateNonContactOpen = () => {
+  _generateNonContactOpen = () => {
     return (
       <div className={styles['ftr-contact-open-deco']}>
-        <a href="javascript:;" className={styles['ftr-contact-open-btn'] + ' links'} onClick={this.clickContact}>
+        <a href="javascript:;" className={styles['ftr-contact-open-btn'] + ' links'} onClick={this._clickContact}>
           <span>
             <i className={'fa fa-pencil-square-o'}></i>
             <span>
@@ -121,7 +144,7 @@ class ContactDisplay extends React.Component<ContactOpenProps, ContactOpenState>
     );
   }
 
-  clickContact = () => {
+  _clickContact = () => {
 
     window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
 
@@ -136,8 +159,8 @@ class ContactDisplay extends React.Component<ContactOpenProps, ContactOpenState>
 
   render() {
     const {isContactOpen} = this.state;
-    const generatedContactOpen = this.generateContactOpen(),
-      generatedNonContactOpen = this.generateNonContactOpen();
+    const generatedContactOpen = this._generateContactOpen(),
+      generatedNonContactOpen = this._generateNonContactOpen();
 
     return (
       <div className={styles['ftr-contact']}>

@@ -12,6 +12,7 @@ var gulp = require('gulp'),
   webpackConfig = require("./webpack.config.js"),
   webpackDevServer = require("webpack-dev-server"),
   cachebust = require('./npm/util/cache-buster'),
+  langChange = require('./npm/util/lang-change'),
   swPrecache = require('sw-precache');
 
 var dev = "main";
@@ -93,6 +94,10 @@ var pugFunc =  function(loc) {
           locales: 'src/locale/*',
           filename: '{{{lang}}/}{{basename}}.html'
         }
+      }))
+      .pipe(langChange({
+        baseUrl: "/src/html/my/",
+        lang: "ms"
       }))
       .pipe(cachebust({})) //do cache busting
       .pipe(gulp.dest('dist/' + dest_location));
