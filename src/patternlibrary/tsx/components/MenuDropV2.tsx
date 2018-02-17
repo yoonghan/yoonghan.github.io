@@ -75,7 +75,7 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
   _isOwnPage = (pathToCheck:string) => {
     const pathName = location.pathname;
     if(pathName.indexOf('/') === -1 || pathToCheck === '/') {
-      return;
+      return false;
     }
 
     const currentPageIdx = pathName.lastIndexOf('/'),
@@ -104,7 +104,7 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
         );
       }
     );
-    return linkAsHtml
+    return linkAsHtml;
   };
 
   render() {

@@ -197,7 +197,7 @@ export class Index extends React.Component<{}, {}> {
             </Card>
           </div>
         </div>
-        <Footer/>
+        <Footer isHomepage={true}/>
       </div>
     );
   }

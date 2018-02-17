@@ -30,14 +30,18 @@ const links = [
   }
 ];
 
-export class Footer extends React.Component<{}, {}> {
+export interface FooterProps {
+  isHomepage?: boolean;
+}
+
+export class Footer extends React.Component<FooterProps, {}> {
   constructor(props:any) {
     super(props);
   }
 
   render() {
     return (
-      <FooterV2 updatedYear={2018} linkArray={links} contactInformation={locale.translate('contactus.msg')}/>
+      <FooterV2 updatedYear={2018} linkArray={links} contactInformation={locale.translate('contactus.msg')} isHomepage={this.props.isHomepage}/>
     )
   }
 }
