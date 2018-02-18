@@ -54,7 +54,7 @@ export class FooterV2 extends React.Component<FooterProps, {}> {
         }
 
         return (
-           <a href={path} key={text}>&bull; {text}</a>
+           <span>&bull; <a href={path} key={text}>{text}</a></span>
         );
       }
     );

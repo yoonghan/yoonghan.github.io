@@ -27,6 +27,7 @@ interface MoziacProps {
 }
 
 interface OverlayProps {
+  isSubComponentToUpdate: boolean;
   transitionStyles: any;
   clickHandler:any;
   animLeft: number;
@@ -36,6 +37,7 @@ interface OverlayProps {
 }
 
 interface OverlayCardProps {
+  isComponentUpdated: boolean;
   clickHandler:any;
   animLeft: number;
   animTop: number;
@@ -65,6 +67,13 @@ export interface Item {
 }
 
 export class Gallery extends React.Component<GalleryProps, GalleryState> {
+
+  private transitionStyles:any = {
+    entering: {opacity:0},
+    entered: {opacity:1},
+    exiting: {opacity: 0, transition: 'opacity ' + Overlay.leaveTime + 'ms ease-in'}
+  };
+
   constructor(props:any) {
     super(props);
     this.state = {
@@ -105,25 +114,31 @@ export class Gallery extends React.Component<GalleryProps, GalleryState> {
 
   render() {
 
-    const transitionStyles:any = {
-      entering: {opacity:0},
-      entered: {opacity:1}
-    }
+
 
     return (
       <div className={styles.gallery}>
-          {this.state.isOverlayOpen &&
-            <Transition in={true} timeout={200} appear={true}>
+            <Transition in={this.state.isOverlayOpen} timeout={Overlay.leaveTime} appear={this.state.isOverlayOpen}>
             {
               (state:any) =>
                 {
+                  if(state === 'exited') {
+                    return null;
+                  }
+
                   return (
-                      <Overlay transitionStyles={...transitionStyles[state]} clickHandler={this.toggleOverlay} animTop={this.state.clickPosTop} animLeft={this.state.clickPosLeft} items={this.props.items} selectedIdx={this.state.selectedIdx}/>
+                      <Overlay
+                        transitionStyles={...this.transitionStyles[state]}
+                        clickHandler={this.toggleOverlay}
+                        animTop={this.state.clickPosTop}
+                        animLeft={this.state.clickPosLeft}
+                        items={this.props.items}
+                        selectedIdx={this.state.selectedIdx}
+                        isSubComponentToUpdate={state==='entering'}/>
                   );
                 }
             }
             </Transition>
-          }
         {this.createMoziacListing()}
       </div>
     );
@@ -134,31 +149,26 @@ class Overlay extends React.Component<OverlayProps, {}> {
   private node:HTMLElement;
   static leaveTime = 100;
 
-  handleClickHandler = () => {
+  _handleClickHandler = () => {
     this.props.clickHandler();
   };
 
-  componentWillEnter (callback:any) {
-    setTimeout(function(){callback();}, Overlay.leaveTime);
-  };
-
-  componentDidEnter() {
-    const el = this.node;
-    el.classList.add(styles['overlay-enter-active']);
-  };
-
-  componentWillLeave (callback:any) {
-    const el = this.node;
-    el.classList.add(styles['overlay-leave-active']);
-    setTimeout(function(){callback();}, Overlay.leaveTime);
-  };
+  shouldComponentUpdate() {
+    return true;
+  }
 
   render() {
-    const {animLeft, animTop, items, selectedIdx} = this.props;
+    const {animLeft, animTop, items, selectedIdx, isSubComponentToUpdate} = this.props;
     return (
       <div ref={node => this.node = node} className={styles.overlay} style={{...this.props.transitionStyles}}>
-        <div className={styles['overlay-background']} onClick={this.handleClickHandler}></div>
-        <OverlayCard animLeft={animLeft} animTop={animTop} clickHandler={this.handleClickHandler} items={items} selectedIdx={selectedIdx}/>
+        <div className={styles['overlay-background']} onClick={this._handleClickHandler}></div>
+        <OverlayCard
+          animLeft={animLeft}
+          animTop={animTop}
+          clickHandler={this._handleClickHandler}
+          items={items}
+          selectedIdx={selectedIdx}
+          isComponentUpdated={isSubComponentToUpdate}/>
       </div>
     );
   }
@@ -167,7 +177,11 @@ class Overlay extends React.Component<OverlayProps, {}> {
 class OverlayCard extends React.Component<OverlayCardProps, {}> {
   private node:HTMLElement;
 
-  handleClickHandler = () => {
+  shouldComponentUpdate() {
+    return this.props.isComponentUpdated;
+  }
+
+  _handleClickHandler = () => {
     this.props.clickHandler();
   };
 
@@ -218,7 +232,6 @@ class OverlayCard extends React.Component<OverlayCardProps, {}> {
   render() {
     const {animLeft, animTop, items, selectedIdx} = this.props;
     const {title, imgSrc, nature, key, desc} = items[selectedIdx];
-
     const animateStartPos = (animLeft && animTop) ? {top: animTop, left:animLeft} : {};
     return (
       <div ref={node => this.node=node} className={styles.overlaycard} style={animateStartPos}>
@@ -249,7 +262,7 @@ class OverlayCard extends React.Component<OverlayCardProps, {}> {
             <hr/>
           </div>
           <div className={styles['overlaycard-button']}>
-            <Button icon='close' floating accent mini onClick={this.handleClickHandler}/>
+            <Button icon='close' floating accent mini onClick={this._handleClickHandler}/>
           </div>
         </div>
       </div>
@@ -264,7 +277,6 @@ class OverlayIndicator extends React.Component<OverlayIndicatorProps, {}> {
   render() {
     const {total, selection} = this.props;
     const adjTotal = total - 1;
-
     const angle = Math.floor(180 / adjTotal * selection);
     const adjAngle = angle - OverlayIndicator.imageAngleStart;
     const degInRad = angle * (Math.PI / 180.0);
@@ -305,7 +317,7 @@ class OverlayCardImageAnimated extends React.Component<OverlayCardAnimatedProps,
 class Moziac extends React.Component<MoziacProps, {}> {
   private node:HTMLElement;
 
-  handleClickHandler = () => {
+  _handleClickHandler = () => {
     const el = this.node;
     const posTop = el.getBoundingClientRect().top;
     const posLeft = this.adjustedLeft(el.getBoundingClientRect().left);
@@ -324,7 +336,7 @@ class Moziac extends React.Component<MoziacProps, {}> {
   render() {
     const {title, imgSrc} = this.props;
     return (
-      <div ref={node => this.node=node} className={styles.moziac} onClick={this.handleClickHandler}>
+      <div ref={node => this.node=node} className={styles.moziac} onClick={this._handleClickHandler}>
         <img className={styles['moziac-image']} src={imgSrc}></img>
         <div className={styles['moziac-title']}>{title}</div>
       </div>

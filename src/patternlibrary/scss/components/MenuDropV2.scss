@@ -109,14 +109,14 @@ $mob-bar-width: 300px;
   }
 
 
-  .mnudrpmobile-enter {
+  .mnudrpmobile-entering {
     opacity: 0.01;
     .mnudrp-mob-bar {
       width: 0;
     }
   }
 
-  .mnudrpmobile-enter-active {
+  .mnudrpmobile-entered {
     opacity: 1;
     transition: opacity 100ms ease-in;
 
@@ -126,12 +126,13 @@ $mob-bar-width: 300px;
     }
   }
 
-  .mnudrpmobile-leave {
-    opacity: 1;
-  }
-
-  .mnudrpmobile-leave-active {
+  .mnudrpmobile-exiting {
     opacity: 0.01;
     transition: opacity 100ms ease-in;
+
+    .mnudrp-mob-bar {
+      width: 0;
+      transition: width 100ms ease-in 50ms;
+    }
   }
 }
