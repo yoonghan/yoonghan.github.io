@@ -3,7 +3,7 @@
 import * as React from "react";
 import { UtilLocale } from "../util/UtilLocale";
 import { MenuIcon } from "./MenuIcon";
-import * as CSSTransition from 'react-transition-group/CSSTransition';
+import {Transition} from 'react-transition-group';
 
 import '../../scss/base';
 var styles = require('../../scss/components/MenuDropV2');
@@ -32,6 +32,15 @@ interface MobileMenuV2Props {
   closeHandler: ()=>void;
   isHomepage?: Boolean;
   ignorableRefNode: HTMLElement;
+  transitionClassList: any;
+}
+
+interface IAnimationClassList {
+  entered: string;
+  entering: string;
+  exited: string;
+  exiting: string;
+  [key:string]: string;
 }
 
 /**
@@ -39,16 +48,22 @@ interface MobileMenuV2Props {
  */
 export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State> {
   private clickRef:HTMLElement;
+  private animationClassList:IAnimationClassList = {
+    entered: styles['mnudrpmobile-entered'],
+    entering: styles['mnudrpmobile-entering'],
+    exited: styles['mnudrpmobile-exited'],
+    exiting: styles['mnudrpmobile-exiting']
+  }
 
   constructor(props:any) {
     super(props);
     this.state = {
       isMenuOpened: false,
-      menuIcon: this.toggleIcon(false)
+      menuIcon: this._toggleIcon(false)
     };
   }
 
-  handleMenuClick = () => {
+  _handleMenuClick = () => {
     const self = this;
     this.setState(
       (prevState, props) => {
@@ -56,13 +71,13 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
         document.body.style.overflow = inverseMenuState ? "hidden":"auto";
         return {
           isMenuOpened: inverseMenuState,
-          menuIcon: self.toggleIcon(inverseMenuState)
+          menuIcon: self._toggleIcon(inverseMenuState)
         };
       }
     );
   }
 
-  toggleIcon = (state:boolean):string => {
+  _toggleIcon = (state:boolean):string => {
     return (state ? 'ellipsis-v' : 'ellipsis-v' )
   }
 
@@ -119,36 +134,37 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
           </div>
           <div className={styles['mnudrp-mobile-btn'] + ' ' + styles['mnudrp-btn-deco']}>
             <a className={styles['mnudrp-btn']}
-              onClick={this.handleMenuClick} ref={node => this.clickRef = node}>
+              onClick={this._handleMenuClick} ref={node => this.clickRef = node}>
               <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>
             </a>
           </div>
         </div>
-        <CSSTransition
+        <Transition
           in = {
             this.state.isMenuOpened
           }
-          classNames={{
-            enter: styles['mnudrpmobile-enter'],
-            enterActive: styles['mnudrpmobile-enter-active'],
-            exit: styles['mnudrpmobile-leave'],
-            exitActive: styles['mnudrpmobile-leave-active']
-          }}
-          timeout={{
-            enter: 200,
-            exit: 200,
-          }}>
-          <div>
-            {this.state.isMenuOpened &&
+          appear = {
+            this.state.isMenuOpened
+          }
+          timeout={200}>
+          {
+            (state:any) =>
+            {
+              if(state === 'exited') {
+                return null;
+              }
+
+              return(
               <MobileMenuV2 linkArray={this.props.linkArray}
-              closeHandler={this.handleMenuClick}
-              ignorableRefNode={this.clickRef}
-              isHomepage={this.props.isHomepage}
-              isOwnPage={this._isOwnPage}
-              />
+                closeHandler={this._handleMenuClick}
+                ignorableRefNode={this.clickRef}
+                isHomepage={this.props.isHomepage}
+                isOwnPage={this._isOwnPage}
+                transitionClassList={this.animationClassList[state]}
+              />)
             }
-          </div>
-        </CSSTransition>
+          }
+        </Transition>
       </div>
     );
   }
@@ -206,7 +222,7 @@ class MobileMenuV2 extends React.Component<MobileMenuV2Props, {}> {
   render() {
     const generatedMobileListing = this.generateMobileListing();
     return (
-      <div className={styles['mnudrp-mob-container']}>
+      <div className={styles['mnudrp-mob-container'] + ' ' + this.props.transitionClassList}>
         <div className={styles['mnudrp-mob-background']}/>
         <div className={styles['mnudrp-mob-bar']}  ref={node => this.node = node}>
           <div className={styles['mnudrop-mob-close']}>
