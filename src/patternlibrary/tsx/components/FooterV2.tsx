@@ -82,7 +82,7 @@ export class FooterV2 extends React.Component<FooterProps, {}> {
           </div>
           <div className={styles['ftr-divider']}></div>
           <div className={styles['ftr-footnote']}>
-            2016 - {updatedYear} Walcron Coorperation &copy;
+            2014 - {updatedYear} Walcron Coorperation &copy;
           </div>
         </div>
       </div>
