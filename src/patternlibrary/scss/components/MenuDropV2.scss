@@ -5,10 +5,12 @@
 $mob-bar-width: 300px;
 
 .mnudrp {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 9;
+  @include breakpoint(max-width $breakpoint-tablet) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
 
   &.mnudrp-fullscreen {
     width: 100%;
@@ -21,14 +23,20 @@ $mob-bar-width: 300px;
     justify-content: flex-end;
     align-items: flex-start;
     height: 100%;
-    margin-right: 15px;
+    margin-right: -15px;
+    @include breakpoint(max-width $breakpoint-tablet) {
+      margin-right: 15px;
+    }
   }
 
   .mnudrp-desktop-deco {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin: 15px 40px 0 0;
+    margin: 10px 0 0 0;
+    @include breakpoint(max-width $breakpoint-tablet) {
+      margin: 15px 40px 0 0;
+    }
 
     @include breakpoint(max-width $breakpoint-tablet) {
       display: none;

@@ -1,6 +1,7 @@
 @import "../lib/colors";
 @import "../lib/breakpoints";
 @import "../lib/fonts";
+@import "../lib/size";
 
 .midpart {
   position: relative;
@@ -23,7 +24,7 @@
     width: 100%;
     margin: auto;
     display: flex;
-    max-width: 900px;
+    max-width: $display-max-width;
     box-sizing: border-box;
     padding: 18px 8px 18px 8px;
 
