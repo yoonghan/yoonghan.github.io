@@ -1,0 +1,60 @@
+doctype html
+include ../incl/defer
+html(lang="en")
+  head
+    title Learning site
+    meta(name="ROBOTS",content="NOINDEX, NOFOLLOW")
+    meta(name="description" content="Log entry on Web 2.0/Web 3.0 Learning.")
+    include ../incl/meta.incl
+    style.
+      table {
+        border-collapse: collapse;
+      }
+      table,th,td {
+        border: 1px solid black;
+      }
+      td {
+        padding: 5px;
+        vertical-align: top;
+      }
+
+  body
+    h3 Secret page site, if you managed to get here, cool!
+
+    h2 Web 2.0
+    table
+      tr
+        th List
+        th Description
+        th Purpose
+      tr
+        td integrity
+        td Used in script/links to ensure the CDN content has not changed.
+        td Security
+      tr
+        td crossorigin
+        td Used in links tag to ensure crossorigin to send anonymous or not.
+        td Security
+      tr
+        td Page speed
+        td User google's https://developers.google.com/speed/ to gain insight on page improvement.
+        td Performance
+
+    h2 More about Cats
+    table
+      tr
+        th Usage
+        th Description
+        th Demo
+      tr
+        td Traverse
+        td Change from Option[String] to String[Option]
+        td
+          pre import scala.util._
+            | import cats.instances.try_._
+            | import cats.Traverse
+            | import cats.instances.list._
+            | val listOfTries: List[Try[String]] = List(Try("a"), Try("b"), Try("c"))
+            | val tryOfList = Traverse[List].sequence(listOfTries) // Get Success(List(a,b,c))
+            | val listOfTries: List[Try[String]] = List(Try("a"), Try("b"), new Failure(new Exception("exception")))
+            | val tryOfList = Traverse[List].sequence(listOfTries) // Get Failure, no success what so ever. Expected!
