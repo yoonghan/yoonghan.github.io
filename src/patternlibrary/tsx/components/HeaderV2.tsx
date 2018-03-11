@@ -30,12 +30,14 @@ export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
 
   render() {
     return (
-      <div className={styles.hdr}>
-        <img src='/ext/img/logo/v2/logo-color.svg' className={styles['logo-container']} onClick={this.clickAndReturnHome}/>
-        <div className={styles['title-container']}>
-          <LocaleSelector type={LocaleSelectorTypes.Link}/>
+      <div style={{backgroundColor: '#fff'}}>
+        <div className={styles.hdr}>
+          <img src='/ext/img/logo/v2/logo-color.svg' className={styles['logo-container']} onClick={this.clickAndReturnHome}/>
+          <div className={styles['title-container']}>
+            <LocaleSelector type={LocaleSelectorTypes.Link}/>
+          </div>
+          <MenuDropV2 linkArray={this.props.linkArray} isHomepage={this.props.isHomepage}/>
         </div>
-        <MenuDropV2 linkArray={this.props.linkArray} isHomepage={this.props.isHomepage}/>
       </div>
       );
   }

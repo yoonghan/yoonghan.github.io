@@ -8,6 +8,7 @@ import { Post } from '../../patternlibrary/tsx/components/Post';
 import { Midpart } from '../../patternlibrary/tsx/components/Midpart';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Timeline, TimelineProp, TimelineContainerProp, Link } from "../../patternlibrary/tsx/components/Timeline";
 import { Button } from 'react-toolbox/lib/button';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -52,6 +53,106 @@ const GoogleIcon = () => (
   </svg>
 );
 
+const timelines = [
+  { year: 2018},
+  {
+    title: locale.translate('card.11.title'),
+    description: locale.translate('card.11.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: "https://github.com/yoonghan/presentation/tree/master/2017"
+      }
+    ]
+  },
+  { year: 2017},
+  {
+    title: locale.translate('card.10.title'),
+    image: "/ext/img/index/hackathon_solutiondiagram.jpg",
+    description: locale.translate('card.10.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: "/ext/img/index/hackathon_solutiondiagram.png"
+      },
+      {
+        text: locale.translate('label.download') + '-Client',
+        path: "https://github.com/yoonghan/HackathonMobileApp"
+      },
+      {
+        text: locale.translate('label.download') + '-Server',
+        path: "https://github.com/yoonghan/HackathonBridge"
+      }
+    ]
+  },
+  {
+    title: locale.translate('card.0.title'),
+    image: "/ext/img/index/designthinking.jpg",
+    description: locale.translate('card.0.desc')
+  },
+  { year: 2016},
+  {
+    title: locale.translate('card.1.title'),
+    description: locale.translate('card.1.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: "http://blog.walcron.com"
+      }
+    ]
+  },
+  {
+    title: locale.translate('card.3.title'),
+    description: locale.translate('card.3.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: UtilLocale.getLocalizedHref('progressive.html')
+      }
+    ]
+  },
+  {
+    title: locale.translate('card.22.title'),
+    description: locale.translate('card.22.desc')
+  },
+  {
+    title: locale.translate('card.21.title'),
+    description: locale.translate('card.21.desc')
+  },
+  {
+    title: locale.translate('card.2.title'),
+    description: locale.translate('card.2.desc')
+  },
+  {
+    title: locale.translate('card.31.title'),
+    description: locale.translate('card.31.desc')
+  },
+  { year: 2015},
+  {
+    title: locale.translate('card.43.title'),
+    description: locale.translate('card.43.desc')
+  },
+  {
+    title: locale.translate('card.4.title'),
+    description: locale.translate('card.4.desc')
+  },
+  {
+    title: locale.translate('card.41.title'),
+    description: locale.translate('card.41.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: 'https://github.com/yoonghan/selfservice'
+      }
+    ]
+  },
+  { year: 2014},
+  {
+    title: locale.translate('card.42.title'),
+    description: locale.translate('card.42.desc')
+  }
+];
+
 export class Index extends React.Component<{}, {}> {
   render() {
     return (
@@ -62,74 +163,7 @@ export class Index extends React.Component<{}, {}> {
         <div className="posting">
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
-          <Card className={styles['card-split']} raised>
-            <CardTitle
-              title={locale.translate('card.11.title')}
-              subtitle={locale.translate('card.11.desc')}
-            />
-            <CardActions>
-              <Button label={locale.translate('label.read')} href='https://github.com/yoonghan/presentation/tree/master/2017' target="presentation" theme={styles} primary/>
-            </CardActions>
-          </Card>
-            <Card className={styles['card-split']} raised>
-              <CardMedia
-                aspectRatio="wide"
-                image="/ext/img/index/hackathon_solutiondiagram.jpg"
-              />
-              <CardTitle
-                title={locale.translate('card.10.title')}
-                subtitle={locale.translate('card.10.desc')}
-              />
-              <CardActions>
-                <Button label={locale.translate('label.read')} href='/ext/img/index/hackathon_solutiondiagram.png' target="hackathon2017" theme={styles} primary/>
-              </CardActions>
-              <CardActions>
-                <Button label={locale.translate('label.download') + '-Client'} href='https://github.com/yoonghan/HackathonMobileApp' target="hackathon2017" theme={styles} primary/>
-              </CardActions>
-              <CardActions>
-                <Button label={locale.translate('label.download') + '-Server'} href='https://github.com/yoonghan/HackathonBridge' target="hackathon2017" theme={styles} primary/>
-              </CardActions>
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardMedia
-                aspectRatio="wide"
-                image="/ext/img/index/designthinking.jpg"
-              />
-              <CardTitle
-                title={locale.translate('card.0.title')}
-                subtitle={locale.translate('card.0.desc')}
-              />
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardTitle
-                title={locale.translate('card.1.title')}
-                subtitle={locale.translate('card.1.desc')}
-              />
-              <CardActions>
-                <Button label={locale.translate('label.read')} href='http://blog.walcron.com' target="_blank" theme={styles} primary/>
-              </CardActions>
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardTitle
-                title={locale.translate('card.2.title')}
-                subtitle={locale.translate('card.2.desc')}
-              />
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardTitle
-                title={locale.translate('card.3.title')}
-                subtitle={locale.translate('card.3.desc')}
-              />
-              <CardActions>
-                <Button label={locale.translate('label.read')} href={UtilLocale.getLocalizedHref('progressive.html')} theme={styles} primary/>
-              </CardActions>
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardTitle
-                title={locale.translate('card.4.title')}
-                subtitle={locale.translate('card.4.desc')}
-              />
-            </Card>
+            <Timeline postArray={timelines}/>
           </div>
           <StickyTitle text={locale.translate('title.development')} pos={1} />
           <div className={styles['card-section']}>
