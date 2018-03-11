@@ -23,12 +23,14 @@ export interface MenuDropV2Props {
 
 interface MenuDropV2State {
   isMenuOpened: boolean;
+  isFullScreen: boolean;
   menuIcon: string;
 }
 
 interface MobileMenuV2Props {
   linkArray: Array<ILinks>;
   isOwnPage: (pathToCheck:string)=>Boolean;
+  onClosed: ()=>void;
   closeHandler: ()=>void;
   isHomepage?: Boolean;
   ignorableRefNode: HTMLElement;
@@ -59,7 +61,8 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
     super(props);
     this.state = {
       isMenuOpened: false,
-      menuIcon: this._toggleIcon(false)
+      menuIcon: this._toggleIcon(false),
+      isFullScreen: false
     };
   }
 
@@ -71,7 +74,8 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
         document.body.style.overflow = inverseMenuState ? "hidden":"auto";
         return {
           isMenuOpened: inverseMenuState,
-          menuIcon: self._toggleIcon(inverseMenuState)
+          menuIcon: self._toggleIcon(inverseMenuState),
+          isFullScreen: true
         };
       }
     );
@@ -99,7 +103,7 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
     return path.indexOf(pathToCheck) === 0;
   }
 
-  generateIcons = (links:Array<ILinks>) => {
+  _generateIcons = (links:Array<ILinks>) => {
     const {isHomepage} = this.props;
 
     const linkAsHtml = links.map(
@@ -122,9 +126,21 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
     return linkAsHtml;
   };
 
+  _disableFullscreen = () => {
+    this.setState(
+      (prevState, props) => {
+        return {
+          isMenuOpened: prevState.isMenuOpened,
+          menuIcon: prevState.menuIcon,
+          isFullScreen: false
+        };
+      }
+    );
+  }
+
   render() {
-    const generatedIcons = this.generateIcons(this.props.linkArray);
-    const classNameForFullScreen = this.state.isMenuOpened? styles['mnudrp-fullscreen']:'';
+    const generatedIcons = this._generateIcons(this.props.linkArray);
+    const classNameForFullScreen = this.state.isFullScreen? styles['mnudrp-fullscreen']:'';
 
     return (
       <div className={styles.mnudrp + ' ' + classNameForFullScreen}>
@@ -134,7 +150,8 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
           </div>
           <div className={styles['mnudrp-mobile-btn'] + ' ' + styles['mnudrp-btn-deco']}>
             <a className={styles['mnudrp-btn']}
-              onClick={this._handleMenuClick} ref={node => this.clickRef = node}>
+              onClick={this._handleMenuClick}
+              ref={node => this.clickRef = node}>
               <i className={'fa fa-lg fa-' + this.state.menuIcon}></i>
             </a>
           </div>
@@ -156,6 +173,7 @@ export class MenuDropV2 extends React.Component<MenuDropV2Props, MenuDropV2State
 
               return(
               <MobileMenuV2 linkArray={this.props.linkArray}
+                onClosed={this._disableFullscreen}
                 closeHandler={this._handleMenuClick}
                 ignorableRefNode={this.clickRef}
                 isHomepage={this.props.isHomepage}
@@ -192,6 +210,7 @@ class MobileMenuV2 extends React.Component<MobileMenuV2Props, {}> {
 
   componentWillUnmount() {
     document.removeEventListener('click', this._handleClick, false);
+    this.props.onClosed();
   }
 
   generateMobileListing = ():JSX.Element[] => {
@@ -224,7 +243,7 @@ class MobileMenuV2 extends React.Component<MobileMenuV2Props, {}> {
     return (
       <div className={styles['mnudrp-mob-container'] + ' ' + this.props.transitionClassList}>
         <div className={styles['mnudrp-mob-background']}/>
-        <div className={styles['mnudrp-mob-bar']}  ref={node => this.node = node}>
+        <div className={styles['mnudrp-mob-bar']} ref={node => this.node = node}>
           <div className={styles['mnudrop-mob-close']}>
             <div className={styles['mnudrp-btn-deco']}>
               <a href='#' onClick={this.props.closeHandler} className={styles['mnudrp-btn']}>

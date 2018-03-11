@@ -16,7 +16,7 @@ export class Post extends React.Component<PostProps, {}> {
     super(props);
   };
 
-  createPostListing = ():JSX.Element[] => {
+  _createPostListing = ():JSX.Element[] => {
     const postListing = this.props.postItems;
 
     let counter = 0;
@@ -31,7 +31,7 @@ export class Post extends React.Component<PostProps, {}> {
 
   render() {
     return (
-      <div className={styles.post}>{this.createPostListing()}</div>
+      <div className={styles.post}>{this._createPostListing()}</div>
     );
   }
 }

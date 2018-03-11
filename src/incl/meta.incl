@@ -9,3 +9,4 @@
 <meta name="og:image" content="http://www.walcron.com/ext/img/logo/og_image.png"/>
 <meta name="og:description" content="Welcome to Walcron Coorperation, Malaysia; a site was built for IT research purposes."/>
 <meta name="fb:admins" content="walcoorperation@gmail.com"/>
+<style>body { margin: 0; padding: 0; background: url('/ext/img/common/bg-pattern.gif');}</style>

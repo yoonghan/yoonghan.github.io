@@ -4,6 +4,7 @@
   margin: auto;
   max-width: 800px;
   width: 80%;
+  margin-bottom: 30px;
 
   @include breakpoint(max-width $breakpoint-phone) {
     width: 95%;
@@ -19,10 +20,6 @@
 }
 
 :global {
-  body {
-    background: url('/ext/img/common/bg-pattern.gif');
-  }
-
   .posting {
     background: url('/ext/img/common/bg-pattern.gif');
   }

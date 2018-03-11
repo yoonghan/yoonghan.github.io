@@ -320,8 +320,8 @@ export class DevelopLocale extends AbstractLocalev2 {
 export class IndexLocale extends AbstractLocalev2 {
   private lang:LocaleFormatv2 = {
     'title.research': {
-      en: 'RESEARCH',
-      my: 'PENYELIDIKAN'
+      en: 'JOURNEY',
+      my: 'PENCAPAIAN'
     },
     'title.development': {
       en: 'DEVELOPMENT',
@@ -364,15 +364,15 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Kami siapa'
     },
     'post.1.text': {
-      en: 'We are keen to learn modern web and mobile technologies.',
-      my: 'Kami peneroka dalam teknologi smartphone dan laman web.'
+      en: 'We are keen to learn interconnected techonologies.',
+      my: 'Kami peneroka dalam teknologi perhubungan.'
     },
     'post.2.title': {
       en: 'Motive',
       my: 'Motif'
     },
     'post.2.text': {
-      en: 'We are exploring the missing developer link - <strong>a good full-stack developer.</strong>',
+      en: 'We are exploring key to <strong>a good full-stack developer</strong>. Covering both frontend and backend.',
       my: 'Kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>'
     },
     'post.3.title': {
@@ -392,8 +392,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Seramai 24 orang hadir and hasilnya amat dialu-alukan.'
     },
     'card.10.title': {
-      en: '2017 Hackathon with IOT',
-      my: '2017 Hackathon bersamaan Internet Of Thing'
+      en: 'Won Hackathon in IOT and Cloud',
+      my: 'Menangi Hackathon tentang IOT dan Cloud'
     },
     'card.10.desc': {
       en: 'Won an Echodot in this year\'s competition. The team consists of 5 person, we came up with the idea related to autonomous car reaction for heart-attack drivers.',
@@ -408,8 +408,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Han menghadiri Design Thinking workshop yang dianjurkan di Beijing, China. Konsep bengkel in adalah untuk membentangkan penyelesaian pelanggan dengan bekerjasama dengan pelbagai pakar dalam bidang yang berbeza. Hasilnya adalah hebat kerana kami berjaya mencipta Game Proof-Of-Concept menggunakan Unity hanya dalam masa 5 hari.'
     },
     'card.1.title': {
-      en: '2016 Hackathon with Deep Learning',
-      my: 'Than 2016 dengan Deep Learning'
+      en: 'Hackathon with Deep Learning',
+      my: 'Hackathon dengan Deep Learning'
     },
     'card.1.desc': {
       en: 'Won a hackathon, the 5 person team created an image scanning to identify a vehicle model using a mobile. We will be dedicating the year 2017 into deep learning research using Scala programming language.',
@@ -425,6 +425,22 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Fokus Han adalah membina proses dengan multi-threading. Kod dia difokus mengunakan Scala, RxJS, Akka.'
             + ' Matlamat utama kami sekarang adalah membolehkan Apache Sparks berjalan dengan Deep Learning.'
     },
+    'card.21.title': {
+      en: 'Domain rename',
+      my: 'Domain tukar nama'
+    },
+    'card.21.desc': {
+      en: 'Renamed to Walcron from the name jomjaring. Resetup networks, CDN, domain.',
+      my: 'Menamakan laman ini sebagai Walcron, tidak lagi sebagai Jomjaring.'
+    },
+    'card.22.title': {
+      en: 'ReactJS',
+      my: 'ReactJS'
+    },
+    'card.22.desc': {
+      en: 'Migration to use React JS.',
+      my: 'Migrasi ke React JS.'
+    },
     'card.3.title': {
       en: 'Progressive App',
       my: 'Aplikasi Progressive'
@@ -433,6 +449,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'To find ways to load page in a smooth availability manner. It\'s important for this page to be available online.',
       my: 'Kami memerlukan laman web ini dimuat ke dalam browser secara lancar. Pertimbangan ini hendaklah memenuhi kertersediaan laman ini tanpa internet.'
     },
+    'card.31.title': {
+      en: 'AngularJS 2',
+      my: 'AngularJS 2'
+    },
+    'card.31.desc': {
+      en: 'Migration to use AngularJS 2.',
+      my: 'Migrasi ke AngularJS 2.'
+    },
     'card.4.title': {
       en: 'UIUX',
       my: 'UIUX'
@@ -440,6 +464,30 @@ export class IndexLocale extends AbstractLocalev2 {
     'card.4.desc': {
       en: 'Studying on user interface and user experience. This site will have modification over time, based on the book "Don\'t Make Me Think". Have you notice that this page is parallaxed ?!',
       my: 'Kami sedang mengaji penggunaan dan pengalaman design untuk penguna. Laman ini akan diubah dari masa-ke-semasa mengikuti buku "Don\'t Make Me Think". Sedarkah anda, laman ini mengandungi parallaxing ?!'
+    },
+    'card.43.title': {
+      en: 'Angular JS',
+      my: 'Angular JS'
+    },
+    'card.43.desc': {
+      en: 'Migration to Angular JS with Material Design.',
+      my: 'Migrasi ke Angular JS dengan Material Design'
+    },
+    'card.41.title': {
+      en: '2015 Scheduler',
+      my: '2015 Scheduler'
+    },
+    'card.41.desc': {
+      en: 'Developed a website that uses Websocket technology and it actually have an accurate 100% updating progress bar using threads and mongoDB check.',
+      my: 'Bina laman yang menggunakan teknologi Websocket dan ia mengandungi progress bar yang boleh mengira sampai 100%.'
+    },
+    'card.42.title': {
+      en: '2014 Start',
+      my: '2014 Mula'
+    },
+    'card.42.desc': {
+      en: 'Started this website as Jom Jaring.',
+      my: 'Bina laman ini dan namakan ia Jom Jaring.'
     },
     'card.5.title': {
       en: 'Javascript with ReactJS',

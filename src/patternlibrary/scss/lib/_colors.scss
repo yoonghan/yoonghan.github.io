@@ -75,6 +75,13 @@ $color-midpart-background: #1976D2;
 
 $color-mnudrp-mob-border: #039BE5;
 
+$color-timeline-border: #D3D3D3;
+$color-timeline-box: #1976D2;
+$color-timeline-foreground: #FFFFFF;
+$color-timeline-border-box:#4FC3F7;
+
+$color-timeline-link: #FFAB40;
+
 @mixin bgcolor-gradient($fromcolor: #76C4E2, $tocolor: #1976d2) {
   background: $tocolor;
   background: linear-gradient(to bottom right, $fromcolor,  $tocolor);

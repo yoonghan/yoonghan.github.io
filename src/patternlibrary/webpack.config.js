@@ -23,7 +23,8 @@ module.exports = {
       mainscreenv2: "./src/patternlibrary/tsx/mainscreenv2.tsx",
       midpart: "./src/patternlibrary/tsx/midpart.tsx",
       menudropv2: "./src/patternlibrary/tsx/menudropv2.tsx",
-      metitlev2: "./src/patternlibrary/tsx/metitlev2.tsx"
+      metitlev2: "./src/patternlibrary/tsx/metitlev2.tsx",
+      timeline: "./src/patternlibrary/tsx/timeline.tsx"
     },
     output: {
         filename: "[name].bundle.js",

@@ -1,0 +1,171 @@
+@import "../lib/colors";
+@import "../lib/breakpoints";
+@import "../lib/fonts";
+
+$arrowsize: 18px;
+
+.timeline {
+  ul {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0 10px;
+
+    @include breakpoint($breakpoint-big-screen) {
+      padding-left: 0;
+    }
+
+    li {
+      color: $color-timeline-foreground;
+      margin: 0 0 5px 10px;
+      position: relative;
+      padding: 13px 0 0 10px;
+      list-style: none;
+
+      @include breakpoint($breakpoint-big-screen) {
+        margin: 0;
+        padding-left: 0;
+      }
+
+      &:before {
+        content: " ";
+        position: absolute;
+        left: -16px;
+        border-left: 1px solid $color-timeline-border;
+        height: 100%;
+        width: 1px;
+        top: 40px;
+
+        @include breakpoint($breakpoint-big-screen) {
+          left: 50%;
+        }
+      }
+
+      div{
+        &.icon {
+          background-image:url('/ext/img/common/iconblue.png');
+          background-size: 100%;
+          position: absolute;
+          left: -26px;
+          top: 23px;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+
+          @include breakpoint($breakpoint-big-screen) {
+            left: 50%;
+            margin-left: -10px;
+          }
+        }
+
+        &.year-wrapper {
+            height: 50px;
+        }
+
+        &.year {
+          position: absolute;
+          background: $color-timeline-box;
+          padding: 8px 12px;
+          text-align: center;
+          top: 18px;
+          left: -16px;
+          border: 2px solid $color-timeline-border-box;
+          box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+
+          @include breakpoint($breakpoint-big-screen) {
+            border-radius: 8px;
+            transform: translateX(-50%);
+            left: 50%;
+          }
+        }
+
+        &.box-container {
+          @include breakpoint($breakpoint-big-screen) {
+            width: 50%;
+          }
+
+          .box {
+            position: relative;
+            background: none repeat scroll 0 0 $color-timeline-box;
+            margin-right: 0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+
+            @include breakpoint($breakpoint-big-screen) {
+              margin-left: 28px;
+              left: 100%;
+            }
+
+            &:before {
+              content: " ";
+              display: block;
+              position: absolute;
+              top: 1px;
+              left: -32px;
+              width: $arrowsize;
+              border-right: $arrowsize solid $color-timeline-box;
+              border-top: $arrowsize solid transparent;
+              border-bottom: $arrowsize solid transparent;
+            }
+
+            .content-container {
+              display: block;
+              font-size: 16px;
+              vertical-align: sub;
+
+              .content-desc-container {
+                margin: 0 5px;
+              }
+
+              .empty-content {
+                margin-bottom: 15px;
+              }
+
+              .divider {
+                border-bottom: 1px solid #FFFFFF;
+                height: 10px;
+                margin-bottom: 10px;
+              }
+
+              img {
+                width: 100%;
+                margin-bottom: 8px;
+              }
+
+              div {
+                @include font-normal($font-timeline-container-content);
+              }
+
+              a {
+                margin: 8px 0;
+                display: block;
+                color: $color-timeline-link;
+              }
+            }
+
+          }
+        }
+      }
+
+      //Set using javascript rather than nth-child
+      &.even{
+        @include breakpoint($breakpoint-big-screen) {
+          div.box-container .box {
+            left: 0;
+            margin-left: 0;
+            margin-right: 28px;
+
+            &:before {
+              left: unset;
+              right: -32px;
+              margin-left: 0;
+              border-left: $arrowsize solid $color-timeline-box;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

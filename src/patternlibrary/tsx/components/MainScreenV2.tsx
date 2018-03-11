@@ -64,13 +64,13 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
   constructor(props:any) {
     super(props);
     this.state = {
-      height: this.getOffsetHeight(),
+      height: this._getOffsetHeight(),
       width: document.body.offsetWidth,
       resize_timer: 0
     }
   }
 
-  handleResize = () => {
+  _handleResize = () => {
     this.setState(
       (prevState, props) => {
         return {
@@ -80,7 +80,7 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
     );
   }
 
-  updateImageFilter = () => {
+  _updateImageFilter = () => {
     let pos = this.canvas.getBoundingClientRect().top * -1;
 
     if(pos > -1 && pos < 201) {
@@ -92,45 +92,45 @@ export class TrianglifyCanvas extends React.Component<TrianglifyCanvasProps, Tri
   };
 
   componentDidMount() {
-    this.renderCanvas();
-    window.addEventListener("resize", this.debounceResize.bind(this), false);
-    window.addEventListener('scroll', this.updateImageFilter.bind(this), false);
+    this._renderCanvas();
+    window.addEventListener("resize", this._debounceResize.bind(this), false);
+    window.addEventListener('scroll', this._updateImageFilter.bind(this), false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.debounceResize.bind(this));
-    window.removeEventListener('scroll', this.updateImageFilter.bind(this));
+    window.removeEventListener("resize", this._debounceResize.bind(this));
+    window.removeEventListener('scroll', this._updateImageFilter.bind(this));
   }
 
   componentDidUpdate() {
-    this.renderCanvas();
+    this._renderCanvas();
   }
 
-  debounceResize = () => {
+  _debounceResize = () => {
     const self = this;
     clearTimeout(this.state.resize_timer);
 
     this.setState(
       (prevState, props) => {
         return {
-          resize_timer: setTimeout(self.handleResize.bind(self), 100)
+          resize_timer: setTimeout(self._handleResize.bind(self), 100)
         };
       }
     );
   }
 
-  getOffsetHeight = () => {
+  _getOffsetHeight = () => {
     const expectedSize = Number((window.innerHeight/2).toFixed(0)),
       minSize = 480;
     var height = expectedSize < minSize? minSize: expectedSize;
     return height;
   }
 
-  renderCanvas = () => {
+  _renderCanvas = () => {
     const {height, width} = this.state;
     const trianglify = Trianglify({
       x_colors: 'YlGnBu',
-      height: this.getOffsetHeight(),
+      height: this._getOffsetHeight(),
       width: document.body.offsetWidth});
     trianglify.canvas(this.canvas);
   }
