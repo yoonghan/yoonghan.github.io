@@ -10,19 +10,19 @@ const locale = new FooterLocale();
 const links = [
   {
     text: locale.translate('about'),
-    path: "/about.html"
+    path: "/about"
   },
   {
     text: locale.translate('profile'),
-    path: "/portfolio.html"
+    path: "/portfolio"
   },
   {
     text: locale.translate('tech'),
-    path: "/technology.html"
+    path: "/technology"
   },
   {
     text: locale.translate('develop'),
-    path: "/develop.html"
+    path: "/develop"
   },
   {
     text: locale.translate('blog'),

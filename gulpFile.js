@@ -3,9 +3,11 @@
 var gulp = require('gulp'),
   gulpUtil = require('gulp-util'),
   gulpSequence = require('gulp-sequence'),
+  server = require('gulp-express'),
   pug = require('gulp-pug-i18n'),
   plumber = require('gulp-plumber'),
   through = require('through'),
+  replaceStream = require('gulp-replace'),
   del = require('del'),
   opn = require('opn'),
   webpack = require('webpack'),
@@ -15,8 +17,9 @@ var gulp = require('gulp'),
   langChange = require('./npm/util/lang-change'),
   swPrecache = require('sw-precache');
 
-var dev = "main";
-
+  var flags = {
+    production: false
+  };
 /*
  * Web precaching/progressive app
  */
@@ -58,13 +61,15 @@ gulp.task("webpack:build", function() {
  **/
 var webpackFunc =  function(loc) {
   var myConfig = (loc === 'html') ? Object.create(webpackConfig) : Object.create(require("./src/patternlibrary/webpack.config.js"));
-  var contentBasePath = (loc === 'html') ? "main" : loc;
+  var _contentBasePath = (loc === 'html') ? "main" : loc;
   var port = (loc === 'html') ? 8080: 8081;
+  var _proxy = (loc == 'html') ? {"**": "http://localhost:8000"}: {};
 
   var compiler = webpack(myConfig);
   new webpackDevServer(compiler, {
     publicPath: myConfig.output.publicPath,
-    contentBase: "dist/" + contentBasePath + "/",
+    contentBase: "dist/" + _contentBasePath + "/",
+    proxy: _proxy,
     hot: true,
     stats: {
       colors: true
@@ -85,6 +90,7 @@ gulp.task('webpack-dev-server', ['webpack-dev-server:html', 'webpack-dev-server:
 var pugFunc =  function(loc) {
   const location = loc;
   const dest_location = (location==='html' ? 'main' : location);
+
   return function() {
     return gulp.src('src/' + location + '/**/*.pug')
       .pipe(through())
@@ -177,10 +183,20 @@ gulp.task('watch', function() {
 });
 
 /**
+ * Start server
+ **/
+gulp.task('start-server', function() {
+    server.run(['./npm/server.js']);
+});
+
+/**
  * Build scripts
  **/
 gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
-gulp.task('build-prod', gulpSequence('build-basic', 'webpack:build', 'serviceworker:build'))
+gulp.task('build-prod', function() {
+  flags.production = true;
+  gulpSequence('build-basic', 'webpack:build', 'serviceworker:build')();
+});
 gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack:build', 'serviceworker:build'));
-gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch']));
+gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch', 'start-server']));
 gulp.task('default', ['build-dev']);

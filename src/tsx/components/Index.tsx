@@ -38,7 +38,7 @@ const mainScreenProps = {
   mainScreenV2ConceptText: locale.translate('header.concepttext'),
   mainScreenV2Description: locale.translate('header.description'),
   mainScreenV2BtnText: locale.translate('header.button'),
-  mainScreenV2BtnLink: '/about.html'
+  mainScreenV2BtnLink: '/about'
 };
 
 const GithubIcon = () => (
@@ -107,7 +107,7 @@ const timelines = [
     linkArray: [
       {
         text: locale.translate('label.read'),
-        path: UtilLocale.getLocalizedHref('progressive.html')
+        path: UtilLocale.getLocalizedHref('progressive')
       }
     ]
   },
