@@ -11,22 +11,22 @@ const headerProps = {linkArray: [
   {
     title: locale.translate('about'),
     icon: "question",
-    path: "/about.html"
+    path: "/about"
   },
   {
     title: locale.translate('profile'),
     icon: "superpowers",
-    path: "/portfolio.html"
+    path: "/portfolio"
   },
   {
     title: locale.translate('tech'),
     icon: "cog",
-    path: "/technology.html"
+    path: "/technology"
   },
   {
     title: locale.translate('develop'),
     icon: "microchip",
-    path: "/develop.html"
+    path: "/develop"
   },
   {
     title: locale.translate('home'),
