@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node --use_strict ./npm/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "walcron",
@@ -24,6 +24,7 @@
     "@types/react-transition-group": "^2.0.6",
     "autoprefixer": "^7.2.3",
     "awesome-typescript-loader": "^3.4.1",
+    "babel-jest": "^22.4.1",
     "breakpoint-sass": "^2.7.1",
     "css-loader": "^0.28.7",
     "event-stream": "^3.3.4",
@@ -53,8 +54,22 @@
     "style-loader": "^0.19.1",
     "sw-precache": "^5.2.0",
     "through": "^2.3.8",
+    "ts-jest": "^22.4.1",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
   }
 }
