@@ -1,7 +1,7 @@
 `use strict`
 
 import * as React from 'react';
-import { IndexLocale, HeaderLocale } from '../util/Locale';
+import { IndexLocale } from '../util/Locale';
 import { UtilLocale } from "../../patternlibrary/tsx/util/UtilLocale";
 import { MainScreenV2 } from '../../patternlibrary/tsx/components/MainScreenV2';
 import { Post } from '../../patternlibrary/tsx/components/Post';
@@ -17,7 +17,6 @@ var styles = require('../../scss/components/index');
 declare function require(path: string): any;
 
 const locale = new IndexLocale();
-const headerLocale = new HeaderLocale();
 
 const conceptPosts = [
 {
@@ -201,32 +200,6 @@ export class Index extends React.Component<{}, {}> {
                 <Button href='https://github.com/yoonghan' theme={styles} primary>
                   <GithubIcon /> Github
                 </Button>
-              </CardActions>
-            </Card>
-          </div>
-          <StickyTitle text={locale.translate('title.leisure')} pos={2}/>
-          <div className={styles['card-section']}>
-            <Card className={styles['card-split']} raised>
-              <CardMedia
-                aspectRatio="wide"
-                image="/ext/img/index/girl.jpg"
-              />
-              <CardTitle
-                title={locale.translate('card.8.title')}
-                subtitle={locale.translate('card.8.desc')}
-              />
-            </Card>
-            <Card className={styles['card-split']} raised>
-              <CardMedia
-                aspectRatio="wide"
-                image="/ext/img/index/mezzanine.jpg"
-              />
-              <CardTitle
-                title={locale.translate('card.9.title')}
-                subtitle={locale.translate('card.9.desc')}
-              />
-              <CardActions>
-                <Button label={locale.translate('label.blog')} href='http://tf.walcron.com/' theme={styles} primary/>
               </CardActions>
             </Card>
           </div>
