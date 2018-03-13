@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import {Button} from 'react-toolbox/lib/button';
-var styles = require('../../scss/components/Material');
+var styles = require('../../scss/components/Material.scss');
 declare function require(path: string): any;
 
 /**

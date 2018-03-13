@@ -3,8 +3,8 @@
 import * as React from "react";
 import { MiniPost, MiniPostProps } from './MiniPost';
 
-import '../../scss/base';
-var styles = require('../../scss/components/MeTitle');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MeTitle.scss');
 declare function require(path: string): any;
 
 interface ISection {

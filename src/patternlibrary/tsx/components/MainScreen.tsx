@@ -3,8 +3,8 @@
 import * as React from "react";
 import * as Trianglify from "trianglify";
 
-import '../../scss/base';
-var styles = require('../../scss/components/MainScreen');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MainScreen.scss');
 declare function require(path: string): any;
 
 interface SliderDisplayItem {

@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 
-import '../../scss/components/about';
-import '../../patternlibrary/scss/base';
+import '../../scss/components/about.scss';
+import '../../patternlibrary/scss/base.scss';
 
 import { Header } from './Header';
 import { Footer } from "./Footer";

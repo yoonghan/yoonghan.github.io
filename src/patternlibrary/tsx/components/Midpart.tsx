@@ -3,8 +3,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import '../../scss/base';
-var styles = require('../../scss/components/Midpart');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/Midpart.scss');
 
 interface IConcept {
   title: string;

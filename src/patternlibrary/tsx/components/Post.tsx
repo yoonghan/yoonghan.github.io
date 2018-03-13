@@ -3,8 +3,8 @@
 import * as React from "react";
 import { MiniPost, MiniPostProps } from "./MiniPost";
 
-import '../../scss/base';
-var styles = require('../../scss/components/Post');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/Post.scss');
 declare function require(path: string): any;
 
 export interface PostProps {

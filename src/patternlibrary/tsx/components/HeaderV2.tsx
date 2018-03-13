@@ -5,8 +5,8 @@ import {MenuIcon} from './MenuIcon';
 import {MenuDropV2} from './MenuDropV2';
 import {LocaleSelector, LocaleSelectorTypes} from './LocaleSelector';
 
-import '../../scss/base';
-var styles = require('../../scss/components/HeaderV2');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/HeaderV2.scss');
 
 interface ILinks {
   icon: string;

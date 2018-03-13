@@ -1,6 +1,6 @@
-import { UtilLocale } from "../util/UtilLocale";
+import { UtilLocale } from "../../util/UtilLocale";
 
-test('locale_in_href', () => {
+test('locale in href', () => {
   const MY_LANG = "my";
   const EN_LANG = "en";
   const WINDOW_PATH = "http://sampleaddress/";
@@ -20,7 +20,7 @@ test('locale_in_href', () => {
   expect(UtilLocale.getLocalizedHref("sampleaddress", DEFAULT_LANG_WINDOW_PATH)).toBe("sampleaddress");
 });
 
-test('language_in_path', () => {
+test('language in path', () => {
   const NORMAL_PATH = "http://sampleaddress/";
   const MY_PATH = "https://sampleaddress/my/here";
   const EN_PATH = "https://sampleaddress/en/nothere";
@@ -30,7 +30,7 @@ test('language_in_path', () => {
   expect(UtilLocale.extractLanguageFromPath(EN_PATH)).toBe("en");
 });
 
-test('redirect_browser', () => {
+test('redirect browser', () => {
   const NORMAL_PATH = "/sampleaddress";
   const MY_PATH = "/my/here";
 

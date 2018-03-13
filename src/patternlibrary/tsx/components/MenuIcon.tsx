@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import '../../scss/base';
-var styles = require('../../scss/components/MenuIcon');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MenuIcon.scss');
 
 export interface MenuIconProp {
   icon: string;

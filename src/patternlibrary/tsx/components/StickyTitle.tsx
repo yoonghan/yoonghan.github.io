@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import '../../scss/base';
-var styles = require('../../scss/components/StickyTitle');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/StickyTitle.scss');
 declare function require(path: string): any;
 
 const pushClassName = styles['stickytitle-pushbackward'];
@@ -25,9 +25,14 @@ const startTopPosition:number = 50;
 export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleState> {
   constructor(props:any) {
     super(props);
+    this.state = {
+      topElement: undefined,
+      stickyTitleElement: undefined,
+      topPosition: 0
+    };
   }
 
-  mountScroll = (node:HTMLElement) => {
+  _mountScroll = (node:HTMLElement) => {
     if (node) {
       this.setState(
         (prevState, props) => {
@@ -38,12 +43,12 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
       );
 
       window.addEventListener('scroll',
-        () => this.moveStickyTitleBackdrop(node.getBoundingClientRect().top),
+        () => this._moveStickyTitleBackdrop(node.getBoundingClientRect().top),
         false);
     }
   };
 
-  mountStickyTitle = (node:HTMLElement) => {
+  _mountStickyTitle = (node:HTMLElement) => {
     if (node) {
       this.setState(
         (prevState, props) => {
@@ -56,11 +61,12 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     }
   };
 
-  moveStickyTitleBackdrop = (pos: number) => {
+  _moveStickyTitleBackdrop = (pos: number) => {
     const {stickyTitleElement, topPosition} = this.state;
-    const classList = stickyTitleElement.classList;
 
     if (stickyTitleElement !== undefined) {
+      const classList = stickyTitleElement.classList;
+
       if(pos < topPosition) {
         if (!classList.contains(pullClassName)) {
           classList.add(pullClassName);
@@ -76,25 +82,28 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     }
   };
 
-  handleTitleClick = () => {
+  _handleTitleClick = () => {
     const scrollDuration = 500;
     const {topElement, topPosition} = this.state;
-    const pos = (topElement.getBoundingClientRect().top * -1) + topPosition;
-    if(pos > 0) {
-      var scrollHeight = pos;
-      const scrollStep = Math.PI / ( scrollDuration / 15 ),
-          cosParameter = scrollHeight / 2;
-      var scrollCount = 0,
-          scrollMargin,
-          scrollInterval = setInterval( function() {
-            if ( scrollHeight > 0 ) {
-                scrollCount = scrollCount + 1;
-                scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
-                window.scrollTo( 0, ( window.scrollY - scrollMargin ) );
-                scrollHeight -= scrollMargin;
-            }
-            else clearInterval(scrollInterval);
-          }, 15 );
+
+    if(topElement !== undefined) {
+      const pos = (topElement.getBoundingClientRect().top * -1) + topPosition;
+      if(pos > 0) {
+        var scrollHeight = pos;
+        const scrollStep = Math.PI / ( scrollDuration / 15 ),
+            cosParameter = scrollHeight / 2;
+        var scrollCount = 0,
+            scrollMargin,
+            scrollInterval = setInterval( function() {
+              if ( scrollHeight > 0 ) {
+                  scrollCount = scrollCount + 1;
+                  scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
+                  window.scrollTo( 0, ( window.scrollY - scrollMargin ) );
+                  scrollHeight -= scrollMargin;
+              }
+              else clearInterval(scrollInterval);
+            }, 15 );
+      }
     }
   }
 
@@ -103,12 +112,12 @@ export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleSta
     const acroynm = text.charAt(0),
           full_acroynm = text.substring(1);
     return (
-      <div ref={this.mountScroll} onClick={this.handleTitleClick}>
+      <div ref={this._mountScroll} onClick={this._handleTitleClick}>
         <div className={styles.stickytitle}>
           <div className={styles['stickytitle-static']}>
             <h3>{acroynm}{full_acroynm}</h3>
           </div>
-          <div className={styles['stickytitle-anim']} ref={this.mountStickyTitle}>
+          <div className={styles['stickytitle-anim']} ref={this._mountStickyTitle}>
             <h3>{acroynm}<span className={styles['stickytitle-hide']}>{full_acroynm}</span></h3>
           </div>
         </div>

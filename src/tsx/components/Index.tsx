@@ -13,7 +13,7 @@ import { Button } from 'react-toolbox/lib/button';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-var styles = require('../../scss/components/index');
+var styles = require('../../scss/components/index.scss');
 declare function require(path: string): any;
 
 const locale = new IndexLocale();

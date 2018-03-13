@@ -5,8 +5,8 @@ import { UtilLocale } from "../util/UtilLocale";
 import { MenuIcon } from "./MenuIcon";
 import {Transition} from 'react-transition-group';
 
-import '../../scss/base';
-var styles = require('../../scss/components/MenuDropV2');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MenuDropV2.scss');
 declare function require(path: string): any;
 
 export interface ILinks {

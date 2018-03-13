@@ -3,8 +3,8 @@
 import * as React from "react";
 import {Button} from 'react-toolbox/lib/button';
 
-import '../../scss/base';
-var styles = require('../../scss/components/ProgressiveButton');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/ProgressiveButton.scss');
 declare function require(path: string): any;
 
 interface ProgressiveButtonState {

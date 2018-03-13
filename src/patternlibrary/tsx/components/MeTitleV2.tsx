@@ -3,8 +3,8 @@
 import * as React from "react";
 import { MiniPost, MiniPostProps } from './MiniPost';
 
-import '../../scss/base';
-var styles = require('../../scss/components/MeTitleV2');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MeTitleV2.scss');
 
 interface ISection {
   title?: string;
