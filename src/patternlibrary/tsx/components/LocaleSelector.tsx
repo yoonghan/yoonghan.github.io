@@ -4,8 +4,8 @@ import * as React from "react";
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { UtilLocale } from '../util/UtilLocale';
 
-import '../../scss/base';
-var styles = require('../../scss/components/LocaleSelector');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/LocaleSelector.scss');
 declare function require(path: string): any;
 
 const countries = [

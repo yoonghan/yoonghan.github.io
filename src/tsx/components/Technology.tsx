@@ -7,7 +7,7 @@ import { TechnologyLocale } from '../util/Locale';
 import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Gallery } from '../../patternlibrary/tsx/components/Gallery';
 
-var styles = require('../../scss/components/index');
+var styles = require('../../scss/components/index.scss');
 declare function require(path: string): any;
 
 const locale = new TechnologyLocale();

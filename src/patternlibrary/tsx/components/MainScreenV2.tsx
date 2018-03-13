@@ -4,8 +4,8 @@ import * as React from "react";
 import * as Trianglify from "trianglify";
 import {Button} from 'react-toolbox/lib/button';
 
-import '../../scss/base';
-var styles = require('../../scss/components/MainScreenV2');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MainScreenV2.scss');
 declare function require(path: string): any;
 
 interface TrianglifyCanvasState {

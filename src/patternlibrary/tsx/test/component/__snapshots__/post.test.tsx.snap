@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post can work 1`] = `
+<div
+  className="post"
+>
+  <div
+    className="minipost"
+  >
+    <div
+      className="minipost-hdr"
+    >
+      <i
+        aria-hidden="true"
+        className="fa fa-quote-right"
+      />
+    </div>
+    <div
+      className="minipost-itm"
+    >
+      <h4>
+        Who we are
+      </h4>
+      <span
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Life is short, and to not know and discover, then there is no purpose to live on.",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -8,8 +8,8 @@ import * as React from "react";
 import {Button} from 'react-toolbox/lib/button';
 import {Transition} from 'react-transition-group';
 
-import '../../scss/base';
-var styles = require('../../scss/components/Gallery');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/Gallery.scss');
 declare function require(path: string): any;
 
 interface GalleryState {

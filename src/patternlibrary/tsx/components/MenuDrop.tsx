@@ -5,8 +5,8 @@ import { UtilLocale } from "../util/UtilLocale";
 import { LocaleSelector, LocaleSelectorTypes } from "./LocaleSelector";
 import * as CSSTransition from 'react-transition-group/CSSTransition';
 
-import '../../scss/base';
-var styles = require('../../scss/components/MenuDrop');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MenuDrop.scss');
 declare function require(path: string): any;
 
 export interface MenuDropListing {

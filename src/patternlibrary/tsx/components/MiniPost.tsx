@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import '../../scss/base';
-var styles = require('../../scss/components/MiniPost');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/MiniPost.scss');
 declare function require(path: string): any;
 
 interface MiniPostState {

@@ -4,9 +4,9 @@ import * as React from "react";
 
 import { MenuDrop, MenuDropListing, MenuDropProps } from "./MenuDrop";
 import { UtilLocale } from "../util/UtilLocale";
-import '../../scss/base';
+import '../../scss/base.scss';
 
-var styles = require('../../scss/components/Header');
+var styles = require('../../scss/components/Header.scss');
 declare function require(path: string): any;
 
 export interface HeaderProp {

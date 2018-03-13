@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer can work 1`] = `
+<div
+  className="ftr"
+>
+  <div
+    className="ftr-container"
+  >
+    <div
+      className="ftr-section-one"
+    >
+      <div
+        className="ftr-contact"
+      >
+        <div />
+        <div
+          className="ftr-contact-open-deco"
+        >
+          <a
+            className="ftr-contact-open-btn links"
+            href="javascript:;"
+            onClick={[Function]}
+          >
+            <span>
+              <i
+                className="fa fa-pencil-square-o"
+              />
+              <span>
+                Contact Us
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ftr-divider"
+    />
+    <div
+      className="ftr-links"
+    >
+      <a
+        className="ftr-back-arrow"
+        href="/"
+      >
+        <i
+          className="fa fa-arrow-circle-left"
+        />
+      </a>
+      <span>
+        • 
+        <a
+          href="/about"
+        >
+          About
+        </a>
+      </span>
+    </div>
+    <div
+      className="ftr-divider"
+    />
+    <div
+      className="ftr-footnote"
+    >
+      2014 - 
+      2018
+       Walcron Coorperation ©
+    </div>
+  </div>
+</div>
+`;

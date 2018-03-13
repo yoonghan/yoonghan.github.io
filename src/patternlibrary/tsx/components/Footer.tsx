@@ -5,8 +5,8 @@ import { LocaleSelector, LocaleSelectorTypes } from "./LocaleSelector";
 import { UtilLocale } from "../util/UtilLocale";
 import * as CSSTransition from 'react-transition-group/CSSTransition';
 
-import '../../scss/base';
-var styles = require('../../scss/components/Footer');
+import '../../scss/base.scss';
+var styles = require('../../scss/components/Footer.scss');
 declare function require(path: string): any;
 
 interface ContactOpenState {
