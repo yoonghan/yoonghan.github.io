@@ -151,13 +151,38 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Pengenalan'
     },
     'desc.1': {
-      en: 'The Walcron Coorperation web site would become a website rich of web resources; it\'ll be based on known front-end framework and libraries. Our ultimate goal is to create an out-of-work development.',
-      my: 'Laman web Walcron Coorperation dicipta sebagai sumber yang kaya dengan informasi; berdasarkan front-end framework dan library. Matlamat utama kami adalah untuk mencapai satu perkembangan yang tidak berkaitan dengan kerja kami.'
+      en: 'Walcron website was created as a passion for web technology.',
+      my: 'Laman Walcron dicipta kerana cinta, cinta dengan teknologi web.'
     },
     'desc.2': {
       en: 'This website has gone through it\'s 4th iteration with usage of different frameworks or libraries. The UX has gone through various changes as well. Each rewrite of the website is rewritten from scratch up, this prevents dependencies from the previous projects to stack; with an exception on "About Me" page. For every new iteration made, it will inherits good traits and characteristics learnt from the previous iterations.',
       my: 'Laman web ini telah dikitar sebanyak 4 kali dengan penggunaan framework atau library yang berbeza. UX(pengalaman pengguna) juga melalui pelbagai perubahan. Setiap kali, laman ini di tulis semula dari permulaan, demi mengelakkan kebergantungan dari projek terdahulu; dengan pengecualian site "Kenalan". Setiap iterasi baru yang dibuat, terdapatnya sifat-sifat dan ciri-ciri baik yang diwarisi dari iterasi sebelumnya.'
     },
+    'title.implementation': {
+      en: 'Latest Implementation',
+      my: 'Perlaksanaan Terkini'
+    },
+    'title.history': {
+      en: 'Cycle History',
+      my: 'Sejarah'
+    },
+    'implementation.create': {
+      en: 'We used ReactJS library to created a maintainable pattern library, a small website to maintain a list of modular web components. This enables us to build, test and verify our small modular web components.',
+      my: 'Akan sebab kod dibina menggunakan ReactJs, saya membina Pattern Library untuk memodularkan web komponent. Ini membolehkan pembinaan dan uji menguji component baru mahupun lama.'
+    },
+    'implementation.develop': {
+      en: 'With the list of components within the pattern library, the components are then reused to build the main website; the website for Walcron.',
+      my: 'Laman Walcron dibina mengunakan komponent yang dibina di dalam Pattern Library.'
+    },
+    'implementation.test.build': {
+      en: 'We uses Gradle to then tests and compile an optimizes the developed website into a production website ready.',
+      my: 'Menggunakan Gradle, alat ini menguji dan mengcompile kod yang optimum bagi digunakan untuk production.'
+    },
+    'implementation.deploy': {
+      en: 'The final compiled version with Gradle is then push into a Cloud service, followed by a CDN cache clearing.',
+      my: 'Akhirnya, kod optimum diletakkan ke dalam sistem Cloud, diikuti dengan pemadaman CDN cache.'
+    },
+
     'first': {
       en: 'The First',
       my: 'Permulaan'
@@ -359,13 +384,17 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'Read More',
       my: 'Ketahui Lebih'
     },
+    'vote.result': {
+      en: 'Vote Result',
+      my: 'Keputusan Undian'
+    },
     'post.1.title': {
       en: 'Who we are',
       my: 'Kami siapa'
     },
     'post.1.text': {
-      en: 'We are keen to learn interconnected techonologies.',
-      my: 'Kami peneroka dalam teknologi perhubungan.'
+      en: 'We are keen to learn any internet/communication technologies. This site is created with this in mind.',
+      my: 'Kami peneroka dalam teknologi perhubungan. Laman ini dibina berdasarkan concept ini.'
     },
     'post.2.title': {
       en: 'Motive',
@@ -376,12 +405,12 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>'
     },
     'post.3.title': {
-      en: 'No cookies',
-      my: 'Layar tanpa sekatan'
+      en: 'A no cookies website',
+      my: 'Laman tanpa cookie'
     },
     'post.3.text': {
-      en: 'We do not track you. Enjoy your exploration here.',
-      my: 'Kami tidak menjejaki anda. Harap anda gembira menyambut kami.'
+      en: 'This site does not track you. Seriously, enjoy your exploration here.',
+      my: 'Laman in tidak menjejaki anda.'
     },
     'card.11.title': {
       en: 'Presentation on Bitcoin',
@@ -844,6 +873,14 @@ export class TechnologyLocale extends AbstractLocalev2 {
     'precache.desc' : {
       en: 'All this webpage content can now be downloaded into your PC and made it available when you do not have internet!',
       my: 'Membolehkan website ini berfungsi di pelayar komputer mahupun smartphone anda tanpa kemudahan internet!'
+    },
+    'jest.key' : {
+      en: 'Testing Toolkit',
+      my: 'Testing'
+    },
+    'jest.desc' : {
+      en: 'Integrated with a Gradle compiler for testing to ensure website is delivered bug free.',
+      my: 'Kami menggunakan Jest yang di integrasi dengan Gradle untuk menguji laman.'
     }
 	}
 

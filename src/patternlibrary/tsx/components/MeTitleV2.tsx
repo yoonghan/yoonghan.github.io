@@ -13,6 +13,7 @@ interface ISection {
 
 export interface MeTitleProps {
   title: string;
+  hidePic?: Boolean;
   introSection?: ISection;
   posts?: Array<MiniPostProps>;
 }
@@ -55,7 +56,7 @@ export class MeTitleV2 extends React.Component<MeTitleProps, {}> {
   };
 
   render() {
-    const {title, introSection, posts} = this.props;
+    const {title, introSection, posts, hidePic} = this.props;
     const introductionSection = introSection ? this.createIntroSection(introSection) : <div></div>;
 
     let postsArray = posts ? posts:[];
@@ -68,7 +69,7 @@ export class MeTitleV2 extends React.Component<MeTitleProps, {}> {
       <div className={styles.metitle}>
         <div>
           <h1>{title}</h1>
-          <img src={'/ext/img/logo/v2/logo-color.svg'}/>
+          {!hidePic && <img src={'/ext/img/logo/v2/logo-color.svg'}/>}
         </div>
         <div>
           {introductionSection}
