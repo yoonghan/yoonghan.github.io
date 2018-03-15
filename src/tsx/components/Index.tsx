@@ -75,6 +75,10 @@ const timelines = [
         path: "/ext/img/index/hackathon_solutiondiagram.png"
       },
       {
+        text: locale.translate('vote.result'),
+        path: "/ext/img/index/vote_result.png"
+      },
+      {
         text: locale.translate('label.download') + '-Client',
         path: "https://github.com/yoonghan/HackathonMobileApp"
       },

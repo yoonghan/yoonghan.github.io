@@ -13,14 +13,12 @@
   .card-split {
     margin-bottom: 20px;
   }
+
+  .card-image {
+    background-size: contain;
+  }
 }
 
 .divider {
   height: 20px;
-}
-
-:global {
-  .posting {
-    background: url('/ext/img/common/bg-pattern.gif');
-  }
 }

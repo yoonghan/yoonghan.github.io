@@ -72,7 +72,12 @@ const items = [
 		imgSrc: '/ext/img/technology/npm.png',
 		nature:['javascript', 'non Internet Explorer'],
 		key: locale.translate('precache.key'),
-		desc: locale.translate('precache.desc')}
+		desc: locale.translate('precache.desc')},
+	{title: 'Jest',
+		imgSrc: '/ext/img/technology/npm.png',
+		nature:['javascript', 'testing kit'],
+		key: locale.translate('jest.key'),
+		desc: locale.translate('jest.desc')}
 ];
 
 const metitleInfo  = {

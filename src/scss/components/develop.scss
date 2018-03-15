@@ -1,1 +1,22 @@
-@import "../patternlibrary/scss/lib/breakpoints";
+@import "../../patternlibrary/scss/lib/breakpoints";
+
+.develop {
+  .card {
+    margin: auto;
+    max-width: 800px;
+    width: 80%;
+    margin-bottom: 30px;
+
+    @include breakpoint(max-width $breakpoint-phone) {
+      width: 95%;
+    }
+  }
+
+  .card-image {
+    background-size: contain;
+  }
+}
+
+.divider {
+  height: 20px;
+}
