@@ -167,16 +167,16 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Sejarah'
     },
     'implementation.create': {
-      en: 'We used ReactJS library to created a maintainable pattern library, a small website to maintain a list of modular web components. This enables us to build, test and verify our small modular web components.',
-      my: 'Akan sebab kod dibina menggunakan ReactJs, saya membina Pattern Library untuk memodularkan web komponent. Ini membolehkan pembinaan dan uji menguji component baru mahupun lama.'
+      en: 'With  just brief idea of design we wanted, we then start to create small modular web components into out pattern library. Components like a Header, a Timeline box.',
+      my: 'Dengan idea yang ringkas, kami membina komponent kecil ke dalam Pattern Library. Komponent seperti Header, Footer, Timeline.'
     },
     'implementation.develop': {
-      en: 'With the list of components within the pattern library, the components are then reused to build the main website; the website for Walcron.',
-      my: 'Laman Walcron dibina mengunakan komponent yang dibina di dalam Pattern Library.'
+      en: 'Pattern library components are then used to build the main website; the website for Walcron. If modification or new components does not fit the design, it enters the develop phase again. In this stage: colors, arrangement and display text plays an important role.',
+      my: 'Laman Walcron dibina mengunakan komponent yang dibina di dalam Pattern library. Focus utama di sini, adalah warna dan display.'
     },
     'implementation.test.build': {
-      en: 'We uses Gradle to then tests and compile an optimizes the developed website into a production website ready.',
-      my: 'Menggunakan Gradle, alat ini menguji dan mengcompile kod yang optimum bagi digunakan untuk production.'
+      en: 'We uses Gradle to then tests and compile an optimizes the developed website into a production website ready. Snapshots are captured as well to ensure the correctness of the layout for the next build.',
+      my: 'Menggunakan Gradle, alat ini menguji dan mengcompile kod yang optimum bagi digunakan untuk produksi.'
     },
     'implementation.deploy': {
       en: 'The final compiled version with Gradle is then push into a Cloud service, followed by a CDN cache clearing.',
