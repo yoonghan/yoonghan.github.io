@@ -128,28 +128,28 @@ export class Develop extends React.Component<{}, {}> {
             <Card className={styles['card']} raised>
               <CardMedia className={styles['card-image']} aspectRatio="wide" image="/ext/img/develop/workflow.jpg"/>
               <CardTitle
-                title={"Create"}
+                title={"Develop"}
                 subtitle={locale.translate("implementation.create")}
               />
               <CardActions>
                 <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/patternlibrary" target="impl" theme={styles} primary/>
               </CardActions>
               <CardTitle
-                title={"Development"}
+                title={"Design"}
                 subtitle={locale.translate("implementation.develop")}
               />
               <CardActions>
                 <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/" target="impl" theme={styles} primary/>
               </CardActions>
               <CardTitle
-                title={"Test => Build"}
+                title={"Verify and Optimize"}
                 subtitle={locale.translate("implementation.test.build")}
               />
               <CardActions>
                 <Button label={"Codes"} href="https://github.com/yoonghan/selfservicecopier" target="impl" theme={styles} primary/>
               </CardActions>
               <CardTitle
-                title={"Deploy"}
+                title={"Ready and Go Live"}
                 subtitle={locale.translate("implementation.deploy")}
               />
             </Card>
