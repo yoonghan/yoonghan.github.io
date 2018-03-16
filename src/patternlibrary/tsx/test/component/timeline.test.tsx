@@ -7,6 +7,7 @@ const timelines = [
   {
     title: "Test",
     image: "https://placeimg.com/640/250/tech",
+    altImage: "https://placeimg.com/640/250/tech",
     description: "Description",
     linkArray: [
       {

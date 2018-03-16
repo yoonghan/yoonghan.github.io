@@ -31,6 +31,7 @@ exports[`Timeline is alternate left right, unaffected by year 1`] = `
           <div
             className="content-container"
           >
+            <div />
             <h4>
               Test
             </h4>
@@ -39,6 +40,8 @@ exports[`Timeline is alternate left right, unaffected by year 1`] = `
             />
             <div>
               <img
+                className="clickable"
+                onClick={[Function]}
                 src="https://placeimg.com/640/250/tech"
               />
               <div
@@ -95,6 +98,8 @@ exports[`Timeline is alternate left right, unaffected by year 1`] = `
             />
             <div>
               <img
+                className={undefined}
+                onClick={[Function]}
                 src="https://placeimg.com/640/250/tech"
               />
               <div
@@ -137,6 +142,8 @@ exports[`Timeline is alternate left right, unaffected by year 1`] = `
             />
             <div>
               <img
+                className={undefined}
+                onClick={[Function]}
                 src="https://placeimg.com/640/250/tech"
               />
               <div
