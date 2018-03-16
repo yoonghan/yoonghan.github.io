@@ -13,8 +13,8 @@
     height: 100% !important;
     margin: 0 2%;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    object-fit: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 }
