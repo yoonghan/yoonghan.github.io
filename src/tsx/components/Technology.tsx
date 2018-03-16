@@ -74,7 +74,7 @@ const items = [
 		key: locale.translate('precache.key'),
 		desc: locale.translate('precache.desc')},
 	{title: 'Jest',
-		imgSrc: '/ext/img/technology/npm.png',
+		imgSrc: '/ext/img/technology/jest.png',
 		nature:['javascript', 'testing kit'],
 		key: locale.translate('jest.key'),
 		desc: locale.translate('jest.desc')}
@@ -90,7 +90,7 @@ const metitleInfo  = {
   }
 }
 
-export class Technology extends React.Component<{}, {}> {
+export class Technology extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div>

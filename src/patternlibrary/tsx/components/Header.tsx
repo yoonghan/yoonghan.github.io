@@ -16,7 +16,7 @@ export interface HeaderProp {
   menus: Array<MenuDropListing>;
 }
 
-export class Header extends React.Component<HeaderProp, {}> {
+export class Header extends React.PureComponent<HeaderProp, {}> {
 
   constructor(props:any) {
     super(props);

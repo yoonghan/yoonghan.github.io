@@ -40,7 +40,7 @@ export interface HeaderProps {
   isHomepage?: boolean;
 }
 
-export class Header extends React.Component<HeaderProps, {}> {
+export class Header extends React.PureComponent<HeaderProps, {}> {
   constructor(props:any) {
     super(props);
   }

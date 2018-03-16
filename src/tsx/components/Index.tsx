@@ -8,7 +8,7 @@ import { Post } from '../../patternlibrary/tsx/components/Post';
 import { Midpart } from '../../patternlibrary/tsx/components/Midpart';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { Timeline, TimelineProp, TimelineContainerProp, Link } from "../../patternlibrary/tsx/components/Timeline";
+import { Timeline } from "../../patternlibrary/tsx/components/Timeline";
 import { Button } from 'react-toolbox/lib/button';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -68,12 +68,9 @@ const timelines = [
   {
     title: locale.translate('card.10.title'),
     image: "/ext/img/index/hackathon_solutiondiagram.jpg",
+    altImage: "/ext/img/index/hackathon_solutiondiagram.png",
     description: locale.translate('card.10.desc'),
     linkArray: [
-      {
-        text: locale.translate('label.read'),
-        path: "/ext/img/index/hackathon_solutiondiagram.png"
-      },
       {
         text: locale.translate('vote.result'),
         path: "/ext/img/index/vote_result.png"
@@ -156,7 +153,7 @@ const timelines = [
   }
 ];
 
-export class Index extends React.Component<{}, {}> {
+export class Index extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>

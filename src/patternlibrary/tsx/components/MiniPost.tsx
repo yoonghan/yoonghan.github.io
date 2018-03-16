@@ -25,7 +25,7 @@ export interface MiniPostProps {
 }
 
 
-export class MiniPost extends React.Component<MiniPostProps, MiniPostState> {
+export class MiniPost extends React.PureComponent<MiniPostProps, MiniPostState> {
   constructor(props:any) {
     super(props);
   };

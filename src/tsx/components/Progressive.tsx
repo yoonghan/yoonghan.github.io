@@ -54,7 +54,7 @@ interface ProgressiveState {
   offlineSuccessful: boolean;
 }
 
-export class Progressive extends React.Component<{}, ProgressiveState> {
+export class Progressive extends React.PureComponent<{}, ProgressiveState> {
 
   constructor(props:any) {
     super(props);

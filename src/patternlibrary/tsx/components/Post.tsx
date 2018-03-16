@@ -11,7 +11,7 @@ export interface PostProps {
   postItems: Array<MiniPostProps>;
 }
 
-export class Post extends React.Component<PostProps, {}> {
+export class Post extends React.PureComponent<PostProps, {}> {
   constructor(props:any) {
     super(props);
   };

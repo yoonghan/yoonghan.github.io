@@ -22,7 +22,7 @@ export interface StickyTitleProp {
 
 const startTopPosition:number = 50;
 
-export class StickyTitle extends React.Component<StickyTitleProp, StickyTitleState> {
+export class StickyTitle extends React.PureComponent<StickyTitleProp, StickyTitleState> {
   constructor(props:any) {
     super(props);
     this.state = {

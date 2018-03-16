@@ -11,7 +11,7 @@ export interface MenuIconProp {
   path: string;
 }
 
-export class MenuIcon extends React.Component<MenuIconProp, {}> {
+export class MenuIcon extends React.PureComponent<MenuIconProp, {}> {
   constructor(props:any) {
     super(props);
   };

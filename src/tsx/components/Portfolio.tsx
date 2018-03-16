@@ -30,7 +30,7 @@ const GithubIcon = () => (
   </svg>
 );
 
-export class Portfolio extends React.Component<{}, {}> {
+export class Portfolio extends React.PureComponent<{}, {}> {
     render() {
         return (
           <div className={styles['reacttoolbox']}>
