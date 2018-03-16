@@ -175,7 +175,7 @@ export class DevelopLocale extends AbstractLocalev2 {
       my: 'Laman Walcron dibina mengunakan komponent yang dibina di dalam Pattern library. Focus utama di sini, adalah warna dan display.'
     },
     'implementation.test.build': {
-      en: 'We uses Gradle to then tests and compile an optimizes the developed website into a production website ready. Snapshots are captured as well to ensure the correctness of the layout for the next build.',
+      en: 'We uses Gradle to then test and recompile an optimized website for production use. Snapshots are captured as well to ensure the correctness of the layout for the next build.',
       my: 'Menggunakan Gradle, alat ini menguji dan mengcompile kod yang optimum bagi digunakan untuk produksi.'
     },
     'implementation.deploy': {
