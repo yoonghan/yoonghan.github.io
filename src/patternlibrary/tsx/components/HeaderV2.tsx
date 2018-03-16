@@ -19,7 +19,7 @@ export interface HeaderV2Props {
   isHomepage?: boolean;
 }
 
-export class HeaderV2 extends React.Component<HeaderV2Props, {}> {
+export class HeaderV2 extends React.PureComponent<HeaderV2Props, {}> {
   constructor(props:any) {
     super(props);
   }

@@ -28,7 +28,7 @@ export interface FooterProps {
   emailMsg: string;
 }
 
-export class Footer extends React.Component<FooterProps, ContactOpenState> {
+export class Footer extends React.PureComponent<FooterProps, ContactOpenState> {
 
   private node: HTMLElement;
 

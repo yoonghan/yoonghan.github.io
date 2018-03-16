@@ -40,6 +40,21 @@ html(lang="en")
         td User google's https://developers.google.com/speed/ to gain insight on page improvement.
         td Performance
 
+    h2 Scala
+    table
+      tr
+        th Ascriptions
+        td Instead of (val x:Byte = 3) or (x:Int).instanceOf[Byte], another good way is 3:Byte which is useful for method.
+      tr
+        th Sequence
+        td def x(a:String*), is sequence, the ascription type for sequence is _*
+      tr
+        th Convert Map to Seq to TreeMap
+        td
+          pre import scala.collection.immutable._
+            | val map = Map(1->"a", 2->"b")
+            | val tree = TreeMap(map.toSeq:_*)
+
     h2 More about Cats
     table
       tr

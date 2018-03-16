@@ -19,7 +19,7 @@ interface MidpartPostContainerProps {
   conceptArray?: Array<IConcept>;
 }
 
-export class Midpart extends React.Component<MidpartProps, {}> {
+export class Midpart extends React.PureComponent<MidpartProps, {}> {
   constructor(props:any) {
     super(props);
   }
@@ -74,7 +74,7 @@ export class Midpart extends React.Component<MidpartProps, {}> {
   }
 }
 
-class MidpartPostContainer extends React.Component<MidpartPostContainerProps, {}> {
+class MidpartPostContainer extends React.PureComponent<MidpartPostContainerProps, {}> {
   constructor(props:any) {
     super(props);
   }

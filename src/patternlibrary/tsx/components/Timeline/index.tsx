@@ -2,39 +2,22 @@
 
 import * as React from "react";
 
-import '../../scss/base.scss';
-var styles = require('../../scss/components/Timeline.scss');
+import {TimelineContainer, TimelineDisplayProp, TimelineContainerProp, YearOnlyDisplay} from './TimelineContainer';
+
+import '../../../scss/base.scss';
+var styles = require('../../../scss/components/Timeline.scss');
 declare function require(path: string): any;
-
-type TimelineDisplayProp = YearOnlyDisplay | TimelineContainerProp;
-
-export interface TimelineProp {
-  postArray?: Array<TimelineDisplayProp>;
-}
-
-export interface TimelineContainerProp {
-  title: string;
-  image?: string;
-  description: string;
-  linkArray?: Array<Link>;
-}
-
-export interface YearOnlyDisplay {
-  year: number;
-}
-
-export interface Link{
-  text: string;
-  path: string;
-}
-
 
 //Typescript syntax.
 function isTimelineContainer(timelineContainerProp: any): timelineContainerProp is TimelineContainerProp {
   return timelineContainerProp.title;
 }
 
-export class Timeline extends React.Component<TimelineProp, {}> {
+export interface TimelineProp {
+  postArray?: Array<TimelineDisplayProp>;
+}
+
+export class Timeline extends React.PureComponent<TimelineProp, {}> {
   constructor(props:any) {
     super(props);
   }
@@ -93,43 +76,5 @@ export class Timeline extends React.Component<TimelineProp, {}> {
         </ul>
       </div>
     );
-  }
-}
-
-class TimelineContainer extends React.Component<TimelineContainerProp,{}> {
-  constructor(props:any) {
-    super(props);
-  }
-
-  _createLinks = ():JSX.Element[] => {
-    const linkListing = this.props.linkArray;
-
-    let counter = 0;
-    return linkListing.map(
-      (link) => {
-        counter++;
-        //const location = link.path.indexOf('http') === 0 ? "_blank": "_self";
-
-        return (
-          <a href={link.path} target="_blank" key={counter}>&gt; {link.text}</a>
-        );
-    });
-  }
-
-  render() {
-    const {title, image, description, linkArray} = this.props;
-    const linkListing = (linkArray && this._createLinks()) || <div className={styles['empty-content']}></div>;
-
-    return (
-      <div className={styles['content-container']}>
-        <h4>{title}</h4>
-        <div className={styles['divider']}/>
-        <div>
-          {image && <img src={image}/>}
-          <div className={styles['content-desc-container']}>{description}</div>
-          {linkListing}
-        </div>
-      </div>
-    )
   }
 }

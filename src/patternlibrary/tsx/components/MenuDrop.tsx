@@ -34,7 +34,7 @@ interface MobileMenuProps {
 /**
  * Created only for menu listing.
  */
-export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
+export class MenuDrop extends React.PureComponent<MenuDropProps, MenuDropState> {
   private clickRef:HTMLElement;
 
   constructor(props:any) {
@@ -118,7 +118,7 @@ export class MenuDrop extends React.Component<MenuDropProps, MenuDropState> {
   }
 };
 
-class MobileMenu extends React.Component<MobileMenuProps, {}> {
+class MobileMenu extends React.PureComponent<MobileMenuProps, {}> {
   private node:HTMLElement;
 
   constructor(props:any) {

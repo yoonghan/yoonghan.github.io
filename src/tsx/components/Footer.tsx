@@ -34,7 +34,7 @@ export interface FooterProps {
   isHomepage?: boolean;
 }
 
-export class Footer extends React.Component<FooterProps, {}> {
+export class Footer extends React.PureComponent<FooterProps, {}> {
   constructor(props:any) {
     super(props);
   }

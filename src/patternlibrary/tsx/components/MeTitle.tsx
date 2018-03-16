@@ -19,7 +19,7 @@ export interface MeTitleProps {
   posts?: Array<MiniPostProps>;
 }
 
-export class MeTitle extends React.Component<MeTitleProps, {}> {
+export class MeTitle extends React.PureComponent<MeTitleProps, {}> {
   createPost = (postMap:MiniPostProps) => {
     const {title} = postMap;
     return (

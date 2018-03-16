@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Timeline, TimelineProp, TimelineContainerProp, Link, YearOnlyDisplay } from "./components/Timeline";
+import { Timeline } from "./components/Timeline";
 
 const timelines = [
   { year: 2016},

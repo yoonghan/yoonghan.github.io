@@ -7,6 +7,7 @@ import { Button } from 'react-toolbox/lib/button';
 import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Post } from '../../patternlibrary/tsx/components/Post';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
+import { ImageOverlay } from '../../patternlibrary/tsx/components/ImageOverlay';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 var styles = require('../../scss/components/develop.scss');
@@ -118,45 +119,52 @@ const mePostProps = [
   }
 ];
 
-export class Develop extends React.Component<{}, {}> {
-    render() {
-        return (
-          <div className={styles['develop']}>
-            <Header/>
-            <MeTitleV2 {...meTitleInfoProps}/>
-            <StickyTitle text={locale.translate("title.implementation")} pos={0} />
-            <Card className={styles['card']} raised>
-              <CardMedia className={styles['card-image']} aspectRatio="wide" image="/ext/img/develop/workflow.jpg"/>
-              <CardTitle
-                title={"Develop"}
-                subtitle={locale.translate("implementation.create")}
-              />
-              <CardActions>
-                <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/patternlibrary" target="impl" theme={styles} primary/>
-              </CardActions>
-              <CardTitle
-                title={"Design"}
-                subtitle={locale.translate("implementation.develop")}
-              />
-              <CardActions>
-                <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/" target="impl" theme={styles} primary/>
-              </CardActions>
-              <CardTitle
-                title={"Verify and Optimize"}
-                subtitle={locale.translate("implementation.test.build")}
-              />
-              <CardActions>
-                <Button label={"Codes"} href="https://github.com/yoonghan/selfservicecopier" target="impl" theme={styles} primary/>
-              </CardActions>
-              <CardTitle
-                title={"Ready and Go Live"}
-                subtitle={locale.translate("implementation.deploy")}
-              />
-            </Card>
-            <StickyTitle text={locale.translate("title.history")} pos={1} />
-            <Post postItems={mePostProps}/>
-            <Footer/>
-          </div>
-        );
-    }
+export class Develop extends React.PureComponent<{}, {}> {
+
+  _clickImage = () => {
+    const imageOverlayRef = this.refs.overlayRef as ImageOverlay;
+    imageOverlayRef.show();
+  };
+
+  render() {
+    return (
+      <div className={styles['develop']}>
+        <Header/>
+        <MeTitleV2 {...meTitleInfoProps}/>
+        <StickyTitle text={locale.translate("title.implementation")} pos={0} />
+        <ImageOverlay imageSrc={'/ext/img/develop/workflow.jpg'} ref="overlayRef"/>
+        <Card className={styles['card']} raised>
+          <CardMedia className={styles['card-image']} aspectRatio="wide" image="/ext/img/develop/workflow.jpg" onClick={this._clickImage}/>
+          <CardTitle
+            title={"Develop"}
+            subtitle={locale.translate("implementation.create")}
+          />
+          <CardActions>
+            <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/patternlibrary" target="impl" theme={styles} primary/>
+          </CardActions>
+          <CardTitle
+            title={"Design"}
+            subtitle={locale.translate("implementation.develop")}
+          />
+          <CardActions>
+            <Button label={"Codes"} href="https://github.com/yoonghan/nodejsweb/tree/master/src/" target="impl" theme={styles} primary/>
+          </CardActions>
+          <CardTitle
+            title={"Verify and Optimize"}
+            subtitle={locale.translate("implementation.test.build")}
+          />
+          <CardActions>
+            <Button label={"Codes"} href="https://github.com/yoonghan/selfservicecopier" target="impl" theme={styles} primary/>
+          </CardActions>
+          <CardTitle
+            title={"Ready and Go Live"}
+            subtitle={locale.translate("implementation.deploy")}
+          />
+        </Card>
+        <StickyTitle text={locale.translate("title.history")} pos={1} />
+        <Post postItems={mePostProps}/>
+        <Footer/>
+      </div>
+    );
+  }
 }

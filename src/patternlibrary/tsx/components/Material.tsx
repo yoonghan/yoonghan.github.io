@@ -16,7 +16,7 @@ const GithubIcon = () => (
   </svg>
 );
 
-export class Material extends React.Component<{}, {}> {
+export class Material extends React.PureComponent<{}, {}> {
 
   constructor(props:any) {
     super(props);

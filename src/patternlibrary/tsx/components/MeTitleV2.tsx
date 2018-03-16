@@ -18,7 +18,7 @@ export interface MeTitleProps {
   posts?: Array<MiniPostProps>;
 }
 
-export class MeTitleV2 extends React.Component<MeTitleProps, {}> {
+export class MeTitleV2 extends React.PureComponent<MeTitleProps, {}> {
 
   constructor(props:any) {
     super(props);

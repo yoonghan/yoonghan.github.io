@@ -25,7 +25,7 @@ interface ProgressiveButtonProps {
   successfulCallback?: any;
 }
 
-export class ProgressiveButton extends React.Component<ProgressiveButtonProps, ProgressiveButtonState> {
+export class ProgressiveButton extends React.PureComponent<ProgressiveButtonProps, ProgressiveButtonState> {
   private isServiceWorkerAvailable = false;
 
   constructor(props:any) {

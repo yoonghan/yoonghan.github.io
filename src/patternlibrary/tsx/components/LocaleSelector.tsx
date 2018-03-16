@@ -30,7 +30,7 @@ interface LocaleSelectorState {
   lang: string;
 }
 
-export class LocaleSelector extends React.Component<LocaleSelectorProps, LocaleSelectorState> {
+export class LocaleSelector extends React.PureComponent<LocaleSelectorProps, LocaleSelectorState> {
 
   constructor(props:any) {
     super(props);
