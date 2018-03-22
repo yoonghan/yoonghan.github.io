@@ -1,6 +1,7 @@
 #!/bin/env node
 //  OpenShift sample Node application
 var express = require('express'),
+  helmet    = require('helmet'),
   fs        = require('fs'),
   mime      = require('./util/mime/mime.js'),
   env       = process.env;
@@ -249,6 +250,7 @@ var NodeApp = function() {
   self.initializeServer = function() {
       const routes = self.createRoutes();
       self.app = express();
+      self.app.use(helmet());
       self.app.use(express.favicon(WEBROOT+'/favicon.ico', { maxAge: 2592000000 }));
       //  Add handlers for the app (from the routes).
       for (var r in routes) {
