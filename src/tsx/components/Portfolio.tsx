@@ -79,6 +79,22 @@ export class Portfolio extends React.PureComponent<{}, {}> {
                   />
                 </Card>
               </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('bigdata.title')}
+                    subtitle={locale.translate('bigdata.desc')}
+                  />
+                </Card>
+              </div>
+              <div className={styles['card-section']}>
+                <Card className={styles['card-split']} raised>
+                  <CardTitle
+                    title={locale.translate('batch.title')}
+                    subtitle={locale.translate('batch.desc')}
+                  />
+                </Card>
+              </div>
               <StickyTitle text={locale.translate('dvd.leisure')} pos={1} />
               <div className={styles['card-section']}>
                 <Card className={styles['card-split']} raised>
@@ -105,8 +121,8 @@ export class Portfolio extends React.PureComponent<{}, {}> {
               <div className={styles['card-section']}>
                 <Card className={styles['card-split']} raised>
                   <CardTitle
-                    title={locale.translate('batch.title')}
-                    subtitle={locale.translate('batch.desc')}
+                    title={locale.translate('cicd.title')}
+                    subtitle={locale.translate('cicd.desc')}
                   />
                 </Card>
               </div>

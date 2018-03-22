@@ -357,16 +357,16 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'MASA LAPANG'
     },
     'header.text': {
-      en: "A Simple Start Up Site",
-      my: "Laman Rangkaian Ringkas"
+      en: "A Space For Han & Lee Wan",
+      my: "Laman Untuk Han & Lee Wan"
     },
     'header.concepttext': {
       en: "\"Inspired by the Ikigai concept\"",
       my: "\"Inspirasi berdasarkan konsep Ikigai\""
     },
     'header.description': {
-      en: "is a dedicated website created by Han & Lee Wan to represent our life as a programmer.",
-      my: "adalah laman yang dicipta oleh Han & Lee Wan yang melambangkan hidup kami sebagai programmer."
+      en: "is a dedicated website created by Han & Lee Wan to represent their life as a programmer.",
+      my: "adalah laman yang dicipta oleh Han & Lee Wan yang melambangkan hidup mereka sebagai programmer."
     },
     'header.button': {
       en: "GET TO KNOW US",
@@ -405,11 +405,11 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Kami mahu mengkaji keupayaan yang penting sebagai programmer - <strong>full-stack developer yang baik.</strong>'
     },
     'post.3.title': {
-      en: 'A no cookies website',
+      en: 'No cookies site',
       my: 'Laman tanpa cookie'
     },
     'post.3.text': {
-      en: 'This site does not track you. Seriously, enjoy your exploration here.',
+      en: 'This site does not track you. Seriously. Enjoy your exploration here.',
       my: 'Laman in tidak menjejaki anda.'
     },
     'card.11.title': {
@@ -417,7 +417,7 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Presentasi tentang Bitcoin'
     },
     'card.11.desc': {
-      en: 'To achieve his personal goal(to present every year), Han have decided to host a presentation on Bitcoin and Blockchain, 24 people attended and the reaction was great!',
+      en: 'To achieve his personal goal (to present every year), Han hosted a presentation on Bitcoin and Blockchain, 24 people attended and the reaction was great!',
       my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Seramai 24 orang hadir and hasilnya amat dialu-alukan.'
     },
     'card.10.title': {
@@ -425,7 +425,7 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Menangi Hackathon tentang IOT dan Cloud'
     },
     'card.10.desc': {
-      en: 'Won an Echodot in this year\'s competition. The team consists of 5 person, we came up with the idea related to autonomous car reaction for heart-attack drivers.',
+      en: 'Won an Echodot in this year\'s competition. The team consists of 5 person, we came up with a prototype related to autonomous car reaction for heart-attack drivers. The prototype was hosted in Cloud and the interface was projected into Web, Android App and iOS App.',
       my: 'Han dengan 4 rakan sekerjanya memenangi sebiji Echodot/setiap orang untuk Hackathon 2017. Idea kami adalah bekenaan dengan "Automonous Car", di mana kereta akan secara automatik berbalas apabila pesakit jantung mengalami kecemasan.'
     },
     'card.0.title': {
@@ -441,8 +441,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Hackathon dengan Deep Learning'
     },
     'card.1.desc': {
-      en: 'Won a hackathon, the 5 person team created an image scanning to identify a vehicle model using a mobile. We will be dedicating the year 2017 into deep learning research using Scala programming language.',
-      my: 'Memenangi hackathon; kumpulan 5 orang mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning dalam tahun 2017 ini.'
+      en: 'Won a hackathon, in a 5 person team, we created an realtime image scanner to identify a vehicle model using a mobile. Han promises to be dedicating his research into deep learning next year.',
+      my: 'Memenangi hackathon; kumpulan 5 orang mencipta sistem yang mengenali model kenderaan berdasarkan gambar yang diambil. Kami akan fokus dalam teknologi deep learning di tahun 2017 depan.'
     },
     'card.2.title': {
       en: 'Parallel Processings',
@@ -475,8 +475,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Aplikasi Progressive'
     },
     'card.3.desc': {
-      en: 'To find ways to load page in a smooth availability manner. It\'s important for this page to be available online.',
-      my: 'Kami memerlukan laman web ini dimuat ke dalam browser secara lancar. Pertimbangan ini hendaklah memenuhi kertersediaan laman ini tanpa internet.'
+      en: 'To find ways to load webpage in a smooth an offline availability manner. Created a seperate page for research purposes.',
+      my: 'Kami meneroka laman ini untuk dimuat turun secara lancar dan cepat. Kami membina satu halaman untuk penyilidikan.'
     },
     'card.31.title': {
       en: 'AngularJS 2',
@@ -491,7 +491,7 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'UIUX'
     },
     'card.4.desc': {
-      en: 'Studying on user interface and user experience. This site will have modification over time, based on the book "Don\'t Make Me Think". Have you notice that this page is parallaxed ?!',
+      en: 'Studying user interface and user experience. This site will have modification over time, based on the book "Don\'t Make Me Think". Have you notice that this page is parallaxed ?!',
       my: 'Kami sedang mengaji penggunaan dan pengalaman design untuk penguna. Laman ini akan diubah dari masa-ke-semasa mengikuti buku "Don\'t Make Me Think". Sedarkah anda, laman ini mengandungi parallaxing ?!'
     },
     'card.43.title': {
@@ -523,24 +523,24 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Javascript with ReactJS'
     },
     'card.5.desc': {
-      en: 'This website has went through 4 interations, and we are now using the ReactJS technology.' +
-          ' Previously, we had been writing this in AngularJS, AngularJS2 and pure JS; but today, we\'re prefering ReactJS.' +
-          ' This site\'s CSS is build based on CSS modules.',
+      en: 'This website has been through 4 interations, and we are glued to this final interation written in ReactJS.' +
+          ' Previously, we had been writing this site in VanillaJS, AngularJS and even AngularJS2; but now, we\'re prefering ReactJS.' +
+          ' Main reasons for this shift is that we preferred the use of libraries over framework.',
       my: 'Laman ini telah mengalami 4 interasi, kini kami mengkodkan dengan penggunaan ReactJS.' +
-          ' Pernah kami kod dengan AngularJS, AngularJS2 dan JS asal; tetapi kami sekarang gemar dengan ReactJS.' +
-          ' CSS laman ini dibina dengan konsep CSS modules.'
+          ' Pernah kami kod dengan AngularJS, AngularJS2 dan JS; tetapi kami sekarang gemar dengan ReactJS.' +
+          ' Motive utama kami menggunakan ReactJS adalah kerana penggunaan library lebih sesuai untuk kami.'
     },
     'card.6.title': {
       en: 'Mobile with React Native',
       my: 'Mobile with React Native'
     },
     'card.6.desc': {
-      en: 'Coding react native was an extremely wonderful experience as we learnt Android, iOS and Javascripts at the same time. ' +
-          'The only problem we had is to override the main backdrop color. On our job basis, Han still writing native Android and iOS codes.' +
-          'An advice to anyone writing React Native/Nativescript: it is very important to learn native language to harness it\'s true potential.',
-      my: 'Kod react native memang menyeronokan, kerana kami dapat belajar javascript, Android dan iOS dalam masa yang sama. ' +
-          'Dalam kerja harian, Han masih mengkod dalam Native Android and iOS.' +
-          'Kami menasihatkan kepada sesiapa yang mahu mengkod dalam React Native/Nativescript; anda perlu belajar native language iOS/Android untuk mengalami pontensinya.'
+      en: 'Coding React Native was an extremely wonderful experience as Javascripts fits a role in gluing components written in Swift and Android. ' +
+          'On our daily work job, Han and Lee Wan still writes native Android and iOS(Obj-C and Swift) codes for work. ' +
+          'An advice to anyone writing React Native/Nativescript: it is very important to learn native mobile language to harness it\'s true potential.',
+      my: 'Koding React Native memang menyeronokan, kerana kami dapat belajar javascript, Android dan iOS dalam masa yang sama. ' +
+          'Dalam kerja harian, Han dan Lee Wan masih mengkod dalam Native Android and iOS.' +
+          'Kami menasihatkan kepada sesiapa yang mahu mengkod dalam React Native/Nativescript; anda perlu belajar native language iOS/Android untuk meneroka pontensinya.'
     },
     'card.7.title': {
       en: 'Scala, C# and Java',
@@ -603,19 +603,19 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'MINAT / MASA LAPANG'
     },
     'java.desc': {
-      en: 'An experienced Java developer for more than 10 years, knowledgeable in both J2EE frameworks and POJO. A certified Java developer.',
-      my: 'Berpengalaman dengan Java lebih daripada 10 tahun. Mempunyai sijil sebagai Java developer.'
+      en: 'An experienced Java developer for more than 13 years. Knowledgeable with but not limited to JEE, Struts and POJO. A certified Java developer.',
+      my: 'Berpengalaman dengan Java lebih daripada 13 tahun. Mempunyai sijil Java developer.'
     },
     'csharp.desc': {
-      en: 'An experienced C# developer for the past 3 years on-hands experience, knowledgeable on MVC 4. Microsoft Certified Professional.',
-      my: 'Berpengalaman dengan C# lebin dari 3 tahun dan mengenali MVC 4. Mempunyai sijil sebagai Microsoft Certified Professional.'
+      en: 'An experienced C# developer for the past 5 years on-hands experience, knowledgeable on MVC 4. Microsoft Certified Professional.',
+      my: 'Berpengalaman dengan C# lebin dari 5 tahun dan mengenali MVC 4. Mempunyai sijil sebagai Microsoft Certified Professional.'
     },
     'mobile.title': {
       en: 'WML, Android and iOS developer',
       my: 'WML, Android dan iOS developer'
     },
     'mobile.desc': {
-      en: 'An experience mobile developer and even used React Native for development. Certified in both Android and iOS(Swift 4).',
+      en: 'An experience mobile developer since WML; currently moved for mobile development using React Native. Certified in both Android and iOS(Swift 4).',
       my: 'Berpengalaman dalam menprogramkan smartphone termasuk penggunaan React Native. Mempunyai sijil Android dan iOS(Swift 4).'
     },
     'web.title': {
@@ -647,15 +647,15 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'Functional Programming'
     },
     'functional.desc': {
-      en: 'Had fun with Scala/Playframework/Akka/LinQ. Developed a booking system using Play framework.',
+      en: 'Experience with Lambda, Monads, Shapeless written in Scala and C# for Playframework, Akka, Sparks and .NET(LinQ).',
       my: 'Minat dengan Scala/Playframework/Akka/LinQ. Bina sistem tempahan dengan Play framework.'
     },
     'batch.title': {
-      en: 'Batch Jobs',
+      en: 'Shell Scripts',
       my: 'Shell Script'
     },
     'batch.desc': {
-      en: 'Simple shell scripts on Windows and Linux alike; written and implemented for real companies.',
+      en: 'Writes shell scripts on Windows and Linux alike. Have had written and implemented for real companies, includes but not limited to CI/CD, dockers and schedulers.',
       my: 'Shell scripts yang ringkas di Windows dan Linux. Dikodkan dan dilaksanakan dalam kompeni sebenar.'
     },
     'imagery.title': {
@@ -663,9 +663,25 @@ export class PorfolioLocale extends AbstractLocalev2 {
       my: 'Gambar'
     },
     'imagery.desc': {
-      en: 'Interest with photography and art development. Knowledge on Blender and Gimp software basic usages.',
+      en: 'Interested with photography and art development. Have basic knowledge on Blender and Gimp software.',
       my: 'Kami berminat dalam photograpi dan ciptaan image. Ketahui penggunaan software Blender dan Gimp.'
-    }
+    },
+    'cicd.title': {
+      en: 'Content Integration/Content Delivery',
+      my: 'Content Integration/Content Delivery'
+    },
+    'cicd.desc': {
+      en: 'Works with multiple content integration and content delivery, including Atlassian tools, Jenkins, shell scripts and Docker. Experienced with Amazon Cloud, Heroku and Openshift setup for deployment.',
+      my: 'Kami mempunyai pengalaman dalam CI/CD, menggunakan Atlassian tools, Jenkins, Unix/Windows Scripts dan Docker. Pernah membina sistem di Amazon Cloud, Heroku and Openshift.'
+    },
+    'bigdata.title': {
+      en: 'Big Data, NoSQL and Database',
+      my: 'Big Data, NoSQL and Database'
+    },
+    'bigdata.desc': {
+      en: 'Worked with multiple Database, from the disliked DB2 to the favourite Oracle DB. Experience with ElasticSearch and Kibana for queries. As of NoSQL, Han has only setup as experiments using Hadoop and MongoDB(has knowledge in 3 tables transaction process).',
+      my: 'Pernah bekerja dengan Database dari yang paling disukai iaitu DB2 hingga db2 yang digemari, ya itu, Oracle. Berpengalaman dengan ElasticSearch dan Kibana. Tentang NoSQL, Han pernah membuat experiment menggunakan Hadoop dan MongoDB.'
+    },
   };
 
   public getData():LocaleFormatv2 {
