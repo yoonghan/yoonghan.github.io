@@ -55,6 +55,10 @@ const GoogleIcon = () => (
 const timelines = [
   { year: 2018},
   {
+    title: locale.translate('card.12.title'),
+    description: locale.translate('card.12.desc')
+  },
+  {
     title: locale.translate('card.11.title'),
     description: locale.translate('card.11.desc'),
     linkArray: [

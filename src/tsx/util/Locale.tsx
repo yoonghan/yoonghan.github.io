@@ -412,6 +412,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'This site does not track you. Seriously. Enjoy your exploration here.',
       my: 'Laman in tidak menjejaki anda.'
     },
+    'card.12.title': {
+      en: 'Security implementation',
+      my: 'Implementasi Sekuriti'
+    },
+    'card.12.desc': {
+      en: 'Ensure web security are implemented into this site. But who wants to hijack us ?',
+      my: 'Mengimplimentasikan sekuriti untuk laman ini. Tapi kenapa nak "hijack" kami ?'
+    },
     'card.11.title': {
       en: 'Presentation on Bitcoin',
       my: 'Presentasi tentang Bitcoin'
