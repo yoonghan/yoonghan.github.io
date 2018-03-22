@@ -25,3 +25,12 @@ All NodeJS server are stored in npm/ folder.
 Install magickImage and execute the command:
 export FILE=bg-pattern.gif
 magick convert $FILE -strip -sampling-factor 4:2:0 -quality 85 -colorspace sRGB $FILE
+
+##Security for inline
+Trigger
+echo "sha256-$(echo -n "body {visibility: hidden;}" |openssl dgst -sha256 -binary | base64)"
+And replace into util/csp/index.js for added codes
+
+###TODO:
+1. Need to redo service worker as cache busting broke it.
+2. Noonce to disable inline scripting.

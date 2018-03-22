@@ -38,10 +38,10 @@ export class TimelineContainer extends React.PureComponent<TimelineContainerProp
     return linkListing.map(
       (link) => {
         counter++;
-        //const location = link.path.indexOf('http') === 0 ? "_blank": "_self";
+        const location = link.path.indexOf('http') === 0 ? "_blank": "_self";
 
         return (
-          <a href={link.path} target="_blank" key={counter}>&gt; {link.text}</a>
+          <a href={link.path} target={location} key={counter}>&gt; {link.text}</a>
         );
     });
   }

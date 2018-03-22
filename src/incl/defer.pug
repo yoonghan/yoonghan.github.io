@@ -1,17 +1,2 @@
 mixin deferStylesheet()
-  script.
-    function loadDeferredStyles(componentName) {
-      var stylesheet = document.createElement('link');
-      stylesheet.href = componentName;
-      stylesheet.rel = "stylesheet";
-      stylesheet.type = "text/css";
-      document.body.appendChild(stylesheet);
-      //document.getElementsByTagName("head")[0].appendChild(stylesheet);
-    }
-
-    function deferStylesheet(componentName) {
-      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-        if (raf) raf(function() { window.setTimeout(loadDeferredStyles(componentName), 0); });
-        else window.addEventListener('load', loadDeferredStyles(componentName));
-    };
+  script(src='/ext/js/defer.js')

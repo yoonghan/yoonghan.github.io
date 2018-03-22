@@ -2,6 +2,9 @@
 //  OpenShift sample Node application
 var express = require('express'),
   helmet    = require('helmet'),
+  hsts      = require('hsts'),
+  csp       = require('helmet-csp'),
+  cspProp   = require('./util/csp'),
   fs        = require('fs'),
   mime      = require('./util/mime/mime.js'),
   env       = process.env;
@@ -251,6 +254,12 @@ var NodeApp = function() {
       const routes = self.createRoutes();
       self.app = express();
       self.app.use(helmet());
+      self.app.use(hsts({
+        maxAge: 31536000,        // Must be at least 1 year to be approved
+        includeSubDomains: true, // Must be enabled to be approved
+        preload: true
+      }));
+      self.app.use(csp(cspProp));
       self.app.use(express.favicon(WEBROOT+'/favicon.ico', { maxAge: 2592000000 }));
       //  Add handlers for the app (from the routes).
       for (var r in routes) {
