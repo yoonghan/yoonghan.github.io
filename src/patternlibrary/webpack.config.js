@@ -8,6 +8,7 @@ const extractSass = new extractTextPlugin({
 
 module.exports = {
     entry: {
+      loader: "./src/patternlibrary/tsx/loader.tsx",
       header: "./src/patternlibrary/tsx/header.tsx",
       post: "./src/patternlibrary/tsx/post.tsx",
       mainscreen: "./src/patternlibrary/tsx/mainscreen.tsx",

@@ -5,8 +5,10 @@ html(lang="en")
     title #{$i18n.technology.title}
     meta(name="description" content="Tools used to develop this website.")
     include ../incl/meta.incl
+    include ../patternlibrary/incl/preloader.incl
   body
-    div(id='technology')
+    include ../patternlibrary/incl/preloader_2.incl
+    div(id='technology', class='p-c')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
     script(src='ASSET{/extw/technology.bundle.js}' defer="defer")

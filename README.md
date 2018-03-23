@@ -21,16 +21,20 @@ Remember to add to webpack.config.js to exclude the external javascript to be in
 NodeJS server is moved into /dist/main/ folder. To start, either execute build-dev-progressive or buildprod. Before executing npm start.
 All NodeJS server are stored in npm/ folder.
 
-##Enhance Image performance.
+## Enhance Image performance.
 Install magickImage and execute the command:
+```
 export FILE=bg-pattern.gif
 magick convert $FILE -strip -sampling-factor 4:2:0 -quality 85 -colorspace sRGB $FILE
+```
 
-##Security for inline
-Trigger
-echo "sha256-$(echo -n "body {visibility: hidden;}" |openssl dgst -sha256 -binary | base64)"
-And replace into util/csp/index.js for added codes
+## Security for inline
+Replace into util/csp/index.js for added codes for the inline script
+```
+export r=`echo -n "#p-h{width:100vw;position:fixed;bottom:0;opacity:1;height:100vh;background:#888888AA}#p-h-i{color:#FFF;padding:20%;text-align:center}.p-c{display:none;opacity:0}" |openssl dgst -sha256 -binary | base64` && echo "sha256-$r"
+```
 
-###TODO:
+### TODO:
 1. Need to redo service worker as cache busting broke it.
 2. Noonce to disable inline scripting.
+3. Move to server rendering.

@@ -5,9 +5,11 @@ html(lang="en")
     title Portfolio
     meta(name="description" content="Portfolio of Walcron Coorperation developers.")
     include ../incl/meta.incl
+    include ../patternlibrary/incl/preloader.incl
     include ../incl/link.incl
   body
-    div(id='portfolio')
+    include ../patternlibrary/incl/preloader_2.incl
+    div(id='portfolio', class='p-c')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
     script(src='ASSET{/extw/portfolio.bundle.js}' defer="defer")
