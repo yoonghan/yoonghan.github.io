@@ -5,9 +5,11 @@ html(lang="en")
     title #{$i18n.development.title}
     meta(name="description" content="Development of Walcron website.")
     include ../incl/meta.incl
+    include ../patternlibrary/incl/preloader.incl
     include ../incl/link.incl
   body
-    div(id='develop')
+    include ../patternlibrary/incl/preloader_2.incl
+    div(id='develop', class='p-c')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
     script(src='ASSET{/extw/develop.bundle.js}' defer="defer")

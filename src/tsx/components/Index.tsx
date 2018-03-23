@@ -12,6 +12,7 @@ import { Timeline } from "../../patternlibrary/tsx/components/Timeline";
 import { Button } from 'react-toolbox/lib/button';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { UtilLoader } from "../../patternlibrary/tsx/util/UtilLoader";
 
 var styles = require('../../scss/components/index.scss');
 declare function require(path: string): any;
@@ -158,6 +159,11 @@ const timelines = [
 ];
 
 export class Index extends React.PureComponent<{}, {}> {
+  constructor(props:any) {
+    super(props);
+    new UtilLoader().startDisplay();
+  }
+
   render() {
     return (
       <div className={styles['reacttoolbox']}>

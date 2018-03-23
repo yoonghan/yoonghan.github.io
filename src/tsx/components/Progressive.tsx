@@ -8,6 +8,7 @@ import { Post } from '../../patternlibrary/tsx/components/Post';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Footer } from "./Footer";
 import { ProgressiveButton } from "../../patternlibrary/tsx/components/ProgressiveButton";
+import { UtilLoader } from "../../patternlibrary/tsx/util/UtilLoader";
 
 const locale = new ProgressiveLocale();
 
@@ -58,6 +59,7 @@ export class Progressive extends React.PureComponent<{}, ProgressiveState> {
 
   constructor(props:any) {
     super(props);
+    new UtilLoader().startDisplay();
     this.state = {
       offlineSuccessful: false
     }
