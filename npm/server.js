@@ -1,5 +1,5 @@
 #!/bin/env node
-//  OpenShift sample Node application
+
 var express = require('express'),
   helmet    = require('helmet'),
   hsts      = require('hsts'),
@@ -259,7 +259,8 @@ var NodeApp = function() {
         includeSubDomains: true, // Must be enabled to be approved
         preload: true
       }));
-      self.app.use(csp(cspProp));
+
+      self.app.use(csp(cspProp(testEnv ? ("http://"+self.ipaddress+":"+self.port):undefined)));
       self.app.use(express.favicon(WEBROOT+'/favicon.ico', { maxAge: 2592000000 }));
       //  Add handlers for the app (from the routes).
       for (var r in routes) {
