@@ -6,7 +6,7 @@ import { Footer } from "./Footer";
 import { TechnologyLocale } from '../util/Locale';
 import { MeTitleV2 } from '../../patternlibrary/tsx/components/MeTitleV2';
 import { Gallery } from '../../patternlibrary/tsx/components/Gallery';
-import { UtilLoader } from "../../patternlibrary/tsx/util/UtilLoader";
+import { Preloader } from "../../patternlibrary/tsx/components/Preloader";
 
 var styles = require('../../scss/components/index.scss');
 declare function require(path: string): any;
@@ -94,7 +94,6 @@ const metitleInfo  = {
 export class Technology extends React.PureComponent<{}, {}> {
 	constructor(props:any) {
     super(props);
-    new UtilLoader().startDisplay();
     this.state = {
       offlineSuccessful: false
     }
@@ -103,6 +102,7 @@ export class Technology extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div>
+				<Preloader/>
         <Header/>
         <MeTitleV2 {...metitleInfo}/>
         <Gallery items={items}/>

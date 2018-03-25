@@ -1,10 +1,7 @@
 `use strict`
 
 import * as React from "react";
-import { UtilLoader } from "../util/UtilLoader";
-
-import '../../scss/base.scss';
-var styles = require('../../scss/components/Loader.scss');
+import { Preloader } from "./Preloader";
 
 export class Loader extends React.PureComponent<{},{}> {
   constructor(props:any) {
@@ -13,7 +10,7 @@ export class Loader extends React.PureComponent<{},{}> {
 
   render() {
     return (
-      <div></div>
+      <Preloader/>
     );
   }
 }

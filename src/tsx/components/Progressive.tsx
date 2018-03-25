@@ -8,7 +8,7 @@ import { Post } from '../../patternlibrary/tsx/components/Post';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { Footer } from "./Footer";
 import { ProgressiveButton } from "../../patternlibrary/tsx/components/ProgressiveButton";
-import { UtilLoader } from "../../patternlibrary/tsx/util/UtilLoader";
+import { Preloader } from "../../patternlibrary/tsx/components/Preloader";
 
 const locale = new ProgressiveLocale();
 
@@ -59,7 +59,6 @@ export class Progressive extends React.PureComponent<{}, ProgressiveState> {
 
   constructor(props:any) {
     super(props);
-    new UtilLoader().startDisplay();
     this.state = {
       offlineSuccessful: false
     }
@@ -74,6 +73,7 @@ export class Progressive extends React.PureComponent<{}, ProgressiveState> {
   render() {
     return (
       <div>
+        <Preloader/>
         <Header/>
         <MeTitleV2 {...progressiveInfo}/>
         <StickyTitle text={locale.translate('offline.stickytitle')} pos={0} />

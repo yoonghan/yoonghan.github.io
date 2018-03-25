@@ -9,7 +9,7 @@ import { Post } from '../../patternlibrary/tsx/components/Post';
 import { StickyTitle } from '../../patternlibrary/tsx/components/StickyTitle';
 import { ImageOverlay } from '../../patternlibrary/tsx/components/ImageOverlay';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { UtilLoader } from "../../patternlibrary/tsx/util/UtilLoader";
+import { Preloader } from "../../patternlibrary/tsx/components/Preloader";
 
 var styles = require('../../scss/components/develop.scss');
 import { Footer } from "./Footer";
@@ -123,7 +123,6 @@ const mePostProps = [
 export class Develop extends React.PureComponent<{}, {}> {
   constructor(props:any) {
     super(props);
-    new UtilLoader().startDisplay();
   }
 
   _clickImage = () => {
@@ -134,6 +133,7 @@ export class Develop extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div className={styles['develop']}>
+        <Preloader/>
         <Header/>
         <MeTitleV2 {...meTitleInfoProps}/>
         <StickyTitle text={locale.translate("title.implementation")} pos={0} />
