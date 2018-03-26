@@ -2,8 +2,6 @@
 @import "../lib/colors";
 @import "../lib/fonts";
 
-$mob-bar-width: 300px;
-
 .mnudrp {
   @include breakpoint(max-width $breakpoint-tablet) {
     position: absolute;
@@ -91,7 +89,7 @@ $mob-bar-width: 300px;
 
     .mnudrp-mob-bar {
       height: 100%;
-      width: $mob-bar-width;
+      width: 80%;
       position: absolute;
       top: 0;
       background: #FFFFFF;
@@ -107,7 +105,7 @@ $mob-bar-width: 300px;
           border-bottom: 1px dotted $color-mnudrp-mob-border;
           border-left: 1px solid $color-mnudrp-mob-border;
           margin-bottom: 15px;
-          width: 80px;
+          text-align: center;
           border-radius: 0 5px;
           padding: 5px 10px 10px 20px;
           white-space: nowrap;
@@ -120,7 +118,7 @@ $mob-bar-width: 300px;
   .mnudrpmobile-entering {
     opacity: 0.01;
     .mnudrp-mob-bar {
-      width: 0;
+      transform: translate3d(100%,0,0);
     }
   }
 
@@ -129,8 +127,8 @@ $mob-bar-width: 300px;
     transition: opacity 100ms ease-in;
 
     .mnudrp-mob-bar {
-      width: $mob-bar-width;
-      transition: width 100ms ease-in 50ms;
+      transform: translate3d(0,0,0);
+      transition: transform 100ms ease-in 50ms;
     }
   }
 
@@ -140,8 +138,8 @@ $mob-bar-width: 300px;
     transition-delay: 50s;
 
     .mnudrp-mob-bar {
-      width: 0;
-      transition: width 100ms ease-in 50ms;
+      transform: translate3d(100%,0,0);
+      transition: transform 100ms ease-in 50ms;
     }
   }
 }
