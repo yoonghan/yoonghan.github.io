@@ -26,6 +26,10 @@ $arrowsize: 18px;
         padding-left: 0;
       }
 
+      &:last-child:before {
+        content: none;
+      }
+
       &:before {
         content: " ";
         position: absolute;
@@ -160,7 +164,7 @@ $arrowsize: 18px;
             margin-right: 28px;
 
             &:before {
-              left: unset;
+              left: auto;
               right: -32px;
               margin-left: 0;
               border-left: $arrowsize solid $color-timeline-box;
