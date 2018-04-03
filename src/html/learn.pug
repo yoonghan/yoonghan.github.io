@@ -54,6 +54,17 @@ html(lang="en")
           pre import scala.collection.immutable._
             | val map = Map(1->"a", 2->"b")
             | val tree = TreeMap(map.toSeq:_*)
+      tr
+        th Call by value, Call by name
+        td Checkout that the last code is executed if it is by value
+          pre List(1,2,3,4,5).map({print("w"); print(_)}) // w12345
+            | List(1,2,3,4,5).map(x=>{print("w"); print(_)}) //w1w2w3w4w5
+            | List(1,2,3,4,5).map({print(_);print(_)}) //12345
+        td This is also true, make sure [variable: =>X], has a space seperate as := is a command.
+          pre def something() = {println("call something"); 1}
+            | def callByValue(x:Int) = {print("x1="+x);print("x2="+x)}; // call something\nx1=1\nx2=1
+            | def callByValue(x: =>Int) = {print("x1="+x);print("x2="+x)}; // callsomething\nx1=1\ncall something\nx2=1
+            | def callByValue(x: ()=>Int) = {print("x1="+x);print("x2="+x)}; // callByValue(()=>{something()});callsomething\nx1=1\ncall something\nx2=1
 
     h2 More about Cats
     table
