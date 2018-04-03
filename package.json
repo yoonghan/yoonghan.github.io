@@ -29,6 +29,7 @@
     "babel-preset-env": "^1.6.1",
     "breakpoint-sass": "^2.7.1",
     "css-loader": "^0.28.7",
+    "es6-object-assign": "^1.1.0",
     "event-stream": "^3.3.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "gulp": "^3.9.1",
