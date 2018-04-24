@@ -574,6 +574,14 @@ export class IndexLocale extends AbstractLocalev2 {
       en: 'A journal about Transformers collected, it\'s unfortunately not being updated as there\'s no followers on this.' +
           ' I guess nobody actually goes much to bloggin nowadays, ever since the born of facebook. This was suppose to be Gladys\'s profile.',
       my: 'Blog tentang Transformers. Ianya sepatutnya Blog tentang Gladys, akan tetapi kesukaran untuk memaparkan laman website percuma, akhirnya website ini ditukar.'
+    },
+    'card.201804.title': {
+      en: 'Journey with Raspberry Pi',
+      my: 'Penjelajahan dengan Raspberry Pi'
+    },
+    'card.201804.desc': {
+      en: 'We brought 3 Raspberry Pi for experiments. We managed to install and run Apache Sparks and Hadoop with simple programs with it. Han even managed to run Lagom in a Docker Swarm environment. Now we can start including ML and Big Data into our roadmap.',
+      my: 'Dengan 3 Raspberry Pi, Han akhirnya dapat mencuba and install Apache Sparks, Hadoop dan membina process yang ringkas. Malahan Han dapat melancarkan Lagom dengan Docker Swarm. Sekarang dapatlah kami meneroka Big Data and ML.'
     }
   };
 
