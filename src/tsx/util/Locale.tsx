@@ -582,6 +582,14 @@ export class IndexLocale extends AbstractLocalev2 {
     'card.201804.desc': {
       en: 'We brought 3 Raspberry Pi for experiments. We managed to install and run Apache Sparks and Hadoop with simple programs with it. Han even managed to run Lagom in a Docker Swarm environment. Now we can start including ML and Big Data into our roadmap.',
       my: 'Dengan 3 Raspberry Pi, Han akhirnya dapat mencuba and install Apache Sparks, Hadoop dan membina process yang ringkas. Malahan Han dapat melancarkan Lagom dengan Docker Swarm. Sekarang dapatlah kami meneroka Big Data and ML.'
+    },
+    'card.201805.title': {
+      en: 'Journey with EV3 Lego',
+      my: 'Penjelajahan dengan EV3 Lego'
+    },
+    'card.201805.desc': {
+      en: 'Started as well to use the EV3 Lego as the hardware unit. Building and ecosystem to integrate Microservices, AI and Hardware interoperability.',
+      my: 'Dengan semua peralatan, sekarang tibanya masa untuk menintegrasi Microservices, AI, dan hardware sebagai satu ecosystem.'
     }
   };
 

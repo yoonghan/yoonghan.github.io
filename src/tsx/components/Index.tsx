@@ -56,6 +56,16 @@ const GoogleIcon = () => (
 const timelines = [
   { year: 2018},
   {
+    title: locale.translate('card.201805.title'),
+    description: locale.translate('card.201805.desc'),
+    linkArray: [
+      {
+        text: locale.translate('label.read'),
+        path: "https://github.com/yoonghan/ev3-lejos"
+      }
+    ]
+  },
+  {
     title: locale.translate('card.201804.title'),
     description: locale.translate('card.201804.desc')
   },
