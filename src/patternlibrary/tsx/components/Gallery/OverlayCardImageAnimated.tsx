@@ -1,7 +1,7 @@
 `use strict`
 import * as React from "react";
 
-import {LEAVE_TIME} from './Item';
+import {LEAVE_TIME} from './Const';
 
 import '../../../scss/base.scss';
 var styles = require('../../../scss/components/Gallery.scss');

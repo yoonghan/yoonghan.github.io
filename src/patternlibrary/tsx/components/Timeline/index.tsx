@@ -1,5 +1,8 @@
 `use strict`
 
+/**
+ * Upgraded to use React.Fragment to return multiple elements.
+ **/
 import * as React from "react";
 
 import {TimelineContainer, TimelineDisplayProp, TimelineContainerProp, YearOnlyDisplay} from './TimelineContainer';
@@ -23,21 +26,25 @@ export class Timeline extends React.PureComponent<TimelineProp, {}> {
   }
 
   _createTimelineObject = (post: TimelineContainerProp) => {
-    return [
-      (<div key={0} className={styles['box-container']}>
-        <div className={styles['box']}>
-          <TimelineContainer {...post}/>
+    return(
+      <React.Fragment>
+        <div key={0} className={styles['box-container']}>
+          <div className={styles['box']}>
+            <TimelineContainer {...post}/>
+          </div>
         </div>
-      </div>),
-      (<div key={1} className={styles['icon']}></div>)
-    ];
+        <div key={1} className={styles['icon']}></div>
+      </React.Fragment>
+    );
   }
 
   _createYearTimelineObject = (post: YearOnlyDisplay) => {
-    return [
-      (<div key={0} className={styles['year-wrapper']}></div>),
-      (<div key={1} className={styles['year']}><h5>{post.year}</h5></div>)
-    ];
+    return (
+      <React.Fragment>
+        <div key={0} className={styles['year-wrapper']}></div>
+        <div key={1} className={styles['year']}><h5>{post.year}</h5></div>
+      </React.Fragment>
+    );
   }
 
   _isEven = (counter: number):Boolean => {

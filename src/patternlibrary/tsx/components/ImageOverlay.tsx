@@ -43,7 +43,7 @@ export class ImageOverlay extends React.PureComponent<ImageOverlayProp, ImageOve
     if(this.state.isShown) {
       return (
         <div className={styles['image-overlay']} onClick={()=>this.hide()}>
-          <div className={styles['image']} style={{"background-image": "url("+this.props.imageSrc+")"}}/>
+          <div className={styles['image']} style={{backgroundImage: "url("+this.props.imageSrc+")"}}/>
         </div>
       );
     }

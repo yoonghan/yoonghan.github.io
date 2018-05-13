@@ -1,16 +1,18 @@
 `use strict`
 
 /**
-*Rotating image background for Overlay Indicator is saved as based 64 in scss
+* Rotating image background for Overlay Indicator is saved as based 64 in scss
+* Update to remove props drilling, by replacing Context
 **/
 import * as React from "react";
 import {Transition} from 'react-transition-group';
 
 import {Moziac} from './Moziac';
-import {Item, LEAVE_TIME} from './Item';
+import {Item, LEAVE_TIME} from './Const';
 import {Overlay} from './Overlay';
 
 import '../../../scss/base.scss';
+
 var styles = require('../../../scss/components/Gallery.scss');
 declare function require(path: string): any;
 
@@ -72,32 +74,29 @@ export class Gallery extends React.PureComponent<GalleryProps, GalleryState> {
   };
 
   render() {
-
-
-
     return (
       <div className={styles.gallery}>
-            <Transition in={this.state.isOverlayOpen} timeout={LEAVE_TIME} appear={this.state.isOverlayOpen}>
+        <Transition in={this.state.isOverlayOpen} timeout={LEAVE_TIME} appear={this.state.isOverlayOpen}>
+        {
+          (state:any) =>
             {
-              (state:any) =>
-                {
-                  if(state === 'exited') {
-                    return null;
-                  }
+              if(state === 'exited') {
+                return null;
+              }
 
-                  return (
-                      <Overlay
-                        transitionStyles={...this.transitionStyles[state]}
-                        clickHandler={this.toggleOverlay}
-                        animTop={this.state.clickPosTop}
-                        animLeft={this.state.clickPosLeft}
-                        items={this.props.items}
-                        selectedIdx={this.state.selectedIdx}
-                        isSubComponentToUpdate={state==='entering'}/>
-                  );
-                }
+              return (
+                  <Overlay
+                    transitionStyles={...this.transitionStyles[state]}
+                    clickHandler={this.toggleOverlay}
+                    animTop={this.state.clickPosTop}
+                    animLeft={this.state.clickPosLeft}
+                    items={this.props.items}
+                    selectedIdx={this.state.selectedIdx}
+                    isSubComponentToUpdate={state==='entering'}/>
+              );
             }
-            </Transition>
+        }
+        </Transition>
         {this.createMoziacListing()}
       </div>
     );
