@@ -2,8 +2,8 @@
 import * as React from "react";
 import {Button} from 'react-toolbox/lib/button';
 
+import {Item} from './Const';
 import {OverlayCard} from './OverlayCard';
-import {Item} from './Item';
 
 import '../../../scss/base.scss';
 var styles = require('../../../scss/components/Gallery.scss');

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {Button} from 'react-toolbox/lib/button';
 
-import {LEAVE_TIME, Item} from './Item';
+import {LEAVE_TIME, Item} from './Const';
 import {OverlayIndicator} from './OverlayIndicator';
 import {OverlayCardImageAnimated} from './OverlayCardImageAnimated';
 
