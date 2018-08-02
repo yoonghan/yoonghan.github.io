@@ -12,26 +12,11 @@ import { Timeline } from "../../patternlibrary/tsx/components/Timeline";
 import { Button } from 'react-toolbox/lib/button';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { Preloader } from "../../patternlibrary/tsx/components/Preloader";
 
 var styles = require('../../scss/components/index.scss');
 declare function require(path: string): any;
 
 const locale = new IndexLocale();
-
-const conceptPosts = [
-{
-  title: locale.translate('post.1.title'),
-  description: locale.translate('post.1.text')
-},
-{
-  title: locale.translate('post.2.title'),
-  description: locale.translate('post.2.text')
-},
-{
-  title: locale.translate('post.3.title'),
-  description: locale.translate('post.3.text')
-}];
 
 const mainScreenProps = {
   mainScreenV2Text: locale.translate('header.text'),
@@ -55,6 +40,10 @@ const GoogleIcon = () => (
 
 const timelines = [
   { year: 2018},
+  {
+    title: locale.translate('card.20180723.title'),
+    description: locale.translate('card.20180723.desc')
+  },
   {
     title: locale.translate('card.201805.title'),
     description: locale.translate('card.201805.desc'),
@@ -180,10 +169,8 @@ export class Index extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div className={styles['reacttoolbox']}>
-        <Preloader/>
         <Header isHomepage={true}/>
         <MainScreenV2 {...mainScreenProps}/>
-        <Midpart conceptArray={conceptPosts}/>
         <div className="posting">
           <StickyTitle text={locale.translate('title.research')} pos={0} />
           <div className={styles['card-section']}>
@@ -197,7 +184,7 @@ export class Index extends React.PureComponent<{}, {}> {
                 subtitle={locale.translate('card.5.desc')}
               />
               <CardActions>
-                <Button href='https://github.com/yoonghan' theme={styles} primary>
+                <Button href='https://github.com/yoonghan/Walcron' theme={styles} primary>
                   <GithubIcon /> Github
                 </Button>
               </CardActions>
@@ -208,8 +195,8 @@ export class Index extends React.PureComponent<{}, {}> {
                 subtitle={locale.translate('card.6.desc')}
               />
               <CardActions>
-                <Button href='https://play.google.com/store/apps/details?id=com.walcron.hanleewan.weddingplanner' target='playstore' theme={styles} primary>
-                  <i className={"fa fa-google"} aria-hidden="true"></i> Playstore
+                <Button href='https://github.com/yoonghan/android-wedding-app' theme={styles} primary>
+                  <GithubIcon /> Github
                 </Button>
                 <Button href='https://play.google.com/store/apps/details?id=com.theezpost.postcard' target='playstore' theme={styles} primary>
                   <i className={"fa fa-google"} aria-hidden="true"></i> Playstore

@@ -100,7 +100,7 @@ export class MenuDropV2 extends React.PureComponent<MenuDropV2Props, MenuDropV2S
         }
 
         if(this._isOwnPage(path)) {
-          return;
+          return <MenuIcon icon={icon} title={title} key={title} path={path} unlinkable={true}/>;
         }
 
         return (

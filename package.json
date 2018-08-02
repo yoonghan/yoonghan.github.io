@@ -1,5 +1,5 @@
 {
-  "name": "walcronweb",
+  "name": "nodejsweb",
   "version": "1.0.0",
   "description": "Walcron website",
   "main": "server.js",
@@ -29,6 +29,7 @@
     "babel-preset-env": "^1.6.1",
     "breakpoint-sass": "^2.7.1",
     "css-loader": "^0.28.7",
+    "del": "^3.0.0",
     "es6-object-assign": "^1.1.0",
     "event-stream": "^3.3.4",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -43,6 +44,7 @@
     "jest": "^22.4.2",
     "lodash": "^4.17.5",
     "node-sass": "^4.7.2",
+    "opn": "^5.3.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-each": "^0.10.0",
     "postcss-import": "^11.0.0",

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import * as CSSTransition from 'react-transition-group/CSSTransition';
-import {MenuIcon} from '../MenuIcon';
 import {ContactDisplay} from './ContactDisplay';
 
 import '../../../scss/base.scss';
@@ -43,17 +42,15 @@ export class FooterV2 extends React.PureComponent<FooterProps, {}> {
         const {text, path} =  linkItem;
 
         if(this._isOwnPage(path)) {
-          return;
+          return <span key={text}>&bull; {text} </span>;
         }
 
-        return (
-           <span>&bull; <a href={path} key={text}>{text}</a></span>
-        );
+        return <span key={text}>&bull; <a href={path}>{text}</a></span>;
       }
     );
 
     if(!this.props.isHomepage) {
-      linkAsHtml.unshift(<a href="/" className={styles['ftr-back-arrow']}><i className={"fa fa-arrow-circle-left"}></i></a>);
+      linkAsHtml.unshift(<a href="/" className={styles['ftr-back-arrow']} key={"main"}><i className={"fa fa-arrow-circle-left"}></i></a>);
     }
 
     return linkAsHtml;

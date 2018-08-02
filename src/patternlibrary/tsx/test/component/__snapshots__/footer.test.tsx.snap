@@ -13,24 +13,55 @@ exports[`Footer can work 1`] = `
       <div
         className="ftr-contact"
       >
-        <div />
-        <div
-          className="ftr-contact-open-deco"
-        >
-          <a
-            className="ftr-contact-open-btn links"
-            href="javascript:;"
-            onClick={[Function]}
+        <div>
+          <div
+            className="ftr-contact-close-container"
           >
-            <span>
-              <i
-                className="fa fa-pencil-square-o"
-              />
-              <span>
-                Contact Us
-              </span>
-            </span>
-          </a>
+            <div
+              className="ftr-contact-email-content"
+            >
+              <div
+                className="ftr-contact-email-information"
+              >
+                Shit just got better.
+              </div>
+              <div
+                className="ftr-contact-email-contact"
+              >
+                <a
+                  href="mailto:walcoorperation@gmail.com"
+                >
+                  <i
+                    className="fa fa-envelope-open"
+                  />
+                </a>
+                <a
+                  href="https://github.com/yoonghan"
+                  target="contact"
+                >
+                  <i
+                    className="fa fa-github"
+                  />
+                </a>
+                <a
+                  href="https://www.facebook.com/walcron.coorperation"
+                  target="contact"
+                >
+                  <i
+                    className="fa fa-facebook-official"
+                  />
+                </a>
+                <a
+                  href="https://www.stackoverflow.com/users/3893990/han"
+                  target="contact"
+                >
+                  <i
+                    className="fa fa-stack-overflow"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

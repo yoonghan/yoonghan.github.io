@@ -2,7 +2,7 @@
 @import "../lib/breakpoints";
 @import "../lib/fonts";
 
-$arrowsize: 18px;
+$arrowsize: 16px;
 
 .timeline {
   ul {
@@ -67,16 +67,16 @@ $arrowsize: 18px;
 
         &.year {
           position: absolute;
-          background: $color-timeline-box;
-          padding: 8px 12px;
+          color: $color-timeline-box;
+          background: #FFFFFF;
+          padding: 12px;
+          border-top: 1px solid;
+          border-bottom: 1px solid;
           text-align: center;
-          top: 18px;
+          top: 14px;
           left: -16px;
-          border: 2px solid $color-timeline-border-box;
-          box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
 
           @include breakpoint($breakpoint-big-screen) {
-            border-radius: 8px;
             transform: translateX(-50%);
             left: 50%;
           }
@@ -88,12 +88,23 @@ $arrowsize: 18px;
           }
 
           .box {
+            color: #000;
+            background: #FFF;
             position: relative;
-            background: none repeat scroll 0 0 $color-timeline-box;
+            border: 1px solid $color-timeline-box;
             margin-right: 0;
-            padding: 10px;
-            border-radius: 8px;
+            border-radius: 3px;
             box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+
+            .box-title {
+              color: #FFF;
+              padding: 10px 20px;
+              background-color: $color-timeline-box;
+            }
+
+            .box-desc {
+              padding: 10px;
+            }
 
             @include breakpoint($breakpoint-big-screen) {
               margin-left: 28px;
@@ -104,12 +115,12 @@ $arrowsize: 18px;
               content: " ";
               display: block;
               position: absolute;
-              top: 1px;
+              top: 9px;
               left: -32px;
               width: $arrowsize;
               border-right: $arrowsize solid $color-timeline-box;
-              border-top: $arrowsize solid transparent;
-              border-bottom: $arrowsize solid transparent;
+              border-top: 10px solid transparent;
+              border-bottom: 10px solid transparent;
             }
 
             .content-container {
@@ -125,15 +136,9 @@ $arrowsize: 18px;
                 margin-bottom: 15px;
               }
 
-              .divider {
-                border-bottom: 1px solid #FFFFFF;
-                height: 10px;
-                margin-bottom: 10px;
-              }
-
               img {
                 width: 100%;
-                margin-bottom: 8px;
+                padding: 1px 0;
 
                 &.clickable {
                   cursor: pointer;

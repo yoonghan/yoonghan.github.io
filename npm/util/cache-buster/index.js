@@ -22,7 +22,7 @@ var plugin = function(options) {
     var assetPath = _.first(parts);
     var p = path.join(opts.assetRoot, assetPath);
     var u = url.parse(assetPath);
-    u.query = _.extend({}, u.query, {v: timestamp});
+    //u.query = _.extend({}, u.query, {v: timestamp});
     return url.format(u);
   };
   return es.map(function(file, cb) {

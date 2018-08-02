@@ -5,16 +5,10 @@ html(lang="en")
     title #{$i18n.index.title}
     meta(name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.")
     include ../incl/meta.incl
-    include ../patternlibrary/incl/preloader.incl
+    link(rel="stylesheet" type="text/css" href="ASSET{/extw/index.style.css}")
+    link(rel="stylesheet" type="text/css" href="ASSET{/ext/css/font-awesome.css}")
   body
-    include ../patternlibrary/incl/preloader_2.incl
-    div(id='index', class='p-c')
-    +deferStylesheet()
-    script.
-      (function() {
-        deferStylesheet("ASSET{/extw/index.style.css}");
-        deferStylesheet("ASSET{/ext/css/font-awesome.css}");
-      })();
+    div(id='index')
     script(src='/ext/js/react.production.min.js' defer="defer")
     script(src='/ext/js/react-dom.production.min.js' defer="defer")
     script(src='/ext/js/object-assign-auto.min.js' defer="defer")

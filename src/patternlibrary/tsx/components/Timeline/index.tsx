@@ -42,7 +42,7 @@ export class Timeline extends React.PureComponent<TimelineProp, {}> {
     return (
       <React.Fragment>
         <div key={0} className={styles['year-wrapper']}></div>
-        <div key={1} className={styles['year']}><h5>{post.year}</h5></div>
+        <div key={1} className={styles['year']}><h3>{post.year}</h3></div>
       </React.Fragment>
     );
   }
