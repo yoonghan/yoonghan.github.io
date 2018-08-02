@@ -5,7 +5,7 @@
  */
 module.exports = function generateCsp(testEnvUrl) {
 
-  const _connectSrc = ["https://walcron.com"];
+  const _connectSrc = ["https://walcron.com", "https://www.walcron.com"];
   if(testEnvUrl) {
     _connectSrc.push(testEnvUrl);
   }

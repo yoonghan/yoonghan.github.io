@@ -9,6 +9,7 @@ export interface MenuIconProp {
   icon: string;
   title: string;
   path: string;
+  unlinkable?: boolean;
 }
 
 export class MenuIcon extends React.PureComponent<MenuIconProp, {}> {
@@ -16,15 +17,18 @@ export class MenuIcon extends React.PureComponent<MenuIconProp, {}> {
     super(props);
   };
 
-  clickAndChangeLocation = (path:string) => {
-    window.location.href = path;
+  _clickAndChangeLocation = (path:string) => {
+    const {unlinkable} = this.props;
+    if(!unlinkable) {
+      window.location.href = path;
+    }
   };
 
   render() {
-    const {title, icon, path} = this.props;
+    const {title, icon, path, unlinkable} = this.props;
 
     return (
-      <div className={styles['menu-icon']} onClick={()=>this.clickAndChangeLocation(path)}>
+      <div className={styles['menu-icon'] + (unlinkable ? ' ' + styles['unlinkable'] : '')} onClick={()=>this._clickAndChangeLocation(path)}>
         <div className={styles['icon']}>
           <div className={styles['image']}><i className={"fa fa-" + icon} aria-hidden="true"></i></div>
           <div className={styles['icon-inner']}/>

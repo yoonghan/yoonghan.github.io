@@ -12,6 +12,20 @@
   cursor: pointer;
   user-select: none;
 
+  &.unlinkable {
+    color: $color-menu-icon-disabled;
+    cursor: default !important;
+
+    .icon {
+      border-color: $color-menu-icon-disabled;
+      
+      .icon-inner, .image {
+        color: $color-menu-icon-disabled;
+        border-color: $color-menu-icon-disabled;
+      }
+    }
+  }
+
   .icon {
     width: 30px;
     height: 30px;

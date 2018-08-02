@@ -1,7 +1,6 @@
 `use strict`
 
 import * as React from "react";
-import {MenuIcon} from './MenuIcon';
 import {MenuDropV2} from './MenuDropV2';
 import {LocaleSelector, LocaleSelectorTypes} from './LocaleSelector';
 
@@ -36,7 +35,6 @@ export class HeaderV2 extends React.PureComponent<HeaderV2Props, {}> {
           <div className={styles['title-container']}>
             <LocaleSelector type={LocaleSelectorTypes.Link}/>
           </div>
-          <MenuDropV2 linkArray={this.props.linkArray} isHomepage={this.props.isHomepage}/>
         </div>
       </div>
       );

@@ -425,8 +425,8 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Presentasi tentang Bitcoin'
     },
     'card.11.desc': {
-      en: 'To achieve his personal goal (to present every year), Han hosted a presentation on Bitcoin and Blockchain, 24 people attended and the reaction was great!',
-      my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Seramai 24 orang hadir and hasilnya amat dialu-alukan.'
+      en: 'To achieve his personal goal (to present every year), Han hosted a presentation on Bitcoin and Blockchain. The reaction was positive!',
+      my: 'Untuk mencapai "Personal" goal sendiri; Han memutuskan untuk mengadakan ceramah bertajuk Bitcoin dan Blockchain. Hasilnya amat dialu-alukan.'
     },
     'card.10.title': {
       en: 'Won Hackathon in IOT and Cloud',
@@ -527,16 +527,16 @@ export class IndexLocale extends AbstractLocalev2 {
       my: 'Bina laman ini dan namakan ia Jom Jaring.'
     },
     'card.5.title': {
-      en: 'Javascript with ReactJS',
-      my: 'Javascript with ReactJS'
+      en: 'Javascript with ReactJS [In progress with Reason ML]',
+      my: 'Javascript dengan ReactJS [Reason ML dalam proses]'
     },
     'card.5.desc': {
       en: 'This website has been through 4 interations, and we are glued to this final interation written in ReactJS.' +
           ' Previously, we had been writing this site in VanillaJS, AngularJS and even AngularJS2; but now, we\'re prefering ReactJS.' +
-          ' Main reasons for this shift is that we preferred the use of libraries over framework.',
+          ' Main reasons for this shift is that we preferred the use of libraries over framework. But recently, we\'re slowing shifting the codes to Reason React, LOL (no framework).',
       my: 'Laman ini telah mengalami 4 interasi, kini kami mengkodkan dengan penggunaan ReactJS.' +
           ' Pernah kami kod dengan AngularJS, AngularJS2 dan JS; tetapi kami sekarang gemar dengan ReactJS.' +
-          ' Motive utama kami menggunakan ReactJS adalah kerana penggunaan library lebih sesuai untuk kami.'
+          ' Motive utama kami menggunakan ReactJS adalah kerana penggunaan library lebih sesuai untuk kami. Tapi kebelakangan ini, kami bercadang menggunakan Reason React.'
     },
     'card.6.title': {
       en: 'Mobile with React Native',
@@ -545,7 +545,7 @@ export class IndexLocale extends AbstractLocalev2 {
     'card.6.desc': {
       en: 'Coding React Native was an extremely wonderful experience as Javascripts fits a role in gluing components written in Swift and Android. ' +
           'On our daily work job, Han and Lee Wan still writes native Android and iOS(Obj-C and Swift) codes for work. ' +
-          'An advice to anyone writing React Native/Nativescript: it is very important to learn native mobile language to harness it\'s true potential.',
+          'Being both platform coders, I prefer React Native as I can visualize better using CSS and DOM components.',
       my: 'Koding React Native memang menyeronokan, kerana kami dapat belajar javascript, Android dan iOS dalam masa yang sama. ' +
           'Dalam kerja harian, Han dan Lee Wan masih mengkod dalam Native Android and iOS.' +
           'Kami menasihatkan kepada sesiapa yang mahu mengkod dalam React Native/Nativescript; anda perlu belajar native language iOS/Android untuk meneroka pontensinya.'
@@ -590,6 +590,22 @@ export class IndexLocale extends AbstractLocalev2 {
     'card.201805.desc': {
       en: 'Started as well to use the EV3 Lego as the hardware unit. Building and ecosystem to integrate Microservices, AI and Hardware interoperability.',
       my: 'Dengan semua peralatan, sekarang tibanya masa untuk menintegrasi Microservices, AI, dan hardware sebagai satu ecosystem.'
+    },
+    'card.20180723.title': {
+      en: 'Vision To Germany',
+      my: 'Visi ke Negara Jerman'
+    },
+    'card.20180723.desc': {
+      en: 'Three years ago, we plan to move to Germany to work and explore and now we had started our difficult journey and we are really challenges; now, who wrote the darn book "Who moved my cheese"!',
+      my: 'Tiga tahun dahulu, kami merancang ke Negara Jerman. Sekarang kami cuba merelasikannya, malang petaka, itu adalah satu pengalaman yang amat susah.'
+    },
+    'card.20180730.title': {
+      en: 'Improving the page',
+      my: 'Membaiki laman ini'
+    },
+    'card.20180730.desc': {
+      en: 'Exploring on Reason React, we are now planning to improve this website in all aspects.',
+      my: 'Dengan mengunakan Reason React, sekarang kami sedang merancang untuk membaiki laman ini.'
     }
   };
 

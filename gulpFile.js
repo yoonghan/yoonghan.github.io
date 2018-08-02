@@ -17,12 +17,21 @@ var gulp = require('gulp'),
   langChange = require('./npm/util/lang-change'),
   swPrecache = require('sw-precache');
 
-  var flags = {
-    production: false
-  };
+var rootDir = './dist/main';
+
+var flags = {
+  production: false
+};
 /**
  * Webpack for production bundle
  **/
+ gulp.task('replace-sw-precache', function(){
+   gulp.src([rootDir + '/service-worker.js'])
+     .pipe(replaceStream('.html"', '"'))
+     .pipe(replaceStream('.html\'', '\''))
+     .pipe(gulp.dest(rootDir));
+ });
+
 gulp.task("webpack-with-serviceworker:build", function(callback) {
 	var myConfig = Object.create(webpackConfig);
 
@@ -41,8 +50,6 @@ gulp.task("webpack-with-serviceworker:build", function(callback) {
 		gulpUtil.log("[webpack:build]", stats.toString({
 			colors: true
 		}));
-
-    var rootDir = './dist/main';
 
     swPrecache.write(`${rootDir}/service-worker.js`, {
       staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}'],
@@ -190,7 +197,7 @@ gulp.task('start-server', function() {
 gulp.task('build-basic', gulpSequence('clean', ['pug', 'copy', 'image']));
 gulp.task('build-prod', function() {
   flags.production = true;
-  gulpSequence('build-basic', 'webpack-with-serviceworker:build')();
+  gulpSequence('build-basic', 'webpack-with-serviceworker:build', 'replace-sw-precache')();
 });
 gulp.task('build-dev-progressive', gulpSequence('build-dev', 'webpack-with-serviceworker:build'));
 gulp.task('build-dev', gulpSequence('build-basic', ['webpack-dev-server', 'watch', 'start-server']));

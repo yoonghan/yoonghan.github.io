@@ -4,7 +4,7 @@
 @import "../lib/fonts";
 @import "../lib/shadows";
 
-$fixed-email-height: 150px;
+$fixed-email-height: 100px;
 
 .ftr {
   color: $color-ftr-foreground;
@@ -32,9 +32,13 @@ $fixed-email-height: 150px;
     display: flex;
     margin: 5px 0;
 
+    span {
+      white-space: nowrap;
+      padding-right: 10px;
+    }
+
     a {
       color: $color-links-light-v2;
-      padding-right: 10px;
     }
 
     .ftr-back-arrow {
@@ -46,7 +50,7 @@ $fixed-email-height: 150px;
   .ftr-contact {
     margin: 0 0 15px 0;
 
-    a{
+    a {
       color: $color-ftr-links-foreground;
     }
 
@@ -93,7 +97,7 @@ $fixed-email-height: 150px;
         }
 
         .ftr-contact-email-information {
-          padding: 60px 0 10px 0;
+          padding: 20px 0 10px 0;
         }
       }
 

@@ -18,7 +18,7 @@ export class ContactDisplay extends React.PureComponent<ContactOpenProps, Contac
   constructor(props:any) {
     super(props);
 
-    const openState = false;
+    const openState = true;
 
     this.state = {
       isContactOpen: openState
@@ -29,11 +29,6 @@ export class ContactDisplay extends React.PureComponent<ContactOpenProps, Contac
     return (
       <div className={styles['ftr-contact-close-container']}>
         <div className={styles['ftr-contact-email-content']}>
-          <div className={styles['ftr-contact-close-deco']}>
-            <a href="javascript:;" className={styles['ftr-contact-close-btn'] + ' links'} onClick={this._clickContact}>
-              <i className={"fa fa-remove"}></i>
-            </a>
-          </div>
           <div className={styles['ftr-contact-email-information']}>
             {this.props.contactInformation}
           </div>
@@ -46,6 +41,9 @@ export class ContactDisplay extends React.PureComponent<ContactOpenProps, Contac
             </a>
             <a href="https://www.facebook.com/walcron.coorperation" target="contact">
               <i className="fa fa-facebook-official"></i>
+            </a>
+            <a href="https://www.stackoverflow.com/users/3893990/han" target="contact">
+              <i className="fa fa-stack-overflow"></i>
             </a>
           </div>
         </div>

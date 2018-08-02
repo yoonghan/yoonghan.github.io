@@ -61,12 +61,13 @@ export class TimelineContainer extends React.PureComponent<TimelineContainerProp
     return (
       <div className={styles['content-container']}>
         {altImage && <ImageOverlay imageSrc={altImage} ref="overlayRef"/>}
-        <h4>{title}</h4>
-        <div className={styles['divider']}/>
+        <h4 className={styles['box-title']}>{title}</h4>
         <div>
           {image && <img src={image} onClick={this._clickImage} className={altImage && styles["clickable"]}/>}
-          <div className={styles['content-desc-container']}>{description}</div>
-          {linkListing}
+          <div className={styles['box-desc']}>
+            <div className={styles['content-desc-container']}>{description}</div>
+            {linkListing}
+          </div>
         </div>
       </div>
     )
