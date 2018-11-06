@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "dev": "node server.js",
-    "start": "NODE_ENV=production PORT=8081  node server.js",
+    "start": "Start NODE_ENV=production PORT=8081 node server.js",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "keywords": [],

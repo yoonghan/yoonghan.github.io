@@ -34,6 +34,7 @@ export const ConstructionSplashScreen: React.SFC<any> = () => {
           margin-right: auto;
           width: 50%;
           opacity: 0.3;
+          max-height: 320px;
         }
 
         h5 {
@@ -50,7 +51,7 @@ export const ConstructionSplashScreen: React.SFC<any> = () => {
         .construction-splash-screen-container {
           position: relative;
           height: 100vh;
-          width: 100vw;
+          min-width: 320px;
           background: ${background['construction']};
         }
 
