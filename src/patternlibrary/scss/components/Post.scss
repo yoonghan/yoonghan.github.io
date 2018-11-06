@@ -1,7 +1,0 @@
-@import "../lib/colors";
-@import "../lib/breakpoints";
-@import "../lib/fonts";
-
-.post {
-  @include screen-fit();
-}

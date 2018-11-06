@@ -1,5 +1,0 @@
-{
-  "globalDependencies": {
-    "trianglify": "file:typings/custom/trianglify.d.ts"
-  }
-}
