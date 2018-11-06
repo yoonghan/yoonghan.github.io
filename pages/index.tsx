@@ -39,6 +39,17 @@ const Index: React.SFC<any> = () => {
           position: relative;
         }
       `}</style>
+      <style jsx global>
+      {`
+        html {
+          font-size: 12pt;
+        }
+        body {
+          padding: 0;
+          margin: 0;
+        }
+      `}
+      </style>
     </React.Fragment>
   );
 }
