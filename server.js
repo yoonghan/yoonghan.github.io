@@ -5,13 +5,14 @@ const express = require('express'),
 
 
 const dev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 8001;
+const port = parseInt(process.env.PORT, 10) || 8001;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare()
 .then(() => {
   const server = express();
+
   /** [Security-Start]**/
   server.use(helmet());
   server.use(hsts({
@@ -28,7 +29,7 @@ app.prepare()
   /** [Request-Start]**/
   server.get('*', (req, res) => {
     return handle(req, res);
-  })
+  });
   /** [Request-Start]**/
 
   /** [Listener-Start]**/

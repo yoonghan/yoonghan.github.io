@@ -12,10 +12,11 @@ If there are missing webpack installation, manually execute 'npm install next'
 1. Check that the start port is 8081.
 2. Check that 'npm install' and 'npm start' can be triggered.
 
-# Deployment from Windows server.
+# Deployment from Windows server to Unix System.
 1. After npm build, look for "\\" in folders .next\**\*.json.
 2. Replace all folders with "\\" with "/".
 3. Deploy into servers, e.g. AWS and so on.
+4. Check the Node Express version, the latest Express with Next doesn't work hand-in-hand in AWS. No idea why.
 
 ## Enhance Image performance.
 Install magickImage and execute the command:
