@@ -18,7 +18,7 @@ If there are missing webpack installation, manually execute 'npm install next'
 1. After npm build, look for "\\" in folders .next\**\*.json.
 2. Replace all folders with "\\" with "/".
 3. Deploy into servers, e.g. AWS and so on.
-4. Check that production start with the Postfix "NODE_ENV=production", this though doesn't work in Windows.
+4. Make sure NODE_ENV is case sensitive.
 
 ## Enhance Image performance.
 Install magickImage and execute the command:
