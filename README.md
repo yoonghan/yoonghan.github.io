@@ -11,6 +11,8 @@ If there are missing webpack installation, manually execute 'npm install next'
 # Deployment into AWS Elasticbeanstalk
 1. Check that the start port is 8081.
 2. Check that 'npm install' and 'npm start' can be triggered.
+3. Go to Configuration->Software to add NODE_ENV=production, PORT=8081
+4. Go to Configuraiton->Software to add start up with "npm start", and not default server.js
 
 # Deployment from Windows server to Unix System.
 1. After npm build, look for "\\" in folders .next\**\*.json.
