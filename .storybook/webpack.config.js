@@ -4,7 +4,7 @@ const TSDocgenPlugin = require('react-docgen-typescript-webpack-plugin');
 module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules.push({
     test: /\.(ts|tsx)$/,
-    loader: require.resolve('awesome-typescript-loader')
+    loader: ['babel-loader', 'awesome-typescript-loader']
   });
   defaultConfig.plugins.push(new TSDocgenPlugin());
   defaultConfig.resolve.extensions.push('.ts', '.tsx');
