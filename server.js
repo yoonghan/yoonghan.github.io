@@ -26,6 +26,10 @@ app.prepare()
   server.use(express.static('./seo'));
   /** [SEO-End] **/
 
+  /** [Static-Start] **/
+  server.use(express.static('./static'));
+  /** [Static-End] **/
+
   /** [Request-Start]**/
   server.get('*', (req, res) => {
     return handle(req, res);

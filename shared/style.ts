@@ -1,9 +1,11 @@
-const PRIMARY_YELLOW = "#FFDE03";
-const PRIMARY_BLUE = "#0336FF";
+//const PRIMARY_YELLOW = "#FFDE03";
+//const PRIMARY_BLUE = "#0336FF";
 const PRIMARY_PURPLE = "#FF0266";
 
-const WHITE = "#FFF";
-const BLACK = "#000";
+export const WHITE = "#FFF";
+export const BLACK = "#000";
+export const GREY = "#CCC";
+export const DARKGREY = "#999";
 
 export const fontColor = {
   color: WHITE,
@@ -13,4 +15,8 @@ export const fontColor = {
 
 export const background = {
   construction: "#ECEFF1"
+}
+
+export const fontFamily = {
+  standard: '"Roboto", arial, serif'
 }
