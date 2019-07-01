@@ -18,7 +18,7 @@
   "author": "Walcron Cooperation",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.0",
+    "express": "^4.17.1",
     "helmet": "^3.14.0",
     "hsts": "^2.1.0",
     "next": "^7.0.2",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.2",
-    "@storybook/addon-info": "^4.0.2",
+    "@storybook/addon-info": "^5.1.9",
     "@storybook/react": "^4.0.2",
     "@types/d3": "^5.0.1",
     "@types/next": "^7.0.3",
