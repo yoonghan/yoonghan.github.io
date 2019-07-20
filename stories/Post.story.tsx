@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BASIC_MENU } from './menu';
-import { Post } from '../components/Post';
+import Post from '../components/Post';
 
 const posts = [
   {title: 'Post 1', text: 'Post 1 Text', icon: 'adn'},

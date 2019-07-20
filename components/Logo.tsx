@@ -6,7 +6,7 @@ export interface LogoProps {
   withText?: boolean;
 }
 
-export const Logo: React.SFC<LogoProps> = ({withText = false}) => {
+const Logo: React.SFC<LogoProps> = ({withText = false}) => {
   return (
     <React.Fragment>
       <div className={'logo-container'}>
@@ -33,3 +33,5 @@ export const Logo: React.SFC<LogoProps> = ({withText = false}) => {
     </React.Fragment>
   );
 }
+
+export default Logo;

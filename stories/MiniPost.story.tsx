@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BASIC_MENU } from './menu';
-import { MiniPost } from '../components/MiniPost';
+import MiniPost from '../components/MiniPost';
 
 const Component = () => {
   return <MiniPost title={"Sample Title"} text={'Content'} icon={'icon'}/>

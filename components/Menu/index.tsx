@@ -14,7 +14,7 @@ export interface MenuProps {
   menuItems: Array<JSX.Element>;
 }
 
-export class Menu extends React.PureComponent<MenuProps, {}> {
+export default class Menu extends React.PureComponent<MenuProps, {}> {
   private menuTriggerSize = 767;
   private menuRef = React.createRef<HTMLUListElement>();
   private mobileMenuRef = React.createRef<HTMLSpanElement>();

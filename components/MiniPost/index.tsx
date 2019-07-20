@@ -15,7 +15,7 @@ export interface MiniPostProps extends RotatingIconProps {
   concept?: Array<IConcept>;
 }
 
-export const MiniPost: React.SFC<MiniPostProps> = (props) => {
+const MiniPost: React.SFC<MiniPostProps> = (props) => {
 
   function _createConcept(conceptMap:IConcept, key:string) {
     return (
@@ -107,3 +107,5 @@ export const MiniPost: React.SFC<MiniPostProps> = (props) => {
     </div>
   );
 }
+
+export default MiniPost;

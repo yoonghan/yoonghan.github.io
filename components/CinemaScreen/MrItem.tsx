@@ -5,7 +5,7 @@
   **/
 
 import * as React from "react";
-import {MrTitle} from "./MrTitle";
+import { MrTitle } from "./MrTitle";
 
 export interface MrItemProps {
 }
