@@ -10,7 +10,7 @@ import {MrItem} from "./MrItem";
 export interface CinemaScreenProps {
 }
 
-export const CinemaScreen: React.SFC<CinemaScreenProps> = ({}) => {
+const CinemaScreen: React.SFC<CinemaScreenProps> = ({}) => {
   return (
     <React.Fragment>
       <div className={'cinema-screen'}>
@@ -27,3 +27,5 @@ export const CinemaScreen: React.SFC<CinemaScreenProps> = ({}) => {
     </React.Fragment>
   );
 }
+
+export default CinemaScreen;

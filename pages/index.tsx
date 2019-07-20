@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
-import { Logo } from '../components/Logo';
-import { ConstructionSplashScreen } from '../components/ConstructionSplashScreen';
+import Logo from '../components/Logo';
+import ConstructionSplashScreen from '../components/ConstructionSplashScreen';
 
 const Index: React.SFC<any> = () => {
   return (

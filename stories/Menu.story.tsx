@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BASIC_MENU } from './menu';
-import { Menu } from '../components/Menu';
+import Menu from '../components/Menu';
 
 export const Menu_White = () => {
   return(

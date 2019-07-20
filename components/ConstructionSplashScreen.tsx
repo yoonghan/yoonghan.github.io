@@ -4,7 +4,7 @@ import * as React from "react";
 import dynamic from 'next/dynamic';
 import {fontColor, background} from "../shared/style";
 
-export const ConstructionSplashScreen: React.SFC<any> = () => {
+const ConstructionSplashScreen: React.SFC<any> = () => {
   return (
     <div className={"construction-splash-screen-container"}>
       <div className={"construction-splash-screen-text-container"}>
@@ -77,3 +77,5 @@ export const ConstructionSplashScreen: React.SFC<any> = () => {
     </div>
   );
 }
+
+export default ConstructionSplashScreen;

@@ -1,13 +1,14 @@
 `use strict`
 
 import * as React from "react";
-import { MiniPost, MiniPostProps } from "./MiniPost";
+import MiniPost from "./MiniPost";
+import { MiniPostProps } from "./MiniPost";
 
 export interface PostProps {
   postItems: Array<MiniPostProps>;
 }
 
-export class Post extends React.PureComponent<PostProps, {}> {
+export default class Post extends React.PureComponent<PostProps, {}> {
   constructor(props:any) {
     super(props);
   };

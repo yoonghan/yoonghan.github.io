@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BASIC_MENU } from './menu';
-import { CinemaScreen } from '../components/CinemaScreen';
+import CinemaScreen from '../components/CinemaScreen';
 
 export const Mainscreen = () => {
   return (

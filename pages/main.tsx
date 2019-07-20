@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
-import { Menu } from '../components/Menu';
+import Menu from '../components/Menu';
 
 const Main: React.SFC<any> = () => {
   return (
