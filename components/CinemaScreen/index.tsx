@@ -8,23 +8,23 @@ import * as React from "react";
 import {MrItem} from "./MrItem";
 
 export interface CinemaScreenProps {
+  title: string;
+  btnOneStr: string;
+  btnTwoStr: string;
 }
 
-const CinemaScreen: React.SFC<CinemaScreenProps> = ({}) => {
+const CinemaScreen: React.SFC<CinemaScreenProps> = (props) => {
   return (
-    <React.Fragment>
-      <div className={'cinema-screen'}>
-        <MrItem/>
-      </div>
+    <div className={'cinema-screen'}>
+      <MrItem {...props}/>
       <style jsx>{`
         div.cinema-screen {
-          background: #ff00ff;
           position: relative;
           height: 100%;
           width: 100%;
         }
       `}</style>
-    </React.Fragment>
+    </div>
   );
 }
 

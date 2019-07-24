@@ -1,7 +1,7 @@
 `use strict`
 
 import * as React from "react";
-import produce from "immer";
+import produce, {Draft} from "immer";
 import {MainLayout} from "../MainLayout";
 
 export interface RotatingIconProps {
@@ -26,7 +26,7 @@ export class RotatingIcon extends React.PureComponent<RotatingIconProps, Rotatin
 
   _updateIcon = () => {
     this.setState(
-      produce<RotatingIconState>(draft => {
+      produce((draft:Draft<RotatingIconState>) => {
         draft.pos = draft.pos + 10;
       })
     );

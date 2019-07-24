@@ -9,12 +9,14 @@ import * as React from "react";
 export interface MrTitleProps {
 }
 
-export const MrTitle: React.SFC<MrTitleProps> = ({}) => {
+export const MrTitle: React.SFC<MrTitleProps> = ({title}) => {
   return (
     <React.Fragment>
-      <h2>PROGRAMMER UND PROGRAMMERIN</h2>
+      <h1>
+        {title}
+      </h1>
       <style jsx>{`
-        h2 {
+        h1 {
           display: flex;
           width: 100%;
           justify-content: center;
@@ -23,15 +25,15 @@ export const MrTitle: React.SFC<MrTitleProps> = ({}) => {
           color: #fff;
         }
 
-        h2:before,
-        h2:after {
+        h1:before,
+        h1:after {
           content: '';
           border-top: 2px solid;
           margin: 0 20px 0 0;
           flex: 1 0 20px;
         }
 
-        h2:after {
+        h1:after {
           margin: 0 0 0 20px;
         }
       `}</style>
