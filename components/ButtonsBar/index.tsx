@@ -67,6 +67,8 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
             padding: 0;
             width: ${width}%;
             text-align: center;
+            user-select: none;
+            cursor: pointer;
           }
           .btnsbar-item:first-child {
             border-radius: 3px 0 0 3px;

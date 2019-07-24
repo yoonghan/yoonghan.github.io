@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Head from 'next/head';
+import * as _color from '../../styles/_color';
 
 export const HtmlHead: React.SFC<any> = () => {
   return (
@@ -17,12 +18,17 @@ export const HtmlHead: React.SFC<any> = () => {
       <meta name="og:image" content="http://www.walcron.com/og_image.png" key="fb_image_i"/>
       <meta name="og:description" content="Welcome to Walcron Coorperation, Malaysia; a site was built for IT research purposes." key="fb_image_desc"/>
       <meta name="fb:admins" content="walcoorperation@gmail.com" key="fb_image_m"/>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>
+      <link rel="stylesheet" href="/css/font.css" key="internalfont"></link>
       <style jsx global>
       {`
         html {
           font-size: 12pt;
         }
         body {
+          background: ${_color.theme.background};
+          color: ${_color.theme.color};
+          position: relative;
           padding: 0;
           margin: 0;
         }
