@@ -1,20 +1,21 @@
 `use strict`
 
-/**
-  A button.
-  **/
-
 import * as React from "react";
+import Link from 'next/link';
 
 export interface ButtonProps {
+  href?: string;
 }
 
-const Button: React.SFC<ButtonProps> = ({children}) => {
+const createButton = (children?:any) => {
   return (
-    <button className="btn-container">
+    <a className="btn-container">
       {children}
       <style jsx>
         {`
+          a {
+            text-decoration: none;
+          }
           .btn-container {
             padding: 1rem;
             position: relative;
@@ -42,7 +43,15 @@ const Button: React.SFC<ButtonProps> = ({children}) => {
           }
         `}
       </style>
-    </button>
+    </a>
+  );
+}
+
+const Button: React.SFC<ButtonProps> = ({children, href}) => {
+  return (
+    href?
+      <Link href={href}>{createButton(children)}</Link>:
+      createButton(children)
   );
 }
 

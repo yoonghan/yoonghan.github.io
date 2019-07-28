@@ -1,7 +1,6 @@
-import Link from 'next/link';
+import * as React from "react";
 import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
-import Menu from '../components/Menu';
 import HeaderOne from '../components/HeaderOne';
 
 const Main: React.SFC<any> = () => {
@@ -12,7 +11,7 @@ const Main: React.SFC<any> = () => {
         <title>Walcron's journey</title>
         <meta name="description" content="Information about Walcron's journey."/>
       </Head>
-      <HeaderOne>Walcron's journey</HeaderOne>
+      <HeaderOne title={"Walcron's journey"}/>
     </React.Fragment>
   );
 }

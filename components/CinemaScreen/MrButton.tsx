@@ -10,13 +10,15 @@ import Button from "../Button";
 export interface MrButtonProps {
   btnOneStr: string;
   btnTwoStr: string;
+  btnOneClick: string;
+  btnTwoClick: string;
 }
 
-export const MrButton: React.SFC<MrButtonProps> = ({btnOneStr, btnTwoStr}) => {
+export const MrButton: React.SFC<MrButtonProps> = ({btnOneStr, btnOneClick, btnTwoStr, btnTwoClick}) => {
   return (
-    <div className={"buttons"} align="center">
-      <Button>{btnOneStr}</Button>
-      <Button>{btnTwoStr}</Button>
+    <div className={"buttons"}>
+      <Button href={btnOneClick}>{btnOneStr}</Button>
+      <Button href={btnTwoClick}>{btnTwoStr}</Button>
       <style jsx>{`
         .buttons {
           margin-top: 2rem;

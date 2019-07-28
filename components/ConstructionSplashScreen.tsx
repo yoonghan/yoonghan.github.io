@@ -1,7 +1,6 @@
 `use strict`
 
 import * as React from "react";
-import dynamic from 'next/dynamic';
 import {fontColor, background} from "../shared/style";
 
 const ConstructionSplashScreen: React.SFC<any> = () => {
