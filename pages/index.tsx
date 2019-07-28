@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import * as React from "react";
 import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
 import Logo from '../components/Logo';

@@ -9,7 +9,7 @@ export interface RainDropProps {
 export class RainDrop extends React.PureComponent<RainDropProps, {}> {
   private width = 960;
   private height = 500;
-  private rainRef = React.createRef<svg>();
+  private rainRef = React.createRef<any>();
 
   constructor(props:any) {
     super(props);

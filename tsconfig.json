@@ -3,7 +3,10 @@
     "outDir": "build/lib",
     "module": "esnext",
     "target": "es6",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "sourceMap": true,
     "strict": true,
     "allowJs": true,
@@ -24,7 +27,17 @@
     "removeComments": false,
     "skipLibCheck": true,
     "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "scripts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts"
+  ]
 }

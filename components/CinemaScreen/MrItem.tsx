@@ -9,15 +9,20 @@ import { MrTitle } from "./MrTitle";
 import { MrButton } from "./MrButton";
 
 export interface MrItemProps {
+  title: string;
   btnOneStr: string;
   btnTwoStr: string;
+  btnOneClick: string;
+  btnTwoClick: string;
 }
 
-export const MrItem: React.SFC<MrItemProps> = ({title, btnOneStr, btnTwoStr}) => {
+export const MrItem: React.SFC<MrItemProps> = ({title, btnOneStr, btnOneClick, btnTwoStr, btnTwoClick}) => {
   return (
     <div className={'mr-item'}>
       <MrTitle title={title}/>
-      <MrButton btnTwoStr={btnTwoStr} btnOneStr={btnOneStr}/>
+      <MrButton
+        btnOneStr={btnOneStr} btnOneClick={btnOneClick}
+        btnTwoStr={btnTwoStr} btnTwoClick={btnTwoClick}/>
       <style jsx>{`
         div.mr-item {
           width: 200px;

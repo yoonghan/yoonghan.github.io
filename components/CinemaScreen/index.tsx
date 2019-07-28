@@ -11,6 +11,8 @@ export interface CinemaScreenProps {
   title: string;
   btnOneStr: string;
   btnTwoStr: string;
+  btnOneClick: string;
+  btnTwoClick: string;
 }
 
 const CinemaScreen: React.SFC<CinemaScreenProps> = (props) => {

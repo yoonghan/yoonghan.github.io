@@ -7,6 +7,7 @@
 import * as React from "react";
 
 export interface MrTitleProps {
+  title: string;
 }
 
 export const MrTitle: React.SFC<MrTitleProps> = ({title}) => {

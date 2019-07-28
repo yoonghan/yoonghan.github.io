@@ -5,7 +5,7 @@ import CommandBar from '../components/CommandBar';
 
 export const Component = () => {
   return (
-    <div style={{width:"400px", height:"400px", background:"#000", padding: "20px"}}>
+    <div style={{width:"400px", height:"400px", background:"#000", padding: "20px", position: "relative"}}>
       <CommandBar/>
     </div>
   );
