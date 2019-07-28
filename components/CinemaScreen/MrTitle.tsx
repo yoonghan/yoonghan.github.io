@@ -5,6 +5,7 @@
   **/
 
 import * as React from "react";
+import HeaderOne from "../HeaderOne";
 
 export interface MrTitleProps {
   title: string;
@@ -13,9 +14,7 @@ export interface MrTitleProps {
 export const MrTitle: React.SFC<MrTitleProps> = ({title}) => {
   return (
     <React.Fragment>
-      <h1>
-        {title}
-      </h1>
+      <HeaderOne title={title} isLined={true}/>
       <style jsx>{`
         h1 {
           display: flex;

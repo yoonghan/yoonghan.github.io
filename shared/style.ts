@@ -25,7 +25,6 @@ export const fontFamily = {
   standard: '"Roboto", arial, serif'
 }
 
-
 export const TABLE_HEADER = {
   FOREGROUND: "#FFF",
   BACKGROUND: "#343a40",

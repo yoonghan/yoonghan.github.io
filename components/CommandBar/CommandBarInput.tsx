@@ -12,6 +12,7 @@ interface CommandBarInputProps {
 interface CommandBarInputStates {
   value: string;
   suggestions: Array<string>;
+  showPrompt: boolean;
 }
 
 export class CommandBarInput extends React.Component<CommandBarInputProps, CommandBarInputStates> {
@@ -22,6 +23,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
     this.state = {
       value: '',
       suggestions: [],
+      showPrompt: false
     };
   }
 
@@ -74,31 +76,56 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
     );
   };
 
-  _onSubmitCallback = (event :React.FormEvent<HTMLFormElement>) => {
+  _onSubmit = (event :React.FormEvent<HTMLFormElement>) => {
     this.props.onSubmitCallback(event, this.state.value);
+  }
+
+  _onFocus = (event :React.FormEvent<HTMLInputElement>) => {
+    this.setState(
+      produce((draft: Draft<CommandBarInputStates>) => {
+        draft.showPrompt = true;
+      })
+    );
+    this.props.onFocusCallback(event);
+  }
+
+  _onBlur = (event :React.FormEvent<HTMLInputElement>) => {
+    this.setState(
+      produce((draft: Draft<CommandBarInputStates>) => {
+        draft.showPrompt = false;
+      })
+    );
+    this.props.onBlurCallback(event);
+  }
+
+  _renderPrompt = () => {
+    const { showPrompt } = this.state;
+    if(!showPrompt) {
+      return <span/>;
+    }
+    return <span>&#9608;</span>;
   }
 
   render() {
     const { value, suggestions } = this.state;
-    const {onFocusCallback, onBlurCallback} = this.props;
 
     const inputProps = {
       value,
       onChange: this._onChange,
       onClick: this._onClickSelect,
-      onFocus: onFocusCallback,
-      onBlur: onBlurCallback
+      onFocus: this._onFocus,
+      onBlur: this._onBlur
     };
 
     //console.log(this.props.router.pathname);
 
     return (
-      <form onSubmit={this._onSubmitCallback} className="command-container">
+      <form onSubmit={this._onSubmit} className="command-container">
         <div className="command-text-container">
           <div className="command-text-prompt">
             guest@walcron$
           </div>
-          <div className={"prompt"}><span className={"promptIn"}>{value}</span><span>&#9608;</span></div>
+          <div className={"prompt"}><span className={"promptIn"}>{value}</span>{this._renderPrompt()}</div>
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
