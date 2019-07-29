@@ -24,8 +24,8 @@ const Main: React.SFC<any> = () => {
         .header {
           text-align: center;
           position: fixed;
-          top: 1rem;
-          left: 1rem;
+          top: 0.5rem;
+          left: 1.5rem;
           z-index: 2;
         }
         .center {

@@ -1,5 +1,6 @@
 import * as React from "react";
 import produce, {Draft} from "immer";
+import {FOREGROUND, BACKGROUND} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
 import {AvailableInput} from "../../shared/CommandSearch";
 
@@ -99,8 +100,8 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   }
 
   _renderPrompt = () => {
-    const { showPrompt } = this.state;
-    if(!showPrompt) {
+    const { value, showPrompt } = this.state;
+    if(!showPrompt || value.length > 22) {
       return <span/>;
     }
     return <span>&#9608;</span>;
@@ -114,7 +115,8 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
       onChange: this._onChange,
       onClick: this._onClickSelect,
       onFocus: this._onFocus,
-      onBlur: this._onBlur
+      onBlur: this._onBlur,
+      maxLength: 22
     };
 
     //console.log(this.props.router.pathname);
@@ -123,7 +125,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
       <form onSubmit={this._onSubmit} className="command-container">
         <div className="command-text-container">
           <div className="command-text-prompt">
-            guest@walcron$
+            walcron@tm$
           </div>
           <div className={"prompt"}><span className={"promptIn"}>{value}</span>{this._renderPrompt()}</div>
           <Autosuggest
@@ -148,10 +150,10 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           }
           .prompt {
             z-index: -1;
-            color: #FFF;
+            color: ${FOREGROUND};
             font-family: Inconsolata;
           	position: absolute;
-          	left: 7.2rem;
+          	left: 5.2rem;
             top: 0.6rem;
           	animation-name: blink;
             font-size: 0.8rem;
@@ -166,14 +168,14 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           	to { opacity: 0; }
           }
           .command-text-prompt {
-            width: 7rem;
+            width: 5rem;
             height: 2.2rem;
             display: flex;
             position: absolute;
             align-items: center;
             pointer-events: none;
             justify-content: center;
-            color: #FFF;
+            color: ${FOREGROUND};
             font-family: Inconsolata;
           }
           #command-enter {
@@ -183,7 +185,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             transition-property: color, background;
             transition-duration: .15s;
             transition-timing-function: ease-in-out;
-            color: #FFF;
+            color: ${FOREGROUND};
             border: none;
             background: none;
             font-size: 0.8rem;
@@ -199,15 +201,15 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           :global(.react-autosuggest__input) {
             font-family: Inconsolata;
             background-color: transparent;
-            width: 250px;
-            border: 1px solid #FFF;
+            width: 150px;
+            border: 1px solid ${FOREGROUND};
             margin: 0;
             display: block;
             min-width: 0;
             font-size: 0.8rem;
             box-sizing: content-box;
             -webkit-tap-highlight-color: transparent;
-            padding: 0.5rem 2rem 0.5rem 7rem;
+            padding: 0.5rem 2rem 0.5rem 5rem;
             border-radius: 0.3rem;
             height: 1.1rem;
             color: transparent;
@@ -226,11 +228,12 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           :global(.react-autosuggest__suggestions-container--open) {
             border: 1px solid #aaa;
             font-family: Inconsolata;
-            color: #FFF;
+            color: ${FOREGROUND};
+            background: ${BACKGROUND};
             font-size: 0.7rem;
             z-index: 2;
             margin-top: 2px;
-            margin-left: 7rem;
+            margin-left: 5rem;
             text-align: left;
             padding: 0 4px;
           }

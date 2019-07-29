@@ -39,6 +39,9 @@ const _loadList = () => (
       td:first-child {
         padding-right: 10px;
       }
+      tr:nth-child(even) {
+        background-color: ${TABLE_BODY.EVEN_BACKGROUND};
+      }
       tr:hover {
         background-color: ${TABLE_BODY.HOVER_BACKGROUND};
       }

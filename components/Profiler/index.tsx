@@ -20,22 +20,30 @@ const _getUser = (idx: number, length: number, name: string, description: JSX.El
     {description}
     <style jsx>
       {`
+        .user {
+          padding: 30px;
+        }
+
+        .name {
+          font-weight: bold;
+        }
+
+        img {
+          height: 200px;
+          margin: auto;
+          display: block;
+        }
+
         @media only screen and (min-width: 641px) {
           .user {
             width: ${(100/length)}%;
             padding: 15px;
           }
           .name {
-            text-align: center;
             font-weight: bold;
           }
           .divider {
             text-align: center;
-          }
-          img {
-            height: 200px;
-            margin: auto;
-            display: block;
           }
         }
       `}

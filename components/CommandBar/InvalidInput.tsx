@@ -5,9 +5,10 @@ interface InvalidInputProps {
   invalidInput: string;
 }
 
+
 const trimInput = (input:string) => {
   const _input = input.trim();
-  return _input.length > 5 ? _input.substring(0,5)+"...": _input;
+  return _input.length > 6 ? _input.substring(0,4)+"...": _input;
 }
 
 const InvalidInput: React.SFC<InvalidInputProps> = ({invalidInput}) => {
@@ -21,7 +22,7 @@ const InvalidInput: React.SFC<InvalidInputProps> = ({invalidInput}) => {
           color: ${ERROR.FOREGROUND};
           position: absolute;
           top: 0;
-          left: 7rem;
+          left: 0;
         }
       `}</style>
     </div>

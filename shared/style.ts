@@ -33,7 +33,8 @@ export const TABLE_HEADER = {
 
 export const TABLE_BODY = {
   BORDER: "1px solid #dee2e6",
-  HOVER_BACKGROUND: "#E9E9E9"
+  HOVER_BACKGROUND: "#E9E9E9",
+  EVEN_BACKGROUND: "#D9D9D9"
 }
 
 export const ERROR = {
