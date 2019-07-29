@@ -43,6 +43,10 @@ export const AvailableInput:ICommand = {
     description: "What's there ?",
     action: EnumAction.COMMAND
   },
+  "exit": {
+    description: "Return to previous page",
+    action: EnumAction.COMMAND
+  },
   "help": {
     description: "Lost, confused, need help.",
     action: EnumAction.COMMAND

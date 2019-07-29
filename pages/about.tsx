@@ -5,6 +5,8 @@ import LetterBox from "../components/LetterBox";
 import HeaderOne from "../components/HeaderOne";
 import HorizontalLine from "../components/HorizontalLine";
 import Profiler from "../components/Profiler";
+import CommandBar from '../components/CommandBar';
+import ScrollToTop from '../components/ScrollToTop';
 
 interface AboutState {
 }
@@ -23,6 +25,9 @@ class About extends React.PureComponent<{}, AboutState> {
           <title>About Walcron</title>
           <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
         </Head>
+          <div className="header">
+            <CommandBar/>
+          </div>
         <div className="container">
           <section>
             <HeaderOne title={"Our mission"} isLined={true}/>
@@ -52,7 +57,7 @@ class About extends React.PureComponent<{}, AboutState> {
             <h2>Are we freelance for hire?</h2>
             <p>
               Well...<i>if the price is right, and we have time to allocate</i>, yes.
-              We had and will be available, do reach us and we have shared our contact below.
+              Provide us your contact and we will contact you.
             </p>
           </section>
           <HorizontalLine/>
@@ -91,13 +96,23 @@ class About extends React.PureComponent<{}, AboutState> {
               ]}
             />
           </section>
+          <HorizontalLine/>
           <section>
             <h2>Contact</h2>
-            If you are interested, leave your contact. Let us reach you instead.
-            <LetterBox/>
+            <div className={"letterbox"}>
+              <LetterBox/>
+            </div>
           </section>
+          <div className="footer"/>
         </div>
+        <ScrollToTop/>
         <style jsx>{`
+          .header {
+            position: absolute;
+            z-index: 2;
+            left: 1.5rem;
+            top: 0.5rem;
+          }
           i {
             font-style: italic;
             font-weight: bold;
@@ -118,6 +133,13 @@ class About extends React.PureComponent<{}, AboutState> {
           .container {
             max-width: 640px;
             margin: auto;
+            padding-top: 70px;
+          }
+          .footer {
+            margin-bottom: 50px;
+          }
+          .letterbox {
+            padding: 10px 30px;
           }
         `}</style>
       </React.Fragment>

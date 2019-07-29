@@ -32,6 +32,9 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
     switch(inputCommand) {
       case "help":
         return addHelp();
+      case "exit":
+        (router as RouterProps).back();
+        return <React.Fragment/>;
       default:
         console.warn(`Strange, can't execute this command:[${inputCommand}]`);
         return <React.Fragment/>;
