@@ -2,7 +2,7 @@ import * as React from "react";
 import produce, {Draft} from "immer";
 import {FOREGROUND, BACKGROUND} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
-import {AvailableInput} from "../../shared/CommandSearch";
+import {AvailableInput} from "./CommandSearch";
 
 interface CommandBarInputProps {
   onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
@@ -142,11 +142,15 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
         </button>
 
         <style jsx>{`
+          .container {
+            position: relative;
+          }
           .command-container {
             display: flex;
             font-size: 0.8rem;
             position: relative;
             top: 1.5rem;
+            width: 260px;
           }
           .prompt {
             z-index: -1;
@@ -221,7 +225,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           :global(.react-autosuggest__input:focus) {
             outline: none;
           }
-          :global(react-autosuggest__input--focused) {
+          :global(.react-autosuggest__input--focused) {
             outline: none;
           }
 

@@ -12,7 +12,7 @@ export interface LetterBoxProps {
 
 export interface LetterBoxStates {
   isDialogShow: boolean;
-  email: string;
+  name: string;
 }
 
 class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
@@ -21,7 +21,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     super(props);
     this.state = {
       isDialogShow: false,
-      email: ''
+      name: ''
     }
   }
 
@@ -29,7 +29,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     this.setState(
       produce((draft: Draft<LetterBoxStates>) => {
         draft.isDialogShow = false;
-        draft.email = "";
+        draft.name = "";
       })
     );
   }
@@ -40,8 +40,8 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
   }
 
   _onClickSendButton = () => {
-    const {email} = this.state;
-    if(!this.state.email || !email.match(/^([\w.%+-]+)@([\w-]+\.?)+$/i)) {
+    const {name} = this.state;
+    if(!name || name.trim() === "") {
       return;
     }
 
@@ -56,31 +56,31 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     const input = event.target.value;
     this.setState(
       produce((draft: Draft<LetterBoxStates>) => {
-        draft.email = input.trim();
+        draft.name = input.trim();
       })
     );
   }
 
   render() {
 
-    const {isDialogShow, email} = this.state;
+    const {isDialogShow, name} = this.state;
 
     return (
       <div>
         If you are interested to talk to us, leave us your contact. Let us reach you instead.
         <form className={'letterbox-container'} onSubmit={this._onSubmitPressed}>
           <input
-            type="email"
+            type="name"
             autoComplete="off"
             className={"letterbox-input"}
             maxLength={200}
-            placeholder={"Your Email Address"}
+            placeholder={"Honorific and name"}
             onChange={this._onChangeLetterBoxInput}
-            value={email}
+            value={name}
             />
           <Button onClickCallback={this._onClickSendButton}>Send</Button>
           {
-            isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeTo={email}/></Modal>
+            isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeTo={name}/></Modal>
           }
           <style jsx>{`
             .letterbox-container {

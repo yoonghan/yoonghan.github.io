@@ -9,7 +9,7 @@ interface EmailSenderProps {
 
 const _openMailSender = (writeTo:string) => {
 
-  const subject = encodeURIComponent(`Contact me at ${writeTo}`);
+  const subject = encodeURIComponent(`Contact from ${writeTo}`);
   const body = "Hello there, ";
 
   const toEmail = EMAIL.replace(/_/g, "");

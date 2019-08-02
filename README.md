@@ -26,3 +26,9 @@ Install magickImage and execute the command:
 export FILE=bg-pattern.gif
 magick convert $FILE -strip -sampling-factor 4:2:0 -quality 85 -colorspace sRGB $FILE
 ```
+
+## Analyzing server build
+Execute the following to see package bundling
+```
+npm run analyze
+```
