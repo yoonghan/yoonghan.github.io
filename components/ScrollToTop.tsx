@@ -74,6 +74,18 @@ class ScrollToTop extends React.PureComponent<ScrollToTopProps, ScrollToTopState
             border-left: solid 5px transparent;
             border-right: solid 5px transparent;
           }
+
+          @media only screen and (max-width: 480px) {
+            div {
+              bottom: 0;
+              right: 0;
+              padding: 5px 20px;
+              border-radius: 0;
+            }
+            div:before {
+              margin-left: 25px;
+            }
+          }
         `}</style>
       </React.Fragment>
     );

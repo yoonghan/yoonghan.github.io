@@ -1,57 +1,39 @@
 import * as React from "react";
 import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
-import Logo from '../components/Logo';
-import ConstructionSplashScreen from '../components/ConstructionSplashScreen';
+import CinemaScreen from "../components/CinemaScreen";
+import SocialFab from "../components/SocialFab";
+import CommandBar from '../components/CommandBar';
 
-const Index: React.SFC<any> = () => {
+const Main: React.SFC<any> = () => {
   return (
     <React.Fragment>
       <HtmlHead/>
       <Head>
-        <title>Walcoorperation a casual company setup for Web Research and Development</title>
+        <title>Walcron Coorperation</title>
         <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
       </Head>
-      <div className={'container'}>
-        <h1>Welcome to walcron, it is currently under construction.</h1>
-        <h2>A webpage to designed by Yoong Han and Lee Wan as Internet Research and Development center.</h2>
-        <ConstructionSplashScreen/>
-        <Logo/>
-        <h3>Design by Walcron ( 2018 )</h3>
-      </div>
+      <CommandBar disableMobile={true}/>
+      <CinemaScreen title={"Full-stack Web Developer"}
+        btnOneStr={"About"} btnOneClick={'/about'}
+        btnTwoStr={"Works"} btnTwoClick={'/work'}/>
+      <SocialFab/>
       <style jsx>{`
-        h1 {
-          display: none;
-        }
-        h2 {
-          display: none;
-        }
-        h3 {
+        .center {
           position: absolute;
-          bottom: 30px;
-          right: 30px;
-          font-family: arial;
-          line-height: 0;
-          font-size: 0.8rem;
-          font-weight: normal;
-        }
-        container {
-          position: relative;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       `}</style>
-      <style jsx global>
-      {`
-        html {
-          font-size: 12pt;
+      <style jsx global>{`
+        #__next {
+          height: 100vh;
+          width: 100vw
         }
-        body {
-          padding: 0;
-          margin: 0;
-        }
-      `}
-      </style>
+      `}</style>
     </React.Fragment>
   );
 }
 
-export default Index;
+export default Main;

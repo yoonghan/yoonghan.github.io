@@ -39,5 +39,10 @@ export const TABLE_BODY = {
 
 export const ERROR = {
   FOREGROUND: "#F90101",
-  FONT_SIZE: "1.2rem"
+  FONT_SIZE: "1rem"
+}
+
+export const OUTPUT = {
+  FOREGROUND: "#09F909",
+  FONT_SIZE: "1rem"
 }

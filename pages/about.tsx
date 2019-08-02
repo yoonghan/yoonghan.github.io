@@ -25,9 +25,7 @@ class About extends React.PureComponent<{}, AboutState> {
           <title>About Walcron</title>
           <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
         </Head>
-          <div className="header">
-            <CommandBar/>
-          </div>
+        <CommandBar/>
         <div className="container">
           <section>
             <HeaderOne title={"Our mission"} isLined={true}/>
@@ -107,12 +105,6 @@ class About extends React.PureComponent<{}, AboutState> {
         </div>
         <ScrollToTop/>
         <style jsx>{`
-          .header {
-            position: absolute;
-            z-index: 2;
-            left: 1.5rem;
-            top: 0.5rem;
-          }
           i {
             font-style: italic;
             font-weight: bold;
@@ -133,7 +125,7 @@ class About extends React.PureComponent<{}, AboutState> {
           .container {
             max-width: 640px;
             margin: auto;
-            padding-top: 70px;
+            padding-top: 100px;
           }
           .footer {
             margin-bottom: 50px;

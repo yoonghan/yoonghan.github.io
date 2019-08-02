@@ -1,11 +1,44 @@
 import * as React from "react";
-import ReactDOM from 'react-dom';
-import HelpDialog from "./HelpDialog";
 import InvalidInput from "./InvalidInput";
-import { RouterProps } from "next-server/router";
-import {AvailableInput, IAvailableInput, EnumAction} from "../../shared/CommandSearch";
+import InvalidCommand from "./InvalidCommand";
+import Output from "./Output";
+import {AvailableInput, IAvailableInput, EnumAction} from "./CommandSearch";
+import * as ts from "typescript";
 
 interface ExtendedRouterProps {
+}
+
+
+function evaluateMath(mathEval: string):string {
+  // const code: string = `({
+  //   Run: (data: string): string => {
+  //       console.log(data); return Promise.resolve("SUCCESS"); }
+  //   })`;
+
+  const result = ts.transpile(mathEval);
+  const evaluatedResult :any = eval(result);
+  // runnalbe.Run("RUN!").then((result:string)=>{console.log(result);});
+  return evaluatedResult;
+}
+
+function getMathEvaluation(evaluation: string) {
+  const equalsLocation = 1;
+  const _evaluation = evaluation.replace(/ /g,'').substr(equalsLocation);
+
+  const mathRegex = /^[0-9]+(\.[0-9]*)?((\+|\-|\*|\/)[0-9]+(\.[0-9]*)?)+$/;
+  const matches = mathRegex.test(_evaluation);
+
+  if(matches) {
+    const result = evaluateMath(_evaluation);
+    return <Output output={result}/>
+  }
+  else {
+    return <InvalidCommand invalidCommand={"Unable to evaluate."}/>;
+  }
+}
+
+function isSpecialCommand(inputCommand:string) {
+  return (inputCommand.indexOf('=') === 0 && inputCommand.length > 3);
 }
 
 export function exec(element:HTMLDivElement, cancellationCallback:()=>void, router:ExtendedRouterProps) {
@@ -21,40 +54,12 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
     }
   }
 
-  const addHelp = () => {
-    return ReactDOM.createPortal(
-      <HelpDialog cancelCallback={cancellationCallback}/>,
-      element
-    );
-  }
-
   const executeCommand = (inputCommand:string) => {
-    switch(inputCommand) {
-      case "help":
-        return addHelp();
-      case "exit":
-        (router as RouterProps).back();
-        return <React.Fragment/>;
-      default:
-        console.warn(`Strange, can't execute this command:[${inputCommand}]`);
-        return <React.Fragment/>;
-    }
+    return AvailableInput[inputCommand].exec(element, cancellationCallback);
   }
 
   const executeLink = (inputCommand:string) => {
-    let location = "";
-    switch(inputCommand) {
-      case "sudo su -":
-      case "su - walcron":
-      case "su -":
-      case "whoami":
-        location = "/about";
-      default:
-        console.warn(`Strange, can't execute this link:[${inputCommand}]`);
-    }
-    if(location !== "")
-      (router as RouterProps).push(location);
-    return <React.Fragment/>;
+    return AvailableInput[inputCommand].exec(router);
   }
 
   return function(inputCommand:string) {
@@ -62,6 +67,9 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
     const matchedCommand:IAvailableInput = AvailableInput[_inputCommand];
     if(matchedCommand) {
       return executeBasedOnType(_inputCommand, matchedCommand);
+    }
+    else if(isSpecialCommand(inputCommand)) {
+      return getMathEvaluation(inputCommand);
     }
     else {
       return <InvalidInput invalidInput={inputCommand}/>

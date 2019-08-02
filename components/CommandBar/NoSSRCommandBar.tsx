@@ -68,14 +68,19 @@ class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCom
 
   render() {
     return (
-      <React.Fragment>
+      <div className="container">
         <CommandBarInput
           onBlurCallback={this._onBlurCommandPrompt}
           onFocusCallback={this._onFocusCommandPrompt}
           onSubmitCallback={this._handleSubmit}
         />
         {this.state.renderExecutedCommand}
-      </React.Fragment>
+        <style jsx>{`
+          .container {
+            position: relative;
+          }
+        `}</style>
+      </div>
     );
   }
 }

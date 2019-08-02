@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import {BACKGROUND, FOREGROUND, SHADOW, TABLE_HEADER, TABLE_BODY} from "../../../shared/style";
-import {AvailableInput} from "../../../shared/CommandSearch";
+import {AvailableInput} from "../CommandSearch";
 
 interface HelpContentProps {
 }

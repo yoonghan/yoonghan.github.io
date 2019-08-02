@@ -5,6 +5,7 @@
   **/
 
 import * as React from "react";
+import Link from 'next/link';
 
 export interface ButtonsBarProps {
   menuTexts: Array<string>;
@@ -33,11 +34,12 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
   }
 
   function _generateMenu(menuText:string, idx:number) {
+    const link = menuText.toLowerCase();
     const _activeIdx = activeIndex || 0;
     const className = "btnsbar-item" + ((_activeIdx === idx)?" is-active":"");
     return (
       <li className={`${className}`} key={`btns-bar_${idx}`}>
-        <a>{menuText}</a>
+        <Link href={link==="home"?"/":`/${link}`}><a>{menuText}</a></Link>
       </li>
     );
   }
@@ -53,7 +55,7 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
         {`
           .btnsbar {
             list-style: none;
-            margin: 50px auto;
+            margin: 10px auto;
             max-width: 720px;
             padding: 0;
             width: 100%;
