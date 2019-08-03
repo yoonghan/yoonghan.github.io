@@ -5,12 +5,13 @@ import Link from 'next/link';
 
 export interface ButtonProps {
   href?: string;
+  target?: string;
   onClickCallback?: () => void;
 }
 
-const createButton = (children?:any, _onClickCallback?:() => void) => {
+const createButton = (children?:any, _onClickCallback?:() => void, target?: string) => {
   return (
-    <a className="btn-container" onClick={_onClickCallback?_onClickCallback:()=>{}}>
+    <a className="btn-container" onClick={_onClickCallback?_onClickCallback:()=>{}} target={target}>
       {children}
       <style jsx>
         {`
@@ -48,10 +49,10 @@ const createButton = (children?:any, _onClickCallback?:() => void) => {
   );
 }
 
-const Button: React.SFC<ButtonProps> = ({children, href, onClickCallback}) => {
+const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback}) => {
   return (
     href?
-      <Link href={href}>{createButton(children)}</Link>:
+      <Link href={href}>{createButton(children, undefined, target)}</Link>:
       createButton(children, onClickCallback)
   );
 }

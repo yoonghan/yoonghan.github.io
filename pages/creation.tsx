@@ -4,15 +4,16 @@ import { HtmlHead } from "../components/html/HtmlHead";
 import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
 import ScrollToTop from "../components/ScrollToTop";
-import Worklist from "../components/Worklist";
+import CreationList from "../components/CreationList";
 
 
-const workList = [
+const creationList = [
   {
     id: "r-prototyper",
-    link: "prototype",
+    link: "react-template",
     title: "Customer Prototyper",
-    desc: "Quick prototyping with React."
+    desc: "Besides coding, codes can also be exported to be run locally on machine without a webserver.",
+    gitLink: "https://github.com/yoonghan/react-templating"
   },
   {
     id: "rn-android",
@@ -52,7 +53,7 @@ class Creation extends React.PureComponent<{}, {}> {
         <CommandBar/>
         <div className={'container'}>
           <HeaderOne title={"Creations"} isLined={true}/>
-          <Worklist workArr={workList}/>
+          <CreationList workArr={creationList}/>
         </div>
         <ScrollToTop/>
         <div className="footer"/>
