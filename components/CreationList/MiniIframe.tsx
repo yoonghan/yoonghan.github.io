@@ -15,18 +15,29 @@ const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, title, githubLink, cl
     <div className={'miniframe'}>
       <div className={'title'}>
         <Button onClickCallback={closeCallback}>
-          <i className="fas fa-chevron-left"></i> {title}
+          <i className="fas fa-chevron-left icon-spacing"></i> {title}
         </Button>
+        {
+          githubLink &&
+          <Button href={githubLink} target="sourcecode">
+            <i className="fab fa-github-alt icon-spacing"></i> Source Code
+          </Button>
+        }
       </div>
-      <div>{githubLink}</div>
       <iframe src={iframeLink} height="100%" width="100%"/>
       <style jsx>{`
         .miniframe {
           height: 100vh;
           width: 100vw;
         }
+        .miniframe iframe {
+          background: #FFF;
+        }
         .title {
           margin: 20px;
+        }
+        .icon-spacing {
+          padding-right: 10px;
         }
       `}</style>
     </div>

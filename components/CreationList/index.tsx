@@ -7,43 +7,47 @@ import {LINK, FOREGROUND} from "../../shared/style";
 import Button from "../Button";
 import MiniIframe from "./MiniIframe";
 
-interface WorklistItem {
+interface CreationListItem {
   id: string;
   link: string;
   title: string;
   desc: string;
+  gitLink?: string;
 }
 
-export interface WorklistProps {
-  workArr?: Array<WorklistItem>;
+export interface CreationListProps {
+  workArr?: Array<CreationListItem>;
 }
 
-export interface WorklistStates {
+export interface CreationListStates {
   isIframeOpen: boolean;
+  wrkArrIdx: number;
 }
 
-class Worklist extends React.PureComponent<WorklistProps, WorklistStates> {
-  constructor(props: WorklistProps) {
+class CreationList extends React.PureComponent<CreationListProps, CreationListStates> {
+  constructor(props: CreationListProps) {
     super(props);
     this.state = {
-      isIframeOpen: false
+      isIframeOpen: false,
+      wrkArrIdx: 0
     }
   }
 
   _getUrl = (url:string) => {
-    return `/work/${url}`;
+    return `/host/${url}`;
   }
 
-  _createdIdxKey = (workArr:Array<WorklistItem>) => (
+  _createdIdxKey = (workArr:Array<CreationListItem>) => (
     workArr.map((work, idx) => (
       <li key={`_work_idx_${idx}`}><a href={`#${work.id}`}>{work.title}</a></li>
     ))
   )
 
-  _clickArticle = () => () => {
+  _clickArticle = (idx:number) => () => {
     this.setState(
-      produce((draft: Draft<WorklistStates>) => {
+      produce((draft: Draft<CreationListStates>) => {
         draft.isIframeOpen = true;
+        draft.wrkArrIdx = idx;
         window.scrollTo(0,0);
       })
     );
@@ -51,13 +55,14 @@ class Worklist extends React.PureComponent<WorklistProps, WorklistStates> {
 
   _closeIframe = () => {
     this.setState(
-      produce((draft: Draft<WorklistStates>) => {
+      produce((draft: Draft<CreationListStates>) => {
         draft.isIframeOpen = false;
+        draft.wrkArrIdx = 0;
       })
     );
   }
 
-  _createdArticles = (workArr:Array<WorklistItem>) => (
+  _createdArticles = (workArr:Array<CreationListItem>) => (
     workArr.map((work, idx) => (
       <article key={`_work_article_${idx}`}>
         <div id={work.id}>
@@ -67,7 +72,7 @@ class Worklist extends React.PureComponent<WorklistProps, WorklistStates> {
             {work.desc}
           </p>
           <div className="btn-container">
-            <Button onClickCallback={this._clickArticle()}>
+            <Button onClickCallback={this._clickArticle(idx)}>
               View
             </Button>
           </div>
@@ -91,15 +96,16 @@ class Worklist extends React.PureComponent<WorklistProps, WorklistStates> {
 
   render() {
     const {workArr} = this.props;
-    const {isIframeOpen} = this.state;
+    const {isIframeOpen, wrkArrIdx} = this.state;
 
     if(!workArr) {
       return <div>Opps, nothing to display</div>
     }
 
     if(isIframeOpen) {
-      return <MiniIframe iframeLink={"test"}
-            title={"title"} closeCallback={this._closeIframe}/>
+      const {link, title, gitLink} = workArr[wrkArrIdx];
+      return <MiniIframe iframeLink={this._getUrl(link)}
+            title={title} closeCallback={this._closeIframe} githubLink={gitLink}/>
     }
 
     return (
@@ -136,4 +142,4 @@ class Worklist extends React.PureComponent<WorklistProps, WorklistStates> {
   }
 }
 
-export default Worklist;
+export default CreationList;

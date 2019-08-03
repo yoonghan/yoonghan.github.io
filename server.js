@@ -30,6 +30,10 @@ app.prepare()
   server.use(express.static('./static'));
   /** [Static-End] **/
 
+  /** [SiteHosting-Start] **/
+  server.use('/host', express.static('./host'));
+  /** [SiteHosting-End] **/
+
   /** [Request-Start]**/
   server.get('*', (req, res) => {
     return handle(req, res);

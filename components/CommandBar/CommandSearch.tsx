@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { RouterProps } from "next-server/router";
 import HelpDialog from "./HelpDialog";
 import InvalidCommand from "./InvalidCommand";
-//import * as ts from "typescript";
+import Output from "./Output";
 
 export enum EnumAction {
   COMMAND,
@@ -14,6 +14,9 @@ const ABOUT_LINK = {
   action: EnumAction.LINK,
   url: "/about",
   exec: (router: RouterProps) => {
+    if(router.route === "/about") {
+      return <InvalidCommand invalidCommand={"At path"}/>;
+    }
     router.push("/about");
     return <React.Fragment/>;
   }
@@ -49,16 +52,18 @@ export const AvailableInput:ICommand = {
   },
   "pwd": {
     description: "Lost, and need direction.",
-    action: EnumAction.COMMAND,
-    exec: () => {
-      console.warn("Not implemented")
-      return <React.Fragment/>;
+    action: EnumAction.LINK,
+    exec: (router: RouterProps) => {
+      return <Output output={router.route}/>;
     }
   },
   "ls": {
     description: "What's there ?",
     action: EnumAction.LINK,
     exec: (router: RouterProps) => {
+      if(router.route === "/creation") {
+        return <InvalidCommand invalidCommand={"At path"}/>;
+      }
       router.push("/creation");
       return <React.Fragment/>;
     }
