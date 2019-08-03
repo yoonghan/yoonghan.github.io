@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import {ESC} from "../../shared/keyboardkey";
-import {FOREGROUND} from "../../shared/style";
+import {DIALOG} from "../../shared/style";
 
 interface ModalProps {
   cancelCallback: () => void;
@@ -50,7 +50,7 @@ class Modal extends React.PureComponent<ModalProps, {}> {
         </div>
         <style jsx> {`
           button {
-            color: ${FOREGROUND};
+            color: ${DIALOG.FOREGROUND};
             background: transparent;
             border: none;
           }

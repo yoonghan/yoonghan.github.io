@@ -57,9 +57,9 @@ export const AvailableInput:ICommand = {
   },
   "ls": {
     description: "What's there ?",
-    action: EnumAction.COMMAND,
-    exec: () => {
-      console.warn("Not implemented")
+    action: EnumAction.LINK,
+    exec: (router: RouterProps) => {
+      router.push("/creation");
       return <React.Fragment/>;
     }
   },

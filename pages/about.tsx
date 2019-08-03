@@ -7,6 +7,7 @@ import HorizontalLine from "../components/HorizontalLine";
 import Profiler from "../components/Profiler";
 import CommandBar from '../components/CommandBar';
 import ScrollToTop from '../components/ScrollToTop';
+import {FOREGROUND} from "../shared/style";
 
 interface AboutState {
 }
@@ -126,6 +127,7 @@ class About extends React.PureComponent<{}, AboutState> {
             max-width: 640px;
             margin: auto;
             padding-top: 100px;
+            color: ${FOREGROUND};
           }
           .footer {
             margin-bottom: 50px;

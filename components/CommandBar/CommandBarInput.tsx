@@ -1,6 +1,6 @@
 import * as React from "react";
 import produce, {Draft} from "immer";
-import {FOREGROUND, BACKGROUND} from "../../shared/style";
+import {LINK} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
 import {AvailableInput} from "./CommandSearch";
 
@@ -154,7 +154,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           }
           .prompt {
             z-index: -1;
-            color: ${FOREGROUND};
+            color: ${LINK.FOREGROUND};
             font-family: Inconsolata;
           	position: absolute;
           	left: 5.2rem;
@@ -179,7 +179,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             align-items: center;
             pointer-events: none;
             justify-content: center;
-            color: ${FOREGROUND};
+            color: ${LINK.FOREGROUND};
             font-family: Inconsolata;
           }
           #command-enter {
@@ -189,7 +189,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             transition-property: color, background;
             transition-duration: .15s;
             transition-timing-function: ease-in-out;
-            color: ${FOREGROUND};
+            color: ${LINK.FOREGROUND};
             border: none;
             background: none;
             font-size: 0.8rem;
@@ -206,7 +206,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             font-family: Inconsolata;
             background-color: transparent;
             width: 150px;
-            border: 1px solid ${FOREGROUND};
+            border: 1px solid ${LINK.FOREGROUND};
             margin: 0;
             display: block;
             min-width: 0;
@@ -232,8 +232,8 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           :global(.react-autosuggest__suggestions-container--open) {
             border: 1px solid #aaa;
             font-family: Inconsolata;
-            color: ${FOREGROUND};
-            background: ${BACKGROUND};
+            color: ${LINK.FOREGROUND};
+            background: ${LINK.BACKGROUND};
             font-size: 0.7rem;
             z-index: 2;
             margin-top: 2px;

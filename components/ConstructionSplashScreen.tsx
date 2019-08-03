@@ -7,10 +7,10 @@ const ConstructionSplashScreen: React.SFC<any> = () => {
   return (
     <div className={"construction-splash-screen-container"}>
       <div className={"construction-splash-screen-text-container"}>
-        <div className={"banner"}>UNDER CONSTRUCTION</div>
+        <div className={"banner"}>(404) NOT FOUND</div>
         <img src="/static/img/construction.svg"/>
         <hr/>
-        <div className={"footnote"}>We're in a mist of preparing version 5.0</div>
+        <div className={"footnote"}>Walcron ver 5.0</div>
       </div>
       <style jsx>{`
 
@@ -19,6 +19,7 @@ const ConstructionSplashScreen: React.SFC<any> = () => {
           font-size: 2rem;
           font-family: fantasy, arial, sans-serif;
           padding-bottom: 5px;
+
         }
 
         .footnote {
@@ -52,6 +53,7 @@ const ConstructionSplashScreen: React.SFC<any> = () => {
           height: 100vh;
           min-width: 320px;
           background: ${background['construction']};
+          color: #000;
         }
 
         .construction-splash-screen-text-container {

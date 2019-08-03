@@ -3,7 +3,7 @@
 import * as React from "react";
 import NoSSR from 'react-no-ssr';
 import produce, {Draft} from "immer";
-import {BACKGROUND, FOREGROUND} from "../shared/style";
+import {LINK} from "../shared/style";
 
 export interface ScrollToTopStates {
   visible: boolean;
@@ -55,8 +55,8 @@ class ScrollToTop extends React.PureComponent<ScrollToTopProps, ScrollToTopState
             position: fixed;
             bottom: 2rem;
             cursor: pointer;
-            background: ${FOREGROUND};
-            color: ${BACKGROUND};
+            background: ${LINK.FOREGROUND};
+            color: ${LINK.BACKGROUND};
             opacity: 0.7;
             padding: 5px;
             border-radius: 3px;

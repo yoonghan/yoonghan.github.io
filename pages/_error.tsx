@@ -13,11 +13,11 @@ const Index: React.SFC<any> = () => {
         <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
       </Head>
       <div className={'container'}>
-        <h1>Welcome to walcron, it is currently under construction.</h1>
-        <h2>A webpage to designed by Yoong Han and Lee Wan as Internet Research and Development center.</h2>
+        <h1>Welcome to walcron.</h1>
+        <h2>The page you have requested is not available.</h2>
         <ConstructionSplashScreen/>
         <Logo/>
-        <h3>Design by Walcron ( 2018 )</h3>
+        <h3>Design by Walcron ( 2019 )</h3>
       </div>
       <style jsx>{`
         h1 {
@@ -34,6 +34,7 @@ const Index: React.SFC<any> = () => {
           line-height: 0;
           font-size: 0.8rem;
           font-weight: normal;
+          color: #000;
         }
         container {
           position: relative;

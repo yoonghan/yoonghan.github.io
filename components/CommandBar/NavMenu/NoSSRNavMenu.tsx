@@ -3,7 +3,7 @@
 import * as React from "react";
 import { withRouter, NextRouter } from 'next/router';
 import { WithRouterProps } from "next/dist/client/with-router";
-import {FOREGROUND} from "../../../shared/style";
+import {LINK} from "../../../shared/style";
 
 export interface NoSSRNavMenuProps extends WithRouterProps {
 }
@@ -44,7 +44,7 @@ const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
       <style jsx>{`
         .container {
           display: flex;
-          color: ${FOREGROUND};
+          color: ${LINK.FOREGROUND};
           padding: 1.5rem;
         }
         .return-btn {
@@ -54,7 +54,7 @@ const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
           //padding: 1rem;
         }
         .container div {
-          color: ${FOREGROUND};
+          color: ${LINK.FOREGROUND};
           font-size: 2rem;
           cursor: pointer;
         }
@@ -62,7 +62,7 @@ const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
           padding-left: 10px;
           padding-top: 0.5rem;
           text-decoration: none;
-          color: ${FOREGROUND};
+          color: ${LINK.FOREGROUND};
         }
       `}</style>
     </div>
