@@ -6,9 +6,10 @@ export const WHITE = "#FFF";
 export const BLACK = "#000";
 export const GREY = "#CCC";
 export const DARKGREY = "#999";
+export const WHITISH = "#BEBEBE";
 
 export const SHADOW = "grey";
-export const FOREGROUND = WHITE;
+export const FOREGROUND = WHITISH;
 export const BACKGROUND = BLACK;
 
 export const fontColor = {
@@ -45,4 +46,14 @@ export const ERROR = {
 export const OUTPUT = {
   FOREGROUND: "#09F909",
   FONT_SIZE: "1rem"
+}
+
+export const LINK = {
+  FOREGROUND: WHITE,
+  BACKGROUND: BLACK
+}
+
+export const DIALOG = {
+  FOREGROUND: WHITE,
+  BACKGROUND: BLACK
 }

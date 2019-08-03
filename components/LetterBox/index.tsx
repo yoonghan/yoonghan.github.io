@@ -5,7 +5,7 @@ import Button from "../Button";
 import produce, {Draft} from "immer";
 import Modal from "../Modal";
 import EmailSender from "./EmailSender";
-import {FOREGROUND} from "../../shared/style";
+import {LINK} from "../../shared/style";
 
 export interface LetterBoxProps {
 }
@@ -70,10 +70,10 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
         If you are interested to talk to us, leave us your contact. Let us reach you instead.
         <form className={'letterbox-container'} onSubmit={this._onSubmitPressed}>
           <input
-            type="name"
+            type="text"
             autoComplete="off"
             className={"letterbox-input"}
-            maxLength={200}
+            maxLength={400}
             placeholder={"Honorific and name"}
             onChange={this._onChangeLetterBoxInput}
             value={name}
@@ -92,7 +92,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
             }
             .letterbox-input {
               background-color: transparent;
-              border: 1px solid ${FOREGROUND};
+              border: 1px solid ${LINK.FOREGROUND};
               margin: 0;
               min-width: 260px;
               display: block;

@@ -1,7 +1,7 @@
 `use strict`
 
 import * as React from "react";
-import {BACKGROUND, FOREGROUND, SHADOW, TABLE_HEADER, TABLE_BODY} from "../../../shared/style";
+import {DIALOG, SHADOW, TABLE_HEADER, TABLE_BODY} from "../../../shared/style";
 import {AvailableInput} from "../CommandSearch";
 
 interface HelpContentProps {
@@ -60,8 +60,8 @@ const HelpContent: React.SFC<HelpContentProps> = ({}) => {
       <style jsx> {`
         .container {
           padding: 10px 10px 40px 10px;
-          color: ${BACKGROUND};
-          background: ${FOREGROUND};
+          color: ${DIALOG.BACKGROUND};
+          background: ${DIALOG.FOREGROUND};
           box-shadow: 5px 5px 2px ${SHADOW};
           font-family: Inconsolata;
         }

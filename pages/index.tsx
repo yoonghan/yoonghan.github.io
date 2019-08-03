@@ -16,7 +16,7 @@ const Main: React.SFC<any> = () => {
       <CommandBar disableMobile={true}/>
       <CinemaScreen title={"Full-stack Web Developer"}
         btnOneStr={"About"} btnOneClick={'/about'}
-        btnTwoStr={"Works"} btnTwoClick={'/work'}/>
+        btnTwoStr={"Invent"} btnTwoClick={'/creation'}/>
       <SocialFab/>
       <style jsx>{`
         .center {
