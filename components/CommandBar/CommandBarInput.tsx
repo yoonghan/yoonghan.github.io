@@ -197,7 +197,8 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             cursor: pointer;
           }
           #command-enter:hover {
-            color: #000;
+            color: ${LINK.BACKGROUND};
+            background: ${LINK.FOREGROUND};
           }
           #command-enter:active {
             margin: 1px 0 0 1px;

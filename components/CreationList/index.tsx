@@ -13,6 +13,7 @@ interface CreationListItem {
   title: string;
   desc: string;
   gitLink?: string;
+  screenshot?: string;
 }
 
 export interface CreationListProps {
@@ -62,12 +63,31 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
     );
   }
 
+  _showScreenshot = (projectTitle: string, imgSrc?: string) => {
+    if(imgSrc) {
+      return (
+        <React.Fragment>
+          <img src={`/img/creation/${imgSrc}`} alt={`Screenshot for ${projectTitle}`}/>
+          <style jsx>{`
+            img {
+              max-width: 400px;
+              max-height: 300px;
+            }
+          `}
+          </style>
+        </React.Fragment>
+      );
+    }
+
+    return <React.Fragment/>
+  }
+
   _createdArticles = (workArr:Array<CreationListItem>) => (
     workArr.map((work, idx) => (
       <article key={`_work_article_${idx}`}>
         <div id={work.id}>
           <h2>{work.title}</h2>
-          <img src={"img"} alt="prototyper" />
+          {this._showScreenshot(work.title, work.screenshot)}
           <p>
             {work.desc}
           </p>
@@ -134,6 +154,9 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
             .container {
               max-width: 640px;
               margin: auto;
+            }
+            ul > :global(li) {
+              padding: 10px 0;
             }
           `}
         </style>
