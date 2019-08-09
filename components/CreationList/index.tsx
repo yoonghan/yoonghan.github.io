@@ -14,6 +14,7 @@ interface CreationListItem {
   desc: string;
   gitLink?: string;
   screenshot?: string;
+  usage?: string;
 }
 
 export interface CreationListProps {
@@ -123,9 +124,9 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
     }
 
     if(isIframeOpen) {
-      const {link, title, gitLink} = workArr[wrkArrIdx];
+      const {link, title, gitLink, usage} = workArr[wrkArrIdx];
       return <MiniIframe iframeLink={this._getUrl(link)}
-            title={title} closeCallback={this._closeIframe} githubLink={gitLink}/>
+            title={title} closeCallback={this._closeIframe} githubLink={gitLink} usage={usage}/>
     }
 
     return (
@@ -148,7 +149,6 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
               margin-bottom: 40px;
             }
             :global(.indexer a) {
-              text-decoration: none;
               color: ${LINK.FOREGROUND};
             }
             .container {

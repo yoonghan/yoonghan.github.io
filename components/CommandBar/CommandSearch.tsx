@@ -15,7 +15,7 @@ const ABOUT_LINK = {
   url: "/about",
   exec: (router: RouterProps) => {
     if(router.route === "/about") {
-      return <InvalidCommand invalidCommand={"At path"}/>;
+      return <InvalidCommand invalidCommand={"This is the page"}/>;
     }
     router.push("/about");
     return <React.Fragment/>;
@@ -31,22 +31,17 @@ export interface IAvailableInput {
   description: string;
   url?: string;
   exec: any;
+  synonym?: Array<string>;
 }
 
 export const AvailableInput:ICommand = {
   "whoami": {
+    synonym: ["cd about", "cd /about"],
     description: "Get to know this site.",
     ...ABOUT_LINK
   },
-  "sudo su -": {
-    description: "Know us by being us.",
-    ...ABOUT_LINK
-  },
   "su - walcron": {
-    description: "Know us by being us.",
-    ...ABOUT_LINK
-  },
-  "su -": {
+    synonym: ["sudo su", "sudo walcron", "su -", "sudo su -"],
     description: "Know us by being us.",
     ...ABOUT_LINK
   },
@@ -58,20 +53,24 @@ export const AvailableInput:ICommand = {
     }
   },
   "ls": {
+    synonym: ["dir", "cd creation", "cd /creation"],
     description: "What's there ?",
     action: EnumAction.LINK,
     exec: (router: RouterProps) => {
       if(router.route === "/creation") {
-        return <InvalidCommand invalidCommand={"At path"}/>;
+        return <InvalidCommand invalidCommand={"This is the page"}/>;
       }
       router.push("/creation");
       return <React.Fragment/>;
     }
   },
   "exit": {
-    description: "Return to previous page",
-    action: EnumAction.COMMAND,
-    exec: () => {
+    description: "Return to main page",
+    action: EnumAction.LINK,
+    exec: (router: RouterProps) => {
+      if(router.route === "/") {
+        return <InvalidCommand invalidCommand={"Already at root"}/>;
+      }
       location.href="/";
       return <React.Fragment/>;
     }
@@ -89,9 +88,13 @@ export const AvailableInput:ICommand = {
     }
   },
   "cd /": {
+    synonym: ["cd"],
     description: "Return to main page",
     action: EnumAction.LINK,
     exec: (router: RouterProps) => {
+      if(router.route === "/") {
+        return <InvalidCommand invalidCommand={"Already at root"}/>;
+      }
       router.push("/");
       return <React.Fragment/>;
     }

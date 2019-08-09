@@ -3,6 +3,7 @@ const express = require('express'),
       hsts = require('hsts'),
       next = require('next');
 
+const hostApp = require('./hostApp');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 8001;
@@ -33,6 +34,10 @@ app.prepare()
   /** [SiteHosting-Start] **/
   server.use('/host', express.static('./host'));
   /** [SiteHosting-End] **/
+
+  /** [Allow External Hosting-Start] **/
+  hostApp(server);
+  /** [Allow External Hosting-End]**/
 
   /** [Request-Start]**/
   server.get('*', (req, res) => {

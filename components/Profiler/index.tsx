@@ -41,6 +41,7 @@ const _getUser = (idx: number, length: number, name: string, description: JSX.El
           }
           .name {
             font-weight: bold;
+            text-align: center;
           }
           .divider {
             text-align: center;

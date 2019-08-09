@@ -7,10 +7,35 @@ export interface MiniframeProps {
   iframeLink: string;
   title: string;
   githubLink?: string;
+  usage?:string;
   closeCallback: ()=>void;
 }
 
-const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, title, githubLink, closeCallback}) => {
+const renderUsage = (usage?:string) => {
+  if(!usage) {
+    return <React.Fragment/>;
+  }
+
+  const usageTxts = usage.split("\n");
+  const liElements = usageTxts.map((usageTxt, idx) => (
+    <li key={`_creationlist_miniframe_${idx}`}>{usageTxt}</li>
+  ));
+  return (
+    <div className="container">
+      <strong>Usage:</strong>
+      <ol>
+      {liElements}
+      </ol>
+      <style jsx>{`
+        .container {
+          margin: 4rem 2rem;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, title, githubLink, usage, closeCallback}) => {
   return (
     <div className={'miniframe'}>
       <div className={'title'}>
@@ -23,6 +48,9 @@ const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, title, githubLink, cl
             <i className="fab fa-github-alt icon-spacing"></i> Source Code
           </Button>
         }
+      </div>
+      <div>
+        {renderUsage(usage)}
       </div>
       <iframe src={iframeLink} height="100%" width="100%"/>
       <style jsx>{`
