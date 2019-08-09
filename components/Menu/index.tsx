@@ -102,7 +102,6 @@ export default class Menu extends React.PureComponent<MenuProps, {}> {
             background: ${whiteOnBlack ? 'rgba(0,0,0,0.4)': 'none'};
           }
           .menu a, .menu span {
-            text-decoration: none;
             color: ${whiteOnBlack ?  WHITE: BLACK};
             font-family: ${fontFamily.standard};
             text-transform: uppercase;

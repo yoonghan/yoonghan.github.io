@@ -12,29 +12,24 @@ const creationList = [
     id: "r-prototyper",
     link: "react-template",
     title: "Customer Prototyper",
-    desc: "Write react components and generates prototypes that can be run locally (without a need of a webserver)." +
-          "Useful for presentation and sending mockups to customers for visual views.",
-    gitLink: "https://github.com/yoonghan/react-templating"
+    desc: "Write react components and generates prototype that can be run locally (without a need of a webserver). " +
+          "Useful for presentation and sending mockups to customers for visual views. ",
+    gitLink: "https://github.com/yoonghan/react-templating",
+    usage: "View with minimum 640X480px\nClick on Next/Back to scroll along the prototype pages.\nButtons within screens are functional."
   },
   {
     id: "rn-android",
     link: "rn-android",
-    screenshot: "rnandroid_screen.png",
     title: "React Native Android Bridging",
     desc: "A simple prototype to demo the power of Android Bridging. One of my popular github forked project.",
     gitLink: "https://github.com/yoonghan/RN_Android_Native"
   },
   {
-    id: "rn-ex-postcard",
-    link: "EzLinkPostcard",
-    title: "Production for Ez-Link Postcard",
-    desc: "Written with React Native. The program allows a person to create postcards via mobile."
-  },
-  {
     id: "r-console",
-    link: "ReactConsole",
+    link: "rn-console",
     title: "Management Console",
-    desc: "Management console that loads fast with search capabilities. Layered on top of graphQL."
+    desc: "Management console that loads fast with search capabilities. Layered on top of graphQL.",
+    usage: "View with minimum 640X480px\nType into the searchbox to begin."
   }
 ]
 

@@ -19,7 +19,6 @@ export const MenuItem: React.SFC<MenuItemProps> = ({menuTriggerSize, whiteOnBlac
       </li>
       <style jsx>{`
         li :global(a) {
-          text-decoration: none;
           color: ${whiteOnBlack ?  WHITE: BLACK};
           font-family: ${fontFamily.standard};
           text-transform: uppercase;

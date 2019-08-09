@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Head from 'next/head';
-import * as _color from '../../styles/_color';
+import {FOREGROUND, BACKGROUND} from '../../shared/style';
 
 export const HtmlHead: React.SFC<any> = () => {
   return (
@@ -24,10 +24,11 @@ export const HtmlHead: React.SFC<any> = () => {
       {`
         html {
           font-size: 12pt;
+          min-width: 320px;
         }
         body {
-          background: ${_color.theme.background};
-          color: ${_color.theme.color};
+          background: ${BACKGROUND};
+          color: ${FOREGROUND};
           position: relative;
           padding: 0;
           margin: 0;

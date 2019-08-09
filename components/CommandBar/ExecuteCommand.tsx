@@ -62,14 +62,40 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
     return AvailableInput[inputCommand].exec(router);
   }
 
+  /**
+   * Convert to understandable commands.
+   **/
+  const findInputSynonym = (inputCommand:string) => {
+    if(AvailableInput[inputCommand]) {
+      return inputCommand;
+    }
+    else {
+      return findClosestInputMatch(inputCommand);
+    }
+  }
+
+  const findClosestInputMatch = (inputCommand:string) => {
+    //Cache it? Naw, too little to do that.
+    for (let key in AvailableInput) {
+      const synonym = AvailableInput[key].synonym;
+      if(synonym) {
+        const found = synonym.find((elem) => elem === inputCommand);
+        if(found) {
+          return key;
+        }
+      }
+    }
+    return inputCommand;
+  }
+
   return function(inputCommand:string) {
-    const _inputCommand = inputCommand.trim().toLowerCase();
+    const _inputCommand = findInputSynonym(inputCommand.trim().toLowerCase());
     const matchedCommand:IAvailableInput = AvailableInput[_inputCommand];
     if(matchedCommand) {
       return executeBasedOnType(_inputCommand, matchedCommand);
     }
-    else if(isSpecialCommand(inputCommand)) {
-      return getMathEvaluation(inputCommand);
+    else if(isSpecialCommand(_inputCommand)) {
+      return getMathEvaluation(_inputCommand);
     }
     else {
       return <InvalidInput invalidInput={inputCommand}/>

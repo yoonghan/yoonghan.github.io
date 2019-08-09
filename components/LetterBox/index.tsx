@@ -56,7 +56,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     const input = event.target.value;
     this.setState(
       produce((draft: Draft<LetterBoxStates>) => {
-        draft.name = input.trim();
+        draft.name = input;
       })
     );
   }
@@ -73,14 +73,14 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
             type="text"
             autoComplete="off"
             className={"letterbox-input"}
-            maxLength={400}
+            maxLength={200}
             placeholder={"Honorific and name"}
             onChange={this._onChangeLetterBoxInput}
             value={name}
             />
           <Button onClickCallback={this._onClickSendButton}>Send</Button>
           {
-            isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeTo={name}/></Modal>
+            isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeTo={name.trim()}/></Modal>
           }
           <style jsx>{`
             .letterbox-container {
