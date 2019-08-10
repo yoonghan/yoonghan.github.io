@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from 'next/head';
 import { HtmlHead } from "../components/html/HtmlHead";
 import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
@@ -43,11 +42,9 @@ class Creation extends React.PureComponent<{}, {}> {
   render() {
     return (
       <React.Fragment>
-        <HtmlHead/>
-        <Head>
-          <title>Experiments and Development</title>
-          <meta name="description" content="Contribution and self profile of Walcron."/>
-        </Head>
+        <HtmlHead
+          title={"Experiments and Development"}
+          description={"Contribution and self profile of Walcron."}/>
         <CommandBar/>
         <div className={'container'}>
           <HeaderOne title={"Creations"} isLined={true}/>

@@ -32,3 +32,9 @@ Execute the following to see package bundling
 ```
 npm run analyze
 ```
+
+## Testing
+Execute
+```
+npm test
+```

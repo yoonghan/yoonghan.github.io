@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "build/lib",
     "module": "esnext",
     "target": "es6",
     "lib": [
@@ -29,22 +28,14 @@
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "typeRoots": [
       "node_modules/@types"
     ]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
   "exclude": [
     "node_modules",
-    "build",
-    "host",
-    "scripts",
-    ".next",
-    "__tests__",
-    "__mocks__",
+    "out",
+    ".next"
   ]
 }

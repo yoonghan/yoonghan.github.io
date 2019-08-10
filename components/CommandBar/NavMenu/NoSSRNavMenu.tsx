@@ -28,7 +28,7 @@ const writeLink = (router: NextRouter) => {
 }
 
 const goBack = (router: NextRouter) => () => {
-  router.back();
+  router.push("/");
 }
 
 const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
