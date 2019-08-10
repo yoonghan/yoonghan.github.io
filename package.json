@@ -4,9 +4,8 @@
   "description": "A website for walcron coorperation, version 4.",
   "scripts": {
     "build": "next build",
-    "dev": "node server.js",
-    "start": "node server.js",
-    "start-windows": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "start": "NODE_ENV=production node server.js",
     "storybook": "start-storybook -s ./static -p 9001 -c .storybook",
     "analyze": "ANALYZE=true next build",
     "test": "jest",
