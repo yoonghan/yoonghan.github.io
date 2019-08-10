@@ -14,7 +14,7 @@ const trimInput = (input:string) => {
 const InvalidInput: React.SFC<InvalidInputProps> = ({invalidInput}) => {
   return (
     <div className="error">
-      {trimInput(invalidInput)} - command not found
+      {trimInput(invalidInput)} - not found. type HELP.
       <style jsx>{`
         .error {
           font-family: Inconsolata;

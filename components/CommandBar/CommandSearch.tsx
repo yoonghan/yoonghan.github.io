@@ -53,7 +53,7 @@ export const AvailableInput:ICommand = {
     }
   },
   "ls": {
-    synonym: ["dir", "cd creation", "cd /creation"],
+    synonym: ["dir", "cd creation", "cd /creation", "cd /invent"],
     description: "What's there ?",
     action: EnumAction.LINK,
     exec: (router: RouterProps) => {
@@ -106,6 +106,7 @@ export const AvailableInput:ICommand = {
   },
   "help": {
     description: "Lost, confused, need help.",
+    synonym: ["man", "info"],
     action: EnumAction.COMMAND,
     exec: (element:HTMLDivElement, cancellationCallback:()=>void) => {
       return ReactDOM.createPortal(

@@ -2,12 +2,9 @@ import * as React from "react";
 import InvalidInput from "./InvalidInput";
 import InvalidCommand from "./InvalidCommand";
 import Output from "./Output";
+import { NextRouter } from 'next/router';
 import {AvailableInput, IAvailableInput, EnumAction} from "./CommandSearch";
 import * as ts from "typescript";
-
-interface ExtendedRouterProps {
-}
-
 
 function evaluateMath(mathEval: string):string {
   // const code: string = `({
@@ -41,7 +38,7 @@ function isSpecialCommand(inputCommand:string) {
   return (inputCommand.indexOf('=') === 0 && inputCommand.length > 3);
 }
 
-export function exec(element:HTMLDivElement, cancellationCallback:()=>void, router:ExtendedRouterProps) {
+export function exec(element:HTMLDivElement, cancellationCallback:()=>void, router:NextRouter) {
 
   const executeBasedOnType = (inputCommand:string, inputSelected: IAvailableInput) => {
     switch(inputSelected.action) {
@@ -59,7 +56,8 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
   }
 
   const executeLink = (inputCommand:string) => {
-    return AvailableInput[inputCommand].exec(router);
+    if(router)
+      return AvailableInput[inputCommand].exec(router);
   }
 
   /**

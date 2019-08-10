@@ -2,7 +2,7 @@ import * as React from "react";
 import {OUTPUT} from "../../shared/style";
 
 interface OutputProps {
-  output: string;
+  output: (string|number);
 }
 
 

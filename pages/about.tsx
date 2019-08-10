@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
 import LetterBox from "../components/LetterBox";
 import HeaderOne from "../components/HeaderOne";
@@ -21,27 +20,27 @@ class About extends React.PureComponent<{}, AboutState> {
   render() {
     return (
       <React.Fragment>
-        <HtmlHead/>
-        <Head>
-          <title>About Walcron</title>
-          <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
-        </Head>
+        <HtmlHead
+          title="About Walcron"
+          description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
+          />
         <CommandBar/>
         <div className="container">
           <section>
             <HeaderOne title={"Our mission"} isLined={true}/>
             <p>
-              The two of us wanted to explore more on the field to venture into
-              opensource community; and what's better than to experiment and contribute
-              back into that community. So we started the Walcron website to
-              log our journey as well as to experiment real-time working websites.
+              Walcron is a by-product of a couple's journey for being in the IT industry
+              for more than 10 years. The Walcron website was build for Web experimentation to optimize
+              and to prototype new Web developments. Ocassionally this is being re-contributed
+              back into the opensource community. Han and Gladys started the Walcron website to
+              log their development journey, as well as, to experiment real-time working websites.
             </p>
           </section>
           <HorizontalLine/>
           <section>
             <h2>What do we do?</h2>
             <p>
-            We are coders who likes to exercise our brains in creating visual components,
+            We are coders who likes to crank our brains in creating visual components,
             may it be websites or on a piece of paper. Our expertise are on:
             </p>
             <ul>
@@ -55,8 +54,9 @@ class About extends React.PureComponent<{}, AboutState> {
           <section>
             <h2>Are we freelance for hire?</h2>
             <p>
-              Well...<i>if the price is right, and we have time to allocate</i>, yes.
-              Provide us your contact and we will contact you.
+              Well...<i>if the price is right, and we have time to allocate</i>,
+               <strong> yes</strong>.
+              Provide us your contact information and we will reach out to you.
             </p>
           </section>
           <HorizontalLine/>
@@ -68,12 +68,12 @@ class About extends React.PureComponent<{}, AboutState> {
                   name: "Han Yoong",
                   description: (
                     <div>
-                    A passionate coders who is now stuck in a "boring" company who does proprietery
-                    software and hardware. With his off working hours, he spends time to read
+                    A passionate coder who is now stuck in a proprietery
+                    software and hardware industry. In his free time, he spends time to read
                     and experiment new ways to improve the <i>Walcron Cooperation</i> publicity. He
                     has been contributing to Stackoverflow and sharing writeups in Github.
                     <br/><br/>
-                    <i>He do likes to write in Linux types system and automate his stuffs.</i>
+                    <i>He prefers to write-in Linux typed system and likes automate his stuffs.</i>
                     </div>
                   ),
                   imgSrc: "/static/img/profile/han.jpg"
@@ -82,12 +82,12 @@ class About extends React.PureComponent<{}, AboutState> {
                   name: "Gladys Tai",
                   description: (
                     <div>
-                    An achiever with a bad attitude. She always complains that she would
-                    make it in time or the task is too complex to handle. However, <i>all the projects
-                    that was delivered by her, has the outcome.</i> As a girl, she spends most of
+                    An achiever with a bad-ass attitude. She always complains that she wouldn't
+                    make it in time or the task are too complex to handle. However, <i>all the projects
+                    that was/has been delivered by her are faultless.</i> As a girl, she spends most of
                     her time being presentable.
                     <br/><br/>
-                    <i>She is a worrier and a warrior. Best described as wonder woman.</i>
+                    <i>She is a worrier and a warrior. Best described as Wonder Woman.</i>
                     </div>
                   ),
                   imgSrc: "/static/img/profile/gladys.jpg"

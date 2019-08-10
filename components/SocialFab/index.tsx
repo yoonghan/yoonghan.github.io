@@ -47,7 +47,7 @@ class SocialFab extends React.PureComponent<SocialFabProps, SocialFabStates> {
         </span>
         <ul className="fab-buttons">
           <li className="fab-buttons__item">
-            <a className="fab-buttons__link" target="onnew" href="//www.facebook.com/walcoorperation">
+            <a className="fab-buttons__link" target="onnew" href="https://www.facebook.com/walcron.coorperation">
               <i className="icon-material icon-material_fb"></i>
             </a>
           </li>
@@ -65,7 +65,7 @@ class SocialFab extends React.PureComponent<SocialFabProps, SocialFabStates> {
             a:hover {
               cursor: pointer;
             }
-            
+
             .fab {
               position: fixed;
               width: 56px;

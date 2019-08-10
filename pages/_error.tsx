@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from 'next/head';
 import { HtmlHead } from '../components/html/HtmlHead';
 import Logo from '../components/Logo';
 import ConstructionSplashScreen from '../components/ConstructionSplashScreen';
@@ -7,11 +6,10 @@ import ConstructionSplashScreen from '../components/ConstructionSplashScreen';
 const Index: React.SFC<any> = () => {
   return (
     <React.Fragment>
-      <HtmlHead/>
-      <Head>
-        <title>Walcoorperation a casual company setup for Web Research and Development</title>
-        <meta name="description" content="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."/>
-      </Head>
+      <HtmlHead
+        title="Not Found"
+        description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
+        />
       <div className={'container'}>
         <h1>Welcome to walcron.</h1>
         <h2>The page you have requested is not available.</h2>

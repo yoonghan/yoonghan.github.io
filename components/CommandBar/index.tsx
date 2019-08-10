@@ -11,7 +11,7 @@ interface CommandBarProps {
 const CommandBar: React.SFC<CommandBarProps> = ({disableMobile}) => {
   return (
     <NoSSR>
-      <div className={"header"}>
+      <div className={"header"} id="commandbar">
         <div className={"desktop" + (!disableMobile? " shift-to-right":"")}>
           <NoSSRCommandBar/>
           {!disableMobile && <NavMenu/>}
