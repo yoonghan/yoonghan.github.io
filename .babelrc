@@ -1,6 +1,11 @@
 {
   "presets": [
-    "next/babel",
+    [
+      "next/babel",
+      {
+        "styled-jsx": { "optimizeForSpeed": true }
+      }
+    ],
     "@zeit/next-typescript/babel"
   ]
 }
