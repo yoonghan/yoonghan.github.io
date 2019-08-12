@@ -94,7 +94,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
               background-color: transparent;
               border: 1px solid ${LINK.FOREGROUND};
               margin: 0;
-              min-width: 260px;
+              min-width: 200px;
               display: block;
               font-size: 1rem;
               box-sizing: content-box;

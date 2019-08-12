@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HtmlHead } from '../components/html/HtmlHead';
+import { HtmlHead } from '../components/HtmlHead';
 import HeaderOne from '../components/HeaderOne';
 
 const Main: React.SFC<any> = () => {

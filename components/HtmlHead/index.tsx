@@ -17,11 +17,11 @@ export const HtmlHead: React.SFC<HtmlHeadProps> = ({title, description}) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
         <meta name="og:title" content="Walcron Coorperation" key="fb_title"/>
         <meta name="og:type" content="profile" key="fb_type"/>
-        <meta name="og:site_name" content="http://www.walcron.com/" key="fb_charset"/>
+        <meta name="og:site_name" content="https://www.walcron.com/" key="fb_charset"/>
         <meta property="og:image:type" content="image/png" key="fb_image_t"/>
         <meta property="og:image:width" content="400" key="fb_image_w"/>
         <meta property="og:image:height" content="400" key="fb_image_h"/>
-        <meta name="og:image" content="http://www.walcron.com/og_image.png" key="fb_image_i"/>
+        <meta name="og:image" content="https://www.walcron.com/og_image.png" key="fb_image_i"/>
         <meta name="og:description" content="Welcome to Walcron Coorperation, Malaysia; a site was built for IT research purposes." key="fb_image_desc"/>
         <meta name="fb:admins" content="walcoorperation@gmail.com" key="fb_image_m"/>
         <title>{title}</title>
@@ -36,7 +36,8 @@ export const HtmlHead: React.SFC<HtmlHeadProps> = ({title, description}) => {
           min-width: 320px;
         }
         body {
-          background: ${BACKGROUND};
+          background: ${BACKGROUND} url("/img/bg/type1.jpg") no-repeat left bottom;
+          background-size: contain;
           color: ${FOREGROUND};
           position: relative;
           padding: 0;

@@ -1,12 +1,25 @@
 import * as React from "react";
 import { withRouter } from 'next/router';
 import ButtonsBar from "../ButtonsBar";
+import {ILink} from "../ButtonsBar";
 import { WithRouterProps } from "next/dist/client/with-router";
 
-const AVAILABLE_MENUS = ['Home', 'About', 'Work'];
+const AVAILABLE_MENUS:Array<ILink> = [
+  {
+    title: 'Home',
+    link: '/'
+  },
+  {
+    title: 'About',
+    link: '/about'
+  },
+  {
+    title: 'Invent',
+    link: '/creation'
+  }
+];
 
 interface NoSSRMobileMenuProps extends WithRouterProps {
-
 }
 
 class NoSSRMobileMenu extends React.PureComponent<NoSSRMobileMenuProps, {}> {
@@ -19,16 +32,12 @@ class NoSSRMobileMenu extends React.PureComponent<NoSSRMobileMenuProps, {}> {
 
   _getIndex = () => {
     const routerLocation = this.props.router.route;
-    switch(routerLocation) {
-      case '/':
-        return 0;
-      case '/about':
-        return 1;
-      case '/work':
-        return 2;
-      default:
-        return 0;
+    for(let i=0; i < AVAILABLE_MENUS.length; i++) {
+      if(AVAILABLE_MENUS[i].link === routerLocation) {
+        return i;
+      }
     }
+    return 0;
   }
 
   render() {

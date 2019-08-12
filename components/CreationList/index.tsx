@@ -98,17 +98,14 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
             </Button>
           </div>
         </div>
-        <style jsx>
-          {`
-            .btn-container {
-              padding: 40px 0;
-            }
-          `}
-        </style>
         <HorizontalLine/>
-        <style>{`
+        <style jsx>{`
           article {
             color: ${FOREGROUND};
+            margin: 0 10px;
+          }
+          .btn-container {
+            padding: 40px 0;
           }
           `}</style>
       </article>
@@ -146,7 +143,7 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
               padding: 20px;
               border-radius: 5px;
               max-width: 360px;
-              margin-bottom: 40px;
+              margin: 40px auto;
             }
             :global(.indexer a) {
               color: ${LINK.FOREGROUND};
