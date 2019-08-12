@@ -23,20 +23,25 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
   // const backgroundColor = "#121212";
   // const indicatorColor = "#e82d00";
 
-  function _getAnimateIndicator() {
-    let style = "";
-    for(let i=1; i<menuTexts.length; i++) {
-      style = style + `
-      .btnsbar-item:nth-child(${i}).is-active ~ .btnsbar-item:last-child:after {
-        left:${(width*i)-width}%;
-      }
-      .btnsbar-item:nth-child(${i}):hover ~ .btnsbar-item:last-child:after {
-        left:${(width*i)-width}% !important;
-      }
-      `;
-    }
-    return style;
-  }
+  /*
+    * Styled JSX has an issue with this, either to set .babelrc optimizeForSpeed=false
+    * or hardcode with :global().
+  */
+  // function _getAnimateIndicator() {
+  //   let style = "";
+  //   for(let i=1; i<menuTexts.length; i++) {
+  //     style = style + `
+  //     .btnsbar-item:nth-child(${i}).is-active ~ .btnsbar-item:last-child:after {
+  //       left:${(width*i)-width}%;
+  //     }
+  //     .btnsbar-item:nth-child(${i}):hover ~ .btnsbar-item:last-child:after {
+  //       left:${(width*i)-width}% !important;
+  //     }
+  //     `;
+  //   }
+  //   console.log(style);
+  //   return style;
+  // }
 
   function _generateMenu(iLink:ILink, idx:number) {
     const link = iLink.link;
@@ -48,6 +53,11 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
         <Link href={link}><a>{title}</a></Link>
       </li>
     );
+  }
+
+  if(menuTexts.length !== 3) {
+    console.warn("Due to Next JSX issue, CSS cannot correctly render :nth-child() and ~.");
+    console.error("Component fixed to only 3 and only 3 index.");
   }
 
   return (
@@ -120,18 +130,28 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
             z-index: -1;
           }
 
-          ${_getAnimateIndicator()}
-
-          .nothing-sense {
-            display: none;
+          :global(.btnsbar-item:nth-child(1).is-active ~ .btnsbar-item:last-child:after) {
+            left:0%;
           }
 
-          .with-indicator .btnsbar-item:last-child:hover:after, .with-indicator .btnsbar-item:last-child.is-active:after {
+          :global(.btnsbar-item:nth-child(1):hover ~ .btnsbar-item:last-child:after) {
+            left:0% !important;
+          }
+
+          :global(.btnsbar-item:nth-child(2).is-active ~ .btnsbar-item:last-child:after) {
+            left:33.333333333333336%;
+          }
+
+          :global(.btnsbar-item:nth-child(2):hover ~ .btnsbar-item:last-child:after) {
+            left:33.333333333333336% !important;
+          }
+
+          :global(.with-indicator .btnsbar-item:last-child:hover:after,.with-indicator .btnsbar-item:last-child.is-active:after){
+            left:66.66666666666666% !important;
+          }
+
+          :global(.with-indicator .btnsbar-item:last-child:hover:after, .with-indicator .btnsbar-item:last-child.is-active:after) {
             left: ${100-width}% !important;
-          }
-
-          *, *:before, *:after {
-            box-sizing: border-box;
           }
 
           .btnsbar:before,

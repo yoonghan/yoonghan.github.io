@@ -19,8 +19,7 @@ export const Component2 = () => {
       <ButtonsBar menuTexts={[
         {title:"abc",link:"/"},
         {title:"def",link:"/"},
-        {title:"123",link:"/"},
-        {title:"456",link:"/"},
+        {title:"123",link:"/"}
         ]}/>
     </div>
   );
