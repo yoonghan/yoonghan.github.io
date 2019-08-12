@@ -7,8 +7,13 @@
 import * as React from "react";
 import Link from 'next/link';
 
+export interface ILink {
+  title: string;
+  link: string;
+}
+
 export interface ButtonsBarProps {
-  menuTexts: Array<string>;
+  menuTexts: Array<ILink>;
   activeIndex?: number;
 }
 
@@ -33,13 +38,14 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
     return style;
   }
 
-  function _generateMenu(menuText:string, idx:number) {
-    const link = menuText.toLowerCase();
+  function _generateMenu(iLink:ILink, idx:number) {
+    const link = iLink.link;
+    const title = iLink.title;
     const _activeIdx = activeIndex || 0;
     const className = "btnsbar-item" + ((_activeIdx === idx)?" is-active":"");
     return (
       <li className={`${className}`} key={`btns-bar_${idx}`}>
-        <Link href={link==="home"?"/":`/${link}`}><a>{menuText}</a></Link>
+        <Link href={link}><a>{title}</a></Link>
       </li>
     );
   }

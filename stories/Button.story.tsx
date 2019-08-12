@@ -16,7 +16,12 @@ export const Component = () => {
 export const Component2 = () => {
   return (
     <div style={{width:"400px", height:"400px", background:"#000", padding: "20px"}}>
-      <ButtonsBar menuTexts={["abc", "123", "d4e","555"]}/>
+      <ButtonsBar menuTexts={[
+        {title:"abc",link:"/"},
+        {title:"def",link:"/"},
+        {title:"123",link:"/"},
+        {title:"456",link:"/"},
+        ]}/>
     </div>
   );
 }
