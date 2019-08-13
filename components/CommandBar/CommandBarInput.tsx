@@ -220,9 +220,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             color: transparent;
             text-shadow: 0 0 0 #EBEBEB;
           }
-          :global(.react-autosuggest__input::placeholder) {
-            color: #A2A2A2;
-          }
           :global(.react-autosuggest__input:focus) {
             outline: none;
           }

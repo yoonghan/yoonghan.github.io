@@ -24,15 +24,21 @@ app.prepare()
   /** [Security-End] **/
 
   /** [SEO-Start] **/
-  server.use(express.static('./seo'));
+  server.use("/", express.static('./seo', {
+    maxage: '365d'
+  }));
   /** [SEO-End] **/
 
   /** [Static-Start] **/
-  server.use(express.static('./static'));
+  server.use(express.static('./static', {
+    maxage: '24h'
+  }));
   /** [Static-End] **/
 
   /** [SiteHosting-Start] **/
-  server.use('/host', express.static('./host'));
+  server.use('/host', express.static('./host', {
+    maxage: '24h'
+  }));
   /** [SiteHosting-End] **/
 
   /** [Allow External Hosting-Start] **/

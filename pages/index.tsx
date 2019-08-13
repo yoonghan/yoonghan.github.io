@@ -8,6 +8,7 @@ const Main: React.SFC<any> = () => {
   return (
     <React.Fragment>
       <HtmlHead
+        nofontawesome={true}
         title={"Walcron Coorperation"}
         description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}/>
       <CommandBar disableMobile={true}/>

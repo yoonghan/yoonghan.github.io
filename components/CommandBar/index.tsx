@@ -19,7 +19,7 @@ const CommandBar: React.SFC<CommandBarProps> = ({disableMobile}) => {
         {!disableMobile && (<div className="mobile">
           <NoSSRMobileMenu/>
         </div>)}
-        {disableMobile && (<img className={"logo-img"} src="/img/logo/logo-color.svg"/>)}
+        {disableMobile && (<img className={"logo-img"} src="/static/img/logo/logo-color.svg"/>)}
         <style jsx>{`
           .header {
             text-align: center;
