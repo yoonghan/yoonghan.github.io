@@ -14,7 +14,7 @@ export interface ProfilerProps {
 
 const _getUser = (idx: number, length: number, name: string, description: JSX.Element, imgSrc: string) => (
   <div className={"user"} key={"user_"+idx}>
-    <img src={imgSrc}/>
+    <img src={imgSrc} alt={name}/>
     <p className={"name"}>{name}</p>
     <div className={"divider"}>------</div>
     {description}

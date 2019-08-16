@@ -34,6 +34,7 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
             border: 1px solid;
             margin: 0 1px 1px 0;
             user-select: none;
+            white-space: nowrap;
             box-shadow: 0 2px 2px 0 rgba(22,22,22,0.14), 0 1px 5px 0 rgba(22,22,22,0.12), 0 3px 1px -2px rgba(22,22,22,0.2)
           }
           .btn-container:hover {

@@ -1,6 +1,7 @@
 import * as React from "react";
 import NoSSR from 'react-no-ssr';
 import NavMenu from "./NavMenu";
+import Logo from "../Logo";
 import NoSSRCommandBar from "./NoSSRCommandBar";
 import NoSSRMobileMenu from "./NoSSRMobileMenu";
 
@@ -19,7 +20,7 @@ const CommandBar: React.SFC<CommandBarProps> = ({disableMobile}) => {
         {!disableMobile && (<div className="mobile">
           <NoSSRMobileMenu/>
         </div>)}
-        {disableMobile && (<img className={"logo-img"} src="/static/img/logo/logo-color.svg"/>)}
+        {disableMobile && (<Logo/>)}
         <style jsx>{`
           .header {
             text-align: center;
@@ -41,23 +42,12 @@ const CommandBar: React.SFC<CommandBarProps> = ({disableMobile}) => {
           .mobile {
             display: none;
           }
-          .logo-img {
-            width: 50px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-          }
           @media only screen and (max-width: 480px) {
             .mobile {
               display: block;
             }
             .desktop {
               display: none !important;
-            }
-            .logo-img {
-              width: 88px;
-              transform: translateX(50%);
-              right: 50%;
             }
           }
         `}</style>

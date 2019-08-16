@@ -34,7 +34,7 @@ const goBack = (router: NextRouter) => () => {
 const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
 
   return (
-    <div className="container">
+    <nav className="container">
 
         <div className="return-btn" onClick={goBack(router)}>
           <i className="fas fa-chevron-left"></i>
@@ -65,7 +65,7 @@ const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
           color: ${LINK.FOREGROUND};
         }
       `}</style>
-    </div>
+    </nav>
   );
 }
 

@@ -87,7 +87,7 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
     workArr.map((work, idx) => (
       <article key={`_work_article_${idx}`}>
         <div id={work.id}>
-          <h2>{work.title}</h2>
+          <h2 >{work.title}</h2>
           {this._showScreenshot(work.title, work.screenshot)}
           <p>
             {work.desc}
