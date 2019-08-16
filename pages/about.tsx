@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Helmet} from "react-helmet";
 import { HtmlHead } from '../components/HtmlHead';
 import LetterBox from "../components/LetterBox";
 import HeaderOne from "../components/HeaderOne";
@@ -7,6 +8,7 @@ import Profiler from "../components/Profiler";
 import CommandBar from '../components/CommandBar';
 import ScrollToTop from '../components/ScrollToTop';
 import {FOREGROUND} from "../shared/style";
+import Footer from "../components/Footer";
 
 interface AboutState {
 }
@@ -17,6 +19,27 @@ class About extends React.PureComponent<{}, AboutState> {
     super(props);
   }
 
+  _getSchema = () => {
+    const schemas = {
+              "@context" : "http://schema.org",
+              "@type" : "LocalBusiness",
+              "name" : "Walcron",
+              "image" : "https://walcron.com/static/img/logo/logo-color.svg",
+              "email" : "walcoorperation@gmail.com",
+              "url" : "https://www.walcron.com/",
+              "openingHoursSpecification" : {
+                "@type" : "OpeningHoursSpecification",
+                "dayOfWeek" : {
+                  "@type" : "DayOfWeek",
+                  "name" : "Monday-Sunday"
+                },
+                "opens" : "2014-07-04T9:00",
+                "closes" : "2020-07-04T9:00"
+              }
+            }
+    return JSON.stringify(schemas);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -24,6 +47,13 @@ class About extends React.PureComponent<{}, AboutState> {
           title="About Walcron"
           description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
           />
+          <Helmet>
+            <script type="application/ld+json">
+            {
+              this._getSchema()
+            }
+            </script>
+          </Helmet>
         <CommandBar/>
         <div className="container">
           <section>
@@ -105,6 +135,7 @@ class About extends React.PureComponent<{}, AboutState> {
           <div className="footer"/>
         </div>
         <ScrollToTop/>
+        <Footer/>
         <style jsx>{`
           i {
             font-style: italic;
@@ -130,7 +161,7 @@ class About extends React.PureComponent<{}, AboutState> {
             color: ${FOREGROUND};
           }
           .footer {
-            margin-bottom: 50px;
+            padding-bottom: 50px;
           }
           .letterbox {
             padding: 10px 30px;

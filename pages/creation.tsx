@@ -4,7 +4,7 @@ import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
 import ScrollToTop from "../components/ScrollToTop";
 import CreationList from "../components/CreationList";
-
+import Footer from "../components/Footer";
 
 const creationList = [
   {
@@ -52,13 +52,14 @@ class Creation extends React.PureComponent<{}, {}> {
         </div>
         <ScrollToTop/>
         <div className="footer"/>
+        <Footer/>
         <style jsx>{`
           .container {
             margin: auto;
             padding-top: 100px;
           }
           .footer {
-            margin-bottom: 100px;
+            padding-bottom: 100px;
           }
         `}</style>
       </React.Fragment>
