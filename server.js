@@ -24,9 +24,27 @@ app.prepare()
   /** [Security-End] **/
 
   /** [SEO-Start] **/
-  server.use("/", express.static('./seo', {
-    maxage: '365d'
-  }));
+  const seoOptions = {
+    root: __dirname + '/seo/',
+    headers: {
+      'Content-Type': 'text/plain;charset=UTF-8',
+    }
+  };
+  server.get('/robots.txt', (req, res) => (
+    res.status(200).sendFile('robots.txt', seoOptions)
+  ));
+  server.get('/sitemap.xml', (req, res) => {
+    seoOptions["headers"] = {"Content-Type": "application/xhtml+xml;charset=UTF-8"}
+    return res.status(200).sendFile('sitemap.xml', seoOptions)
+  });
+  server.get('/og_image.png', (req, res) => {
+    seoOptions["headers"] = {"Content-Type": "image/png"}
+    return res.status(200).sendFile('og_image.png', seoOptions)
+  });
+  server.get('/favicon.ico', (req, res) => {
+    seoOptions["headers"] = {"Content-Type": "image/x-icon"}
+    return res.status(200).sendFile('favicon.ico', seoOptions)
+  });
   /** [SEO-End] **/
 
   /** [Static-Start] **/
