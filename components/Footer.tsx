@@ -12,7 +12,7 @@ const Footer: React.SFC<any> = () => {
         left: 0px;
         margin: 10px;
         position: absolute;
-        width: 500px;
+        width: 320px;
       }
     `}</style>
     </footer>
