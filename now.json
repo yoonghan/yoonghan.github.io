@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "alias": ["www.walcron.com", "walcron.com", "login.walcron.com"]
+  "name": "walcron",
+  "routes": [
+    {"src": "^/favicon.ico$", "dest": "/public/favicon.ico"},
+    {"src": "^robots.txt$", "dest": "/public/robots.txt"},
+    {"src": "^/og_image.png$", "dest": "/public/og_image.png"},
+    {"src": "^/sitemap.xml$", "dest": "/public/sitemap.xml"},]
+    {"src": "^/static/(.*)", "dest": "/static/$1", "headers": {"cache-control": "s-maxage=1000"}}
+  ],
+  "github": {
+    "enabled": true,
+    "autoAlias": false
+  }
+}
