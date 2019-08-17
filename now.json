@@ -13,6 +13,7 @@
     {"src": "^/static/(.*)", "dest": "/static/$1", "headers": {"cache-control": "s-maxage=1000"}}
   ],
   "github": {
-    "enabled": true
+    "enabled": true,
+    "autoAlias": false
   }
 }
