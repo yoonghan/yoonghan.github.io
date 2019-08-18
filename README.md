@@ -1,20 +1,45 @@
 # Walcron's own nodeJS
+This is the main website's sourcecode for Walcron Coorperation.
 
-# Installation
+## Installation
 Run
+
 ```
   npm install
   npm install --only=dev
 ```
+
 If there are missing webpack installation, manually execute 'npm install next'
 
-# Deployment into AWS Elasticbeanstalk
+## Development for Zeit
+1. Changes are based on *now.json*.
+
+```
+  npm install -g now-cli
+  now dev
+```
+
+
+## Development for Zeit
+1. Changes are based on *package.json*.
+
+```
+  npm run dev
+```
+
+## Deployment into AWS Elasticbeanstalk
 1. Check that the start port is 8081.
 2. Check that 'npm install' and 'npm start' can be triggered.
 3. Go to Configuration->Software to add "Environment Properties" with NODE_ENV=production and PORT=8081
 4. Go to Configuraiton->Software to add "Node Command" with "npm start", and not default server.js
 
-# Deployment from Windows server to Unix System.
+## Deployment into Zeit.
+
+```
+now
+```
+
+## Deployment from Windows server to Unix System.
 1. After npm build, look for "\\" in folders .next\**\*.json.
 2. Replace all folders with "\\" with "/".
 3. Deploy into servers, e.g. AWS and so on.
