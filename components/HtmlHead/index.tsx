@@ -1,5 +1,9 @@
 `use strict`
 
+/**
+ * Preference over pages/_document.tsx
+ */
+ 
 import * as React from "react";
 import Head from 'next/head';
 import {FOREGROUND, BACKGROUND} from '../../shared/style';
