@@ -1,4 +1,4 @@
-const graphQL = require('./host/rn-console/server');
+const graphQL = require('./static/host/rn-console/server');
 
 module.exports = function (expressapp) {
 

@@ -30,16 +30,10 @@ app.prepare()
   /** [Security-End] **/
 
   /** [Static-Start] **/
-  server.use(express.static('./static', {
+  server.use('/static', express.static('./static', {
     maxage: '24h'
   }));
   /** [Static-End] **/
-
-  /** [SiteHosting-Start] **/
-  server.use('/host', express.static('./host', {
-    maxage: '24h'
-  }));
-  /** [SiteHosting-End] **/
 
   /** [Allow External Hosting-Start] **/
   hostApp(server);
