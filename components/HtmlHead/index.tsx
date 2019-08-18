@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Head from 'next/head';
+import {FOREGROUND, BACKGROUND} from '../../shared/style';
 
 interface HtmlHeadProps {
   title: string;
@@ -59,9 +60,9 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
         <style jsx global>
         {`
           body {
-            background: #000000 url("/static/img/bg/type1.jpg") no-repeat left bottom;
+            background: ${BACKGROUND} url("/static/img/bg/type1.jpg") no-repeat left bottom;
             background-size: contain;
-            color: #FFFFFF;
+            color: ${FOREGROUND};
             position: relative;
             padding: 0;
             margin: 0;

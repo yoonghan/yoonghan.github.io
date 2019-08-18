@@ -12,7 +12,7 @@ module.exports = {
   ],
   globals: {
     "ts-jest": {
-      babelConfig: ".babelrc",
+      babelConfig: ".babeltestrc",
       tsConfig: "jest.tsconfig.json"
     }
   },
