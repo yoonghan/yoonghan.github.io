@@ -28,7 +28,7 @@ const creationList = [
     link: "rn-console",
     title: "Management Console",
     desc: "Management console that loads fast with search capabilities. Layered on top of graphQL.",
-    usage: "View with minimum 640X480px\nType into the searchbox to begin."
+    usage: "CURRENTLY NOT WORKING, NEEDED TO DEPLOY GRAPHQL\nView with minimum 640X480px\nType into the searchbox to begin."
   }
 ]
 

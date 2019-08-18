@@ -36,7 +36,7 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
   }
 
   _getUrl = (url:string) => {
-    return `/static/host/${url}`;
+    return `/static/host/${url}/`;
   }
 
   _createdIdxKey = (workArr:Array<CreationListItem>) => (

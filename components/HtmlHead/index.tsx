@@ -54,7 +54,7 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
           <meta name="description" content={description} key="description"/>
           <title>{title}</title>
           <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>}
-          <link rel="preload" as="style" href="/css/font.css" key="int_font"/>
+          <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
         </Head>
         <style jsx global>
         {`
