@@ -25,4 +25,5 @@
 html {
   font-family: Roboto;
   font-size: 12pt;
+  min-width: 320px;
 }

@@ -3,7 +3,7 @@
     [
       "next/babel",
       {
-        "styled-jsx": { "optimizeForSpeed": true }
+        "styled-jsx": { "optimizeForSpeed": false }
       }
     ],
     "@zeit/next-typescript/babel"
