@@ -3,7 +3,7 @@
 /**
  * Preference over pages/_document.tsx
  */
- 
+
 import * as React from "react";
 import Head from 'next/head';
 import {FOREGROUND, BACKGROUND} from '../../shared/style';
@@ -58,12 +58,14 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
           <meta name="description" content={description} key="description"/>
           <title>{title}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-          <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>}
-          <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
+          <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" key="font1"/>
+          <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" key="font2"/>
+          <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font3"></link>}
         </Head>
         <style jsx global>
         {`
           html {
+            font-family: 'Roboto';
             font-size: 12pt;
             min-width: 320px;
           }
