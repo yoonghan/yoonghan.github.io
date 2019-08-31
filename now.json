@@ -3,12 +3,12 @@
   "alias": ["www.walcron.com", "walcron.com", "login.walcron.com"],
   "name": "Walcron",
   "routes": [
+    {"src": "^/static/(img|fonts|css|json)/(.*)$", "headers": {"cache-control": "s-maxage=86400"}, "dest": "/static/$1/$2"},
     {"src": "^/static/host/(.*)/$", "dest": "/static/host/$1/index.html" },
-    {"src": "^/static/(img|fonts|css|json)/(.*)$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/$1/$2"},
-    {"src": "^/favicon.ico$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/seo/favicon.ico"},
-    {"src": "^/robots.txt$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/seo/robots.txt"},
-    {"src": "^/og_image.png$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/seo/og_image.png"},
-    {"src": "^/sitemap.xml$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/seo/sitemap.xml"}
+    {"src": "^/favicon.ico$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/favicon.ico"},
+    {"src": "^/robots.txt$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/robots.txt"},
+    {"src": "^/og_image.png$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/og_image.png"},
+    {"src": "^/sitemap.xml$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/sitemap.xml"}
   ],
   "github": {
     "enabled": true,
