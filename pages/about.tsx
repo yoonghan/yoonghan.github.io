@@ -56,8 +56,8 @@ class About extends React.PureComponent<{}, AboutState> {
           </Helmet>
         <CommandBar/>
         <div className="container">
+          <HeaderOne title={"About our mission"} isLined={true}/>
           <section>
-            <HeaderOne title={"Our mission"} isLined={true}/>
             <p>
               Walcron is a by-product of a couple's journey for being in the IT industry
               for more than 10 years. The Walcron website was build for Web experimentation to optimize
