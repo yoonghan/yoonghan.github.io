@@ -1,7 +1,7 @@
 {
   "version": 2,
   "alias": ["www.walcron.com", "walcron.com", "login.walcron.com"],
-  "name": "walcron",
+  "name": "Walcron",
   "routes": [
     {"src": "^/static/host/(.*)/$", "dest": "/static/host/$1/index.html" },
     {"src": "^/static/(img|fonts|css|json)/(.*)$", "headers": {"cache-control": "s-maxage=86400, max-age=0"}, "dest": "/static/$1/$2"},
