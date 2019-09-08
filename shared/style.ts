@@ -57,3 +57,8 @@ export const DIALOG = {
   FOREGROUND: WHITE,
   BACKGROUND: BLACK
 }
+
+export const COOKIEBOX = {
+  FOREGROUND: WHITE,
+  BACKGROUND: "rgba(50,50,100,0.9)"
+}
