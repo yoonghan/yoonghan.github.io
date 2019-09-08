@@ -36,7 +36,7 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
   }
 
   render() {
-    const {title, description, nofontawesome} = this.props;
+    const {title, description} = this.props;
     return (
       <div ref={this.scriptRef}>
         <Head>
@@ -54,7 +54,7 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
           <meta name="description" content={description} key="description"/>
           <title>{title}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-          {!nofontawesome && <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>}
+          <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>
           <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
         </Head>
         <style jsx global>
