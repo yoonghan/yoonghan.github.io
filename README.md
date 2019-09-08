@@ -63,3 +63,10 @@ Execute
 ```
 npm test
 ```
+
+## Roll up sites (post publishing)
+1. Cookiebot checking. (https://www.cookiebot.com/), no cookies for this site.
+2. Page (https://developers.google.com/speed/pagespeed/insights/)
+3. Robots.txt (https://technicalseo.com/tools/robots-txt/)
+4. Metadata/schematics test (https://search.google.com/structured-data/testing-tool/u/0/)
+5. Mozilla (https://observatory.mozilla.org/) - did not pass with flying colors, Now.sh issues.

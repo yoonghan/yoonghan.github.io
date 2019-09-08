@@ -162,7 +162,6 @@ class SocialFab extends React.PureComponent<SocialFabProps, SocialFabStates> {
             }
           `}
         </style>
-        <div style={{display: "none"}}>Contributions from https://www.iconfinder.com/rebininfotech, https://codepen.io/ruslan_khomiak/pen/QGmwMP</div>
       </div>
     );
   }

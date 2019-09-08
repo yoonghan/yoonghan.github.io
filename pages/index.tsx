@@ -5,6 +5,8 @@ import CinemaScreen from "../components/CinemaScreen";
 import SocialFab from "../components/SocialFab";
 import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
+//import Cookie from "../components/Cookie";
+import cookies from 'next-cookies';
 
 const _getSchema = () => {
   const schemas = {
@@ -27,8 +29,15 @@ const _getSchema = () => {
   return JSON.stringify(schemas);
 }
 
+interface IMainProps {
+  termsRead: string;
+}
 
-const Main: React.SFC<any> = () => {
+interface StatelessPage<P = {}> extends React.SFC<P> {
+  getInitialProps?: (ctx: any) => Promise<P>
+}
+
+const Main: StatelessPage<IMainProps> = ({}) => {
   return (
     <React.Fragment>
       <HtmlHead
@@ -63,5 +72,11 @@ const Main: React.SFC<any> = () => {
     </React.Fragment>
   );
 }
+
+Main.getInitialProps = async(ctx:any) => {
+  return {
+    termsRead: cookies(ctx).termsRead || "false"
+  }
+};
 
 export default Main;
