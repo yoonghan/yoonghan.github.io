@@ -10,7 +10,7 @@ jest.mock("next/router");
 describe('Pages', () => {
   describe('Index', () => {
     it('should contain commandbar', function () {
-      const wrap = mount(<IndexPage/>);
+      const wrap = mount(<IndexPage termsRead={"false"}/>);
 
       expect(wrap.find('#commandbar').exists()).toBe(true);
     })
