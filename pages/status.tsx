@@ -6,7 +6,7 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
   getInitialProps?: (ctx: any) => Promise<P>
 }
 
-const _generateTableResponse = (application:string, response:string) => {
+const _generateTableRow = (application:string, response:string) => {
   return (
     <tr>
       <td>{application}</td>
@@ -32,7 +32,8 @@ const StatusReport: StatelessPage<any> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {_generateTableResponse("Pusher API", props.pusher)}
+          {_generateTableRow("Pusher API", props.pusher)}
+          {_generateTableRow("GraphQL API", props.graphql)}
         </tbody>
       </table>
       <style jsx global>{`
@@ -49,7 +50,7 @@ const StatusReport: StatelessPage<any> = (props) => {
 }
 
 StatusReport.getInitialProps = async({}) => {
-  const pusherResponse = await fetch('https://www.walcron.com/api/manipulator', {
+  const pusherResponse = await fetch("https://www.walcron.com/api/manipulator", {
     method: 'LINK',
     mode: 'same-origin',
     cache: 'no-cache',
@@ -63,8 +64,12 @@ StatusReport.getInitialProps = async({}) => {
   });
   const pusherData = await pusherResponse.json();
 
+  const graphqlResponse = await fetch("https://dashboardgraphql-rsqivokhvn.now.sh/api?query={agent(id:12){id}}")
+  const graphqlData = await graphqlResponse.json();
+
   return {
-    pusher: JSON.stringify(pusherData)
+    pusher: JSON.stringify(pusherData),
+    graphql: JSON.stringify(graphqlData)
   };
 };
 
