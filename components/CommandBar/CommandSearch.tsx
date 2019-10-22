@@ -104,6 +104,19 @@ export const AvailableInput:ICommand = {
     action: EnumAction.COMMAND,
     exec: () => <InvalidCommand invalidCommand={"Provide an equation"}/>
   },
+  "tribute": {
+    synonym: ["thanks", "thank you"],
+    description: "Gratitudes to organization and people.",
+    action: EnumAction.LINK,
+    url: "/tribute",
+    exec: (router: RouterProps) => {
+      if(router.route === "/tribute") {
+        return <InvalidCommand invalidCommand={"This is the page"}/>;
+      }
+      router.push("/tribute");
+      return <React.Fragment/>;
+    }
+  },
   "help": {
     description: "Lost, confused, need help.",
     synonym: ["man", "info"],

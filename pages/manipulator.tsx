@@ -1,6 +1,7 @@
 import * as React from "react";
 import Head from 'next/head';
-import Pusher from 'pusher';
+import PusherJS from 'pusher-js';
+import NoSSR from 'react-no-ssr';
 import { HtmlHead } from '../components/HtmlHead';
 import HeaderOne from "../components/HeaderOne";
 import { PUSHER } from "../shared/const";
@@ -9,23 +10,54 @@ interface ManipulatorState {
 }
 
 class Manipulator extends React.PureComponent<{}, ManipulatorState> {
-
-  private static channelClient = new Pusher({
-    appId: '883986',
-    key: 'e9139e70efa074139d48',
-    secret: 'd3fa184f6689ae235725',
-    cluster: 'ap1',
-    encrypted: true
-  });
+  // private static pushChannelServer = new Pusher({
+  //   appId: process.env.PUSHER_APP_ID,
+  //   key: process.env.PUSHER_APP_KEY,
+  //   secret: process.env.PUSHER_APP_SECRET,
+  //   cluster: process.env.PUSHER_CLUSTER,
+  //   encrypted: true
+  // });
+  private pushChannelClient:any;
 
   constructor(props:any) {
     super(props);
   }
 
+  componentDidMount() {
+    if(process && process.env.PUSHER_APP_KEY) {
+      const {
+        PUSHER_APP_KEY,
+        PUSHER_CLUSTER
+      } = process.env;
+
+      this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
+        cluster: PUSHER_CLUSTER,
+        encrypted: true
+      });
+    }
+  }
+
+  _triggerServerClick = () => {
+
+  }
+
   _triggerClick = () => {
     console.log("Trigger Click");
-    Manipulator.channelClient.trigger(PUSHER.channel, PUSHER.event, {
-      "message": "hello world"
+    var channel = this.pushChannelClient.subscribe(`${PUSHER.channel}`);
+    channel.bind(PUSHER.event, function(data:any) {
+
+      console.log("Subscription suceeded");
+
+      // channel.trigger('client-someeventname',
+      //   {
+      //     "trolling": "data"
+      //   }
+      // );
+
+      console.log(JSON.stringify(data));
+    });
+    channel.bind('pusher:subscription_error', function(status:number) {
+      console.log(`Failed ${status}`)
     });
     console.log("Trigger Click");
   }
@@ -42,7 +74,10 @@ class Manipulator extends React.PureComponent<{}, ManipulatorState> {
         </Head>
         <div className={"container"}>
           <HeaderOne title={"Mobile Connectivity"} isLined={true}/>
-          <button onClick={this._triggerClick}/>
+          <NoSSR>
+            <button onClick={this._triggerClick} value="Trigger Client">Trigger Client</button>
+            <button onClick={this._triggerServerClick} value="Trigger Server">Trigger Server</button>
+          </NoSSR>
         </div>
       </React.Fragment>
     )

@@ -35,19 +35,22 @@ const renderUsage = (usage?:string) => {
   );
 }
 
-const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, title, githubLink, usage, closeCallback}) => {
+const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, githubLink, usage, closeCallback}) => {
   return (
     <div className={'miniframe'}>
       <div className={'title'}>
-        <Button onClickCallback={closeCallback}>
-          <i className="fas fa-chevron-left icon-spacing"></i> {title}
+        <Button onClickCallback={closeCallback} small={true}>
+          <i className="fas fa-chevron-left icon-spacing"></i> Return
         </Button>
         {
           githubLink &&
-          <Button href={githubLink} target="sourcecode">
+          <Button href={githubLink} target="sourcecode" small={true}>
             <i className="fab fa-github-alt icon-spacing"></i> Source Code
           </Button>
         }
+        <Button href={iframeLink} target="extWindow" small={true}>
+          Open In New Window
+        </Button>
       </div>
       <div>
         {renderUsage(usage)}

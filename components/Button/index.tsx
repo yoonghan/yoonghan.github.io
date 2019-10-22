@@ -7,9 +7,10 @@ export interface ButtonProps {
   href?: string;
   target?: string;
   onClickCallback?: () => void;
+  small?: boolean;
 }
 
-const createButton = (children?:any, _onClickCallback?:() => void, target?: string) => {
+const createButton = (children?:any, _onClickCallback?:() => void, target?: string, small?: boolean) => {
   return (
     <a className="btn-container" onClick={_onClickCallback?_onClickCallback:()=>{}} target={target}>
       {children}
@@ -26,7 +27,7 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
             transition-duration: .15s;
             transition-timing-function: ease-in-out;
             color: #FFF;
-            font-size: 1rem;
+            font-size: ${small? '0.7rem': '1rem'};
             text-align: center;
             border-radius: 0.5rem;
             font-weight: bold;
@@ -50,11 +51,11 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
   );
 }
 
-const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback}) => {
+const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small}) => {
   return (
     href?
-      <Link href={href}>{createButton(children, undefined, target)}</Link>:
-      createButton(children, onClickCallback)
+      <Link href={href}>{createButton(children, undefined, target, small)}</Link>:
+      createButton(children, onClickCallback, undefined, small)
   );
 }
 
