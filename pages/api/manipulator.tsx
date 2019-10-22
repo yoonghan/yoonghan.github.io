@@ -16,7 +16,7 @@ const _validInput = (input:string) => {
 const _sendError = (res:NextApiResponse, messages:Array<string>) => {
   res.status(400).json(
     {
-      error: messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
+      "error": messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
     }
   );
 }
@@ -24,7 +24,7 @@ const _sendError = (res:NextApiResponse, messages:Array<string>) => {
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
   res.status(405).json(
     {
-      error: messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
+      "error": messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
     }
   );
 }
@@ -32,7 +32,7 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 const _getCodeGen = (res: NextApiResponse) => {
   res.status(200).json(
     {
-      codegen: ApiController.getCodeGen()
+      "codegen": ApiController.getCodeGen()
     }
   );
 }
@@ -54,7 +54,7 @@ const _validatePost = (req: NextApiRequest) => {
   return errorMessages;
 }
 
-const _postMessage = (req: NextApiRequest,res: NextApiResponse) => {
+const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   const errorMessages = _validatePost(req);
   if(errorMessages.length !== 0 ) {
     _sendError(
@@ -86,6 +86,26 @@ const _postMessage = (req: NextApiRequest,res: NextApiResponse) => {
   }
 }
 
+const _getStatus = (res: NextApiResponse) => {
+  function callback(error:any, success?:string) {
+    if(error !== null && typeof error !== "undefined") {
+      res.status(500).json(
+        {
+          error: error
+        }
+      );
+    }
+    else {
+      res.status(200).json(
+        {
+          channels: success
+        }
+      );
+    }
+  }
+  ApiController.getStatusOfChannel(callback);
+}
+
 export default (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json');
 
@@ -95,6 +115,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       break;
     case 'POST':
       _postMessage(req, res);
+      break;
+    case 'LINK':
+      _getStatus(res);
       break;
     default:
       _sendMethodError(

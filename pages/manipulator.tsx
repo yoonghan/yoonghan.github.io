@@ -32,7 +32,7 @@ class Manipulator extends React.PureComponent<{}, ManipulatorState> {
 
       this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
         cluster: PUSHER_CLUSTER,
-        encrypted: true
+        forceTLS: true
       });
     }
   }
