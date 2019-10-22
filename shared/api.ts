@@ -11,6 +11,7 @@ class ApiController {
     const randNumber = Math.random();
     return randNumber.toString(36).substr(2, 9);
   }
+
   /**
    * Initialize Pusher api.
    **/
@@ -48,6 +49,26 @@ class ApiController {
 
   static getCodeGen() {
     return this.CODE_GEN;
+  }
+
+  static getStatusOfChannel(callback:(error:any, success?:string)=>void) {
+    const pusherClient = this.getPusherApiClient(this.getCodeGen());
+    if(pusherClient) {
+      pusherClient.get({ path: '/channels', params: {} }, function(error, {}, response) {
+      	if (response.statusCode === 200) {
+      		const result = JSON.parse(response.body);
+      		const channelsInfo = result.channels;
+
+          callback(null, channelsInfo);
+      	}
+        else {
+          callback(error);
+        }
+      });
+    }
+    else {
+      callback("Not started");
+    }
   }
 }
 
