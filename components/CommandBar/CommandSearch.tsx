@@ -117,6 +117,11 @@ export const AvailableInput:ICommand = {
       return <React.Fragment/>;
     }
   },
+  "status": {
+    description: "Check api status (secret project)",
+    action: EnumAction.COMMAND,
+    exec: () => {window.open("/status"); return <React.Fragment/>}
+  },
   "help": {
     description: "Lost, confused, need help.",
     synonym: ["man", "info"],
