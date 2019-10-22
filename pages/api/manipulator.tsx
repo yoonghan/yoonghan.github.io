@@ -19,7 +19,7 @@ export default ({}, res: NextApiResponse) => {
       key: PUSHER_APP_KEY||'',
       secret: PUSHER_SECRET||'',
       cluster: PUSHER_CLUSTER||'',
-      encrypted: true
+      useTLS: true
     });
 
     console.log("Connected");
