@@ -9,7 +9,6 @@ const Tribute: React.SFC<any> = ({}) => {
   return (
     <>
       <HtmlHead
-        nofontawesome={true}
         title={"People to thank"}
         description={"Gratitudes to the people and organization that made this website available and happen."}/>
       <CommandBar/>
