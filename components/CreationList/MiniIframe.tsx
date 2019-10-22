@@ -40,16 +40,16 @@ const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, githubLink, usage, cl
     <div className={'miniframe'}>
       <div className={'title'}>
         <Button onClickCallback={closeCallback} small={true}>
-          <i className="fas fa-chevron-left icon-spacing"></i> Return
+          <i className="fas fa-chevron-left icon-spacing"></i>Back
         </Button>
         {
           githubLink &&
           <Button href={githubLink} target="sourcecode" small={true}>
-            <i className="fab fa-github-alt icon-spacing"></i> Source Code
+            <i className="fab fa-github-alt icon-spacing"></i>Source Code
           </Button>
         }
         <Button href={iframeLink} target="extWindow" small={true}>
-          Open In New Window
+          Seperate Window
         </Button>
       </div>
       <div>
