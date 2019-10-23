@@ -7,10 +7,12 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
 }
 
 const _generateTableRow = (application:string, response:string) => {
+  const status = response !== "" ? response : "Dead" ;
+
   return (
     <tr>
       <td>{application}</td>
-      <td>{response}</td>
+      <td>{status}</td>
     </tr>
   )
 }
@@ -68,8 +70,8 @@ StatusReport.getInitialProps = async({}) => {
   const graphqlData = await graphqlResponse.json();
 
   return {
-    pusher: JSON.stringify(pusherData),
-    graphql: JSON.stringify(graphqlData)
+    pusher: JSON.stringify(pusherData || ""),
+    graphql: JSON.stringify(graphqlData || "")
   };
 };
 
