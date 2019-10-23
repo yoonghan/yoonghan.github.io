@@ -41,7 +41,6 @@ const Main: StatelessPage<IMainProps> = ({}) => {
   return (
     <React.Fragment>
       <HtmlHead
-        nofontawesome={true}
         title={"Walcron"}
         description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}/>
       <Helmet>
