@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
 import { RouterProps } from "next-server/router";
 import HelpDialog from "./HelpDialog";

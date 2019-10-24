@@ -16,10 +16,10 @@ const Textarea: React.SFC<TextareaProps> = ({rows, cols, text}) => {
       </div>
       <style jsx>{`
         .container {
+          display: flex;
           padding: 0.2rem;
           background-color: #FFF;
-          margin: auto;
-          display: flex;
+          justify-content: center;
           align-items: center;
         }
         textarea {

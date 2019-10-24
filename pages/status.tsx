@@ -38,11 +38,11 @@ const StatusReport: StatelessPage<any> = (props) => {
           {_generateTableRow("GraphQL API", props.graphql)}
         </tbody>
       </table>
-      <style jsx global>{`
-        table {
+      <style jsx>{`
+        :global(table) {
           border-collapse: collapse;
         }
-        table, th, td {
+        :global(table, th, td) {
           border: 1px solid black;
           padding: 5px;
         }

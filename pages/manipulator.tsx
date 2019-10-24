@@ -27,62 +27,84 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
     }
   }
 
-  componentDidMount() {
-    if(process && process.env.PUSHER_APP_KEY) {
-      const {
-        PUSHER_APP_KEY,
-        PUSHER_CLUSTER
-      } = process.env;
-      const self = this;
-
-      this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
-        cluster: PUSHER_CLUSTER,
-        forceTLS: true
-      });
-      this.pushChannelClient.connection.bind('error', function(error:string) {
-        console.error(error, "Connection error");
-        self.setState(
-          produce((draft: Draft<ManipulatorStates>) => {
-            draft.isConnected = false;
-          })
-        );
-      });
-      this.pushChannelClient.connection.bind('disconnected', function() {
-        self.setState(
-          produce((draft: Draft<ManipulatorStates>) => {
-            draft.isConnected = false;
-          })
-        );
-      });
-    }
+  _print = (message: string) => {
+    return `> ${message} \n`;
   }
 
   _disconnect = () => {
-    console.log("Disconnecting", "Pusher Connection");
-    this.pushChannelClient.disconnect();
+    if(this.pushChannelClient) {
+      this.pushChannelClient.disconnect();
+    }
   }
 
-  _connect = () => {
-    console.log("Connecting", "Pusher Connection");
-    var channel = this.pushChannelClient.subscribe(`${PUSHER.channel}`);
-    const self = this;
-    channel.bind(PUSHER.event, function(data:any) {
-      self.setState(
+  _subscribeToChannel = () => {
+    this.pushChannelClient.subscribe(`${PUSHER.channel}`).bind(PUSHER.event, (data:any) => {
+      this.setState(
         produce((draft: Draft<ManipulatorStates>) => {
           draft.textInfo += "\n" + data;
         })
       );
       console.log(JSON.stringify(data));
     });
-    self.setState(
-      produce((draft: Draft<ManipulatorStates>) => {
-        draft.isConnected = true;
-      })
-    );
+  }
+
+  _monitorConnected = () => {
+    this.pushChannelClient.connection.bind('connected', (error:string) => {
+      console.log(error, "Connected");
+      this.setState(
+        produce((draft: Draft<ManipulatorStates>) => {
+          draft.isConnected = true;
+          draft.textInfo += this._print("connected");
+        })
+      );
+    });
+  }
+
+  _monitorError = () => {
+    this.pushChannelClient.connection.bind('error', (error:string) => {
+      console.error(error, "Connection error");
+      this.setState(
+        produce((draft: Draft<ManipulatorStates>) => {
+          draft.isConnected = false;
+          draft.textInfo += this._print("error encountered: " + error);
+        })
+      );
+    });
+  }
+
+  _monitorDisconnected = () => {
+    this.pushChannelClient.connection.bind('disconnected', () => {
+      this.setState(
+        produce((draft: Draft<ManipulatorStates>) => {
+          draft.isConnected = false;
+          draft.textInfo += this._print("disconnected");
+        })
+      );
+      this.pushChannelClient = undefined;
+    });
+  }
+
+  _connect = () => {
+    console.log("Connecting", "Pusher Connection");
+    if(!this.pushChannelClient && process && process.env.PUSHER_APP_KEY) {
+      const {
+        PUSHER_APP_KEY,
+        PUSHER_CLUSTER
+      } = process.env;
+
+      this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
+        cluster: PUSHER_CLUSTER,
+        forceTLS: true
+      });
+
+      this._subscribeToChannel();
+      this._monitorConnected();
+      this._monitorError();
+      this._monitorDisconnected();
+    }
   }
 
   _triggerConnection = () => {
-    console.log("=========", "Pusher Connection");
     const {isConnected} = this.state;
     if(isConnected) {
       this._disconnect();
@@ -90,7 +112,6 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
     else {
       this._connect();
     }
-    console.log("=========", "Pusher Connection");
   }
 
   _getConnectionStatusText = () => {
@@ -99,6 +120,8 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
   }
 
   render() {
+    const {textInfo} = this.state;
+    
     return (
       <React.Fragment>
         <HtmlHead
@@ -113,7 +136,7 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
           <HeaderOne title={"Connecting Reality"} isLined={true}/>
           <NoSSR>
             <div className={'textareaContainer'}>
-              <Textarea cols={10} rows={10} text={""}/>
+              <Textarea cols={10} rows={10} text={textInfo}/>
             </div>
             <div className={'buttonContainer'}>
               <Button onClickCallback={this._triggerConnection} small={true}>
