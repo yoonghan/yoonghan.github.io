@@ -9,10 +9,12 @@ import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
 import { PUSHER } from "../shared/const";
 import Button from "../components/Button";
+import TextMessenger from "../components/TextMessenger";
 import Textarea from "../components/Textarea";
 
 interface ManipulatorStates {
   textInfo: string;
+  commandInput: string;
   isConnected: boolean;
 }
 
@@ -23,7 +25,8 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
     super(props);
     this.state = {
       isConnected: false,
-      textInfo: ""
+      textInfo: "",
+      commandInput: ""
     }
   }
 
@@ -135,15 +138,31 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
         <div className={'container'}>
           <HeaderOne title={"Connecting Reality"} isLined={true}/>
           <NoSSR>
+<<<<<<< HEAD
             <div className={'textareaContainer'}>
               <Textarea cols={10} rows={10} text={textInfo}/>
+=======
+            <div className={"textareaContainer"}>
+              <Textarea cols={10} rows={10} text={""}/>
+>>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404
             </div>
-            <div className={'buttonContainer'}>
+            <div className={"textmessengerContainer"}>
+              {
+                this.state.isConnected &&
+                <TextMessenger
+                  maxLength={100}
+                  onBlurCallback={()=>{}}
+                  onFocusCallback={()=>{}}
+                  onSubmitCallback={()=>{}}
+                  
+                  />
+                }
+            </div>
+            <div className={"buttonContainer"}>
               <Button onClickCallback={this._triggerConnection} small={true}>
                 {this._getConnectionStatusText()}
               </Button>
             </div>
-
           </NoSSR>
         </div>
         <Footer/>
@@ -159,6 +178,9 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
             padding-top: 1rem;
             padding-bottom: 10rem;
             margin: auto;
+          }
+          .textmessengerContainer {
+
           }
           .textareaContainer {
             margin: 2rem auto;
