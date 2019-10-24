@@ -20,7 +20,6 @@ const Textarea: React.SFC<TextareaProps> = ({rows, cols, text}) => {
           padding: 0.2rem;
           background-color: #FFF;
           justify-content: center;
-          align-items: center;
         }
         textarea {
           padding: 1rem;

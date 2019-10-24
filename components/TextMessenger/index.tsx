@@ -13,28 +13,17 @@ interface CommandBarInputStates {
 }
 
 export class CommandBarInput extends React.Component<CommandBarInputProps, CommandBarInputStates> {
-<<<<<<< HEAD:components/TextMessenger/index.tsx
-
-=======
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
   private inputProps:any;
 
   constructor(props:CommandBarInputProps) {
     super(props);
     this.inputProps = {
-<<<<<<< HEAD:components/TextMessenger/index.tsx
-=======
       value: "jljlljjl",
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
       onChange: this._onChange,
       onClick: this._onClickSelect,
       onFocus: this._onFocus,
       onBlur: this._onBlur,
-<<<<<<< HEAD:components/TextMessenger/index.tsx
       maxLength: (props.maxLength ? props.maxLength : 50)
-=======
-      maxLength: props.maxLength? props.maxLength:50
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
     };
   }
 
@@ -63,10 +52,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   };
 
   _onSuggestionsClearRequested = () => {
-<<<<<<< HEAD:components/TextMessenger/index.tsx
-
-=======
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
   };
 
   _onSubmit = (event :React.FormEvent<HTMLFormElement>) => {
@@ -84,18 +69,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   render() {
     return (
       <form onSubmit={this._onSubmit} className="command-container">
-<<<<<<< HEAD:components/TextMessenger/index.tsx
-        <div className="command-text-container">
-          <Autosuggest
-            suggestions={[""]}
-            onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this._onSuggestionsClearRequested}
-            getSuggestionValue={this._getSuggestionValue}
-            renderSuggestion={this._renderSuggestion}
-            inputProps={this.inputProps}
-          />
-        </div>
-=======
         <Autosuggest
           suggestions={[""]}
           onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
@@ -104,7 +77,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           renderSuggestion={this._renderSuggestion}
           inputProps={this.inputProps}
         />
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
         <button id="command-enter" className="style-scope ytd-searchbox" aria-label="Enter">
           <i className="fas fa-arrow-right"></i>
         </button>
@@ -116,14 +88,9 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             display: flex;
             font-size: 0.8rem;
             position: relative;
-<<<<<<< HEAD:components/TextMessenger/index.tsx
-            top: 1.5rem;
-            width: 260px;
-=======
             justify-content: center;
             display: flex;
             width: 100%;
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404:components/TextMessenger/index.tsx
           }
           #command-enter {
             height: 2.2rem;
