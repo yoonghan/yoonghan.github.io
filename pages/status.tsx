@@ -6,12 +6,13 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
   getInitialProps?: (ctx: any) => Promise<P>
 }
 
-const _generateTableRow = (application:string, response:string) => {
+const _generateTableRow = (application:string, timeTaken:number, response:string) => {
   const status = response !== "" ? response : "Dead" ;
 
   return (
     <tr>
       <td>{application}</td>
+      <td>{timeTaken}</td>
       <td>{status}</td>
     </tr>
   )
@@ -30,12 +31,13 @@ const StatusReport: StatelessPage<any> = (props) => {
         <thead>
           <tr>
             <th>Application</th>
+            <th>Request/Response Time(millis)</th>
             <th>Response</th>
           </tr>
         </thead>
         <tbody>
-          {_generateTableRow("Pusher API", props.pusher)}
-          {_generateTableRow("GraphQL API", props.graphql)}
+          {_generateTableRow("Pusher API", props.pusherInterval, props.pusher)}
+          {_generateTableRow("GraphQL API", props.graphqlInterval, props.graphql)}
         </tbody>
       </table>
       <style jsx global>{`
@@ -51,7 +53,12 @@ const StatusReport: StatelessPage<any> = (props) => {
   );
 }
 
+const _getTime = () => {
+  return new Date().getTime();
+}
+
 StatusReport.getInitialProps = async({}) => {
+  let pusherInterval = _getTime();
   const pusherResponse = await fetch("https://www.walcron.com/api/manipulator", {
     method: 'LINK',
     mode: 'same-origin',
@@ -65,13 +72,18 @@ StatusReport.getInitialProps = async({}) => {
     body: JSON.stringify({})
   });
   const pusherData = await pusherResponse.json();
+  pusherInterval = _getTime() - pusherInterval;
 
+  let graphqlInterval = _getTime();
   const graphqlResponse = await fetch("https://dashboardgraphql-rsqivokhvn.now.sh/api?query={agent(id:12){id}}")
   const graphqlData = await graphqlResponse.json();
+  graphqlInterval = _getTime() - graphqlInterval;
 
   return {
     pusher: JSON.stringify(pusherData || ""),
-    graphql: JSON.stringify(graphqlData || "")
+    pusherInterval,
+    graphql: JSON.stringify(graphqlData || ""),
+    graphqlInterval
   };
 };
 

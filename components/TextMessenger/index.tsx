@@ -1,41 +1,31 @@
 import * as React from "react";
-import produce, {Draft} from "immer";
 import {LINK} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
-import {AvailableInput} from "./CommandSearch";
 
 interface CommandBarInputProps {
   onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
   onFocusCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
   onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void;
+  maxLength?: number;
 }
 
 interface CommandBarInputStates {
-  value: string;
-  suggestions: Array<string>;
-  showPrompt: boolean;
 }
 
 export class CommandBarInput extends React.Component<CommandBarInputProps, CommandBarInputStates> {
-  private AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput);
+  private inputProps:any;
 
   constructor(props:CommandBarInputProps) {
     super(props);
-    this.state = {
-      value: '',
-      suggestions: [],
-      showPrompt: false
+    this.inputProps = {
+      value: "jljlljjl",
+      onChange: this._onChange,
+      onClick: this._onClickSelect,
+      onFocus: this._onFocus,
+      onBlur: this._onBlur,
+      maxLength: props.maxLength? props.maxLength:50
     };
   }
-
-  _getSuggestions = (value:string) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    return inputLength === 0 ? [] : this.AVAILABLE_COMMAND_KEYS.filter(cmd =>
-      cmd.toLowerCase().slice(0, inputLength) === inputValue
-    ).slice(0, 10);
-  };
 
   _getSuggestionValue = (suggestion:string) => (
     suggestion
@@ -53,85 +43,40 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
 
   _onChange = ({}, _newValue:any) => {
     const { newValue } = _newValue;
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.value = newValue;
-      })
-    );
+    return newValue;
   };
 
   _onSuggestionsFetchRequested = (_value:any) => {
     const { value } = _value;
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.suggestions = this._getSuggestions(value);
-      })
-    );
+    return value;
   };
 
   _onSuggestionsClearRequested = () => {
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.suggestions = [];
-      })
-    );
   };
 
   _onSubmit = (event :React.FormEvent<HTMLFormElement>) => {
-    this.props.onSubmitCallback(event, this.state.value);
+    this.props.onSubmitCallback(event, "");
   }
 
   _onFocus = (event :React.FormEvent<HTMLInputElement>) => {
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.showPrompt = true;
-      })
-    );
     this.props.onFocusCallback(event);
   }
 
   _onBlur = (event :React.FormEvent<HTMLInputElement>) => {
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.showPrompt = false;
-      })
-    );
     this.props.onBlurCallback(event);
   }
 
-  _renderPrompt = () => {
-    const { value, showPrompt } = this.state;
-    if(!showPrompt || value.length > 22) {
-      return <span/>;
-    }
-    return <span>&#9608;</span>;
-  }
-
   render() {
-    const { value, suggestions } = this.state;
-
-    const inputProps = {
-      value,
-      onChange: this._onChange,
-      onClick: this._onClickSelect,
-      onFocus: this._onFocus,
-      onBlur: this._onBlur,
-      maxLength: 22
-    };
-
     return (
       <form onSubmit={this._onSubmit} className="command-container">
-        <div className="command-text-container">
-          <div className={"prompt"}><span className={"promptIn"}>{value}</span>{this._renderPrompt()}</div>
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this._onSuggestionsClearRequested}
-            getSuggestionValue={this._getSuggestionValue}
-            renderSuggestion={this._renderSuggestion}
-            inputProps={inputProps}
-          />
-        </div>
+        <Autosuggest
+          suggestions={[""]}
+          onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this._onSuggestionsClearRequested}
+          getSuggestionValue={this._getSuggestionValue}
+          renderSuggestion={this._renderSuggestion}
+          inputProps={this.inputProps}
+        />
         <button id="command-enter" className="style-scope ytd-searchbox" aria-label="Enter">
           <i className="fas fa-arrow-right"></i>
         </button>
@@ -144,32 +89,12 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             display: flex;
             font-size: 0.8rem;
             position: relative;
-            top: 1.5rem;
-            width: 260px;
-          }
-          .prompt {
-            z-index: -1;
-            color: ${LINK.FOREGROUND};
-            font-family: Inconsolata;
-          	position: absolute;
-          	left: 5.2rem;
-            top: 0.6rem;
-          	animation-name: blink;
-            font-size: 0.8rem;
-          	animation-duration: 800ms;
-          	animation-iteration-count: infinite;
-          }
-          .promptIn {
-            visibility: hidden;
-          }
-          @keyframes blink {
-          	from { opacity: 1; }
-          	to { opacity: 0; }
+            justify-content: center;
+            display: flex;
+            width: 100%;
           }
           #command-enter {
-            position: absolute;
             height: 2.2rem;
-            right: 3px;
             transition-property: color, background;
             transition-duration: .15s;
             transition-timing-function: ease-in-out;
@@ -198,7 +123,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             font-size: 0.8rem;
             box-sizing: content-box;
             -webkit-tap-highlight-color: transparent;
-            padding: 0.5rem 2rem 0.5rem 5rem;
+            padding: 0.5rem;
             border-radius: 0.3rem;
             height: 1.1rem;
             color: transparent;
@@ -219,7 +144,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             font-size: 0.7rem;
             z-index: 2;
             margin-top: 2px;
-            margin-left: 5rem;
             text-align: left;
             padding: 0 4px;
           }
