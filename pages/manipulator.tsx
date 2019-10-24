@@ -124,7 +124,7 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
 
   render() {
     const {textInfo} = this.state;
-    
+
     return (
       <React.Fragment>
         <HtmlHead
@@ -138,13 +138,8 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
         <div className={'container'}>
           <HeaderOne title={"Connecting Reality"} isLined={true}/>
           <NoSSR>
-<<<<<<< HEAD
             <div className={'textareaContainer'}>
               <Textarea cols={10} rows={10} text={textInfo}/>
-=======
-            <div className={"textareaContainer"}>
-              <Textarea cols={10} rows={10} text={""}/>
->>>>>>> eaa24758cdf2a8bdfaff72991dfc9ce64ec0e404
             </div>
             <div className={"textmessengerContainer"}>
               {
@@ -154,7 +149,6 @@ class Manipulator extends React.PureComponent<{}, ManipulatorStates> {
                   onBlurCallback={()=>{}}
                   onFocusCallback={()=>{}}
                   onSubmitCallback={()=>{}}
-                  
                   />
                 }
             </div>
