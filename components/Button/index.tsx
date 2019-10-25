@@ -20,7 +20,7 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
             text-decoration: none;
           }
           .btn-container {
-            padding: 0.5rem;
+            padding: ${small? '0.5rem': '1rem'};
             position: relative;
             background: rgba(200,200,200,0.1);
             transition-property: color, background;
