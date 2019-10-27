@@ -1,30 +1,37 @@
 import * as React from "react";
+import produce, {Draft} from "immer";
 import {LINK} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
 
-interface CommandBarInputProps {
+interface TextMessengerProps {
   onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
-  onFocusCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
   onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void;
   maxLength?: number;
+  filterSuggestion: (value:string) => Array<string>;
 }
 
-interface CommandBarInputStates {
+interface TextMessengerStates {
+  value: string;
+  suggestions: Array<string>;
 }
 
-export class CommandBarInput extends React.Component<CommandBarInputProps, CommandBarInputStates> {
+export class TextMessenger extends React.Component<TextMessengerProps, TextMessengerStates> {
   private inputProps:any;
+  private inputRef = React.createRef<Autosuggest<string>>();
 
-  constructor(props:CommandBarInputProps) {
+  constructor(props:TextMessengerProps) {
     super(props);
     this.inputProps = {
-      value: "jljlljjl",
+      value: "",
       onChange: this._onChange,
       onClick: this._onClickSelect,
-      onFocus: this._onFocus,
       onBlur: this._onBlur,
       maxLength: (props.maxLength ? props.maxLength : 50)
     };
+    this.state = {
+      value: "",
+      suggestions: []
+    }
   }
 
   _getSuggestionValue = (suggestion:string) => (
@@ -43,34 +50,65 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
 
   _onChange = ({}, _newValue:any) => {
     const { newValue } = _newValue;
-    return newValue;
+    this.setState(
+      produce((draft: Draft<TextMessengerStates>) => {
+        draft.value = newValue;
+      })
+    );
   };
 
-  _onSuggestionsFetchRequested = (_value:any) => {
-    const { value } = _value;
-    return value;
+  _onSuggestionsFetchRequested = (_value: any) => {
+    const {value} = _value;
+    this.setState(
+      produce((draft: Draft<TextMessengerStates>) => {
+        draft.suggestions = this.props.filterSuggestion(value);
+      })
+    );
   };
 
   _onSuggestionsClearRequested = () => {
+    this.setState(
+      produce((draft: Draft<TextMessengerStates>) => {
+        draft.suggestions = [];
+      })
+    );
   };
 
   _onSubmit = (event :React.FormEvent<HTMLFormElement>) => {
-    this.props.onSubmitCallback(event, "");
-  }
+    const {value} = this.state;
+    if(value.trim() === "") {
+      event.preventDefault();
+      return;
+    }
 
-  _onFocus = (event :React.FormEvent<HTMLInputElement>) => {
-    this.props.onFocusCallback(event);
+    this.props.onSubmitCallback(event, this.state.value);
+    this.setState(
+      produce((draft: Draft<TextMessengerStates>) => {
+        draft.value = "";
+      })
+    );
   }
 
   _onBlur = (event :React.FormEvent<HTMLInputElement>) => {
     this.props.onBlurCallback(event);
   }
 
+  componentDidMount() {
+    if(this.inputRef !== null && this.inputRef.current !== null) {
+      (this.inputRef.current as any).input.focus();
+    }
+  }
+
   render() {
+    const {value, suggestions} = this.state;
+
+    this.inputProps["value"] = value;
+
     return (
-      <form onSubmit={this._onSubmit} className="command-container">
+      <form onSubmit={this._onSubmit} className="textmessenger-container">
         <Autosuggest
-          suggestions={[""]}
+          ref={this.inputRef}
+          suggestions={suggestions}
           onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this._onSuggestionsClearRequested}
           getSuggestionValue={this._getSuggestionValue}
@@ -81,10 +119,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           <i className="fas fa-arrow-right"></i>
         </button>
         <style jsx>{`
-          .container {
-            position: relative;
-          }
-          .command-container {
+          .textmessenger-container {
             display: flex;
             font-size: 0.8rem;
             position: relative;
@@ -111,10 +146,10 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           #command-enter:active {
             margin: 1px 0 0 1px;
           }
-          :global(.react-autosuggest__input) {
+          .textmessenger-container :global(.react-autosuggest__input) {
             font-family: Inconsolata;
             background-color: transparent;
-            width: 150px;
+            width: 200px;
             border: 1px solid ${LINK.FOREGROUND};
             margin: 0;
             display: block;
@@ -125,35 +160,37 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             padding: 0.5rem;
             border-radius: 0.3rem;
             height: 1.1rem;
-            color: transparent;
+            color: ${LINK.FOREGROUND};
             text-shadow: 0 0 0 #EBEBEB;
           }
-          :global(.react-autosuggest__input:focus) {
+          .textmessenger-container :global(.react-autosuggest__input:focus) {
             outline: none;
           }
-          :global(.react-autosuggest__input--focused) {
+          .textmessenger-container :global(.react-autosuggest__input--focused) {
             outline: none;
           }
-          :global(.react-autosuggest__suggestions-container--open) {
+          .textmessenger-container :global(.react-autosuggest__suggestions-container--open) {
             border: 1px solid #aaa;
             font-family: Inconsolata;
             color: ${LINK.FOREGROUND};
             background: ${LINK.BACKGROUND};
-            font-size: 0.7rem;
+            font-size: 1rem;
             z-index: 2;
             margin-top: 2px;
             text-align: left;
-            padding: 0 4px;
+            padding: 2px 4px;
+            position: absolute;
+            width: 200px;
           }
-          :global(.react-autosuggest__suggestions-list) {
+          .textmessenger-container :global(.react-autosuggest__suggestions-list) {
             margin: 0;
             padding: 0;
             list-style-type: none;
           }
-          :global(.react-autosuggest__suggestion) {
+          .textmessenger-container :global(.react-autosuggest__suggestion) {
             cursor: pointer;
           }
-          :global(.react-autosuggest__suggestion--highlighted) {
+          .textmessenger-container :global(.react-autosuggest__suggestion--highlighted) {
             background-color: #DDD;
             color: #000;
           }
@@ -163,4 +200,4 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   }
 }
 
-export default (CommandBarInput);
+export default (TextMessenger);

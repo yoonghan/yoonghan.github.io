@@ -15,10 +15,11 @@ interface CreationListItem {
   gitLink?: string;
   screenshot?: string;
   usage?: string;
+  internal?:boolean;
 }
 
 export interface CreationListProps {
-  workArr?: Array<CreationListItem>;
+  workArr: Array<CreationListItem>;
 }
 
 export interface CreationListStates {
@@ -46,6 +47,12 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
   )
 
   _clickArticle = (idx:number) => () => {
+    const {workArr} = this.props;
+    if(typeof workArr[idx] !== "undefined" && workArr[idx].internal) {
+      window.location.href = workArr[idx].link;
+      return;
+    }
+
     this.setState(
       produce((draft: Draft<CreationListStates>) => {
         draft.isIframeOpen = true;

@@ -22,6 +22,7 @@ const Textarea: React.SFC<TextareaProps> = ({rows, cols, text}) => {
           justify-content: center;
         }
         textarea {
+          resize: none;
           padding: 1rem;
           width: 100%;
           max-width: 640px;
