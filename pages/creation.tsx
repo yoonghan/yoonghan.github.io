@@ -29,6 +29,14 @@ const creationList = [
     title: "Management Console",
     desc: "Management console that loads fast with search capabilities. Layered on top of graphQL that is hosted live.",
     usage: "Please be patient with the loading time!!\nView with minimum 640 X 480px dimension\nType into the searchbox to begin."
+  },
+  {
+    id: "manipulator",
+    link: "manipulator",
+    title: "Let's Play",
+    desc: "Let's play Lego. Finding what state, CQRS and mixing virtual with reality.",
+    usage: "Click to explore.",
+    internal: true
   }
 ]
 

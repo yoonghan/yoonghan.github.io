@@ -5,6 +5,16 @@ import CommandBar from "../components/CommandBar";
 import {FOREGROUND, TABLE_HEADER, TABLE_BODY} from "../shared/style";
 import Footer from "../components/Footer";
 
+const _renderData = (title: string, description: string, link: string) => {
+  return (
+    <tr>
+      <td>{title}</td>
+      <td>{description}</td>
+      <td>{link}</td>
+    </tr>
+  )
+}
+
 const Tribute: React.SFC<any> = ({}) => {
   return (
     <>
@@ -24,36 +34,13 @@ const Tribute: React.SFC<any> = ({}) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Pusher</td>
-              <td>Providing Lego push</td>
-              <td>https://www.pusher.com</td>
-            </tr>
-            <tr>
-              <td>Zeit / Now.sh</td>
-              <td>Enabling website hosting</td>
-              <td>https://www.zeit.co</td>
-            </tr>
-            <tr>
-              <td>Ruslan Khomiak</td>
-              <td>Graphics for social connect</td>
-              <td>https://codepen.io/ruslan_khomiak/pen/QGmwMP</td>
-            </tr>
-            <tr>
-              <td>Rebin in iconfinder</td>
-              <td>Graphic icon for social connect</td>
-              <td>https://www.iconfinder.com/rebininfotech</td>
-            </tr>
-            <tr>
-              <td>Font Awesome</td>
-              <td>Awesome font icons</td>
-              <td>https://www.fontawesome.com</td>
-            </tr>
-            <tr>
-              <td>Google Fonts - Roboto</td>
-              <td>The amazing fonts curves and styles</td>
-              <td>https://fonts.google.com</td>
-            </tr>
+            {_renderData("Pusher", "Subscribe/Publish", "https://www.pusher.com")}
+            {_renderData("Zeit / Now.sh", "Enabling website hosting", "https://www.zeit.co")}
+            {_renderData("Author Ruslan Khomiak", "Graphics for social connect", "https://codepen.io/ruslan_khomiak/pen/QGmwMP")}
+            {_renderData("Rebin from Iconfinder", "Graphic icon for social connect", "https://www.iconfinder.com/rebininfotech")}
+            {_renderData("Font Awesome", "Awesome font icons", "https://www.fontawesome.com")}
+            {_renderData("Google Fonts - Roboto", "The amazing fonts curves and styles", "https://fonts.google.com")}
+            {_renderData("React Spring", "Might be the best animation javascript out there", "https://github.com/react-spring/react-spring")}
           </tbody>
         </table>
         <Footer/>

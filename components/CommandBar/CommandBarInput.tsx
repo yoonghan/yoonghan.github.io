@@ -203,7 +203,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           #command-enter:active {
             margin: 1px 0 0 1px;
           }
-          :global(.react-autosuggest__input) {
+          .command-container :global(.react-autosuggest__input) {
             font-family: Inconsolata;
             background-color: transparent;
             width: 150px;
@@ -220,14 +220,14 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             color: transparent;
             text-shadow: 0 0 0 #EBEBEB;
           }
-          :global(.react-autosuggest__input:focus) {
+          .command-container :global(.react-autosuggest__input:focus) {
             outline: none;
           }
-          :global(.react-autosuggest__input--focused) {
+          .command-container :global(.react-autosuggest__input--focused) {
             outline: none;
           }
 
-          :global(.react-autosuggest__suggestions-container--open) {
+          .command-container :global(.react-autosuggest__suggestions-container--open) {
             border: 1px solid #aaa;
             font-family: Inconsolata;
             color: ${LINK.FOREGROUND};
@@ -240,17 +240,17 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             padding: 0 4px;
           }
 
-          :global(.react-autosuggest__suggestions-list) {
+          .command-container :global(.react-autosuggest__suggestions-list) {
             margin: 0;
             padding: 0;
             list-style-type: none;
           }
 
-          :global(.react-autosuggest__suggestion) {
+          .command-container :global(.react-autosuggest__suggestion) {
             cursor: pointer;
           }
 
-          :global(.react-autosuggest__suggestion--highlighted) {
+          .command-container :global(.react-autosuggest__suggestion--highlighted) {
             background-color: #DDD;
             color: #000;
           }

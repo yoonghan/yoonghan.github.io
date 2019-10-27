@@ -37,6 +37,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-no-ssr": "^1.1.0",
+    "react-spring": "^7.2.11",
+    "redux": "^4.0.4",
     "tls": "0.0.1"
   },
   "devDependencies": {

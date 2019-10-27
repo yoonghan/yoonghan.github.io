@@ -37,7 +37,7 @@ const _getCodeGen = (res: NextApiResponse) => {
   );
 }
 
-const _validatePost = (req: NextApiRequest) => {
+const _validatePost = (req: NextApiRequest):Array<string> => {
   const {codegen, message} = req.body;
 
   const errorMessages = [];
