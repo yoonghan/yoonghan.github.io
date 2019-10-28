@@ -16,16 +16,16 @@
     "autoAlias": false
   },
   "env": {
-    "PUSHER_APP_ID": "883986",
-    "PUSHER_APP_KEY": "e9139e70efa074139d48",
-    "PUSHER_SECRET": "d3fa184f6689ae235725",
+    "PUSHER_APP_ID": "883990",
+    "PUSHER_APP_KEY": "9307e10b49d4e7f47e56",
+    "PUSHER_SECRET": "41a038429d4556a4fad3",
     "PUSHER_CLUSTER": "ap1"
   },
   "build": {
     "env": {
-      "PUSHER_APP_ID": "883986",
-      "PUSHER_APP_KEY": "e9139e70efa074139d48",
-      "PUSHER_SECRET": "d3fa184f6689ae235725",
+      "PUSHER_APP_ID": "883990",
+      "PUSHER_APP_KEY": "9307e10b49d4e7f47e56",
+      "PUSHER_SECRET": "41a038429d4556a4fad3",
       "PUSHER_CLUSTER": "ap1"
     }
   }
