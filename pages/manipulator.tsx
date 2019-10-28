@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from 'next/head';
 import PusherJS from 'pusher-js';
 import NoSSR from 'react-no-ssr';
 import produce, {Draft} from "immer";
@@ -292,9 +291,6 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
           title="Manipulator Walcron"
           description="Connecting Mobile with Web."
           />
-        <Head>
-          <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-        </Head>
         <CommandBar/>
         <div className={'container'}>
           <HeaderOne title={"Connecting Reality"} isLined={true}/>
@@ -330,6 +326,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
             margin: 2rem auto;
           }
         `}</style>
+        <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
       </React.Fragment>
     )
   }
