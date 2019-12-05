@@ -9,7 +9,13 @@
     {"src": "^/favicon.ico$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/favicon.ico"},
     {"src": "^/robots.txt$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/robots.txt"},
     {"src": "^/og_image.png$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/og_image.png"},
-    {"src": "^/sitemap.xml$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/sitemap.xml"}
+    {"src": "^/sitemap.xml$", "headers": {"cache-control": "s-maxage=31536000"}, "dest": "/static/seo/sitemap.xml"},
+    {"src": "^/service-worker.js$", "headers": {
+      "cache-control": "public, max-age=43200, immutable",
+      "Service-Worker-Allowed": "/"
+      },
+      "dest": "/_next/static/service-worker.js"
+    }
   ],
   "github": {
     "enabled": true,
