@@ -101,7 +101,6 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
               padding: 1rem;
               border-radius: 0.3rem;
               height: 1.1rem;
-              color: transparent;
               text-shadow: 0 0 0 #EBEBEB;
             }
           `}</style>
