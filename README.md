@@ -34,9 +34,9 @@ If there are missing webpack installation, manually execute 'npm install next'
 4. Go to Configuraiton->Software to add "Node Command" with "npm start", and not default server.js
 
 ## Deployment into Zeit.
-
+Automatically set the domain when used with --prod
 ```
-now
+now --prod
 ```
 
 ## Deployment from Windows server to Unix System.
@@ -55,6 +55,8 @@ magick convert $FILE -strip -sampling-factor 4:2:0 -quality 85 -colorspace sRGB 
 ## Analyzing server build
 Execute the following to see package bundling
 ```
+set ANALYZE=true // Windows, can't put into package.json for windows.
+export ANALYZE=true // Macintosh
 npm run analyze
 ```
 
@@ -63,6 +65,9 @@ Execute
 ```
 npm test
 ```
+
+## Allowing PWA (offline website)
+Defaulted into production.
 
 ## Roll up sites (post publishing)
 1. Cookiebot checking. (https://www.cookiebot.com/), no cookies for this site.
