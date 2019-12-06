@@ -9,11 +9,12 @@ import {ESC} from "../../shared/keyboardkey";
 import {DIALOG} from "../../shared/style";
 
 interface ModalProps {
-  cancelCallback: () => void;
+  ignoreSelfClose?: boolean;
+  cancelCallback: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 class Modal extends React.PureComponent<ModalProps, {}> {
-
+  private dialogContainerRef = React.createRef<HTMLDivElement>();
   private escRef = React.createRef<HTMLButtonElement>();
   private keyListenerEvent: (evt: KeyboardEvent) => void;
   private documentBody = document.getElementsByTagName("body")[0];
@@ -39,13 +40,25 @@ class Modal extends React.PureComponent<ModalProps, {}> {
     this.documentBody.removeEventListener('keyup', this.keyListenerEvent);
   }
 
+  _onClickContainer = (event: React.MouseEvent<HTMLElement>) => {
+    const {ignoreSelfClose, cancelCallback} = this.props;
+    if(ignoreSelfClose) {
+      if(event && this.dialogContainerRef && event.target === this.dialogContainerRef.current) {
+        cancelCallback(event);
+      }
+    }
+    else {
+      cancelCallback(event);
+    }
+  }
+
   render() {
     return (
-      <div className={"modal"} onClick={this.props.cancelCallback}>
+      <div className={"modal"} onClick={this._onClickContainer} ref={this.dialogContainerRef}>
         <div className={"modal-content"}>
           {this.props.children}
         </div>
-        <div className={"buttonContainer"}>
+        <div className={"buttonContainer"} onClick={this.props.cancelCallback}>
           <button ref={this.escRef}>[ESC]</button>
         </div>
         <style jsx> {`

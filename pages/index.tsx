@@ -7,7 +7,6 @@ import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
 //import Cookie from "../components/Cookie";
 import cookies from 'next-cookies';
-import IncludePWA from "../components/IncludePWA";
 
 const _getSchema = () => {
   const schemas = {
@@ -49,7 +48,6 @@ const Main: StatelessPage<IMainProps> = ({}) => {
           {_getSchema()}
         </script>
       </Helmet>
-      <IncludePWA/>
       <CommandBar disableMobile={true}/>
       <CinemaScreen title={"Full-stack Web Developer"}
         btnOneStr={"About"} btnOneClick={'/about'}
