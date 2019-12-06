@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import { RouterProps } from "next-server/router";
 import HelpDialog from "./HelpDialog";
+import PwaEnabler from "./PwaEnabler";
 import InvalidCommand from "./InvalidCommand";
 import Output from "./Output";
 
@@ -115,6 +116,17 @@ export const AvailableInput:ICommand = {
       }
       router.push("/tribute");
       return <React.Fragment/>;
+    }
+  },
+  "pwa": {
+    description: "Enable PWA",
+    synonym: ["offline"],
+    action: EnumAction.COMMAND,
+    exec: (element:HTMLDivElement, cancellationCallback:()=>void) => {
+      return ReactDOM.createPortal(
+        <PwaEnabler cancelCallback={cancellationCallback}/>,
+        element
+      );
     }
   },
   "status": {

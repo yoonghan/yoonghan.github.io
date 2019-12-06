@@ -10,6 +10,7 @@ import {DIALOG, SHADOW} from "../../../shared/style";
 interface PwaEnablerState {
   enabled: boolean;
   labelText: string;
+  processing: boolean;
 }
 
 interface PwaEnablerProps {
@@ -19,31 +20,66 @@ interface PwaEnablerProps {
 class PwaEnabler extends React.Component<PwaEnablerProps, PwaEnablerState> {
   private dialogContainerRef = React.createRef<HTMLDivElement>();
   private DISABLED = "  Disabled"; //count text.
-  private ENABLED = "Registered";
+  private ENABLED = " Installed";
+  private PROCESS = "Processing";
 
   constructor(props:any) {
     super(props);
     this.state = {
       enabled: false,
-      labelText: this.DISABLED
+      labelText: this.DISABLED,
+      processing: true
     };
   }
 
-  componentDidUpdate() {
-    const {enabled} = this.state;
-    if(enabled) {
-      register();
+  getRegistration = () => {
+    const domain = window.location.hostname;
+    if(navigator && navigator.serviceWorker) {
+      return navigator.serviceWorker.getRegistration(domain);
     }
     else {
-      unregister();
+      return new Promise((resolve) => {
+        resolve(false);
+      });
+    }
+  }
+
+  _checkRegistration = async () => {
+    const isRegistered = await this.getRegistration();
+    const isEnabled = (isRegistered && (isRegistered as any).scope) ? true: false;
+    this.setState(
+      produce((draft: Draft<PwaEnablerState>) => {
+        draft.processing = false;
+        draft.enabled = isEnabled;
+        draft.labelText = isEnabled? this.ENABLED:this.DISABLED;
+      })
+    );
+  }
+
+  componentDidMount() {
+    this._checkRegistration();
+  }
+
+  componentDidUpdate() {
+    const {enabled, processing} = this.state;
+    if(processing){
+      if(enabled) {
+        register();
+      }
+      else {
+        unregister();
+      }
+      //Check installation after 5seconds as unregister/register doesn't work.
+      setTimeout(this._checkRegistration, 5000);
     }
   }
 
   onChangeEnabler = () => {
     this.setState(
       produce((draft: Draft<PwaEnablerState>) => {
+        draft.processing = true;
         draft.enabled = !draft.enabled;
-        draft.labelText = draft.enabled? this.ENABLED:this.DISABLED;
+        draft.labelText = this.PROCESS;
       })
     );
   }
@@ -63,7 +99,9 @@ class PwaEnabler extends React.Component<PwaEnablerProps, PwaEnablerState> {
             <label>
               <Toggle
                 id="toggle-pwa"
-                defaultChecked={this.state.enabled}
+                disabled={this.state.processing}
+                checked={this.state.enabled}
+                defaultChecked={false}
                 onChange={this.onChangeEnabler} />
               <span className={"label-text"}>{this.state.labelText}</span>
             </label>
