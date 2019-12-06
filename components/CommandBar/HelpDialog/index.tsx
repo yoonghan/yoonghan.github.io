@@ -13,7 +13,7 @@ interface HelpDialogProps {
 }
 
 const HelpDialog: React.SFC<HelpDialogProps> = ({cancelCallback}) => (
-  <Modal cancelCallback={cancelCallback}>
+  <Modal cancelCallback={cancelCallback} ignoreSelfClose={true}>
     <HelpContent/>
   </Modal>
 )

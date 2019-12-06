@@ -54,6 +54,7 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
           <meta name="description" content={description} key="description"/>
           <title>{title}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+          <link rel="preload" as="style" href="/static/css/common.css" key="int_common"/>
           <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>
           <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
         </Head>
