@@ -69,7 +69,7 @@ class PwaEnabler extends React.Component<PwaEnablerProps, PwaEnablerState> {
       else {
         unregister();
       }
-      //Check installation after 5seconds as unregister/register doesn't work.
+      //Check installation after 3 seconds as unregister/register are not promises.
       setTimeout(this._checkRegistration, 5000);
     }
   }
