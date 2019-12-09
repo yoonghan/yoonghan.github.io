@@ -29,7 +29,7 @@ class ApiController {
         key: PUSHER_APP_KEY||'',
         secret: PUSHER_SECRET||'',
         cluster: PUSHER_CLUSTER||'',
-        useTLS: true
+        encrypted: true
       });
 
       return pusherClient;
