@@ -41,6 +41,7 @@ interface IManipulatorProps {
 
 class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorStates> {
   private pushChannelClient:any;
+  private channel:any;
   private allowedCalls = ["up", "down", "left", "right"];
 
   constructor(props:IManipulatorProps) {
@@ -67,7 +68,8 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   }
 
   _subscribeToChannel = () => {
-    this.pushChannelClient.subscribe(`${PUSHER.channel}`).bind(PUSHER.event, (data:any) => {
+    this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`)
+    this.channel.bind(PUSHER.event, (data:any) => {
       this.setState(
         produce((draft: Draft<IManipulatorStates>) => {
           draft.textInfo += this._print("[Received:] " + data.message);
@@ -122,15 +124,18 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   }
 
   _postMessage = (message:string) => {
-    const {messagingApi, tokenApi} = this.props;
-    if(!messagingApi.isLoading) {
-      messagingApi.connect(
-        {
-          codegen: tokenApi.success.codegen,
-          message: message
-        },
-         "Unable to get key", 'POST');
-    }
+    // const {messagingApi, tokenApi} = this.props;
+    // if(!messagingApi.isLoading) {
+    //   messagingApi.connect(
+    //     {
+    //       codegen: tokenApi.success.codegen,
+    //       message: message
+    //     },
+    //      "Unable to get key", 'POST');
+    // }
+    this.channel.trigger(`client-${PUSHER.event}`, {
+      message: message
+    });
   }
 
   _connect = () => {
