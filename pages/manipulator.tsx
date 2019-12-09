@@ -69,7 +69,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
 
   _subscribeToChannel = () => {
     this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`)
-    this.channel.bind(PUSHER.event, (data:any) => {
+    this.channel.bind(`client-${PUSHER.event}`, (data:any) => {
       this.setState(
         produce((draft: Draft<IManipulatorStates>) => {
           draft.textInfo += this._print("[Received:] " + data.message);
@@ -133,9 +133,23 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
     //     },
     //      "Unable to get key", 'POST');
     // }
-    this.channel.trigger(`client-${PUSHER.event}`, {
+    const isSent = this.channel.trigger(`client-${PUSHER.event}`, {
       message: message
     });
+    if(isSent) {
+      this.setState(
+        produce((draft: Draft<IManipulatorStates>) => {
+          draft.textInfo += this._print("[Sent:] " + message);
+        })
+      );
+    }
+    else {
+      this.setState(
+        produce((draft: Draft<IManipulatorStates>) => {
+          draft.textInfo += this._print("[Fail Sent:] " + message);
+        })
+      );
+    }
   }
 
   _connect = () => {
@@ -257,8 +271,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
         } = process.env;
 
         this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
-          cluster: PUSHER_CLUSTER,
-          forceTLS: true
+          cluster: PUSHER_CLUSTER
         });
 
         this._subscribeToChannel();

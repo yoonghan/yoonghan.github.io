@@ -1,5 +1,13 @@
 import Pusher from 'pusher';
 
+/**
+ * Deprecated !!!
+ * Not in used anymore. It is to sent/trigger client messages to pusher.
+ * But noticed when deployed into Now.sh server, trigger does not get sent instead it is buffered
+ * into the webserver. I.e. after 4th message sent, the first message get received.
+ * This behavior is not noticible in dev.
+ **/
+
 class ApiController {
   private static CODE_GEN:string = ApiController._generateCode();
   private static PUSHER_API_CLIENT:Pusher|undefined = ApiController._initPusher();
@@ -29,7 +37,7 @@ class ApiController {
         key: PUSHER_APP_KEY||'',
         secret: PUSHER_SECRET||'',
         cluster: PUSHER_CLUSTER||'',
-        encrypted: true
+        useTLS: true
       });
 
       return pusherClient;
