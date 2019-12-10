@@ -24,6 +24,7 @@ interface IPostMessagingResponse {
 
 enum EnumConnection {
     StartConnecting,
+    PreConnected,
     StartDisconnecting,
     Connected,
     Disconnected
@@ -92,8 +93,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
       this._getToken();
       this.setState(
         produce((draft: Draft<IManipulatorStates>) => {
-          draft.connectionStatus = EnumConnection.Connected;
-          draft.textInfo += this._print("connected");
+          draft.connectionStatus = EnumConnection.PreConnected;
         })
       );
     });
@@ -251,6 +251,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
     switch(connectionStatus) {
       case EnumConnection.Connected:
         return this._renderInput();
+      case EnumConnection.PreConnected:
       case EnumConnection.StartConnecting:
         return this._renderLoading();
       default:
@@ -271,7 +272,8 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
         } = process.env;
 
         this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
-          cluster: PUSHER_CLUSTER
+          cluster: PUSHER_CLUSTER,
+          authEndpoint: PUSHER.endpoint
         });
 
         this._subscribeToChannel();
@@ -296,8 +298,24 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
     }
   }
 
+  _preConnect = () => {
+    const {tokenApi} = this.props;
+    if(
+      tokenApi && !tokenApi.isLoading &&
+      this.state.connectionStatus === EnumConnection.PreConnected
+      ) {
+      this.setState(
+        produce((draft: Draft<IManipulatorStates>) => {
+          draft.connectionStatus = EnumConnection.Connected;
+          draft.textInfo += this._print("connected");
+        })
+      );
+    }
+  }
+
   componentDidUpdate({}, prevState:IManipulatorStates) {
     this._connectWhenStartConnecting(prevState);
+    this._preConnect();
   }
 
   render() {
