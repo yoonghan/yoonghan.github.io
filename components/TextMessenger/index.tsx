@@ -103,6 +103,7 @@ export class TextMessenger extends React.Component<TextMessengerProps, TextMesse
     const {value, suggestions} = this.state;
 
     this.inputProps["value"] = value;
+    this.inputProps["autoFocus"] = true;
 
     return (
       <form onSubmit={this._onSubmit} className="textmessenger-container">
