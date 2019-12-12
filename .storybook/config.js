@@ -3,7 +3,7 @@ import { addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 function loadStories() {
-  const req = require.context('../stories', false , /.+\.story\.tsx?$/);
+  const req = require.context('../stories', false , /.+\.story\.[t|j]sx?$/);
   req.keys().forEach(req);
   // You can require as many stories as you need.
 }
