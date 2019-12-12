@@ -10,52 +10,33 @@ import { PUSHER } from "../shared/const";
 import Button from "../components/Button";
 import TextMessenger from "../components/TextMessenger";
 import Textarea from "../components/Textarea";
-import { compose } from 'redux'
+import { compose } from 'redux';
 import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
 import Loader from "../components/Loader";
-import NoSSRChatMessageBox from "../components/NoSSRChatMessageBox";
+import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
 
-interface IGetTokenResponse {
-  codegen?: string
+const EnumConnection = {
+  StartConnecting: 1,
+  PreConnected: 2,
+  StartDisconnecting: 3,
+  Connected: 4,
+  Disconnected: 5
 }
 
-interface IPostMessagingResponse {
-  status?: string
-}
-
-enum EnumConnection {
-    StartConnecting,
-    PreConnected,
-    StartDisconnecting,
-    Connected,
-    Disconnected
-}
-
-interface IManipulatorStates {
-  textInfo: string;
-  connectionStatus: EnumConnection;
-}
-
-interface IManipulatorProps {
-  tokenApi: IWithConnectivity<IGetTokenResponse>;
-  messagingApi: IWithConnectivity<IPostMessagingResponse>;
-}
-
-class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorStates> {
-  private pushChannelClient:any;
-  private channel:any;
-  private allowedCalls = ["up", "down", "left", "right"];
-  private chatMessageBoxRef = React.createRef<NoSSRChatMessageBox>();
-
-  constructor(props:IManipulatorProps) {
+class Manipulator extends React.PureComponent {
+  constructor(props) {
     super(props);
+    this.pushChannelClient = undefined;
+    this.channel = undefined;
+    this.allowedCalls = ["up", "down", "left", "right"];
+    this.chatMessageBoxRef = React.createRef();
     this.state = {
       connectionStatus: EnumConnection.Disconnected,
       textInfo: ""
     }
   }
 
-  _print = (message: string, sender: number|undefined) => {
+  _print = (message, sender) => {
     this.chatMessageBoxRef.current.addMessage(
       sender,
       message);
@@ -65,7 +46,7 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   _disconnect = () => {
     if(this.pushChannelClient) {
       this.setState(
-        produce((draft: Draft<IManipulatorStates>) => {
+        produce((draft) => {
           draft.connectionStatus = EnumConnection.StartDisconnecting;
         })
       );
@@ -75,9 +56,9 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
 
   _subscribeToChannel = () => {
     this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`)
-    this.channel.bind(`client-${PUSHER.event}`, (data:any) => {
+    this.channel.bind(`client-${PUSHER.event}`, (data) => {
       console.log(JSON.stringify(data));
-      this._print(data.message, NoSSRChatMessageBox.OTHERS);
+      this._print(data.message, NoSSRChatMessageBoxProps.OTHERS);
     });
   }
 
@@ -89,11 +70,11 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   }
 
   _monitorConnected = () => {
-    this.pushChannelClient.connection.bind('connected', (data:string) => {
+    this.pushChannelClient.connection.bind('connected', (data) => {
       console.log(data, "Connected");
       this._getToken();
       this.setState(
-        produce((draft: Draft<IManipulatorStates>) => {
+        produce((draft) => {
           draft.connectionStatus = EnumConnection.PreConnected;
         })
       );
@@ -101,12 +82,12 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   }
 
   _monitorError = () => {
-    this.pushChannelClient.connection.bind('error', (error:string) => {
+    this.pushChannelClient.connection.bind('error', (error) => {
       console.error(error, "Connection error");
       this.setState(
-        produce((draft: Draft<IManipulatorStates>) => {
+        produce((draft) => {
           draft.connectionStatus = EnumConnection.Disconnected;
-          this._print("Error encountered: " + JSON.stringify(error), NoSSRChatMessageBox.SYSTEM);
+          this._print("Error encountered: " + JSON.stringify(error), NoSSRChatMessageBoxProps.SYSTEM);
         })
       );
     });
@@ -115,16 +96,16 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   _monitorDisconnected = () => {
     this.pushChannelClient.connection.bind('disconnected', () => {
       this.setState(
-        produce((draft: Draft<IManipulatorStates>) => {
+        produce((draft) => {
           draft.connectionStatus = EnumConnection.Disconnected;
-          this._print("Disconnected", NoSSRChatMessageBox.SYSTEM);
+          this._print("Disconnected", NoSSRChatMessageBoxProps.SYSTEM);
         })
       );
       this.pushChannelClient = undefined;
     });
   }
 
-  _postMessage = (message:string) => {
+  _postMessage = (message) => {
     // const {messagingApi, tokenApi} = this.props;
     // if(!messagingApi.isLoading) {
     //   messagingApi.connect(
@@ -138,16 +119,16 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
       message: message
     });
     if(isSent) {
-      this._print(message, NoSSRChatMessageBox.SENDER);
+      this._print(message, NoSSRChatMessageBoxProps.SENDER);
     }
     else {
-      this._print(`Fail to send`, NoSSRChatMessageBox.SYSTEM);
+      this._print(`Fail to send`, NoSSRChatMessageBoxProps.SYSTEM);
     }
   }
 
   _connect = () => {
     this.setState(
-      produce((draft: Draft<IManipulatorStates>) => {
+      produce((draft) => {
         draft.connectionStatus = EnumConnection.StartConnecting;
       })
     );
@@ -168,12 +149,12 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
     return (connectionStatus === EnumConnection.Connected ? "Disconnect" : "Connect")
   }
 
-  _handleSubmit = (event :React.FormEvent<HTMLFormElement>, value:string) => {
+  _handleSubmit = (event, value) => {
     event.preventDefault();
     this._postMessage(value);
   }
 
-  _handleSuggestions = (_value: string) => {
+  _handleSuggestions = (_value) => {
     const results = this.allowedCalls;
     const value = _value.trim().toLowerCase();
     const match = results.find(result => result.indexOf(value) === 0) ;
@@ -251,12 +232,12 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
     }
   }
 
-  _connectWhenStartConnecting = (prevState:IManipulatorStates) => {
+  _connectWhenStartConnecting = (prevState) => {
     if(
       prevState.connectionStatus !== this.state.connectionStatus &&
       this.state.connectionStatus === EnumConnection.StartConnecting
     ) {
-      this._print("Establishing Connection", NoSSRChatMessageBox.SYSTEM);
+      this._print("Establishing Connection", NoSSRChatMessageBoxProps.SYSTEM);
       if(!this.pushChannelClient && process && process.env.PUSHER_APP_KEY) {
         const {
           PUSHER_APP_KEY,
@@ -298,15 +279,15 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
       this.state.connectionStatus === EnumConnection.PreConnected
       ) {
       this.setState(
-        produce((draft: Draft<IManipulatorStates>) => {
+        produce((draft) => {
           draft.connectionStatus = EnumConnection.Connected;
-          this._print("Connected", NoSSRChatMessageBox.SYSTEM);
+          this._print("Connected", NoSSRChatMessageBoxProps.SYSTEM);
         })
       );
     }
   }
 
-  componentDidUpdate({}, prevState:IManipulatorStates) {
+  componentDidUpdate({}, prevState) {
     this._connectWhenStartConnecting(prevState);
     this._preConnect();
   }
@@ -362,8 +343,8 @@ class Manipulator extends React.PureComponent<IManipulatorProps, IManipulatorSta
   }
 }
 
-const mapTokenApi = (result:IGetTokenResponse) => ({tokenApi: result});
-const mapMessagingApi = (result:IPostMessagingResponse) => ({messagingApi: result});
+const mapTokenApi = (result) => ({tokenApi: result});
+const mapMessagingApi = (result) => ({messagingApi: result});
 
 export default compose(
   withConnectivity(mapTokenApi, {})("/api/manipulator"),

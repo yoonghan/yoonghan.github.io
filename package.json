@@ -84,6 +84,6 @@
     "react-toggle": "^4.1.1",
     "service-worker-plugin": "^2.0.3",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.7.3"
+    "typescript": "^3.5.3"
   }
 }

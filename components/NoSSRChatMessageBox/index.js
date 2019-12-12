@@ -1,30 +1,23 @@
 import * as React from "react";
 import produce, {Draft} from "immer";
 import dynamic from "next/dynamic";
-import {Author, Message, ChatFeedApi} from "react-bell-chat";
-
-interface NoSSRChatMessageBoxProps {
-}
-
-interface NoSSRChatMessageBoxState {
-  messages: Array<Message>;
-}
 
 const NoSSRChatFeed = dynamic(
   () => import('react-bell-chat').then(mod => mod.ChatFeed),
   { ssr: false }
 )
 
-export class NoSSRChatMessageBox extends React.Component<NoSSRChatMessageBoxProps, NoSSRChatMessageBoxState> {
-  private authors:Array<Author>;
-  private authorsCount:number;
-  public static OTHERS = 1;
-  public static SENDER = 2;
-  public static SYSTEM = undefined;
-  private chatScroll:any;
+export const NoSSRChatMessageBoxProps = {
+  OTHERS: 1,
+  SENDER: 2,
+  SYSTEM: undefined
+};
 
-  constructor(props:NoSSRChatMessageBoxProps) {
+export class NoSSRChatMessageBox extends React.Component {
+
+  constructor(props) {
     super(props);
+    this.chatScroll = undefined;
     this.authors = this._initAuthors();
     this.authorsCount = this.authors.length;
     this.state = {
@@ -53,9 +46,9 @@ export class NoSSRChatMessageBox extends React.Component<NoSSRChatMessageBoxProp
     ];
   }
 
-  addMessage = (senderId:number|undefined, message:string) => {
+  addMessage = (senderId, message) => {
     this.setState(
-      produce((draft: Draft<NoSSRChatMessageBoxState>) => {
+      produce((draft) => {
         draft.messages.push({
           id: senderId,
           authorId: senderId,
@@ -67,11 +60,11 @@ export class NoSSRChatMessageBox extends React.Component<NoSSRChatMessageBoxProp
     );
   }
 
-  _triggerFeed = (api: ChatFeedApi) => {
+  _triggerFeed = (api) => {
     const chatScroll = this.chatScroll;
     if(api && api !== null) {
       if(chatScroll && chatScroll.scrollTo) {
-        (chatScroll as any).scrollTo(0, chatScroll.scrollHeight);
+        chatScroll.scrollTo(0, chatScroll.scrollHeight);
       }
       else {
         this.chatScroll = document.getElementsByClassName("react-bell-chat__chat-scroll-area")[0];
