@@ -5,7 +5,6 @@
       {
         "styled-jsx": { "optimizeForSpeed": true }
       }
-    ],
-    "@zeit/next-typescript/babel"
+    ]
   ]
 }
