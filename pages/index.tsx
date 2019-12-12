@@ -51,7 +51,7 @@ const Main: StatelessPage<IMainProps> = ({}) => {
       <CommandBar disableMobile={true}/>
       <CinemaScreen title={"Full-stack Web Developer"}
         btnOneStr={"About"} btnOneClick={'/about'}
-        btnTwoStr={"Invent"} btnTwoClick={'/creation'}/>
+        btnTwoStr={"Showcase"} btnTwoClick={'/creation'}/>
       <SocialFab/>
       <Footer/>
       <style jsx>{`

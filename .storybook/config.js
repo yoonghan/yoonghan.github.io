@@ -1,4 +1,4 @@
-import { configure } from '@storybook/react';
+import { addParameters, configure } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
@@ -15,5 +15,11 @@ addDecorator(
     source: true
   })
 );
+
+addParameters({
+  options: {
+    showPanel: false
+  }
+});
 
 configure(loadStories, module);
