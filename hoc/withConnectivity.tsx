@@ -34,7 +34,6 @@ const withConnectivity = < V extends {} >(result: any, defaultSuccessResult: V) 
     }
 
     _connect = (input:any, errorMessage?:string, method='POST') => {
-
       this._startConnection();
 
       if (method.toUpperCase().toString() !== "GET") {
