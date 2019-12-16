@@ -17,6 +17,13 @@ import Loader from "../components/Loader";
 import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
 
 const allowedCalls = ["up", "down", "left", "right"];
+const enumStatus = {
+  INIT: 1,
+  INIT_TOKEN: 2,
+  INIT_CONNECT: 3,
+  COMPLETE: 4,
+  INIT_DISCONNECT: 5
+}
 
 /* Functions */
 const print = (ref) => (sender) => (message) => {
@@ -44,15 +51,6 @@ const postMessage = (ref, messengerApi) => (message) => {
   }
 }
 
-const triggerConnection = (tokenApi, messengerApi) => () => {
-  if(messengerApi.isConnected()) {
-    messengerApi.disconnect();
-  }
-  else {
-    getToken(tokenApi);
-  }
-}
-
 const getConnectionStatusText = (messengerApi) => () => {
   return (messengerApi.isConnected() ? "Disconnect" : "Connect")
 }
@@ -76,17 +74,47 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   const _printSystem = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.SYSTEM);
   const _printEvent = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.OTHERS);
 
+  const [connectionStatus, changeConnectionStatus] = React.useState(enumStatus.COMPLETE);
+
   React.useEffect(() => {
-    if(!tokenApi.isLoading) {
-      if(tokenApi.isError) {
-        _printSystem("Token retrieval failed.");
-        messengerApi.disconnect();
-      }
-      else if(Object.keys(tokenApi.success).length !== 0) {
-        messengerApi.connect(_printSystem, _printEvent);
-      }
+    switch(connectionStatus) {
+      case enumStatus.INIT:
+        changeConnectionStatus(enumStatus.INIT_TOKEN);
+        break;
+      case enumStatus.INIT_TOKEN:
+        if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {
+          changeConnectionStatus(enumStatus.INIT_CONNECT);
+        }
+        else if(!tokenApi.isLoading) {
+          getToken(tokenApi);
+        }
+        else if(tokenApi.isError){
+          _printSystem("Token retrieval failed.");
+          changeConnectionStatus(enumStatus.COMPLETE);
+        }
+        break;
+      case enumStatus.INIT_CONNECT:
+        if(messengerApi.connectionStatus === EnumConnection.Disconnected) {
+          messengerApi.connect(_printSystem, _printEvent);
+        }
+        else {
+          changeConnectionStatus(enumStatus.COMPLETE);
+        }
+        break;
+      case enumStatus.INIT_DISCONNECT:
+        switch(messengerApi.connectionStatus) {
+          case EnumConnection.Disconnected:
+          case EnumConnection.Error:
+            changeConnectionStatus(enumStatus.COMPLETE);
+            break;
+          case EnumConnection.Connected:
+            messengerApi.disconnect();
+            break;
+        }
+        break;
+      default:
     }
-  }, [tokenApi.isLoading]);
+  }, [tokenApi.isLoading, connectionStatus, messengerApi.connectionStatus]);
 
   function _renderInput() {
     return (
@@ -147,39 +175,41 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   }
 
   function _renderConnection() {
-    const {isLoading} = tokenApi;
-    const {connectionStatus} = messengerApi;
+    const _connectionStatus = connectionStatus;
+    switch(_connectionStatus) {
+      case enumStatus.COMPLETE:
+        switch(messengerApi.connectionStatus) {
+          case EnumConnection.Connected:
+            return _renderInput();
+          case EnumConnection.StartConnecting:
+            return _renderLoading();
+          default:
+            return <></>;
+        }
+      default:
+        return _renderLoading();
+    }
+  }
 
-    if(isLoading) {
-      return _renderLoading();
+  function _triggerConnection() {
+    if(!messengerApi.isConnected()) {
+      changeConnectionStatus(enumStatus.INIT);
     }
     else {
-      switch(connectionStatus) {
-        case EnumConnection.Connected:
-          return _renderInput();
-        case EnumConnection.StartConnecting:
-          return _renderLoading();
-        default:
-          return <></>;
-      }
+      changeConnectionStatus(enumStatus.INIT_DISCONNECT);
     }
   }
 
   function _renderButton() {
-    const {isLoading, success} = tokenApi;
-    if(isLoading) {
-      return (<></>);
-    }
-    switch(messengerApi.connectionStatus) {
-      case EnumConnection.StartConnecting:
-      case EnumConnection.StartDisconnecting:
-        return (<></>);
-      default:
-        return (
-          <Button onClickCallback={triggerConnection(tokenApi, messengerApi)} small={true}>
+    switch(connectionStatus) {
+      case enumStatus.COMPLETE:
+        return(
+          <Button onClickCallback={_triggerConnection} small={true}>
             {getConnectionStatusText(messengerApi)()}
           </Button>
         )
+      default:
+        return (<></>);
     }
   }
 
