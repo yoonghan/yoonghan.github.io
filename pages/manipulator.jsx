@@ -16,7 +16,7 @@ import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessen
 import Loader from "../components/Loader";
 import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
 
-class Manipulator extends React.PureComponent {
+class Manipulator extends React.Component {
   constructor(props) {
     super(props);
     this.allowedCalls = ["up", "down", "left", "right"];
@@ -43,19 +43,17 @@ class Manipulator extends React.PureComponent {
       this._print(NoSSRChatMessageBoxProps.SENDER)(message);
     }
     else {
-      this._print(NoSSRChatMessageBoxProps.SYSTEM)("FailToSend");
+      this._print(NoSSRChatMessageBoxProps.SYSTEM)(`[FailToSend]-${message}`);
     }
   }
 
   _triggerConnection = () => {
-    const {isConnected, connect, disconnect} = this.props.messengerApi;
+    const {isConnected, disconnect} = this.props.messengerApi;
     if(isConnected()) {
       disconnect();
     }
     else {
-      const printConnection = this._print(NoSSRChatMessageBoxProps.OTHERS);
-      const printEvent = this._print(NoSSRChatMessageBoxProps.SYSTEM);
-      connect(printEvent, printConnection);
+      this._getToken();
     }
   }
 
@@ -160,24 +158,19 @@ class Manipulator extends React.PureComponent {
     }
   }
 
-  _preConnect = () => {
-    const {tokenApi} = this.props;
-    if(
-      tokenApi && !tokenApi.isLoading &&
-      this.state.connectionStatus === EnumConnection.PreConnected
-      ) {
-      this.setState(
-        produce((draft) => {
-          draft.connectionStatus = EnumConnection.Connected;
-          this._print("Connected", NoSSRChatMessageBoxProps.SYSTEM);
-        })
-      );
+  componentDidUpdate(prevProps, prevState) {
+    const {tokenApi, messengerApi} = this.props;
+    if(prevProps.tokenApi.isLoading && !tokenApi.isLoading) {
+      if(Object.keys(tokenApi.success).length !== 0) {
+        const printConnection = this._print(NoSSRChatMessageBoxProps.OTHERS);
+        const printEvent = this._print(NoSSRChatMessageBoxProps.SYSTEM);
+        messengerApi.connect(printEvent, printConnection);
+      }
+      else if(tokenApi.isError) {
+        this._print(NoSSRChatMessageBoxProps.SYSTEM)("Token retrieval failed.");
+        messengerApi.disconnect();
+      }
     }
-  }
-
-  componentDidUpdate({}, prevState) {
-    //this._connectWhenStartConnecting(prevState);
-    //this._preConnect();
   }
 
   render() {
@@ -233,6 +226,6 @@ const mapTokenApi = (result) => ({tokenApi: result});
 const mapMessengerApi = (result) => ({messengerApi: result});
 
 export default compose(
-  withMessenger(mapMessengerApi),
-  withConnectivity(mapTokenApi, {})("/api/manipulator")
+  withConnectivity(mapTokenApi, {})("/api/manipulator"),
+  withMessenger(mapMessengerApi)
 )(Manipulator);

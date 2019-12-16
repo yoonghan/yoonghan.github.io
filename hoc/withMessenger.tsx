@@ -70,13 +70,13 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       }
     }
 
-    _monitorConnected = () => {
+    _monitorConnected = (printCallback:(msg:string)=>void) => {
       if(this.pushChannelClient) {
-        this.pushChannelClient.connection.bind('connected', (data:string) => {
-          console.log(data, "Connected");
+        this.pushChannelClient.connection.bind('connected', ({}) => {
           this.setState(
             produce(this.state, (draft) => {
               draft.connectionStatus = EnumConnection.Connected;
+              printCallback("Connected");
             })
           );
         });
@@ -158,7 +158,7 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
           });
 
           this._subscribeToChannel(printEventCallback);
-          this._monitorConnected();
+          this._monitorConnected(printConnectionCallback);
           this._monitorError(printConnectionCallback);
           this._monitorDisconnected(printConnectionCallback);
         }
