@@ -41,38 +41,31 @@ const creationList = [
 ]
 
 //Purposely added 's'.
-class Creation extends React.PureComponent<{}, {}> {
-
-  constructor(props:any) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <HtmlHead
-          title={"Experiments and Development"}
-          description={"Contribution and self profile of Walcron."}/>
-        <CommandBar/>
-        <div className={'container'}>
-          <HeaderOne title={"Creations"} isLined={true}/>
-          <CreationList workArr={creationList}/>
-        </div>
-        <ScrollToTop/>
-        <div className="footer"/>
-        <Footer/>
-        <style jsx>{`
-          .container {
-            margin: auto;
-            padding-top: 100px;
-          }
-          .footer {
-            padding-bottom: 100px;
-          }
-        `}</style>
-      </React.Fragment>
-    );
-  }
+const Creation: React.SFC<any> = () => {
+  return (
+    <React.Fragment>
+      <HtmlHead
+        title={"Experiments and Development"}
+        description={"Contribution and self profile of Walcron."}/>
+      <CommandBar/>
+      <div className={'container'}>
+        <HeaderOne title={"Creations"} isLined={true}/>
+        <CreationList workArr={creationList}/>
+      </div>
+      <ScrollToTop/>
+      <div className="footer"/>
+      <Footer/>
+      <style jsx>{`
+        .container {
+          margin: auto;
+          padding-top: 100px;
+        }
+        .footer {
+          padding-bottom: 100px;
+        }
+      `}</style>
+    </React.Fragment>
+  );
 }
 
 export default Creation;

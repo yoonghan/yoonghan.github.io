@@ -16,66 +16,79 @@ import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessen
 import Loader from "../components/Loader";
 import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
 
-class Manipulator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.allowedCalls = ["up", "down", "left", "right"];
-    this.chatMessageBoxRef = React.createRef();
-  }
+const allowedCalls = ["up", "down", "left", "right"];
 
-  _print = (sender) => (message) => {
-    this.chatMessageBoxRef.current.addMessage(
+/* Functions */
+const print = (ref) => (sender) => (message) => {
+  if(ref && ref.current) {
+    ref.current.addMessage(
       sender,
       message);
   }
+}
 
-  _getToken = () => {
-    const {tokenApi} = this.props;
+const getToken = (tokenApi) => {
+  if(!tokenApi.isLoading) {
+    tokenApi.connect(undefined, "Unable to get key", 'GET');
+  }
+}
+
+const postMessage = (ref, messengerApi) => (message) => {
+  const isSent = messengerApi.send(message);
+  const _print = print(ref);
+  if(isSent) {
+    _print(NoSSRChatMessageBoxProps.SENDER)(message);
+  }
+  else {
+    _print(NoSSRChatMessageBoxProps.SYSTEM)(`[FailToSend]-${message}`);
+  }
+}
+
+const triggerConnection = (tokenApi, messengerApi) => () => {
+  if(messengerApi.isConnected()) {
+    messengerApi.disconnect();
+  }
+  else {
+    getToken(tokenApi);
+  }
+}
+
+const getConnectionStatusText = (messengerApi) => () => {
+  return (messengerApi.isConnected() ? "Disconnect" : "Connect")
+}
+
+const handleSubmit = (ref, messengerApi) => (event, value) => {
+  event.preventDefault();
+  postMessage(ref, messengerApi)(value);
+}
+
+const handleSuggestions = (_value) => {
+  const results = allowedCalls;
+  const value = _value.trim().toLowerCase();
+  const match = results.find(result => result.indexOf(value) === 0) ;
+  return match ? [match]: [];
+}
+
+const Manipulator = ({tokenApi, messengerApi}) => {
+  const _chatMessageBoxRef = React.useRef();
+  const _handleSubmit = handleSubmit(_chatMessageBoxRef, messengerApi);
+  const _handleSuggestions = handleSuggestions;
+  const _printSystem = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.SYSTEM);
+  const _printEvent = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.OTHERS);
+
+  React.useEffect(() => {
     if(!tokenApi.isLoading) {
-      tokenApi.connect(undefined, "Unable to get key", 'GET');
+      if(tokenApi.isError) {
+        _printSystem("Token retrieval failed.");
+        messengerApi.disconnect();
+      }
+      else if(Object.keys(tokenApi.success).length !== 0) {
+        messengerApi.connect(_printSystem, _printEvent);
+      }
     }
-  }
+  }, [tokenApi.isLoading]);
 
-
-  _postMessage = (message) => {
-    const isSent = this.props.messengerApi.send(message);
-    if(isSent) {
-      this._print(NoSSRChatMessageBoxProps.SENDER)(message);
-    }
-    else {
-      this._print(NoSSRChatMessageBoxProps.SYSTEM)(`[FailToSend]-${message}`);
-    }
-  }
-
-  _triggerConnection = () => {
-    const {isConnected, disconnect} = this.props.messengerApi;
-    if(isConnected()) {
-      disconnect();
-    }
-    else {
-      this._getToken();
-    }
-  }
-
-  _getConnectionStatusText = () => {
-    const isConnected = this.props.messengerApi.isConnected();
-    return (isConnected ? "Disconnect" : "Connect")
-  }
-
-  _handleSubmit = (event, value) => {
-    event.preventDefault();
-    this._postMessage(value);
-  }
-
-  _handleSuggestions = (_value) => {
-    const results = this.allowedCalls;
-    const value = _value.trim().toLowerCase();
-    const match = results.find(result => result.indexOf(value) === 0) ;
-    return match ? [match]: [];
-  }
-
-  _renderInput = () => {
-    const {tokenApi} = this.props;
+  function _renderInput() {
     return (
       <div className={"container"}>
         <table>
@@ -97,8 +110,8 @@ class Manipulator extends React.Component {
                 <TextMessenger
                   maxLength={100}
                   onBlurCallback={()=>{}}
-                  onSubmitCallback={this._handleSubmit}
-                  filterSuggestion={this._handleSuggestions}
+                  onSubmitCallback={_handleSubmit}
+                  filterSuggestion={_handleSuggestions}
                 />
               </td>
             </tr>
@@ -116,110 +129,95 @@ class Manipulator extends React.Component {
     );
   }
 
-  _renderLoading = () => (
-    <div className={"container"}>
-      <Loader/>
-      <style jsx>{`
-        .container {
-          display: flex;
-          position: relative;
-          justify-content: center;
-          width: 100%;
-          margin-top: 3rem;
-        }
-      `}</style>
-    </div>
+  function _renderLoading() {
+    return (
+      <div className={"container"}>
+        <Loader/>
+        <style jsx>{`
+          .container {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            width: 100%;
+            margin-top: 3rem;
+          }
+        `}</style>
+      </div>
+    );
+  }
 
-  )
-
-  _renderConnection = () => {
-    const {connectionStatus} = this.props.messengerApi;
+  function _renderConnection() {
+    const {connectionStatus} = messengerApi;
     switch(connectionStatus) {
       case EnumConnection.Connected:
-        return this._renderInput();
+        return _renderInput();
       case EnumConnection.StartConnecting:
-        return this._renderLoading();
+        return _renderLoading();
       default:
         return <></>;
     }
   }
 
-  _renderButton = () => {
-    switch(this.props.messengerApi.connectionStatus) {
+  function _renderButton() {
+    switch(messengerApi.connectionStatus) {
       case EnumConnection.StartConnecting:
       case EnumConnection.StartDisconnecting:
         return (<></>);
       default:
         return (
-          <Button onClickCallback={this._triggerConnection} small={true}>
-            {this._getConnectionStatusText()}
+          <Button onClickCallback={triggerConnection(tokenApi, messengerApi)} small={true}>
+            {getConnectionStatusText(messengerApi)()}
           </Button>
         )
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const {tokenApi, messengerApi} = this.props;
-    if(prevProps.tokenApi.isLoading && !tokenApi.isLoading) {
-      if(Object.keys(tokenApi.success).length !== 0) {
-        const printConnection = this._print(NoSSRChatMessageBoxProps.OTHERS);
-        const printEvent = this._print(NoSSRChatMessageBoxProps.SYSTEM);
-        messengerApi.connect(printEvent, printConnection);
-      }
-      else if(tokenApi.isError) {
-        this._print(NoSSRChatMessageBoxProps.SYSTEM)("Token retrieval failed.");
-        messengerApi.disconnect();
-      }
-    }
-  }
+  return (
+    <React.Fragment>
+      <HtmlHead
+        title="Manipulator Walcron"
+        description="Connecting Mobile with Web."
+        />
+      <CommandBar/>
+      <div className={'container'}>
+        <HeaderOne title={"Connecting Reality"} isLined={true}/>
+        <NoSSR>
+          <div className={'textareaContainer'}>
+            <NoSSRChatMessageBox ref={_chatMessageBoxRef}/>
+          </div>
+          <div className={"textmessengerContainer"}>
+            {_renderConnection()}
+          </div>
+          <div className={"buttonContainer"}>
+            {_renderButton()}
+          </div>
+        </NoSSR>
+      </div>
+      <Footer/>
+      <style jsx>{`
+        .container {
+          margin: auto;
+          padding-top: 10vh;
+          min-height: 90vh;
+        }
+        .buttonContainer {
+          max-width: 300px;
+          display: flex;
+          justify-content: space-evenly;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          margin: auto;
+        }
+        .textmessengerContainer {
+        }
+        .textareaContainer {
+          margin: 2rem auto;
+        }
+      `}</style>
+      <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+    </React.Fragment>
+  )
 
-  render() {
-    return (
-      <React.Fragment>
-        <HtmlHead
-          title="Manipulator Walcron"
-          description="Connecting Mobile with Web."
-          />
-        <CommandBar/>
-        <div className={'container'}>
-          <HeaderOne title={"Connecting Reality"} isLined={true}/>
-          <NoSSR>
-            <div className={'textareaContainer'}>
-              <NoSSRChatMessageBox ref={this.chatMessageBoxRef}/>
-            </div>
-            <div className={"textmessengerContainer"}>
-              {this._renderConnection()}
-            </div>
-            <div className={"buttonContainer"}>
-              {this._renderButton()}
-            </div>
-          </NoSSR>
-        </div>
-        <Footer/>
-        <style jsx>{`
-          .container {
-            margin: auto;
-            padding-top: 10vh;
-            min-height: 90vh;
-          }
-          .buttonContainer {
-            max-width: 300px;
-            display: flex;
-            justify-content: space-evenly;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            margin: auto;
-          }
-          .textmessengerContainer {
-          }
-          .textareaContainer {
-            margin: 2rem auto;
-          }
-        `}</style>
-        <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-      </React.Fragment>
-    )
-  }
 }
 
 const mapTokenApi = (result) => ({tokenApi: result});
