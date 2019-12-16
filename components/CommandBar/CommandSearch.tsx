@@ -54,7 +54,7 @@ export const AvailableInput:ICommand = {
     }
   },
   "ls": {
-    synonym: ["dir", "cd creation", "cd /creation", "cd /invent"],
+    synonym: ["dir", "cd creation", "cd /creation", "cd /invent", "cd showcase", "cd /showcase"],
     description: "What's there ?",
     action: EnumAction.LINK,
     exec: (router: RouterProps) => {

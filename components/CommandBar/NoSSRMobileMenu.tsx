@@ -14,7 +14,7 @@ const AVAILABLE_MENUS:Array<ILink> = [
     link: '/about'
   },
   {
-    title: 'Invent',
+    title: 'Showcase',
     link: '/creation'
   }
 ];
