@@ -9,6 +9,9 @@ import ManipulatorPage from '../pages/manipulator';
 //Rewrite router.
 jest.mock("next/router");
 
+//Rewrite dynamic.
+jest.mock('next/dynamic');
+
 describe('Pages', () => {
   describe('Index', () => {
     it('should contain commandbar', function () {
