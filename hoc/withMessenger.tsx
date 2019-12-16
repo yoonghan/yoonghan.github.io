@@ -7,7 +7,8 @@ export enum EnumConnection {
   StartConnecting,
   StartDisconnecting,
   Connected,
-  Disconnected
+  Disconnected,
+  Error
 }
 
 export enum EnumMessengerEventType {
@@ -89,7 +90,7 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
           console.warn(error, "Connection error");
           this.setState(
             produce(this.state, (draft:Draft<IState>) => {
-              draft.connectionStatus = EnumConnection.Disconnected;
+              draft.connectionStatus = EnumConnection.Error;
               printCallback("Interruption error encountered");
             })
           );

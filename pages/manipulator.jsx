@@ -147,18 +147,29 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   }
 
   function _renderConnection() {
+    const {isLoading} = tokenApi;
     const {connectionStatus} = messengerApi;
-    switch(connectionStatus) {
-      case EnumConnection.Connected:
-        return _renderInput();
-      case EnumConnection.StartConnecting:
-        return _renderLoading();
-      default:
-        return <></>;
+
+    if(isLoading) {
+      return _renderLoading();
+    }
+    else {
+      switch(connectionStatus) {
+        case EnumConnection.Connected:
+          return _renderInput();
+        case EnumConnection.StartConnecting:
+          return _renderLoading();
+        default:
+          return <></>;
+      }
     }
   }
 
   function _renderButton() {
+    const {isLoading, success} = tokenApi;
+    if(isLoading) {
+      return (<></>);
+    }
     switch(messengerApi.connectionStatus) {
       case EnumConnection.StartConnecting:
       case EnumConnection.StartDisconnecting:
