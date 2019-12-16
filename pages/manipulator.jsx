@@ -69,6 +69,8 @@ const handleSuggestions = (_value) => {
 
 const Manipulator = ({tokenApi, messengerApi}) => {
   const _chatMessageBoxRef = React.useRef();
+  const _loaderRef = React.useRef();
+  const _loaderObj = _renderLoading();
   const _handleSubmit = handleSubmit(_chatMessageBoxRef, messengerApi);
   const _handleSuggestions = handleSuggestions;
   const _printSystem = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.SYSTEM);
@@ -94,22 +96,27 @@ const Manipulator = ({tokenApi, messengerApi}) => {
         }
         break;
       case enumStatus.INIT_CONNECT:
-        if(messengerApi.connectionStatus === EnumConnection.Disconnected) {
-          messengerApi.connect(_printSystem, _printEvent);
-        }
-        else {
-          changeConnectionStatus(enumStatus.COMPLETE);
+        switch(messengerApi.connectionStatus) {
+          case EnumConnection.Disconnected:
+            messengerApi.connect(_printSystem, _printEvent);
+            break;
+          case EnumConnection.Connected:
+          case EnumConnection.Error:
+            changeConnectionStatus(enumStatus.COMPLETE);
+            break;
+          default:
         }
         break;
       case enumStatus.INIT_DISCONNECT:
         switch(messengerApi.connectionStatus) {
+          case EnumConnection.Connected:
+            messengerApi.disconnect();
+            break;
           case EnumConnection.Disconnected:
           case EnumConnection.Error:
             changeConnectionStatus(enumStatus.COMPLETE);
             break;
-          case EnumConnection.Connected:
-            messengerApi.disconnect();
-            break;
+          default:
         }
         break;
       default:
@@ -160,7 +167,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   function _renderLoading() {
     return (
       <div className={"container"}>
-        <Loader/>
+        <Loader ref={_loaderRef} hide={true}/>
         <style jsx>{`
           .container {
             display: flex;
@@ -178,16 +185,27 @@ const Manipulator = ({tokenApi, messengerApi}) => {
     const _connectionStatus = connectionStatus;
     switch(_connectionStatus) {
       case enumStatus.COMPLETE:
+        _controlLoader(false);
         switch(messengerApi.connectionStatus) {
           case EnumConnection.Connected:
             return _renderInput();
-          case EnumConnection.StartConnecting:
-            return _renderLoading();
           default:
             return <></>;
         }
       default:
-        return _renderLoading();
+        _controlLoader(true);
+    }
+  }
+
+  function _controlLoader(isShown) {
+    if(_loaderRef && _loaderRef.current) {
+      const {hide, show} = _loaderRef.current;
+      if(isShown) {
+        show();
+      }
+      else {
+        hide();
+      }
     }
   }
 
@@ -227,6 +245,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
             <NoSSRChatMessageBox ref={_chatMessageBoxRef}/>
           </div>
           <div className={"textmessengerContainer"}>
+            {_loaderObj}
             {_renderConnection()}
           </div>
           <div className={"buttonContainer"}>
