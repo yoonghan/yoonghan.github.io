@@ -12,54 +12,21 @@ import TextMessenger from "../components/TextMessenger";
 import Textarea from "../components/Textarea";
 import { compose } from 'redux';
 import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
+import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessenger";
 import Loader from "../components/Loader";
 import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
-
-const EnumConnection = {
-  StartConnecting: 1,
-  PreConnected: 2,
-  StartDisconnecting: 3,
-  Connected: 4,
-  Disconnected: 5
-}
 
 class Manipulator extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.pushChannelClient = undefined;
-    this.channel = undefined;
     this.allowedCalls = ["up", "down", "left", "right"];
     this.chatMessageBoxRef = React.createRef();
-    this.state = {
-      connectionStatus: EnumConnection.Disconnected,
-      textInfo: ""
-    }
   }
 
-  _print = (message, sender) => {
+  _print = (sender) => (message) => {
     this.chatMessageBoxRef.current.addMessage(
       sender,
       message);
-    //return `${message} \n`;
-  }
-
-  _disconnect = () => {
-    if(this.pushChannelClient) {
-      this.setState(
-        produce((draft) => {
-          draft.connectionStatus = EnumConnection.StartDisconnecting;
-        })
-      );
-      this.pushChannelClient.disconnect();
-    }
-  }
-
-  _subscribeToChannel = () => {
-    this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`)
-    this.channel.bind(`client-${PUSHER.event}`, (data) => {
-      console.log(JSON.stringify(data));
-      this._print(data.message, NoSSRChatMessageBoxProps.OTHERS);
-    });
   }
 
   _getToken = () => {
@@ -69,84 +36,32 @@ class Manipulator extends React.PureComponent {
     }
   }
 
-  _monitorConnected = () => {
-    this.pushChannelClient.connection.bind('connected', (data) => {
-      console.log(data, "Connected");
-      this._getToken();
-      this.setState(
-        produce((draft) => {
-          draft.connectionStatus = EnumConnection.PreConnected;
-        })
-      );
-    });
-  }
-
-  _monitorError = () => {
-    this.pushChannelClient.connection.bind('error', (error) => {
-      console.error(error, "Connection error");
-      this.setState(
-        produce((draft) => {
-          draft.connectionStatus = EnumConnection.Disconnected;
-          this._print("Error encountered: " + JSON.stringify(error), NoSSRChatMessageBoxProps.SYSTEM);
-        })
-      );
-    });
-  }
-
-  _monitorDisconnected = () => {
-    this.pushChannelClient.connection.bind('disconnected', () => {
-      this.setState(
-        produce((draft) => {
-          draft.connectionStatus = EnumConnection.Disconnected;
-          this._print("Disconnected", NoSSRChatMessageBoxProps.SYSTEM);
-        })
-      );
-      this.pushChannelClient = undefined;
-    });
-  }
 
   _postMessage = (message) => {
-    // const {messagingApi, tokenApi} = this.props;
-    // if(!messagingApi.isLoading) {
-    //   messagingApi.connect(
-    //     {
-    //       codegen: tokenApi.success.codegen,
-    //       message: message
-    //     },
-    //      "Unable to get key", 'POST');
-    // }
-    const isSent = this.channel.trigger(`client-${PUSHER.event}`, {
-      message: message
-    });
+    const isSent = this.props.messengerApi.send(message);
     if(isSent) {
-      this._print(message, NoSSRChatMessageBoxProps.SENDER);
+      this._print(NoSSRChatMessageBoxProps.SENDER)(message);
     }
     else {
-      this._print(`Fail to send`, NoSSRChatMessageBoxProps.SYSTEM);
+      this._print(NoSSRChatMessageBoxProps.SYSTEM)("FailToSend");
     }
-  }
-
-  _connect = () => {
-    this.setState(
-      produce((draft) => {
-        draft.connectionStatus = EnumConnection.StartConnecting;
-      })
-    );
   }
 
   _triggerConnection = () => {
-    const {connectionStatus} = this.state;
-    if(connectionStatus === EnumConnection.Connected) {
-      this._disconnect();
+    const {isConnected, connect, disconnect} = this.props.messengerApi;
+    if(isConnected()) {
+      disconnect();
     }
     else {
-      this._connect();
+      const printConnection = this._print(NoSSRChatMessageBoxProps.OTHERS);
+      const printEvent = this._print(NoSSRChatMessageBoxProps.SYSTEM);
+      connect(printEvent, printConnection);
     }
   }
 
   _getConnectionStatusText = () => {
-    const {connectionStatus} = this.state;
-    return (connectionStatus === EnumConnection.Connected ? "Disconnect" : "Connect")
+    const isConnected = this.props.messengerApi.isConnected();
+    return (isConnected ? "Disconnect" : "Connect")
   }
 
   _handleSubmit = (event, value) => {
@@ -220,11 +135,10 @@ class Manipulator extends React.PureComponent {
   )
 
   _renderConnection = () => {
-    const {connectionStatus} = this.state;
+    const {connectionStatus} = this.props.messengerApi;
     switch(connectionStatus) {
       case EnumConnection.Connected:
         return this._renderInput();
-      case EnumConnection.PreConnected:
       case EnumConnection.StartConnecting:
         return this._renderLoading();
       default:
@@ -232,34 +146,8 @@ class Manipulator extends React.PureComponent {
     }
   }
 
-  _connectWhenStartConnecting = (prevState) => {
-    if(
-      prevState.connectionStatus !== this.state.connectionStatus &&
-      this.state.connectionStatus === EnumConnection.StartConnecting
-    ) {
-      this._print("Establishing Connection", NoSSRChatMessageBoxProps.SYSTEM);
-      if(!this.pushChannelClient && process && process.env.PUSHER_APP_KEY) {
-        const {
-          PUSHER_APP_KEY,
-          PUSHER_CLUSTER
-        } = process.env;
-
-        this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
-          cluster: PUSHER_CLUSTER,
-          authEndpoint: PUSHER.endpoint
-        });
-
-        this._subscribeToChannel();
-        this._monitorConnected();
-        this._monitorError();
-        this._monitorDisconnected();
-      }
-    }
-  }
-
   _renderButton = () => {
-    switch(this.state.connectionStatus) {
-      case EnumConnection.PreConnected:
+    switch(this.props.messengerApi.connectionStatus) {
       case EnumConnection.StartConnecting:
       case EnumConnection.StartDisconnecting:
         return (<></>);
@@ -288,13 +176,11 @@ class Manipulator extends React.PureComponent {
   }
 
   componentDidUpdate({}, prevState) {
-    this._connectWhenStartConnecting(prevState);
-    this._preConnect();
+    //this._connectWhenStartConnecting(prevState);
+    //this._preConnect();
   }
 
   render() {
-    const {textInfo} = this.state;
-
     return (
       <React.Fragment>
         <HtmlHead
@@ -344,9 +230,9 @@ class Manipulator extends React.PureComponent {
 }
 
 const mapTokenApi = (result) => ({tokenApi: result});
-const mapMessagingApi = (result) => ({messagingApi: result});
+const mapMessengerApi = (result) => ({messengerApi: result});
 
 export default compose(
-  withConnectivity(mapTokenApi, {})("/api/manipulator"),
-  withConnectivity(mapMessagingApi, {})("/api/manipulator")
+  withMessenger(mapMessengerApi),
+  withConnectivity(mapTokenApi, {})("/api/manipulator")
 )(Manipulator);
