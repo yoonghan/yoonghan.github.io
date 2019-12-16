@@ -2,10 +2,12 @@ module.exports = {
   moduleFileExtensions: [
     "ts",
     "tsx",
-    "js"
+    "js",
+    "jsx"
   ],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.jsx?$": "babel-jest"
   },
   testMatch: [
     "**/*.(test|spec).(ts|tsx)"
@@ -14,6 +16,9 @@ module.exports = {
     "ts-jest": {
       babelConfig: ".babeltestrc",
       tsConfig: "jest.tsconfig.json"
+    },
+    "babel-jest": {
+      babelConfig: ".babeltestrc"
     }
   },
   coveragePathIgnorePatterns: [
