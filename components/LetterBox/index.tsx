@@ -91,6 +91,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
               margin-top: 20px;
             }
             .letterbox-input {
+              color: ${LINK.FOREGROUND};
               background-color: transparent;
               border: 1px solid ${LINK.FOREGROUND};
               margin: 0;
