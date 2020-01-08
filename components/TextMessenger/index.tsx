@@ -4,6 +4,7 @@ import {LINK} from "../../shared/style";
 import Autosuggest from 'react-autosuggest';
 
 interface TextMessengerProps {
+  onFocusCallback?: (event :React.FormEvent<HTMLInputElement>)=>void;
   onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
   onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void;
   maxLength?: number;
@@ -26,6 +27,7 @@ export class TextMessenger extends React.Component<TextMessengerProps, TextMesse
       onChange: this._onChange,
       onClick: this._onClickSelect,
       onBlur: this._onBlur,
+      onFocus: this._onFocus,
       maxLength: (props.maxLength ? props.maxLength : 50)
     };
     this.state = {
@@ -91,6 +93,12 @@ export class TextMessenger extends React.Component<TextMessengerProps, TextMesse
 
   _onBlur = (event :React.FormEvent<HTMLInputElement>) => {
     this.props.onBlurCallback(event);
+  }
+
+  _onFocus = (event :React.FormEvent<HTMLInputElement>) => {
+    if(this.props.onFocusCallback) {
+      this.props.onFocusCallback(event);
+    }
   }
 
   componentDidMount() {

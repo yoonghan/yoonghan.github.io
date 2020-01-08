@@ -25,13 +25,38 @@ const enumStatus = {
   INIT_DISCONNECT: 5
 }
 
-/* Functions */
-const print = (ref) => (sender) => (message) => {
-  if(ref && ref.current) {
-    ref.current.addMessage(
-      sender,
-      message);
+var allowNotification = false;
+
+const printOtherMessage = (ref, sender, withNotification) => (message) => {
+  ref.current.addMessage(
+    sender,
+    message);
+  if (withNotification && allowNotification) {
+    new Notification('New Message', { body: message });
   }
+}
+
+const printMessage = (ref, sender) => (message) => {
+  ref.current.addMessage(
+    sender,
+    message);
+}
+
+const printError = (message) => {
+  console.error("Can't print, no ref found");
+}
+
+/* Functions */
+const print = (ref) => (sender) => {
+  if(ref && ref.current) {
+    if(sender === NoSSRChatMessageBoxProps.OTHERS) {
+      return printOtherMessage(ref, sender, (window.Notification && Notification.permission === "granted"));
+    }
+    else {
+      return printMessage(ref, sender);
+    }
+  }
+  return printError;
 }
 
 const getToken = (tokenApi) => {
@@ -65,6 +90,24 @@ const handleSuggestions = (_value) => {
   const value = _value.trim().toLowerCase();
   const match = results.find(result => result.indexOf(value) === 0) ;
   return match ? [match]: [];
+}
+
+const requestNotificationPermission = () => {
+  if (window.Notification && Notification.permission !== "granted") {
+    Notification.requestPermission(function (status) {
+      if (Notification.permission !== status) {
+        Notification.permission = status;
+      }
+    });
+  }
+}
+
+const handleFocus = () => {
+  allowNotification = false;
+}
+
+const handleBlur = () => {
+  allowNotification = true;
 }
 
 const Manipulator = ({tokenApi, messengerApi}) => {
@@ -119,6 +162,9 @@ const Manipulator = ({tokenApi, messengerApi}) => {
           default:
         }
         break;
+      case enumStatus.COMPLETE:
+        requestNotificationPermission();
+        break;
       default:
     }
   }, [tokenApi.isLoading, connectionStatus, messengerApi.connectionStatus]);
@@ -144,7 +190,8 @@ const Manipulator = ({tokenApi, messengerApi}) => {
               <td>
                 <TextMessenger
                   maxLength={100}
-                  onBlurCallback={()=>{}}
+                  onFocusCallback={handleFocus}
+                  onBlurCallback={handleBlur}
                   onSubmitCallback={_handleSubmit}
                   filterSuggestion={_handleSuggestions}
                 />
