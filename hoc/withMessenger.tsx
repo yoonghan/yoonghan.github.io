@@ -65,7 +65,6 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
           typeof this.channel === 'undefined') {
         this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`);
         this.channel.bind(`client-${PUSHER.event}`, (data:any) => {
-          console.log(JSON.stringify(data));
           printCallback(data.message);
         });
       }
