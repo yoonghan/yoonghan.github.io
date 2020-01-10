@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import { RouterProps } from "next-server/router";
 import HelpDialog from "./HelpDialog";
 import PwaEnabler from "./PwaEnabler";
 import InvalidCommand from "./InvalidCommand";
@@ -14,7 +13,7 @@ export enum EnumAction {
 const ABOUT_LINK = {
   action: EnumAction.LINK,
   url: "/about",
-  exec: (router: RouterProps) => {
+  exec: (router: any) => {
     if(router.route === "/about") {
       return <InvalidCommand invalidCommand={"This is the page"}/>;
     }
@@ -49,7 +48,7 @@ export const AvailableInput:ICommand = {
   "pwd": {
     description: "Lost, and need direction.",
     action: EnumAction.LINK,
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       return <Output output={router.route}/>;
     }
   },
@@ -57,7 +56,7 @@ export const AvailableInput:ICommand = {
     synonym: ["dir", "cd creation", "cd /creation", "cd /invent", "cd showcase", "cd /showcase"],
     description: "What's there ?",
     action: EnumAction.LINK,
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       if(router.route === "/creation") {
         return <InvalidCommand invalidCommand={"This is the page"}/>;
       }
@@ -68,7 +67,7 @@ export const AvailableInput:ICommand = {
   "exit": {
     description: "Return to main page",
     action: EnumAction.LINK,
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       if(router.route === "/") {
         return <InvalidCommand invalidCommand={"Already at root"}/>;
       }
@@ -79,7 +78,7 @@ export const AvailableInput:ICommand = {
   "cd ..": {
     description: "Return to previous page",
     action: EnumAction.LINK,
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       if(router.route !== "/") {
         router.back();
         return <React.Fragment/>
@@ -92,7 +91,7 @@ export const AvailableInput:ICommand = {
     synonym: ["cd"],
     description: "Return to main page",
     action: EnumAction.LINK,
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       if(router.route === "/") {
         return <InvalidCommand invalidCommand={"Already at root"}/>;
       }
@@ -110,7 +109,7 @@ export const AvailableInput:ICommand = {
     description: "Gratitudes to organization and people.",
     action: EnumAction.LINK,
     url: "/tribute",
-    exec: (router: RouterProps) => {
+    exec: (router: any) => {
       if(router.route === "/tribute") {
         return <InvalidCommand invalidCommand={"This is the page"}/>;
       }

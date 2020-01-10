@@ -10,13 +10,14 @@ import { PUSHER } from "./const";
  **/
 
 class ApiController {
-  private static CODE_GEN:string = ApiController._generateCode();
-  private static PUSHER_API_CLIENT:Pusher|undefined = ApiController._initPusher();
+  public static CODE_GEN:string = ApiController._generateCode();
+  public static PUSHER_API_CLIENT:Pusher|undefined = ApiController._initPusher();
 
   /**
    * API is generated for every machine start up and is shared by all users
    **/
   private static _generateCode() {
+    console.log("Generate Api Code");
     const randNumber = Math.random();
     return randNumber.toString(36).substr(2, 9);
   }

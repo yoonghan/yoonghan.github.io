@@ -49,7 +49,7 @@ const Main: StatelessPage<IMainProps> = ({}) => {
         </script>
       </Helmet>
       <CommandBar disableMobile={true}/>
-      <CinemaScreen title={"Full-stack Web Developer"}
+      <CinemaScreen title={"Full-stack Web Developers"}
         btnOneStr={"About"} btnOneClick={'/about'}
         btnTwoStr={"Showcase"} btnTwoClick={'/creation'}/>
       <SocialFab/>

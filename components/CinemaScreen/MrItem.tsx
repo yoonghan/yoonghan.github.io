@@ -19,7 +19,7 @@ export interface MrItemProps {
 export const MrItem: React.SFC<MrItemProps> = ({title, btnOneStr, btnOneClick, btnTwoStr, btnTwoClick}) => {
   return (
     <div className={'mr-item'}>
-      <h3>A site journey of 2</h3>
+      <h3>A journey by "2"</h3>
       <MrTitle title={title}/>
       <MrButton
         btnOneStr={btnOneStr} btnOneClick={btnOneClick}
