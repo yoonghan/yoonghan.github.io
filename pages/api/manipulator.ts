@@ -30,6 +30,7 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 }
 
 const _getCodeGen = (res: NextApiResponse) => {
+  console.log("3")
   res.status(200).json(
     {
       "codegen": ApiController.getCodeGen()
@@ -69,12 +70,12 @@ const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const client = ApiController.getPusherApiClient(codegen);
 
-    client.trigger(ApiController.getChannelName(), PUSHER.event, {
+    client.trigger(ApiController.getChannelName(codegen), PUSHER.event, {
       "message": message
     });
     res.status(200).json(
       {
-        message: `message:"${message}" to channel:"${ApiController.getChannelName()}" sent.`
+        message: `message:"${message}" sent.`
       }
     );
   } catch(exception) {
@@ -108,7 +109,6 @@ const _getStatus = (res: NextApiResponse) => {
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json');
-
   switch(req.method) {
     case 'GET':
       _getCodeGen(res);
