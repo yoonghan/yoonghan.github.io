@@ -4,13 +4,14 @@ import fetch from 'isomorphic-unfetch';
 
 const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   const {socket_id, channel_name} = req.body;
-  fetch(`${process.env.API_CALL}/api/manipulator`, {
+  console.log(`Fetching manipulator @ ${ApiController.AUTH_API_URL}`);
+  fetch(`${ApiController.AUTH_API_URL}/api/manipulator`, {
     method: "GET"
   })
     .then(resp => (resp.json()))
     .then(data => {
       if(data.codegen && channel_name.endsWith(ApiController.getChannelName(data.codegen))) {
-        const client = ApiController.getPusherApiClient(data.codegen);
+        const client = ApiController.getPusherApiClient();
         const auth = client.authenticate(socket_id, channel_name);
 
         if(auth) {

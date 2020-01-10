@@ -10,8 +10,19 @@ import { PUSHER } from "./const";
  **/
 
 class ApiController {
+  public static AUTH_API_URL=ApiController._getUrl();
   public static CODE_GEN:string = ApiController._generateCode();
   public static PUSHER_API_CLIENT:Pusher|undefined = ApiController._initPusher();
+
+  private static _getUrl() {
+    const {AUTH_API_CALL, DEV_AUTH_API_CALL, NODE_ENV} = process.env;
+    switch(NODE_ENV) {
+      case "development":
+        return DEV_AUTH_API_CALL;
+      default:
+        return AUTH_API_CALL;
+    }
+  }
 
   /**
    * API is generated for every machine start up and is shared by all users
@@ -46,10 +57,7 @@ class ApiController {
     return undefined;
   }
 
-  static getPusherApiClient(codeGen:string):Pusher {
-    if(codeGen !== this.CODE_GEN) {
-      throw "Invalid code generation provided";
-    }
+  static getPusherApiClient():Pusher {
     if(typeof this.PUSHER_API_CLIENT === 'undefined') {
       throw "No go, no pusher api";
     }
@@ -65,7 +73,7 @@ class ApiController {
   }
 
   static getStatusOfChannel(callback:(error:any, success?:string)=>void) {
-    const pusherClient = this.getPusherApiClient(this.getCodeGen());
+    const pusherClient = this.getPusherApiClient();
     if(pusherClient) {
       pusherClient.get({ path: '/channels', params: {} }, function(error, {}, response) {
       	if (response.statusCode === 200) {
