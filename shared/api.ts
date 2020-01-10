@@ -1,4 +1,5 @@
 import Pusher from 'pusher';
+import { PUSHER } from "./const";
 
 /**
  * Deprecated !!!
@@ -57,6 +58,10 @@ class ApiController {
 
   static getCodeGen() {
     return this.CODE_GEN;
+  }
+
+  static getChannelName() {
+    return `${PUSHER.channel_prefix}${ApiController.getCodeGen()}`;
   }
 
   static getStatusOfChannel(callback:(error:any, success?:string)=>void) {
