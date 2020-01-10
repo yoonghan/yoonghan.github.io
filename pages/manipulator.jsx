@@ -120,6 +120,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   const _printEvent = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.OTHERS);
 
   const [connectionStatus, changeConnectionStatus] = React.useState(enumStatus.COMPLETE);
+  const [tokenCodegenAsChannelId, changeTokenCodeGen] = React.useState("");
 
   React.useEffect(() => {
     switch(connectionStatus) {
@@ -128,6 +129,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
         break;
       case enumStatus.INIT_TOKEN:
         if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {
+          changeTokenCodeGen(tokenApi.success.codegen);
           changeConnectionStatus(enumStatus.INIT_CONNECT);
         }
         else if(!tokenApi.isLoading) {
@@ -141,7 +143,12 @@ const Manipulator = ({tokenApi, messengerApi}) => {
       case enumStatus.INIT_CONNECT:
         switch(messengerApi.connectionStatus) {
           case EnumConnection.Disconnected:
-            messengerApi.connect(_printSystem, _printEvent);
+            if(typeof tokenCodegenAsChannelId !== "undefined") {
+                messengerApi.connect(tokenCodegenAsChannelId, _printSystem, _printEvent);
+            }
+            else {
+              changeConnectionStatus(enumStatus.COMPLETE);
+            }
             break;
           case EnumConnection.Connected:
           case EnumConnection.Error:

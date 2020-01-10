@@ -17,6 +17,7 @@ export enum EnumMessengerEventType {
 }
 
 interface IState {
+  channelName: string;
   connectionStatus: EnumConnection;
   printConnectionCallback:(message:string)=>void;
   printEventCallback:(message:string)=>void
@@ -43,6 +44,7 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       this.pushChannelClient = undefined;
       this.channel = undefined;
       this.state = {
+        channelName: "",
         connectionStatus: EnumConnection.Disconnected,
         printConnectionCallback: ()=>{},
         printEventCallback: ()=>{}
@@ -60,10 +62,10 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       }
     }
 
-    _subscribeToChannel = (printCallback:(msg:string)=>void) => {
+    _subscribeToChannel = (channelName:string, printCallback:(msg:string)=>void) => {
       if(typeof this.pushChannelClient !== 'undefined' &&
           typeof this.channel === 'undefined') {
-        this.channel = this.pushChannelClient.subscribe(`private-${PUSHER.channel}`);
+        this.channel = this.pushChannelClient.subscribe(`private-${channelName}`);
         this.channel.bind(`client-${PUSHER.event}`, (data:any) => {
           printCallback(data.message);
         });
@@ -83,13 +85,35 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       }
     }
 
+    _monitorFail = (printCallback:(msg:string)=>void) => {
+      if(this.pushChannelClient) {
+        this.pushChannelClient.connection.bind('failed', ({}) => {
+          this.setState(
+            produce(this.state, (draft:Draft<IState>) => {
+              draft.connectionStatus = EnumConnection.Disconnected;
+              printCallback("Connection failed as websocket is not supported by browser");
+            })
+          );
+          this.pushChannelClient = undefined;
+          this.channel = undefined;
+        });
+      }
+    }
+
     _monitorError = (printCallback:(msg:string)=>void) => {
       if(this.pushChannelClient) {
         this.pushChannelClient.connection.bind('error', (error:any) => {
           console.warn(error, "Connection error");
           this.setState(
             produce(this.state, (draft:Draft<IState>) => {
-              draft.connectionStatus = EnumConnection.Error;
+              if(error.type ==="WebSocketError") {
+                draft.connectionStatus = EnumConnection.Disconnected;
+                this.pushChannelClient = undefined;
+                this.channel = undefined;
+              }
+              else {
+                draft.connectionStatus = EnumConnection.Error;
+              }
               printCallback("Interruption error encountered");
             })
           );
@@ -122,9 +146,10 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       return false;
     }
 
-    _connect = (printConnectionCallback:(message:string)=>void, printEventCallback:(message:string)=>void) => {
+    _connect = (channelName:string, printConnectionCallback:(message:string)=>void, printEventCallback:(message:string)=>void) => {
       this.setState(
         produce(this.state, (draft) => {
+          draft.channelName = `${PUSHER.channel_prefix}${channelName}`;
           draft.connectionStatus = EnumConnection.StartConnecting;
           draft.printConnectionCallback = printConnectionCallback;
           draft.printEventCallback = printEventCallback;
@@ -157,10 +182,11 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
             authEndpoint: PUSHER.endpoint
           });
 
-          this._subscribeToChannel(printEventCallback);
+          this._subscribeToChannel(this.state.channelName, printEventCallback);
           this._monitorConnected(printConnectionCallback);
           this._monitorError(printConnectionCallback);
           this._monitorDisconnected(printConnectionCallback);
+          this._monitorFail(printConnectionCallback);
         }
       }
     }

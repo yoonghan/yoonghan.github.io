@@ -11,6 +11,7 @@ export const WHITISH = "#BEBEBE";
 export const SHADOW = "grey";
 export const FOREGROUND = WHITISH;
 export const BACKGROUND = BLACK;
+export const BACKGROUND_FLOAT = GREY;
 
 export const fontColor = {
   color: WHITE,

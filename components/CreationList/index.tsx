@@ -3,7 +3,7 @@
 import * as React from "react";
 import produce, {Draft} from "immer";
 import HorizontalLine from "../HorizontalLine";
-import {LINK, FOREGROUND} from "../../shared/style";
+import {LINK, FOREGROUND, BACKGROUND_FLOAT} from "../../shared/style";
 import Button from "../Button";
 import MiniIframe from "./MiniIframe";
 
@@ -113,6 +113,7 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
           }
           .btn-container {
             padding: 40px 0;
+            background-color: ${BACKGROUND_FLOAT};
           }
           `}</style>
       </article>
