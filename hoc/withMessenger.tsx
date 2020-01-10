@@ -110,11 +110,12 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
                 draft.connectionStatus = EnumConnection.Disconnected;
                 this.pushChannelClient = undefined;
                 this.channel = undefined;
+                printCallback("A different Id was requested, please refresh the page.");
               }
               else {
                 draft.connectionStatus = EnumConnection.Error;
+                printCallback("Interruption error encountered");
               }
-              printCallback("Interruption error encountered");
             })
           );
         });
