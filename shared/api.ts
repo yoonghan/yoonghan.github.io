@@ -2,7 +2,7 @@ import Pusher from 'pusher';
 import { PUSHER } from "./const";
 
 /**
- * Deprecated !!!
+ * Deprecated as api!!!
  * Not in used anymore. It is to sent/trigger client messages to pusher.
  * But noticed when deployed into Now.sh server, trigger does not get sent instead it is buffered
  * into the webserver. I.e. after 4th message sent, the first message get received.
@@ -17,7 +17,6 @@ class ApiController {
    * API is generated for every machine start up and is shared by all users
    **/
   private static _generateCode() {
-    console.log("Generate Api Code");
     const randNumber = Math.random();
     return randNumber.toString(36).substr(2, 9);
   }
@@ -61,8 +60,8 @@ class ApiController {
     return this.CODE_GEN;
   }
 
-  static getChannelName() {
-    return `${PUSHER.channel_prefix}${ApiController.getCodeGen()}`;
+  static getChannelName(codeGen:string) {
+    return `${PUSHER.channel_prefix}${codeGen}`;
   }
 
   static getStatusOfChannel(callback:(error:any, success?:string)=>void) {
