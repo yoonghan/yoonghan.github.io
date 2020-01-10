@@ -30,7 +30,6 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 }
 
 const _getCodeGen = (res: NextApiResponse) => {
-  console.log("3")
   res.status(200).json(
     {
       "codegen": ApiController.getCodeGen()
@@ -68,7 +67,7 @@ const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   const {codegen, message} = req.body;
 
   try {
-    const client = ApiController.getPusherApiClient(codegen);
+    const client = ApiController.getPusherApiClient();
 
     client.trigger(ApiController.getChannelName(codegen), PUSHER.event, {
       "message": message

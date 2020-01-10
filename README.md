@@ -69,6 +69,23 @@ npm test
 ## Allowing PWA (offline website)
 Defaulted into production.
 
+## Understanding now.json for deployment.
+Incase there is a wonder AUTH_API_CALL is needed and there are 2 different build info for
+```
+"env": {
+  // This is for /api, a.k.a server builds.
+}
+```
+vs
+```
+"build": {
+  "env": {
+    //This is for front end JS build
+    // AUTH_API_CALL is not used for frontend, hence not needed here
+  }
+}
+```
+
 ## Roll up sites (post publishing)
 1. Cookiebot checking. (https://www.cookiebot.com/), no cookies for this site.
 2. Page (https://developers.google.com/speed/pagespeed/insights/)
