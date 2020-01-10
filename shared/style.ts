@@ -1,6 +1,8 @@
 //const PRIMARY_YELLOW = "#FFDE03";
-//const PRIMARY_BLUE = "#0336FF";
+const PRIMARY_BLUE = "#00b4ef";
+const LAY_BLUE = "#c4f0f6";
 const PRIMARY_PURPLE = "#FF0266";
+const PRIMARY_ORANGE = "#FF8400";
 
 export const WHITE = "#FFF";
 export const BLACK = "#000";
@@ -11,7 +13,7 @@ export const WHITISH = "#BEBEBE";
 export const SHADOW = "grey";
 export const FOREGROUND = WHITISH;
 export const BACKGROUND = BLACK;
-export const BACKGROUND_FLOAT = GREY;
+export const BACKGROUND_FLOAT = "rgba(20,20,20,0.8)";
 
 export const fontColor = {
   color: WHITE,
@@ -64,4 +66,13 @@ export const DIALOG = {
 export const COOKIEBOX = {
   FOREGROUND: WHITE,
   BACKGROUND: "rgba(50,50,100,0.9)"
+}
+
+export const HEADER_TITLE = {
+  FOREGROUND: PRIMARY_ORANGE
+}
+
+export const SUB_HEADER = {
+  FOREGROUND: PRIMARY_BLUE,
+  BACKGROUND: LAY_BLUE
 }

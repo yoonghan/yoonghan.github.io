@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
-import PUSHER from "../../shared/const";
 
 const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   const {socket_id, channel_name} = req.body;

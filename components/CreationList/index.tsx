@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import produce, {Draft} from "immer";
-import HorizontalLine from "../HorizontalLine";
-import {LINK, FOREGROUND, BACKGROUND_FLOAT} from "../../shared/style";
+import {LINK, FOREGROUND, BACKGROUND_FLOAT, SUB_HEADER} from "../../shared/style";
 import Button from "../Button";
 import MiniIframe from "./MiniIframe";
 
@@ -94,26 +93,38 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
     workArr.map((work, idx) => (
       <article key={`_work_article_${idx}`}>
         <div id={work.id}>
-          <h2 >{work.title}</h2>
+          <h2 className="title">{work.title}</h2>
           {this._showScreenshot(work.title, work.screenshot)}
-          <p>
-            {work.desc}
-          </p>
-          <div className="btn-container">
-            <Button onClickCallback={this._clickArticle(idx)}>
-              View
-            </Button>
+          <div className="container">
+            <p>
+              {work.desc}
+            </p>
+            <div className="btn-container">
+              <Button onClickCallback={this._clickArticle(idx)}>
+                View
+              </Button>
+            </div>
           </div>
         </div>
-        <HorizontalLine/>
         <style jsx>{`
+          .title {
+            padding: 0.5rem;
+            color: ${SUB_HEADER.FOREGROUND};
+            background-color: ${SUB_HEADER.BACKGROUND};
+            border-radius: 0.5rem 0.5rem 0 0;
+            margin-bottom: 0;
+          }
+          .container {
+            padding: 0 1rem;
+            border: 1px solid;
+            background-color: ${BACKGROUND_FLOAT};
+          }
           article {
             color: ${FOREGROUND};
-            margin: 0 10px;
+            margin: 0 0.5rem;
           }
           .btn-container {
             padding: 40px 0;
-            background-color: ${BACKGROUND_FLOAT};
           }
           `}</style>
       </article>

@@ -59,7 +59,7 @@ export default class Menu extends React.PureComponent<MenuProps, {}> {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if ((process as any).browser){
       document.addEventListener('click', this._click_doc_layout, false);
       this.documentBackgroundElement = document.createElement("DIV");

@@ -1,6 +1,6 @@
 `use strict`
 import * as React from "react";
-import {FOREGROUND, BACKGROUND} from "../shared/style";
+import { BACKGROUND, HEADER_TITLE } from "../shared/style";
 
 //There should only be one header at a time
 
@@ -17,7 +17,7 @@ const HeaderOne: React.SFC<HeaderOneProps> = ({title, isBlackOnWhite, isLined}) 
       <style jsx>
         {`
           h1 {
-            color: ${isBlackOnWhite?BACKGROUND:FOREGROUND}
+            color: ${isBlackOnWhite?BACKGROUND:HEADER_TITLE.FOREGROUND}
           }
           .lined {
             display: flex;
@@ -25,7 +25,6 @@ const HeaderOne: React.SFC<HeaderOneProps> = ({title, isBlackOnWhite, isLined}) 
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: ${FOREGROUND};
           }
           h1.lined:before,
           h1.lined:after {

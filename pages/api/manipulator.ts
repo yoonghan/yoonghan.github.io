@@ -69,12 +69,12 @@ const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const client = ApiController.getPusherApiClient(codegen);
 
-    client.trigger(PUSHER.channel, PUSHER.event, {
+    client.trigger(ApiController.getChannelName(), PUSHER.event, {
       "message": message
     });
     res.status(200).json(
       {
-        message: `message:"${message}" to channel:"${PUSHER.channel}" sent.`
+        message: `message:"${message}" to channel:"${ApiController.getChannelName()}" sent.`
       }
     );
   } catch(exception) {
