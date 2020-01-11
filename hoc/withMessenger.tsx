@@ -177,7 +177,6 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
             PUSHER_APP_KEY,
             PUSHER_CLUSTER
           } = process.env;
-
           this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
             cluster: PUSHER_CLUSTER,
             authEndpoint: PUSHER.endpoint
@@ -188,6 +187,9 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
           this._monitorError(printConnectionCallback);
           this._monitorDisconnected(printConnectionCallback);
           this._monitorFail(printConnectionCallback);
+        }
+        else {
+          printConnectionCallback("Configuration error. Please inform administrator.");
         }
       }
     }

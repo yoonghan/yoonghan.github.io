@@ -15,13 +15,8 @@ class ApiController {
   public static PUSHER_API_CLIENT:Pusher|undefined = ApiController._initPusher();
 
   private static _getUrl() {
-    const {AUTH_API_CALL, DEV_AUTH_API_CALL, NODE_ENV} = process.env;
-    switch(NODE_ENV) {
-      case "development":
-        return DEV_AUTH_API_CALL;
-      default:
-        return AUTH_API_CALL;
-    }
+    const { AUTH_API_CALL } = process.env;
+    return AUTH_API_CALL;
   }
 
   /**
@@ -43,7 +38,6 @@ class ApiController {
         PUSHER_APP_KEY,
         PUSHER_CLUSTER
       } = process.env;
-
       const pusherClient = new Pusher({
         appId: PUSHER_APP_ID||'',
         key: PUSHER_APP_KEY||'',

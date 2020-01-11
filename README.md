@@ -36,7 +36,12 @@ If there are missing webpack installation, manually execute 'npm install next'
 ## Deployment into Zeit.
 Automatically set the domain when used with --prod
 ```
-now --prod
+now secrets add auth-api-call http://localhost:3000
+now secrets add pusher-app-id 883990
+now secrets add pusher-app-key 9307e10b49d4e7f47e56
+now secrets add pusher-secret 41a038429d4556a4fad3
+now secrets add pusher-cluster ap1
+npm run deploy
 ```
 
 ## Deployment from Windows server to Unix System.
