@@ -23,19 +23,16 @@
     "autoAlias": false
   },
   "env": {
-    "PUSHER_APP_ID": "883990",
-    "PUSHER_APP_KEY": "9307e10b49d4e7f47e56",
-    "PUSHER_SECRET": "41a038429d4556a4fad3",
-    "PUSHER_CLUSTER": "ap1",
-    "AUTH_API_CALL": "https://www.walcron.com",
-    "DEV_AUTH_API_CALL": "http://localhost:3000"
+    "PUSHER_APP_ID": "@pusher-api-id",
+    "PUSHER_APP_KEY": "@pusher-app-key",
+    "PUSHER_SECRET": "@pusher-secret",
+    "PUSHER_CLUSTER": "@pusher-cluster",
+    "AUTH_API_CALL": "@auth-api-call"
   },
   "build": {
-    "env": { 
-      "PUSHER_APP_ID": "883990",
-      "PUSHER_APP_KEY": "9307e10b49d4e7f47e56",
-      "PUSHER_SECRET": "41a038429d4556a4fad3",
-      "PUSHER_CLUSTER": "ap1"
+    "env": {
+      "PUSHER_APP_KEY": "@pusher-app-key",
+      "PUSHER_CLUSTER": "@pusher-cluster"
     }
   }
 }
