@@ -123,22 +123,26 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   const [tokenCodegenAsChannelId, changeTokenCodeGen] = React.useState("");
 
   React.useEffect(() => {
+    if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {
+      changeTokenCodeGen(tokenApi.success.codegen);
+      changeConnectionStatus(enumStatus.INIT_CONNECT);
+    }
+    else if(tokenApi.isError){
+      _printSystem("Token retrieval failed.");
+      changeConnectionStatus(enumStatus.COMPLETE);
+    }
+    else if(tokenApi.isLoading) {
+      _printSystem("Retrieving token");
+    }
+  },[tokenApi.isLoading]);
+
+  React.useEffect(() => {
     switch(connectionStatus) {
       case enumStatus.INIT:
         changeConnectionStatus(enumStatus.INIT_TOKEN);
         break;
       case enumStatus.INIT_TOKEN:
-        if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {
-          changeTokenCodeGen(tokenApi.success.codegen);
-          changeConnectionStatus(enumStatus.INIT_CONNECT);
-        }
-        else if(!tokenApi.isLoading) {
-          getToken(tokenApi);
-        }
-        else if(tokenApi.isError){
-          _printSystem("Token retrieval failed.");
-          changeConnectionStatus(enumStatus.COMPLETE);
-        }
+        getToken(tokenApi);
         break;
       case enumStatus.INIT_CONNECT:
         switch(messengerApi.connectionStatus) {
@@ -174,7 +178,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
         break;
       default:
     }
-  }, [tokenApi.isLoading, connectionStatus, messengerApi.connectionStatus]);
+  }, [connectionStatus, messengerApi.connectionStatus]);
 
   function _renderInput() {
     return (
