@@ -21,7 +21,7 @@ If there are missing webpack installation, manually execute 'npm install next'
 
 
 ## Development for Zeit
-1. Changes are based on *package.json*.
+1. DEPRECATED, no longer be used and has issues with ZEIT's .env/secret settings. Changes are based on *package.json*.
 
 ```
   npm run dev
