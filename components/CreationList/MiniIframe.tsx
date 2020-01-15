@@ -49,7 +49,7 @@ const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, githubLink, usage, cl
           </Button>
         }
         <Button href={iframeLink} target="extWindow" small={true}>
-          Seperate Window
+          New Tab
         </Button>
       </div>
       <div>
