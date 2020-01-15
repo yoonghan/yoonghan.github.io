@@ -3,24 +3,28 @@
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/Roboto-Regular.ttf") format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: bold;
   src: url("/static/fonts/Roboto-Bold.ttf") format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 400;
   src: url("/static/fonts/Roboto-Italic.ttf") format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: "Inconsolata";
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/Inconsolata-Regular.ttf") format('truetype');
+  font-display: swap;
 }
 html {
   font-family: Roboto;
