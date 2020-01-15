@@ -42,7 +42,9 @@ const Main: StatelessPage<IMainProps> = ({}) => {
     <React.Fragment>
       <HtmlHead
         title={"Walcron"}
-        description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}/>
+        description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}
+        nofontawesome={true}
+        />
       <Helmet>
         <script type="application/ld+json">
           {_getSchema()}

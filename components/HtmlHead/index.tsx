@@ -11,18 +11,13 @@ interface HtmlHeadProps {
 }
 
 
-export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
+export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
   private scriptRef = React.createRef<HTMLDivElement>();
 
-  componentDidMount() {
+  _runPreload = () => {
     const elements = document.getElementsByTagName("link");
-    const {nofontawesome} = this.props;
     for(let i=0; i<elements.length; i++) {
       const element = elements[i];
-
-      if(nofontawesome && element.href.indexOf("fontawesome")>0) {
-        continue;
-      }
 
       if(element.rel==="preload" && element.as==="style") {
         const link = document.createElement('link');
@@ -35,10 +30,14 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
     }
   }
 
+  componentDidMount() {
+    setTimeout(this._runPreload, 200);
+  }
+
   render() {
-    const {title, description} = this.props;
+    const {title, description, nofontawesome} = this.props;
     return (
-      <div ref={this.scriptRef}>
+      <div className={"XXX"} ref={this.scriptRef}>
         <Head>
           <meta charSet="utf-8" key="charset"/>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
@@ -55,7 +54,7 @@ export class HtmlHead extends React.PureComponent<HtmlHeadProps, {}> {
           <title>{title}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
           <link rel="preload" as="style" href="/static/css/common.css" key="int_common"/>
-          <link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>
+          {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
           <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
         </Head>
         <style jsx global>
