@@ -13,7 +13,7 @@ import Textarea from "../components/Textarea";
 import { compose } from 'redux';
 import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
 import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessenger";
-import Loader from "../components/Loader";
+import Loader, {LOADER_ID_NAME} from "../components/Loader";
 import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
 
 const allowedCalls = ["up", "down", "left", "right"];
@@ -110,10 +110,27 @@ const handleBlur = () => {
   allowNotification = true;
 }
 
+const renderLoading = () => {
+  return (
+    <div className={"container"}>
+      <Loader/>
+      <style jsx>{`
+        .container {
+          display: flex;
+          position: relative;
+          justify-content: center;
+          width: 100%;
+          margin-top: 3rem;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+const loaderComponent = renderLoading();
+
 const Manipulator = ({tokenApi, messengerApi}) => {
   const _chatMessageBoxRef = React.useRef();
-  const _loaderRef = React.useRef();
-  const _loaderObj = _renderLoading();
   const _handleSubmit = handleSubmit(_chatMessageBoxRef, messengerApi);
   const _handleSuggestions = handleSuggestions;
   const _printSystem = print(_chatMessageBoxRef)(NoSSRChatMessageBoxProps.SYSTEM);
@@ -121,6 +138,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
 
   const [connectionStatus, changeConnectionStatus] = React.useState(enumStatus.COMPLETE);
   const [tokenCodegenAsChannelId, changeTokenCodeGen] = React.useState("");
+  const [hideLoading, changeHideLoading] = React.useState(true);
 
   React.useEffect(() => {
     if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {
@@ -222,23 +240,6 @@ const Manipulator = ({tokenApi, messengerApi}) => {
     );
   }
 
-  function _renderLoading() {
-    return (
-      <div className={"container"}>
-        <Loader ref={_loaderRef} hide={true}/>
-        <style jsx>{`
-          .container {
-            display: flex;
-            position: relative;
-            justify-content: center;
-            width: 100%;
-            margin-top: 3rem;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
   function _renderConnection() {
     const _connectionStatus = connectionStatus;
     switch(_connectionStatus) {
@@ -256,14 +257,9 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   }
 
   function _controlLoader(isShown) {
-    if(_loaderRef && _loaderRef.current) {
-      const {hide, show} = _loaderRef.current;
-      if(isShown) {
-        show();
-      }
-      else {
-        hide();
-      }
+    if(_chatMessageBoxRef && _chatMessageBoxRef.current) {
+      const style = (isShown?'block':'none');
+      (document).getElementById(LOADER_ID_NAME).style.display=style;
     }
   }
 
@@ -303,7 +299,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
             <NoSSRChatMessageBox ref={_chatMessageBoxRef}/>
           </div>
           <div className={"textmessengerContainer"}>
-            {_loaderObj}
+            {loaderComponent}
             {_renderConnection()}
           </div>
           <div className={"buttonContainer"}>
