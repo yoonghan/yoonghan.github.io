@@ -29,7 +29,7 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
   }
 
   componentDidMount() {
-    setTimeout(this._runPreload, 200);
+    setTimeout(this._runPreload, 100);
   }
 
   render() {
