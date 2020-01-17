@@ -8,18 +8,7 @@ const CommandBar: React.SFC<any> = (props) => {
     <NoSSR>
       <React.Suspense fallback={
         <div className={"header"}>
-          Walcron
-          <style jsx>{`
-            .header {
-              text-align: center;
-              position: absolute;
-              top: 0.5rem;
-              left: 1.5rem;
-              z-index: 2;
-              right: 1.5rem;
-            }
-            `}
-          </style>
+          Initializing
         </div>}>
         <CommandBarNoSSRComponent {...props}/>
       </React.Suspense>
