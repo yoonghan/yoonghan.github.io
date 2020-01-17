@@ -1,59 +1,30 @@
 import * as React from "react";
 import NoSSR from 'react-no-ssr';
-import NavMenu from "./NavMenu";
-import Logo from "../Logo";
-import NoSSRCommandBar from "./NoSSRCommandBar";
-import NoSSRMobileMenu from "./NoSSRMobileMenu";
 
-interface CommandBarProps {
-  disableMobile?: boolean;
-}
+const CommandBarNoSSRComponent = React.lazy(() => import('./CommandBarNoSSR'));
 
-const CommandBar: React.SFC<CommandBarProps> = ({disableMobile}) => {
+const CommandBar: React.SFC<any> = (props) => {
   return (
     <NoSSR>
-      <div className={"header"} id="commandbar">
-        <div className={"desktop" + (!disableMobile? " shift-to-right":"")}>
-          <NoSSRCommandBar/>
-          {!disableMobile && <NavMenu/>}
-        </div>
-        {!disableMobile && (<div className="mobile">
-          <NoSSRMobileMenu/>
-        </div>)}
-        {disableMobile && (<Logo/>)}
-        <style jsx>{`
-          .header {
-            text-align: center;
-            position: absolute;
-            top: 0.5rem;
-            left: 1.5rem;
-            z-index: 2;
-            right: 1.5rem;
-          }
-          .desktop.shift-to-right {
-            position: relative;
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-          }
-          .desktop {
-            display: block;
-          }
-          .mobile {
-            display: none;
-          }
-          @media only screen and (max-width: 480px) {
-            .mobile {
-              display: block;
+      <React.Suspense fallback={
+        <div className={"header"}>
+          Loading...
+          <style jsx>{`
+            .header {
+              text-align: center;
+              position: absolute;
+              top: 0.5rem;
+              left: 1.5rem;
+              z-index: 2;
+              right: 1.5rem;
             }
-            .desktop {
-              display: none !important;
-            }
-          }
-        `}</style>
-      </div>
+            `}
+          </style>
+        </div>}>
+        <CommandBarNoSSRComponent {...props}/>
+      </React.Suspense>
     </NoSSR>
   );
 }
 
-export default CommandBar;
+export default React.memo(CommandBar);
