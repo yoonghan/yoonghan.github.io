@@ -12,9 +12,9 @@ interface HtmlHeadProps {
 
 
 export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
-  private scriptRef = React.createRef<HTMLDivElement>();
 
   _runPreload = () => {
+    const scriptElement = document.getElementById('id-scripts');
     const elements = document.getElementsByTagName("link");
     for(let i=0; i<elements.length; i++) {
       const element = elements[i];
@@ -23,9 +23,7 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = element.href;
-        if(this.scriptRef.current !== null) {
-          this.scriptRef.current.appendChild(link);
-        }
+        scriptElement!.appendChild(link);
       }
     }
   }
@@ -37,7 +35,7 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
   render() {
     const {title, description, nofontawesome} = this.props;
     return (
-      <div className={"XXX"} ref={this.scriptRef}>
+      <div className={"XXX"} id="id-scripts">
         <Head>
           <meta charSet="utf-8" key="charset"/>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
@@ -52,10 +50,10 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
           <meta name="fb:admins" content="walcoorperation@gmail.com" key="fb_image_m"/>
           <meta name="description" content={description} key="description"/>
           <title>{title}</title>
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
           <link rel="preload" as="style" href="/static/css/common.css" key="int_common"/>
-          {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
           <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
+          {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         </Head>
         <style jsx global>
         {`
