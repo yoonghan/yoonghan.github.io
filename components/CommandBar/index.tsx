@@ -8,7 +8,7 @@ const CommandBar: React.SFC<any> = (props) => {
     <NoSSR>
       <React.Suspense fallback={
         <div className={"header"}>
-          Loading...
+          Walcron
           <style jsx>{`
             .header {
               text-align: center;
