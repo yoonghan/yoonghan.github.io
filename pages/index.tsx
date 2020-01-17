@@ -80,4 +80,4 @@ Main.getInitialProps = async(ctx:any) => {
   }
 };
 
-export default Main;
+export default React.memo(Main);
