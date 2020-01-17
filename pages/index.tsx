@@ -56,12 +56,6 @@ const Main: StatelessPage<IMainProps> = ({}) => {
         btnTwoStr={"Showcase"} btnTwoClick={'/creation'}/>
       <SocialFab/>
       <Footer/>
-      <style jsx global>{`
-        #__next {
-          height: 100vh;
-          width: 100vw
-        }
-      `}</style>
     </React.Fragment>
   );
 }

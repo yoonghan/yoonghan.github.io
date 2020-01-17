@@ -17,15 +17,11 @@ export interface CinemaScreenProps {
 
 const CinemaScreen: React.SFC<CinemaScreenProps> = (props) => {
   return (
-    <div className={'cinema-screen'}>
+    <div style={{
+      height: "100%",
+      width: "100%"
+    }}>
       <MrItem {...props}/>
-      <style jsx>{`
-        div.cinema-screen {
-          position: relative;
-          height: 100%;
-          width: 100%;
-        }
-      `}</style>
     </div>
   );
 }
