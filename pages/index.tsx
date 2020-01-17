@@ -6,7 +6,7 @@ import SocialFab from "../components/SocialFab";
 import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
 //import Cookie from "../components/Cookie";
-import cookies from 'next-cookies';
+//import cookies from 'next-cookies';
 
 const _getSchema = () => {
   const schemas = {
@@ -56,14 +56,6 @@ const Main: StatelessPage<IMainProps> = ({}) => {
         btnTwoStr={"Showcase"} btnTwoClick={'/creation'}/>
       <SocialFab/>
       <Footer/>
-      <style jsx>{`
-        .center {
-          position: absolute;
-          top: 60%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      `}</style>
       <style jsx global>{`
         #__next {
           height: 100vh;
@@ -74,10 +66,10 @@ const Main: StatelessPage<IMainProps> = ({}) => {
   );
 }
 
-Main.getInitialProps = async(ctx:any) => {
-  return {
-    termsRead: cookies(ctx).termsRead || "false"
-  }
-};
+// Main.getInitialProps = async(ctx:any) => {
+//   return {
+//     termsRead: cookies(ctx).termsRead || "false"
+//   }
+// };
 
 export default React.memo(Main);
