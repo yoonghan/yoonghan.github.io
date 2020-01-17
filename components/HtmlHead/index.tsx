@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import Head from 'next/head';
-import {FOREGROUND, BACKGROUND} from '../../shared/style';
-
 interface HtmlHeadProps {
   title: string;
   description: string;
@@ -35,7 +33,7 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
   render() {
     const {title, description, nofontawesome} = this.props;
     return (
-      <div className={"XXX"} id="id-scripts">
+      <div id="id-scripts">
         <Head>
           <meta charSet="utf-8" key="charset"/>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
@@ -54,19 +52,35 @@ export class HtmlHead extends React.Component<HtmlHeadProps, {}> {
           <link rel="preload" as="style" href="/static/css/font.css" key="int_font"/>
           {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+          <style>{`
+            body {
+              background: #000 url(/static/img/bg/type1.jpg) no-repeat left bottom;
+              background-size: contain;
+              color: #FFF;
+              position: relative;
+              padding: 0;
+              margin: 0;
+              min-height: 100vh;
+              width: 100%;
+              min-width: 320px;
+            }
+            div.mr-item {
+              width: 200px;
+              top: 50%;
+              left: 50%;
+              position: absolute;
+              transform: translate(-50%, -50%);
+            }
+            footer {
+              font-size: 0.8rem;
+              bottom: 0px;
+              left: 0px;
+              margin: 10px;
+              position: absolute;
+              width: 320px;
+            }
+          `}</style>
         </Head>
-        <style jsx global>
-        {`
-          body {
-            background: ${BACKGROUND} url("/static/img/bg/type1.jpg") no-repeat left bottom;
-            background-size: contain;
-            color: ${FOREGROUND};
-            position: relative;
-            padding: 0;
-            margin: 0;
-          }
-        `}
-        </style>
       </div>
     );
   }

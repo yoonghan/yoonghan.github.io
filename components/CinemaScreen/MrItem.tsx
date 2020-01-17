@@ -25,13 +25,6 @@ export const MrItem: React.SFC<MrItemProps> = ({title, btnOneStr, btnOneClick, b
         btnOneStr={btnOneStr} btnOneClick={btnOneClick}
         btnTwoStr={btnTwoStr} btnTwoClick={btnTwoClick}/>
       <style jsx>{`
-        div.mr-item {
-          width: 200px;
-          top: 50%;
-          left: 50%;
-          position: absolute;
-          transform: translate(-50%, -50%);
-        }
         h3 {
           text-align: center;
         }
