@@ -22,9 +22,12 @@ class ApiController {
   /**
    * API is generated for every machine start up and is shared by all users
    **/
-  private static _generateCode() {
-    const randNumber = Math.random();
-    return randNumber.toString(36).substr(2, 9);
+  private static _generateCode():string {
+    // const randNumber = Math.random();
+    // return randNumber.toString(36).substr(2, 9);
+    // Generated based on dates, reason being that server keeps restarting.
+    const date = new Date();
+    return "G" + date.getDate()+date.getMonth()+date.getFullYear();
   }
 
   /**
@@ -58,7 +61,7 @@ class ApiController {
     return this.PUSHER_API_CLIENT;
   }
 
-  static getCodeGen() {
+  static getCodeGen():string {
     return this.CODE_GEN;
   }
 

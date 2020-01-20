@@ -25,14 +25,15 @@ const enumStatus = {
   INIT_DISCONNECT: 5
 }
 
-var allowNotification = false;
+var notificationAllowed = false;
 
-const printOtherMessage = (ref, sender, withNotification) => (message) => {
+const printOtherMessage = (ref, sender, isNotification) => (message) => {
   ref.current.addMessage(
     sender,
     message);
-  if (withNotification && allowNotification) {
-    new Notification('New Message', { body: message });
+  if (isNotification && notificationAllowed) {
+    const notification = new Notification('New Message', { body: message });
+    setTimeout(()=>{notification.close()}, 2000);
   }
 }
 
@@ -103,11 +104,11 @@ const requestNotificationPermission = () => {
 }
 
 const handleFocus = () => {
-  allowNotification = false;
+  notificationAllowed = false;
 }
 
 const handleBlur = () => {
-  allowNotification = true;
+  notificationAllowed = true;
 }
 
 const renderLoading = () => {
