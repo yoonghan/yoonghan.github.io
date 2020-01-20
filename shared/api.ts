@@ -27,7 +27,7 @@ class ApiController {
     // return randNumber.toString(36).substr(2, 9);
     // Generated based on dates, reason being that server keeps restarting.
     const date = new Date();
-    return "G" + date.getDate()+date.getMonth()+date.getFullYear();
+    return "G" + (date.getDate()+date.getMonth()+date.getFullYear());
   }
 
   /**
