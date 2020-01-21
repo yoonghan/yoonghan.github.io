@@ -3,6 +3,15 @@ import NoSSR from 'react-no-ssr';
 import Loader from "../Loader";
 import ReactResizeDetector from 'react-resize-detector';
 
+interface ICard {
+  src: string;
+  desc: string;
+}
+
+interface ICreationListv2Props {
+  cards: Array<ICard>;
+}
+
 const Coverflow = React.lazy(() => import('react-coverflow'));
 
 const recalculateWidth = (width: any) => {
@@ -19,32 +28,40 @@ const recalculateHeight = (height: any) => {
   return "";
 }
 
-const CreationListv2 = () => (
-  <NoSSR>
+const renderCards = (cards: Array<ICard>) => {
+  const cardDrawn = cards.map((card, idx) => (
+    <div>
+      <img
+        src={card.src}
+        alt={card.desc}
+        key={"creativev2_" + idx}
+      />
+    </div>
+  ));
+  return cardDrawn;
+}
 
-      <React.Suspense fallback={<Loader/>}>
-        <ReactResizeDetector handleWidth={true} handleHeight={true} querySelector="body">{
-          (resizerProps:any) => {
-            console.log(resizerProps, "resizerProps");
-            return (<Coverflow
-              width={recalculateWidth(resizerProps.width)}
-              height={recalculateHeight(resizerProps.height)}
-              displayQuantityOfSide={2}
-              navigation={false}
-              enableScroll={false}
-              clickable={true}
-              active={0}
-            >
-              <div>
-                <img src='https://picsum.photos/200/300' alt='title or description' />
-              </div>
-              <img src='https://picsum.photos/200/300' alt='title or description' />
-              <img src='https://picsum.photos/200/300' alt='title or description' />
-            </Coverflow>)
-          }
-        }</ReactResizeDetector>
-      </React.Suspense>
+const CreationListv2: React.SFC<ICreationListv2Props> = ({cards}) => (
+  <NoSSR>
+    <React.Suspense fallback={<Loader/>}>
+      <ReactResizeDetector handleWidth={true} handleHeight={true} querySelector="body">{
+        (resizerProps:any) => {
+          return (<Coverflow
+            width={recalculateWidth(resizerProps.width)}
+            height={recalculateHeight(resizerProps.height)}
+            displayQuantityOfSide={2}
+            navigation={false}
+            enableScroll={false}
+            clickable={true}
+            active={0}
+          >
+
+            {renderCards(cards)}
+          </Coverflow>)
+        }
+      }</ReactResizeDetector>
+    </React.Suspense>
   </NoSSR>
 )
 
-export default CreationListv2;
+export default React.memo(CreationListv2);
