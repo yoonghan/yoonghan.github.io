@@ -1,67 +1,65 @@
 import React from 'react';
+import Card, {ICardProps} from "./Card";
+import dynamic from "next/dynamic";
 import NoSSR from 'react-no-ssr';
-import Loader from "../Loader";
-import ReactResizeDetector from 'react-resize-detector';
-
-interface ICard {
-  src: string;
-  desc: string;
-}
 
 interface ICreationListv2Props {
-  cards: Array<ICard>;
+  cards: Array<ICardProps>;
 }
 
-const Coverflow = React.lazy(() => import('react-coverflow'));
+const Coverflow = dynamic(
+  () => import("react-coverflow"),
+  { ssr: false }
+)
 
-const recalculateWidth = (width: any) => {
-  if(typeof width !== "undefined") {
-    return ((width as number) - 100).toString();
-  }
-  return "";
+const recalculateWidth = (width: number) => {
+  return ((width as number) - 100).toString();
 }
 
-const recalculateHeight = (height: any) => {
-  if(typeof height !== "undefined") {
-    return ((height as number) - 300).toString();
-  }
-  return "";
+const recalculateHeight = (height: number) => {
+  return ((height as number) - 300).toString();
 }
 
-const renderCards = (cards: Array<ICard>) => {
+const renderCards = (cards: Array<ICardProps>) => {
   const cardDrawn = cards.map((card, idx) => (
-    <div>
-      <img
-        src={card.src}
-        alt={card.desc}
-        key={"creativev2_" + idx}
-      />
-    </div>
+    <Card
+      {...card}
+      key={`creationv2_${idx}`}
+    />
   ));
   return cardDrawn;
 }
 
-const CreationListv2: React.SFC<ICreationListv2Props> = ({cards}) => (
-  <NoSSR>
-    <React.Suspense fallback={<Loader/>}>
-      <ReactResizeDetector handleWidth={true} handleHeight={true} querySelector="body">{
-        (resizerProps:any) => {
-          return (<Coverflow
-            width={recalculateWidth(resizerProps.width)}
-            height={recalculateHeight(resizerProps.height)}
-            displayQuantityOfSide={2}
-            navigation={false}
-            enableScroll={false}
-            clickable={true}
-            active={0}
-          >
+const CreationListv2: React.SFC<ICreationListv2Props> = ({cards}) => {
 
-            {renderCards(cards)}
-          </Coverflow>)
-        }
-      }</ReactResizeDetector>
-    </React.Suspense>
-  </NoSSR>
-)
+  const [dimension, setDimension] = React.useState({width: 0, height: 0});
 
-export default React.memo(CreationListv2);
+  React.useEffect(() => {
+    //Correct way to use document is after mounting!
+    setDimension({
+      width:document!.querySelector("body")!.offsetWidth,
+      height:document!.querySelector("body")!.offsetHeight
+    });
+    return () => {
+
+    }
+  }, []);
+
+  return (
+    <NoSSR>
+      <Coverflow
+        width={recalculateWidth(dimension.width)}
+        height={recalculateHeight(dimension.height)}
+        displayQuantityOfSide={2}
+        navigation={false}
+        enableScroll={false}
+        clickable={true}
+        active={0}
+      >
+        {renderCards(cards)}
+      </Coverflow>
+    </NoSSR>
+  );
+}
+
+export default CreationListv2;

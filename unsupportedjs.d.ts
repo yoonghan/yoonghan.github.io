@@ -1,5 +1,4 @@
 declare module "react-coverflow" {
-
   export interface CoverflowProps {
     width: string;
     height?: string;
@@ -7,12 +6,10 @@ declare module "react-coverflow" {
     navigation: boolean;
     enableScroll: boolean;
     clickable: boolean;
-    active: number;
     children: ReactNode;
+    active?: number;
   }
-
   class Coverflow extends React.Component<CoverflowProps, {}> {
   }
-
   export default Coverflow;
 }

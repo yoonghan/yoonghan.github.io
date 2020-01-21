@@ -9,9 +9,10 @@ export interface ButtonProps {
   target?: string;
   onClickCallback?: () => void;
   small?: boolean;
+  invert?: boolean;
 }
 
-const createButton = (children?:any, _onClickCallback?:() => void, target?: string, small?: boolean) => {
+const createButton = (children?:any, _onClickCallback?:() => void, target?: string, small?: boolean, invert?: boolean, href?: string) => {
   //const [state, toggle] = React.useState(true);
   const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } })
 
@@ -27,7 +28,10 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
           })
           .interpolate(x => `scale(${x})`)
       }}>
-      <a className="btn-container" onClick={_onClickCallback?_onClickCallback:()=>{}} target={target}>
+      <a className="btn-container"
+        onClick={_onClickCallback?_onClickCallback:()=>{}}
+        href={href}
+        target={target}>
 
           {children}
         <style jsx>
@@ -38,7 +42,7 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
             .btn-container {
               padding: ${small? '0.5rem': '1rem'};
               position: relative;
-              background: rgba(200,200,200,0.1);
+              background: ${invert? "rgba(25,25,25, 1.0)": "rgba(200,200,200,0.1)"};
               transition-property: color, background;
               transition-duration: .15s;
               transition-timing-function: ease-in-out;
@@ -68,11 +72,11 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
   );
 }
 
-const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small}) => {
+const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small, invert}) => {
   return (
-    href?
-      <Link href={href}>{createButton(children, undefined, target, small)}</Link>:
-      createButton(children, onClickCallback, undefined, small)
+    href && !(/^(http:\/\/)|(https:\/\/)|(\/static)/.test(href)) ?
+      <Link href={href}>{createButton(children, undefined, target, small, invert, undefined)}</Link>:
+      createButton(children, onClickCallback, target, small, invert, href)
   );
 }
 
