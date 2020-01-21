@@ -93,6 +93,7 @@ const renderContainer = (props:ICardDescription, showIframe:boolean, setShowIfra
         .container {
           top: 50%;
           left: 50%;
+          min-width: 240px;
           transform: translate(-50%, -50%);
           padding: 50px;
           position: absolute;
