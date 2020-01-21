@@ -6,6 +6,21 @@ import ScrollToTop from "../components/ScrollToTop";
 import CreationListv2 from "../components/CreationListv2";
 import Footer from "../components/Footer";
 
+const creationList = [
+  {
+    src: "https://picsum.photos/200/300",
+    desc: "title or description"
+  },
+  {
+    src: "https://picsum.photos/200/300",
+    desc: "title or description"
+  },
+  {
+    src: "https://picsum.photos/200/300",
+    desc: "title or description"
+  }
+];
+
 // const creationList = [
 //   {
 //     id: "r-prototyper",
@@ -50,7 +65,7 @@ const Creation: React.SFC<any> = () => {
       <CommandBar/>
       <div className={'container'}>
         <HeaderOne title={"Creations"} isLined={true}/>
-        <CreationListv2/>
+        <CreationListv2 cards={creationList}/>
       </div>
       <ScrollToTop/>
       <div className="footer"/>
