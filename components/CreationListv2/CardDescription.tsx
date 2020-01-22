@@ -73,7 +73,7 @@ const renderDescription = (props:ICardDescription, showIframe:()=>void) => (
 
 const renderContainer = (props:ICardDescription, showIframe:boolean, setShowIframe:(c:boolean)=>any) => {
   return (
-    <div className={"outer-container"}>
+    <div className={"outer-container"} onClick={props.callbackClose}>
       <div className={"container"}>
         {showIframe && renderIframe(props, () => {setShowIframe(false)})}
         {!showIframe && renderDescription(props, () => {setShowIframe(true)})}

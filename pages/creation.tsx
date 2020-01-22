@@ -11,7 +11,7 @@ const creationList = [
     id: "r-prototyper",
     link: "react-template",
     title: "Customer Prototyper",
-    desc: "Write react components and generates prototype that can be run locally (without a need of a webserver). " +
+    desc: "Generate a powerpoint like static non-hosted webpage. " +
           "Useful for presentation and sending mockups to customers for visual views. ",
     gitLink: "https://github.com/yoonghan/react-templating",
     usage: "View with minimum 640X480px\nClick on Next/Back to scroll along the prototype pages.\nButtons within screens are functional.",
@@ -21,15 +21,15 @@ const creationList = [
     id: "rn-android",
     link: "rn-android",
     title: "React Native Android Bridging",
-    desc: "A simple prototype to demo the power of Android Bridging. One of my popular github forked project.",
+    desc: "A tutorial to demo Android Bridging. One of my popular github forked project.",
     gitLink: "https://github.com/yoonghan/RN_Android_Native",
     imgSrc: "https://picsum.photos/200/300"
   },
   {
     id: "r-console",
     link: "rn-console",
-    title: "Management Console",
-    desc: "Management console that loads fast with search capabilities. Layered on top of graphQL that is hosted live.",
+    title: "Dashboard",
+    desc: "A dashboard with Windows/MacOS familiarity. Layered on top of a hosted GraphQL server for headless query.",
     usage: "Please be patient with the loading time!!\nView with minimum 640 X 480px dimension\nType into the searchbox to begin.",
     imgSrc: "https://picsum.photos/200/300"
   },
@@ -37,7 +37,7 @@ const creationList = [
     id: "manipulator",
     link: "manipulator",
     title: "Let's Play",
-    desc: "Let's play Lego. Finding what state, CQRS and mixing virtual with reality.",
+    desc: "A Pusher API implementation with multi-staged HOC to manage connection state.",
     usage: "Click to explore.",
     internal: true,
     imgSrc: "https://picsum.photos/200/300"
@@ -54,6 +54,7 @@ const Creation: React.SFC<any> = () => {
       <CommandBar/>
       <div className={'container'}>
         <HeaderOne title={"Creations"} isLined={true}/>
+        <div className={'information'}>-- Scroll image to choose --</div>
         <CreationListv2 cards={creationList}/>
       </div>
       <div id="modal-root"/>
@@ -63,6 +64,9 @@ const Creation: React.SFC<any> = () => {
         .container {
           margin: auto;
           padding-top: 100px;
+        }
+        .information {
+          text-align: center;
         }
         .footer {
           padding-bottom: 100px;
