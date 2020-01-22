@@ -50,7 +50,7 @@ const CreationListv2: React.SFC<ICreationListv2Props> = ({cards}) => {
       <Coverflow
         width={recalculateWidth(dimension.width)}
         height={recalculateHeight(dimension.height)}
-        displayQuantityOfSide={2}
+        displayQuantityOfSide={(dimension.width < 600 ? 1: 2)}
         navigation={false}
         enableScroll={false}
         clickable={true}
