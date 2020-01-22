@@ -52,7 +52,7 @@ const CreationListv2: React.SFC<ICreationListv2Props> = ({cards}) => {
         height={recalculateHeight(dimension.height)}
         displayQuantityOfSide={(dimension.width < 600 ? 1: 2)}
         navigation={false}
-        enableScroll={false}
+        enableScroll={true}
         clickable={true}
         active={0}
       >

@@ -40,7 +40,7 @@ const Card: React.SFC<ICardProps> = (props) => {
         }
         .cloverfield_text {
           position: absolute;
-          bottom: 10px;
+          bottom: 50%;
           left: 0;
           right: 0;
           text-align: center;
