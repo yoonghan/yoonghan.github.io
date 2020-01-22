@@ -27,11 +27,15 @@ const Card: React.SFC<ICardProps> = (props) => {
         alt={props.title}
         onClick={() => setShowDesc(true)}
         className={"cloverfield_img"}
+        onMouseDown={()=>(false)}
       />
       <div className={"cloverfield_text"}
         onClick={() => setShowDesc(true)}
       >{props.title}</div>
       <style jsx>{`
+        img {
+          user-drag: none
+        }
         .cloverfield_img {
           display: block;
           width: 100%;
