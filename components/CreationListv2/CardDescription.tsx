@@ -71,10 +71,14 @@ const renderDescription = (props:ICardDescription, showIframe:()=>void) => (
   </React.Fragment>
 )
 
+const onClickStopBubblingCall = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  event.stopPropagation();
+}
+
 const renderContainer = (props:ICardDescription, showIframe:boolean, setShowIframe:(c:boolean)=>any) => {
   return (
     <div className={"outer-container"} onClick={props.callbackClose}>
-      <div className={"container"}>
+      <div className={"container"} onClick={onClickStopBubblingCall}>
         {showIframe && renderIframe(props, () => {setShowIframe(false)})}
         {!showIframe && renderDescription(props, () => {setShowIframe(true)})}
       </div>
