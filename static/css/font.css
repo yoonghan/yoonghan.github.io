@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap');
+/*
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -25,7 +27,7 @@
   font-weight: 400;
   font-display: swap;
   src: url("/static/fonts/Inconsolata-Regular.ttf") format('truetype');
-}
+} */
 html {
   font-family: Roboto;
   font-size: 12pt;
