@@ -13,16 +13,22 @@ const Index: React.SFC<any> = () => {
       <div className={'container'}>
         <h1>Welcome to walcron.</h1>
         <h2>The page you have requested is not available.</h2>
-        <a href="/"><ConstructionSplashScreen/></a>
+        <ConstructionSplashScreen/>
         <a href="/"><Logo/></a>
         <h3>Design by Walcron ( 2019 )</h3>
       </div>
       <style jsx>{`
         h1 {
           display: none;
+          position: absolute;
         }
         h2 {
           display: none;
+          position: absolute;
+          top: 2.5rem;
+        }
+        h1, h2 {
+          z-index: 99;
         }
         h3 {
           position: absolute;
