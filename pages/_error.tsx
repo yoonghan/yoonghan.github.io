@@ -1,20 +1,20 @@
 import * as React from "react";
-import { HtmlHead } from '../components/HtmlHead';
+import Head from 'next/head';
 import Logo from '../components/Logo';
 import ConstructionSplashScreen from '../components/ConstructionSplashScreen';
 
 const Index: React.SFC<any> = () => {
   return (
     <React.Fragment>
-      <HtmlHead
-        title="Not Found"
-        description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
-        />
+      <Head>
+        <title>Not Found</title>
+        <meta name="description" content={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."} key="description"/>
+      </Head>
       <div className={'container'}>
         <h1>Welcome to walcron.</h1>
         <h2>The page you have requested is not available.</h2>
-        <ConstructionSplashScreen/>
-        <Logo/>
+        <a href="/"><ConstructionSplashScreen/></a>
+        <a href="/"><Logo/></a>
         <h3>Design by Walcron ( 2019 )</h3>
       </div>
       <style jsx>{`
