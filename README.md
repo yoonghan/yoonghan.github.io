@@ -93,6 +93,13 @@ vs
 }
 ```
 
+## Feature detects
+After some elaborated consideration, we decided to add modernizr test. These are the configuration.
+1. Non coded detection changes should be put into .modernizrrc file
+2. feature-detects in .modernizrrc file relates to node_modules/modernizr/feature-detects folder.
+3. Coded changes should be included in ModernizerTest.
+
+
 ## Roll up sites (post publishing)
 1. Cookiebot checking. (https://www.cookiebot.com/), no cookies for this site.
 2. Page (https://developers.google.com/speed/pagespeed/insights/)
