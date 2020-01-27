@@ -1,33 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap');
-/*
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/Roboto-Regular.ttf") format('truetype');
-}
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: bold;
-  font-display: swap;
-  src: url("/static/fonts/Roboto-Bold.ttf") format('truetype');
-}
-@font-face {
-  font-family: "Roboto";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/Roboto-Italic.ttf") format('truetype');
-}
-@font-face {
-  font-family: "Inconsolata";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/Inconsolata-Regular.ttf") format('truetype');
-} */
 html {
   font-family: Roboto;
   font-size: 12pt;

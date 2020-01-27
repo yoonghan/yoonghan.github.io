@@ -1,0 +1,9 @@
+module.exports = {
+  "options": [
+    "addTest",
+    "setClasses"
+  ],
+  "feature-detects": [
+    "img/webp"
+  ]
+}
