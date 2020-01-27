@@ -98,7 +98,7 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
             display: inline-block;
             width: 56px;
             height: 56px;
-            background: url("/static/img/social/action.svg#action") center no-repeat;
+            background: url("/static/img/social/action.svg") center no-repeat;
           }
 
           .fab-buttons__item {
