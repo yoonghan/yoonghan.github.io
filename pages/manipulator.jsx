@@ -205,7 +205,11 @@ const Manipulator = ({tokenApi, messengerApi}) => {
           <thead>
             <tr>
               <th>Code</th>
-              <th>Message</th>
+              <th>Message<br/>
+                <span className={"ext_msg"}>
+                  [Supports file dragging]
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -234,6 +238,12 @@ const Manipulator = ({tokenApi, messengerApi}) => {
             position: relative;
             justify-content: center;
             width: 100%;
+          }
+          .container table tr td {
+            padding: 0 0.5em;
+          }
+          .ext_msg {
+            font-size: 0.7em;
           }
         `}</style>
       </div>
