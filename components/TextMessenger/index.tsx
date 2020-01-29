@@ -28,6 +28,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
   const inputRef = React.useRef<Autosuggest>(null);
   const [value, setValue] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Array<string>>([]);
+  //const inputProps = React.useMemo(() => getInputProps(), [value]); //Overuse memo, but it was fun..
 
   function getInputProps() {
     return {
@@ -63,7 +64,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
     }
 
     props.onSubmitCallback(event, value);
-    setValue(value);
+    setValue("");
   }
 
   function _onBlur(event :React.FormEvent<HTMLInputElement>) {
