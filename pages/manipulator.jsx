@@ -9,7 +9,6 @@ import Footer from "../components/Footer";
 import { PUSHER } from "../shared/const";
 import Button from "../components/Button";
 import TextMessenger from "../components/TextMessenger";
-import Textarea from "../components/Textarea";
 import { compose } from 'redux';
 import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
 import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessenger";
