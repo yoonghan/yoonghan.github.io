@@ -4,7 +4,7 @@ import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
 import CreationListv2 from "../components/CreationListv2";
 import Footer from "../components/Footer";
-
+import fetch from 'isomorphic-unfetch';
 
 const creationList = [
   {
@@ -44,8 +44,11 @@ const creationList = [
   }
 ]
 
-//Purposely added 's'.
-const Creation: React.SFC<any> = () => {
+interface StatelessPage<P = {}> extends React.SFC<P> {
+  getInitialProps?: () => Promise<P>
+}
+
+const Creation: StatelessPage<any> = () => {
   return (
     <React.Fragment>
       <HtmlHead
@@ -75,5 +78,11 @@ const Creation: React.SFC<any> = () => {
     </React.Fragment>
   );
 }
+
+Creation.getInitialProps = async () => {
+  //Because server dies, give this service a bump before React Console is called.
+  fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api');
+  return {status: 0};
+};
 
 export default Creation;
