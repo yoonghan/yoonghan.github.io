@@ -15,7 +15,7 @@ const creationList = [
           "Useful for presentation and sending mockups to customers for visual views. ",
     gitLink: "https://github.com/yoonghan/react-templating",
     usage: "View with minimum 640X480px\nClick on Next/Back to scroll along the prototype pages.\nButtons within screens are functional.",
-    imgSrc: "https://picsum.photos/200/300"
+    imgSrc: "/static/img/creation/card2.jpg"
   },
   {
     id: "rn-android",
@@ -23,7 +23,7 @@ const creationList = [
     title: "React Native Android Bridging",
     desc: "A tutorial to demo Android Bridging. One of my popular github forked project.",
     gitLink: "https://github.com/yoonghan/RN_Android_Native",
-    imgSrc: "https://picsum.photos/200/300"
+    imgSrc: "/static/img/creation/card3.jpg"
   },
   {
     id: "r-console",
@@ -31,16 +31,16 @@ const creationList = [
     title: "Dashboard",
     desc: "A dashboard with Windows/MacOS familiarity. Layered on top of a hosted GraphQL server for headless query.",
     usage: "Please be patient with the loading time!!\nView with minimum 640 X 480px dimension\nType into the searchbox to begin.",
-    imgSrc: "https://picsum.photos/200/300"
+    imgSrc: "/static/img/creation/card5.jpg"
   },
   {
     id: "manipulator",
     link: "manipulator",
     title: "Let's Play",
-    desc: "A Pusher API implementation with multi-staged HOC to manage connection state.",
+    desc: "A Pusher API implementation for Chat with multi-staged HOC to manage connection state.",
     usage: "Click to explore.",
     internal: true,
-    imgSrc: "https://picsum.photos/200/300"
+    imgSrc: "/static/img/creation/card4.jpg"
   }
 ]
 
