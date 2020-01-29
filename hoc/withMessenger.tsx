@@ -104,20 +104,25 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
       if(this.pushChannelClient) {
         this.pushChannelClient.connection.bind('error', (error:any) => {
           console.warn(error, "Connection error");
-          this.setState(
-            produce(this.state, (draft:Draft<IState>) => {
-              if(error.type ==="WebSocketError") {
-                draft.connectionStatus = EnumConnection.Disconnected;
-                this.pushChannelClient = undefined;
-                this.channel = undefined;
-                printCallback("A different Id was requested, please refresh the page.");
-              }
-              else {
+          if(error.type === "WebSocketError" && error.error.data.code !== 1006) {
+              printCallback("A different Id was requested, please refresh the page.");
+              this.setState(
+                produce(this.state, (draft:Draft<IState>) => {
+                  draft.connectionStatus = EnumConnection.Disconnected;
+                  this.pushChannelClient = undefined;
+                  this.channel = undefined;
+                  printCallback("Interruption error encountered");
+                })
+              );
+          }
+          else {
+            this.setState(
+              produce(this.state, (draft:Draft<IState>) => {
                 draft.connectionStatus = EnumConnection.Error;
                 printCallback("Interruption error encountered");
-              }
-            })
-          );
+              })
+            );
+          }
         });
       }
     }
@@ -179,7 +184,8 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
           } = process.env;
           this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
             cluster: PUSHER_CLUSTER,
-            authEndpoint: PUSHER.endpoint
+            authEndpoint: PUSHER.endpoint,
+            enabledTransports: ["sockjs", "ws"]
           });
 
           this._subscribeToChannel(this.state.channelName, printEventCallback);
