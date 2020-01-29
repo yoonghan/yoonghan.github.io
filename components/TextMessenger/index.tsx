@@ -1,6 +1,7 @@
 import * as React from "react";
 import {LINK} from "../../shared/style";
 import Autosuggest from "react-autosuggest";
+import {useDropzone} from "react-dropzone";
 
 interface TextMessengerProps {
   onFocusCallback?: (event :React.FormEvent<HTMLInputElement>)=>void;
@@ -24,13 +25,31 @@ const _onClickSelect = (event: React.FormEvent<HTMLInputElement>) => {
   (event.target as HTMLInputElement).select();
 }
 
+const dropFile = (acceptedFiles:File[]) => {
+  acceptedFiles.forEach((file: Blob) => {
+    const reader = new FileReader()
+
+    reader.onabort = () => console.log('file reading was aborted')
+    reader.onerror = () => console.log('file reading has failed')
+    reader.onload = () => {
+    // Do whatever you want with the file contents
+      const binaryStr = reader.result;
+      console.log(binaryStr);
+    }
+    reader.readAsArrayBuffer(file)
+  })
+}
+
 const TextMessenger:React.FC<TextMessengerProps> = (props) => {
+  const onDrop = React.useCallback(dropFile, []);
   const inputRef = React.useRef<Autosuggest>(null);
   const [value, setValue] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Array<string>>([]);
-  //const inputProps = React.useMemo(() => getInputProps(), [value]); //Overuse memo, but it was fun..
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const inputProps = React.useMemo(() => buildInputProps(), [value]); //Reduce from file drag changes.
 
-  function getInputProps() {
+
+  function buildInputProps() {
     return {
       autoFocus: true,
       value: value,
@@ -38,7 +57,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
       onClick: _onClickSelect,
       onBlur: _onBlur,
       onFocus: _onFocus,
-      maxLength: (props.maxLength ? props.maxLength : 50)
+      maxLength: (props.maxLength ? props.maxLength : 50),
     };
   }
 
@@ -84,7 +103,9 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
   }, [])
 
   return (
-    <form onSubmit={_onSubmit} className="textmessenger-container">
+    <form onSubmit={_onSubmit} className="textmessenger-container" {...getRootProps({
+      onClick: event => event.stopPropagation()
+    })}>
       <Autosuggest
         ref={inputRef}
         suggestions={suggestions}
@@ -92,11 +113,12 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
         onSuggestionsClearRequested={_onSuggestionsClearRequested}
         getSuggestionValue={_getSuggestionValue}
         renderSuggestion={_renderSuggestion}
-        inputProps={getInputProps()}
+        inputProps={inputProps}
       />
       <button id="command-enter" className="style-scope ytd-searchbox" aria-label="Enter">
         <i className="fas fa-arrow-right"></i>
       </button>
+      <input {...getInputProps()} />
       <style jsx>{`
         .textmessenger-container {
           display: flex;
