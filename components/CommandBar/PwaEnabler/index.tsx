@@ -1,38 +1,33 @@
 `use strict`
 
 import * as React from "react";
-import produce, {Draft} from "immer";
 import Toggle from 'react-toggle';
 import Modal from "../../Modal";
 import { register, unregister } from 'next-offline/runtime';
 import {DIALOG, SHADOW} from "../../../shared/style";
 
-interface PwaEnablerState {
-  enabled: boolean;
-  labelText: string;
-  processing: boolean;
-}
-
 interface PwaEnablerProps {
   cancelCallback: () => void;
 }
 
-class PwaEnabler extends React.Component<PwaEnablerProps, PwaEnablerState> {
-  private dialogContainerRef = React.createRef<HTMLDivElement>();
-  private DISABLED = "  Disabled"; //count text.
-  private ENABLED = " Installed";
-  private PROCESS = "Processing";
+const dialogContainerRef = React.createRef<HTMLDivElement>();
+const DISABLED = "  Disabled"; //count text.
+const ENABLED = " Installed";
+const PROCESS = "Processing";
 
-  constructor(props:any) {
-    super(props);
-    this.state = {
-      enabled: false,
-      labelText: this.DISABLED,
-      processing: true
-    };
+
+const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
+  const [isProcessing, setProcessing] = React.useState(false);
+  const [labelText, setLabelText] = React.useState(DISABLED);
+  const [isEnabled, setEnabled] = React.useState(false);
+
+  function onChangeEnabler() {
+    setProcessing(true);
+    setEnabled(!isEnabled);
+    setLabelText(PROCESS);
   }
 
-  getRegistration = () => {
+  function getRegistration() {
     const domain = window.location.hostname;
     if(navigator && navigator.serviceWorker) {
       return navigator.serviceWorker.getRegistration(domain);
@@ -44,92 +39,82 @@ class PwaEnabler extends React.Component<PwaEnablerProps, PwaEnablerState> {
     }
   }
 
-  _checkRegistration = async () => {
-    const isRegistered = await this.getRegistration();
+  async function checkRegistration() {
+    const isRegistered = await getRegistration();
+    if(!isRegistered) {
+      const domain = window.location.origin;
+      //Clear residues of cache in browser, hence next refresh are up-to-date.
+      const workboxCache = await caches.open(`workbox-precache-v2-${domain}/`);
+      const workboxCacheKeys = await workboxCache.keys();
+      workboxCacheKeys.map(workboxCacheKey => {
+        workboxCache.delete(workboxCacheKey);
+      });
+    }
     const isEnabled = (isRegistered && (isRegistered as any).scope) ? true: false;
-    this.setState(
-      produce((draft: Draft<PwaEnablerState>) => {
-        draft.processing = false;
-        draft.enabled = isEnabled;
-        draft.labelText = isEnabled? this.ENABLED:this.DISABLED;
-      })
-    );
+    setProcessing(false);
+    setEnabled(isEnabled);
+    setLabelText(isEnabled? ENABLED: DISABLED);
   }
 
-  componentDidMount() {
-    this._checkRegistration();
-  }
+  React.useEffect(() => {
+    checkRegistration();
+  }, [])
 
-  componentDidUpdate() {
-    const {enabled, processing} = this.state;
-    if(processing){
-      if(enabled) {
+  React.useEffect(() => {
+    if(isProcessing){
+      if(isEnabled) {
         register();
       }
       else {
         unregister();
       }
-      //Check installation after 3 seconds as unregister/register are not promises.
-      setTimeout(this._checkRegistration, 3000);
+      setTimeout(checkRegistration, 3000);
     }
-  }
+  },[isEnabled]);
 
-  onChangeEnabler = () => {
-    this.setState(
-      produce((draft: Draft<PwaEnablerState>) => {
-        draft.processing = true;
-        draft.enabled = !draft.enabled;
-        draft.labelText = this.PROCESS;
-      })
-    );
-  }
-
-  render() {
-    return (
-      <Modal cancelCallback={this.props.cancelCallback} ignoreSelfClose={true}>
-        <div className={"container"}
-          ref={this.dialogContainerRef}>
-          <h4>Progressive Web App</h4>
-          <div>
-            Enable webpage to be browsed in even when offline.
-            As of December 2019 this feature only works on <strong>Chrome and Mozilla</strong> browsers.
-          </div>
-
-          <div className={"toggle-container"}>
-            <label>
-              <Toggle
-                id="toggle-pwa"
-                disabled={this.state.processing}
-                checked={this.state.enabled}
-                defaultChecked={false}
-                onChange={this.onChangeEnabler} />
-              <span className={"label-text"}>{this.state.labelText}</span>
-            </label>
-          </div>
-          <style jsx>
-          {`
-            .container {
-              padding: 10px 10px 2rem 10px;
-              color: ${DIALOG.BACKGROUND};
-              background: ${DIALOG.FOREGROUND};
-              box-shadow: 5px 5px 2px ${SHADOW};
-            }
-            .toggle-container {
-              text-align: center;
-              margin-top: 2rem;
-            }
-            .label-text {
-              margin-left: 1rem;
-              vertical-align: middle;
-              font-weight: normal;
-              margin-bottom: 0;
-            }
-          `}
-          </style>
+  return (
+    <Modal cancelCallback={cancelCallback} ignoreSelfClose={true}>
+      <div className={"container"}
+        ref={dialogContainerRef}>
+        <h4>Progressive Web App</h4>
+        <div>
+          Enable webpage to be browsed in even when offline.
+          As of December 2019 this feature only works on <strong>Chrome and Mozilla</strong> browsers.
         </div>
-      </Modal>
-    )
-  }
+
+        <div className={"toggle-container"}>
+          <label>
+            <Toggle
+              id="toggle-pwa"
+              disabled={isProcessing}
+              checked={isEnabled}
+              onChange={onChangeEnabler} />
+            <span className={"label-text"}>{labelText}</span>
+          </label>
+        </div>
+        <style jsx>
+        {`
+          .container {
+            padding: 10px 10px 2rem 10px;
+            color: ${DIALOG.BACKGROUND};
+            background: ${DIALOG.FOREGROUND};
+            box-shadow: 5px 5px 2px ${SHADOW};
+          }
+          .toggle-container {
+            text-align: center;
+            margin-top: 2rem;
+          }
+          .label-text {
+            margin-left: 1rem;
+            vertical-align: middle;
+            font-weight: normal;
+            margin-bottom: 0;
+          }
+        `}
+        </style>
+      </div>
+    </Modal>
+  )
 }
 
 export default (PwaEnabler);
