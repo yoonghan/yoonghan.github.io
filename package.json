@@ -24,6 +24,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-graphql": "^0.7.1",
+    "firebase": "^7.7.0",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "helmet": "^3.21.2",
@@ -56,6 +57,7 @@
     "@types/react": "^16.9.17",
     "@types/react-autosuggest": "^9.3.13",
     "@types/react-dom": "^16.9.4",
+    "@types/react-dropzone": "^5.1.0",
     "@types/react-helmet": "^5.0.15",
     "@types/react-no-ssr": "^1.1.1",
     "@types/react-resize-detector": "^4.2.0",
