@@ -50,19 +50,19 @@ const About:React.SFC<any> = () => {
         <HeaderOne title={"About our mission"} isLined={true}/>
         <section>
           <p>
-            Walcron is a by-product of a couple's journey for being in the IT industry
-            for more than 10 years. The Walcron website was build for Web experimentation to optimize
-            and to prototype new Web developments. Ocassionally this is being re-contributed
-            back into the opensource community. Han and Gladys started the Walcron website to
-            log their development journey, as well as, to experiment real-time working websites.
+            Walcron is a by-product of a couple's journey in IT industry.
+            The Walcron website was created for experimentation in optimizing
+            and prototyping new Web technologies. Ocassionally this is being re-contributed
+            back into the open-source community. Han and Gladys started the Walcron website to
+            log their development journey. As well as to experiment real-time working websites.
           </p>
         </section>
         <HorizontalLine/>
         <section>
           <h2>What do we do?</h2>
           <p>
-          We are coders who likes to crank our brains in creating visual components,
-          may it be websites or on a piece of paper. Our expertise are on:
+          We are coders who likes to crank our brains in creating visual components.
+          May it be websites or on a piece of paper, our expertise are on:
           </p>
           <ul>
             <li>SEO optimized websites</li>
@@ -73,7 +73,7 @@ const About:React.SFC<any> = () => {
         </section>
         <HorizontalLine/>
         <section>
-          <h2>Are we freelance for hire?</h2>
+          <h2>Are we freelance for hire ?</h2>
           <p>
             Well...<i>if the price is right, and we have time to allocate</i>,
              <strong> yes</strong>.
@@ -92,9 +92,9 @@ const About:React.SFC<any> = () => {
                   A passionate coder who is now stuck in a proprietery
                   software and hardware industry. In his free time, he spends time to read
                   and experiment new ways to improve the <i>Walcron Cooperation</i> publicity. He
-                  has been contributing to Stackoverflow and sharing writeups in Github.
+                  has been contributing to Stackoverflow and sharing write-ups in Github.
                   <br/><br/>
-                  <i>He prefers to write-in Linux typed system and likes automate his stuffs.</i>
+                  <i>An enthusiast programmer.</i>
                   </div>
                 ),
                 imgSrc: "/static/img/profile/han.jpg"
@@ -108,7 +108,7 @@ const About:React.SFC<any> = () => {
                   that was/has been delivered by her are faultless.</i> As a girl, she spends most of
                   her time being presentable.
                   <br/><br/>
-                  <i>She is a worrier and a warrior. Best described as Wonder Woman.</i>
+                  <i>She is a worrier and a warrior.</i>
                   </div>
                 ),
                 imgSrc: "/static/img/profile/gladys.jpg"
