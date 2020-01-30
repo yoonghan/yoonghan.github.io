@@ -99,6 +99,8 @@ After some elaborated consideration, we decided to add modernizr test. These are
 2. feature-detects in .modernizrrc file relates to node_modules/modernizr/feature-detects folder.
 3. Coded changes should be included in ModernizerTest.
 
+## Google authentication
+All Cloudbase google authentication is store in private/ folder.
 
 ## Roll up sites (post publishing)
 1. Cookiebot checking. (https://www.cookiebot.com/), no cookies for this site.
