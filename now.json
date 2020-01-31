@@ -27,7 +27,8 @@
     "PUSHER_APP_KEY": "@pusher-app-key",
     "PUSHER_SECRET": "@pusher-secret",
     "PUSHER_CLUSTER": "@pusher-cluster",
-    "AUTH_API_CALL": "@auth-api-call"
+    "AUTH_API_CALL": "@auth-api-call",
+    "FIREBASE_BUCKET": "@firebase-bucket"
   },
   "build": {
     "env": {
