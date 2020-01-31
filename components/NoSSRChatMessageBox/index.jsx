@@ -1,6 +1,7 @@
 import * as React from "react";
 import produce, {Draft} from "immer";
 import dynamic from "next/dynamic";
+import CustomChatBubble from "./CustomChatBubble";
 
 const NoSSRChatFeed = dynamic(
   () => import('react-bell-chat').then(mod => mod.ChatFeed),
@@ -78,6 +79,7 @@ export class NoSSRChatMessageBox extends React.Component {
     return (
       <div className={"container"}>
         <NoSSRChatFeed
+          customChatBubble={CustomChatBubble}
           messages={messages}
           authors={this.authors}
           yourAuthorId={this.authorsCount}
