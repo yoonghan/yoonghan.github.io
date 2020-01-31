@@ -81,7 +81,9 @@ const Creation: StatelessPage<any> = () => {
 
 Creation.getInitialProps = async () => {
   //Because server dies, give this service a bump before React Console is called.
-  fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api');
+  if(typeof window === "undefined") {
+    fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api');
+  }
   return {status: 0};
 };
 
