@@ -22,6 +22,8 @@
   "author": "Walcron Cooperation",
   "license": "MIT",
   "dependencies": {
+    "@types/formidable": "^1.0.31",
+    "@types/uuid": "^3.4.7",
     "express": "^4.17.1",
     "express-graphql": "^0.7.1",
     "firebase": "^7.7.0",

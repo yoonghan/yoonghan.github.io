@@ -1,33 +1,21 @@
-import {createWriteStream} from "fs";
 import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from 'next';
 import serviceAccount from "../../private/firebase-auth.json";
 import uuidv4 from "uuid/v4";
 import formidable from "formidable";
 
-const Singleton = (function () {
-    var instance;
 
-    function createInstance() {
-      if(admin.apps.length === 0){
-        const { FIREBASE_BUCKET } = process.env;
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            storageBucket: FIREBASE_BUCKET
-        });
-      }
-      return admin;
-    }
-
-    return {
-        getInstance: function () {
-          if (!instance) {
-              instance = createInstance();
-          }
-          return instance;
-        }
-    };
-})();
+const getInitializeApp = () => {
+  if(admin.apps.length === 0){
+    const { FIREBASE_BUCKET } = process.env;
+    const _serviceAccount = serviceAccount as any; //Intended
+    admin.initializeApp({
+        credential: admin.credential.cert(_serviceAccount),
+        storageBucket: FIREBASE_BUCKET
+    });
+  }
+  return admin;
+}
 
 //Deprecated.
 // const _storeFile = (res: NextApiResponse) => {
@@ -50,16 +38,16 @@ const Singleton = (function () {
 //   });
 // }
 //
-// const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
-//   res.status(405).json(
-//     {
-//       "error": messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
-//     }
-//   );
-// }
+const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
+  res.status(405).json(
+    {
+      "error": messages.reduce((accumulator, message) => `${accumulator} , ${message}`)
+    }
+  );
+}
 
 const getUploadedFileUrl = async (uploadFileName: string, retrieveToken: string, res: NextApiResponse) => {
-  const storageBucket = Singleton.getInstance().storage().bucket();
+  const storageBucket = getInitializeApp().storage().bucket();
   const cloudFileName = storageBucket.file(uploadFileName);
   try {
     const cloudFile = (await cloudFileName.get())[0];
@@ -91,7 +79,7 @@ const fetchFileExtension = (filename: string) => {
 
 const uploadIntoSystem = async (req: NextApiRequest, res: NextApiResponse) => {
   const uuid = uuidv4();
-  const storageBucket = Singleton.getInstance().storage().bucket();
+  const storageBucket = getInitializeApp().storage().bucket();
   const option = {
     //predefinedAcl: 'publicRead',
     gzip: true,
@@ -105,16 +93,16 @@ const uploadIntoSystem = async (req: NextApiRequest, res: NextApiResponse) => {
   };
   const form = new formidable.IncomingForm();
   form.onPart = function(part) {
-    if(!part.filename || part.mime === null) {
+    if(!part.filename || !part.mime || part.mime === null) {
       return;
     }
     const uploadFileName = new Date().getTime() + fetchFileExtension(part.filename);
     const cloudFileName = storageBucket.file(uploadFileName);
-    option.metadata.contentType = part.mime;
+    option.metadata.contentType = (part.mime as string);
 
     part.pipe(cloudFileName.createWriteStream(option))
     .on('error', function(err) {
-      console.err("Upload Issue" + err);
+      console.log("Upload Issue" + err);
       res.status(500).json({
         status: "fail",
         error:"File stream failed"
@@ -124,7 +112,7 @@ const uploadIntoSystem = async (req: NextApiRequest, res: NextApiResponse) => {
       getUploadedFileUrl(uploadFileName, uuid, res);
     });
   };
-  form.parse(req, function(err, fields, files) {
+  form.parse(req, function() {
     //Do nothing, it's to kickstart onPart
   });
 }
