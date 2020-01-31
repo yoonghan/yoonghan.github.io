@@ -1,15 +1,19 @@
 import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from 'next';
 import serviceAccount from "../../private/firebase-auth.json";
+import uuidv4 from "uuid/v4";
 
 const Singleton = (function () {
     var instance;
 
     function createInstance() {
-      admin.initializeApp({
-          credential: admin.credential.cert(serviceAccount),
-          storageBucket: "legocontroller-5c4f6.appspot.com"
-      });
+      if(admin.apps.length === 0){
+        const { FIREBASE_BUCKET } = process.env;
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+            storageBucket: FIREBASE_BUCKET
+        });
+      }
       return admin;
     }
 
@@ -24,21 +28,23 @@ const Singleton = (function () {
 })();
 
 const _storeFile = (res: NextApiResponse) => {
+  const uuid = uuidv4();
   const storageBucket = Singleton.getInstance().storage().bucket();
-  const filename = "./README.md";
-  storageBucket.upload(filename, {
-    // Support for HTTP requests made with `Accept-Encoding: gzip`
+  const filename = "type1.jpg";
+  storageBucket.upload("./static/img/bg/"+filename, {
+    //predefinedAcl: 'publicRead',
     gzip: true,
-    // By setting the option `destination`, you can change the name of the
-    // object you are uploading to a bucket.
     metadata: {
-      // Enable long-lived HTTP caching headers
-      // Use only if the contents of the file will never change
-      // (If the contents will change, use cacheControl: 'no-cache')
-      cacheControl: 'public, max-age=31536000',
+      contentType: 'image/jpeg',
+      cacheControl: 'public, max-age=3600',
+      metadata: {
+        firebaseStorageDownloadTokens: uuid,
+      }
     },
+  }).then((data) => {
+    const file = data[0];
+    res.status(200).json({status: `https://firebasestorage.googleapis.com/v0/b/${file.metadata.bucket}/o/${file.metadata.name}?alt=media&token=${uuid}`});
   });
-  res.status(200);
 }
 
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
@@ -52,7 +58,7 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 export default (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json');
   switch(req.method) {
-    case 'GET':
+    case 'POST':
       _storeFile(res);
       break;
     default:
