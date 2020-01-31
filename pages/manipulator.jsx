@@ -8,7 +8,7 @@ import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
 import { PUSHER } from "../shared/const";
 import Button from "../components/Button";
-import TextMessenger from "../components/TextMessenger";
+import TextMessenger, {ENUM_DISPLAY_TYPE} from "../components/TextMessenger";
 import { compose } from 'redux';
 import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
 import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessenger";
@@ -65,14 +65,19 @@ const getToken = (tokenApi) => {
   }
 }
 
-const postMessage = (ref, messengerApi) => (message) => {
+const postMessage = (ref, messengerApi) => (message, displayType) => {
   const isSent = messengerApi.send(message);
   const _print = print(ref);
-  if(isSent) {
-    _print(NoSSRChatMessageBoxProps.SENDER)(message);
+  if(displayType === ENUM_DISPLAY_TYPE.MESSAGE) {
+    if(isSent) {
+      _print(NoSSRChatMessageBoxProps.SENDER)(message);
+    }
+    else {
+      _print(NoSSRChatMessageBoxProps.SYSTEM)(`[FailToSend]-${message}`);
+    }
   }
   else {
-    _print(NoSSRChatMessageBoxProps.SYSTEM)(`[FailToSend]-${message}`);
+    _print(NoSSRChatMessageBoxProps.SYSTEM)(message);
   }
 }
 
@@ -80,9 +85,9 @@ const getConnectionStatusText = (messengerApi) => () => {
   return (messengerApi.isConnected() ? "Disconnect" : "Connect")
 }
 
-const handleSubmit = (ref, messengerApi) => (event, value) => {
+const handleSubmit = (ref, messengerApi) => (event, value, displayType) => {
   event.preventDefault();
-  postMessage(ref, messengerApi)(value);
+  postMessage(ref, messengerApi)(value, displayType);
 }
 
 const handleSuggestions = (_value) => {
@@ -205,7 +210,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
           <thead>
             <tr>
               <th>Code</th>
-              <th>Message<br/>
+              <th>Message
                 <span className={"ext_msg"}>
                   [Supports file dragging]
                 </span>
@@ -243,6 +248,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
             padding: 0 0.5em;
           }
           .ext_msg {
+            padding-left: 1em;
             font-size: 0.7em;
           }
         `}</style>

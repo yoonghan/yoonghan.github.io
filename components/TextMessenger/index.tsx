@@ -3,10 +3,15 @@ import {LINK} from "../../shared/style";
 import Autosuggest from "react-autosuggest";
 import {useDropzone} from "react-dropzone";
 
+export const ENUM_DISPLAY_TYPE = {
+  SYSTEM: 0,
+  MESSAGE: 1
+}
+
 interface TextMessengerProps {
   onFocusCallback?: (event :React.FormEvent<HTMLInputElement>)=>void;
   onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
-  onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void;
+  onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string, displayType:number)=>void;
   maxLength?: number;
   filterSuggestion: (value:string) => Array<string>;
 }
@@ -25,14 +30,21 @@ const _onClickSelect = (event: React.FormEvent<HTMLInputElement>) => {
   (event.target as HTMLInputElement).select();
 }
 
-const dropFile = (onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void) => (acceptedFiles:File[]) => {
+const dropFile = (onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string, displayType:number)=>void) => (acceptedFiles:File[]) => {
   if(acceptedFiles.length !== 1) {
     alert("System supports only single file");
   }
+
   const shouldUpload = confirm("Share file ?");
+  const synthensizedEvent:any = {
+    preventDefault: ()=>{}
+  }
+
   if(shouldUpload) {
-    var formData = new FormData();
+    const formData = new FormData();
     formData.append("file", acceptedFiles[0]);
+
+    onSubmitCallback(synthensizedEvent, `Uploading file ${acceptedFiles[0].name}...`, ENUM_DISPLAY_TYPE.SYSTEM);
 
     fetch('/api/firebase', {
       method: 'POST',
@@ -40,14 +52,11 @@ const dropFile = (onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, ty
     })
     .then(resp => (resp.json()))
     .then(data => {
-      const synthensizedEvent:any = {
-        preventDefault: ()=>{}
-      }
       if(data.status === "ok") {
-        onSubmitCallback(synthensizedEvent, data.data);
+        onSubmitCallback(synthensizedEvent, data.data, ENUM_DISPLAY_TYPE.MESSAGE);
       }
       else {
-        onSubmitCallback(synthensizedEvent, "==>File Sent failed");
+        onSubmitCallback(synthensizedEvent, "[File Sent failed]", ENUM_DISPLAY_TYPE.SYSTEM);
       }
     });
   }
@@ -55,11 +64,17 @@ const dropFile = (onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, ty
 
 const TextMessenger:React.FC<TextMessengerProps> = (props) => {
   const onDrop = React.useCallback(dropFile(props.onSubmitCallback), []);
-  const inputRef = React.useRef<Autosuggest>(null);
+  const autoSuggestRef = React.useRef<Autosuggest>(null);
   const [value, setValue] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Array<string>>([]);
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const {getRootProps, getInputProps, inputRef} = useDropzone({onDrop})
   const inputProps = React.useMemo(() => buildInputProps(), [value]); //Reduce from file drag changes.
+
+  React.useEffect(()=>{
+    if(autoSuggestRef !== null && autoSuggestRef.current !== null) {
+      (autoSuggestRef.current as any).input.focus();
+    }
+  }, [])
 
   function buildInputProps() {
     return {
@@ -94,7 +109,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
       return;
     }
 
-    props.onSubmitCallback(event, value);
+    props.onSubmitCallback(event, value, ENUM_DISPLAY_TYPE.MESSAGE);
     setValue("");
   }
 
@@ -108,18 +123,17 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
     }
   }
 
-  React.useEffect(()=>{
-    if(inputRef !== null && inputRef.current !== null) {
-      (inputRef.current as any).input.focus();
-    }
-  }, [])
+  const clickAttachmentBtn = () => {
+    if(inputRef !== null && inputRef.current !== null)
+      inputRef.current.click();
+  }
 
   return (
     <form onSubmit={_onSubmit} className="textmessenger-container" {...getRootProps({
       onClick: event => event.stopPropagation()
     })}>
       <Autosuggest
-        ref={inputRef}
+        ref={autoSuggestRef}
         suggestions={suggestions}
         onSuggestionsFetchRequested={_onSuggestionsFetchRequested}
         onSuggestionsClearRequested={_onSuggestionsClearRequested}
@@ -127,8 +141,11 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
         renderSuggestion={_renderSuggestion}
         inputProps={inputProps}
       />
-      <button id="command-enter" className="style-scope ytd-searchbox" aria-label="Enter">
+      <button id="command-enter" aria-label="Enter">
         <i className="fas fa-arrow-right"></i>
+      </button>
+      <button id="command-upload" aria-label="Upload" onClick={clickAttachmentBtn}>
+        <i className="fas fa-paperclip"></i>
       </button>
       <input {...getInputProps()} />
       <style jsx>{`
@@ -152,7 +169,18 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
           user-select: none;
           cursor: pointer;
         }
-        #command-enter:hover {
+        #command-upload {
+          height: 2.2rem;
+          transition-property: color, background;
+          transition-duration: .15s;
+          transition-timing-function: ease-in-out;
+          color: ${LINK.FOREGROUND};
+          background: none;
+          font-size: 0.8rem;
+          user-select: none;
+          cursor: pointer;
+        }
+        #command-enter:hover, #command-upload:hover {
           color: ${LINK.BACKGROUND};
           background: ${LINK.FOREGROUND};
         }
