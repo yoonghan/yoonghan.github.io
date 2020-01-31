@@ -4,7 +4,6 @@ import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
 import CreationListv2 from "../components/CreationListv2";
 import Footer from "../components/Footer";
-import fetch from 'isomorphic-unfetch';
 
 const creationList = [
   {
@@ -49,6 +48,15 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
 }
 
 const Creation: StatelessPage<any> = () => {
+
+  React.useEffect(()=>{
+    //Instruct user server to do a query, a warm up for dashboard server
+    fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api', {
+      method:"POST",
+      body:'{ "query": "{ stores { hostName } }" }'
+    });
+  },[]);
+
   return (
     <React.Fragment>
       <HtmlHead
@@ -78,13 +86,5 @@ const Creation: StatelessPage<any> = () => {
     </React.Fragment>
   );
 }
-
-Creation.getInitialProps = async () => {
-  //Because server dies, give this service a bump before React Console is called.
-  if(typeof window === "undefined") {
-    fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api');
-  }
-  return {status: 0};
-};
 
 export default Creation;
