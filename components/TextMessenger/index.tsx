@@ -25,29 +25,41 @@ const _onClickSelect = (event: React.FormEvent<HTMLInputElement>) => {
   (event.target as HTMLInputElement).select();
 }
 
-const dropFile = (acceptedFiles:File[]) => {
-  acceptedFiles.forEach((file: Blob) => {
-    const reader = new FileReader()
+const dropFile = (onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void) => (acceptedFiles:File[]) => {
+  if(acceptedFiles.length !== 1) {
+    alert("System supports only single file");
+  }
+  const shouldUpload = confirm("Share file ?");
+  if(shouldUpload) {
+    var formData = new FormData();
+    formData.append("file", acceptedFiles[0]);
 
-    reader.onabort = () => console.log('file reading was aborted')
-    reader.onerror = () => console.log('file reading has failed')
-    reader.onload = () => {
-    // Do whatever you want with the file contents
-      const binaryStr = reader.result;
-      console.log(binaryStr);
-    }
-    reader.readAsArrayBuffer(file)
-  })
+    fetch('/api/firebase', {
+      method: 'POST',
+      body: formData
+    })
+    .then(resp => (resp.json()))
+    .then(data => {
+      const synthensizedEvent:any = {
+        preventDefault: ()=>{}
+      }
+      if(data.status === "ok") {
+        onSubmitCallback(synthensizedEvent, data.data);
+      }
+      else {
+        onSubmitCallback(synthensizedEvent, "==>File Sent failed");
+      }
+    });
+  }
 }
 
 const TextMessenger:React.FC<TextMessengerProps> = (props) => {
-  const onDrop = React.useCallback(dropFile, []);
+  const onDrop = React.useCallback(dropFile(props.onSubmitCallback), []);
   const inputRef = React.useRef<Autosuggest>(null);
   const [value, setValue] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Array<string>>([]);
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const inputProps = React.useMemo(() => buildInputProps(), [value]); //Reduce from file drag changes.
-
 
   function buildInputProps() {
     return {
