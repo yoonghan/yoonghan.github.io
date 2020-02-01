@@ -35,7 +35,7 @@ const creationList = [
   {
     id: "manipulator",
     link: "manipulator",
-    title: "Let's Play",
+    title: "Chat API",
     desc: "A Pusher API implementation for Chat with multi-staged HOC to manage connection state.",
     usage: "Click to explore.",
     internal: true,

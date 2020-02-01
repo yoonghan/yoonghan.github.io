@@ -22,16 +22,9 @@ const AVAILABLE_MENUS:Array<ILink> = [
 interface NoSSRMobileMenuProps extends WithRouterProps {
 }
 
-class NoSSRMobileMenu extends React.PureComponent<NoSSRMobileMenuProps, {}> {
-  constructor(props:any) {
-    super(props);
-  }
-
-  componentDidMount() {
-  }
-
-  _getIndex = () => {
-    const routerLocation = this.props.router.route;
+const NoSSRMobileMenu:React.FC<NoSSRMobileMenuProps> = (props) => {
+  const _getIndex = () => {
+    const routerLocation = props.router.route;
     for(let i=0; i < AVAILABLE_MENUS.length; i++) {
       if(AVAILABLE_MENUS[i].link === routerLocation) {
         return i;
@@ -40,13 +33,11 @@ class NoSSRMobileMenu extends React.PureComponent<NoSSRMobileMenuProps, {}> {
     return 0;
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <ButtonsBar menuTexts={AVAILABLE_MENUS} activeIndex={this._getIndex()}/>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <ButtonsBar menuTexts={AVAILABLE_MENUS} activeIndex={_getIndex()}/>
+    </React.Fragment>
+  );
 }
 
 export default withRouter(NoSSRMobileMenu);
