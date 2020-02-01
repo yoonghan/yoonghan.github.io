@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandBar renders lazy normally 1`] = `
+"<NoSSR>
+  <Suspense fallback={{...}}>
+    <lazy />
+  </Suspense>
+</NoSSR>"
+`;
+
+exports[`CommandBar renders lazy normally 2`] = `
+"<Memo(CommandBar)>
+  <NoSSR>
+    <Suspense fallback={{...}}>
+      <CommandBarNoSSR>
+        <div id=\\"commandbar\\" className=\\"jsx-3778838050 header\\">
+          <div className=\\"jsx-3778838050 desktop shift-to-right\\">
+            <NoSSRCommandBar router={{...}}>
+              <div className=\\"jsx-2638007119 container\\">
+                <CommandBarInput onBlurCallback={[Function]} onFocusCallback={[Function]} onSubmitCallback={[Function]}>
+                  <form onSubmit={[Function]} className=\\"jsx-2334938183 command-container\\">
+                    <div className=\\"jsx-2334938183 command-text-container\\">
+                      <div className=\\"jsx-2334938183 command-text-prompt\\">
+                        walcron@tm$
+                      </div>
+                      <div className=\\"jsx-2334938183 prompt\\">
+                        <span className=\\"jsx-2334938183 promptIn\\" />
+                        <span />
+                      </div>
+                      <Autosuggest suggestions={{...}} onSuggestionsFetchRequested={[Function]} onSuggestionsClearRequested={[Function]} getSuggestionValue={[Function]} renderSuggestion={[Function]} inputProps={{...}} renderSuggestionsContainer={[Function: defaultRenderSuggestionsContainer]} shouldRenderSuggestions={[Function: defaultShouldRenderSuggestions]} alwaysRenderSuggestions={false} multiSection={false} focusInputOnSuggestionClick={true} highlightFirstSuggestion={false} theme={{...}} id=\\"1\\">
+                        <Autowhatever multiSection={false} items={{...}} renderInputComponent={[Function: defaultRenderInputComponent]} renderItemsContainer={[Function]} renderItem={[Function]} renderItemData={{...}} renderSectionTitle={[Function: renderSectionTitle]} getSectionItems={[Function: getSectionItems]} highlightedSectionIndex={{...}} highlightedItemIndex={{...}} inputProps={{...}} itemProps={[Function]} theme={{...}} id=\\"1\\" containerProps={{...}}>
+                          <div role=\\"combobox\\" aria-haspopup=\\"listbox\\" aria-owns=\\"react-autowhatever-1\\" aria-expanded={false} className=\\"react-autosuggest__container\\">
+                            <input type=\\"text\\" value=\\"\\" autoComplete=\\"off\\" aria-autocomplete=\\"list\\" aria-controls=\\"react-autowhatever-1\\" aria-activedescendant={{...}} className=\\"react-autosuggest__input\\" onChange={[Function: onChange]} onClick={[Function]} onFocus={[Function]} onBlur={[Function]} maxLength={22} onKeyDown={[Function]} />
+                            <div id=\\"react-autowhatever-1\\" role=\\"listbox\\" className=\\"react-autosuggest__suggestions-container\\" />
+                          </div>
+                        </Autowhatever>
+                      </Autosuggest>
+                    </div>
+                    <button id=\\"command-enter\\" aria-label=\\"Enter\\" className=\\"jsx-2334938183 style-scope ytd-searchbox\\">
+                      <i className=\\"jsx-2334938183 fas fa-arrow-right\\" />
+                    </button>
+                    <JSXStyle id=\\"1731884614\\" dynamic={{...}} />
+                  </form>
+                </CommandBarInput>
+                <JSXStyle id=\\"2638007119\\" />
+              </div>
+            </NoSSRCommandBar>
+            <NavMenu>
+              <NoSSR>
+                <NoSSRNavMenu router={{...}}>
+                  <nav className=\\"jsx-3914632746 container\\">
+                    <div onClick={[Function]} className=\\"jsx-3914632746 return-btn\\">
+                      <i className=\\"jsx-3914632746 fas fa-chevron-left\\" />
+                    </div>
+                    <a href=\\"/\\" className=\\"navmenu-link\\">
+                      /
+                    </a>
+                    <a href=\\"/test\\" className=\\"navmenu-link\\">
+                      <span>
+                         
+                      </span>
+                      test
+                      /
+                    </a>
+                    <JSXStyle id=\\"1346168239\\" dynamic={{...}} />
+                  </nav>
+                </NoSSRNavMenu>
+              </NoSSR>
+            </NavMenu>
+          </div>
+          <div className=\\"jsx-3778838050 mobile\\">
+            <NoSSRMobileMenu router={{...}}>
+              <ButtonsBar menuTexts={{...}} activeIndex={0}>
+                <ul className=\\"jsx-4214066626 btnsbar with-indicator\\">
+                  <li className=\\"btnsbar-item is-active\\">
+                    <Link href=\\"/\\">
+                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/\\">
+                        Home
+                      </a>
+                    </Link>
+                  </li>
+                  <li className=\\"btnsbar-item\\">
+                    <Link href=\\"/about\\">
+                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/about\\">
+                        About
+                      </a>
+                    </Link>
+                  </li>
+                  <li className=\\"btnsbar-item\\">
+                    <Link href=\\"/creation\\">
+                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/creation\\">
+                        Showcase
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+                <JSXStyle id=\\"3650206365\\" dynamic={{...}} />
+              </ButtonsBar>
+            </NoSSRMobileMenu>
+          </div>
+          <JSXStyle id=\\"3778838050\\" />
+        </div>
+      </CommandBarNoSSR>
+    </Suspense>
+  </NoSSR>
+</Memo(CommandBar)>"
+`;

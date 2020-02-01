@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonsBar renders normally 1`] = `
+"<div style={{...}}>
+  <MrItem title=\\"Title\\" btnOneStr=\\"btnOneStr\\" btnTwoStr=\\"btnTwoStr\\" btnOneClick=\\"site1\\" btnTwoClick=\\"site2\\" />
+</div>"
+`;

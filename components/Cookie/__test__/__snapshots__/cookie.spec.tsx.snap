@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonsBar renders closed normally 1`] = `"<Fragment />"`;
+
+exports[`ButtonsBar renders open normally 1`] = `
+"<div className=\\"jsx-902895189 container\\">
+  <div className=\\"jsx-902895189 message\\">
+    <h4 className=\\"jsx-902895189\\">
+      This site uses cookie
+    </h4>
+    Your generated cookie, shall and will not be used for public sharing, activity or advertisement purposes and it is only saved in your local and private browser.
+  </div>
+  <div className=\\"jsx-902895189 button-container\\">
+    <button onClick={[Function: reactToCookieButton]} className=\\"jsx-902895189\\">
+      Accept
+    </button>
+  </div>
+  <JSXStyle id=\\"127799794\\" dynamic={{...}}>
+    .container.__jsx-style-dynamic-selector{height:120px;width:100%;bottom:0;position:absolute;background-color:rgba(50,50,100,0.9);color:#FFF;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:5px 20px;}.message.__jsx-style-dynamic-selector{width:75%;font-size:0.9rem;text-align:justify;}.button-container.__jsx-style-dynamic-selector{width:25%;text-align:center;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;}.button-container.__jsx-style-dynamic-selector&gt;button.__jsx-style-dynamic-selector{padding:20px 5px;border-radius:5px;cursor:pointer;}@media only screen and (max-width:480px){.container.__jsx-style-dynamic-selector{height:150px;padding:2px 10px;}}
+  </JSXStyle>
+</div>"
+`;
