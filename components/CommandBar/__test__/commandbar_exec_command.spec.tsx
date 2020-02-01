@@ -1,7 +1,7 @@
-import {exec} from "../components/CommandBar/ExecuteCommand";
+import {exec} from "../ExecuteCommand";
 import {mount} from 'enzyme';
-import Output from "../components/CommandBar/Output";
-import InvalidCommand from "../components/CommandBar/InvalidCommand";
+import Output from "../Output";
+import InvalidCommand from "../InvalidCommand";
 
 const globalAny:any = global;
 const sampleDivElement:any = globalAny.document.createElement('div');

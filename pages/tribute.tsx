@@ -41,6 +41,8 @@ const Tribute: React.SFC<any> = ({}) => {
             {_renderData("Font Awesome", "Awesome font icons", "https://www.fontawesome.com")}
             {_renderData("Google Fonts - Roboto", "The amazing fonts curves and styles", "https://fonts.google.com")}
             {_renderData("React Spring", "Might be the best animation javascript out there", "https://github.com/react-spring/react-spring")}
+            {_renderData("React Bell Chat", "For use in chat program", "https://github.com/react-bell-chat")}
+            {_renderData("React Dropzone", "For use in chat program", "https://github.com/react-dropzone")}
           </tbody>
         </table>
         <Footer/>
