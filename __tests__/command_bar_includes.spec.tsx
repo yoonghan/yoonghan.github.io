@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { mount} from 'enzyme';
+import { mount } from 'enzyme';
 import IndexPage from '../pages/index';
 import AboutPage from '../pages/about';
 import CreationPage from '../pages/creation';
@@ -15,6 +15,8 @@ jest.mock("next/router");
 //Rewrite dynamic.
 jest.mock('next/dynamic');
 
+//Fetch is setup in jest-setup.js
+
 const waitNextTick = async () => {
   return new Promise(resolve => setTimeout(resolve, 2000));
 }
@@ -27,12 +29,6 @@ const mountInitialComponent = async (component: any) => {
 };
 
 describe('Pages', () => {
-  describe('Index', () => {
-    it('should contain commandbar', async () => {
-      const wrap = await mountInitialComponent(<IndexPage termsRead={"false"}/>);
-      expect(wrap.find('#commandbar').exists()).toBe(true);
-    })
-  }),
   describe('Index', () => {
     it('should contain commandbar', async () => {
       const wrap = await mountInitialComponent(<IndexPage termsRead={"false"}/>);
