@@ -25,6 +25,9 @@ module.exports = {
     "/node_modules/",
     "enzyme.js"
   ],
+  setupFiles: [
+    './jest.setup.js'
+  ],
   setupFilesAfterEnv: [
     "<rootDir>/enzyme.js"
   ],
