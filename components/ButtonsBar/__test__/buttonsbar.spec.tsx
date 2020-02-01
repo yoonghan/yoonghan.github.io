@@ -12,6 +12,10 @@ describe('ButtonsBar', () => {
       {
         title: "Title_2",
         link: "Link_2"
+      },
+      {
+        title: "Title_3",
+        link: "Link_3"
       }
     ]
 

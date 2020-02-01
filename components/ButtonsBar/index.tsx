@@ -57,7 +57,7 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
 
   if(menuTexts.length !== 3) {
     console.warn("Due to Next JSX issue, CSS cannot correctly render :nth-child() and ~.");
-    console.error("Component fixed to only 3 and only 3 index.");
+    console.error("Provide only 3 and only 3 menuItems.");
   }
 
   return (

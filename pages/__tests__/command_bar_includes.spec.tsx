@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import IndexPage from '../pages/index';
-import AboutPage from '../pages/about';
-import CreationPage from '../pages/creation';
-import TributePage from '../pages/tribute';
-import ManipulatorPage from '../pages/manipulator';
+import IndexPage from '../index';
+import AboutPage from '../about';
+import CreationPage from '../creation';
+import TributePage from '../tribute';
+import ManipulatorPage from '../manipulator';
 
 //Increase wait time
-jest.setTimeout(30000);
+jest.setTimeout(5000);
 
 //Rewrite router.
 jest.mock("next/router");
