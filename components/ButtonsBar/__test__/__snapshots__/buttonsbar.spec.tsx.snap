@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonsBar renders normally 1`] = `
+"<Fragment>
+  <ul className=\\"jsx-4247983305 btnsbar with-indicator\\">
+    <li className=\\"btnsbar-item\\">
+      <Link href=\\"Link_1\\">
+        <a>
+          Title_1
+        </a>
+      </Link>
+    </li>
+    <li className=\\"btnsbar-item is-active\\">
+      <Link href=\\"Link_2\\">
+        <a>
+          Title_2
+        </a>
+      </Link>
+    </li>
+  </ul>
+  <JSXStyle id=\\"3650206365\\" dynamic={{...}}>
+    .btnsbar{list-style:none;margin:10px auto;max-width:720px;padding:0;width:100%;}.btnsbar-item{color:#86A3EB;background:rgba(255,255,255,0.1);display:block;float:left;margin:0;padding:0;width:50%;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;}.btnsbar-item:first-child{border-radius:3px 0 0 3px;}.btnsbar-item:last-child{border-radius:0 3px 3px 0;}.btnsbar-item.is-active a{color:#86A3EB !important;font-weight:bold;}.btnsbar-item a{color:#FFF;display:block;padding-top:10px;padding-bottom:10px;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}.btnsbar-item a:hover{color:#000;}.with-indicator{position:relative;z-index:0;}.with-indicator .btnsbar-item:last-child:after{content:&#39;&#39;;display:block;position:absolute;pointer-events:none;-webkit-transition:left 1s ease;transition:left 1s ease;border-radius:3px;}.with-indicator .btnsbar-item:last-child:after{background:#FFF;top:0px;bottom:0;left:0;width:50%;z-index:-1;}.btnsbar-item:nth-child(1).is-active ~ .btnsbar-item:last-child:after{left:0%;}.btnsbar-item:nth-child(1):hover ~ .btnsbar-item:last-child:after{left:0% !important;}.btnsbar-item:nth-child(2).is-active ~ .btnsbar-item:last-child:after{left:33.333333333333336%;}.btnsbar-item:nth-child(2):hover ~ .btnsbar-item:last-child:after{left:33.333333333333336% !important;}.with-indicator .btnsbar-item:last-child:hover:after,.with-indicator .btnsbar-item:last-child.is-active:after{left:66.66666666666666% !important;}.with-indicator .btnsbar-item:last-child:hover:after,.with-indicator .btnsbar-item:last-child.is-active:after{left:50% !important;}.btnsbar:before,.btnsbar:after{content:&quot; &quot;;display:table;}.btnsbar:after{clear:both;}
+  </JSXStyle>
+</Fragment>"
+`;

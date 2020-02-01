@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders normally 1`] = `
+"<ForwardRef style={{...}}>
+  <a onClick={[Function]} href={[undefined]} target={[undefined]} className=\\"jsx-252516482 btn-container\\">
+    <div>
+      Children
+    </div>
+    <JSXStyle id=\\"3810349888\\" dynamic={{...}}>
+      a.__jsx-style-dynamic-selector{-webkit-text-decoration:none;text-decoration:none;}.btn-container.__jsx-style-dynamic-selector{padding:1rem;position:relative;background:rgba(200,200,200,0.1);-webkit-transition-property:color,background;transition-property:color,background;-webkit-transition-duration:.15s;transition-duration:.15s;-webkit-transition-timing-function:ease-in-out;transition-timing-function:ease-in-out;color:#FFF;font-size:1rem;text-align:center;border-radius:0.5rem;font-weight:bold;cursor:pointer;border:1px solid;margin:0 1px 1px 0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;box-shadow:0 2px 2px 0 rgba(22,22,22,0.14),0 1px 5px 0 rgba(22,22,22,0.12),0 3px 1px -2px rgba(22,22,22,0.2);}.btn-container.__jsx-style-dynamic-selector:hover{background:#FFF;color:#000;}.btn-container.__jsx-style-dynamic-selector:active{margin:1px 0 0 1px;}
+    </JSXStyle>
+  </a>
+</ForwardRef>"
+`;
+
+exports[`Button renders with click 1`] = `
+"<ForwardRef style={{...}}>
+  <a onClick={[Function: onClickCallback]} href={[undefined]} target={[undefined]} className=\\"jsx-252516482 btn-container\\">
+    <JSXStyle id=\\"3810349888\\" dynamic={{...}}>
+      a.__jsx-style-dynamic-selector{-webkit-text-decoration:none;text-decoration:none;}.btn-container.__jsx-style-dynamic-selector{padding:1rem;position:relative;background:rgba(200,200,200,0.1);-webkit-transition-property:color,background;transition-property:color,background;-webkit-transition-duration:.15s;transition-duration:.15s;-webkit-transition-timing-function:ease-in-out;transition-timing-function:ease-in-out;color:#FFF;font-size:1rem;text-align:center;border-radius:0.5rem;font-weight:bold;cursor:pointer;border:1px solid;margin:0 1px 1px 0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;box-shadow:0 2px 2px 0 rgba(22,22,22,0.14),0 1px 5px 0 rgba(22,22,22,0.12),0 3px 1px -2px rgba(22,22,22,0.2);}.btn-container.__jsx-style-dynamic-selector:hover{background:#FFF;color:#000;}.btn-container.__jsx-style-dynamic-selector:active{margin:1px 0 0 1px;}
+    </JSXStyle>
+  </a>
+</ForwardRef>"
+`;
+
+exports[`Button renders with inverted color 1`] = `
+"<ForwardRef style={{...}}>
+  <a onClick={[Function]} href={[undefined]} target={[undefined]} className=\\"jsx-2486039159 btn-container\\">
+    <JSXStyle id=\\"3810349888\\" dynamic={{...}}>
+      a.__jsx-style-dynamic-selector{-webkit-text-decoration:none;text-decoration:none;}.btn-container.__jsx-style-dynamic-selector{padding:1rem;position:relative;background:rgba(25,25,25, 1.0);-webkit-transition-property:color,background;transition-property:color,background;-webkit-transition-duration:.15s;transition-duration:.15s;-webkit-transition-timing-function:ease-in-out;transition-timing-function:ease-in-out;color:#FFF;font-size:1rem;text-align:center;border-radius:0.5rem;font-weight:bold;cursor:pointer;border:1px solid;margin:0 1px 1px 0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;box-shadow:0 2px 2px 0 rgba(22,22,22,0.14),0 1px 5px 0 rgba(22,22,22,0.12),0 3px 1px -2px rgba(22,22,22,0.2);}.btn-container.__jsx-style-dynamic-selector:hover{background:#FFF;color:#000;}.btn-container.__jsx-style-dynamic-selector:active{margin:1px 0 0 1px;}
+    </JSXStyle>
+  </a>
+</ForwardRef>"
+`;
+
+exports[`Button renders with small icon 1`] = `
+"<Link href=\\"sample\\">
+  <ForwardRef style={{...}}>
+    <a onClick={[Function]} href={[undefined]} target=\\"sample\\" className=\\"jsx-3422965696 btn-container\\">
+      <JSXStyle id=\\"3810349888\\" dynamic={{...}}>
+        a.__jsx-style-dynamic-selector{-webkit-text-decoration:none;text-decoration:none;}.btn-container.__jsx-style-dynamic-selector{padding:0.5rem;position:relative;background:rgba(200,200,200,0.1);-webkit-transition-property:color,background;transition-property:color,background;-webkit-transition-duration:.15s;transition-duration:.15s;-webkit-transition-timing-function:ease-in-out;transition-timing-function:ease-in-out;color:#FFF;font-size:0.7rem;text-align:center;border-radius:0.5rem;font-weight:bold;cursor:pointer;border:1px solid;margin:0 1px 1px 0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;box-shadow:0 2px 2px 0 rgba(22,22,22,0.14),0 1px 5px 0 rgba(22,22,22,0.12),0 3px 1px -2px rgba(22,22,22,0.2);}.btn-container.__jsx-style-dynamic-selector:hover{background:#FFF;color:#000;}.btn-container.__jsx-style-dynamic-selector:active{margin:1px 0 0 1px;}
+      </JSXStyle>
+    </a>
+  </ForwardRef>
+</Link>"
+`;
