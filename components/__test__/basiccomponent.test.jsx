@@ -7,7 +7,7 @@ import Logo from "../Logo";
 import RainDrop from "../RainDrop";
 import ScrollToTop from "../ScrollToTop";
 
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('Basic Components', () => {
   describe('Construction Splash Screens', () => {
@@ -20,6 +20,10 @@ describe('Basic Components', () => {
     it('renders normally', () => {
       const wrapper = shallow(<Footer/>);
       expect(wrapper.debug()).toMatchSnapshot();
+    }),
+    it('is showing the correct year', () => {
+      const wrapper = mount(<Footer/>);
+      expect(wrapper.find("#footer-year").text()).toBe(new Date().getFullYear().toString());
     })
   }),
   describe('Header One', () => {

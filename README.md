@@ -72,6 +72,8 @@ npm run analyze
 Execute
 ```
 npm test
+# For updated snapshots
+#npm run test -- -u
 ```
 
 ## Allowing PWA (offline website)
