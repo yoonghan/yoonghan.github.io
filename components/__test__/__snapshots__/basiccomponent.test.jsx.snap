@@ -25,11 +25,11 @@ exports[`Basic Components Footer renders normally 1`] = `
   <span>
     Walcron
   </span>
-   
+   2014-
   <span id=\\"footer-year\\">
-    2014-2020 &amp;copy
+    2020
   </span>
-  ;
+   ©
 </footer>"
 `;
 
