@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post renders normally 1`] = `
+"<div>
+  <MiniPost header=\\"header1\\" description=\\"description1\\" />
+  <MiniPost header=\\"header2\\" description=\\"description2\\" />
+</div>"
+`;
