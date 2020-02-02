@@ -25,7 +25,9 @@ module.exports = {
   coveragePathIgnorePatterns: [
     "/node_modules/",
     "enzyme.js",
-    "/.next/"
+    "/.next/",
+    "/static/",
+    "/dist/"
   ],
   setupFiles: [
     './jest.setup.js'
