@@ -275,7 +275,10 @@ const Manipulator = ({tokenApi, messengerApi}) => {
   function _controlLoader(isShown) {
     if(_chatMessageBoxRef && _chatMessageBoxRef.current) {
       const style = (isShown?'block':'none');
-      (document).getElementById(LOADER_ID_NAME).style.display=style;
+      if((document).getElementById(LOADER_ID_NAME) !== null) {
+        //Cater for testing.
+        (document).getElementById(LOADER_ID_NAME).style.display=style;
+      }
     }
   }
 
@@ -292,7 +295,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
     switch(connectionStatus) {
       case enumStatus.COMPLETE:
         return(
-          <Button onClickCallback={_triggerConnection} small={true}>
+          <Button onClickCallback={_triggerConnection} small={true} id="manipulator-connector">
             {getConnectionStatusText(messengerApi)()}
           </Button>
         )

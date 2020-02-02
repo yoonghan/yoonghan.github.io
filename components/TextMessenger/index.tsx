@@ -131,7 +131,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
   return (
     <form onSubmit={_onSubmit} className="textmessenger-container" {...getRootProps({
       onClick: event => event.stopPropagation()
-    })}>
+    })} id={"textmessenger-form"}>
       <Autosuggest
         ref={autoSuggestRef}
         suggestions={suggestions}
