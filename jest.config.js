@@ -10,7 +10,7 @@ module.exports = {
     "^.+\\.jsx?$": "babel-jest"
   },
   testMatch: [
-    "**/*.(test|spec).(ts|tsx)"
+    "**/*.(test|spec).(ts|tsx|js|jsx)"
   ],
   globals: {
     "ts-jest": {
@@ -23,7 +23,8 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "enzyme.js"
+    "enzyme.js",
+    "/.next/"
   ],
   setupFiles: [
     './jest.setup.js'

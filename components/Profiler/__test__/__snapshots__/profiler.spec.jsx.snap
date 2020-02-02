@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profiler renders normally 1`] = `
+"<div className=\\"jsx-2154105552 profiler\\">
+  <div className=\\"jsx-2143176054 user\\">
+    <img src=\\"imgSrc1\\" alt=\\"name1\\" className=\\"jsx-2143176054\\" />
+    <p className=\\"jsx-2143176054 name\\">
+      name1
+    </p>
+    <div className=\\"jsx-2143176054 divider\\">
+      ------
+    </div>
+    <div />
+    <JSXStyle id=\\"965410664\\" dynamic={{...}}>
+      .user.__jsx-style-dynamic-selector{padding:30px;}.name.__jsx-style-dynamic-selector{font-weight:bold;}img.__jsx-style-dynamic-selector{height:200px;margin:auto;display:block;}@media only screen and (min-width:641px){.user.__jsx-style-dynamic-selector{width:50%;padding:15px;}.name.__jsx-style-dynamic-selector{font-weight:bold;text-align:center;}.divider.__jsx-style-dynamic-selector{text-align:center;}}
+    </JSXStyle>
+  </div>
+  <div className=\\"jsx-2143176054 user\\">
+    <img src=\\"imgSrc2\\" alt=\\"name2\\" className=\\"jsx-2143176054\\" />
+    <p className=\\"jsx-2143176054 name\\">
+      name2
+    </p>
+    <div className=\\"jsx-2143176054 divider\\">
+      ------
+    </div>
+    <div />
+    <JSXStyle id=\\"965410664\\" dynamic={{...}}>
+      .user.__jsx-style-dynamic-selector{padding:30px;}.name.__jsx-style-dynamic-selector{font-weight:bold;}img.__jsx-style-dynamic-selector{height:200px;margin:auto;display:block;}@media only screen and (min-width:641px){.user.__jsx-style-dynamic-selector{width:50%;padding:15px;}.name.__jsx-style-dynamic-selector{font-weight:bold;text-align:center;}.divider.__jsx-style-dynamic-selector{text-align:center;}}
+    </JSXStyle>
+  </div>
+  <JSXStyle id=\\"2154105552\\">
+    .profiler.jsx-2154105552{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-evenly;-webkit-justify-content:space-evenly;-ms-flex-pack:space-evenly;justify-content:space-evenly;}@media only screen and (max-width:640px){.profiler.jsx-2154105552{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}}
+  </JSXStyle>
+</div>"
+`;

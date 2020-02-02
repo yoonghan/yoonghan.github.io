@@ -3,10 +3,10 @@ import {mount} from 'enzyme';
 import Output from "../Output";
 import InvalidCommand from "../InvalidCommand";
 
-const globalAny:any = global;
-const sampleDivElement:any = globalAny.document.createElement('div');
-const sampleCallback:any = ()=>{console.log("Nothing")};
-const sampleRoute:any = undefined;
+const globalAny = global;
+const sampleDivElement = globalAny.document.createElement('div');
+const sampleCallback = ()=>{console.log("Nothing")};
+const sampleRoute = undefined;
 
 const postCommandBar = exec(
   sampleDivElement,
