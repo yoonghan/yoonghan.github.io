@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import produce, {Draft} from "immer";
-import {MainLayout} from "../MainLayout";
+import MainLayout from "./MainLayout";
 
 export interface RotatingIconProps {
   icon: string;

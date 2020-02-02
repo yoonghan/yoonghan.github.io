@@ -72,12 +72,6 @@ exports[`Basic Components Logo renders with text normally 1`] = `
 </Fragment>"
 `;
 
-exports[`Basic Components Main Layout renders normally 1`] = `
-"<Head>
-  <link rel=\\"stylesheet\\" href=\\"https://use.fontawesome.com/releases/v5.5.0/css/all.css\\" />
-</Head>"
-`;
-
 exports[`Basic Components Rain drop renders normally 1`] = `"<svg width={960} height={500} />"`;
 
 exports[`Basic Components Scroll To Top renders normally 1`] = `

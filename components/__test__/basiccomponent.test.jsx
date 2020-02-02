@@ -4,7 +4,6 @@ import Footer from "../Footer";
 import HeaderOne from "../HeaderOne";
 import HorizontalLine from "../HorizontalLine";
 import Logo from "../Logo";
-import MainLayout from "../MainLayout";
 import RainDrop from "../RainDrop";
 import ScrollToTop from "../ScrollToTop";
 
@@ -42,12 +41,6 @@ describe('Basic Components', () => {
     }),
     it('renders with text normally', () => {
       const wrapper = shallow(<Logo withText={true}/>);
-      expect(wrapper.debug()).toMatchSnapshot();
-    })
-  }),
-  describe('Main Layout', () => {
-    it('renders normally', () => {
-      const wrapper = shallow(<MainLayout/>);
       expect(wrapper.debug()).toMatchSnapshot();
     })
   }),
