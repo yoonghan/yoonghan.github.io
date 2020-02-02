@@ -75,6 +75,8 @@ npm run analyze
 npm test
 # For updated snapshots
 #npm run test -- -u
+# For specific test based on describe
+#npm run test -- -t "External tools mock"
 ```
 
 ## Allowing PWA (offline website)
