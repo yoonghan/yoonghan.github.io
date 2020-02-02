@@ -21,6 +21,7 @@ module.exports = {
       babelConfig: ".babeltestrc"
     }
   },
+  collectCoverage: true,
   coveragePathIgnorePatterns: [
     "/node_modules/",
     "enzyme.js",
