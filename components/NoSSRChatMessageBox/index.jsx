@@ -22,8 +22,21 @@ export class NoSSRChatMessageBox extends React.Component {
     this.authors = this._initAuthors();
     this.authorsCount = this.authors.length;
     this.state = {
-      messages: []
+      messages: [],
+      height: 0
     }
+  }
+
+  componentDidMount() {
+    this.setState(
+      produce((draft) => {
+        draft.height = document.querySelector("body").offsetHeight
+      })
+    );
+  }
+
+  _recalculateHeight = (height) => {
+    return Math.abs(height/2);
   }
 
   _initAuthors = () => {
@@ -71,11 +84,11 @@ export class NoSSRChatMessageBox extends React.Component {
         this.chatScroll = document.getElementsByClassName("react-bell-chat__chat-scroll-area")[0];
       }
     }
-
   }
 
   render() {
-    const {messages} = this.state;
+    const {messages, height} = this.state;
+    const requiredHeight = this._recalculateHeight(height);
     return (
       <div className={"container"}>
         <NoSSRChatFeed
@@ -84,8 +97,8 @@ export class NoSSRChatMessageBox extends React.Component {
           authors={this.authors}
           yourAuthorId={this.authorsCount}
           showRecipientAvatar={true}
-          minHeight = {400}
-          maxHeight = {400}
+          minHeight = {requiredHeight}
+          maxHeight = {requiredHeight}
           ref={this._triggerFeed}
         />
         <style jsx>{`

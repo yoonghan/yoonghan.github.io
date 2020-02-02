@@ -3,29 +3,22 @@
 import * as React from "react";
 import * as d3 from "d3";
 
-export interface RainDropProps {
-}
+const width = 960;
+const height = 500;
 
-export class RainDrop extends React.PureComponent<RainDropProps, {}> {
-  private width = 960;
-  private height = 500;
-  private rainRef = React.createRef<any>();
+const RainDrop:React.FC = () => {
+  const rainRef = React.useRef<any>();
 
-  constructor(props:any) {
-    super(props);
-  };
-
-  componentDidMount() {
-    const self = this;
+  React.useEffect(() => {
     d3.timer(function(elapsed) {
-        if (elapsed % 5000 < 50) {
-          self.makeItRain(10);
-        }
+      if (elapsed % 5000 < 50) {
+        makeItRain(10);
+      }
     });
-  }
+  }, []);
 
-  rainDrop = (size:number, duration:number, delay:number, x_pos:number, y_pos:number) => {
-    const svg = d3.select(this.rainRef.current);
+  const rainDrop = (size:number, duration:number, delay:number, x_pos:number, y_pos:number) => {
+    const svg = d3.select(rainRef.current);
 
     const drop = svg.append("circle")
             .attr("cx", x_pos)
@@ -45,22 +38,21 @@ export class RainDrop extends React.PureComponent<RainDropProps, {}> {
       .ease(d3.easeCubicInOut);
   }
 
-  makeItRain = (numDrops:number) => {
+  const makeItRain = (numDrops:number) => {
     for (let i = 0; i < numDrops; i++) {
       const size = 50 * Math.random() + 50,
           duration = 50 * Math.random() + 1750,
           delay = 5000 * Math.random(),
-          x_pos = this.width * Math.random(),
-          y_pos = this.height * Math.random();
-      this.rainDrop(size, duration, delay, x_pos, y_pos);
+          x_pos = width * Math.random(),
+          y_pos = height * Math.random();
+      rainDrop(size, duration, delay, x_pos, y_pos);
     }
   }
 
-  render() {
-    const {width, height} = this;
-    return (
-      <svg width={width} height={height} ref={this.rainRef}>
-      </svg>
-    );
-  }
+  return (
+    <svg width={width} height={height} ref={rainRef}>
+    </svg>
+  );
 }
+
+export default RainDrop;

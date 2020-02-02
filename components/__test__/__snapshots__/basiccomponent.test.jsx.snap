@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Components Construction Splash Screens renders normally 1`] = `
+"<div className=\\"jsx-886599827 construction-splash-screen-container\\">
+  <div className=\\"jsx-886599827 construction-splash-screen-text-container\\">
+    <div className=\\"jsx-886599827 banner\\">
+      (404) NOT FOUND
+    </div>
+    <img src=\\"/static/img/construction.svg\\" className=\\"jsx-886599827\\" />
+    <hr className=\\"jsx-886599827\\" />
+    <div className=\\"jsx-886599827 buttonContainer\\">
+      <Button href=\\"/\\">
+        Return as page is not found
+      </Button>
+    </div>
+  </div>
+  <JSXStyle id=\\"148029871\\" dynamic={{...}}>
+    .buttonContainer.__jsx-style-dynamic-selector{margin-left:auto;margin-right:auto;text-align:center;}.buttonContainer.__jsx-style-dynamic-selector a{background-color:#000;color:#FFF;}.banner.__jsx-style-dynamic-selector{text-align:center;font-size:2rem;font-family:fantasy,arial,sans-serif;padding-bottom:5px;}.footnote.__jsx-style-dynamic-selector{font-size:1rem;text-align:center;font-family:arial,sans-serif;}img.__jsx-style-dynamic-selector{display:block;margin-left:auto;margin-right:auto;width:50%;opacity:0.3;max-height:320px;}h5.__jsx-style-dynamic-selector{margin:10px 0 0 0;font-weight:normal;font-family:arial;}hr.__jsx-style-dynamic-selector{margin:20px 0;border-top:1px solid #90A4AE;}.construction-splash-screen-container.__jsx-style-dynamic-selector{position:relative;height:100vh;min-width:320px;background:#ECEFF1;color:#000;}.construction-splash-screen-text-container.__jsx-style-dynamic-selector{position:absolute;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%);width:100%;}.construction-splash-screen-container.__jsx-style-dynamic-selector h1.__jsx-style-dynamic-selector{font-size:5rem;color:#FF0266;text-align:center;}.construction-splash-screen-container.__jsx-style-dynamic-selector h5.__jsx-style-dynamic-selector{font-size:1rem;color:#000;text-align:center;}
+  </JSXStyle>
+</div>"
+`;
+
+exports[`Basic Components Footer renders normally 1`] = `
+"<footer>
+  <span>
+    Walcron
+  </span>
+   
+  <span id=\\"footer-year\\">
+    2014-2020 &amp;copy
+  </span>
+  ;
+</footer>"
+`;
+
+exports[`Basic Components Header One renders normally 1`] = `
+"<Fragment>
+  <h1 className=\\"jsx-3365884365 \\" />
+  <JSXStyle id=\\"2743286598\\" dynamic={{...}}>
+    h1.__jsx-style-dynamic-selector{color:#FF8400;}.lined.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;}h1.lined.__jsx-style-dynamic-selector:before,h1.lined.__jsx-style-dynamic-selector:after{content:&#39;&#39;;border-top:2px solid;margin:0 20px 0 0;-webkit-flex:1 0 20px;-ms-flex:1 0 20px;flex:1 0 20px;max-width:20px;}h1.lined.__jsx-style-dynamic-selector:after{margin:0 0 0 20px;}
+  </JSXStyle>
+</Fragment>"
+`;
+
+exports[`Basic Components Horizontal Line renders normally 1`] = `
+"<Fragment>
+  <hr className=\\"jsx-3728354159\\" />
+  <JSXStyle id=\\"3728354159\\">
+    hr.jsx-3728354159{width:50%;}
+  </JSXStyle>
+</Fragment>"
+`;
+
+exports[`Basic Components Logo renders normally 1`] = `
+"<Fragment>
+  <img src=\\"/static/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
+  <JSXStyle id=\\"3915456707\\">
+    .logo-img.jsx-3915456707{width:50px;position:absolute;top:10px;right:10px;}@media only screen and (max-width:480px){.logo-img.jsx-3915456707{width:88px;-webkit-transform:translateX(50%);-ms-transform:translateX(50%);transform:translateX(50%);right:50%;}}
+  </JSXStyle>
+</Fragment>"
+`;
+
+exports[`Basic Components Logo renders with text normally 1`] = `
+"<Fragment>
+  <img src=\\"/static/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
+  <div className=\\"jsx-3915456707\\">
+     Walcron
+  </div>
+  <JSXStyle id=\\"3915456707\\">
+    .logo-img.jsx-3915456707{width:50px;position:absolute;top:10px;right:10px;}@media only screen and (max-width:480px){.logo-img.jsx-3915456707{width:88px;-webkit-transform:translateX(50%);-ms-transform:translateX(50%);transform:translateX(50%);right:50%;}}
+  </JSXStyle>
+</Fragment>"
+`;
+
+exports[`Basic Components Main Layout renders normally 1`] = `
+"<Head>
+  <link rel=\\"stylesheet\\" href=\\"https://use.fontawesome.com/releases/v5.5.0/css/all.css\\" />
+</Head>"
+`;
+
+exports[`Basic Components Rain drop renders normally 1`] = `"<svg width={960} height={500} />"`;
+
+exports[`Basic Components Scroll To Top renders normally 1`] = `
+"<NoSSR>
+  <ScrollToTop />
+</NoSSR>"
+`;
