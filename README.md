@@ -69,7 +69,8 @@ npm run analyze
 ```
 
 ## Testing
-Execute
+1. Test coverage is enabled in jest.config.js with "collectCoverage: true,".
+2. To test, execute
 ```
 npm test
 # For updated snapshots
