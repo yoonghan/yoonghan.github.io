@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextMessenger renders normally 1`] = `
-"<form onSubmit={[Function: _onSubmit]} onKeyDown={[Function]} onFocus={[Function]} onBlur={[Function]} onClick={[Function]} onDragEnter={[Function]} onDragOver={[Function]} onDragLeave={[Function]} onDrop={[Function]} tabIndex={0} className=\\"jsx-3977293414 textmessenger-container\\">
+exports[`TextMessenger should render normally 1`] = `
+"<form onSubmit={[Function: _onSubmit]} onKeyDown={[Function]} onFocus={[Function]} onBlur={[Function]} onClick={[Function]} onDragEnter={[Function]} onDragOver={[Function]} onDragLeave={[Function]} onDrop={[Function]} tabIndex={0} id=\\"textmessenger-form\\" className=\\"jsx-3977293414 textmessenger-container\\">
   <Autosuggest suggestions={{...}} onSuggestionsFetchRequested={[Function: _onSuggestionsFetchRequested]} onSuggestionsClearRequested={[Function: _onSuggestionsClearRequested]} getSuggestionValue={[Function: _getSuggestionValue]} renderSuggestion={[Function: _renderSuggestion]} inputProps={{...}} renderSuggestionsContainer={[Function: defaultRenderSuggestionsContainer]} shouldRenderSuggestions={[Function: defaultShouldRenderSuggestions]} alwaysRenderSuggestions={false} multiSection={false} focusInputOnSuggestionClick={true} highlightFirstSuggestion={false} theme={{...}} id=\\"1\\" />
   <button id=\\"command-enter\\" aria-label=\\"Enter\\" className=\\"jsx-3977293414\\">
     <i className=\\"jsx-3977293414 fas fa-arrow-right\\" />

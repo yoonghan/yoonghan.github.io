@@ -16,6 +16,31 @@ export interface IWithConnectivity<V> extends IState<V> {
   connect: any;
 }
 
+export const generateRestPath = (path:string, paramInfo:IPath) => {
+  let _path = path;
+  if(paramInfo) {
+    for (const key in paramInfo) {
+      const matchRegex = new RegExp(`{${key}}`, "g");
+      _path = _path.replace(matchRegex, paramInfo[key]);
+    }
+  }
+  return _path;
+}
+
+export const serialize = (obj: object) => {
+  if(!obj || typeof obj === "undefined") {
+    return "";
+  }
+
+  var str = [];
+  for (var p in obj) {
+    if ((obj as any).hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent((obj as any)[p]));
+    }
+  }
+  return "?" + str.join("&");
+}
+
 const withConnectivity = < V extends {} >(result: any, defaultSuccessResult: V) => (path:string) => <T extends React.Component, OriginalProps extends {}>(Component: React.ComponentClass<OriginalProps>) => {
 
   type PrivateProps = {forwardedRef: React.RefObject<T>}
@@ -51,8 +76,8 @@ const withConnectivity = < V extends {} >(result: any, defaultSuccessResult: V) 
 
        }
        else {
-         let newRequestPath = this._generateRestPath(input);
-         newRequestPath += this._serialize(input);
+         let newRequestPath = generateRestPath(path, input);
+         newRequestPath += serialize(input);
 
          fetch(newRequestPath, {
            method: 'GET',
@@ -62,34 +87,6 @@ const withConnectivity = < V extends {} >(result: any, defaultSuccessResult: V) 
            .then(data => this._handleReturnData(data, errorMessage))
            .catch(error => this._handleException(error));
        }
-
-    }
-
-    _generateRestPath = (paramInfo:IPath) => {
-      let _path = path;
-      if(paramInfo) {
-        //Todo string replacement, i.e. /"{AUTHENTICATE}"/"{ReplaceKey}"
-        for (const key in paramInfo) {
-          const matchRegex = new RegExp(`{${key}}`, "g");
-          _path = _path.replace(matchRegex, paramInfo[key]);
-        }
-      }
-      return _path;
-    }
-
-    _serialize = (obj: object) => {
-
-      if(!obj || typeof obj === "undefined") {
-        return "";
-      }
-
-      var str = [];
-      for (var p in obj) {
-        if ((obj as any).hasOwnProperty(p)) {
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent((obj as any)[p]));
-        }
-      }
-      return "?" + str.join("&");
 
     }
 
