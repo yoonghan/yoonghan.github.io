@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import IndexPage from '../index';
-import AboutPage from '../about';
-import CreationPage from '../creation';
-import TributePage from '../tribute';
-import ManipulatorPage from '../manipulator';
+import IndexPage from '../pages/index';
+import AboutPage from '../pages/about';
+import CreationPage from '../pages/creation';
+import TributePage from '../pages/tribute';
+import ManipulatorPage from '../pages/manipulator';
 
 //Increase wait time
 jest.setTimeout(5000);
@@ -21,7 +21,7 @@ const waitNextTick = async () => {
   return new Promise(resolve => setTimeout(resolve, 2000));
 }
 
-const mountInitialComponent = async (component: any) => {
+const mountInitialComponent = async (component) => {
   const wrapper = mount(component);
   await waitNextTick();
   wrapper.update();

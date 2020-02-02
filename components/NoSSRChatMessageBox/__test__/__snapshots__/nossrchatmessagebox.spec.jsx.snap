@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoSSRChatMessageBox renders normally 1`] = `
+"<div className=\\"jsx-1657555887 container\\">
+  <Dynamic customChatBubble={[Function: CustomChatBubble]} messages={{...}} authors={{...}} yourAuthorId={2} showRecipientAvatar={true} minHeight={400} maxHeight={400} />
+  <JSXStyle id=\\"1657555887\\">
+    .container.jsx-1657555887{background-color:#FFFFFF;}
+  </JSXStyle>
+</div>"
+`;

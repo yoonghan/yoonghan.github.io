@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LetterBox renders normally 1`] = `
+"<div>
+  If you are interested to talk to us, leave us your contact. Let us reach you instead.
+  <form onSubmit={[Function]} className=\\"jsx-2408598517 letterbox-container\\">
+    <input type=\\"text\\" autoComplete=\\"off\\" maxLength={200} placeholder=\\"Honorific and name\\" onChange={[Function]} value=\\"\\" className=\\"jsx-2408598517 letterbox-input\\" />
+    <Button onClickCallback={[Function]}>
+      Send
+    </Button>
+    <JSXStyle id=\\"960923372\\" dynamic={{...}}>
+      .letterbox-container.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:20px;}.gap.__jsx-style-dynamic-selector{margin-top:20px;}.letterbox-input.__jsx-style-dynamic-selector{color:#FFF;background-color:transparent;border:1px solid #FFF;margin:0;min-width:200px;display:block;font-size:1rem;box-sizing:content-box;padding:1rem;border-radius:0.3rem;height:1.1rem;text-shadow:0 0 0 #EBEBEB;}
+    </JSXStyle>
+  </form>
+</div>"
+`;

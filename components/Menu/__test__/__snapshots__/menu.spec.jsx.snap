@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu renders blackOnWhite normally 1`] = `
+"<Menu whiteOnBlack={false} menuItems={{...}}>
+  <nav className=\\"jsx-2870282083 jsx-1630941244 menu\\">
+    <span onClick={[Function]} className=\\"jsx-2870282083 jsx-1630941244 nav-toggle\\">
+      Menu
+    </span>
+    <ul className=\\"jsx-2870282083 jsx-1630941244\\">
+      <MenuItem whiteOnBlack={false} menuTriggerSize={767} childNumber={0} totalChild={3}>
+        <li className=\\"jsx-781183891\\" />
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+      <MenuItem whiteOnBlack={false} menuTriggerSize={767} childNumber={1} totalChild={3}>
+        <li className=\\"jsx-809278972\\">
+          <div />
+        </li>
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+      <MenuItem whiteOnBlack={false} menuTriggerSize={767} childNumber={2} totalChild={3}>
+        <li className=\\"jsx-3559909334\\">
+          <div>
+            Non Empty
+          </div>
+        </li>
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+    </ul>
+  </nav>
+  <JSXStyle id=\\"2870282083\\" />
+  <JSXStyle id=\\"2618150123\\" dynamic={{...}} />
+</Menu>"
+`;
+
+exports[`Menu renders whiteOnBlack normally 1`] = `
+"<Menu whiteOnBlack={true} menuItems={{...}}>
+  <nav className=\\"jsx-2870282083 jsx-2111747771 menu\\">
+    <span onClick={[Function]} className=\\"jsx-2870282083 jsx-2111747771 nav-toggle\\">
+      Menu
+    </span>
+    <ul className=\\"jsx-2870282083 jsx-2111747771\\">
+      <MenuItem whiteOnBlack={true} menuTriggerSize={767} childNumber={0} totalChild={3}>
+        <li className=\\"jsx-2185469919\\" />
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+      <MenuItem whiteOnBlack={true} menuTriggerSize={767} childNumber={1} totalChild={3}>
+        <li className=\\"jsx-4004353712\\">
+          <div />
+        </li>
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+      <MenuItem whiteOnBlack={true} menuTriggerSize={767} childNumber={2} totalChild={3}>
+        <li className=\\"jsx-154878362\\">
+          <div>
+            Non Empty
+          </div>
+        </li>
+        <JSXStyle id=\\"3877431110\\" dynamic={{...}} />
+      </MenuItem>
+    </ul>
+  </nav>
+  <JSXStyle id=\\"2870282083\\" />
+  <JSXStyle id=\\"2618150123\\" dynamic={{...}} />
+</Menu>"
+`;

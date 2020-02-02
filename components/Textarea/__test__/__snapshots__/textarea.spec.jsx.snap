@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialFab renders normally 1`] = `
+"<Fragment>
+  <div className=\\"jsx-2683039876 container\\">
+    <textarea rows={[undefined]} cols={[undefined]} disabled={true} value=\\"text\\" className=\\"jsx-2683039876\\" />
+  </div>
+  <JSXStyle id=\\"2683039876\\">
+    .container.jsx-2683039876{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:0.2rem;background-color:#FFF;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}textarea.jsx-2683039876{resize:none;padding:1rem;width:100%;max-width:640px;height:50vh;background-color:#000;border:1px solid #000;color:#00ff00;font-family:courier new;}
+  </JSXStyle>
+</Fragment>"
+`;
