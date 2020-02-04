@@ -28,5 +28,33 @@ describe('Manipulator Page', () => {
     const wrapper = await mountInitialComponent(<ManipulatorPage/>);
     expect(wrapper.find('NoSSRChatMessageBox').exists()).toBe(true);
     expect(wrapper.find('#manipulator-connector').exists()).toBe(true);
+  }),
+  it('has connect button clickable', async () => {
+    const mockResult = {codegen: "1234"};
+    const mockFetchPromise = Promise.resolve({json:()=>Promise.resolve(mockResult)})
+    jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
+    const wrapper = await mountInitialComponent(<ManipulatorPage/>);
+    wrapper.find('#manipulator-connector').invoke("onClickCallback")();
+    wrapper.update(); // connect
+    wrapper.update(); // hoc connect
+    expect(wrapper.find("Manipulator").props().tokenApi.isLoading).toBe(true);
+    await waitNextTick();
+    wrapper.update();
+    expect(wrapper.find("Manipulator").props().tokenApi.success.codegen).toBe(mockResult.codegen);
+    wrapper.update();
+  }),
+  it('has connect button clickable', async () => {
+    const mockResult = "error";
+    const mockFetchPromise = Promise.resolve({json:()=>Promise.reject(mockResult)})
+    jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
+    const wrapper = await mountInitialComponent(<ManipulatorPage/>);
+    wrapper.find('#manipulator-connector').invoke("onClickCallback")();
+    wrapper.update(); // connect
+    wrapper.update(); // hoc connect
+    expect(wrapper.find("Manipulator").props().tokenApi.isLoading).toBe(true);
+    await waitNextTick();
+    wrapper.update();
+    expect(wrapper.find("Manipulator").props().tokenApi.isError).toBe(true);
+    wrapper.update();
   })
 });
