@@ -128,10 +128,15 @@ export const AvailableInput:ICommand = {
       );
     }
   },
+  "history": {
+    description: "Old website",
+    action: EnumAction.COMMAND,
+    exec: () => {window.open("https://whispering-taiga-75046.herokuapp.com", "walcron_new"); return <React.Fragment/>}
+  },
   "status": {
     description: "Check api status (secret project)",
     action: EnumAction.COMMAND,
-    exec: () => {window.open("/status"); return <React.Fragment/>}
+    exec: () => {window.open("/status", "walcron_new"); return <React.Fragment/>}
   },
   "help": {
     description: "Lost, confused, need help.",
