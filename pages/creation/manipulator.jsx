@@ -2,18 +2,18 @@ import * as React from "react";
 import PusherJS from 'pusher-js';
 import NoSSR from 'react-no-ssr';
 import produce, {Draft} from "immer";
-import { HtmlHead } from '../components/HtmlHead';
-import HeaderOne from "../components/HeaderOne";
-import CommandBar from "../components/CommandBar";
-import Footer from "../components/Footer";
-import { PUSHER } from "../shared/const";
-import Button from "../components/Button";
-import TextMessenger, {ENUM_DISPLAY_TYPE} from "../components/TextMessenger";
+import { HtmlHead } from '../../components/HtmlHead';
+import HeaderOne from "../../components/HeaderOne";
+import CommandBar from "../../components/CommandBar";
+import Footer from "../../components/Footer";
+import { PUSHER } from "../../shared/const";
+import Button from "../../components/Button";
+import TextMessenger, {ENUM_DISPLAY_TYPE} from "../../components/TextMessenger";
 import { compose } from 'redux';
-import withConnectivity, { IWithConnectivity } from "../hoc/withConnectivity";
-import withMessenger, { IWithMessenger, EnumConnection } from "../hoc/withMessenger";
-import Loader, {LOADER_ID_NAME} from "../components/Loader";
-import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../components/NoSSRChatMessageBox";
+import withConnectivity, { IWithConnectivity } from "../../hoc/withConnectivity";
+import withMessenger, { IWithMessenger, EnumConnection } from "../../hoc/withMessenger";
+import Loader, {LOADER_ID_NAME} from "../../components/Loader";
+import NoSSRChatMessageBox, {NoSSRChatMessageBoxProps} from "../../components/NoSSRChatMessageBox";
 
 const allowedCalls = ["up", "down", "left", "right"];
 const enumStatus = {
@@ -130,6 +130,29 @@ const renderLoading = () => {
       `}</style>
     </div>
   );
+}
+
+const triggerConnection = (isConnected, changeConnectionStatus) => () => {
+  if(!isConnected) {
+    changeConnectionStatus(enumStatus.INIT);
+  }
+  else {
+    changeConnectionStatus(enumStatus.INIT_DISCONNECT);
+  }
+}
+
+const renderButton = (changeConnectionStatus, connectionStatus, isConnected, messengerApi) => {
+  switch(connectionStatus) {
+    case enumStatus.COMPLETE:
+      return(
+        <Button onClickCallback={triggerConnection(isConnected, changeConnectionStatus)}
+          small={true} id="manipulator-connector">
+          {getConnectionStatusText(messengerApi)()}
+        </Button>
+      )
+    default:
+      return (<></>);
+  }
 }
 
 const loaderComponent = renderLoading();
@@ -282,28 +305,6 @@ const Manipulator = ({tokenApi, messengerApi}) => {
     }
   }
 
-  function _triggerConnection() {
-    if(!messengerApi.isConnected()) {
-      changeConnectionStatus(enumStatus.INIT);
-    }
-    else {
-      changeConnectionStatus(enumStatus.INIT_DISCONNECT);
-    }
-  }
-
-  function _renderButton() {
-    switch(connectionStatus) {
-      case enumStatus.COMPLETE:
-        return(
-          <Button onClickCallback={_triggerConnection} small={true} id="manipulator-connector">
-            {getConnectionStatusText(messengerApi)()}
-          </Button>
-        )
-      default:
-        return (<></>);
-    }
-  }
-
   return (
     <React.Fragment>
       <HtmlHead
@@ -322,7 +323,7 @@ const Manipulator = ({tokenApi, messengerApi}) => {
             {_renderConnection()}
           </div>
           <div className={"buttonContainer"}>
-            {_renderButton()}
+            {renderButton(changeConnectionStatus, connectionStatus, messengerApi.isConnected(), messengerApi)}
           </div>
         </NoSSR>
       </div>
