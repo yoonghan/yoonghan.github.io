@@ -4,7 +4,7 @@ import IndexPage from '../pages/index';
 import AboutPage from '../pages/about';
 import CreationPage from '../pages/creation';
 import TributePage from '../pages/tribute';
-import ManipulatorPage from '../pages/manipulator';
+import ManipulatorPage from '../pages/creation/manipulator';
 
 //Increase wait time
 jest.setTimeout(5000);

@@ -139,15 +139,11 @@ const ButtonsBar: React.SFC<ButtonsBarProps> = ({menuTexts, activeIndex}) => {
           }
 
           :global(.btnsbar-item:nth-child(2).is-active ~ .btnsbar-item:last-child:after) {
-            left:33.333333333333336%;
+            left: ${100-(width*2)}%;
           }
 
           :global(.btnsbar-item:nth-child(2):hover ~ .btnsbar-item:last-child:after) {
-            left:33.333333333333336% !important;
-          }
-
-          :global(.with-indicator .btnsbar-item:last-child:hover:after,.with-indicator .btnsbar-item:last-child.is-active:after){
-            left:66.66666666666666% !important;
+            left: ${100-(width*2)}% !important;
           }
 
           :global(.with-indicator .btnsbar-item:last-child:hover:after, .with-indicator .btnsbar-item:last-child.is-active:after) {
