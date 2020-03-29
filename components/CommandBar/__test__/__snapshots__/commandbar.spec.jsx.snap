@@ -71,7 +71,7 @@ exports[`CommandBar renders lazy normally 2`] = `
           <div className=\\"jsx-3778838050 mobile\\">
             <NoSSRMobileMenu router={{...}}>
               <ButtonsBar menuTexts={{...}} activeIndex={0}>
-                <ul className=\\"jsx-2497684687 btnsbar with-indicator\\">
+                <ul className=\\"jsx-4214066626 btnsbar with-indicator\\">
                   <li className=\\"btnsbar-item is-active\\">
                     <Link href=\\"/\\">
                       <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/\\">
@@ -94,7 +94,7 @@ exports[`CommandBar renders lazy normally 2`] = `
                     </Link>
                   </li>
                 </ul>
-                <JSXStyle id=\\"2238181903\\" dynamic={{...}} />
+                <JSXStyle id=\\"3650206365\\" dynamic={{...}} />
               </ButtonsBar>
             </NoSSRMobileMenu>
           </div>
