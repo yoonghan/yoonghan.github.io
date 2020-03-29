@@ -28,11 +28,7 @@ const writeLink = (router: NextRouter) => {
 }
 
 const goBack = (router: NextRouter) => () => {
-  const pathname = router.pathname;
-  const pathnameWithoutTrailingSlash = pathname.substring(0,pathname.length-1)
-
-  const lastIdx = pathnameWithoutTrailingSlash.lastIndexOf("/");
-  router.push(pathnameWithoutTrailingSlash.substr(0, lastIdx===0? 1:lastIdx));
+  router.push("/");
 }
 
 const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
@@ -41,7 +37,7 @@ const NoSSRNavMenu: React.SFC<NoSSRNavMenuProps> = ({router}) => {
     <nav className="container">
 
         <div className="return-btn" onClick={goBack(router)}>
-          <i className="fas fa-chevron-left"/>
+          <i className="fas fa-chevron-left"></i>
         </div>
         {writeLink(router)}
 
