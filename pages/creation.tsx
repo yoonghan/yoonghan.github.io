@@ -1,9 +1,9 @@
 import * as React from "react";
-import { HtmlHead } from "../../components/HtmlHead";
-import HeaderOne from "../../components/HeaderOne";
-import CommandBar from "../../components/CommandBar";
-import CreationListv2 from "../../components/CreationListv2";
-import Footer from "../../components/Footer";
+import { HtmlHead } from "../components/HtmlHead";
+import HeaderOne from "../components/HeaderOne";
+import CommandBar from "../components/CommandBar";
+import CreationListv2 from "../components/CreationListv2";
+import Footer from "../components/Footer";
 
 const creationList = [
   {
@@ -34,7 +34,7 @@ const creationList = [
   },
   {
     id: "manipulator",
-    link: "creation/manipulator",
+    link: "manipulator",
     title: "Chat API",
     desc: "A Pusher API implementation for Chat with multi-staged HOC to manage connection state.",
     usage: "Click to explore.",

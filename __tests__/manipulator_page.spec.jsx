@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import ManipulatorPage from '../pages/creation/manipulator';
+import ManipulatorPage from '../pages/manipulator';
 
 //Increase wait time
 jest.setTimeout(5000);
@@ -43,7 +43,7 @@ describe('Manipulator Page', () => {
     expect(wrapper.find("Manipulator").props().tokenApi.success.codegen).toBe(mockResult.codegen);
     wrapper.update();
   }),
-  it('has connect button clicked but received token error', async () => {
+  it('has connect button clickable', async () => {
     const mockResult = "error";
     const mockFetchPromise = Promise.resolve({json:()=>Promise.reject(mockResult)})
     jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
@@ -55,20 +55,6 @@ describe('Manipulator Page', () => {
     await waitNextTick();
     wrapper.update();
     expect(wrapper.find("Manipulator").props().tokenApi.isError).toBe(true);
-    wrapper.update();
-  }),
-  it('has connect button clicked', async () => {
-    const mockResult = {codegen: "1234"};
-    const mockFetchPromise = Promise.resolve({json:()=>Promise.resolve(mockResult)})
-    jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
-    const wrapper = await mountInitialComponent(<ManipulatorPage/>);
-    wrapper.find('#manipulator-connector').invoke("onClickCallback")();
-    wrapper.update(); // connect
-    wrapper.update(); // hoc connect
-    expect(wrapper.find("Manipulator").props().tokenApi.isLoading).toBe(true);
-    await waitNextTick();
-    wrapper.update();
-    expect(wrapper.find("Manipulator").props().tokenApi.success.codegen).toBe(mockResult.codegen);
     wrapper.update();
   })
 });
