@@ -21,7 +21,7 @@ class ApiController {
     return AUTH_API_CALL;
   }
 
-  private static getFirebaseInitializeApp = () => {
+  public static getFirebaseInitializeApp = () => {
     if(admin.apps.length === 0){
       const { FIREBASE_BUCKET, FIREBASE_DATABASE } = process.env;
       const _serviceAccount = serviceAccount as any; //Intended
@@ -48,7 +48,7 @@ class ApiController {
   /**
    * Initialize Pusher api.
    **/
-  private static _initPusher() {
+  public static _initPusher() {
     if(process && process.env.PUSHER_APP_KEY) {
       const {
         PUSHER_APP_ID,

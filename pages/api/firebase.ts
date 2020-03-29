@@ -1,7 +1,5 @@
-import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
-import serviceAccount from "../../private/firebase-auth.json";
 import uuidv4 from "uuid/v4";
 import formidable from "formidable";
 
