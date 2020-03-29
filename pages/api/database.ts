@@ -25,19 +25,13 @@ const sentToPusher = (message) => {
 }
 
 const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {question1, question2, name, email} = req.body;
+  const {data} = req.body;
   const ref = getRef();
-  const data = {
-    name: "A",
-    email: "email",
-    question1: question1,
-    question2: question2
-  };
-  ref.set(data);
-
+  const dataAsJSON = JSON.parse(data);
+  ref.set(dataAsJSON);
   ref.on("value", function(snapshot, prevChildKey) {
     var newPost = snapshot.val();
-    sentToPusher(JSON.stringify(data));
+    sentToPusher(data);
   });
 
   res.status(200).json(
