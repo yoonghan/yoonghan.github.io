@@ -1,5 +1,7 @@
 import Pusher from 'pusher';
+import admin from "firebase-admin";
 import { PUSHER } from "./const";
+import serviceAccount from "../private/firebase-auth.json";
 
 /**
  * Deprecated as api!!!
@@ -17,6 +19,19 @@ class ApiController {
   private static _getUrl() {
     const { AUTH_API_CALL } = process.env;
     return AUTH_API_CALL;
+  }
+
+  private static getFirebaseInitializeApp = () => {
+    if(admin.apps.length === 0){
+      const { FIREBASE_BUCKET, FIREBASE_DATABASE } = process.env;
+      const _serviceAccount = serviceAccount as any; //Intended
+      admin.initializeApp({
+          credential: admin.credential.cert(_serviceAccount),
+          storageBucket: FIREBASE_BUCKET,
+          databaseURL: FIREBASE_DATABASE
+      });
+    }
+    return admin;
   }
 
   /**

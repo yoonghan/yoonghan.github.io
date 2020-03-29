@@ -20,7 +20,7 @@ If there are missing webpack installation, manually execute 'npm install next'
 ```
 
 
-## Development for Zeit
+## DO NOT DO THIS...all post will not work
 1. DEPRECATED, no longer be used and has issues with ZEIT's .env/secret settings. Changes are based on *package.json*.
 
 ```
@@ -42,6 +42,7 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets add pusher-secret 41a038429d4556a4fad3
 #now secrets rm pusher-app-id && now secrets add pusher-app-id 123
 #now secrets add firebase-bucket legocontroller-5c4f6.appspot.com
+#now secrets add firebase-database https://legocontroller-5c4f6.firebaseio.com
 
 now secrets add pusher-cluster ap1
 npm run deploy

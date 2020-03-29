@@ -1,21 +1,9 @@
 import admin from "firebase-admin";
 import { NextApiRequest, NextApiResponse } from 'next';
+import ApiController from "../../shared/api";
 import serviceAccount from "../../private/firebase-auth.json";
 import uuidv4 from "uuid/v4";
 import formidable from "formidable";
-
-
-const getInitializeApp = () => {
-  if(admin.apps.length === 0){
-    const { FIREBASE_BUCKET } = process.env;
-    const _serviceAccount = serviceAccount as any; //Intended
-    admin.initializeApp({
-        credential: admin.credential.cert(_serviceAccount),
-        storageBucket: FIREBASE_BUCKET
-    });
-  }
-  return admin;
-}
 
 //Deprecated.
 // const _storeFile = (res: NextApiResponse) => {
@@ -47,7 +35,7 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 }
 
 const getUploadedFileUrl = async (uploadFileName: string, retrieveToken: string, res: NextApiResponse) => {
-  const storageBucket = getInitializeApp().storage().bucket();
+  const storageBucket = ApiController.getFirebaseInitializeApp().storage().bucket();
   const cloudFileName = storageBucket.file(uploadFileName);
   try {
     const cloudFile = (await cloudFileName.get())[0];
@@ -79,7 +67,7 @@ const fetchFileExtension = (filename: string) => {
 
 const uploadIntoSystem = async (req: NextApiRequest, res: NextApiResponse) => {
   const uuid = uuidv4();
-  const storageBucket = getInitializeApp().storage().bucket();
+  const storageBucket = ApiController.getFirebaseInitializeApp().storage().bucket();
   const option = {
     //predefinedAcl: 'publicRead',
     gzip: true,
