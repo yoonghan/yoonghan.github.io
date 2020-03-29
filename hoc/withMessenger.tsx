@@ -24,12 +24,12 @@ interface IState {
 }
 
 export interface IWithMessenger {
-  connect: (printConnectionCallback:(message:string)=>void, printEventCallback:(message:string)=>void) => void;
+  connect: (token: string, printConnectionCallback:(message:string)=>void, printEventCallback:(message:string)=>void) => void;
   isConnected: ()=>boolean;
   disconnect: ()=>void;
 }
 
-const withMessenger = (result: any) => <T extends React.Component, OriginalProps extends {}>(Component: React.ComponentClass<OriginalProps>) => {
+const withMessenger = (result: any, nonprivate=false) => <T extends React.Component, OriginalProps extends {}>(Component: React.ComponentClass<OriginalProps>) => {
 
   type PrivateProps = {forwardedRef: React.RefObject<T>}
   type Props = OriginalProps & PrivateProps;
@@ -65,8 +65,10 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
     _subscribeToChannel = (channelName:string, printCallback:(msg:string)=>void) => {
       if(typeof this.pushChannelClient !== 'undefined' &&
           typeof this.channel === 'undefined') {
-        this.channel = this.pushChannelClient.subscribe(`private-${channelName}`);
-        this.channel.bind(`client-${PUSHER.event}`, (data:any) => {
+        const _channelName = nonprivate? channelName: `private-${channelName}`;
+        const _event = nonprivate? PUSHER.event: `client-${PUSHER.event}`;
+        this.channel = this.pushChannelClient.subscribe(_channelName);
+        this.channel.bind(_event, (data:any) => {
           printCallback(data.message);
         });
       }
@@ -144,7 +146,8 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
 
     _postMessage = (message:string) => {
       if(this.channel) {
-        const isSent = this.channel.trigger(`client-${PUSHER.event}`, {
+        const _event = nonprivate? PUSHER.event: `client-${PUSHER.event}`;
+        const isSent = this.channel.trigger(_event, {
           message: message
         });
         return isSent;
@@ -182,11 +185,16 @@ const withMessenger = (result: any) => <T extends React.Component, OriginalProps
             PUSHER_APP_KEY,
             PUSHER_CLUSTER
           } = process.env;
-          this.pushChannelClient = new PusherJS(PUSHER_APP_KEY, {
+          this.pushChannelClient = nonprivate ?
+            new PusherJS(PUSHER_APP_KEY, {
             cluster: PUSHER_CLUSTER,
-            authEndpoint: PUSHER.endpoint,
             enabledTransports: ["sockjs", "ws"]
-          });
+            })
+            :new PusherJS(PUSHER_APP_KEY, {
+              cluster: PUSHER_CLUSTER,
+              authEndpoint: PUSHER.endpoint,
+              enabledTransports: ["sockjs", "ws"]
+            });
 
           this._subscribeToChannel(this.state.channelName, printEventCallback);
           this._monitorConnected(printConnectionCallback);

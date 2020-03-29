@@ -13,30 +13,24 @@ const FormFill: StatelessPage<any> = () => {
   React.useEffect(()=>{
   },[]);
 
-
-  // const submit = (onSubmitCallback: any) => {
-  //
-  //   if(shouldUpload) {
-  //     const formData = new FormData();
-  //     formData.append("file", acceptedFiles[0]);
-  //
-  //     onSubmitCallback(synthensizedEvent, `Uploading file ${acceptedFiles[0].name}...`, ENUM_DISPLAY_TYPE.SYSTEM);
-  //
-  //     fetch('/api/firebase', {
-  //       method: 'POST',
-  //       body: formData
-  //     })
-  //     .then(resp => (resp.json()))
-  //     .then(data => {
-  //       if(data.status === "ok") {
-  //         onSubmitCallback(synthensizedEvent, data.data, ENUM_DISPLAY_TYPE.MESSAGE);
-  //       }
-  //       else {
-  //         onSubmitCallback(synthensizedEvent, "[File Sent failed]", ENUM_DISPLAY_TYPE.SYSTEM);
-  //       }
-  //     });
-  //   }
-  // }
+  const onSubmit = (been:string, lucky:string) => {
+    fetch("/api/database", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: "",
+        email: "",
+        question1: been,
+        question2: lucky
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+    });
+  }
 
   return (
     <React.Fragment>
@@ -64,7 +58,7 @@ const FormFill: StatelessPage<any> = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              console.log(values);
+              onSubmit(values.been, values.lucky);
               setSubmitting(false);
             }}
           >
@@ -84,18 +78,18 @@ const FormFill: StatelessPage<any> = () => {
                 }
                 <div>
                   <p>
-                    <input className="w3-radio" type="radio" name="been" value="no"
+                    <input className="w3-radio" type="radio" name="been" id="been_no" value="no"
                       onChange={handleChange}
                       checked={values.been === 'no'}
                     />
-                    <label>No</label>
+                    <label htmlFor="been_no">No</label>
                   </p>
                   <p>
-                    <input className="w3-radio" type="radio" name="been" value="yes"
+                    <input className="w3-radio" type="radio" name="been" id="been_yes" value="yes"
                       onChange={handleChange}
                       checked={values.been === 'yes'}
                     />
-                    <label>Yes</label>
+                    <label htmlFor="been_yes">Yes</label>
                   </p>
                 </div>
                 <hr/>
@@ -105,18 +99,18 @@ const FormFill: StatelessPage<any> = () => {
                 }
                 <div>
                   <p>
-                    <input className="w3-radio" type="radio" name="lucky" value="no"
+                    <input className="w3-radio" type="radio" name="lucky" id="lucky_no" value="no"
                       onChange={handleChange}
                       checked={values.lucky === 'no'}
                      />
-                    <label>No</label>
+                    <label htmlFor="lucky_no">No</label>
                   </p>
                   <p>
-                    <input className="w3-radio" type="radio" name="lucky" value="yes"
+                    <input className="w3-radio" type="radio" name="lucky" id="lucky_yes" value="yes"
                       onChange={handleChange}
                       checked={values.lucky === 'yes'}
                     />
-                    <label>Yes</label>
+                    <label htmlFor="lucky_yes">Yes</label>
                   </p>
                 </div>
 
