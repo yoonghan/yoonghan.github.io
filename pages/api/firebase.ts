@@ -5,27 +5,6 @@ import serviceAccount from "../../private/firebase-auth.json";
 import uuidv4 from "uuid/v4";
 import formidable from "formidable";
 
-//Deprecated.
-// const _storeFile = (res: NextApiResponse) => {
-//   const uuid = uuidv4();
-//   const storageBucket = Singleton.getInstance().storage().bucket();
-//   const filename = "type1.jpg";
-//   storageBucket.upload("./static/img/bg/"+filename, {
-//     //predefinedAcl: 'publicRead',
-//     gzip: true,
-//     metadata: {
-//       contentType: 'image/jpeg',
-//       cacheControl: 'public, max-age=3600',
-//       metadata: {
-//         firebaseStorageDownloadTokens: uuid,
-//       }
-//     },
-//   }).then((data) => {
-//     const file = data[0];
-//     res.status(200).json({status: `https://firebasestorage.googleapis.com/v0/b/${file.metadata.bucket}/o/${file.metadata.name}?alt=media&token=${uuid}`});
-//   });
-// }
-//
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
   res.status(405).json(
     {
@@ -114,9 +93,6 @@ export const config = {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json');
   switch(req.method) {
-    // case "POST":
-    //   _storeFile(res);
-    //   break;
     case "POST":
       uploadIntoSystem(req, res);
       break;
