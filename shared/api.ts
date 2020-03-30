@@ -81,8 +81,7 @@ class ApiController {
         appId: PUSHER_NONAUTH_APP_ID||'',
         key: PUSHER_NONAUTH_APP_KEY||'',
         secret: PUSHER_NONAUTH_SECRET||'',
-        cluster: PUSHER_CLUSTER||'',
-        useTLS: true
+        cluster: PUSHER_CLUSTER||''
       });
 
       return pusherClient;
