@@ -69,6 +69,27 @@ class ApiController {
     return undefined;
   }
 
+  public static _initNonAuthPusher() {
+    if(process && process.env.PUSHER_NONAUTH_APP_KEY) {
+      const {
+        PUSHER_NONAUTH_APP_ID,
+        PUSHER_NONAUTH_SECRET,
+        PUSHER_NONAUTH_APP_KEY,
+        PUSHER_CLUSTER
+      } = process.env;
+      const pusherClient = new Pusher({
+        appId: PUSHER_NONAUTH_APP_ID||'',
+        key: PUSHER_NONAUTH_APP_KEY||'',
+        secret: PUSHER_NONAUTH_SECRET||'',
+        cluster: PUSHER_CLUSTER||'',
+        useTLS: true
+      });
+
+      return pusherClient;
+    }
+    return undefined;
+  }
+
   static getPusherApiClient():Pusher {
     if(typeof this.PUSHER_API_CLIENT === 'undefined') {
       throw "No go, no pusher api";

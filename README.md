@@ -43,6 +43,9 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets rm pusher-app-id && now secrets add pusher-app-id 123
 #now secrets add firebase-bucket legocontroller-5c4f6.appspot.com
 #now secrets add firebase-database https://legocontroller-5c4f6.firebaseio.com
+#now secrets add pusher-nonauth-api-id a1
+#now secrets add pusher-nonauth-app-key a2
+#now secrets add pusher-nonauth-secret a3
 
 now secrets add pusher-cluster ap1
 npm run deploy
