@@ -9,7 +9,16 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
   getInitialProps?: () => Promise<P>
 }
 
+enum enumStatuses {
+  INITIAL,
+  SUBMITTING,
+  SUCCESS,
+  FAIL
+}
+
 const FormFill: StatelessPage<any> = (props: any) => {
+
+  const [status, setStatus] = React.useState(enumStatuses.INITIAL);
 
   const onSubmit = (name:string, mobileno:string, been:string, lucky:string) => {
     const data = JSON.stringify({
@@ -18,6 +27,7 @@ const FormFill: StatelessPage<any> = (props: any) => {
       question1: been,
       question2: lucky
     });
+    setStatus(enumStatuses.SUBMITTING);
     fetch("/api/database", {
       method: "POST",
       headers: {
@@ -28,6 +38,11 @@ const FormFill: StatelessPage<any> = (props: any) => {
     .then(response => response.json())
     .then(response => {
       console.log(response);
+      setStatus(enumStatuses.SUCCESS);
+    })
+    .catch((error) => {
+      console.log(error);
+      setStatus(enumStatuses.FAIL);
     });
   }
 
@@ -53,9 +68,8 @@ const FormFill: StatelessPage<any> = (props: any) => {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values) => {
             onSubmit(values.name, values.mobileno, values.been, values.lucky);
-            setSubmitting(false);
           }}
         >
           {({
@@ -139,6 +153,19 @@ const FormFill: StatelessPage<any> = (props: any) => {
     </Formik>)
   }
 
+  const _renderDiv = () => {
+    switch (status) {
+      case enumStatuses.INITIAL:
+        return _drawData();
+      case enumStatuses.SUBMITTING:
+        return <div>Processing</div>
+      case enumStatuses.SUCCESS:
+        return <div>Thank you!</div>
+      default:
+        return <div>Error</div>
+    }
+  }
+
   return (
     <React.Fragment>
       <Head>
@@ -152,8 +179,8 @@ const FormFill: StatelessPage<any> = (props: any) => {
         `}</style>
       </Head>
       <HeaderOne title={"Project Doctor x"} isLined={true}/>
-      {name && _drawData()}
-      {!name && _drawData()}
+      {name && _renderDiv()}
+      {!name && _renderDiv()}
       <Footer/>
     </React.Fragment>
   );

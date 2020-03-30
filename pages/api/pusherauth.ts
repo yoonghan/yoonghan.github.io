@@ -2,10 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
 import fetch from 'isomorphic-unfetch';
 
-const isBypassCheck = (channel_name:string) => {
-  return channel_name === "private-wal_doctorx";
-}
-
 const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
   const {socket_id, channel_name} = req.body;
   console.log(`Fetching manipulator @ ${ApiController.AUTH_API_URL}`);
@@ -27,14 +23,7 @@ const _postMessage = (req: NextApiRequest, res: NextApiResponse) => {
         }
       }
       else {
-        if(isBypassCheck(channel_name)) {
-          const client = ApiController.getPusherApiClient();
-          const auth = client.authenticate(socket_id, channel_name);
-          res.status(200).json(auth);
-        }
-        else {
-          res.status(500).json({error: "Channel expired"});
-        }
+        res.status(500).json({error: "Channel expired"});
       }
     });
 }
