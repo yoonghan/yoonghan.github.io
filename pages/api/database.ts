@@ -15,7 +15,7 @@ const sentToPusher = (message: string) => {
   const channelName = `${PUSHER.channel_prefix}${'doctorx'}`;
 
   if(pusher !== null && typeof pusher !== "undefined"){
-    const result = pusher.trigger(channelName, `${PUSHER.event}`, {
+    pusher.trigger(channelName, `${PUSHER.event}`, {
       "message": message
     });
   }

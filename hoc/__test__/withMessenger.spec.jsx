@@ -69,12 +69,12 @@ describe('HOC WithMessenger', () => {
       wrapper.find(SampleComponent).props().messengerApi.connect(channelName, mockPrintConnectionCallback, mockPrintEventCallback);
       wrapper.update();
     });
-    it('renders correctly', () => {
+    it('renders with connectivity error', () => {
       //First state
       const updatedState = wrapper.find(parentComponentName).state();
       expect(updatedState.channelName).toBe(PUSHER.channel_prefix+channelName);
-      expect(updatedState.connectionStatus).toBe(3);
-      expect(errorEventCall).toBe("Disconnected");
+      expect(updatedState.connectionStatus).toBe(0);
+      expect(errorEventCall).toBe("Configuration error. Please inform administrator.");
     })
   })
 });

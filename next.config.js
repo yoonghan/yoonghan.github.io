@@ -46,7 +46,7 @@ withBundleAnalyzer(
         },
         env: {
           PUSHER_APP_KEY: process.env.PUSHER_APP_KEY,
-          PUSHER_NONAUTH_APP_KEY: process.env.PUSHER_APP_KEY,
+          PUSHER_NONAUTH_APP_KEY: process.env.PUSHER_NONAUTH_APP_KEY,
           PUSHER_CLUSTER: process.env.PUSHER_CLUSTER
         }
       }
