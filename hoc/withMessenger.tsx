@@ -190,7 +190,18 @@ const withMessenger = (result: any, nonprivate=false) => <T extends React.Compon
             PUSHER_NONAUTH_APP_KEY,
             PUSHER_CLUSTER
           } = process.env;
-          console.log(`1:${PUSHER_NONAUTH_APP_KEY}, 2: ${nonprivate}`);
+
+          this.pushChannelClient = nonprivate ?
+            new PusherJS(PUSHER_NONAUTH_APP_KEY, {
+            cluster: PUSHER_CLUSTER,
+            enabledTransports: ["sockjs", "ws"]
+            })
+            :new PusherJS(PUSHER_APP_KEY, {
+              cluster: PUSHER_CLUSTER,
+              authEndpoint: PUSHER.endpoint,
+              enabledTransports: ["sockjs", "ws"]
+            });
+
           this.pushChannelClient = new PusherJS(
               (nonprivate?PUSHER_NONAUTH_APP_KEY:PUSHER_APP_KEY), {
               cluster: PUSHER_CLUSTER,
