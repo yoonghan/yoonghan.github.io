@@ -9,15 +9,33 @@ const getRef = () => {
   return ref;
 }
 
-const sentToPusher = (message: string) => {
+const sentToPusher = (message: string, res: NextApiResponse) => {
   const pusher = ApiController._initNonAuthPusher();
 
   const channelName = `${PUSHER.channel_prefix}${'doctorx'}`;
 
-  if(pusher !== null && typeof pusher !== "undefined"){
-    pusher.trigger(channelName, `${PUSHER.event}`, {
+  if(pusher !== null && typeof pusher !== "undefined") {
+    pusher.trigger(
+      channelName,
+      `${PUSHER.event}`,
+      {
       "message": message
-    });
+      },
+      () => {
+        res.status(200).json(
+          {
+            "status": "ok"
+          }
+        )
+      }
+    );
+  }
+  else {
+    res.status(400).json(
+      {
+        "status": "fail"
+      }
+    );
   }
 }
 
@@ -26,18 +44,7 @@ const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
   const ref = getRef();
   const dataAsJSON = JSON.parse(data);
   ref.set(dataAsJSON);
-  ref.on("value", function(snapshot) {
-    if(snapshot !== null) {
-      snapshot.val();
-    }
-    sentToPusher(data);
-  });
-
-  res.status(200).json(
-    {
-      "status": "ok"
-    }
-  );
+  sentToPusher(data, res);
 }
 
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
