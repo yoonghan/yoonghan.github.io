@@ -32,10 +32,9 @@ const FormFill: StatelessPage<any> = (props: any) => {
   }
 
   const {name, mobile_no} = props.router.query;
-
   const _drawData = () => {
     return (<Formik
-          initialValues={{ been: '', lucky: '', name: name, mobileno: mobile_no }}
+          initialValues={{ been: '', lucky: '', name: name||'', mobileno: mobile_no||'' }}
           validateOnChange={false}
           validateOnBlur={false}
           validate={values => {
@@ -154,6 +153,7 @@ const FormFill: StatelessPage<any> = (props: any) => {
       </Head>
       <HeaderOne title={"Project Doctor x"} isLined={true}/>
       {name && _drawData()}
+      {!name && _drawData()}
       <Footer/>
     </React.Fragment>
   );
