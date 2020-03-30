@@ -180,21 +180,22 @@ const withMessenger = (result: any, nonprivate=false) => <T extends React.Compon
         connectionStatus === EnumConnection.StartConnecting
       ) {
         printConnectionCallback("Establishing Connection");
-        if(!this.pushChannelClient && process && process.env.PUSHER_APP_KEY) {
+        if(!this.pushChannelClient
+          && process
+          && process.env.PUSHER_APP_KEY
+          && process.env.PUSHER_NONAUTH_APP_KEY
+        ) {
           const {
             PUSHER_APP_KEY,
+            PUSHER_NONAUTH_APP_KEY,
             PUSHER_CLUSTER
           } = process.env;
-          this.pushChannelClient = nonprivate ?
-            new PusherJS(PUSHER_APP_KEY, {
-            cluster: PUSHER_CLUSTER,
-            enabledTransports: ["sockjs", "ws"]
-            })
-            :new PusherJS(PUSHER_APP_KEY, {
+          this.pushChannelClient = new PusherJS(
+              (nonprivate?PUSHER_NONAUTH_APP_KEY:PUSHER_APP_KEY), {
               cluster: PUSHER_CLUSTER,
-              authEndpoint: PUSHER.endpoint,
               enabledTransports: ["sockjs", "ws"]
-            });
+              }
+            );
 
           this._subscribeToChannel(this.state.channelName, printEventCallback);
           this._monitorConnected(printConnectionCallback);
