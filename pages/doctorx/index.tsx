@@ -12,6 +12,7 @@ enum EnumDisplayState {
 };
 
 const printSystem = (setDisplayState:any) => (msg:string) => {
+  console.log(msg, "connection status");
   if(msg === "Disconnected") {
     setDisplayState(EnumDisplayState.CLOSED);
   }

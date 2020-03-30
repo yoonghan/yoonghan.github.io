@@ -10,12 +10,12 @@ const getRef = () => {
 }
 
 const sentToPusher = (message: string) => {
-  const pusher = ApiController._initPusher();
+  const pusher = ApiController._initNonAuthPusher();
 
   const channelName = `${PUSHER.channel_prefix}${'doctorx'}`;
 
   if(pusher !== null && typeof pusher !== "undefined"){
-    pusher.trigger(channelName, `${PUSHER.event}`, {
+    const result = pusher.trigger(channelName, `${PUSHER.event}`, {
       "message": message
     });
   }
