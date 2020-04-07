@@ -18,7 +18,7 @@ const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const readFromDb = async (req: NextApiRequest, res: NextApiResponse) => {
   const ref = getRef();
-  ref('survey/').once('value').then(function(snapshot) {
+  ref.once('value').then(function(snapshot) {
     const surveyInfo = snapshot.val();
     res.status(200).json(surveyInfo);
   });
