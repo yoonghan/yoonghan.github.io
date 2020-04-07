@@ -3,28 +3,65 @@ import SurveyTitle from "./SurveyTitle";
 import SurveyDescription from "./SurveyDescription";
 import SurveyFixed from "./SurveyFixed";
 import SurveyQuestion from "./SurveyQuestion";
+import Declaration from "./Declaration";
+import Consensus from "./Consensus";
 import { useInputValue } from "./hooks";
 import Question from "./models/Question";
 import ListController from "./controllers/ListController";
+import { useAlert } from 'react-alert';
+
 
 export default function SurveyBuilder() {
+  const alert = useAlert();
+  const [saveBtnDisabled, setSaveBtnDisabled] = React.useState(false);
   const [title, handleChangeTitle] = useInputValue("New Survey");
-  const [description, handleChangeDescription] = useInputValue("Explain the purpose of collecting input");
+  const [description, handleChangeDescription] = useInputValue("This is subject for declaring my travel for MOH of Singapore.");
+  const [declaration, handleChangeDeclaration] = useInputValue("I hearby declare that all the information provided are correct and justified.");
+  const [consensus, handleChangeConsensus] = useInputValue("I understand that the information provided are for not for public use and it is to confirm with MOH of Singapore as a citizen, visitor, temporary/permanent residence to declare my travel.");
   const [questions, setQuestions] = useState([
     new Question({
       text: "Have you just returned from overseas after 14 days",
       options: ["Yes", "No"]
     })
   ]);
-
   const listController = new ListController(questions, setQuestions);
+
+  const saveToDatabase = (event) => {
+    setSaveBtnDisabled(true);
+    fetch("/api/survey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({survey: {
+        title,
+        description,
+        declaration,
+        consensus,
+        questions
+      }})
+    })
+    .then(response => response.json())
+    .then(response => {
+      alert.success('Form successfully save/updated');
+      setSaveBtnDisabled(false);
+    })
+    .catch((error) => {
+      alert.error('Form failed to save');
+      setSaveBtnDisabled(false);
+    });
+  }
 
   return (
     <div>
       <header className={'container'}>
         <div className={'container-toolbar'}>
           Click "Save" once all changes are ready.
-          <button className="pure-button pure-button-primary">
+          <button
+            className="pure-button pure-button-primary"
+            onClick={saveToDatabase}
+            disabled={saveBtnDisabled}
+            >
             Save
           </button>
         </div>
@@ -57,6 +94,11 @@ export default function SurveyBuilder() {
           <i className="fas fa-plus icon" />
           Add Question
         </button>
+        <hr/>
+        <i>SECTION: Consensus & Declaration</i>
+        <Declaration declaration={declaration} handleChangeDeclaration={handleChangeDeclaration} />
+        <Consensus consensus={consensus} handleChangeConsensus={handleChangeConsensus} />
+
       </form>
       <footer/>
       <style jsx>{`
@@ -81,6 +123,9 @@ export default function SurveyBuilder() {
         }
         footer {
           margin-bottom: 20rem;
+        }
+        hr {
+          margin: 3rem 0;
         }
       `}</style>
     </div>

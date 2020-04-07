@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SurveyDescription({ description, handleChangeDescription }) {
+export default function SurveyTitle({ declaration, handleChangeDeclaration }) {
   const [editing, setEditing] = useState(false);
 
   function toggleEditing() {
@@ -13,12 +13,12 @@ export default function SurveyDescription({ description, handleChangeDescription
         {editing ? (
           <>
             <i className="fas fa-save icon" />
-            Save Description
+            Save Declaration
           </>
         ) : (
           <>
             <i className="fas fa-pen icon" />
-            Edit Description
+            Edit Declaration
           </>
         )}
       </button>
@@ -26,12 +26,12 @@ export default function SurveyDescription({ description, handleChangeDescription
         {editing ? (
           <textarea
             className="pure-input-1-2"
-            placeholder="Description to user why this is needed"
-            value={description}
-            onChange={handleChangeDescription}>
+            placeholder="Information why user needs to sign this form"
+            value={declaration}
+            onChange={handleChangeDeclaration}>
           </textarea>
         ) : (
-          description
+          declaration
         )}
       </p>
       <style jsx>{`
