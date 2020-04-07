@@ -1,10 +1,18 @@
 import React from "react";
 import SurveyBuilder from "../../components/SurveyBuilder";
 import Head from "next/head";
+import { positions, Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
+
+const options = {
+  position: positions.TOP_RIGHT,
+  timeout: 3000,
+  offset: '10px',
+}
 
 const Questionaires:any = () => {
   return (
-    <React.Fragment>
+    <AlertProvider template={AlertTemplate} {...options}>
       <Head>
         <title>Question Builder</title>
         <link href="/static/css/common.css" rel="stylesheet" />
@@ -20,7 +28,7 @@ const Questionaires:any = () => {
         </style>
       </Head>
       <SurveyBuilder/>
-    </React.Fragment>
+    </AlertProvider>
   )
 }
 

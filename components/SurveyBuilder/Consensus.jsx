@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SurveyDescription({ description, handleChangeDescription }) {
+export default function SurveyTitle({ consensus, handleChangeConsensus }) {
   const [editing, setEditing] = useState(false);
 
   function toggleEditing() {
@@ -13,12 +13,12 @@ export default function SurveyDescription({ description, handleChangeDescription
         {editing ? (
           <>
             <i className="fas fa-save icon" />
-            Save Description
+            Save Consensus
           </>
         ) : (
           <>
             <i className="fas fa-pen icon" />
-            Edit Description
+            Edit Consensus
           </>
         )}
       </button>
@@ -26,12 +26,12 @@ export default function SurveyDescription({ description, handleChangeDescription
         {editing ? (
           <textarea
             className="pure-input-1-2"
-            placeholder="Description to user why this is needed"
-            value={description}
-            onChange={handleChangeDescription}>
+            placeholder="Information that user agrees to the form upon submission"
+            value={consensus}
+            onChange={handleChangeConsensus}>
           </textarea>
         ) : (
-          description
+          consensus
         )}
       </p>
       <style jsx>{`
