@@ -18,6 +18,10 @@ export default class ListController {
     this.callback(helpers.remove(this.array, index));
   }
 
+  removeByValue(value) {
+    this.callback(helpers.removeByValue(this.array, value));
+  }
+
   moveUp(index) {
     let newIndex = index === 0 ? index : index - 1;
     this.callback(helpers.move(this.array, index, newIndex));

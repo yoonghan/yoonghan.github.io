@@ -13,3 +13,7 @@ export function insert(array, index, element) {
 export function move(array, fromIndex, toIndex) {
   return insert(remove(array, fromIndex), toIndex, array[fromIndex])
 }
+
+export function removeByValue(array, value) {
+  return array.filter((elem)=>elem != value);
+}

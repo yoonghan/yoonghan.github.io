@@ -10,24 +10,37 @@ import Question from "./models/Question";
 import ListController from "./controllers/ListController";
 import { useAlert } from 'react-alert';
 
+const writeAsJson = (questions) => {
+  const init = {};
+  return questions.map((question) => {
+    return {
+      text: question.text,
+      type: question.type,
+      options: question.options
+    }
+  });
+}
 
 export default function SurveyBuilder() {
   const alert = useAlert();
-  const [saveBtnDisabled, setSaveBtnDisabled] = React.useState(false);
+  const [saveBtnDisabled, setSaveBtnDisabled] = useState(false);
   const [title, handleChangeTitle] = useInputValue("New Survey");
   const [description, handleChangeDescription] = useInputValue("This is subject for declaring my travel for MOH of Singapore.");
   const [declaration, handleChangeDeclaration] = useInputValue("I hearby declare that all the information provided are correct and justified.");
   const [consensus, handleChangeConsensus] = useInputValue("I understand that the information provided are for not for public use and it is to confirm with MOH of Singapore as a citizen, visitor, temporary/permanent residence to declare my travel.");
+  const [fixedQuestions, setFixedQuestions] = useState([]);
   const [questions, setQuestions] = useState([
     new Question({
       text: "Have you just returned from overseas after 14 days",
       options: ["Yes", "No"]
     })
   ]);
-  const listController = new ListController(questions, setQuestions);
+  const listQuestionController = new ListController(questions, setQuestions);
+  const listFixedQuestionController = new ListController(fixedQuestions, setFixedQuestions);
 
   const saveToDatabase = (event) => {
     setSaveBtnDisabled(true);
+    const jsonQuestion = writeAsJson(questions);
     fetch("/api/survey", {
       method: "POST",
       headers: {
@@ -38,7 +51,8 @@ export default function SurveyBuilder() {
         description,
         declaration,
         consensus,
-        questions
+        fixedQuestions,
+        question: jsonQuestion
       }})
     })
     .then(response => response.json())
@@ -75,7 +89,11 @@ export default function SurveyBuilder() {
         <SurveyDescription description={description} handleChangeDescription={handleChangeDescription} />
         <hr/>
         <i>SECTION: *Required User particulars</i>
-        <SurveyFixed/>
+        <SurveyFixed
+          question={fixedQuestions}
+          setQuestion={(question) => listFixedQuestionController.add(question)}
+          removeQuestion={(question) => listFixedQuestionController.removeByValue(question)}
+          />
         <hr/>
         <i>SECTION: Open Questionaires</i>
         <ol>
@@ -83,14 +101,14 @@ export default function SurveyBuilder() {
             <SurveyQuestion
               key={question.id}
               question={question}
-              setQuestion={question => listController.set(i, question)}
-              removeQuestion={() => listController.remove(i)}
-              moveQuestionUp={() => listController.moveUp(i)}
-              moveQuestionDown={() => listController.moveDown(i)}
+              setQuestion={question => listQuestionController.set(i, question)}
+              removeQuestion={() => listQuestionController.remove(i)}
+              moveQuestionUp={() => listQuestionController.moveUp(i)}
+              moveQuestionDown={() => listQuestionController.moveDown(i)}
             />
           ))}
         </ol>
-        <button onClick={() => listController.add(new Question())} className="pure-button">
+        <button onClick={() => listQuestionController.add(new Question())} className="pure-button">
           <i className="fas fa-plus icon" />
           Add Question
         </button>
