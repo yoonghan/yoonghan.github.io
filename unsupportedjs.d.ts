@@ -13,3 +13,10 @@ declare module "react-coverflow" {
   }
   export default Coverflow;
 }
+
+declare module "react-alert-template-basic" {
+  class AlertTemplate extends React.Component<any, any> {
+  }
+
+  export default AlertTemplate;
+}
