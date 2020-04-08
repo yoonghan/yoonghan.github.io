@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SurveyDescription({ description, handleChangeDescription }) {
+const SurveyDescription = ({ description, handleChangeDescription }) => {
   const [editing, setEditing] = useState(false);
 
   function toggleEditing() {
@@ -52,3 +52,5 @@ export default function SurveyDescription({ description, handleChangeDescription
     </div>
   );
 }
+
+export default SurveyDescription;
