@@ -73,6 +73,7 @@ export default function SurveyBuilder(props) {
           else if(values[elem].length === 0) {
             errors[elem] = 'checked';
           }
+          window.scrollTo(0,0);
         }
         return errors;
       }}

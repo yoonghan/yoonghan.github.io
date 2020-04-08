@@ -22,9 +22,6 @@ const FormFill: StatelessPage<any> = (props: any) => {
 
   const onSubmit = (values:object) => {
     const data = JSON.stringify(values);
-    
-    window.scrollTo(0,0);
-
     setStatus(enumStatuses.SUBMITTING);
     fetch("/api/questions", {
       method: "POST",
@@ -34,10 +31,10 @@ const FormFill: StatelessPage<any> = (props: any) => {
       body: JSON.stringify({data: data})
     })
     .then(response => response.json())
-    .then(response => {
+    .then(() => {
       setStatus(enumStatuses.SUCCESS);
     })
-    .catch((error) => {
+    .catch(() => {
       setStatus(enumStatuses.FAIL);
     });
   }
