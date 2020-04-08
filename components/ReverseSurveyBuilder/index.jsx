@@ -16,12 +16,25 @@ const _showError = (errors) => {
 }
 
 export default function SurveyBuilder(props) {
-  const {title, description, consensus, declaration, fixedQuestions, questions, handleSubmit} = props;
+  const {title, description, consensus, declaration, fixedQuestions, questions, handleSubmit, name, mobileno, address} = props;
+
+  const setDefaultValue = (str) => {
+    switch(str) {
+      case "name":
+        return name;
+      case "phonenumber":
+        return mobileno;
+      case "address":
+        return address;
+      default:
+        return '';
+    }
+  }
 
   const _initialValue = useCallback(() => {
     const initObj = { consensus: [], declaration: [] };
     for(let i = 0; i<fixedQuestions.length; i++) {
-      initObj[fixedQuestions[i]] = '';
+      initObj[fixedQuestions[i]] = setDefaultValue(fixedQuestions[i]);
     }
     for(let i = 0; i<questions.length; i++) {
       const {text, type} = questions[i];

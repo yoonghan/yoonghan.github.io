@@ -4,7 +4,7 @@ import { PUSHER } from "../../shared/const";
 
 const dbname = "questions";
 
-const getRef = (identifier) => {
+const getRef = (identifier:string) => {
   const db = ApiController.getFirebaseInitializeApp().database();
   const ref = db.ref(`${dbname}/${identifier}`);
   return ref;
@@ -42,7 +42,7 @@ const sentToPusher = (message: string, res: NextApiResponse) => {
 
 const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
   const {data} = req.body;
-  const ref = getRef(new Date().getTime());
+  const ref = getRef('' + new Date().getTime());
   const dataAsJSON = JSON.parse(data);
   ref.set(dataAsJSON);
   sentToPusher(data, res);
