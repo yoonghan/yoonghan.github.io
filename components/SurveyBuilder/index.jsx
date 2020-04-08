@@ -52,7 +52,7 @@ export default function SurveyBuilder() {
         declaration,
         consensus,
         fixedQuestions,
-        question: jsonQuestion
+        questions: jsonQuestion
       }})
     })
     .then(response => response.json())

@@ -12,11 +12,11 @@ export default function FixedQuestions({questions, values, handleChange}) {
       default:
         return "OOPS, not defined, please check with administrator!!";
     }
-  }, []);
+  }, [values]);
 
-  const _drawComponent = useCallback((values) => {
-    return values.map((elem, idx) => (
-      <div key={`q_${idx}`}>
+  const _drawComponent = useCallback((questions) => {
+    return questions.map((elem, idx) => (
+      <div key={`fq_${idx}`}>
         <label>{_getLabelName(elem)}</label>
         <input
           type="text"
@@ -26,7 +26,7 @@ export default function FixedQuestions({questions, values, handleChange}) {
           onChange={handleChange} required/>
       </div>
     ));
-  }, []);
+  }, [values]);
 
   return (
     <fieldset>

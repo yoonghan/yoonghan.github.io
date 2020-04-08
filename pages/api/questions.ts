@@ -2,10 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
 import { PUSHER } from "../../shared/const";
 
+const dbname = "questions";
 
-const getRef = () => {
+const getRef = (identifier) => {
   const db = ApiController.getFirebaseInitializeApp().database();
-  const ref = db.ref("questionaires");
+  const ref = db.ref(`${dbname}/${identifier}`);
   return ref;
 }
 
@@ -41,10 +42,18 @@ const sentToPusher = (message: string, res: NextApiResponse) => {
 
 const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
   const {data} = req.body;
-  const ref = getRef();
+  const ref = getRef(new Date().getTime());
   const dataAsJSON = JSON.parse(data);
   ref.set(dataAsJSON);
   sentToPusher(data, res);
+}
+
+const retriveDb = async (req: NextApiRequest, res: NextApiResponse) => {
+  const ref = getRef('');
+  ref.once('value').then(function(snapshot) {
+    const questionaires = snapshot.val();
+    res.status(200).json(questionaires);
+  });
 }
 
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
@@ -62,6 +71,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch(req.method) {
     case "POST":
       writeToDb(req, res);
+      break;
+    case "GET":
+      retriveDb(req, res);
       break;
     default:
       _sendMethodError(
