@@ -20,11 +20,32 @@ enum enumStatuses {
 const FormFill: StatelessPage<any> = (props: any) => {
   const [status, setStatus] = React.useState(enumStatuses.INITIAL);
 
+  const onSubmit = (values:object) => {
+    const data = JSON.stringify(values);
+    setStatus(enumStatuses.SUBMITTING);
+    fetch("/api/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({data: data})
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      setStatus(enumStatuses.SUCCESS);
+    })
+    .catch((error) => {
+      console.log(error);
+      setStatus(enumStatuses.FAIL);
+    });
+  }
+
   const {name} = props.router.query;
   const _drawData = () => {
     const {survey} = props;
     return (
-        <ReverseSurveyBuilder {...survey} changeStatus={setStatus}/>
+        <ReverseSurveyBuilder {...survey} handleSubmit={onSubmit}/>
     )
   }
 

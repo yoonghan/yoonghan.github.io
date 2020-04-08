@@ -1,41 +1,14 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Formik } from 'formik';
 import FixedQuestions from "./FixedQuestions";
+import OpenQuestions, {replaceAsName, determineInitialValue} from "./OpenQuestions";
 import Declaration from "./Declaration";
-
-/**
-const onSubmit = (name:string, mobileno:string, been:string, lucky:string) => {
-  const data = JSON.stringify({
-    name: name,
-    mobileno: mobileno,
-    question1: been,
-    question2: lucky
-  });
-  setStatus(enumStatuses.SUBMITTING);
-  fetch("/api/database", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({data: data})
-  })
-  .then(response => response.json())
-  .then(response => {
-    console.log(response);
-    setStatus(enumStatuses.SUCCESS);
-  })
-  .catch((error) => {
-    console.log(error);
-    setStatus(enumStatuses.FAIL);
-  });
-}
-**/
 
 const _showError = (errors) => {
   let counter = 0;
   const messageArr = [];
   for(let error in errors) {
-    const errorMessage = `${error.toUpperCase()} must be ${errors[error]}`;
+    const errorMessage = `${error.toUpperCase().replace(/_/g, " ")} must be ${errors[error]}`;
     messageArr.push(<li key={`err_${counter}`}>{errorMessage}</li>);
     counter++;
   }
@@ -43,12 +16,16 @@ const _showError = (errors) => {
 }
 
 export default function SurveyBuilder(props) {
-  const {title, description, consensus, declaration, fixedQuestions} = props;
+  const {title, description, consensus, declaration, fixedQuestions, questions, handleSubmit} = props;
 
   const _initialValue = useCallback(() => {
-    const initObj = { consensus: [], declaration: []};
+    const initObj = { consensus: [], declaration: [] };
     for(let i = 0; i<fixedQuestions.length; i++) {
       initObj[fixedQuestions[i]] = '';
+    }
+    for(let i = 0; i<questions.length; i++) {
+      const {text, type} = questions[i];
+      initObj[replaceAsName(text, i)] = determineInitialValue(type);
     }
     return initObj;
   }, []);
@@ -87,7 +64,7 @@ export default function SurveyBuilder(props) {
         return errors;
       }}
       onSubmit={(values) => {
-        //onSubmit(values.consensus, values.declaration);
+        handleSubmit(values);
       }}
     >
     {({
@@ -104,6 +81,8 @@ export default function SurveyBuilder(props) {
             (Object.keys(errors).length !== 0 || errors.constructor !== Object) && _drawErrorComponent(errors)
           }
           <FixedQuestions questions = {fixedQuestions} handleChange={handleChange} values={values}/>
+          <hr/>
+          <OpenQuestions questions = {questions} handleChange={handleChange} values={values}/>
           <hr/>
           <Declaration declaration={declaration} consensus={consensus} handleChange={handleChange} values={values}/>
           <hr/>
