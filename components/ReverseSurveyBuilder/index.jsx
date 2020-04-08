@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Formik } from 'formik';
+import FixedQuestions from "./FixedQuestions";
+import Declaration from "./Declaration";
 
 /**
 const onSubmit = (name:string, mobileno:string, been:string, lucky:string) => {
@@ -29,21 +31,58 @@ const onSubmit = (name:string, mobileno:string, been:string, lucky:string) => {
 }
 **/
 
+const _showError = (errors) => {
+  let counter = 0;
+  const messageArr = [];
+  for(let error in errors) {
+    const errorMessage = `${error.toUpperCase()} must be ${errors[error]}`;
+    messageArr.push(<li key={`err_${counter}`}>{errorMessage}</li>);
+    counter++;
+  }
+  return messageArr;
+}
 
-export default function SurveyBuilder({title, description, consensus, declaration}) {
+export default function SurveyBuilder(props) {
+  const {title, description, consensus, declaration, fixedQuestions} = props;
+
+  const _initialValue = useCallback(() => {
+    const initObj = { consensus: [], declaration: []};
+    for(let i = 0; i<fixedQuestions.length; i++) {
+      initObj[fixedQuestions[i]] = '';
+    }
+    return initObj;
+  }, []);
+
+  const _drawErrorComponent = (errors) => {
+    return (
+      <>
+        <div className="w3-card w3-pale-red w3-padding">
+          <strong className="w3-text-red">Errors</strong>
+          <ul className="w3-text-red">
+            {_showError(errors)}
+          </ul>
+        </div>
+        <hr/>
+      </>
+    );
+  }
+
+  const initValues = _initialValue();
+
   return (
     <Formik
-      initialValues={{ consensus: [], declaration: [] }}
+      initialValues={initValues}
       validateOnChange={false}
       validateOnBlur={false}
       validate={values => {
-        console.log(values);
         const errors = {};
-        if (values.consensus.length === 0) {
-          errors["consensus"] = 'Required';
-        }
-        if (values.declaration.length === 0) {
-          errors["declaration"] = 'Required';
+        for(let elem in initValues) {
+          if(values[elem].trim && values[elem].trim === '') {
+            errors[elem] = 'filled';
+          }
+          else if(values[elem].length === 0) {
+            errors[elem] = 'checked';
+          }
         }
         return errors;
       }}
@@ -62,22 +101,11 @@ export default function SurveyBuilder({title, description, consensus, declaratio
         <p>{description}</p>
         <form onSubmit={handleSubmit} className="w3-padding w3-card-4">
           {
-            (errors.consensus || errors.declaration) && <p className="w3-text-red">You need to accept the declaration</p>
+            (Object.keys(errors).length !== 0 || errors.constructor !== Object) && _drawErrorComponent(errors)
           }
-          <fieldset>
-            <input className="w3-check" type="checkbox" name="consensus" id="consensus" value="yes"
-              onChange={handleChange}
-              checked={values.consensus.length===1}
-            />
-            <label htmlFor="been_no">{consensus}</label>
-          </fieldset>
-          <fieldset>
-            <input className="w3-check" type="checkbox" name="declaration" id="declaration" value="yes"
-              onChange={handleChange}
-              checked={values.declaration.length===1}
-            />
-            <label htmlFor="been_no">{declaration}</label>
-          </fieldset>
+          <FixedQuestions questions = {fixedQuestions} handleChange={handleChange} values={values}/>
+          <hr/>
+          <Declaration declaration={declaration} consensus={consensus} handleChange={handleChange} values={values}/>
           <hr/>
           <button type="submit">Submit</button>
         </form>
