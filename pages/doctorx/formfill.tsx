@@ -22,7 +22,9 @@ const FormFill: StatelessPage<any> = (props: any) => {
 
   const onSubmit = (values:object) => {
     const data = JSON.stringify(values);
-    document.scrollTo(0,0);
+    
+    window.scrollTo(0,0);
+
     setStatus(enumStatuses.SUBMITTING);
     fetch("/api/questions", {
       method: "POST",
