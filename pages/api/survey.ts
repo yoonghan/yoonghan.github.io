@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
-import { PUSHER } from "../../shared/const";
 
 const getRef = () => {
   const db = ApiController.getFirebaseInitializeApp().database();
@@ -16,7 +15,7 @@ const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json({"status": "ok"});
 }
 
-const readFromDb = async (req: NextApiRequest, res: NextApiResponse) => {
+const readFromDb = async ({}, res: NextApiResponse) => {
   const ref = getRef();
   ref.once('value').then(function(snapshot) {
     const surveyInfo = snapshot.val();
