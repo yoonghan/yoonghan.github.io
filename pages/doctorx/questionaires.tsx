@@ -1,8 +1,8 @@
 import React from "react";
-import SurveyBuilder from "../../components/SurveyBuilder";
 import Head from "next/head";
 import { positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import SurveyBuilder from '../../components/SurveyBuilder';
 
 const options = {
   position: positions.TOP_RIGHT,

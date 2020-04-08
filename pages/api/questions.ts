@@ -48,7 +48,7 @@ const writeToDb = async (req: NextApiRequest, res: NextApiResponse) => {
   sentToPusher(data, res);
 }
 
-const retriveDb = async (req: NextApiRequest, res: NextApiResponse) => {
+const retriveDb = async ({}, res: NextApiResponse) => {
   const ref = getRef('');
   ref.once('value').then(function(snapshot) {
     const questionaires = snapshot.val();
