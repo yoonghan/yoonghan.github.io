@@ -202,13 +202,6 @@ const withMessenger = (result: any, nonprivate=false) => <T extends React.Compon
               enabledTransports: ["sockjs", "ws"]
             });
 
-          this.pushChannelClient = new PusherJS(
-              (nonprivate?PUSHER_NONAUTH_APP_KEY:PUSHER_APP_KEY), {
-              cluster: PUSHER_CLUSTER,
-              enabledTransports: ["sockjs", "ws"]
-              }
-            );
-
           this._subscribeToChannel(this.state.channelName, printEventCallback);
           this._monitorConnected(printConnectionCallback);
           this._monitorError(printConnectionCallback);
