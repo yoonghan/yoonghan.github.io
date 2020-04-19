@@ -39,11 +39,11 @@ const FormFill: StatelessPage<any> = (props: any) => {
     });
   }
 
-  const {name, mobileno, address} = props.router.query;
+  const {name, mobile_no, address} = props.router.query;
   const _drawData = () => {
     const {survey} = props;
     return (
-        <ReverseSurveyBuilder {...survey} handleSubmit={onSubmit} name={name||''} mobileno={mobileno||''} address={address||''}/>
+        <ReverseSurveyBuilder {...survey} handleSubmit={onSubmit} name={name||''} mobileno={mobile_no||''} address={address||''}/>
     )
   }
 
@@ -73,8 +73,8 @@ const FormFill: StatelessPage<any> = (props: any) => {
         `}</style>
       </Head>
       <HeaderOne title={"Project Doctor x"} isLined={true}/>
-      {(name || address || mobileno) && _renderDiv()}
-      {(!name && !address && !mobileno) && _renderDiv()}
+      {(name || address || mobile_no) && _renderDiv()}
+      {(!name && !address && !mobile_no) && _renderDiv()}
       <div style={{padding: '2rem 0'}} />
       <Footer/>
     </React.Fragment>
