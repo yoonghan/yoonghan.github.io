@@ -73,17 +73,23 @@ const Doctorx:any = (props: DoctorxProps) => {
     switch(displayState) {
       case EnumDisplayState.QRCODE:
         return (
-          <div style={{display:"flex", flexDirection: "column"}}>
+          <div style={{display:"flex", flexDirection: "row"}}>
             <div>
-              <span>NON GOOGLE</span>
+              <span>CUSTOM Form</span>
               <div style={{textAlign:"center", padding: "40px"}}>
                 <canvas ref={canvasref} className="container"/>
               </div>
             </div>
             <div>
-              <span>GOOGLE</span>
+              <span>GOOGLE Form</span>
               <div style={{textAlign:"center", padding: "40px"}}>
                 <canvas ref={canvas2ref} className="container"/>
+              </div>
+            </div>
+            <div>
+              <span>NOT SCANNABLE Form</span>
+              <div style={{textAlign:"center", padding: "40px"}}>
+                <img src="https://i.pinimg.com/474x/d6/b1/b6/d6b1b6a619fdbbc777196a277c0fa049.jpg" style={{width:"200px"}}/>
               </div>
             </div>
           </div>)
@@ -106,6 +112,7 @@ const Doctorx:any = (props: DoctorxProps) => {
     <React.Fragment>
       <HeaderOne title={"Project Doctor x"} isLined={true}/>
       { _displayBody() }
+      <div>To create one, click <a href="/doctorx/questionaires">!!here!!</a></div>
       <Footer/>
     </React.Fragment>
   );
