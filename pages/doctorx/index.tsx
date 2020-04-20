@@ -43,9 +43,11 @@ interface DoctorxProps {
 const Doctorx:any = (props: DoctorxProps) => {
   const {messengerApi} = props;
   const canvasref = React.useRef(null);
+  const canvas2ref = React.useRef(null);
   const [displayState, setDisplayState] = React.useState(EnumDisplayState.QRCODE);
   const [info, setInfo] = React.useState({});
   const toFillUrl = "https://www.walcron.com/doctorx/formfill";
+  const toFillGoogleUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeFqSnCnMQG9T8481HHhEwidLzgwefnfh3vUVebHpH0BfNYyA/viewform";
   const _printSystem = React.useMemo(
     ()=>printSystem(setDisplayState)
     ,[displayState]);;
@@ -60,12 +62,31 @@ const Doctorx:any = (props: DoctorxProps) => {
         console.error("Canvas generation failed." + error);
       })
     }
+    if(canvas2ref !== null && canvas2ref.current !== null) {
+      QRCode.toCanvas(canvas2ref.current, toFillGoogleUrl, function (error) {
+        console.error("Canvas generation failed." + error);
+      })
+    }
   },[]);
 
   const _displayBody = () => {
     switch(displayState) {
       case EnumDisplayState.QRCODE:
-        return <div style={{textAlign:"center", padding: "40px"}}><canvas ref={canvasref} className="container"/></div>
+        return (
+          <div style={{display:"flex", flexDirection: "column"}}>
+            <div>
+              <span>NON GOOGLE</span>
+              <div style={{textAlign:"center", padding: "40px"}}>
+                <canvas ref={canvasref} className="container"/>
+              </div>
+            </div>
+            <div>
+              <span>GOOGLE</span>
+              <div style={{textAlign:"center", padding: "40px"}}>
+                <canvas ref={canvas2ref} className="container"/>
+              </div>
+            </div>
+          </div>)
       case EnumDisplayState.CLOSED:
         return <p>Closed due to non activity, to restore refresh the page.</p>
       default:
