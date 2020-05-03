@@ -67,7 +67,7 @@ const TextMessenger:React.FC<TextMessengerProps> = (props) => {
   const autoSuggestRef = React.useRef<Autosuggest>(null);
   const [value, setValue] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Array<string>>([]);
-  const {getRootProps, getInputProps, inputRef} = useDropzone({onDrop})
+  const {getRootProps, getInputProps, inputRef} = useDropzone({onDrop});
   const inputProps = React.useMemo(() => buildInputProps(), [value]); //Reduce from file drag changes.
 
   React.useEffect(()=>{

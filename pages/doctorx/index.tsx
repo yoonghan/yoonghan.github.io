@@ -24,7 +24,54 @@ const printEvent = (setDisplayState:any, setInfo:any) => (msg:string) => {
   setInfo(info);
 }
 
-const drawResult = (info: object) => {
+const drawResult = (info: object, survey: any) => {
+  const {imgLocation, phone, fax, address, consensus, declaration} = survey;
+  return (
+    <div className="alignment">
+      <table>
+        <tbody>
+          <tr>
+            <td rowSpan={3}>
+              <img src={imgLocation}/>
+            </td>
+            <td>
+              {address}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {phone}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {fax}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      {drawInfo(info)}
+      <ol>
+        <li>{consensus}</li>
+        <li>{declaration}</li>
+      </ol>
+      <style jsx>{`
+        table {
+          margin: auto;
+        }
+        img {
+          width: 100px;
+          height: auto;
+        }
+        ol,.alignment {
+          text-align: left;
+        }
+      `}</style>
+    </div>
+  )
+}
+
+const drawInfo = (info:object) => {
   const infos = [];
   for (const property in info) {
     infos.push(<div>{property}: {info[property]}</div>);
@@ -38,10 +85,11 @@ const print = () => {
 
 interface DoctorxProps {
   messengerApi: IWithMessenger;
+  survey: any;
 }
 
 const Doctorx:any = (props: DoctorxProps) => {
-  const {messengerApi} = props;
+  const {messengerApi, survey} = props;
   const canvasref = React.useRef(null);
   const canvas2ref = React.useRef(null);
   const [displayState, setDisplayState] = React.useState(EnumDisplayState.QRCODE);
@@ -98,8 +146,8 @@ const Doctorx:any = (props: DoctorxProps) => {
       default:
         return (
           <div style={{padding: "20px 0", fontSize: "15pt", textAlign: "center"}}>
-            {drawResult(info)}
-            <div>
+            {drawResult(info, survey)}
+            <div className="printhidden">
               <button onClick={print} value="Print">Print</button>
             </div>
           </div>
@@ -110,16 +158,45 @@ const Doctorx:any = (props: DoctorxProps) => {
 
   return (
     <React.Fragment>
-      <HeaderOne title={"Project Doctor x"} isLined={true}/>
+      <header>
+        <HeaderOne title={"Project Doctor x"} isLined={true}/>
+      </header>
       { _displayBody() }
-      <div>To create one, click <a href="/doctorx/questionaires">!!here!!</a></div>
+      <div className="printhidden">To create one, click <a href="/doctorx/questionaires">!!here!!</a></div>
       <Footer/>
+      <style jsx>{`
+        {
+          @media print {
+            :global(header, footer, .printhidden) {
+              display: none
+            }
+          }
+        }
+      `}</style>
     </React.Fragment>
   );
 }
 
 const mapMessengerApi = (result:any) => ({messengerApi: result});
 
-export default compose(
+const _doctorx = compose(
   withMessenger(mapMessengerApi, true)
 )(Doctorx);
+
+(_doctorx as any).getInitialProps = async() => {
+  const { AUTH_API_CALL } = process.env;
+  if (AUTH_API_CALL) {
+    try {
+      const res = await fetch(AUTH_API_CALL + '/api/survey');
+      const json = await res.json();
+      return {survey: json};
+    }
+    catch (err) {
+      return {survey: null};
+    }
+
+  }
+  return {survey: null};
+};
+
+export default _doctorx;

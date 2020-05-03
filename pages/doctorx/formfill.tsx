@@ -90,7 +90,6 @@ FormFill.getInitialProps = async() => {
       return {survey: json};
     }
     catch (err) {
-      console.warn("error");
       return {survey: null};
     }
 
