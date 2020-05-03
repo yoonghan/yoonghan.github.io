@@ -16,7 +16,17 @@ const _showError = (errors) => {
 }
 
 export default function SurveyBuilder(props) {
-  const {title, description, consensus, declaration, fixedQuestions, questions, handleSubmit, name, mobileno, address} = props;
+  const {
+    title,
+    description,
+    consensus,
+    declaration,
+    fixedQuestions,
+    questions,
+    handleSubmit,
+    name,
+    mobileno,
+    address} = props;
 
   const setDefaultValue = (str) => {
     switch(str) {
@@ -33,8 +43,10 @@ export default function SurveyBuilder(props) {
 
   const _initialValue = useCallback(() => {
     const initObj = { consensus: [], declaration: [] };
-    for(let i = 0; i<fixedQuestions.length; i++) {
-      initObj[fixedQuestions[i]] = setDefaultValue(fixedQuestions[i]);
+    if(fixedQuestions) {
+      for(let i = 0; i<fixedQuestions.length; i++) {
+        initObj[fixedQuestions[i]] = setDefaultValue(fixedQuestions[i]);
+      }
     }
     for(let i = 0; i<questions.length; i++) {
       const {text, type} = questions[i];
@@ -94,7 +106,7 @@ export default function SurveyBuilder(props) {
           {
             (Object.keys(errors).length !== 0 || errors.constructor !== Object) && _drawErrorComponent(errors)
           }
-          <FixedQuestions questions = {fixedQuestions} handleChange={handleChange} values={values}/>
+          {fixedQuestions && <FixedQuestions questions = {fixedQuestions} handleChange={handleChange} values={values}/>}
           <hr/>
           <OpenQuestions questions = {questions} handleChange={handleChange} values={values}/>
           <hr/>

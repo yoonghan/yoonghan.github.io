@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import SurveyTitle from "./SurveyTitle";
 import SurveyDescription from "./SurveyDescription";
+import SurveyAddress from "./SurveyAddress";
+import SurveyLogo from "./SurveyLogo";
+import SurveyPhone from "./SurveyPhone";
+import SurveyFax from "./SurveyFax";
 import SurveyFixed from "./SurveyFixed";
 import SurveyQuestion from "./SurveyQuestion";
 import Declaration from "./Declaration";
 import Consensus from "./Consensus";
-import { useInputValue } from "./hooks";
+import { useInputValue, useFileValue } from "./hooks";
 import Question from "./models/Question";
 import ListController from "./controllers/ListController";
 import { useAlert } from 'react-alert';
@@ -26,6 +30,11 @@ export default function SurveyBuilder() {
   const [saveBtnDisabled, setSaveBtnDisabled] = useState(false);
   const [title, handleChangeTitle] = useInputValue("New Survey");
   const [description, handleChangeDescription] = useInputValue("This is subject for declaring my travel for MOH of Singapore.");
+  const [address, handleChangeAddress] = useInputValue("Address");
+  const [logo, handleChangeLogo] = useFileValue("Logo");
+  const [logoForm, handleChangeLogoForm] = useFileValue("");
+  const [phone, handleChangePhone] = useInputValue("Phone");
+  const [fax, handleChangeFax] = useInputValue("Fax");
   const [declaration, handleChangeDeclaration] = useInputValue("I hearby declare that all the information provided are correct and justified.");
   const [consensus, handleChangeConsensus] = useInputValue("I understand that the information provided are for not for public use and it is to confirm with MOH of Singapore as a citizen, visitor, temporary/permanent residence to declare my travel.");
   const [fixedQuestions, setFixedQuestions] = useState([]);
@@ -39,26 +48,43 @@ export default function SurveyBuilder() {
   const listFixedQuestionController = new ListController(fixedQuestions, setFixedQuestions);
 
   const saveToDatabase = (event) => {
+    if(logoForm === "") {
+      alert.error('Attach Logo');
+      setSaveBtnDisabled(false);
+      return;
+    }
     setSaveBtnDisabled(true);
     const jsonQuestion = writeAsJson(questions);
-    fetch("/api/survey", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({survey: {
-        title,
-        description,
-        declaration,
-        consensus,
-        fixedQuestions,
-        questions: jsonQuestion
-      }})
+    fetch('/api/firebase', {
+      method: 'POST',
+      body: logoForm
     })
-    .then(response => response.json())
-    .then(response => {
-      alert.success('Form successfully save/updated');
-      setSaveBtnDisabled(false);
+    .then(imgResp => (imgResp.json()))
+    .then(imgResp => {
+      const imgLocation= imgResp.data;
+      fetch("/api/survey", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({survey: {
+          title,
+          description,
+          address,
+          phone,
+          fax,
+          declaration,
+          consensus,
+          fixedQuestions,
+          imgLocation,
+          questions: jsonQuestion
+        }})
+      })
+      .then(response => response.json())
+      .then(response => {
+        alert.success('Form successfully save/updated');
+        setSaveBtnDisabled(false);
+      })
     })
     .catch((error) => {
       alert.error('Form failed to save');
@@ -87,6 +113,18 @@ export default function SurveyBuilder() {
         <hr/>
         <i>SECTION: Survey description</i>
         <SurveyDescription description={description} handleChangeDescription={handleChangeDescription} />
+        <hr/>
+        <i>SECTION: Logo</i>
+        <SurveyLogo logo={logo} handleChangeLogo={handleChangeLogo} handleChangeLogoForm={handleChangeLogoForm}/>
+        <hr/>
+        <i>SECTION: Survey address</i>
+        <SurveyAddress address={address} handleChangeAddress={handleChangeAddress} />
+        <hr/>
+        <i>SECTION: Survey Phone</i>
+        <SurveyPhone phone={phone} handleChangePhone={handleChangePhone} />
+        <hr/>
+        <i>SECTION: Survey Fax</i>
+        <SurveyFax fax={fax} handleChangeFax={handleChangeFax} />
         <hr/>
         <i>SECTION: *Required User particulars</i>
         <SurveyFixed
