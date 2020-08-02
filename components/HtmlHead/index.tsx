@@ -85,6 +85,16 @@ export const HtmlHead:React.FC<HtmlHeadProps> = (props:HtmlHeadProps) => {
             width: 320px;
           }
         `}</style>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156082636-1"></script>
+        <script dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)}
+            gtag('js', new Date());
+            gtag('config', 'UA-156082636-1');
+              `,
+          }}
+        />
       </Head>
     </div>
   );
