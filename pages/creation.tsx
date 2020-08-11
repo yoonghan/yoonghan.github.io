@@ -2,8 +2,9 @@ import * as React from "react";
 import { HtmlHead } from "../components/HtmlHead";
 import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
-import CreationListv2 from "../components/CreationListv2";
 import Footer from "../components/Footer";
+import Carousell from "../components/Carousell";
+import Card from "../components/Carousell/Card";
 
 const creationList = [
   {
@@ -57,6 +58,10 @@ const Creation: StatelessPage<any> = () => {
     });
   },[]);
 
+  const createCreationList = () => {
+    return creationList.map((elem) => <Card {...elem}/>);
+  }
+
   return (
     <React.Fragment>
       <HtmlHead
@@ -66,7 +71,7 @@ const Creation: StatelessPage<any> = () => {
       <div className={'container'}>
         <HeaderOne title={"Creations"} isLined={true}/>
         <div className={'information'}>-- Scroll image to choose --</div>
-        <CreationListv2 cards={creationList}/>
+        <Carousell elements={createCreationList()} uniqueName={"creation_"} />
       </div>
       <div id="modal-root"/>
       <div className="footer"/>
