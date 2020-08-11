@@ -11,6 +11,27 @@ const _renderData = (title: string, description: string, link: string) => {
       <td>{title}</td>
       <td>{description}</td>
       <td>{link}</td>
+
+      <style jsx>{`
+        td {
+          padding: 1rem 2rem;
+          border-top: ${TABLE_BODY.BORDER};
+          padding-bottom: 1rem;
+        }
+        td:first-child {
+          padding-right: 10px;
+        }
+        td:last-child {
+          font-size: 0.7rem;
+        }
+        tr {
+          color: ${TABLE_BODY.FOREGROUND};
+          background-color: ${TABLE_BODY.BACKGROUND};
+        }
+        tr:hover {
+          background-color: ${TABLE_BODY.HOVER_BACKGROUND};
+        }
+      `}</style>
     </tr>
   )
 }
@@ -23,7 +44,7 @@ const Tribute: React.SFC<any> = ({}) => {
         description={"Gratitudes to the people and organization that made this website available and happen."}/>
       <CommandBar/>
       <div className="container">
-        <HeaderOne title={"Tributes and Thanks to"} isLined={true}/>
+        <HeaderOne title={"Tributes and thanks"} isLined={true}/>
 
         <table>
           <thead>
@@ -45,6 +66,7 @@ const Tribute: React.SFC<any> = ({}) => {
             {_renderData("React Dropzone", "For use in chat program", "https://github.com/react-dropzone")}
           </tbody>
         </table>
+
         <Footer/>
       </div>
       <style jsx>{`
@@ -59,23 +81,10 @@ const Tribute: React.SFC<any> = ({}) => {
           color: ${TABLE_HEADER.FOREGROUND};
           background-color: ${TABLE_HEADER.BACKGROUND};
         }
-        tbody td, tbody th {
-          padding: 5px 10px;
-          margin
+        tbody th {
+          padding: 1rem 2rem;
           border-top: ${TABLE_BODY.BORDER};
-        }
-        td:first-child {
-          padding-right: 10px;
-        }
-        td:last-child {
-          font-size: 0.7rem;
-        }
-        tr {
-          color: ${TABLE_BODY.FOREGROUND};
-          background-color: ${TABLE_BODY.BACKGROUND};
-        }
-        tr:hover {
-          background-color: ${TABLE_BODY.HOVER_BACKGROUND};
+          padding-bottom: 1rem;
         }
       `}</style>
     </>

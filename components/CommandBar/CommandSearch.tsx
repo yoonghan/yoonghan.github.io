@@ -117,6 +117,19 @@ export const AvailableInput:ICommand = {
       return <React.Fragment/>;
     }
   },
+  "motivation": {
+    synonym: ["motivation", "books", "timeline"],
+    description: "Self improvement.",
+    action: EnumAction.LINK,
+    url: "/motivation",
+    exec: (router: any) => {
+      if(router.route === "/motivation") {
+        return <InvalidCommand invalidCommand={"This is the page"}/>;
+      }
+      router.push("/motivation");
+      return <React.Fragment/>;
+    }
+  },
   "pwa": {
     description: "Enable PWA",
     synonym: ["offline"],

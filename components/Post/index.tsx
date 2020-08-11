@@ -12,12 +12,10 @@ const Post:React.FC<PostProps> = ({postItems}) => {
   const _createPostListing = ():JSX.Element[] => {
     const postListing = postItems;
 
-    let counter = 0;
     return postListing.map(
-      (post) => {
-        counter++;
+      (post, idx) => {
         return (
-          <MiniPost key={counter} {...post}/>
+          <MiniPost key={`minipost_${idx}`} {...post}/>
         );
     });
   }
