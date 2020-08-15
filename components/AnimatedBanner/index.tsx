@@ -5,10 +5,10 @@ import {useRef, useEffect}  from "react";
 
 interface ITopSection {
   scrollContainer: React.RefObject<HTMLDivElement>;
-  onDoorKnocked: boolean;
+  tiggerChange: boolean;
 }
 
-const TopSection:React.FC<ITopSection> = ({scrollContainer, onDoorKnocked}) => {
+const TopSection:React.FC<ITopSection> = ({scrollContainer, tiggerChange}) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const leftForegroundRef = useRef<HTMLDivElement>(null);
   const rightForegroundRef = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ const TopSection:React.FC<ITopSection> = ({scrollContainer, onDoorKnocked}) => {
     if(parallaxDisplayContainerRef !== null && parallaxDisplayContainerRef.current !== null) {
       parallaxDisplayContainerSize = (parallaxDisplayContainerRef.current.clientHeight / 2);
     }
-  }, [onDoorKnocked])
+  }, [tiggerChange])
 
   useEffect(() => {
     if(scrollContainer.current !== null) {

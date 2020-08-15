@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import {useRef, useEffect, useState}  from "react";
-import TopSection from "./TopSection";
+import AnimatedBanner from "../AnimatedBanner";
 
 
 const WelcomeScreen:React.FC<any> = () => {
@@ -23,7 +23,7 @@ const WelcomeScreen:React.FC<any> = () => {
   return (
     <div className="outer-container">
       <div className="container" ref={scrollContainerRef}>
-        <TopSection scrollContainer={scrollContainerRef} onDoorKnocked={doorKnocked}/>
+        <AnimatedBanner scrollContainer={scrollContainerRef} tiggerChange={doorKnocked}/>
       </div>
       <style jsx>{`
         .outer-container {
