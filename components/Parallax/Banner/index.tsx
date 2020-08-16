@@ -3,12 +3,11 @@
 import * as React from "react";
 import {useRef, useEffect}  from "react";
 
-interface ITopSection {
+interface IBanner {
   scrollContainer: React.RefObject<HTMLDivElement>;
-  tiggerChange: boolean;
 }
 
-const TopSection:React.FC<ITopSection> = ({scrollContainer, tiggerChange}) => {
+const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const leftForegroundRef = useRef<HTMLDivElement>(null);
   const rightForegroundRef = useRef<HTMLDivElement>(null);
@@ -47,15 +46,21 @@ const TopSection:React.FC<ITopSection> = ({scrollContainer, tiggerChange}) => {
     }
   }
 
-  useEffect(() => {
+  const refreshContainer = () => {
     if(parallaxDisplayContainerRef !== null && parallaxDisplayContainerRef.current !== null) {
       parallaxDisplayContainerSize = (parallaxDisplayContainerRef.current.clientHeight / 2);
     }
-  }, [tiggerChange])
+  }
 
   useEffect(() => {
     if(scrollContainer.current !== null) {
       scrollContainer.current.addEventListener('scroll', parallaxScrollForeground);
+    }
+
+    refreshContainer();
+    window.addEventListener('resize', refreshContainer);
+    return () => {
+      window.removeEventListener('resize', refreshContainer);
     }
 
     return () => {
@@ -144,4 +149,4 @@ const TopSection:React.FC<ITopSection> = ({scrollContainer, tiggerChange}) => {
   )
 }
 
-export default TopSection;
+export default Banner;
