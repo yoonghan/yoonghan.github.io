@@ -3,6 +3,7 @@ import { BASIC_MENU } from './menu';
 import { storiesOf } from '@storybook/react';
 import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxFigure from "../components/Parallax/Figure";
+import ParallaxGraph from "../components/Parallax/Graph";
 
 const Component = () => {
   return <WelcomeScreen/>
@@ -10,6 +11,10 @@ const Component = () => {
 
 const Component2 = () => {
   return <WelcomeScreen2/>
+}
+
+const Component3 = () => {
+  return <ParallaxGraph/>
 }
 
 const WelcomeScreen:React.FC<any> = () => {
@@ -81,3 +86,4 @@ const WelcomeScreen2:React.FC<any> = () => {
 const stories = storiesOf(`${BASIC_MENU}/Parallax`, module);
 stories.add('Banner', Component);
 stories.add('Figure', Component2);
+stories.add('Graph', Component3);
