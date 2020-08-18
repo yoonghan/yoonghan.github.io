@@ -139,11 +139,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           border-top: 1px solid #000;
           width: 30px;
         }
-
-        @keyframes riseAndShine {
-          from {background-color: yellow;}
-          to {background-color: orange;}
-        }
       `}</style>
     </div>
   )
