@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
+import ParallaxPlainSection from "../components/Parallax/PlainSection";
 
 const Component = () => {
   return <WelcomeScreen/>
@@ -15,6 +16,10 @@ const Component2 = () => {
 
 const Component3 = () => {
   return <ParallaxGraph/>
+}
+
+const Component4 = () => {
+  return <ParallaxPlainSection title="messaging"/>
 }
 
 const WelcomeScreen:React.FC<any> = () => {
@@ -87,3 +92,4 @@ const stories = storiesOf(`${BASIC_MENU}/Parallax`, module);
 stories.add('Banner', Component);
 stories.add('Figure', Component2);
 stories.add('Graph', Component3);
+stories.add('Section', Component4);
