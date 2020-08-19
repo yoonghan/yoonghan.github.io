@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import globalStyles from '../../../shared/style';
 
 interface IFigure {
   imageSrc: string;
@@ -78,26 +79,10 @@ const Figure:React.FC<IFigure> = ({imageSrc, isImagePositionOnRight, children}) 
             justify-content: center;
             flex-direction: column;
           }
-          :global(.default-animate-height) {
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.5s ease-out;
-            height: auto;
-            width: 100%;
-          }
-          :global(.default-animate-height.animate) {
-            transform: scaleY(1.0);
-          }
-          :global(.default-animate-margin) {
-            margin-top: 100px;
-            opacity: 0.5;
-            transition: opacity 1s, margin 1s ease-out;
-          }
-          :global(.default-animate-margin.animate) {
-            margin-top: 0;
-            opacity: 1.0;
-          }
         `}</style>
+        <style jsx global>
+          {globalStyles}
+        </style>
       </div>
     </>
   )

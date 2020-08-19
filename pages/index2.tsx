@@ -8,6 +8,7 @@ import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxPlainSection from "../components/Parallax/PlainSection";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
+import Footer from "../components/Footer";
 
 const _getSchema = () => {
   const schemas = {
@@ -41,7 +42,7 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
 const Main: StatelessPage<IMainProps> = ({}) => {
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const imagesToLoad = ["/static/img/welcome/fg-left.png","/static/img/welcome/fg-right.png"];
+  const imagesToLoad = ["/static/img/welcome/fg-left.png","/static/img/welcome/fg-right.png","https://via.placeholder.com/150x250.jpg"];
 
   return (
     <React.Fragment>
@@ -85,6 +86,10 @@ const Main: StatelessPage<IMainProps> = ({}) => {
           <ParallaxGraph
             graphImg="https://via.placeholder.com/2000x1000.png"/>
           <SocialFab />
+          <div className={`info-container`}>
+            <ParallaxPlainSection title="messaging"/>
+          </div>
+          <Footer isRelative={true}/>
           <style jsx>{`
             .container {
               position: relative;
