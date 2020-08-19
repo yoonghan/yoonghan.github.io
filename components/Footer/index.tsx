@@ -1,9 +1,13 @@
 `use strict`
 import * as React from "react";
 
-const Footer: React.SFC<any> = () => {
+interface IFooter {
+  isRelative?:boolean;
+}
+
+const Footer: React.SFC<IFooter> = ({isRelative}) => {
   return (
-    <footer>
+    <footer style={isRelative?{'position':'relative'}: {}}>
       <span>Walcron</span> 2014-<span id="footer-year">2020</span> &copy;
     </footer>
   );

@@ -22,7 +22,9 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   const parallaxScrollForeground = (e:any) => {
     const pos = e.target.scrollTop;
     const targetHeight = e.target.offsetHeight;
-    const opacityPercentage = (pos + targetHeight) / parallaxDisplayContainerHeightSize;
+    const opacityPercentage = (pos + (targetHeight / 2)) / parallaxDisplayContainerHeightSize;
+    console.log(pos,"pos")
+    console.log(targetHeight,"targetHeight")
     const adjustedPos = pos > parallaxDisplayContainerWidthSize ? parallaxDisplayContainerWidthSize:pos;
     var scaledPos = adjustedPos / 100;
     var translatePos = adjustedPos * 2;
@@ -91,11 +93,11 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       <style jsx>{`
         .container {
           width: 100vw;
-          height: 330vw;
+          height: 330vh;
         }
         .parallax-container {
           position: sticky;
-          height: 66vw;
+          height: 100vh;
           top: 0;
           display: flex;
           overflow: hidden;
@@ -119,6 +121,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/static/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
+          background-position: right;
         }
         .background {
           will-change: transform;

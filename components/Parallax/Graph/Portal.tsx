@@ -3,6 +3,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {ESC} from "../../../shared/keyboardkey";
+import globalStyles from '../../../shared/style';
 
 interface IPortal {
   closeCallback: (e?:any) => void;
@@ -115,15 +116,7 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
         <button>[ESC]</button>
       </div>
       <style jsx>{`
-        :global(.portal-container) {
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          position: fixed;
-          animation: expandWidth 0.5s;
-          overflow: hidden;
-        }
+
         @keyframes expandWidth {
           from {width: 0px;}
           to {width: 100vw;}
@@ -160,6 +153,9 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
           position: relative;
         }
       `}</style>
+      <style jsx global>
+        {globalStyles}
+      </style>
     </div>
   )
 
