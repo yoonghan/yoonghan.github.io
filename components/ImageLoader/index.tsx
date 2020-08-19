@@ -4,7 +4,7 @@ import * as React from "react";
 
 interface IImageLoader {
   imagesSrcToLoad: Array<string>;
-  allImageLoadedCallback: () => void;
+  allImageLoadedCallback?: () => void;
   percentageLoad?: (percentage: number) => void;
 }
 
@@ -14,10 +14,11 @@ const ImageLoader: React.FC<IImageLoader> =
 
   React.useEffect(()=> {
     if(imgLoadedCount === imagesSrcToLoad.length) {
-      allImageLoadedCallback();
+      if(allImageLoadedCallback)
+        allImageLoadedCallback();
     }
     if(percentageLoad) {
-      percentageLoad(Math.floor(imgLoadedCount/imagesSrcToLoad.length) );
+      percentageLoad(Math.floor(imgLoadedCount / imagesSrcToLoad.length * 100) );
     }
   }, [imgLoadedCount]);
 
@@ -32,26 +33,22 @@ const ImageLoader: React.FC<IImageLoader> =
 
   const _loadImages = () => {
     return imagesSrcToLoad.map((imageSrcToLoad, i) => (
-      <React.Fragment key={`img_${i}`}>
+      <div key={`img_${i}`}>
         <img
           key={`img_${i}`}
           src={imageSrcToLoad}
-          className="image-loader hidden"
+          className="image-loader"
           onLoad={()=>{setImgLoadedCount(imgLoadedCount + 1)}}
           onError={()=>{setImgLoadedCount(imgLoadedCount + 1)}}
           />
-
-        <style jsx>{`
-          .hidden {
-            display: none;
-          }
-          `}</style>
-      </React.Fragment>
+      </div>
     ))
   }
 
   return (
-    <>{_loadImages()}</>
+    <div style={{"display": "none"}}>
+      {_loadImages()}
+    </div>
   )
 }
 

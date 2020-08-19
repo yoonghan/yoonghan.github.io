@@ -23,8 +23,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
     const pos = e.target.scrollTop;
     const targetHeight = e.target.offsetHeight;
     const opacityPercentage = (pos + (targetHeight / 2)) / parallaxDisplayContainerHeightSize;
-    console.log(pos,"pos")
-    console.log(targetHeight,"targetHeight")
     const adjustedPos = pos > parallaxDisplayContainerWidthSize ? parallaxDisplayContainerWidthSize:pos;
     var scaledPos = adjustedPos / 100;
     var translatePos = adjustedPos * 2;

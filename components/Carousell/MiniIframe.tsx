@@ -36,7 +36,6 @@ const renderUsage = (usage?:string) => {
 }
 
 const Miniframe: React.SFC<MiniframeProps> = ({iframeLink, githubLink, usage, closeCallback}) => {
-  console.log(githubLink)
   return (
     <div className={'miniframe'}>
       <div className={'title'}>
