@@ -43,7 +43,6 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
 
   const keyListenerEvent = (evt: KeyboardEvent) => {
     if ( (evt.keyCode as any) === ESC )   {
-      console.log("HI")
        closeCallback();
     }
   };
@@ -125,6 +124,7 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
         }
         .buttonContainer button {
           border: 0;
+          cursor: pointer;
           background: transparent;
           color: #FFF;
         }

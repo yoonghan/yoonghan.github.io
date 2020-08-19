@@ -23,16 +23,19 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
     const pos = e.target.scrollTop;
     const height = e.target.offsetHeight;
     const opacityPercentage = (pos + height) / parallaxDisplayContainerSize;
-    const scaledPos = pos / 100;
-    const translatePos = pos * 2;
-    if(scaledPos < 2.0) {
-      if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
-        leftForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(-${translatePos}px)`;
-        rightForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(${translatePos}px)`;
-      }
-      if(backgroundRef.current !== null) {
-        backgroundRef.current.style.transform = `scale(${1.0 + (scaledPos/allowedBackgroundScaledDistance)})`
-      }
+    const adjustedPos = pos > 200 ? 200:pos;
+    var scaledPos = adjustedPos / 100;
+    var translatePos = adjustedPos * 2;
+    //var blurPos = adjustedPos / 10;
+
+    if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
+      leftForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(-${translatePos}px)`;
+      rightForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(${translatePos}px)`;
+      // leftForegroundRef.current.style.filter = `blur(${blurPos}px)`;
+      // rightForegroundRef.current.style.filter = `blur(${blurPos}px)`;
+    }
+    if(backgroundRef.current !== null) {
+      backgroundRef.current.style.transform = `scale(${1.0 + (scaledPos/allowedBackgroundScaledDistance)})`
     }
 
     if(centerpieceTitleRef.current !== null) {
@@ -97,6 +100,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         }
         .foreground-left {
           will-change: transform;
+          filter: blur(1px);
           transform: scale(1.0);
           width: 50%;
           height: 100%;
@@ -106,6 +110,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         }
         .foreground-right {
           will-change: transform;
+          filter: blur(1px);
           transform: scale(1.0);
           width: 50%;
           height: 100%;
