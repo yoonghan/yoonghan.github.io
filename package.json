@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
-    "storybook": "start-storybook -s ./static -p 9001 -c .storybook",
+    "storybook": "start-storybook -s ./ -p 9001 -c .storybook",
     "analyze": "next build",
     "test": "jest",
     "test:watch": "jest --watch",

@@ -36,23 +36,25 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
   }, []);
 
   return (
-    <div ref={markAndIndicator}
-      className="container">
+    <div ref={markAndIndicator}>
       <animated.div
         style={props}
         >
-        {title && <h3 className="title">{title}</h3>}
-        <div className="desc">
-          {children}
+        <div className="container">
+          {title && <h3 className="title">{title}</h3>}
+          <div className="desc">
+            {children}
+          </div>
         </div>
       </animated.div>
 
       <style jsx>{`
         .container {
-          padding: 1rem;
           display: flex;
           justify-content: center;
-          align-self: center;
+          align-items: center;
+          flex-direction: row;
+          min-height: 100vh;
         }
         .title {
           text-align: center;

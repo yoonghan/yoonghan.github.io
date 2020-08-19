@@ -5,16 +5,19 @@ import * as ReactDOM from "react-dom";
 import {ESC} from "../../../shared/keyboardkey";
 
 interface IPortal {
-  closeCallback: () => void;
+  closeCallback: (e?:any) => void;
+  clickLocationX: number;
+  clickLocationY: number;
+  imgSrc: string;
 }
 
-const Portal:React.FC<IPortal> = ({closeCallback}) => {
+const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY, imgSrc}) => {
   const el = React.useMemo(() => document.createElement('div'), []);
   const graphRef = React.useRef<HTMLImageElement>(null);
   const portalRef = React.useRef<HTMLDivElement>(null);
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const htmlDoc = document.getElementsByTagName("body")[0];
-  var cx:number, cy:number, maxXPos:number, maxYPos:number;
+  var cx:number, cy:number, maxXPos:number, maxYPos:number, _moveLens:(e:Event) => void;
 
   React.useEffect(() => {
     const target = document.body;
@@ -23,11 +26,16 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
 
     htmlDoc.addEventListener('keyup', keyListenerEvent);
 
-    var _moveLens:(e:Event) => void;
     if(overlayRef.current !== null && graphRef.current !== null) {
       _moveLens = moveLens(overlayRef.current, graphRef.current);
       overlayRef.current.addEventListener("mousemove", _moveLens);
       overlayRef.current.addEventListener("touchmove", _moveLens);
+    }
+
+    if(graphRef.current !== null) {
+      if(graphRef.current.complete) {
+        zoomIntoImage();
+      }
     }
 
     return () => {
@@ -64,8 +72,8 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
       var a, x = 0, y = 0;
       e = e || window.event;
       a = _graphRef.getBoundingClientRect();
-      x = e.pageX - a.left;
-      y = e.pageY - a.top;
+      x = (e.pageX || e.clientX) - a.left;
+      y = (e.pageY || e.clientY) - a.top;
       x = x - window.pageXOffset;
       y = y - window.pageYOffset;
       return {x : x, y : y};
@@ -84,8 +92,11 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
       maxYPos = (cy - 1) * lensBoxY;
       result.style.backgroundImage = "url('" + img.src + "')";
       result.style.backgroundSize = (img.width) + "px " + (img.height) + "px";
+      _moveLens(new MouseEvent('', {clientX:clickLocationX, clientY:clickLocationY}));
     }
   }
+
+
 
   const drawPortal = () => (
     <div
@@ -93,7 +104,7 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
       ref={portalRef}>
       <img
         id="imgid"
-        src="https://via.placeholder.com/2000x1000.png"
+        src={imgSrc}
         ref={graphRef}
         onLoad={zoomIntoImage}
         className="hidden-image" />

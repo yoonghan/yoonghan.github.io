@@ -7,12 +7,12 @@ import { useSpring, animated } from 'react-spring';
 export interface ButtonProps {
   href?: string;
   target?: string;
-  onClickCallback?: () => void;
+  onClickCallback?: (e?:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   small?: boolean;
   invert?: boolean;
 }
 
-const createButton = (children?:any, _onClickCallback?:() => void, target?: string, small?: boolean, invert?: boolean, href?: string) => {
+const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void, target?: string, small?: boolean, invert?: boolean, href?: string) => {
   //const [state, toggle] = React.useState(true);
   const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } })
 
@@ -29,7 +29,7 @@ const createButton = (children?:any, _onClickCallback?:() => void, target?: stri
           .interpolate(x => `scale(${x})`)
       }}>
       <a className="btn-container"
-        onClick={_onClickCallback?_onClickCallback:()=>{}}
+        onClick={_onClickCallback?_onClickCallback:({})=>{}}
         href={href}
         target={target}>
 
