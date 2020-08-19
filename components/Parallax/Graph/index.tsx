@@ -4,19 +4,33 @@ import * as React from "react";
 import Button from "../../Button";
 import Portal from "./Portal";
 
-const Graph:React.FC<any> = ({}) => {
-  const [showPortal, setShowPortal] = React.useState(false);
+interface IPortal {
+  graphImg: string;
+}
 
-  const toggleShowPortal = () => {
-    setShowPortal(!showPortal);
+const Graph:React.FC<IPortal> = ({graphImg}) => {
+  const [showPortal, setShowPortal] = React.useState({show:false, x:0, y:0});
+
+  const toggleShowPortal = (e:any) => {
+    const toSet = {show: !showPortal.show, x: e.pageX, y: e.pageY}
+    setShowPortal(toSet);
   }
 
   return (
     <div className="container">
       <h3 className="title">Our roadmap and journey</h3>
       <div>
-        <Button onClickCallback={toggleShowPortal}>See my journey</Button>
-        {showPortal && <Portal closeCallback={toggleShowPortal}/>}
+        <Button
+          onClickCallback={toggleShowPortal}
+          >See my journey</Button>
+        <img src={graphImg} className="hidden-preload"/>
+        {showPortal.show &&
+          <Portal
+            imgSrc={graphImg}
+            closeCallback={toggleShowPortal}
+            clickLocationX={showPortal.x}
+            clickLocationY={showPortal.y}
+            />}
       </div>
       <style jsx>{`
         .container {
@@ -37,6 +51,9 @@ const Graph:React.FC<any> = ({}) => {
         }
         .title {
           padding-bottom: 2rem;
+        }
+        .hidden-preload {
+          display: none;
         }
       `}</style>
     </div>
