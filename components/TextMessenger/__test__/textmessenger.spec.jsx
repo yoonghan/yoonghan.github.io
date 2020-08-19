@@ -35,6 +35,5 @@ describe('TextMessenger', () => {
         maxLength={1}
         filterSuggestion={()=>[]}
       />);
-    console.log(wrapper.find(".react-autosuggest__input").prop("value"))
   })
 });

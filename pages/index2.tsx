@@ -9,6 +9,7 @@ import ParallaxPlainSection from "../components/Parallax/PlainSection";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
 import Footer from "../components/Footer";
+import Counter from "../components/Counter";
 
 const _getSchema = () => {
   const schemas = {
@@ -42,6 +43,7 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
 const Main: StatelessPage<IMainProps> = ({}) => {
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [loadPercentage, updateLoadPercentage] = React.useState(0);
   const imagesToLoad = ["/static/img/welcome/fg-left.png","/static/img/welcome/fg-right.png","https://via.placeholder.com/150x250.jpg"];
 
   return (
@@ -56,39 +58,46 @@ const Main: StatelessPage<IMainProps> = ({}) => {
           {_getSchema()}
         </script>
       </Helmet>
-
-      <ImageLoader
-        imagesSrcToLoad={imagesToLoad}
-        allImageLoadedCallback={() => {setImgLoaded(true)}} />
-      {imgLoaded &&
         <div ref={scrollContainerRef} className="container">
           <CommandBar disableMobile={true}/>
-          <ParallaxBanner scrollContainer={scrollContainerRef}/>
-          <div className={`info-container`}>
-            <ParallaxPlainSection title="messaging"/>
-            <ParallaxFigure
-              imageSrc="https://via.placeholder.com/150x250.jpg">
-              <h3>Awesome graphics</h3>
-              <div>
-                very diverse and interesting graphics.
+          {!imgLoaded &&
+            <Counter
+              countTo={loadPercentage}
+              postFix="%"
+              targetToReach={100}
+              targetReachCallback={()=>{setImgLoaded(true)}}
+              />
+            }
+          {imgLoaded &&
+            <React.Fragment>
+              <ParallaxBanner scrollContainer={scrollContainerRef}/>
+              <div className={`info-container`}>
+                <ParallaxPlainSection title="messaging"/>
+                <ParallaxFigure
+                  imageSrc="https://via.placeholder.com/150x250.jpg">
+                  <h3>Awesome graphics</h3>
+                  <div>
+                    very diverse and interesting graphics.
+                  </div>
+                </ParallaxFigure>
+                <ParallaxFigure
+                  imageSrc="https://via.placeholder.com/150x250.jpg"
+                  isImagePositionOnRight={true}
+                  >
+                  <h3>Awesome graphics</h3>
+                  <div>
+                    very diverse and interesting graphics.
+                  </div>
+                </ParallaxFigure>
               </div>
-            </ParallaxFigure>
-            <ParallaxFigure
-              imageSrc="https://via.placeholder.com/150x250.jpg"
-              isImagePositionOnRight={true}
-              >
-              <h3>Awesome graphics</h3>
-              <div>
-                very diverse and interesting graphics.
+              <ParallaxGraph
+                graphImg="https://via.placeholder.com/2000x1000.png"/>
+              <SocialFab />
+              <div className={`info-container`}>
+                <ParallaxPlainSection title="messaging"/>
               </div>
-            </ParallaxFigure>
-          </div>
-          <ParallaxGraph
-            graphImg="https://via.placeholder.com/2000x1000.png"/>
-          <SocialFab />
-          <div className={`info-container`}>
-            <ParallaxPlainSection title="messaging"/>
-          </div>
+            </React.Fragment>
+          }
           <Footer isRelative={true}/>
           <style jsx>{`
             .container {
@@ -105,6 +114,9 @@ const Main: StatelessPage<IMainProps> = ({}) => {
             }
             `}</style>
         </div>
+        <ImageLoader
+          imagesSrcToLoad={imagesToLoad}
+          percentageLoad={(percentage) => updateLoadPercentage(percentage)}/>
       }
     </React.Fragment>
   );
