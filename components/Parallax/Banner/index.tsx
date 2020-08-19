@@ -15,15 +15,15 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   const centerpieceDescRef = useRef<HTMLDivElement>(null);
   const parallaxDisplayContainerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  var parallaxDisplayContainerSize = 0;
+  var parallaxDisplayContainerHeightSize = 0, parallaxDisplayContainerWidthSize = 0;
   const allowedDescToKickstart = 0.4;
   const allowedBackgroundScaledDistance = 5;
 
   const parallaxScrollForeground = (e:any) => {
     const pos = e.target.scrollTop;
-    const height = e.target.offsetHeight;
-    const opacityPercentage = (pos + height) / parallaxDisplayContainerSize;
-    const adjustedPos = pos > 200 ? 200:pos;
+    const targetHeight = e.target.offsetHeight;
+    const opacityPercentage = (pos + targetHeight) / parallaxDisplayContainerHeightSize;
+    const adjustedPos = pos > parallaxDisplayContainerWidthSize ? parallaxDisplayContainerWidthSize:pos;
     var scaledPos = adjustedPos / 100;
     var translatePos = adjustedPos * 2;
     //var blurPos = adjustedPos / 10;
@@ -50,8 +50,9 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   }
 
   const refreshContainer = () => {
-    if(parallaxDisplayContainerRef !== null && parallaxDisplayContainerRef.current !== null) {
-      parallaxDisplayContainerSize = (parallaxDisplayContainerRef.current.clientHeight / 2);
+    if(parallaxDisplayContainerRef.current !== null) {
+      parallaxDisplayContainerHeightSize = (parallaxDisplayContainerRef.current.clientHeight / 2);
+      parallaxDisplayContainerWidthSize = (parallaxDisplayContainerRef.current.clientWidth / 3);
     }
   }
 
@@ -74,13 +75,13 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   }, []);
 
   return (
-    <div className="parallax-container" ref={parallaxDisplayContainerRef}>
-      <div className="centerpiece" ref={centerpieceTitleRef}>Title</div>
-      <div className="centerpiece inverse" ref={centerpieceDescRef}>
-        <div>Description</div>
-        <div className="horizontalbar" ref={lineRef}></div>
-      </div>
-      <div className="foreground">
+    <div className="container" ref={parallaxDisplayContainerRef}>
+      <div className="parallax-container">
+        <div className="centerpiece" ref={centerpieceTitleRef}>Title</div>
+        <div className="centerpiece inverse" ref={centerpieceDescRef}>
+          <div>Description</div>
+          <div className="horizontalbar" ref={lineRef}></div>
+        </div>
         <div className="background" ref={backgroundRef}></div>
         <div className="foreground-left" ref={leftForegroundRef}>
         </div>
@@ -88,15 +89,16 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         </div>
       </div>
       <style jsx>{`
-        .parallax-container {
+        .container {
           width: 100vw;
           height: 330vw;
         }
-        .foreground {
+        .parallax-container {
           position: sticky;
           height: 66vw;
           top: 0;
           display: flex;
+          overflow: hidden;
         }
         .foreground-left {
           will-change: transform;
@@ -104,7 +106,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/img/welcome/fg-left.png');
+          background-image: url('/static/img/welcome/fg-left.png');
           background-repeat: no-repeat;
           background-size: contain;
         }
@@ -114,7 +116,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/img/welcome/fg-right.png');
+          background-image: url('/static/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
         }
@@ -123,13 +125,13 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           position: absolute;
           height: 100%;
           width: 100%;
-          background-image: url('/img/welcome/fg-right.png');
+          background-image: url('/static/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
           background-position: center;
         }
         .centerpiece {
-          will-change: transform;
+          will-change: opacity;
           position: absolute;
           top: 50%;
           left: 50%;
