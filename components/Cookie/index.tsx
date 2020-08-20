@@ -49,29 +49,31 @@ const Cookie:React.FC<CookieProps> = (props) => {
   return (
     <div className={"container"}>
       <div className={"message"}>
-        <h4>This site uses cookie</h4>
-        Your generated cookie, shall and will not be used for
-        public sharing, activity or advertisement purposes and it is only
-        saved in your local and private browser.
+        <h4>This site uses cookies.</h4>
+        <p>Your generated cookie, shall and will not be used for
+        any public sharing or advertisement related purposes. The cookie is only
+        saved in your local and private browser to monitor visits and usage traffics.</p>
+
+
+        <p>By proceeding on this website, you have indirectly accepted and agreed to our cookie usage.</p>
       </div>
       <div className={"button-container"}>
-        <button onClick={reactToCookieButton}>Accept</button>
+        <button onClick={reactToCookieButton} >Close</button>
       </div>
       <style jsx>{`
         .container{
           height: 120px;
           width: 100%;
           bottom: 0;
-          position: absolute;
+          position: fixed;
           background-color: ${COOKIEBOX.BACKGROUND};
           color: ${COOKIEBOX.FOREGROUND};
           display: flex;
-          padding: 5px 20px;
+          padding: 20px;
         }
         .message {
           width: 75%;
           font-size: 0.9rem;
-          text-align: justify;
         }
         .button-container {
           width: 25%;
@@ -79,9 +81,12 @@ const Cookie:React.FC<CookieProps> = (props) => {
           align-self: center;
         }
         .button-container > button {
-          padding: 20px 5px;
           border-radius: 5px;
           cursor: pointer;
+          padding: 1rem;
+          background-color: #FFA500;
+          color: #FFF;
+          font-weight: bold;
         }
         @media only screen and (max-width: 480px) {
           .container{

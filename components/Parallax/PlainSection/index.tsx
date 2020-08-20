@@ -16,11 +16,11 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
     if(markAndIndicator.current !== null) {
       const options = {
         rootMargin: "100px 0px 0px 0px",
-        threshold: 0.8
+        threshold: 0.45
       };
       const callback = function(entries: Array<IntersectionObserverEntry>) {
         entries.forEach(function(entry) {
-          if(entry.intersectionRatio > 0.5) {
+          if(entry.intersectionRatio > 0.4) {
             set({opacity: 1, padding: 20})
           }
         })
