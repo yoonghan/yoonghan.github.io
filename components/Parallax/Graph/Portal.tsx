@@ -71,10 +71,10 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
 
     function getCursorPos(e:any) {
       var a, x = 0, y = 0;
-      e = e || window.event;
+      e = e.targetTouches? e.targetTouches[0] : e;
       a = _graphRef.getBoundingClientRect();
-      x = (e.pageX || e.clientX) - a.left;
-      y = (e.pageY || e.clientY) - a.top;
+      x = e.clientX - a.left;
+      y = e.clientY - a.top;
       x = x - window.pageXOffset;
       y = y - window.pageYOffset;
       return {x : x, y : y};

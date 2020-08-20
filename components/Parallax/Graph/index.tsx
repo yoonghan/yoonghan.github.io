@@ -36,18 +36,23 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
         .container {
           height: 100vh;
           max-height: 500px;
-          background: url("https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-          background-size: cover;
-          background-position: center;
-          transition: grayscale 0.5s;
-          filter: grayscale(100%);
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
         }
-        .container:hover {
-          filter: grayscale(0);
+        .container::before {
+          content:'';
+          height: 100%;
+          width: 100%;
+          background: url("https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+          background-size: cover;
+          background-position: center;
+          backdrop-filter: blur(3px);
+          position: absolute;
+        }
+        .container:hover::before {
+          filter: blur(3px)
         }
         .title {
           padding-bottom: 2rem;

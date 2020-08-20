@@ -21,7 +21,7 @@ exports[`Basic Components Construction Splash Screens renders normally 1`] = `
 `;
 
 exports[`Basic Components Footer renders normally 1`] = `
-"<footer>
+"<footer style={{...}}>
   <span>
     Walcron
   </span>

@@ -23,8 +23,11 @@ const Counter: React.FC<ICounter> =
   }, [counter, countTo]);
 
   React.useEffect(() => {
-    if(counter >= targetToReach) {
-      targetReachCallback();
+    if(counter === targetToReach) {
+      setTimeout(targetReachCallback , 500);
+    }
+    if(counter > targetToReach) {
+      return;
     }
     if(postFix == "%" && loadingBarRef.current !== null) {
       loadingBarRef.current.style.width = `${counter}%`;

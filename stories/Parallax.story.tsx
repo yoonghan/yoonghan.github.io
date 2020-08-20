@@ -15,7 +15,7 @@ const Component2 = () => {
 }
 
 const Component3 = () => {
-  return <ParallaxGraph/>
+  return <ParallaxGraph graphImg="https://via.placeholder.com/2000x1000.png"/>
 }
 
 const Component4 = () => {
