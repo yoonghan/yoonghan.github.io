@@ -95,6 +95,7 @@ const Main: StatelessPage<IMainProps> = ({}) => {
               <SocialFab />
               <div className={`info-container`}>
                 <ParallaxPlainSection title="messaging"/>
+                <ParallaxPlainSection title="messaging"/>
               </div>
             </React.Fragment>
           }
@@ -117,7 +118,6 @@ const Main: StatelessPage<IMainProps> = ({}) => {
         <ImageLoader
           imagesSrcToLoad={imagesToLoad}
           percentageLoad={(percentage) => updateLoadPercentage(percentage)}/>
-      }
     </React.Fragment>
   );
 }
