@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {ESC} from "../../../shared/keyboardkey";
 import globalStyles from '../../../shared/style';
+import MoveIcon from '../../MoveIcon';
 
 interface IPortal {
   closeCallback: (e?:any) => void;
@@ -98,7 +99,6 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
   }
 
 
-
   const drawPortal = () => (
     <div
       className="portal"
@@ -112,6 +112,14 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
       <div className="overlay-container"
         ref={overlayRef}
         ></div>
+
+      <MoveIcon
+        scrollContainer={portalRef}
+        hasLeft={true}
+        hasTop={true}
+        hasRight={true}
+        hasBottom={true}
+        />
       <div className={"buttonContainer"} onClick={closeCallback}>
         <button>[ESC]</button>
       </div>

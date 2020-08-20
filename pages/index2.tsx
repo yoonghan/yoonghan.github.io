@@ -3,13 +3,17 @@ import { Helmet } from "react-helmet";
 import { HtmlHead } from "../components/HtmlHead";
 import SocialFab from "../components/SocialFab";
 import CommandBar from "../components/CommandBar";
-import ImageLoader from "../components/ImageLoader";
+import AssetLoader from "../components/AssetLoader";
+import {EnumAssetLoader} from "../components/AssetLoader";
+import ScrollIcon from "../components/ScrollIcon";
 import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxPlainSection from "../components/Parallax/PlainSection";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
 import Footer from "../components/Footer";
 import Counter from "../components/Counter";
+import Cookie from "../components/Cookie";
+import cookies from 'next-cookies';
 
 const _getSchema = () => {
   const schemas = {
@@ -40,12 +44,16 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
   getInitialProps?: (ctx: any) => Promise<P>
 }
 
-const Main: StatelessPage<IMainProps> = ({}) => {
+const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
-  const imagesToLoad = ["/static/img/welcome/fg-left.png","/static/img/welcome/fg-right.png","https://via.placeholder.com/150x250.jpg"];
-
+  const assetsToLoad = [
+    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-left.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-right.png"},
+    {type: EnumAssetLoader.IMAGE, src:"https://via.placeholder.com/150x250.jpg"}
+  ];
+  const _termsRead = (termsRead == 'true');
   return (
     <React.Fragment>
       <HtmlHead
@@ -71,6 +79,7 @@ const Main: StatelessPage<IMainProps> = ({}) => {
           {imgLoaded &&
             <React.Fragment>
               <ParallaxBanner scrollContainer={scrollContainerRef}/>
+              <ScrollIcon scrollContainer={scrollContainerRef}/>
               <div className={`info-container`}>
                 <ParallaxPlainSection title="messaging"/>
                 <ParallaxFigure
@@ -102,9 +111,13 @@ const Main: StatelessPage<IMainProps> = ({}) => {
           <Footer isRelative={true}/>
           <style jsx>{`
             .container {
+              width: calc(100vw - 3px);
               position: relative;
               overflow: scroll;
               height: 100vh;
+            }
+            .container::-webkit-scrollbar {
+              width: 3px;
             }
             .container.hidden {
               visible: hidden;
@@ -115,17 +128,18 @@ const Main: StatelessPage<IMainProps> = ({}) => {
             }
             `}</style>
         </div>
-        <ImageLoader
-          imagesSrcToLoad={imagesToLoad}
+        <AssetLoader
+          assetsSrcToLoad={assetsToLoad}
           percentageLoad={(percentage) => updateLoadPercentage(percentage)}/>
+        {(!_termsRead) && <Cookie isClosed={_termsRead}/>}
     </React.Fragment>
   );
 }
 
-// Main.getInitialProps = async(ctx:any) => {
-//   return {
-//     termsRead: cookies(ctx).termsRead || "false"
-//   }
-// };
+Main.getInitialProps = async(ctx:any) => {
+  return {
+    termsRead: cookies(ctx).termsRead || "false"
+  }
+};
 
-export default React.memo(Main);
+export default Main;

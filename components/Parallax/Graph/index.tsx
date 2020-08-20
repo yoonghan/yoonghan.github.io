@@ -40,6 +40,7 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          position:relative;
         }
         .container::before {
           content:'';
