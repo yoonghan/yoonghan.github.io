@@ -90,7 +90,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       </div>
       <style jsx>{`
         .container {
-          width: 100vw;
+          width: 100%;
           height: 330vh;
         }
         .parallax-container {
@@ -109,6 +109,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/static/img/welcome/fg-left.png');
           background-repeat: no-repeat;
           background-size: contain;
+          background-position: left bottom;
         }
         .foreground-right {
           will-change: transform;
@@ -119,7 +120,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/static/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
-          background-position: right;
+          background-position: right bottom;
         }
         .background {
           will-change: transform;
@@ -129,7 +130,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/static/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
-          background-position: center;
+          background-position: center bottom;
         }
         .centerpiece {
           will-change: opacity;
