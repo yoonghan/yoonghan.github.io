@@ -14,7 +14,7 @@ const _getSchema = () => {
             "@context" : "http://schema.org",
             "@type" : "LocalBusiness",
             "name" : "Walcron",
-            "image" : "https://walcron.com/static/img/logo/logo-color.svg",
+            "image" : "https://walcron.com/img/logo/logo-color.svg",
             "email" : "walcoorperation@gmail.com",
             "url" : "https://www.walcron.com/",
             "openingHoursSpecification" : {

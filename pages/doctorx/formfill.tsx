@@ -64,8 +64,8 @@ const FormFill: StatelessPage<any> = (props: any) => {
     <React.Fragment>
       <Head>
         <title>Form Fill</title>
-        <link rel="stylesheet" href="/static/css/common.css"/>
-        <link rel="stylesheet" href="/static/css/w3c.css"/>
+        <link rel="stylesheet" href="/css/common.css"/>
+        <link rel="stylesheet" href="/css/w3c.css"/>
         <style>{`
           html {
             font-size: 14pt;

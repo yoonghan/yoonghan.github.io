@@ -1,7 +1,7 @@
 `use strict`
 
 import * as React from "react";
-import timeline from "../../static/json/timeline.js";
+import timeline from "../../json/timeline.js";
 import {TABLE_HEADER, TABLE_BODY} from "../../shared/style";
 
 const Timeline:React.FC<any> = () => {
