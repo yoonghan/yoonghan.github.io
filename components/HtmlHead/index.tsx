@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Head from 'next/head';
-import "../ModernizrTest";
 
 interface HtmlHeadProps {
   title: string;
@@ -52,14 +51,11 @@ export const HtmlHead:React.FC<HtmlHeadProps> = (props:HtmlHeadProps) => {
         {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <style>{`
-          .webp body {
-            background-image: url(/static/img/bg/type1.webp);
-          }
-          .no-webp body {
-            background-image: url(/static/img/bg/type1.jpg);
+          html {
+            scroll-behavior: smooth;
           }
           body {
-            background: #000 none no-repeat left bottom;
+            background: #000 url(/static/img/bg/type1.jpg) no-repeat left bottom;
             background-size: contain;
             color: #FFF;
             position: relative;
