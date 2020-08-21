@@ -2,13 +2,9 @@ import * as React from "react";
 import HeaderOne from "../../components/HeaderOne";
 import Footer from "../../components/Footer";
 import Doctorx from "../../components/Doctorx";
-import fetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-unfetch'; 
 
-interface StatelessPage<P = {}> extends React.SFC<P> {
-  getInitialProps?: () => Promise<P>
-}
-
-const DoctorxPage:StatelessPage<any> = (props: any) => {
+const DoctorxPage = (props) => {
   const {survey, error} = props;
 
   return (
