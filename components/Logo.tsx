@@ -9,7 +9,7 @@ export interface LogoProps {
 const Logo: React.SFC<LogoProps> = ({withText = false}) => {
   return (
     <React.Fragment>
-      <img className={"logo-img"} src="/static/img/logo/logo-color.svg" alt="Walcron Logo"/>
+      <img className={"logo-img"} src="/img/logo/logo-color.svg" alt="Walcron Logo"/>
       {withText && <div> Walcron</div>}
       <style jsx>{`
         .logo-img {

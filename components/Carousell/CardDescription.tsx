@@ -23,7 +23,7 @@ const clickArticle = (props:ICardDescription, showIframe:()=> void) => () => {
 }
 
 const getUrl = (url:string) => {
-  return `/static/host/${url}/`;
+  return `/host/${url}/`;
 }
 
 const renderIframe = (props:ICardDescription, closeIframe:()=>void) => {

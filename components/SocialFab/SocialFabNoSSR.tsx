@@ -98,7 +98,7 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
             display: inline-block;
             width: 56px;
             height: 56px;
-            background: url("/static/img/social/action.svg") center no-repeat;
+            background: url("/img/social/action.svg") center no-repeat;
           }
 
           .fab-buttons__item {
@@ -129,15 +129,15 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
           }
 
           .icon-material_fb {
-            background: url("/static/img/social/fb.svg") center no-repeat;
+            background: url("/img/social/fb.svg") center no-repeat;
           }
 
           .icon-material_gm {
-            background: url("/static/img/social/gm.svg") center no-repeat;
+            background: url("/img/social/gm.svg") center no-repeat;
           }
 
           .icon-material_li {
-            background: url("/static/img/social/linkedin.svg") center no-repeat;
+            background: url("/img/social/linkedin.svg") center no-repeat;
           }
         `}
       </style>
