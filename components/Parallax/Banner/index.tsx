@@ -106,7 +106,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/static/img/welcome/fg-left.png');
+          background-image: url('/img/welcome/fg-left.png');
           background-repeat: no-repeat;
           background-size: contain;
           background-position: left bottom;
@@ -117,7 +117,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/static/img/welcome/fg-right.png');
+          background-image: url('/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
           background-position: right bottom;
@@ -127,7 +127,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           position: absolute;
           height: 100%;
           width: 100%;
-          background-image: url('/static/img/welcome/fg-right.png');
+          background-image: url('/img/welcome/fg-right.png');
           background-repeat: no-repeat;
           background-size: contain;
           background-position: center bottom;

@@ -15,7 +15,7 @@ const _getSchema = () => {
             "@context" : "http://schema.org",
             "@type" : "LocalBusiness",
             "name" : "Walcron",
-            "image" : "https://walcron.com/static/img/logo/logo-color.svg",
+            "image" : "https://walcron.com/img/logo/logo-color.svg",
             "email" : "walcoorperation@gmail.com",
             "url" : "https://www.walcron.com/",
             "openingHoursSpecification" : {
@@ -97,7 +97,7 @@ const About:React.SFC<any> = () => {
                   <i>An enthusiast programmer.</i>
                   </div>
                 ),
-                imgSrc: "/static/img/profile/han.jpg"
+                imgSrc: "/img/profile/han.jpg"
               },
               {
                 name: "Gladys Tai",
@@ -111,7 +111,7 @@ const About:React.SFC<any> = () => {
                   <i>She is a worrier and a warrior.</i>
                   </div>
                 ),
-                imgSrc: "/static/img/profile/gladys.jpg"
+                imgSrc: "/img/profile/gladys.jpg"
               }
             ]}
           />
