@@ -66,13 +66,21 @@ const _handleSuggestions = (_value) => {
 
 export const Component1 = () => {
   return (
-    <div style={{width:"400px", height:"100px", background:"#000", padding: "20px"}}>
+    <div className={"container"}>
       <TextMessenger
         maxLength={100}
         onBlurCallback={()=>{}}
         onSubmitCallback={_handleSubmit}
         filterSuggestion={_handleSuggestions}
       />
+      <style jsx>{`
+        .container {
+          width: 400px,
+          height: 400px,
+          background: #000,
+          padding: 20px
+        }
+        `}</style>
     </div>
   );
 }

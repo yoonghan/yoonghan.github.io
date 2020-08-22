@@ -1,5 +1,5 @@
 import * as React from "react";
-import PusherJS, {Pusher, Channel} from 'pusher-js';
+import PusherJS from 'pusher-js';
 import produce, {Draft} from "immer";
 import { PUSHER } from "../shared/const";
 
@@ -36,8 +36,8 @@ const withMessenger = (result: any, nonprivate=false) => <T extends React.Compon
 
   class Messenger extends React.Component<Props, IState> {
 
-    private pushChannelClient:Pusher|undefined;
-    private channel:Channel|undefined;
+    private pushChannelClient:any|undefined;
+    private channel:any|undefined;
 
     constructor(props:Props) {
       super(props);

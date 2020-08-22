@@ -74,7 +74,7 @@ const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLA
 
 const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small, invert}) => {
   return (
-    href && !(/^(http:\/\/)|(https:\/\/)|(\/static)/.test(href)) ?
+    href && !(/^(http:\/\/)|(https:\/\/)|(\/)/.test(href)) ?
       <Link href={href}>{createButton(children, undefined, target, small, invert, undefined)}</Link>:
       createButton(children, onClickCallback, target, small, invert, href)
   );

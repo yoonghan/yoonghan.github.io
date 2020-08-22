@@ -5,7 +5,6 @@ import CinemaScreen from "../components/CinemaScreen";
 import SocialFab from "../components/SocialFab";
 import CommandBar from "../components/CommandBar";
 import Footer from "../components/Footer";
-//import Modernizr from 'modernizr';
 //import Cookie from "../components/Cookie";
 //import cookies from 'next-cookies';
 
