@@ -20,7 +20,7 @@ const _getSchema = () => {
             "@context" : "http://schema.org",
             "@type" : "LocalBusiness",
             "name" : "Walcron",
-            "image" : "https://walcron.com/img/logo/logo-color.svg",
+            "image" : "https://walcron.com/static/img/logo/logo-color.svg",
             "email" : "walcoorperation@gmail.com",
             "url" : "https://www.walcron.com/",
             "openingHoursSpecification" : {
@@ -49,8 +49,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
   const assetsToLoad = [
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.png"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-right.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-left.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-right.png"},
     {type: EnumAssetLoader.IMAGE, src:"https://via.placeholder.com/150x250.jpg"}
   ];
   const _termsRead = (termsRead == 'true');
@@ -115,9 +115,6 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               position: relative;
               overflow: scroll;
               height: 100vh;
-            }
-            .container::-webkit-scrollbar {
-              width: 3px;
             }
             .container.hidden {
               visible: hidden;

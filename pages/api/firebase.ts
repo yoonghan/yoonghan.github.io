@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import ApiController from "../../shared/api";
-import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from 'uuid';
 import formidable from "formidable";
 
 const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {

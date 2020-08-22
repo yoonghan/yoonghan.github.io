@@ -19,8 +19,9 @@
     "jsx": "preserve"
   },
   "include": [
-    "../types.d.ts",
-    "../next-env.d.ts"
+    "next-env.d.ts",
+    "../stories/*.story.ts",
+    "../stories/*.story.tsx"
   ],
   "exclude": [
     "node_modules"
