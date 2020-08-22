@@ -2,7 +2,7 @@ import * as React from "react";
 import HeaderOne from "../../components/HeaderOne";
 import Footer from "../../components/Footer";
 import Doctorx from "../../components/Doctorx";
-import fetch from 'isomorphic-unfetch'; 
+import fetch from 'isomorphic-unfetch';
 
 const DoctorxPage = (props) => {
   const {survey, error} = props;

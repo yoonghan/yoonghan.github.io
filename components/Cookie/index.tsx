@@ -53,8 +53,6 @@ const Cookie:React.FC<CookieProps> = (props) => {
         <p>Your generated cookie, shall and will not be used for
         any public sharing or advertisement related purposes. The cookie is only
         saved in your local and private browser to monitor visits and usage traffics.</p>
-
-
         <p>By proceeding on this website, you have indirectly accepted and agreed to our cookie usage.</p>
       </div>
       <div className={"button-container"}>
@@ -62,7 +60,6 @@ const Cookie:React.FC<CookieProps> = (props) => {
       </div>
       <style jsx>{`
         .container{
-          height: 120px;
           width: 100%;
           bottom: 0;
           position: fixed;
@@ -84,8 +81,8 @@ const Cookie:React.FC<CookieProps> = (props) => {
           border-radius: 5px;
           cursor: pointer;
           padding: 1rem;
-          background-color: #FFA500;
-          color: #FFF;
+          background-color: ${COOKIEBOX.FOREGROUND};
+          color: ${COOKIEBOX.BACKGROUND};
           font-weight: bold;
         }
         @media only screen and (max-width: 480px) {

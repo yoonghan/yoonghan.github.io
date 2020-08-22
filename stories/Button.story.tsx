@@ -7,20 +7,36 @@ import ButtonsBar from '../components/ButtonsBar';
 
 export const Component = () => {
   return (
-    <div style={{width:"400px", height:"400px", background:"#000", padding: "20px"}}>
+    <div className="container">
       <Button>Click Me</Button>
+      <style jsx>{`
+        .container {
+          width: 400px,
+          height: 400px,
+          background: #000,
+          padding: 20px
+        }
+        `}</style>
     </div>
   );
 }
 
 export const Component2 = () => {
   return (
-    <div style={{width:"400px", height:"400px", background:"#000", padding: "20px"}}>
+    <div className="container">
       <ButtonsBar menuTexts={[
         {title:"abc",link:"/"},
         {title:"def",link:"/"},
         {title:"123",link:"/"}
         ]}/>
+        <style jsx>{`
+          .container {
+            width: 400px,
+            height: 400px,
+            background: #000,
+            padding: 20px
+          }
+          `}</style>
     </div>
   );
 }
