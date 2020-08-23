@@ -51,7 +51,7 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
           position: absolute;
         }
         .container:hover::before {
-          filter: blur(3px)
+          filter: blur(1px)
         }
         .title {
           padding: 2rem;
