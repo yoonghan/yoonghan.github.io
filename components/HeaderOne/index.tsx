@@ -1,16 +1,16 @@
 `use strict`
 import * as React from "react";
-import { BACKGROUND, HEADER_TITLE } from "../shared/style";
+import { BACKGROUND, HEADER_TITLE } from "../../shared/style";
 
 //There should only be one header at a time
 
-export interface HeaderOneProps {
+export interface IHeaderOneProps {
   title: string;
   isBlackOnWhite?: boolean;
   isLined?: boolean;
 }
 
-const HeaderOne: React.SFC<HeaderOneProps> = ({title, isBlackOnWhite, isLined}) => {
+const HeaderOne: React.SFC<IHeaderOneProps> = ({title, isBlackOnWhite, isLined}) => {
   return (
     <React.Fragment>
       <h1 className={isLined?"lined":""}>{title}</h1>

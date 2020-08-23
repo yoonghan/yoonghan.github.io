@@ -7,9 +7,10 @@ interface HtmlHeadProps {
   title: string;
   description: string;
   nofontawesome?: boolean;
+  noBackground?: boolean;
 }
 
-export const HtmlHead:React.FC<HtmlHeadProps> = (props:HtmlHeadProps) => {
+export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawesome, noBackground}) => {
   const _runPreload = () => {
     const scriptElement = document.getElementById('id-scripts');
     const elements = document.getElementsByTagName("link");
@@ -29,7 +30,6 @@ export const HtmlHead:React.FC<HtmlHeadProps> = (props:HtmlHeadProps) => {
     setTimeout(_runPreload, 50);
   },[]);
 
-  const {title, description, nofontawesome} = props;
   return (
     <div id="id-scripts">
       <Head>
@@ -55,7 +55,7 @@ export const HtmlHead:React.FC<HtmlHeadProps> = (props:HtmlHeadProps) => {
             scroll-behavior: smooth;
           }
           body {
-            background: #000 url(/img/bg/type1.jpg) no-repeat left bottom;
+            background: #000 ${noBackground?'none':'url(/img/bg/type1.jpg)'} no-repeat left bottom;
             background-size: contain;
             color: #FFF;
             position: relative;
