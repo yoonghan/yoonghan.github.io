@@ -69,11 +69,11 @@ const Counter: React.FC<ICounter> =
           padding: 2rem;
         }
         .loading-bar-black {
-          height: 100%;
+          height: 2rem;
           background-color: #000;
         }
         .loading-bar-white {
-          height: 100%;
+          height: 2rem;
           background-color: #fff;
         }
       `}</style>

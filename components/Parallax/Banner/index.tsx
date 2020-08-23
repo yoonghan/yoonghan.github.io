@@ -45,6 +45,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
             rightForegroundRef.current.children[0].style.display = 'none';
             leftForegroundRef.current.style.transform = 'scale(1.0)';
             rightForegroundRef.current.style.transform = 'scale(1.0)';
+            leftForegroundRef.current.style.borderRight = 'none';
+            rightForegroundRef.current.style.borderLeft = 'none';
           }
         }
 
@@ -61,6 +63,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
             leftForegroundRef.current.children[0].style.display = 'flex';
             rightForegroundRef.current.children[0].style.display = 'flex';
+            leftForegroundRef.current.style.borderRight = '1px solid';
+            rightForegroundRef.current.style.borderLeft = '1px solid';
           }
         }
       }
@@ -195,7 +199,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-position: left bottom;
           background-color: black;
           overflow: hidden;
-          border-right: 1px solid;
         }
         .foreground-right {
           will-change: transform;
@@ -208,7 +211,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-position: right bottom;
           background-color: black;
           overflow: hidden;
-          border-left: 1px solid;
         }
         .foreground-center {
           will-change: transform, display;
