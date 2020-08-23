@@ -1,5 +1,6 @@
 //const PRIMARY_YELLOW = "#FFDE03";
 const PRIMARY_BLUE = "#00b4ef";
+const SECONDARY_BLUE = "#0080fe";
 const LAY_BLUE = "#c4f0f6";
 const PRIMARY_PURPLE = "#FF0266";
 const PRIMARY_ORANGE = "#FF8400";
@@ -69,7 +70,8 @@ export const COOKIEBOX = {
 }
 
 export const HEADER_TITLE = {
-  FOREGROUND: PRIMARY_ORANGE
+  FOREGROUND: PRIMARY_ORANGE,
+  BACKGROUND: SECONDARY_BLUE
 }
 
 export const SUB_HEADER = {
@@ -107,5 +109,8 @@ export default css.global`
   position: fixed;
   animation: expandWidth 0.5s;
   overflow: hidden;
+}
+h1 {
+  color: rgb(255, 132, 0);
 }
 `

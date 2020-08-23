@@ -86,6 +86,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
             .letterbox-container {
               display: flex;
               margin-top: 20px;
+              justify-content: center;
             }
             .gap {
               margin-top: 20px;

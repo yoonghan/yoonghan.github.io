@@ -36,12 +36,12 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
   }, []);
 
   return (
-    <div ref={markAndIndicator}>
+    <div className="stopper">
       <animated.div
         style={props}
         >
-        <div className="container">
-          {title && <h3 className="title">{title}</h3>}
+        <div className="container" ref={markAndIndicator} >
+          {title && <h2 className="title">{title}</h2>}
           <div className="desc">
             {children}
           </div>
@@ -49,12 +49,27 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
       </animated.div>
 
       <style jsx>{`
+        .stopper {
+          overflow: hidden;
+        }
         .container {
           display: flex;
           justify-content: center;
           align-items: center;
-          flex-direction: row;
-          min-height: 100vh;
+          flex-direction: column;
+          min-height: 90vh;
+          padding: 3px;
+        }
+        .stopper::before {
+          content: '';
+          position: absolute;
+          width: 90vw;
+          height: 90vh;
+          border: 1px solid rgba(100,100,100);
+          transform: rotate(30deg);
+          z-index: -1;
+          background-color: rgba(2,2,2);
+          margin-top: 10vh;
         }
         .title {
           text-align: center;

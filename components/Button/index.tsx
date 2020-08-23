@@ -10,9 +10,10 @@ export interface ButtonProps {
   onClickCallback?: (e?:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   small?: boolean;
   invert?: boolean;
+  color?: string;
 }
 
-const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void, target?: string, small?: boolean, invert?: boolean, href?: string) => {
+const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void, target?: string, small?: boolean, invert?: boolean, color?:string, href?: string) => {
   //const [state, toggle] = React.useState(true);
   const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } })
 
@@ -59,7 +60,7 @@ const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLA
               box-shadow: 0 2px 2px 0 rgba(22,22,22,0.14), 0 1px 5px 0 rgba(22,22,22,0.12), 0 3px 1px -2px rgba(22,22,22,0.2)
             }
             .btn-container:hover {
-              background: #FFF;
+              background: ${color? color: '#FFF'};
               color: #000;
             }
             .btn-container:active {
@@ -72,11 +73,11 @@ const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLA
   );
 }
 
-const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small, invert}) => {
+const Button: React.SFC<ButtonProps> = ({children, href, target, onClickCallback, small, invert, color}) => {
   return (
     href && !(/^(http:\/\/)|(https:\/\/)|(\/)/.test(href)) ?
-      <Link href={href}>{createButton(children, undefined, target, small, invert, undefined)}</Link>:
-      createButton(children, onClickCallback, target, small, invert, href)
+      <Link href={href}>{createButton(children, undefined, target, small, invert, color, undefined)}</Link>:
+      createButton(children, onClickCallback, target, small, invert, color, href)
   );
 }
 

@@ -18,11 +18,11 @@ const Figure:React.FC<IFigure> = ({imageSrc, isImagePositionOnRight, children}) 
     if(markAndIndicator.current !== null) {
       const options = {
         rootMargin: "100px 0px 0px 0px",
-        threshold: 0.8
+        threshold: 0.5
       };
       const callback = function(entries: Array<IntersectionObserverEntry>) {
         entries.forEach(function(entry) {
-          if(entry.intersectionRatio > 0.5) {
+          if(entry.intersectionRatio > 0.4) {
             setAnimatedClassName("animate");
           }
         })
@@ -61,11 +61,12 @@ const Figure:React.FC<IFigure> = ({imageSrc, isImagePositionOnRight, children}) 
           }
           .figure {
             width: 30%;
-            padding: 1rem;
+            padding: 2rem 1rem;
             display: flex;
             justify-content: center;
           }
           .figure img {
+            width: 100%;
             display: block;
           }
           .figure-border {
@@ -78,6 +79,21 @@ const Figure:React.FC<IFigure> = ({imageSrc, isImagePositionOnRight, children}) 
             display: flex;
             justify-content: center;
             flex-direction: column;
+          }
+          @media only screen and (max-width: 640px) {
+            .container {
+              flex-direction: column-reverse;
+            }
+            .container.inverse {
+              flex-direction: column-reverse;
+            }
+            .figure {
+              width: 50%;
+              margin: auto;
+            }
+            .figure-caption {
+              width: 100%;
+            }
           }
         `}</style>
         <style jsx global>
