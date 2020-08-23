@@ -38,7 +38,7 @@ const ScrollIcon: React.SFC<IScrollIcon> = ({scrollContainer}) => {
             width: 30px;
             height: 50px;
             margin-left: -20px;
-            bottom: 10%;
+            bottom: 5rem;
             margin-top: -35px;
             border: 2px solid #fff;
             border-radius: 25px;

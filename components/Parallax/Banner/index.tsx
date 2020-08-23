@@ -50,8 +50,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           }
         }
 
-        centerForegroundRef.current.style.transform = `rotateY(${_pos}deg)`;
-        centerForegroundRef.current.children[1].style.transform = `rotateY(${_pos * 2}deg)`;
+        centerForegroundRef.current.style.transform = `${window.safari?"rotate":"rotateY"}(${_pos}deg)`;
+        centerForegroundRef.current.children[1].style.transform = `${window.safari?"rotate":"rotateY"}(${_pos * 2}deg)`;
       }
 
       return;
@@ -196,7 +196,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/img/welcome/fg-left.jpg');
           background-repeat: no-repeat;
           background-size: cover;
-          background-position: left bottom;
+          background-position: right bottom;
           background-color: black;
           overflow: hidden;
         }
@@ -208,7 +208,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           background-image: url('/img/welcome/fg-left.jpg');
           background-repeat: no-repeat;
           background-size: cover;
-          background-position: right bottom;
+          background-position: left bottom;
           background-color: black;
           overflow: hidden;
         }
@@ -221,7 +221,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           height: 24rem;
           border: 1rem solid rgba(51,153,67);
           border-radius: 24rem;
-          transform-style: preserve-3d;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -236,7 +235,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           width: 18rem;
           height: 18rem;
           border-radius: 18rem;
-          transform-style: preserve-3d;
         }
         .foreground-center.left {
           display: none;

@@ -87,7 +87,6 @@ const Cookie:React.FC<CookieProps> = (props) => {
         }
         @media only screen and (max-width: 480px) {
           .container{
-            height: 150px;
             padding: 2px 10px;
           }
         }
