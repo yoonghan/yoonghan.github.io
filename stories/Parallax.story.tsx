@@ -5,6 +5,7 @@ import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
 import ParallaxPlainSection from "../components/Parallax/PlainSection";
+import CinemaCountdown from "../components/Parallax/Banner/CinemaCountdown";
 
 const Component = () => {
   return <WelcomeScreen/>
@@ -20,6 +21,10 @@ const Component3 = () => {
 
 const Component4 = () => {
   return <ParallaxPlainSection title="messaging"/>
+}
+
+const Component5 = () => {
+  return <CinemaCountdown percentage={50} countdown={2}/>
 }
 
 const WelcomeScreen:React.FC<any> = () => {
@@ -93,3 +98,4 @@ stories.add('Banner', Component);
 stories.add('Figure', Component2);
 stories.add('Graph', Component3);
 stories.add('Section', Component4);
+stories.add('CinemaScreen', Component5);

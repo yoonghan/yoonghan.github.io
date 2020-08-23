@@ -18,10 +18,11 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
 
   return (
     <div className="container">
-      <h3 className="title">Our roadmap and journey</h3>
+      <h2 className="title">Our roadmap and journey</h2>
       <div>
         <Button
           onClickCallback={toggleShowPortal}
+          color={'rgba(51,153,67)'}
           >See my journey</Button>
         <img src={graphImg} className="hidden-preload"/>
         {showPortal.show &&
@@ -46,17 +47,14 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
           content:'';
           height: 100%;
           width: 100%;
-          background: url("https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-          background-size: cover;
-          background-position: center;
-          backdrop-filter: blur(3px);
+          background: rgba(51,153,67, 0.2) url("/img/welcome/connection.png") repeat center top;
           position: absolute;
         }
         .container:hover::before {
           filter: blur(3px)
         }
         .title {
-          padding-bottom: 2rem;
+          padding: 2rem;
         }
         .hidden-preload {
           display: none;

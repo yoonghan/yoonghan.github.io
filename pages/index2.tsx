@@ -14,6 +14,7 @@ import Footer from "../components/Footer";
 import Counter from "../components/Counter";
 import Cookie from "../components/Cookie";
 import cookies from "next-cookies";
+import LetterBox from "../components/LetterBox";
 
 const _getSchema = () => {
   const schemas = {
@@ -49,17 +50,28 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
   const assetsToLoad = [
-    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-left.png"},
-    {type: EnumAssetLoader.IMAGE, src:"/static/img/welcome/fg-right.png"},
-    {type: EnumAssetLoader.IMAGE, src:"https://via.placeholder.com/150x250.jpg"}
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-right.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/profile/han.jpg"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/profile/gladys.jpg"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/connection.png"}
   ];
+
   const _termsRead = (termsRead == 'true');
+
+  const _scrollToTop = ()=>{
+    if(scrollContainerRef.current !== null) {
+      scrollContainerRef.current.scrollTo(0,0);
+    }
+  }
+
   return (
     <React.Fragment>
       <HtmlHead
         title={"Walcron"}
         description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}
         nofontawesome={true}
+        noBackground={true}
         />
       <Helmet>
         <script type="application/ld+json">
@@ -77,36 +89,72 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               />
             }
           {imgLoaded &&
-            <React.Fragment>
+            <section className="loaded-container">
               <ParallaxBanner scrollContainer={scrollContainerRef}/>
               <ScrollIcon scrollContainer={scrollContainerRef}/>
               <div className={`info-container`}>
-                <ParallaxPlainSection title="messaging"/>
-                <ParallaxFigure
-                  imageSrc="https://via.placeholder.com/150x250.jpg">
-                  <h3>Awesome graphics</h3>
-                  <div>
-                    very diverse and interesting graphics.
-                  </div>
-                </ParallaxFigure>
-                <ParallaxFigure
-                  imageSrc="https://via.placeholder.com/150x250.jpg"
-                  isImagePositionOnRight={true}
-                  >
-                  <h3>Awesome graphics</h3>
-                  <div>
-                    very diverse and interesting graphics.
-                  </div>
-                </ParallaxFigure>
+                <div className="relative">
+                  <ParallaxPlainSection title="What do we do?">
+                    <div className="section1">
+                      We are coders who likes to crank our brains in creating visual components.
+                      May it be websites or on a piece of paper, our expertise are on:
+                      <ul>
+                        <li>SEO optimized websites</li>
+                        <li>Mobile and PWA enabled sites</li>
+                        <li>Lego Mindstorm</li>
+                        <li>Asynchronous/Multi-threaded programs</li>
+                      </ul>
+                    </div>
+                  </ParallaxPlainSection>
+                  <ParallaxFigure
+                    imageSrc="/img/profile/han.jpg">
+                    <div className="section-profile-title">
+                      <div>01</div>
+                      <h3>Han Yoong</h3>
+                    </div>
+                    <div class="section-profile-text">
+                      A passionate coder who is now stuck in a proprietery software and hardware industry. In his free time, he spends time to read and experiment new ways to improve the Walcron Cooperation publicity. He has been contributing to Stackoverflow and sharing write-ups in Github.
+                      <p className="section-quote">"An enthusiast programmer."</p>
+                    </div>
+                  </ParallaxFigure>
+                  <ParallaxFigure
+                    imageSrc="/img/profile/gladys.jpg"
+                    isImagePositionOnRight={true}
+                    >
+                    <div className="section-profile-title right">
+                      <div>02</div>
+                      <h3>Gladys Tai</h3>
+                    </div>
+                    <div class="section-profile-text">
+                      An achiever with a bad-ass attitude. She always complains that she wouldn't make it in time or the task are too complex to handle. However, all the projects that was/has been delivered by her are faultless. As a girl, she spends most of her time being presentable.
+                      <p className="section-quote">"She is a worrier and a warrior."</p>
+                    </div>
+                  </ParallaxFigure>
+                </div>
               </div>
               <ParallaxGraph
                 graphImg="https://via.placeholder.com/2000x1000.png"/>
               <SocialFab />
-              <div className={`info-container`}>
-                <ParallaxPlainSection title="messaging"/>
-                <ParallaxPlainSection title="messaging"/>
+              <div className="info-container relative">
+                <ParallaxPlainSection title="Are we freelance for hire ?">
+                  <div className="section1">
+                  Well...if the price is right, and we have time to allocate, yes. Provide us your contact information and we will reach out to you.
+                  </div>
+                  <div className={"letterbox"}>
+                    <LetterBox/>
+                  </div>
+                </ParallaxPlainSection>
+                <ParallaxPlainSection>
+                  <div className="section-end">
+                    <span>this website is powered by:</span>
+                    <h2>Next.JS with React and Typescript</h2>
+                  </div>
+                  <div className="section-backtotop">
+                    <button onClick={_scrollToTop}>Return to top</button>
+                  </div>
+                </ParallaxPlainSection>
               </div>
-            </React.Fragment>
+            </section>
           }
           <Footer isRelative={true}/>
           <style jsx>{`
@@ -115,13 +163,76 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               position: relative;
               overflow: scroll;
               height: 100vh;
+              scroll-behavior: smooth;
             }
             .container.hidden {
               visible: hidden;
             }
+            .section1 {
+              max-width: 600px;
+            }
+            .letterbox {
+              padding: 2rem 0;
+            }
+            .section-end span {
+              text-align: center;
+              font-size: 0.75rem;
+            }
+            .loaded-container {
+              opacity: 1;
+              animation: fadeInFromNone 0.5s ease-out;
+            }
+            .section-profile-title {
+              position: relative;
+            }
+            .section-profile-title > div{
+              font-size: 6rem;
+              color: red;
+              font-weight: bold;
+            }
+            .section-profile-title > h3{
+              position: absolute;
+              top: 2.5rem;
+              background-color: black;
+              padding: 0 1rem 0.25rem 1rem;
+            }
+            .section-profile-title.right > h3 {
+              right: 0;
+            }
+            .section-profile-text {
+              text-align: justify;
+            }
+            .section-quote {
+              font-weight: bold;
+              font-style: italic;
+            }
+            .section-backtotop {
+              display: flex;
+              justify-content: center;
+            }
+            .section-backtotop > button {
+              border: 0;
+              text-decoration: underline;
+              background: none;
+              color: #0080fe;
+              cursor: pointer;
+            }
+            @keyframes fadeInFromNone {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
             .info-container {
               max-width: 1024px;
               margin: auto;
+              margin-bottom: 5rem;
+            }
+            .relative {
+              position: relative;
+              overflow: hidden;
             }
             `}</style>
         </div>
