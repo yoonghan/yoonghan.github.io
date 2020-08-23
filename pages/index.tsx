@@ -50,8 +50,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
   const assetsToLoad = [
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.png"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-right.png"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.jpg"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-center.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/profile/han.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/profile/gladys.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/connection.png"}
