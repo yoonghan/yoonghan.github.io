@@ -9,7 +9,7 @@ interface IBanner {
 }
 
 const Banner:React.FC<IBanner> = ({scrollContainer}) => {
-  const sectionHeight='300vh', sectionOneHeight='100vh', sectionTwoHeight='200vh';
+  const sectionHeight='330vh', sectionOneHeight='100vh', sectionTwoHeight='230vh';
   const backgroundRef = useRef<HTMLDivElement>(null);
   const leftForegroundRef = useRef<HTMLDivElement>(null);
   const rightForegroundRef = useRef<HTMLDivElement>(null);
@@ -63,8 +63,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
             leftForegroundRef.current.children[0].style.display = 'flex';
             rightForegroundRef.current.children[0].style.display = 'flex';
-            leftForegroundRef.current.style.borderRight = '1px solid';
-            rightForegroundRef.current.style.borderLeft = '1px solid';
+            leftForegroundRef.current.style.borderRight = '1px solid #000';
+            rightForegroundRef.current.style.borderLeft = '1px solid #000';
           }
         }
       }
@@ -193,7 +193,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/img/welcome/fg-left.png');
+          background-image: url('/img/welcome/fg-left.jpg');
           background-repeat: no-repeat;
           background-size: cover;
           background-position: left bottom;
@@ -205,7 +205,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transform: scale(1.0);
           width: 50%;
           height: 100%;
-          background-image: url('/img/welcome/fg-right.png');
+          background-image: url('/img/welcome/fg-left.jpg');
           background-repeat: no-repeat;
           background-size: cover;
           background-position: right bottom;
@@ -231,7 +231,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-center > .before {
           content: '';
           will-change: transform,display;
-          border: 5px solid rgba(51,153,67, 0.8);
+          border: 5px solid rgba(51,153,67, 0.9);
           position: absolute;
           width: 18rem;
           height: 18rem;
@@ -271,6 +271,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           position: absolute;
           height: 100%;
           width: 100%;
+          background: #000 url(/img/welcome/fg-center.jpg) no-repeat center center;
+          background-size: cover;
         }
         .centerpiece {
           font-size: 2rem;
@@ -279,11 +281,16 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          color: ${HEADER_TITLE.BACKGROUND};
+          color: rgb(51,153,67);
+          padding: 2rem;
         }
         .centerpiece.inverse {
+          top: 60%;
           opacity: 0;
           color: #FFF;
+          min-width: 320px;
+          background: rgba(20,20,20,0.8);
+          filter: unset;
         }
         .horizontalbar {
           will-change: width;
