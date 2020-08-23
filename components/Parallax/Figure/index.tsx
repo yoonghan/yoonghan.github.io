@@ -68,6 +68,7 @@ const Figure:React.FC<IFigure> = ({imageSrc, isImagePositionOnRight, children}) 
           .figure img {
             width: 100%;
             display: block;
+            object-fit: contain;
           }
           .figure-border {
             border: 1px solid rgba(90, 90, 90,0.2);

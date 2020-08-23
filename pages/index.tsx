@@ -112,7 +112,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                       <div>01</div>
                       <h3>Han Yoong</h3>
                     </div>
-                    <div class="section-profile-text">
+                    <div className="section-profile-text">
                       A passionate coder who is now stuck in a proprietery software and hardware industry. In his free time, he spends time to read and experiment new ways to improve the Walcron Cooperation publicity. He has been contributing to Stackoverflow and sharing write-ups in Github.
                       <p className="section-quote">"An enthusiast programmer."</p>
                     </div>
@@ -125,7 +125,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                       <div>02</div>
                       <h3>Gladys Tai</h3>
                     </div>
-                    <div class="section-profile-text">
+                    <div className="section-profile-text">
                       An achiever with a bad-ass attitude. She always complains that she wouldn't make it in time or the task are too complex to handle. However, all the projects that was/has been delivered by her are faultless. As a girl, she spends most of her time being presentable.
                       <p className="section-quote">"She is a worrier and a warrior."</p>
                     </div>
