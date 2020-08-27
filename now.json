@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "alias": ["www.walcron.com", "walcron.com", "login.walcron.com"],
   "regions": ["sin1"],
   "routes": [
     { "src": "/img/construction.svg", "dest": "/img/underconstruction.svg" },
