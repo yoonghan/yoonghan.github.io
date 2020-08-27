@@ -18,17 +18,17 @@ exports[`Header renders normally 1`] = `
     <title>
       title
     </title>
-    <link rel=\\"preload\\" as=\\"style\\" href=\\"/css/common.css\\" />
-    <link rel=\\"preload\\" as=\\"style\\" href=\\"/css/font.css\\" />
+    <link rel=\\"preload\\" as=\\"style\\" href=\\"/static/css/common.css\\" />
+    <link rel=\\"preload\\" as=\\"style\\" href=\\"/static/css/font.css\\" />
     <link rel=\\"preload\\" as=\\"style\\" href=\\"https://use.fontawesome.com/releases/v5.5.0/css/all.css\\" />
     <link rel=\\"shortcut icon\\" type=\\"image/x-icon\\" href=\\"/favicon.ico\\" />
     <style>
-      
+
                 html {
                   scroll-behavior: smooth;
                 }
                 body {
-                  background: #000 url(/img/bg/type1.jpg) no-repeat left bottom;
+                  background: #000 none no-repeat left bottom;
                   background-size: contain;
                   color: #FFF;
                   position: relative;
@@ -53,7 +53,7 @@ exports[`Header renders normally 1`] = `
                   position: absolute;
                   width: 320px;
                 }
-              
+
     </style>
     <script async={true} src=\\"https://www.googletagmanager.com/gtag/js?id=UA-156082636-1\\" />
     <script dangerouslySetInnerHTML={{...}} />
@@ -79,16 +79,16 @@ exports[`Header renders with nofontawesome normally 1`] = `
     <title>
       title
     </title>
-    <link rel=\\"preload\\" as=\\"style\\" href=\\"/css/common.css\\" />
-    <link rel=\\"preload\\" as=\\"style\\" href=\\"/css/font.css\\" />
+    <link rel=\\"preload\\" as=\\"style\\" href=\\"/static/css/common.css\\" />
+    <link rel=\\"preload\\" as=\\"style\\" href=\\"/static/css/font.css\\" />
     <link rel=\\"shortcut icon\\" type=\\"image/x-icon\\" href=\\"/favicon.ico\\" />
     <style>
-      
+
                 html {
                   scroll-behavior: smooth;
                 }
                 body {
-                  background: #000 url(/img/bg/type1.jpg) no-repeat left bottom;
+                  background: #000 none no-repeat left bottom;
                   background-size: contain;
                   color: #FFF;
                   position: relative;
@@ -113,7 +113,7 @@ exports[`Header renders with nofontawesome normally 1`] = `
                   position: absolute;
                   width: 320px;
                 }
-              
+
     </style>
     <script async={true} src=\\"https://www.googletagmanager.com/gtag/js?id=UA-156082636-1\\" />
     <script dangerouslySetInnerHTML={{...}} />
