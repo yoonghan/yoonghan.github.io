@@ -133,7 +133,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                 </div>
               </div>
               <ParallaxGraph
-                graphImg="https://via.placeholder.com/2000x1000.png"/>
+                graphImg="/img/welcome/roadmap.jpg"/>
               <SocialFab />
               <div className="info-container relative">
                 <ParallaxPlainSection title="Are we freelance for hire ?">

@@ -59,23 +59,25 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
 
   const moveLens = (_overlayRef:HTMLDivElement, _graphRef:HTMLImageElement) => (e:Event) => {
     var pos, x, y;
-    pos = getCursorPos(e);
+    const box = _graphRef.getBoundingClientRect();
+    pos = getCursorPos(e, box);
     x = pos.x;
     y = pos.y;
     x = x * cx;
     y = y * cy;
+    x = x - (box.width / cx);
+    y = y - (box.height / cy);
     if(x >  maxXPos) {x=maxXPos}
     if(y > maxYPos ) {y=maxYPos}
     if(x < 0) {x=0}
     if(y < 0) {y=0}
     _overlayRef.style.backgroundPosition = "-" + (x) + "px -" + (y) + "px";
 
-    function getCursorPos(e:any) {
+    function getCursorPos(e:any, box:Element) {
       var a, x = 0, y = 0;
       e = e.targetTouches? e.targetTouches[0] : e;
-      a = _graphRef.getBoundingClientRect();
-      x = e.clientX - a.left;
-      y = e.clientY - a.top;
+      x = e.clientX - box.left;
+      y = e.clientY - box.top;
       x = x - window.pageXOffset;
       y = y - window.pageYOffset;
       return {x : x, y : y};
@@ -138,7 +140,7 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
           border: 0;
           cursor: pointer;
           background: transparent;
-          color: #FFF;
+          color: #111;
         }
         .hidden-image {
           visibility: hidden;

@@ -12,7 +12,11 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
   const [showPortal, setShowPortal] = React.useState({show:false, x:0, y:0});
 
   const toggleShowPortal = (e:any) => {
-    const toSet = {show: !showPortal.show, x: e.pageX, y: e.pageY}
+    const toSet = {show: !showPortal.show, x: 0, y: 0}
+    if(e) {
+      toSet.x = e.pageX;
+      toSet.y = e.pageY;
+    }
     setShowPortal(toSet);
   }
 
