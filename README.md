@@ -57,6 +57,9 @@ npm run deploy
 3. Deploy into servers, e.g. AWS and so on.
 4. Make sure NODE_ENV is case sensitive.
 
+## Deployment note
+1. Service worker does not work with naked url. Please redirect to a valid CNAME.
+
 ## Enhance Image performance.
 Install magickImage and execute the command:
 ```

@@ -82,6 +82,11 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
           }
         `}</style>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156082636-1"></script>
+        <script>{`
+          if(location.hostname === 'walcron.com') {
+            location.href='//www.walcron.com';
+          }
+        `}</script>
         <script dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
