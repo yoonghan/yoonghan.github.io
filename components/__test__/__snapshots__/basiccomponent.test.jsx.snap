@@ -6,7 +6,7 @@ exports[`Basic Components Construction Splash Screens renders normally 1`] = `
     <div className=\\"jsx-886599827 banner\\">
       (404) NOT FOUND
     </div>
-    <img src=\\"/static/img/construction.svg\\" className=\\"jsx-886599827\\" />
+    <img src=\\"/img/construction.svg\\" className=\\"jsx-886599827\\" />
     <hr className=\\"jsx-886599827\\" />
     <div className=\\"jsx-886599827 buttonContainer\\">
       <Button href=\\"/\\">
@@ -53,7 +53,7 @@ exports[`Basic Components Horizontal Line renders normally 1`] = `
 
 exports[`Basic Components Logo renders normally 1`] = `
 "<Fragment>
-  <img src=\\"/static/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
+  <img src=\\"/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
   <JSXStyle id=\\"3915456707\\">
     .logo-img.jsx-3915456707{width:50px;position:absolute;top:10px;right:10px;}@media only screen and (max-width:480px){.logo-img.jsx-3915456707{width:88px;-webkit-transform:translateX(50%);-ms-transform:translateX(50%);transform:translateX(50%);right:50%;}}
   </JSXStyle>
@@ -62,7 +62,7 @@ exports[`Basic Components Logo renders normally 1`] = `
 
 exports[`Basic Components Logo renders with text normally 1`] = `
 "<Fragment>
-  <img src=\\"/static/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
+  <img src=\\"/img/logo/logo-color.svg\\" alt=\\"Walcron Logo\\" className=\\"jsx-3915456707 logo-img\\" />
   <div className=\\"jsx-3915456707\\">
      Walcron
   </div>

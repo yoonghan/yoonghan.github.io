@@ -33,7 +33,7 @@ exports[`Creation renders normally 1`] = `
           desc1
         </p>
         <div className=\\"jsx-1738278556 btn-container\\">
-          <Button onClickCallback={[Function]}>
+          <Button onClickCallback={[Function (anonymous)]}>
             View
           </Button>
         </div>
@@ -57,7 +57,7 @@ exports[`Creation renders normally 1`] = `
           desc2
         </p>
         <div className=\\"jsx-1738278556 btn-container\\">
-          <Button onClickCallback={[Function]}>
+          <Button onClickCallback={[Function (anonymous)]}>
             View
           </Button>
         </div>

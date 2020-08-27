@@ -1,5 +1,4 @@
 const withOffline = require('next-offline');
-const ServiceWorkerPlugin = require('service-worker-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -8,13 +7,14 @@ const configuration =
 withBundleAnalyzer(
   withOffline(
     {
+      target: 'serverless',
       dontAutoRegisterSw: true,
       transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
       // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
       // turn on the SW in dev mode so that we can actually test it
       generateInDevMode: false,
       workboxOpts: {
-      swDest: 'static/service-worker.js',
+      swDest: 'public/service-worker.js',
         runtimeCaching: [
           {
             urlPattern: /^https?.*/,

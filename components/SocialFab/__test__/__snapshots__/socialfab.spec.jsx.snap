@@ -5,23 +5,23 @@ exports[`SocialFab renders lazy normally 1`] = `
   <NoSSR>
     <Suspense fallback={{...}}>
       <SocialFabNoSSR>
-        <div className=\\"jsx-1165565867 fab\\">
-          <span className=\\"jsx-1165565867 fab-action-button\\">
-            <i className=\\"jsx-1165565867 fab-action-button__icon\\" />
+        <div className=\\"jsx-2171894145 fab\\">
+          <span className=\\"jsx-2171894145 fab-action-button\\">
+            <i className=\\"jsx-2171894145 fab-action-button__icon\\" />
           </span>
-          <ul className=\\"jsx-1165565867 fab-buttons\\">
-            <li className=\\"jsx-1165565867 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://www.facebook.com/walcron.coorperation\\" className=\\"jsx-1165565867 fab-buttons__link\\">
-                <i className=\\"jsx-1165565867 icon-material icon-material_fb\\" />
+          <ul className=\\"jsx-2171894145 fab-buttons\\">
+            <li className=\\"jsx-2171894145 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"https://www.facebook.com/walcron.coorperation\\" className=\\"jsx-2171894145 fab-buttons__link\\">
+                <i className=\\"jsx-2171894145 icon-material icon-material_fb\\" />
               </a>
             </li>
-            <li className=\\"jsx-1165565867 fab-buttons__item\\">
-              <a onClick={[Function: onOpenEmail]} className=\\"jsx-1165565867 fab-buttons__link\\">
-                <i className=\\"jsx-1165565867 icon-material icon-material_gm\\" />
+            <li className=\\"jsx-2171894145 fab-buttons__item\\">
+              <a onClick={[Function: onOpenEmail]} className=\\"jsx-2171894145 fab-buttons__link\\">
+                <i className=\\"jsx-2171894145 icon-material icon-material_gm\\" />
               </a>
             </li>
           </ul>
-          <JSXStyle id=\\"1165565867\\" />
+          <JSXStyle id=\\"2171894145\\" />
         </div>
       </SocialFabNoSSR>
     </Suspense>
