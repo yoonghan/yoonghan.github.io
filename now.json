@@ -7,15 +7,68 @@
       "destination": "/_next/static/service-worker.js"
     }
   ],
-  "routes": [
-    { "src": "/img/construction.svg", "dest": "/img/underconstruction.svg" },
+  "redirects": [
     {
-      "src": "^/service-worker.js$",
-      "headers": {
-        "cache-control": "public, max-age=43200, immutable",
-        "Service-Worker-Allowed": "/"
-      },
-      "dest": "/.next/service-worker.js"
+      "source": "/host/rn-console",
+      "destination": "/host/rn-console/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/host/rn-android",
+      "destination": "/host/rn-android/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/host/react-template",
+      "destination": "/host/react-template/index.html",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/css/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/json/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
   "github": {
