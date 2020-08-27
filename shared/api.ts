@@ -1,7 +1,7 @@
 import Pusher from 'pusher';
 import admin from "firebase-admin";
 import { PUSHER } from "./const";
-import serviceAccount from "../private/firebase-auth.json";
+import serviceAccount from "../.private/firebase-auth.json";
 
 /**
  * Deprecated as api!!!
