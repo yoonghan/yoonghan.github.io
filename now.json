@@ -1,6 +1,12 @@
 {
   "version": 2,
   "regions": ["sin1"],
+  "rewrites": [
+    {
+      "source": "/service-worker.js",
+      "destination": "/_next/static/service-worker.js"
+    }
+  ],
   "routes": [
     { "src": "/img/construction.svg", "dest": "/img/underconstruction.svg" },
     {
