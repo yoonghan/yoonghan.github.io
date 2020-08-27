@@ -17,8 +17,8 @@ exports[`CommandBar renders lazy normally 2`] = `
           <div className=\\"jsx-3778838050 desktop shift-to-right\\">
             <NoSSRCommandBar router={{...}}>
               <div className=\\"jsx-2638007119 container\\">
-                <CommandBarInput onBlurCallback={[Function]} onFocusCallback={[Function]} onSubmitCallback={[Function]}>
-                  <form onSubmit={[Function]} className=\\"jsx-2334938183 command-container\\">
+                <CommandBarInput onBlurCallback={[Function (anonymous)]} onFocusCallback={[Function (anonymous)]} onSubmitCallback={[Function (anonymous)]}>
+                  <form onSubmit={[Function (anonymous)]} className=\\"jsx-2334938183 command-container\\">
                     <div className=\\"jsx-2334938183 command-text-container\\">
                       <div className=\\"jsx-2334938183 command-text-prompt\\">
                         walcron@tm$
@@ -27,10 +27,10 @@ exports[`CommandBar renders lazy normally 2`] = `
                         <span className=\\"jsx-2334938183 promptIn\\" />
                         <span />
                       </div>
-                      <Autosuggest suggestions={{...}} onSuggestionsFetchRequested={[Function]} onSuggestionsClearRequested={[Function]} getSuggestionValue={[Function]} renderSuggestion={[Function]} inputProps={{...}} renderSuggestionsContainer={[Function: defaultRenderSuggestionsContainer]} shouldRenderSuggestions={[Function: defaultShouldRenderSuggestions]} alwaysRenderSuggestions={false} multiSection={false} focusInputOnSuggestionClick={true} highlightFirstSuggestion={false} theme={{...}} id=\\"1\\">
-                        <Autowhatever multiSection={false} items={{...}} renderInputComponent={[Function: defaultRenderInputComponent]} renderItemsContainer={[Function]} renderItem={[Function]} renderItemData={{...}} renderSectionTitle={[Function: renderSectionTitle]} getSectionItems={[Function: getSectionItems]} highlightedSectionIndex={{...}} highlightedItemIndex={{...}} inputProps={{...}} itemProps={[Function]} theme={{...}} id=\\"1\\" containerProps={{...}}>
+                      <Autosuggest suggestions={{...}} onSuggestionsFetchRequested={[Function (anonymous)]} onSuggestionsClearRequested={[Function (anonymous)]} getSuggestionValue={[Function (anonymous)]} renderSuggestion={[Function (anonymous)]} inputProps={{...}} renderSuggestionsContainer={[Function: defaultRenderSuggestionsContainer]} shouldRenderSuggestions={[Function: defaultShouldRenderSuggestions]} alwaysRenderSuggestions={false} multiSection={false} focusInputOnSuggestionClick={true} highlightFirstSuggestion={false} theme={{...}} id=\\"1\\">
+                        <Autowhatever multiSection={false} items={{...}} renderInputComponent={[Function: defaultRenderInputComponent]} renderItemsContainer={[Function (anonymous)]} renderItem={[Function (anonymous)]} renderItemData={{...}} renderSectionTitle={[Function: renderSectionTitle]} getSectionItems={[Function: getSectionItems]} highlightedSectionIndex={{...}} highlightedItemIndex={{...}} inputProps={{...}} itemProps={[Function (anonymous)]} theme={{...}} id=\\"1\\" containerProps={{...}}>
                           <div role=\\"combobox\\" aria-haspopup=\\"listbox\\" aria-owns=\\"react-autowhatever-1\\" aria-expanded={false} className=\\"react-autosuggest__container\\">
-                            <input type=\\"text\\" value=\\"\\" autoComplete=\\"off\\" aria-autocomplete=\\"list\\" aria-controls=\\"react-autowhatever-1\\" aria-activedescendant={{...}} className=\\"react-autosuggest__input\\" onChange={[Function: onChange]} onClick={[Function]} onFocus={[Function]} onBlur={[Function]} maxLength={22} onKeyDown={[Function]} />
+                            <input type=\\"text\\" value=\\"\\" autoComplete=\\"off\\" aria-autocomplete=\\"list\\" aria-controls=\\"react-autowhatever-1\\" aria-activedescendant={{...}} className=\\"react-autosuggest__input\\" onChange={[Function: onChange]} onClick={[Function (anonymous)]} onFocus={[Function (anonymous)]} onBlur={[Function (anonymous)]} maxLength={22} onKeyDown={[Function (anonymous)]} />
                             <div id=\\"react-autowhatever-1\\" role=\\"listbox\\" className=\\"react-autosuggest__suggestions-container\\" />
                           </div>
                         </Autowhatever>
@@ -49,7 +49,7 @@ exports[`CommandBar renders lazy normally 2`] = `
               <NoSSR>
                 <NoSSRNavMenu router={{...}}>
                   <nav className=\\"jsx-3914632746 container\\">
-                    <div onClick={[Function]} className=\\"jsx-3914632746 return-btn\\">
+                    <div onClick={[Function (anonymous)]} className=\\"jsx-3914632746 return-btn\\">
                       <i className=\\"jsx-3914632746 fas fa-chevron-left\\" />
                     </div>
                     <a href=\\"/\\" className=\\"navmenu-link\\">
@@ -74,21 +74,21 @@ exports[`CommandBar renders lazy normally 2`] = `
                 <ul className=\\"jsx-4214066626 btnsbar with-indicator\\">
                   <li className=\\"btnsbar-item is-active\\">
                     <Link href=\\"/\\">
-                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/\\">
+                      <a onClick={[Function: onClick]} onMouseEnter={[Function (anonymous)]} href=\\"/\\">
                         Home
                       </a>
                     </Link>
                   </li>
                   <li className=\\"btnsbar-item\\">
                     <Link href=\\"/about\\">
-                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/about\\">
+                      <a onClick={[Function: onClick]} onMouseEnter={[Function (anonymous)]} href=\\"/about\\">
                         About
                       </a>
                     </Link>
                   </li>
                   <li className=\\"btnsbar-item\\">
                     <Link href=\\"/creation\\">
-                      <a onMouseEnter={[Function: onMouseEnter]} onClick={[Function: onClick]} href=\\"/creation\\">
+                      <a onClick={[Function: onClick]} onMouseEnter={[Function (anonymous)]} href=\\"/creation\\">
                         Showcase
                       </a>
                     </Link>

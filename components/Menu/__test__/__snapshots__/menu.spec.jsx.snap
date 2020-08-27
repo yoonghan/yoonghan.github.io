@@ -3,7 +3,7 @@
 exports[`Menu renders blackOnWhite normally 1`] = `
 "<Menu whiteOnBlack={false} menuItems={{...}}>
   <nav className=\\"jsx-2870282083 jsx-1630941244 menu\\">
-    <span onClick={[Function]} className=\\"jsx-2870282083 jsx-1630941244 nav-toggle\\">
+    <span onClick={[Function (anonymous)]} className=\\"jsx-2870282083 jsx-1630941244 nav-toggle\\">
       Menu
     </span>
     <ul className=\\"jsx-2870282083 jsx-1630941244\\">
@@ -35,7 +35,7 @@ exports[`Menu renders blackOnWhite normally 1`] = `
 exports[`Menu renders whiteOnBlack normally 1`] = `
 "<Menu whiteOnBlack={true} menuItems={{...}}>
   <nav className=\\"jsx-2870282083 jsx-2111747771 menu\\">
-    <span onClick={[Function]} className=\\"jsx-2870282083 jsx-2111747771 nav-toggle\\">
+    <span onClick={[Function (anonymous)]} className=\\"jsx-2870282083 jsx-2111747771 nav-toggle\\">
       Menu
     </span>
     <ul className=\\"jsx-2870282083 jsx-2111747771\\">
