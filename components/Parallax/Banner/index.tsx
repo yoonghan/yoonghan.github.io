@@ -53,7 +53,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         centerForegroundRef.current.style.transform = `${(window as any).safari?"rotate":"rotateY"}(${_pos}deg)`;
         (centerForegroundRef.current.children[1] as HTMLDivElement).style.transform = `${(window as any).safari?"rotate":"rotateY"}(${_pos * 2}deg)`;
       }
-
       return;
     }
     else {
