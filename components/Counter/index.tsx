@@ -67,14 +67,17 @@ const Counter: React.FC<ICounter> =
           width: 320px;
           height: 2rem;
           padding: 2rem;
+          transition: width 200ms;
         }
         .loading-bar-black {
           height: 2rem;
           background-color: #000;
+          border-radius: 3px;
         }
         .loading-bar-white {
           height: 2rem;
           background-color: #fff;
+          border-radius: 3px;
         }
       `}</style>
     </div>

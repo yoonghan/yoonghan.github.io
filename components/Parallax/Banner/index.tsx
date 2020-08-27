@@ -191,6 +191,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-left {
           will-change: transform;
           transform: scale(1.0);
+          transition: transform 200ms;
           width: 50%;
           height: 100%;
           background-image: url('/img/welcome/fg-left.jpg');
@@ -203,6 +204,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-right {
           will-change: transform;
           transform: scale(1.0);
+          transition: transform 200ms;
           width: 50%;
           height: 100%;
           background-image: url('/img/welcome/fg-left.jpg');
@@ -213,8 +215,9 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           overflow: hidden;
         }
         .foreground-center {
-          will-change: transform, display;
+          will-change: transform;
           position: absolute;
+          transition: transform 200ms;
           left: calc(50% - 12rem);
           top: calc(50% - 12rem);
           width: 24rem;
@@ -229,7 +232,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         }
         .foreground-center > .before {
           content: '';
-          will-change: transform,display;
+          will-change: transform;
+          transition: transform 200ms;
           border: 5px solid rgba(51,153,67, 0.9);
           position: absolute;
           width: 18rem;
@@ -267,6 +271,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .background {
           will-change: transform;
           position: absolute;
+          transition: transform 200ms;
           height: 100%;
           width: 100%;
           background: #000 url(/img/welcome/fg-center.jpg) no-repeat center center;
@@ -275,6 +280,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .centerpiece {
           font-size: 2rem;
           will-change: opacity;
+          transition: opacity 200ms;
           position: absolute;
           top: 50%;
           left: 50%;
