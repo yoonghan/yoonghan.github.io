@@ -73,8 +73,8 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
     if(y < 0) {y=0}
     _overlayRef.style.backgroundPosition = "-" + (x) + "px -" + (y) + "px";
 
-    function getCursorPos(e:any, box:Element) {
-      var a, x = 0, y = 0;
+    function getCursorPos(e:any, box:DOMRect) {
+      var x = 0, y = 0;
       e = e.targetTouches? e.targetTouches[0] : e;
       x = e.clientX - box.left;
       y = e.clientY - box.top;
@@ -126,7 +126,6 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
         <button>[ESC]</button>
       </div>
       <style jsx>{`
-
         @keyframes expandWidth {
           from {width: 0px;}
           to {width: 100vw;}
@@ -161,6 +160,7 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
           height: 100vh;
           background: #000;
           position: relative;
+          cursor: move;
         }
       `}</style>
       <style jsx global>
