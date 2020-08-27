@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modal renders non-ignored normally 1`] = `
-"<div onClick={[Function]} className=\\"jsx-1217570507 modal\\">
+"<div onClick={[Function (anonymous)]} className=\\"jsx-1217570507 modal\\">
   <div className=\\"jsx-1217570507 modal-content\\" />
   <div onClick={[Function: cancelCallback]} className=\\"jsx-1217570507 buttonContainer\\">
     <button className=\\"jsx-1217570507\\">
@@ -15,7 +15,7 @@ exports[`Modal renders non-ignored normally 1`] = `
 `;
 
 exports[`Modal renders normally 1`] = `
-"<div onClick={[Function]} className=\\"jsx-1217570507 modal\\">
+"<div onClick={[Function (anonymous)]} className=\\"jsx-1217570507 modal\\">
   <div className=\\"jsx-1217570507 modal-content\\" />
   <div onClick={[Function: cancelCallback]} className=\\"jsx-1217570507 buttonContainer\\">
     <button className=\\"jsx-1217570507\\">

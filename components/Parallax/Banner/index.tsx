@@ -41,8 +41,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         if(centerForegroundRef.current.style.display === 'none') {
           centerForegroundRef.current.style.display = ``;
           if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
-            leftForegroundRef.current.children[0].style.display = 'none';
-            rightForegroundRef.current.children[0].style.display = 'none';
+            (leftForegroundRef.current.children[0] as HTMLDivElement).style.display = 'none';
+            (rightForegroundRef.current.children[0] as HTMLDivElement).style.display = 'none';
             leftForegroundRef.current.style.transform = 'scale(1.0)';
             rightForegroundRef.current.style.transform = 'scale(1.0)';
             leftForegroundRef.current.style.borderRight = 'none';
@@ -50,8 +50,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           }
         }
 
-        centerForegroundRef.current.style.transform = `${window.safari?"rotate":"rotateY"}(${_pos}deg)`;
-        centerForegroundRef.current.children[1].style.transform = `${window.safari?"rotate":"rotateY"}(${_pos * 2}deg)`;
+        centerForegroundRef.current.style.transform = `${(window as any).safari?"rotate":"rotateY"}(${_pos}deg)`;
+        (centerForegroundRef.current.children[1] as HTMLDivElement).style.transform = `${(window as any).safari?"rotate":"rotateY"}(${_pos * 2}deg)`;
       }
 
       return;
@@ -61,8 +61,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         if(centerForegroundRef.current.style.display !== 'none') {
           centerForegroundRef.current.style.display = 'none';
           if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
-            leftForegroundRef.current.children[0].style.display = 'flex';
-            rightForegroundRef.current.children[0].style.display = 'flex';
+            (leftForegroundRef.current.children[0] as HTMLDivElement).style.display = 'flex';
+            (rightForegroundRef.current.children[0] as HTMLDivElement).style.display = 'flex';
             leftForegroundRef.current.style.borderRight = '1px solid #000';
             rightForegroundRef.current.style.borderLeft = '1px solid #000';
           }
@@ -70,8 +70,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       }
     }
 
-    if(dividerRef !== null && pos < parallaxClientHeight) {
-      dividerRef.current.style.width=`${(0.9-(pos / parallaxClientHeight)) * 100}%`;
+    if(dividerRef.current !== null && pos < parallaxClientHeight) {
+      (dividerRef.current).style.width=`${(0.9-(pos / parallaxClientHeight)) * 100}%`;
     }
 
     setScrollLen(Math.floor(pos));
