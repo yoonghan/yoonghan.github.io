@@ -273,7 +273,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transition: transform 200ms;
           height: 100%;
           width: 100%;
-          background: #000 url(/img/welcome/fg-center.jpg) no-repeat center center;
+          background: #000 url(/img/welcome/walcron-authors.jpg) no-repeat center center;
           background-size: cover;
         }
         .centerpiece {
