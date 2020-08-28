@@ -50,13 +50,16 @@ const Cookie:React.FC<CookieProps> = (props) => {
     <div className={"container"}>
       <div className={"message"}>
         <h4>This site uses cookies.</h4>
-        <p>The cookie is used to monitor visits and usage traffics. We use google analytics, please <a href="https://policies.google.com/"> read here</a>.</p>
+        <p>The cookie is used to monitor visits and usage traffics. We use google analytics, please <a href="https://policies.google.com/" target="_blank"> read here</a>.</p>
         <p>By proceeding on this website, you have indirectly accepted and agreed to our cookie usage.</p>
       </div>
       <div className={"button-container"}>
         <button onClick={reactToCookieButton} >Close</button>
       </div>
       <style jsx>{`
+        a {
+          text-decoration: underline;
+        }
         .container{
           width: 100%;
           bottom: 0;
