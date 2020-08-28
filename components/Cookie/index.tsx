@@ -50,9 +50,7 @@ const Cookie:React.FC<CookieProps> = (props) => {
     <div className={"container"}>
       <div className={"message"}>
         <h4>This site uses cookies.</h4>
-        <p>Your generated cookie, shall and will not be used for
-        any public sharing or advertisement related purposes. The cookie is only
-        saved in your local and private browser to monitor visits and usage traffics.</p>
+        <p>The cookie is used to monitor visits and usage traffics. We use google analytics, please <a href="https://policies.google.com/"> read here</a>.</p>
         <p>By proceeding on this website, you have indirectly accepted and agreed to our cookie usage.</p>
       </div>
       <div className={"button-container"}>
