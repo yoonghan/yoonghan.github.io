@@ -1,9 +1,9 @@
 //const PRIMARY_YELLOW = "#FFDE03";
-const PRIMARY_BLUE = "#00b4ef";
-const SECONDARY_BLUE = "#0080fe";
-const LAY_BLUE = "#c4f0f6";
-const PRIMARY_PURPLE = "#FF0266";
-const PRIMARY_ORANGE = "#FF8400";
+export const PRIMARY_BLUE = "#00b4ef";
+export const SECONDARY_BLUE = "#0080fe";
+export const LAY_BLUE = "#c4f0f6";
+export const PRIMARY_PURPLE = "#FF0266";
+export const PRIMARY_ORANGE = "#FF8400";
 
 export const WHITE = "#FFF";
 export const BLACK = "#000";

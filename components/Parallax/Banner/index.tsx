@@ -1,7 +1,7 @@
 `use strict`
 
 import * as React from "react";
-import {useRef, useEffect, useState}  from "react";
+import {useRef, useEffect}  from "react";
 import { HEADER_TITLE } from "../../../shared/style";
 
 interface IBanner {
@@ -9,20 +9,16 @@ interface IBanner {
 }
 
 const Banner:React.FC<IBanner> = ({scrollContainer}) => {
-  const sectionHeight='330vh', sectionOneHeight='100vh', sectionTwoHeight='230vh';
+  const sectionHeight='330vh', sectionOneHeight='100vh';
   const backgroundRef = useRef<HTMLDivElement>(null);
   const leftForegroundRef = useRef<HTMLDivElement>(null);
   const rightForegroundRef = useRef<HTMLDivElement>(null);
   const centerForegroundRef = useRef<HTMLDivElement>(null);
-  const centerpieceTitleRef = useRef<HTMLDivElement>(null);
   const centerpieceDescRef = useRef<HTMLDivElement>(null);
   const parallaxDisplayContainerRef = useRef<HTMLDivElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const [scrollLen, setScrollLen] = useState(2020);
   var parallaxDisplayContainerHeightSize = 0,
-    parallaxDisplayContainerWidthSize = 0,
-    parallaxClientHeight= 0;
+    parallaxDisplayContainerWidthSize = 0;
   const allowedDescToKickstart = 0.4;
   const allowedBackgroundScaledDistance = 5;
   const firstPartCompletionDistance = 360;
@@ -69,13 +65,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       }
     }
 
-    if(dividerRef.current !== null && pos < parallaxClientHeight) {
-      (dividerRef.current).style.width=`${(0.9-(pos / parallaxClientHeight)) * 100}%`;
-    }
-
-    setScrollLen(Math.floor(pos));
-    //var blurPos = adjustedPos / 10;
-
     if(leftForegroundRef.current !== null && rightForegroundRef.current !== null) {
       leftForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(-${translatePos}px)`;
       rightForegroundRef.current.style.transform = `scale(${1.0 + (scaledPos)}) translateX(${translatePos}px)`;
@@ -86,10 +75,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       backgroundRef.current.style.transform = `scale(${1.0 + (scaledPos/allowedBackgroundScaledDistance)})`
     }
 
-    if(centerpieceTitleRef.current !== null) {
-      centerpieceTitleRef.current.style.opacity = `${1 - opacityPercentage}`;
-      centerpieceTitleRef.current.style.transform = `scale(${20 * opacityPercentage})`;
-    }
     if(centerpieceDescRef.current !== null) {
       centerpieceDescRef.current.style.opacity = `${opacityPercentage - allowedDescToKickstart}`;
     }
@@ -102,15 +87,14 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
     if(parallaxDisplayContainerRef.current !== null) {
       parallaxDisplayContainerHeightSize = (parallaxDisplayContainerRef.current.clientHeight / 2);
       parallaxDisplayContainerWidthSize = (parallaxDisplayContainerRef.current.clientWidth / 3);
-      parallaxClientHeight = parallaxDisplayContainerRef.current.clientHeight;
     }
   }
 
-  const text2Binary = (str:string) => {
-    return str.split('').map(function (char) {
-        return char.charCodeAt(0).toString(2);
-    }).join(' ');
-  }
+  // const text2Binary = (str:string) => {
+  //   return str.split('').map(function (char) {
+  //       return char.charCodeAt(0).toString(2);
+  //   }).join('');
+  // }
 
   useEffect(() => {
     if(scrollContainer.current !== null) {
@@ -134,9 +118,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
     <div className="banner-container" ref={parallaxDisplayContainerRef}>
       <div className="parallax-container">
         <div className="background" ref={backgroundRef}></div>
-        <div className="centerpiece" ref={centerpieceTitleRef}>
-          {text2Binary(scrollLen.toString())}
-        </div>
         <div className="centerpiece inverse" ref={centerpieceDescRef}>
           <div  className="title">Our motive</div>
           <div className="horizontalbar" ref={lineRef}></div>
@@ -165,7 +146,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           <div className="before"/>
         </div>
       </div>
-      <div className="divider" ref={dividerRef}></div>
       <style jsx>{`
         .banner-container {
           width: 100%;
@@ -177,15 +157,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           top: 0;
           display: flex;
           overflow: hidden;
-        }
-        .divider {
-          height: ${sectionTwoHeight};
-          display: flex;
-          align-items: flex-end;
-          will-change: width;
-          width: 50%;
-          border-bottom: 1px solid;
-          margin: 0 auto;
         }
         .foreground-left {
           will-change: transform;
@@ -217,17 +188,17 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           will-change: transform;
           position: absolute;
           transition: transform 200ms;
-          left: calc(50% - 12rem);
-          top: calc(50% - 12rem);
-          width: 24rem;
-          height: 24rem;
+          left: calc(50% - 10rem);
+          top: calc(50% - 10rem);
+          width: 20rem;
+          height: 20rem;
           border: 1rem solid rgba(51,153,67);
-          border-radius: 24rem;
+          border-radius: 20rem;
           display: flex;
           justify-content: center;
           align-items: center;
           color: ${HEADER_TITLE.FOREGROUND};
-          font-size: 5rem;
+          font-size: 4rem;
         }
         .foreground-center > .before {
           content: '';
@@ -235,9 +206,9 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           transition: transform 200ms;
           border: 5px solid rgba(51,153,67, 0.9);
           position: absolute;
-          width: 18rem;
-          height: 18rem;
-          border-radius: 18rem;
+          width: 17rem;
+          height: 17rem;
+          border-radius: 17rem;
         }
         .foreground-center.left {
           display: none;
@@ -278,7 +249,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         }
         .centerpiece {
           font-size: 2rem;
-          will-change: opacity;
+          will-change: opacity, transform;
           transition: opacity 200ms;
           position: absolute;
           top: 50%;
@@ -293,12 +264,13 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
           color: #FFF;
           min-width: 320px;
           background: rgba(20,20,20,0.8);
+          border: 2px solid #000;
           filter: unset;
         }
         .horizontalbar {
           will-change: width;
           padding: 1rem 0;
-          border-top: 2px solid ${HEADER_TITLE.FOREGROUND};
+          border-top: 2px dotted ${HEADER_TITLE.FOREGROUND};
           width: 30px;
         }
       `}</style>

@@ -2,7 +2,6 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 import { HtmlHead } from "../components/HtmlHead";
 import SocialFab from "../components/SocialFab";
-import CommandBar from "../components/CommandBar";
 import AssetLoader from "../components/AssetLoader";
 import {EnumAssetLoader} from "../components/AssetLoader";
 import ScrollIcon from "../components/ScrollIcon";
@@ -15,6 +14,9 @@ import Counter from "../components/Counter";
 import Cookie from "../components/Cookie";
 import cookies from "next-cookies";
 import LetterBox from "../components/LetterBox";
+import CommandBar from "../components/CommandBar";
+import PageReaderIndicator from "../components/PageReaderIndicator";
+import {PRIMARY_BLUE} from "../shared/style";
 
 const _getSchema = () => {
   const schemas = {
@@ -51,7 +53,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
   const assetsToLoad = [
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.jpg"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-center.jpg"},
+    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/walcron-authors.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/profile/han.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/profile/gladys.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/connection.png"}
@@ -90,6 +92,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
             }
           {imgLoaded &&
             <section className="loaded-container">
+              <PageReaderIndicator scrollContainer={scrollContainerRef} />
               <ParallaxBanner scrollContainer={scrollContainerRef}/>
               <ScrollIcon scrollContainer={scrollContainerRef}/>
               <div className={`info-container`}>
@@ -146,7 +149,16 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                 </ParallaxPlainSection>
                 <ParallaxPlainSection>
                   <div className="section-end">
-                    <span>this website is powered by:</span>
+                    <h2>Familiar with shell?</h2>
+                    try and type "<strong>help</strong>" here:
+                    <div className="section-end-container">
+                      <CommandBar disableMobile={false} commandPromptOnly={true}/>
+                    </div>
+                  </div>
+                </ParallaxPlainSection>
+                <ParallaxPlainSection>
+                  <div className="section-end">
+                    <span>this website is powered with:</span>
                     <h2>Next.JS with React and Typescript</h2>
                   </div>
                   <div className="section-backtotop">
@@ -214,8 +226,12 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               border: 0;
               text-decoration: underline;
               background: none;
-              color: #0080fe;
+              color: ${PRIMARY_BLUE};
               cursor: pointer;
+            }
+            .section-end-container {
+              position: relative;
+              height: 7rem;
             }
             @keyframes fadeInFromNone {
                 0% {

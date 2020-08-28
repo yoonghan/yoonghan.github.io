@@ -6,16 +6,17 @@ import NoSSRMobileMenu from "./NoSSRMobileMenu";
 
 interface CommandBarNoSSRProps {
   disableMobile?: boolean;
+  commandPromptOnly?:boolean;
 }
 
-const CommandBarNoSSR: React.SFC<CommandBarNoSSRProps> = ({disableMobile}) => {
+const CommandBarNoSSR: React.SFC<CommandBarNoSSRProps> = ({disableMobile, commandPromptOnly}) => {
   return (
     <div className={"header"} id="commandbar">
-      <div className={"desktop" + (!disableMobile? " shift-to-right":"")}>
+      <div className={(!commandPromptOnly?"desktop":"") + ((!disableMobile && !commandPromptOnly)? " shift-to-right":"")}>
         <NoSSRCommandBar/>
-        {!disableMobile && <NavMenu/>}
+        {(!disableMobile && !commandPromptOnly) && <NavMenu/>}
       </div>
-      {!disableMobile && (<div className="mobile">
+      {(!disableMobile && !commandPromptOnly) && (<div className="mobile">
         <NoSSRMobileMenu/>
       </div>)}
       {disableMobile && (<Logo/>)}
@@ -24,9 +25,9 @@ const CommandBarNoSSR: React.SFC<CommandBarNoSSRProps> = ({disableMobile}) => {
           text-align: center;
           position: absolute;
           top: 0.5rem;
-          left: 1.5rem;
+          left: ${commandPromptOnly? "0": "1.5rem"};
           z-index: 2;
-          right: 1.5rem;
+          right: ${commandPromptOnly? "0": "1.5rem"};
         }
         .desktop.shift-to-right {
           position: relative;

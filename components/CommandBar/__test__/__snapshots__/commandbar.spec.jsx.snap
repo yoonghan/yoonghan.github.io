@@ -13,8 +13,8 @@ exports[`CommandBar renders lazy normally 2`] = `
   <NoSSR>
     <Suspense fallback={{...}}>
       <CommandBarNoSSR>
-        <div id=\\"commandbar\\" className=\\"jsx-3778838050 header\\">
-          <div className=\\"jsx-3778838050 desktop shift-to-right\\">
+        <div id=\\"commandbar\\" className=\\"jsx-1918132966 header\\">
+          <div className=\\"jsx-1918132966 desktop shift-to-right\\">
             <NoSSRCommandBar router={{...}}>
               <div className=\\"jsx-2638007119 container\\">
                 <CommandBarInput onBlurCallback={[Function (anonymous)]} onFocusCallback={[Function (anonymous)]} onSubmitCallback={[Function (anonymous)]}>
@@ -68,7 +68,7 @@ exports[`CommandBar renders lazy normally 2`] = `
               </NoSSR>
             </NavMenu>
           </div>
-          <div className=\\"jsx-3778838050 mobile\\">
+          <div className=\\"jsx-1918132966 mobile\\">
             <NoSSRMobileMenu router={{...}}>
               <ButtonsBar menuTexts={{...}} activeIndex={0}>
                 <ul className=\\"jsx-4214066626 btnsbar with-indicator\\">
@@ -98,7 +98,7 @@ exports[`CommandBar renders lazy normally 2`] = `
               </ButtonsBar>
             </NoSSRMobileMenu>
           </div>
-          <JSXStyle id=\\"3778838050\\" />
+          <JSXStyle id=\\"1361229952\\" dynamic={{...}} />
         </div>
       </CommandBarNoSSR>
     </Suspense>

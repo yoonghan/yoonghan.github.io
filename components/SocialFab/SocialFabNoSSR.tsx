@@ -26,6 +26,16 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
       </span>
       <ul className="fab-buttons">
         <li className="fab-buttons__item">
+          <a className="fab-buttons__link" target="onnew" href="https://github.com/yoonghan/Walcron">
+            <i className="icon-material icon-material_git"></i>
+          </a>
+        </li>
+        <li className="fab-buttons__item">
+          <a className="fab-buttons__link" target="onnew" href="https://stackoverflow.com/users/3893990/han">
+            <i className="icon-material icon-material_so"></i>
+          </a>
+        </li>
+        <li className="fab-buttons__item">
           <a className="fab-buttons__link" target="onnew" href="https://www.facebook.com/walcron.coorperation">
             <i className="icon-material icon-material_fb"></i>
           </a>
@@ -134,6 +144,14 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
 
           .icon-material_gm {
             background: url("/img/social/gm.svg") center no-repeat;
+          }
+
+          .icon-material_so {
+            background: url("/img/social/so.svg") center no-repeat;
+          }
+
+          .icon-material_git {
+            background: url("/img/social/git.png") center no-repeat;
           }
 
           .icon-material_li {

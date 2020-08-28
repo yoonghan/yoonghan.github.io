@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modal renders non-ignored normally 1`] = `
-"<div onClick={[Function (anonymous)]} className=\\"jsx-1217570507 modal\\">
-  <div className=\\"jsx-1217570507 modal-content\\" />
-  <div onClick={[Function: cancelCallback]} className=\\"jsx-1217570507 buttonContainer\\">
-    <button className=\\"jsx-1217570507\\">
+"<div onClick={[Function (anonymous)]} className=\\"jsx-886162824 modal\\">
+  <div className=\\"jsx-886162824 modal-content\\" />
+  <div onClick={[Function: cancelCallback]} className=\\"jsx-886162824 buttonContainer\\">
+    <button className=\\"jsx-886162824\\">
       [ESC]
     </button>
   </div>
-  <JSXStyle id=\\"3525693946\\" dynamic={{...}}>
-    button.__jsx-style-dynamic-selector{color:#FFF;background:transparent;border:none;}.buttonContainer.__jsx-style-dynamic-selector{text-align:right;}.modal.__jsx-style-dynamic-selector{position:fixed;z-index:99;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(100,100,100,0.8);cursor:pointer;}.modal-content.__jsx-style-dynamic-selector{position:fixed;z-index:100;-webkit-animation-name:slideIn-__jsx-style-dynamic-selector;animation-name:slideIn-__jsx-style-dynamic-selector;-webkit-animation-duration:0.4s;animation-duration:0.4s;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+  <JSXStyle id=\\"1326380392\\" dynamic={{...}}>
+    button.__jsx-style-dynamic-selector{color:#FFF;background:transparent;border:none;}.buttonContainer.__jsx-style-dynamic-selector{text-align:right;}.modal.__jsx-style-dynamic-selector{position:fixed;z-index:99;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(100,100,100,0.8);cursor:pointer;}.modal-content.__jsx-style-dynamic-selector{position:fixed;z-index:100;-webkit-animation-name:slideIn-__jsx-style-dynamic-selector;animation-name:slideIn-__jsx-style-dynamic-selector;-webkit-animation-duration:0.4s;animation-duration:0.4s;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);min-width:320px;}
   </JSXStyle>
 </div>"
 `;
 
 exports[`Modal renders normally 1`] = `
-"<div onClick={[Function (anonymous)]} className=\\"jsx-1217570507 modal\\">
-  <div className=\\"jsx-1217570507 modal-content\\" />
-  <div onClick={[Function: cancelCallback]} className=\\"jsx-1217570507 buttonContainer\\">
-    <button className=\\"jsx-1217570507\\">
+"<div onClick={[Function (anonymous)]} className=\\"jsx-886162824 modal\\">
+  <div className=\\"jsx-886162824 modal-content\\" />
+  <div onClick={[Function: cancelCallback]} className=\\"jsx-886162824 buttonContainer\\">
+    <button className=\\"jsx-886162824\\">
       [ESC]
     </button>
   </div>
-  <JSXStyle id=\\"3525693946\\" dynamic={{...}}>
-    button.__jsx-style-dynamic-selector{color:#FFF;background:transparent;border:none;}.buttonContainer.__jsx-style-dynamic-selector{text-align:right;}.modal.__jsx-style-dynamic-selector{position:fixed;z-index:99;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(100,100,100,0.8);cursor:pointer;}.modal-content.__jsx-style-dynamic-selector{position:fixed;z-index:100;-webkit-animation-name:slideIn-__jsx-style-dynamic-selector;animation-name:slideIn-__jsx-style-dynamic-selector;-webkit-animation-duration:0.4s;animation-duration:0.4s;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+  <JSXStyle id=\\"1326380392\\" dynamic={{...}}>
+    button.__jsx-style-dynamic-selector{color:#FFF;background:transparent;border:none;}.buttonContainer.__jsx-style-dynamic-selector{text-align:right;}.modal.__jsx-style-dynamic-selector{position:fixed;z-index:99;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(100,100,100,0.8);cursor:pointer;}.modal-content.__jsx-style-dynamic-selector{position:fixed;z-index:100;-webkit-animation-name:slideIn-__jsx-style-dynamic-selector;animation-name:slideIn-__jsx-style-dynamic-selector;-webkit-animation-duration:0.4s;animation-duration:0.4s;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);min-width:320px;}
   </JSXStyle>
 </div>"
 `;
