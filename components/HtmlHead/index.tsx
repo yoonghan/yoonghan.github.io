@@ -34,7 +34,7 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
     <div id="id-scripts">
       <Head>
         <meta charSet="utf-8" key="charset"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" key="viewport"/>
         <meta name="og:title" content="Walcron Coorperation" key="fb_title"/>
         <meta name="og:type" content="profile" key="fb_type"/>
         <meta name="og:site_name" content="https://www.walcron.com/" key="fb_charset"/>

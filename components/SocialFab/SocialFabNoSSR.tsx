@@ -152,6 +152,7 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
 
           .icon-material_git {
             background: url("/img/social/git.png") center no-repeat;
+            background-size: 38px;
           }
 
           .icon-material_li {

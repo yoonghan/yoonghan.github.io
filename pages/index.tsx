@@ -16,6 +16,7 @@ import cookies from "next-cookies";
 import LetterBox from "../components/LetterBox";
 import CommandBar from "../components/CommandBar";
 import PageReaderIndicator from "../components/PageReaderIndicator";
+import Video from "../components/Video";
 import {PRIMARY_BLUE} from "../shared/style";
 
 const _getSchema = () => {
@@ -72,7 +73,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
       <HtmlHead
         title={"Walcron"}
         description={"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."}
-        nofontawesome={true}
+        nofontawesome={false}
         noBackground={true}
         />
       <Helmet>
@@ -146,6 +147,13 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                   <div className={"letterbox"}>
                     <LetterBox/>
                   </div>
+                </ParallaxPlainSection>
+                <ParallaxPlainSection title="Behind the scenes">
+                  <Video
+                    src="/mov/welcome.mp4"
+                    imgSrc="/img/welcome/girl-in-glass.jpg"
+                    imgAlt="women in a len"
+                  />
                 </ParallaxPlainSection>
                 <ParallaxPlainSection>
                   <div className="section-end">
