@@ -5,33 +5,33 @@ exports[`SocialFab renders lazy normally 1`] = `
   <NoSSR>
     <Suspense fallback={{...}}>
       <SocialFabNoSSR>
-        <div className=\\"jsx-2824438153 fab\\">
-          <span className=\\"jsx-2824438153 fab-action-button\\">
-            <i className=\\"jsx-2824438153 fab-action-button__icon\\" />
+        <div className=\\"jsx-1029727041 fab\\">
+          <span className=\\"jsx-1029727041 fab-action-button\\">
+            <i className=\\"jsx-1029727041 fab-action-button__icon\\" />
           </span>
-          <ul className=\\"jsx-2824438153 fab-buttons\\">
-            <li className=\\"jsx-2824438153 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://github.com/yoonghan/Walcron\\" className=\\"jsx-2824438153 fab-buttons__link\\">
-                <i className=\\"jsx-2824438153 icon-material icon-material_git\\" />
+          <ul className=\\"jsx-1029727041 fab-buttons\\">
+            <li className=\\"jsx-1029727041 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"https://github.com/yoonghan/Walcron\\" className=\\"jsx-1029727041 fab-buttons__link\\">
+                <i className=\\"jsx-1029727041 icon-material icon-material_git\\" />
               </a>
             </li>
-            <li className=\\"jsx-2824438153 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://stackoverflow.com/users/3893990/han\\" className=\\"jsx-2824438153 fab-buttons__link\\">
-                <i className=\\"jsx-2824438153 icon-material icon-material_so\\" />
+            <li className=\\"jsx-1029727041 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"https://stackoverflow.com/users/3893990/han\\" className=\\"jsx-1029727041 fab-buttons__link\\">
+                <i className=\\"jsx-1029727041 icon-material icon-material_so\\" />
               </a>
             </li>
-            <li className=\\"jsx-2824438153 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://www.facebook.com/walcron.coorperation\\" className=\\"jsx-2824438153 fab-buttons__link\\">
-                <i className=\\"jsx-2824438153 icon-material icon-material_fb\\" />
+            <li className=\\"jsx-1029727041 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"https://www.facebook.com/walcron.coorperation\\" className=\\"jsx-1029727041 fab-buttons__link\\">
+                <i className=\\"jsx-1029727041 icon-material icon-material_fb\\" />
               </a>
             </li>
-            <li className=\\"jsx-2824438153 fab-buttons__item\\">
-              <a onClick={[Function: onOpenEmail]} className=\\"jsx-2824438153 fab-buttons__link\\">
-                <i className=\\"jsx-2824438153 icon-material icon-material_gm\\" />
+            <li className=\\"jsx-1029727041 fab-buttons__item\\">
+              <a onClick={[Function: onOpenEmail]} className=\\"jsx-1029727041 fab-buttons__link\\">
+                <i className=\\"jsx-1029727041 icon-material icon-material_gm\\" />
               </a>
             </li>
           </ul>
-          <JSXStyle id=\\"2824438153\\" />
+          <JSXStyle id=\\"1029727041\\" />
         </div>
       </SocialFabNoSSR>
     </Suspense>

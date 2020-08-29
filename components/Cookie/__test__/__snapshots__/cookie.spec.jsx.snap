@@ -9,14 +9,14 @@ exports[`ButtonsBar renders open normally 1`] = `
       This site uses cookies.
     </h4>
     <p className=\\"jsx-1640828238\\">
-      The cookie is used to monitor visits and usage traffics. We use google analytics, please 
+      This site uses cookie to monitor visits and usage traffics. We use google analytics, please 
       <a href=\\"https://policies.google.com/\\" target=\\"_blank\\" className=\\"jsx-1640828238\\">
-         read here
+         refer here
       </a>
       .
     </p>
     <p className=\\"jsx-1640828238\\">
-      By proceeding on this website, you have indirectly accepted and agreed to our cookie usage.
+      By proceeding on this website, you are accepting and agreed to the cookie usage.
     </p>
   </div>
   <div className=\\"jsx-1640828238 button-container\\">
