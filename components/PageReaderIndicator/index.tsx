@@ -15,7 +15,7 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
     const _posHeight = e.target.scrollHeight - e.target.offsetHeight;
     const _calc = (_pos/_posHeight) * 100;
     if(scrollMonitorRef.current !== null) {
-      scrollMonitorRef.current.style.height = `${Math.floor(_calc)}%`;
+      scrollMonitorRef.current.style.width = `${Math.floor(_calc)}%`;
     }
   }
 
@@ -29,15 +29,15 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
     <div className="scroll-percentage" ref={scrollMonitorRef}>
       <style>{`
         .scroll-percentage {
-          will-change: height;
-          transition: height 200ms;
+          will-change: width;
+          transition: width 200ms linear;
           position: fixed;
-          width: 3px;
-          height: 0%;
-          right: 0;
+          height: 3px;
+          width: 0%;
+          left: 0;
           background-color: ${PRIMARY_ORANGE};
           z-index: 999;
-          bottom: 0;
+          top: 0;
         }
         `}</style>
     </div>

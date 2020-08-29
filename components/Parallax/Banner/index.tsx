@@ -161,7 +161,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-left {
           will-change: transform;
           transform: scale(1.0);
-          transition: transform 500ms;
+          transition: transform 200ms linear;
           width: 50%;
           height: 100%;
           background-image: url('/img/welcome/fg-left.jpg');
@@ -174,7 +174,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-right {
           will-change: transform;
           transform: scale(1.0);
-          transition: transform 500ms;
+          transition: transform 200ms linear;
           width: 50%;
           height: 100%;
           background-image: url('/img/welcome/fg-left.jpg');
@@ -187,7 +187,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-center {
           will-change: transform;
           position: absolute;
-          transition: transform 500ms;
+          transition: transform 200ms linear;
           left: calc(50% - 10rem);
           top: calc(50% - 10rem);
           width: 20rem;
@@ -203,7 +203,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .foreground-center > .before {
           content: '';
           will-change: transform;
-          transition: transform 500ms;
+          transition: transform 200ms linear;
           border: 5px solid rgba(51,153,67, 0.9);
           position: absolute;
           width: 17rem;
@@ -241,7 +241,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .background {
           will-change: transform;
           position: absolute;
-          transition: transform 500ms;
+          transition: transform 200ms linear;
           height: 100%;
           width: 100%;
           background: #000 url(/img/welcome/walcron-authors.jpg) no-repeat center center;
@@ -250,7 +250,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
         .centerpiece {
           font-size: 2rem;
           will-change: opacity, transform;
-          transition: opacity 500ms;
+          transition: opacity 200ms linear;
           position: absolute;
           top: 50%;
           left: 50%;
