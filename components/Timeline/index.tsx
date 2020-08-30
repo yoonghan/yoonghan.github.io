@@ -1,65 +1,113 @@
 `use strict`
 
 import * as React from "react";
-import timeline from "../../public/json/timeline.js";
-import {TABLE_HEADER, TABLE_BODY} from "../../shared/style";
 
-const Timeline:React.FC<any> = () => {
-  const _createBookListing = ():JSX.Element[] => {
-    const bookList = timeline.books;
+interface ITimeline {
+  events: Array<IEvent>;
+}
 
-    return bookList.map(
-      (book, idx) => {
-        return (
-          <tr key={`timeline_book_${idx}`}>
-            <td>{book.title}</td>
-            <td>{book.learnt}</td>
-            <style jsx>{`
-              td {
-                padding: 1rem 2rem;
-                border-top: ${TABLE_BODY.BORDER};
-                padding-bottom: 1rem;
-              }
-              td:first-child {
-                padding-right: 10px;
-              }
-              tr {
-                color: ${TABLE_BODY.FOREGROUND};
-                background-color: ${TABLE_BODY.BACKGROUND};
-              }
-              tr:hover {
-                background-color: ${TABLE_BODY.HOVER_BACKGROUND};
-              }
-            `}</style>
-          </tr>
-        );
-    });
+interface IEvent {
+  date: string;
+  special?: string;
+  desc: string;
+  faIcon?: string;
+}
+
+const Timeline:React.FC<ITimeline> = ({events}) => {
+
+  const _createLinks = () => {
+    return events.map((event, i) => (
+      <li className="container" key={`timeline_${i}`}>
+        <span></span>
+        <span>
+          {event.faIcon && <i className={`icon ${event.faIcon}`}></i>}
+          {!event.faIcon && <i className={`dot`}></i>}
+        </span>
+        <div className="content">
+          <p><strong>{event.date}</strong></p>
+          {event.special && <p>[{event.special}]</p>}
+          <p>{event.desc}</p>
+        </div>
+        <style jsx>{`
+          .container {
+            padding-left: 22px;
+            position: relative;
+            text-align: left;
+          }
+          .icon {
+            position: absolute;
+            background: #fff;
+            top: 0;
+            left: -2px;
+            border: 2px solid #ddd;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            padding-top: 9px;
+            color: #999;
+            margin-left: -13px;
+          }
+          .dot {
+            position: absolute;
+            top: 5px;
+            left: 0;
+          }
+          .dot::before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #858b94;
+            border-radius: 50%;
+          }
+          .container:first-child > span:first-child {
+            top: 5px;
+          }
+          .container:last-child > span:first-child {
+            bottom: 30px;
+          }
+          .container > span:first-child {
+            top: 0;
+            left: 4px;
+            position: absolute;
+            bottom: 0;
+            width: 2px;
+            background-color: #858b94;
+          }
+          .container > span:nth-child(2) {
+            left: 0;
+            text-align: center;
+            position: absolute;
+            top: 5px;
+          }
+          .container > .content {
+            padding-bottom: 18px;
+            margin-left: 24px;
+          }
+          .container > .content p {
+            margin: 0;
+            font-size: 0.75rem;
+          }
+          `}</style>
+      </li>
+    ))
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Book Title</th>
-          <th>Learnt</th>
-        </tr>
-      </thead>
-      <tbody>
-        {_createBookListing()}
-      </tbody>
+    <ul className="container">
+      {_createLinks()}
       <style jsx>{`
-        thead th {
-          color: ${TABLE_HEADER.FOREGROUND};
-          background-color: ${TABLE_HEADER.BACKGROUND};
+        .container {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 0;
+          direction: ltr;
+          margin-left: 20px;
         }
-        tbody th {
-          padding: 1rem 2rem;
-          border-top: ${TABLE_BODY.BORDER};
-          padding-bottom: 1rem;
-        }
-      `}</style>
-    </table>
-  );
+        `}</style>
+    </ul>
+  )
 }
 
 export default Timeline;

@@ -27,7 +27,7 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
         <Button
           onClickCallback={toggleShowPortal}
           color={'rgba(51,153,67)'}
-          >See my journey</Button>
+          >See our journey</Button>
         <img src={graphImg} className="hidden-preload"/>
         {showPortal.show &&
           <Portal
