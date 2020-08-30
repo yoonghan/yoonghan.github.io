@@ -5,13 +5,14 @@ import {TABLE_HEADER, TABLE_BODY} from "../../shared/style";
 
 interface ITable {
   list: Array<Object>;
+  headers: Array<String>;
 }
 
-const Table:React.FC<ITable> = ({list}) => {
-  const _drawInfo = (info, idx) => {
-    const arr:Array<string> = [];
+const Table:React.FC<ITable> = ({list, headers}) => {
+  const _drawInfo = (info:any, idx:number) => {
+    const arr:Array<JSX.Element> = [];
     for (const [key, value] of Object.entries(info)) {
-      arr.push(<td key={`${key}_${idx}`}>{value}</td>)
+      arr.push(<td key={`${key}_${idx}`}>{(value as string)}</td>)
     }
     return arr;
   }
@@ -48,8 +49,7 @@ const Table:React.FC<ITable> = ({list}) => {
     <table>
       <thead>
         <tr>
-          <th>Book Title</th>
-          <th>Learnt</th>
+          {headers.map((header, idx) => <th key={`table_header_${idx}`}>{header}</th>)}
         </tr>
       </thead>
       <tbody>
