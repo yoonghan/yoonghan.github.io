@@ -8,9 +8,10 @@ interface IVideo {
   imgAlt: string;
   width?: number;
   height?: number;
+  preload?: string;
 }
 
-const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height}) => {
+const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [sound, setSound] = React.useState(false);
 
@@ -51,7 +52,7 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height}) => {
           height={height?height:640}
           loop
           muted
-          preload="none"
+          preload={preload?preload:"auto"}
           ref={videoRef}
           >
           <source src={src} type="video/mp4" />
