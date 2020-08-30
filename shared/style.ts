@@ -103,12 +103,16 @@ export default css.global`
 }
 .portal-container {
   top: 0;
-  left: 0;
+  right: 0;
   width: 100vw;
   height: 100vh;
   position: fixed;
   animation: expandWidth 0.5s;
   overflow: hidden;
+}
+@keyframes expandWidth {
+  from {width: 0;}
+  to {width: 100vw;}
 }
 h1 {
   color: rgb(255, 132, 0);
