@@ -126,10 +126,6 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
         <button>[ESC]</button>
       </div>
       <style jsx>{`
-        @keyframes expandWidth {
-          from {width: 0px;}
-          to {width: 100vw;}
-        }
         .buttonContainer {
           position: absolute;
           top: 1rem;
