@@ -4,7 +4,8 @@ import Table from "../components/Table";
 import Timeline from "../components/Timeline";
 import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
-import timeline from "../public/json/timeline.js";
+import timeline from "../public/json/timeline";
+import Footer from "../components/Footer";
 import {FOREGROUND} from "../shared/style";
 
 interface IMotivationProps {
@@ -23,8 +24,10 @@ const Motivation: React.SFC<IMotivationProps> = ({}) => {
       </div>
       <div className="container container-2">
         <HeaderOne title={"Motivational Books"} isLined={true}/>
-        <Table list={timeline.nonFictionBooks}/>
+        <Table list={timeline.nonFictionBooks} headers={['Book title', 'Learnt']}/>
       </div>
+      <div style={{paddingBottom: '5rem'}}></div>
+      <Footer/>
       <style jsx>{`
         .container {
           max-width: 640px;

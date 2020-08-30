@@ -67,6 +67,10 @@ const Timeline:React.FC<ITimeline> = ({events}) => {
           .container:last-child > span:first-child {
             bottom: 30px;
           }
+          .container:last-child .icon {
+            background: rgb(21, 178, 21);
+            color: rgb(255, 255, 255);
+          }
           .container > span:first-child {
             top: 0;
             left: 4px;

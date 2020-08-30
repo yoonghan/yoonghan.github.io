@@ -1,16 +1,4 @@
 const timeline = {
-  history: [
-    {
-      "time" : "1/Jun/2019",
-      "title": "Restart project Walcron",
-      "desc" : "After a long rest of undeterminated goal, finally I plan to restart my new project => Javascript and Tensorflow."
-    },
-    {
-      "time" : "10/Aug/2020",
-      "title": "Reboot website",
-      "desc" : "Maybe time to find a job. Better restart  what I want to do."
-    }
-  ],
   nonFictionBooks: [
     {
       "title": "The subtle art of not giving a f**k",
