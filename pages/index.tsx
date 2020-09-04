@@ -138,7 +138,6 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               </div>
               <ParallaxGraph
                 graphImg="/img/welcome/roadmap.jpg"/>
-              <SocialFab />
               <div className="info-container relative">
                 <ParallaxPlainSection title="Are we freelance for hire ?">
                   <div className="section1">
@@ -174,6 +173,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                   </div>
                 </ParallaxPlainSection>
               </div>
+              <SocialFab />
             </section>
           }
           <Footer isRelative={true}/>
