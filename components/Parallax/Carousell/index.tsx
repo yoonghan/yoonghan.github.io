@@ -15,8 +15,8 @@ interface ICarousell {
 }
 
 const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
-  const [description, setDescription] = React.useState([0, ""]);
-  var observer = null;
+  const [description, setDescription] = React.useState(["", ""]);
+  var observer:any = null;
 
   const _attachObserverForCarousell = () => {
     const options = {
@@ -26,7 +26,8 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
     const callback = function(entries: Array<IntersectionObserverEntry>) {
       entries.forEach(function(entry) {
         if(entry.intersectionRatio >= 0.7) {
-          setDescription([`0${entry.target.dataset.idx}`, entry.target.dataset.description])
+          const elem = entry.target as HTMLDivElement
+          setDescription([elem.dataset.idx, `${elem.dataset.description}`])
         }
       })
     }
@@ -49,9 +50,11 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
     return _detachObserverForCarousell
   }, []);
 
-  const _click = (href) => {
+  const _click = (href:string) => () => {
     window.open(href, 'work')
   }
+
+  const _getIdx = (idx) => `${uniqueCarousellName}-${idx}`
 
   const _drawArticle = () => {
     return articles.map((article, idx) => (
@@ -59,7 +62,8 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
         onClick={_click(article.href)}
         className={`${uniqueCarousellName}`}
         data-description={article.description}
-        data-idx={idx + 1}
+        data-idx={idx}
+        id={_getIdx(idx)}
         >
         <div
           className="container">
@@ -88,20 +92,31 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
     ))
   }
 
+  const _next = () => {
+    const curr = parseInt(description[0], 10);
+    if(curr < (articles.length - 1))
+      location.href = `#${_getIdx(curr + 1)}`
+  }
+
+  const _prev = () => {
+    const curr = parseInt(description[0], 10);
+    if(curr > 0)
+      location.href = `#${_getIdx(curr - 1)}`
+  }
+
   return (
     <>
       <div className="container">
-
         {_drawArticle()}
       </div>
-
-        <div className="col">
-          <div><div className="arrow left"></div></div>
-          <div><div className="arrow right"></div></div>
-        </div>
       <div className="section-description">
-        <div className="idx">{description[0]}</div>
+        <div className="idx">0{parseInt(description[0], 10)+1}</div>
         <div className="text">{description[1]}</div>
+      </div>
+      <div className="col">
+        <div>{(parseInt(description[0], 10) !== 0) && <div className="arrow left" onClick={_prev}></div>}</div>
+        <div><a href="/creation">View All</a></div>
+        <div>{(parseInt(description[0], 10) !== articles.length - 1) && <div className="arrow right" onClick={_next}></div>}</div>
       </div>
       <style jsx>{`
         .container {
@@ -125,6 +140,7 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
           top: 2.5rem;
           background-color: rgba(0,0,0, 0.5);
           padding: 0 1rem 0.25rem 6.5rem;
+          height: 1rem;
         }
 
         @media only screen and (max-width: 480px) {
@@ -138,39 +154,25 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
           }
         }
         .col {
+          align-items: center;
           display: flex;
           justify-content: row;
           justify-content: space-between;
-          position: absolute;
           width: 100%;
-          bottom: 40%;
         }
         .arrow {
           border: solid white;
-          border-width: 0 8px 8px 0;
-          padding: 8px;
+          border-width: 0 6px 6px 0;
+          padding: 6px;
           display: inline-block;
-          animation-duration: 1.5s;
-          animation-iteration-count: infinite;
-          animation-name: blink;
-          margin: 2rem;
+          margin: 1rem;
+          cursor: pointer;
         }
         .arrow.left {
           transform: rotate(135deg);
         }
         .arrow.right {
           transform: rotate(-45deg);
-        }
-        @keyframes blink {
-            0% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
         }
       `}</style>
     </>
