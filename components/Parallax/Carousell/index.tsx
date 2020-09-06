@@ -27,7 +27,7 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
       entries.forEach(function(entry) {
         if(entry.intersectionRatio >= 0.7) {
           const elem = entry.target as HTMLDivElement
-          setDescription([elem.dataset.idx, `${elem.dataset.description}`])
+          setDescription([`${elem.dataset.idx}`, `${elem.dataset.description}`])
         }
       })
     }
@@ -54,7 +54,7 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
     window.open(href, 'work')
   }
 
-  const _getIdx = (idx) => `${uniqueCarousellName}-${idx}`
+  const _getIdx = (idx:number) => `${uniqueCarousellName}-${idx}`
 
   const _drawArticle = () => {
     return articles.map((article, idx) => (
