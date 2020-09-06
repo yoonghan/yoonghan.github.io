@@ -27,7 +27,9 @@ const AssetLoader: React.FC<IAssetLoader> =
         allAssetLoadedCallback();
     }
     if(percentageLoad) {
-      percentageLoad(Math.floor(assetLoadedCount / assetsSrcToLoad.length * 100) );
+      let percentageShown = Math.floor(assetLoadedCount / assetsSrcToLoad.length * 100);
+      percentageShown = percentageShown > 100?100:percentageShown;
+      percentageLoad(percentageShown);
     }
   }, [assetLoadedCount]);
 

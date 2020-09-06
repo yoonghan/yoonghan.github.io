@@ -74,6 +74,10 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
         .title {
           text-align: center;
         }
+        .desc {
+          position: relative;
+          max-width: 100%;
+        }
       `}</style>
     </div>
   );

@@ -9,6 +9,7 @@ import ParallaxBanner from "../components/Parallax/Banner";
 import ParallaxPlainSection from "../components/Parallax/PlainSection";
 import ParallaxFigure from "../components/Parallax/Figure";
 import ParallaxGraph from "../components/Parallax/Graph";
+import ParallaxCarousell from "../components/Parallax/Carousell";
 import Footer from "../components/Footer";
 import Counter from "../components/Counter";
 import Cookie from "../components/Cookie";
@@ -146,6 +147,37 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                   <div className={"letterbox"}>
                     <LetterBox/>
                   </div>
+                </ParallaxPlainSection>
+                <ParallaxPlainSection title="Our works">
+                  <ParallaxCarousell
+                    articles={[
+                      {
+                        "icon": "fa-mobile-alt",
+                        "title": "React-Native Bridging",
+                        "description": "Shared tutorial on React Native bridging.",
+                        "href": "https://github.com/yoonghan/RN_Android_Native"
+                      },
+                      {
+                        "icon": "fa-shopping-cart",
+                        "title": "Self checkout machine",
+                        "description": "Self checkout interface screen.",
+                        "href": "/host/react-template/index.html"
+                      },
+                      {
+                        "icon": "fa-comments",
+                        "title": "Chatroom program",
+                        "description": "Web chatter with Pusher.",
+                        "href": "/manipulator"
+                      },
+                      {
+                        "icon": "fa-chart-line",
+                        "title": "Dashboard",
+                        "description": "Dashboard, but partially broken.",
+                        "href": "/host/rn-console/index.html"
+                      }
+                    ]}
+                    uniqueCarousellName="plx-showcase"
+                  />
                 </ParallaxPlainSection>
                 <ParallaxPlainSection title="Behind the scenes">
                   <Video
