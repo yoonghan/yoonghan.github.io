@@ -14,6 +14,7 @@ interface IVideo {
 const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [sound, setSound] = React.useState(false);
+  const [isPlaying, setPlaying] = React.useState(false);
 
   const _toggleSound = () => {
     if(videoRef.current !== null) {
@@ -27,6 +28,7 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
     if(videoRef.current !== null) {
       videoRef.current.style.opacity = "1";
       videoRef.current.play();
+      setPlaying(true);
     }
   }
 
@@ -34,6 +36,21 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
     if(videoRef.current !== null) {
       videoRef.current.style.opacity = "0";
       videoRef.current.pause();
+      setPlaying(false);
+    }
+  }
+
+  const _toggleSoundAndPlay = () => {
+    if(videoRef.current !== null) {
+      if(isPlaying && !videoRef.current.muted) {
+        _hideVideo()
+      }
+      else {
+        _hoverVideo()
+        if(videoRef.current.muted) {
+          _toggleSound()
+        }
+      }
     }
   }
 
@@ -43,6 +60,7 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
         <button onClick={_toggleSound}>with sound ( {sound?"on":"off"} <i className={`fas ${sound?"fa-volume-up":"fa-volume-mute"}`}></i> )</button>
       </div>
       <div className="container-video"
+        onClick={_toggleSoundAndPlay}
         onMouseOver={_hoverVideo}
         onMouseOut={_hideVideo}>
         <img src={imgSrc} alt={imgAlt} />
