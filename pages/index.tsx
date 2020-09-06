@@ -184,6 +184,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                     src="/mov/welcome.mp4"
                     imgSrc="/img/welcome/girl-in-glass.jpg"
                     imgAlt="women in a len"
+                    preload="none"
                   />
                 </ParallaxPlainSection>
                 <ParallaxPlainSection>
