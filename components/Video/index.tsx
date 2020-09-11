@@ -6,12 +6,10 @@ interface IVideo {
   src: string;
   imgSrc: string;
   imgAlt: string;
-  width?: number;
-  height?: number;
   preload?: string;
 }
 
-const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) => {
+const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, preload}) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [sound, setSound] = React.useState(false);
   const [isPlaying, setPlaying] = React.useState(false);
@@ -66,8 +64,6 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
         <img src={imgSrc} alt={imgAlt} />
         <div className="overlay"><i className="fas fa-play-circle"></i></div>
         <video
-          width={width?width:360}
-          height={height?height:640}
           loop
           muted
           preload={preload?preload:"auto"}
@@ -103,12 +99,13 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
           cursor: pointer;
           user-select: none;
           position: relative;
-          border: 1px solid;
+          max-width: 360px;
         }
         .container-video > img {
-          width: ${width?width:360}px;
-          height: ${height?height:640}px;
+          width: 100%;
+          height: auto;
           display: block;
+          padding: 80px 0;
         }
         .container-video > video {
           opacity: 0;
@@ -116,6 +113,8 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, width, height, preload}) =
           position: absolute;
           top: 0;
           left: 0;
+          width: 100%;
+          height: auto;
         }
         :global(video::-webkit-media-controls) {
             display:none !important;

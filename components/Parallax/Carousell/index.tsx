@@ -124,6 +124,8 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
           display: flex;
           overflow-x: scroll;
           position: relative;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
           width: 100%;
         }
         .section-description {
