@@ -82,39 +82,39 @@ export const SUB_HEADER = {
 import css from 'styled-jsx/css'
 
 export default css.global`
-.default-animate-height {
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.5s ease-out;
-  height: auto;
-  width: 100%;
-}
-.default-animate-height.animate {
-  transform: scaleY(1.0);
-}
-.default-animate-margin {
-  margin-top: 100px;
-  opacity: 0.5;
-  transition: opacity 1s, margin 1s ease-out;
-}
-.default-animate-margin.animate {
-  margin-top: 0;
-  opacity: 1.0;
-}
-.portal-container {
-  top: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  animation: expandWidth 0.5s;
-  overflow: hidden;
-}
-@keyframes expandWidth {
-  from {width: 0;}
-  to {width: 100vw;}
-}
-h1 {
-  color: rgb(255, 132, 0);
-}
+  .default-animate-height {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s ease-out;
+    height: auto;
+    width: 100%;
+  }
+  .default-animate-height.animate {
+    transform: scaleY(1.0);
+  }
+  .default-animate-margin {
+    margin-top: 100px;
+    opacity: 0.5;
+    transition: opacity 1s, margin 1s ease-out;
+  }
+  .default-animate-margin.animate {
+    margin-top: 0;
+    opacity: 1.0;
+  }
+  .portal-container {
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    animation: expandWidth 0.5s;
+    overflow: hidden;
+  }
+  @keyframes expandWidth {
+    from {width: 0;}
+    to {width: 100vw;}
+  }
+  h1 {
+    color: rgb(255, 132, 0);
+  }
 `

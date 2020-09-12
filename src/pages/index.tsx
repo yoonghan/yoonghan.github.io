@@ -19,6 +19,7 @@ import CommandBar from "../components/CommandBar";
 import PageReaderIndicator from "../components/PageReaderIndicator";
 import Video from "../components/Video";
 import {PRIMARY_BLUE} from "../shared/style";
+import NoJavascriptSupport from "../components/NoJavascriptSupport";
 
 const _getSchema = () => {
   const schemas = {
@@ -82,16 +83,19 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
           {_getSchema()}
         </script>
       </Helmet>
+      <NoJavascriptSupport>
         <div ref={scrollContainerRef} className="container">
           <CommandBar disableMobile={true}/>
-          {!imgLoaded &&
-            <Counter
-              countTo={loadPercentage}
-              postFix="%"
-              targetToReach={100}
-              targetReachCallback={()=>{setImgLoaded(true)}}
-              />
-            }
+          <section>
+            {!imgLoaded &&
+              <Counter
+                countTo={loadPercentage}
+                postFix="%"
+                targetToReach={100}
+                targetReachCallback={()=>{setImgLoaded(true)}}
+                />
+              }
+          </section>
           {imgLoaded &&
             <section className="loaded-container">
               <PageReaderIndicator scrollContainer={scrollContainerRef} />
@@ -209,7 +213,6 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               <SocialFab />
             </section>
           }
-          <Footer isRelative={true}/>
           <style jsx>{`
             .container {
               width: calc(100vw - 3px);
@@ -292,11 +295,13 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               overflow: hidden;
             }
             `}</style>
+            <Footer isRelative={true}/>
         </div>
-        <AssetLoader
-          assetsSrcToLoad={assetsToLoad}
-          percentageLoad={(percentage) => updateLoadPercentage(percentage)}/>
-        <Cookie isClosed={_termsRead} />
+      </NoJavascriptSupport>
+      <AssetLoader
+        assetsSrcToLoad={assetsToLoad}
+        percentageLoad={(percentage) => updateLoadPercentage(percentage)}/>
+      <Cookie isClosed={_termsRead} />
     </React.Fragment>
   );
 }
