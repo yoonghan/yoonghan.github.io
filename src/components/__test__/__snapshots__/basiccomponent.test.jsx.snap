@@ -35,9 +35,9 @@ exports[`Basic Components Footer renders normally 1`] = `
 
 exports[`Basic Components Header One renders normally 1`] = `
 "<Fragment>
-  <h1 className=\\"jsx-3365884365 \\" />
-  <JSXStyle id=\\"2743286598\\" dynamic={{...}}>
-    h1.__jsx-style-dynamic-selector{color:#FF8400;}.lined.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;}h1.lined.__jsx-style-dynamic-selector:before,h1.lined.__jsx-style-dynamic-selector:after{content:&#39;&#39;;border-top:2px solid;margin:0 20px 0 0;-webkit-flex:1 0 20px;-ms-flex:1 0 20px;flex:1 0 20px;max-width:20px;}h1.lined.__jsx-style-dynamic-selector:after{margin:0 0 0 20px;}
+  <h1 className=\\"jsx-967809352 \\" />
+  <JSXStyle id=\\"3143674197\\" dynamic={{...}}>
+    h1.__jsx-style-dynamic-selector{margin-top:0;color:#FF8400;}.lined.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;}h1.lined.__jsx-style-dynamic-selector:before,h1.lined.__jsx-style-dynamic-selector:after{content:&#39;&#39;;border-top:2px solid;margin:0 20px 0 0;-webkit-flex:1 0 20px;-ms-flex:1 0 20px;flex:1 0 20px;max-width:20px;}h1.lined.__jsx-style-dynamic-selector:after{margin:0 0 0 20px;}
   </JSXStyle>
 </Fragment>"
 `;

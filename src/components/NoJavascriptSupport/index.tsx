@@ -3,7 +3,11 @@
 import * as React from "react";
 import NoJavascript from "./NoJavascript";
 
-const NoJavascriptInverse: React.SFC<any> = ({children}) => {
+interface INoJavascriptInverse {
+  noScriptElem?:JSX.Element;
+}
+
+const NoJavascriptInverse: React.SFC<INoJavascriptInverse> = ({noScriptElem, children}) => {
   const javascriptRunElement = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -12,9 +16,18 @@ const NoJavascriptInverse: React.SFC<any> = ({children}) => {
     }
   }, []);
 
+  const _renderNoJavascript = () => {
+    if(noScriptElem) {
+      return noScriptElem;
+    }
+    return <NoJavascript />;
+  }
+
   return (
     <>
-      <NoJavascript />
+      <noscript>
+      {_renderNoJavascript()}
+      </noscript>
       <section ref={javascriptRunElement} className="container">
         {children}
         <style jsx>{`
