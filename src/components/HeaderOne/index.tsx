@@ -17,6 +17,7 @@ const HeaderOne: React.SFC<IHeaderOneProps> = ({title, isBlackOnWhite, isLined})
       <style jsx>
         {`
           h1 {
+            margin-top: 0;
             color: ${isBlackOnWhite?BACKGROUND:HEADER_TITLE.FOREGROUND}
           }
           .lined {
