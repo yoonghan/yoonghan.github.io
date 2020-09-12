@@ -4,7 +4,7 @@ import Table from "../components/Table";
 import Timeline from "../components/Timeline";
 import HeaderOne from "../components/HeaderOne";
 import CommandBar from "../components/CommandBar";
-import timeline from "../public/json/timeline";
+import timeline from "../shared/json/timeline";
 import Footer from "../components/Footer";
 import {FOREGROUND} from "../shared/style";
 

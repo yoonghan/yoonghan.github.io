@@ -17,8 +17,7 @@
     "analyze": "next build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "storybook": "start-storybook -s ./public -p 9001"
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^9.5.2",
@@ -30,7 +29,6 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.5.2",
     "next-cookies": "^2.0.3",
-    "next-offline": "^5.0.2",
     "next-plugin-modernizr": "0.0.3",
     "pusher": "^3.0.1",
     "pusher-js": "^7.0.0",
@@ -45,7 +43,6 @@
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-react": "^7.10.4",
-    "@storybook/react": "^6.0.16",
     "@types/d3": "^5.7.2",
     "@types/formidable": "^1.0.31",
     "@types/modernizr": "^3.5.3",
@@ -69,6 +66,7 @@
     "graphql-tools": "^6.1.0",
     "immer": "^7.0.7",
     "jest": "^26.4.2",
+    "next-offline": "^5.0.2",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",
     "react-autosuggest": "^10.0.2",

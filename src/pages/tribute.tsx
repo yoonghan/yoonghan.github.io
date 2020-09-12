@@ -5,7 +5,7 @@ import CommandBar from "../components/CommandBar";
 import Table from "../components/Table";
 import {FOREGROUND, TABLE_HEADER, TABLE_BODY} from "../shared/style";
 import Footer from "../components/Footer";
-import tribute from "../public/json/tribute";
+import tribute from "../shared/json/tribute";
 
 const Tribute: React.SFC<any> = ({}) => {
   return (
