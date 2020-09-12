@@ -6,6 +6,8 @@ import produce, {Draft} from "immer";
 import Modal from "../Modal";
 import EmailSender from "./EmailSender";
 import {LINK} from "../../shared/style";
+import {EMAIL} from "../../shared/const";
+import NoJavascriptSupport from "../NoJavascriptSupport";
 
 export interface LetterBoxProps {
 }
@@ -61,6 +63,21 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     );
   }
 
+  _email = () => {
+    return EMAIL.replace(/_/g, "");
+  }
+
+  _renderNoJs = () => (
+    <span>
+      Write to us at <a href={`mailto:${this._email()}`} className="container">{this._email()}</a>
+      <style jsx>{`
+        .container {
+          color: orange;
+        }
+      `}</style>
+    </span>
+  )
+
   render() {
 
     const {isDialogShow, name} = this.state;
@@ -68,45 +85,50 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
     return (
       <div>
         If you are interested to talk to us, leave us your contact. Let us reach you instead.
-        <form className={'letterbox-container'} onSubmit={this._onSubmitPressed}>
-          <input
-            type="text"
-            autoComplete="off"
-            className={"letterbox-input"}
-            maxLength={200}
-            placeholder={"Honorific and name"}
-            onChange={this._onChangeLetterBoxInput}
-            value={name}
-            />
-          <Button onClickCallback={this._onClickSendButton}>Send</Button>
-          {
-            isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeTo={name.trim()}/></Modal>
-          }
-          <style jsx>{`
-            .letterbox-container {
-              display: flex;
-              margin-top: 20px;
-              justify-content: center;
+
+        <NoJavascriptSupport
+          noScriptElem={this._renderNoJs()}
+          >
+          <form className={'letterbox-container'} onSubmit={this._onSubmitPressed}>
+            <input
+              type="text"
+              autoComplete="off"
+              className={"letterbox-input"}
+              maxLength={200}
+              placeholder={"Honorific and name"}
+              onChange={this._onChangeLetterBoxInput}
+              value={name}
+              />
+            <Button onClickCallback={this._onClickSendButton}>Send</Button>
+            {
+              isDialogShow && <Modal cancelCallback={this._closeCallback}><EmailSender writeFrom={name.trim()} writeTo={this._email()}/></Modal>
             }
-            .gap {
-              margin-top: 20px;
-            }
-            .letterbox-input {
-              color: ${LINK.FOREGROUND};
-              background-color: transparent;
-              border: 1px solid ${LINK.FOREGROUND};
-              margin: 0;
-              min-width: 200px;
-              display: block;
-              font-size: 1rem;
-              box-sizing: content-box;
-              padding: 1rem;
-              border-radius: 0.3rem;
-              height: 1.1rem;
-              text-shadow: 0 0 0 #EBEBEB;
-            }
-          `}</style>
-        </form>
+            <style jsx>{`
+              .letterbox-container {
+                display: flex;
+                margin-top: 20px;
+                justify-content: center;
+              }
+              .gap {
+                margin-top: 20px;
+              }
+              .letterbox-input {
+                color: ${LINK.FOREGROUND};
+                background-color: transparent;
+                border: 1px solid ${LINK.FOREGROUND};
+                margin: 0;
+                min-width: 200px;
+                display: block;
+                font-size: 1rem;
+                box-sizing: content-box;
+                padding: 1rem;
+                border-radius: 0.3rem;
+                height: 1.1rem;
+                text-shadow: 0 0 0 #EBEBEB;
+              }
+            `}</style>
+          </form>
+        </NoJavascriptSupport>
       </div>
     );
   }

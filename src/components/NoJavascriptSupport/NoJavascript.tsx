@@ -7,7 +7,7 @@ import Footer from "../Footer";
 const NoJavascript: React.SFC<any> = () => {
 
   return (
-    <noscript>
+    <>
       <section className="container">
         <HeaderOne title="Walcron" isLined={true}/>
         <div>
@@ -55,7 +55,7 @@ const NoJavascript: React.SFC<any> = () => {
         }
       `}</style>
       <Footer isRelative={false}/>
-    </noscript>
+    </>
   )
 }
 

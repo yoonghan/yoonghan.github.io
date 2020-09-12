@@ -1,25 +1,23 @@
 `use strict`
 
 import * as React from "react";
-import {EMAIL} from "../../shared/const";
 
 interface EmailSenderProps {
-  writeTo: string
+  writeTo: string;
+  writeFrom: string;
 }
 
-const _openMailSender = (writeTo:string) => {
+const _openMailSender = (writeTo:string, writeFrom:string) => {
 
-  const subject = encodeURIComponent(`Contact from ${writeTo}`);
+  const subject = encodeURIComponent(`Contact from ${writeFrom}`);
   const body = "Hello there, ";
 
-  const toEmail = EMAIL.replace(/_/g, "");
-
-  window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${writeTo}?subject=${subject}&body=${body}`;
 }
 
-const EmailSender: React.SFC<EmailSenderProps> = ({writeTo}) => {
+const EmailSender: React.SFC<EmailSenderProps> = ({writeTo, writeFrom}) => {
 
-  _openMailSender(writeTo);
+  _openMailSender(writeTo, writeFrom);
 
   return (<div className="container">
     Using your functioning mailbox.
