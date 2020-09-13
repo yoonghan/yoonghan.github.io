@@ -12,7 +12,7 @@ const NoJavascript: React.SFC<any> = () => {
         <HeaderOne title="Walcron" isLined={true}/>
         <div>
         I know you are cool and so on, but this site ain't cool without Javascript.
-        If you still want to proceed without javascript, please visit us here.
+        If you still want to proceed without javascript, continue to our <i>"About us"</i>.
         </div>
         <div>
           <a className="button" href="/about">About Us</a>
