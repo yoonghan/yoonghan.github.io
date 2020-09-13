@@ -100,7 +100,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
 
   const _generateHorizontalTouchSensor = () => {
     var touchStartEvent, touchEndEvent;
-    let touchSlide;
+    let touchSlide:number;
     touchStartEvent = (event:any) => {
       touchSlide = event.touches[0].clientY;
     };
