@@ -100,13 +100,15 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
 
   const _generateHorizontalTouchSensor = () => {
     var touchStartEvent, touchEndEvent;
-    let touchSlide:number;
+    let touchSlideStart:number;
     touchStartEvent = (event:any) => {
-      touchSlide = event.touches[0].clientY;
+      touchSlideStart = event.touches[0].clientX;
     };
     touchEndEvent = (event:any) => {
-       var touchSlideEnd = event.changedTouches[0].clientY;
-       if(Math.abs(touchSlide - touchSlideEnd) > 0){
+       var touchSlideEnd = event.changedTouches[0].clientX;
+       console.log(touchSlideStart, "touchSlideStart")
+       console.log(touchSlideEnd, "touchSlideEnd")
+       if(Math.abs(touchSlideStart - touchSlideEnd) > 100){
           setShowPortal(true);
        }
     };
