@@ -4,6 +4,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import globalStyles from '../../../shared/style';
 
+interface IPortal {
+  closeCallback: (e?:any) => void;
+}
+
 const Portal:React.FC<IPortal> = ({closeCallback}) => {
   const el = React.useMemo(() => document.createElement('div'), []);
   const portalRef = React.useRef<HTMLDivElement>(null);
