@@ -23,19 +23,19 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
   }
 
   const _loadInText = () => {
+    if(loadPercentage < 3) {
+      return "";
+    }
     if(loadPercentage < 40) {
       return "more";
     }
     if(loadPercentage < 70) {
       return "half way";
     }
-    if(loadPercentage < 100) {
+    if(loadPercentage < 98) {
       return "almost";
     }
-    if(loadPercentage >= 100) {
-      return "completed";
-    }
-    return "";
+    return "completed";
   }
 
   React.useEffect(() => {
@@ -63,13 +63,14 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
           color: #333;
           display: flex;
           justify-content: flex-end;
-          padding-top: 3px;
+          padding-top: 2px;
           font-size: 0.75rem;
         }
         .indicator > div {
           background: ${PRIMARY_ORANGE};
           padding: 0.25rem;
           border-radius: 0 0 0.25rem 0.25rem;
+          white-space: nowrap;
         }
         `}</style>
     </div>

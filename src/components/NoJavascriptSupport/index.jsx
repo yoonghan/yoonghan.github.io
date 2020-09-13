@@ -3,12 +3,8 @@
 import * as React from "react";
 import NoJavascript from "./NoJavascript";
 
-interface INoJavascriptInverse {
-  noScriptElem?:JSX.Element;
-}
-
-const NoJavascriptInverse: React.SFC<INoJavascriptInverse> = ({noScriptElem, children}) => {
-  const javascriptRunElement = React.useRef<HTMLDivElement>(null);
+const NoJavascriptInverse = ({noScriptElem, children}) => {
+  const javascriptRunElement = React.useRef(null);
 
   React.useEffect(() => {
     if(javascriptRunElement.current !== null) {

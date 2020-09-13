@@ -107,12 +107,12 @@ export default css.global`
     width: 100vw;
     height: 100vh;
     position: fixed;
-    animation: expandWidth 0.5s;
+    animation: expandHeight 0.5s;
     overflow: hidden;
   }
-  @keyframes expandWidth {
-    from {width: 0;}
-    to {width: 100vw;}
+  @keyframes expandHeight {
+    from {height: 0;}
+    to {height: 100vh;}
   }
   h1 {
     color: rgb(255, 132, 0);
