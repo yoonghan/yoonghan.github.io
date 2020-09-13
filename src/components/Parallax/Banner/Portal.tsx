@@ -28,7 +28,13 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
       ref={portalRef}
       onClick={closeCallback}
       >
-      Oops! no horizontal/left/right drag
+      <div>
+        <p>Oops! You may only <strong>swipe/scroll</strong> <strong>up</strong> or <strong>down</strong>.
+        </p>
+        <p>
+        (Tap anywhere to close this message)
+        </p>
+      </div>
       <style jsx>{`
         .buttonContainer {
           position: absolute;
@@ -64,6 +70,10 @@ const Portal:React.FC<IPortal> = ({closeCallback}) => {
           background: rgba(0,0,0,0.8);
           position: relative;
           cursor: move;
+        }
+
+        .portal > div {
+          text-align: center;
         }
       `}</style>
       <style jsx global>

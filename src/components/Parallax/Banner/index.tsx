@@ -108,7 +108,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
        var touchSlideEnd = event.changedTouches[0].clientX;
        console.log(touchSlideStart, "touchSlideStart")
        console.log(touchSlideEnd, "touchSlideEnd")
-       if(Math.abs(touchSlideStart - touchSlideEnd) > 100){
+       if(Math.abs(touchSlideStart - touchSlideEnd) > 125){
           setShowPortal(true);
        }
     };
