@@ -60,7 +60,7 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
           top: 0;
         }
         .indicator {
-          color: #999;
+          color: #333;
           display: flex;
           justify-content: flex-end;
           padding-top: 3px;
