@@ -9,14 +9,33 @@ interface IPageReaderIndicator {
 
 const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) => {
   const scrollMonitorRef = React.useRef<HTMLDivElement>(null);
+  const [loadPercentage, setLoadPercentage] = React.useState(0);
 
   const _updateScrollPercentage = (e:any) => {
     const _pos = e.target.scrollTop;
     const _posHeight = e.target.scrollHeight - e.target.offsetHeight;
     const _calc = (_pos/_posHeight) * 100;
     if(scrollMonitorRef.current !== null) {
-      scrollMonitorRef.current.style.width = `${Math.floor(_calc)}%`;
+      const percentage = Math.floor(_calc);
+      setLoadPercentage(percentage);
+      scrollMonitorRef.current.style.width = `${percentage}%`;
     }
+  }
+
+  const _loadInText = () => {
+    if(loadPercentage < 40) {
+      return "more";
+    }
+    if(loadPercentage < 70) {
+      return "half way";
+    }
+    if(loadPercentage < 100) {
+      return "almost";
+    }
+    if(loadPercentage >= 100) {
+      return "completed";
+    }
+    return "";
   }
 
   React.useEffect(() => {
@@ -27,10 +46,11 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
 
   return (
     <div className="scroll-percentage" ref={scrollMonitorRef}>
+      <div className="indicator"><div>{_loadInText()}</div></div>
       <style>{`
         .scroll-percentage {
           will-change: width;
-          transition: width 200ms linear;
+          transition: width 100ms linear;
           position: fixed;
           height: 3px;
           width: 0%;
@@ -38,6 +58,18 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
           background-color: ${PRIMARY_ORANGE};
           z-index: 999;
           top: 0;
+        }
+        .indicator {
+          color: #999;
+          display: flex;
+          justify-content: flex-end;
+          padding-top: 3px;
+          font-size: 0.75rem;
+        }
+        .indicator > div {
+          background: ${PRIMARY_ORANGE};
+          padding: 0.25rem;
+          border-radius: 0 0 0.25rem 0.25rem;
         }
         `}</style>
     </div>
