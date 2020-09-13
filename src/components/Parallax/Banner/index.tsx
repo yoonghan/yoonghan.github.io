@@ -3,6 +3,7 @@
 import * as React from "react";
 import {useRef, useEffect}  from "react";
 import { HEADER_TITLE } from "../../../shared/style";
+import Portal from "./Portal";
 
 interface IBanner {
   scrollContainer: React.RefObject<HTMLDivElement>;
@@ -23,6 +24,7 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   const allowedBackgroundScaledDistance = 5;
   const firstPartCompletionDistance = 360;
   const action = `${(window as any).safari || navigator.userAgent.match(/(iPod|iPhone|iPad)/)?"rotate":"rotateY"}`
+  const [showPortal, setShowPortal] = React.useState(false);
 
   const parallaxScrollForeground = (e:any) => {
     const _pos = e.target.scrollTop;
@@ -96,15 +98,40 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
   //   }).join('');
   // }
 
+  const _generateHorizontalTouchSensor = () => {
+    var touchStartEvent, touchEndEvent;
+    let touchSlide;
+    touchStartEvent = (event:any) => {
+      touchSlide = event.touches[0].clientY;
+    };
+    touchEndEvent = (event:any) => {
+       var touchSlideEnd = event.changedTouches[0].clientY;
+       if(Math.abs(touchSlide - touchSlideEnd) > 0){
+          setShowPortal(true);
+       }
+    };
+    return [touchStartEvent, touchEndEvent];
+  }
+
   useEffect(() => {
+    const [touchStartEvent, touchEndEvent] = _generateHorizontalTouchSensor();
+
     if(scrollContainer.current !== null) {
       scrollContainer.current.addEventListener('scroll', parallaxScrollForeground);
+    }
+    if(parallaxDisplayContainerRef.current !== null) {
+      parallaxDisplayContainerRef.current.addEventListener('touchstart', touchStartEvent);
+      parallaxDisplayContainerRef.current.addEventListener('touchend', touchEndEvent);
     }
 
     refreshContainer();
     window.addEventListener('resize', refreshContainer);
     return () => {
       window.removeEventListener('resize', refreshContainer);
+      if(parallaxDisplayContainerRef.current !== null) {
+        parallaxDisplayContainerRef.current.removeEventListener('touchstart', touchStartEvent);
+        parallaxDisplayContainerRef.current.removeEventListener('touchend', touchEndEvent);
+      }
     }
 
     return () => {
@@ -116,6 +143,10 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
 
   return (
     <div className="banner-container" ref={parallaxDisplayContainerRef}>
+      {showPortal &&
+        <Portal
+          closeCallback={() => {setShowPortal(false)}}
+          />}
       <div className="parallax-container">
         <div className="background" ref={backgroundRef}></div>
         <div className="centerpiece inverse" ref={centerpieceDescRef}>

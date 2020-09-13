@@ -4,7 +4,7 @@ import * as React from "react";
 import HeaderOne from "../HeaderOne";
 import Footer from "../Footer";
 
-const NoJavascript: React.SFC<any> = () => {
+const NoJavascript = () => {
 
   return (
     <>
