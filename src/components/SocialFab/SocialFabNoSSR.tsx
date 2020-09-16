@@ -47,7 +47,9 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
         </li>
       </ul>
       {
-        isEmailShown && <Modal cancelCallback={closeCallback}><EmailSender writeTo={"Walcron Website"}/></Modal>
+        isEmailShown && (<Modal cancelCallback={closeCallback}>
+          <EmailSender writeTo={"Walcron Website"} writeFrom={""} />
+          </Modal>)
       }
       <style jsx>
         {`

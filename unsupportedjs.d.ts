@@ -20,3 +20,11 @@ declare module "react-alert-template-basic" {
 
   export default AlertTemplate;
 }
+
+declare module "next-offline/runtime" {
+  class register {
+  }
+
+  class unregister {
+  }
+}
