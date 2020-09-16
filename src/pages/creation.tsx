@@ -52,10 +52,11 @@ const Creation: StatelessPage<any> = () => {
 
   React.useEffect(()=>{
     //Instruct user server to do a query, a warm up for dashboard server
-    fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api', {
-      method:"POST",
-      body:'{ "query": "{ stores { hostName } }" }'
-    });
+    //no longer working.
+    // fetch('https://dashboardgraphql-rsqivokhvn.now.sh/api', {
+    //   method:"POST",
+    //   body:'{ "query": "{ stores { hostName } }" }'
+    // });
   },[]);
 
   const createCreationList = () => {

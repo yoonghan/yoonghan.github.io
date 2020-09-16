@@ -17,7 +17,7 @@ exports[`CommandBar renders lazy normally 2`] = `
           <div className=\\"jsx-1918132966 desktop shift-to-right\\">
             <NoSSRCommandBar router={{...}}>
               <div className=\\"jsx-2638007119 container\\">
-                <CommandBarInput onBlurCallback={[Function (anonymous)]} onFocusCallback={[Function (anonymous)]} onSubmitCallback={[Function (anonymous)]}>
+                <CommandBarInput onSuggestedInputCallback={[Function (anonymous)]} onBlurCallback={[Function (anonymous)]} onFocusCallback={[Function (anonymous)]} onSubmitCallback={[Function (anonymous)]} suggestedInput=\\"\\">
                   <form onSubmit={[Function (anonymous)]} className=\\"jsx-2334938183 command-container\\">
                     <div className=\\"jsx-2334938183 command-text-container\\">
                       <div className=\\"jsx-2334938183 command-text-prompt\\">

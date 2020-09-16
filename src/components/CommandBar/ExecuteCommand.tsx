@@ -38,7 +38,7 @@ function isSpecialCommand(inputCommand:string) {
   return (inputCommand.indexOf('=') === 0 && inputCommand.length > 3);
 }
 
-export function exec(element:HTMLDivElement, cancellationCallback:()=>void, router:NextRouter) {
+export function exec(element:HTMLDivElement, cancellationCallback:()=>void, router:NextRouter, specialInputCallback:(input:string)=>void) {
 
   const executeBasedOnType = (inputCommand:string, inputSelected: IAvailableInput) => {
     switch(inputSelected.action) {
@@ -52,7 +52,7 @@ export function exec(element:HTMLDivElement, cancellationCallback:()=>void, rout
   }
 
   const executeCommand = (inputCommand:string) => {
-    return AvailableInput[inputCommand].exec(element, cancellationCallback);
+    return AvailableInput[inputCommand].exec(element, cancellationCallback, specialInputCallback);
   }
 
   const executeLink = (inputCommand:string) => {

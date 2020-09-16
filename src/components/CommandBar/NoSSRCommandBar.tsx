@@ -16,6 +16,7 @@ export interface NoSSRCommandBarProps extends WithRouterProps {
 
 export interface NoSSRCommandBarStates {
   renderExecutedCommand: JSX.Element;
+  suggestedInput: string;
 }
 
 class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCommandBarStates> {
@@ -26,6 +27,7 @@ class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCom
     super(props);
     this.elem = document.createElement('div');
     this.state = {
+      suggestedInput: "",
       renderExecutedCommand: <React.Fragment/>
     }
   }
@@ -46,6 +48,14 @@ class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCom
     );
   }
 
+  _specialInputCallback = (self: NoSSRCommandBar) => (suggestedInput: string) => {
+    self.setState(
+      produce((draft: Draft<NoSSRCommandBarStates>) => {
+        draft.suggestedInput = suggestedInput;
+      })
+    );
+  }
+
   _handleSubmit = (event :React.FormEvent<HTMLFormElement>, typedInput:string) => {
     event.preventDefault();
 
@@ -55,7 +65,7 @@ class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCom
     this.setState(
       produce((draft: Draft<NoSSRCommandBarStates>) => {
         draft.renderExecutedCommand = exec(
-          this.elem, this._cancelExecutedCommand(this), this.props.router)(typedInput);
+          this.elem, this._cancelExecutedCommand(this), this.props.router, this._specialInputCallback(this))(typedInput);
       })
     );
   }
@@ -66,13 +76,23 @@ class NoSSRCommandBar extends React.PureComponent<NoSSRCommandBarProps, NoSSRCom
   _onFocusCommandPrompt = () => {
   }
 
+  _inputCallback = (suggestedInput:string) => {
+    this.setState(
+      produce((draft: Draft<NoSSRCommandBarStates>) => {
+        draft.suggestedInput = suggestedInput;
+      })
+    );
+  }
+
   render() {
     return (
       <div className="container">
         <CommandBarInput
+          onSuggestedInputCallback={this._inputCallback}
           onBlurCallback={this._onBlurCommandPrompt}
           onFocusCallback={this._onFocusCommandPrompt}
           onSubmitCallback={this._handleSubmit}
+          suggestedInput={this.state.suggestedInput}
         />
         {this.state.renderExecutedCommand}
         <style jsx>{`

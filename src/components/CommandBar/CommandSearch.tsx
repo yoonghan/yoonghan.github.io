@@ -150,9 +150,9 @@ export const AvailableInput:ICommand = {
     description: "Lost, confused, need help.",
     synonym: ["man", "info"],
     action: EnumAction.COMMAND,
-    exec: (element:HTMLDivElement, cancellationCallback:()=>void) => {
+    exec: (element:HTMLDivElement, cancellationCallback:()=>void, specialInputCallback:(input:string)=>void) => {
       return ReactDOM.createPortal(
-        <HelpDialog cancelCallback={cancellationCallback}/>,
+        <HelpDialog cancelCallback={cancellationCallback} specialInputCallback={specialInputCallback}/>,
         element
       );
     }
