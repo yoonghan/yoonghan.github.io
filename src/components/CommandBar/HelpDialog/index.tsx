@@ -16,6 +16,7 @@ interface HelpDialogProps {
 const HelpDialog: React.SFC<HelpDialogProps> = ({cancelCallback, specialInputCallback}) => {
   const _updateSelectedInput = (input:string) => {
     specialInputCallback(input);
+    cancelCallback();
   }
 
   return (
