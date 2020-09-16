@@ -5,51 +5,57 @@ import {DIALOG, SHADOW, TABLE_HEADER, TABLE_BODY} from "../../../shared/style";
 import {AvailableInput} from "../CommandSearch";
 
 interface HelpContentProps {
+  updateSelectedInput: (input:string) => void;
 }
 
-const _loadHeader = () => (
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-    <style jsx>{`
-      thead th {
-        color: ${TABLE_HEADER.FOREGROUND};
-        background-color: ${TABLE_HEADER.BACKGROUND};
-      }
-    `}</style>
-  </thead>
-);
+const HelpContent: React.SFC<HelpContentProps> = ({updateSelectedInput}) => {
 
-const _loadList = () => (
-  <tbody>
-    {
-      Object.keys(AvailableInput).map((input, idx) => (
-        <tr key={`helpdialog_${idx}`}>
-          <td>{input}</td>
-          <td>{AvailableInput[input].description}</td>
-        </tr>
-      ))
-    }
-    <style jsx>{`
-      tbody td, tbody th {
-        border-top: ${TABLE_BODY.BORDER};
-      }
-      td:first-child {
-        padding-right: 10px;
-      }
-      tr:nth-child(even) {
-        background-color: ${TABLE_BODY.EVEN_BACKGROUND};
-      }
-      tr:hover {
-        background-color: ${TABLE_BODY.HOVER_BACKGROUND};
-      }
-    `}</style>
-  </tbody>
-)
+  const _loadHeader = () => (
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>Description</th>
+      </tr>
+      <style jsx>{`
+        thead th {
+          color: ${TABLE_HEADER.FOREGROUND};
+          background-color: ${TABLE_HEADER.BACKGROUND};
+        }
+      `}</style>
+    </thead>
+  );
 
-const HelpContent: React.SFC<HelpContentProps> = ({}) => {
+  const _updateDialog = (input:string) => () => {
+    updateSelectedInput(input);
+  }
+
+  const _loadList = () => (
+    <tbody>
+      {
+        Object.keys(AvailableInput).map((input, idx) => (
+          <tr key={`helpdialog_${idx}`} onClick={_updateDialog(input)}>
+            <td>{input}</td>
+            <td>{AvailableInput[input].description}</td>
+          </tr>
+        ))
+      }
+      <style jsx>{`
+        tbody td, tbody th {
+          border-top: ${TABLE_BODY.BORDER};
+        }
+        td:first-child {
+          padding-right: 10px;
+        }
+        tr:nth-child(even) {
+          background-color: ${TABLE_BODY.EVEN_BACKGROUND};
+        }
+        tr:hover {
+          background-color: ${TABLE_BODY.HOVER_BACKGROUND};
+        }
+      `}</style>
+    </tbody>
+  )
+
   return (
     <div className={"container"}>
       <h4>Help</h4>

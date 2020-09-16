@@ -21,7 +21,7 @@ const NoJavascriptInverse = ({noScriptElem, children}) => {
 
   /**Required -  else nextjs will hang if hot-reload keeps running. Crash with inner javascript**/
   const _isDevEnvironment = () => {
-    return process.env === 'DEVELOPMENT';
+    return process.env === 'development';
   }
 
   return (
