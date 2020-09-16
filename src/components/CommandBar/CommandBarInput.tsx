@@ -5,13 +5,14 @@ import Autosuggest from 'react-autosuggest';
 import {AvailableInput} from "./CommandSearch";
 
 interface CommandBarInputProps {
-  onBlurCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
-  onFocusCallback: (event :React.FormEvent<HTMLInputElement>)=>void;
-  onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string)=>void;
+  suggestedInput: string;
+  onSuggestedInputCallback: (str:string) => void;
+  onBlurCallback: (event :React.FormEvent<HTMLInputElement>) => void;
+  onFocusCallback: (event :React.FormEvent<HTMLInputElement>) => void;
+  onSubmitCallback: (event :React.FormEvent<HTMLFormElement>, typedInput:string) => void;
 }
 
 interface CommandBarInputStates {
-  value: string;
   suggestions: Array<string>;
   showPrompt: boolean;
 }
@@ -22,7 +23,6 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   constructor(props:CommandBarInputProps) {
     super(props);
     this.state = {
-      value: '',
       suggestions: [],
       showPrompt: false
     };
@@ -53,11 +53,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
 
   _onChange = ({}, _newValue:any) => {
     const { newValue } = _newValue;
-    this.setState(
-      produce((draft: Draft<CommandBarInputStates>) => {
-        draft.value = newValue;
-      })
-    );
+    this.props.onSuggestedInputCallback(newValue);
   };
 
   _onSuggestionsFetchRequested = (_value:any) => {
@@ -78,7 +74,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   };
 
   _onSubmit = (event :React.FormEvent<HTMLFormElement>) => {
-    this.props.onSubmitCallback(event, this.state.value);
+    this.props.onSubmitCallback(event, this.props.suggestedInput);
   }
 
   _onFocus = (event :React.FormEvent<HTMLInputElement>) => {
@@ -100,18 +96,19 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
   }
 
   _renderPrompt = () => {
-    const { value, showPrompt } = this.state;
-    if(!showPrompt || value.length > 22) {
+    const { showPrompt } = this.state;
+    const { suggestedInput } = this.props;
+    if(!showPrompt || suggestedInput.length > 22) {
       return <span/>;
     }
     return <span>&#9608;</span>;
   }
 
-  render() {
-    const { value, suggestions } = this.state;
 
+  render() {
+    const { suggestions } = this.state;
     const inputProps = {
-      value,
+      value: this.props.suggestedInput,
       onChange: this._onChange,
       onClick: this._onClickSelect,
       onFocus: this._onFocus,
@@ -127,7 +124,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
           <div className="command-text-prompt">
             walcron@tm$
           </div>
-          <div className={"prompt"}><span className={"promptIn"}>{value}</span>{this._renderPrompt()}</div>
+          <div className={"prompt"}><span className={"promptIn"}>{this.props.suggestedInput}</span>{this._renderPrompt()}</div>
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsFetchRequested={this._onSuggestionsFetchRequested}

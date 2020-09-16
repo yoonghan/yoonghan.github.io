@@ -59,7 +59,9 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
 
   const moveLens = (_overlayRef:HTMLDivElement, _graphRef:HTMLImageElement) => (e:Event) => {
     var pos, x, y;
+
     const box = _graphRef.getBoundingClientRect();
+    const shouldCenterX = box.width < window.innerWidth;
     pos = getCursorPos(e, box);
     x = pos.x;
     y = pos.y;
@@ -71,7 +73,8 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
     if(y > maxYPos ) {y=maxYPos}
     if(x < 0) {x=0}
     if(y < 0) {y=0}
-    _overlayRef.style.backgroundPosition = "-" + (x) + "px -" + (y) + "px";
+    const xPos = `-${x}px`;
+    _overlayRef.style.backgroundPosition = `${shouldCenterX?'center':xPos} -${y}px`;
 
     function getCursorPos(e:any, box:DOMRect) {
       var x = 0, y = 0;
@@ -154,7 +157,7 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
         .portal {
           width: 100vw;
           height: 100vh;
-          background: #000;
+          background: #999;
           position: relative;
           cursor: move;
         }

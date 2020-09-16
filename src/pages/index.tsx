@@ -83,7 +83,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
           {_getSchema()}
         </script>
       </Helmet>
-      <NoJavascriptSupport>
+      <NoJavascriptSupport noScriptElem={false}> 
         <div ref={scrollContainerRef} className="container">
           <CommandBar disableMobile={true}/>
           <section>
@@ -142,7 +142,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                 </div>
               </div>
               <ParallaxGraph
-                graphImg="/img/welcome/roadmap.jpg"/>
+                graphImg="/img/welcome/walcron-roadmap.jpg"/>
               <div className="info-container relative">
                 <ParallaxPlainSection title="Are we freelance for hire ?">
                   <div className="section1">
