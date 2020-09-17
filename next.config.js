@@ -32,15 +32,6 @@ withBundleAnalyzer(
           },
         ],
       },
-      webpack: (config, { isServer }) => {
-        if (!isServer) {
-          config.node = {
-            fs: 'empty',
-            module: 'empty'
-          }
-        }
-        return config;
-      },
       env: {
         PUSHER_APP_KEY: process.env.PUSHER_APP_KEY,
         PUSHER_NONAUTH_APP_KEY: process.env.PUSHER_NONAUTH_APP_KEY,
