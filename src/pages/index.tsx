@@ -83,7 +83,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
           {_getSchema()}
         </script>
       </Helmet>
-      <NoJavascriptSupport noScriptElem={false}> 
+      <NoJavascriptSupport noScriptElem={false}>
         <div ref={scrollContainerRef} className="container">
           <CommandBar disableMobile={true}/>
           <section>
@@ -292,7 +292,6 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
             }
             .relative {
               position: relative;
-              overflow: hidden;
             }
             `}</style>
             <Footer isRelative={true}/>
