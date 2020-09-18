@@ -47,7 +47,10 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
         <meta name="description" content={description} key="description"/>
         <title>{title}</title>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preload" as="style" href="/css/common.css" key="int_common"/>
+        <link rel="apple-touch-icon" href="apple-icon.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png" />
+        <link rel="preload" as="style" href="/css/common.css" key="int_common" />
         <link rel="preload" as="style" href="/css/font.css" key="int_font"/>
         {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
