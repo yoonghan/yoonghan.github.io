@@ -68,6 +68,7 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
           background-color: rgba(2,2,2);
           transform: rotate(3deg);
           position: absolute;
+          left: 4%;
         }
         .title {
           text-align: center;
