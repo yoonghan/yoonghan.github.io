@@ -1,4 +1,5 @@
 //const PRIMARY_YELLOW = "#FFDE03";
+export const LINK_COLOR = "#00b4ef";
 export const PRIMARY_BLUE = "#00b4ef";
 export const SECONDARY_BLUE = "#0080fe";
 export const LAY_BLUE = "#c4f0f6";

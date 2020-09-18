@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from 'next/link';
 import { useSpring, animated } from 'react-spring';
+import { LINK_COLOR} from "../../shared/style";
 
 export interface ButtonProps {
   href?: string;
@@ -47,7 +48,7 @@ const createButton = (children?:any, _onClickCallback?:(e:React.MouseEvent<HTMLA
               transition-property: color, background;
               transition-duration: .15s;
               transition-timing-function: ease-in-out;
-              color: #FFF;
+              color: ${LINK_COLOR};
               font-size: ${small? '0.7rem': '1rem'};
               text-align: center;
               border-radius: 0.5rem;
