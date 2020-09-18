@@ -61,14 +61,15 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
         }
         .stopper::before {
           content: '';
-          width: 90%;
-          height: 90vh;
+          width: 95%;
+          height: 95vh;
           border: 3px double rgba(100,100,100, 0.3);
           z-index: -1;
           background-color: rgba(2,2,2);
-          transform: rotate(3deg);
           position: absolute;
-          left: 4%;
+          left: 2.5%;
+          top: 2.5vh;
+
         }
         .title {
           text-align: center;
