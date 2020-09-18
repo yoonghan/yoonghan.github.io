@@ -61,7 +61,7 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
         }
         .stopper::before {
           content: '';
-          width: 100%;
+          width: 90%;
           height: 90vh;
           border: 3px double rgba(100,100,100, 0.3);
           z-index: -1;
