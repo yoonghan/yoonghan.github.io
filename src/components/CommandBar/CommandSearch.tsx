@@ -118,7 +118,7 @@ export const AvailableInput:ICommand = {
     }
   },
   "motivation": {
-    synonym: ["motivation", "books", "timeline"],
+    synonym: ["books", "timeline"],
     description: "Self improvement.",
     action: EnumAction.LINK,
     url: "/motivation",
