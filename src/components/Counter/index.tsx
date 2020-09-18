@@ -16,7 +16,7 @@ const Counter: React.FC<ICounter> =
   const loadingBarRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const timer = setTimeout(_count,20);
+    const timer = setTimeout(_count, 3);
     return () => {
       clearTimeout(timer);
     }
@@ -24,7 +24,7 @@ const Counter: React.FC<ICounter> =
 
   React.useEffect(() => {
     if(counter === targetToReach) {
-      setTimeout(targetReachCallback , 500);
+      setTimeout(targetReachCallback , 50);
     }
     if(counter > targetToReach) {
       return;
