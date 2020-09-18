@@ -5,7 +5,6 @@ interface OutputProps {
   output: (string|number);
 }
 
-
 const Output: React.SFC<OutputProps> = ({output}) => {
   return (
     <div className="output">

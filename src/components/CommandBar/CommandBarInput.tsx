@@ -134,7 +134,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             inputProps={inputProps}
           />
         </div>
-        <button id="command-enter" className="style-scope ytd-searchbox" aria-label="Enter">
+        <button className="command-enter style-scope ytd-searchbox" aria-label="Enter">
           <i className="fas fa-arrow-right"></i>
         </button>
 
@@ -179,7 +179,7 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             color: ${LINK.FOREGROUND};
             font-family: Inconsolata;
           }
-          #command-enter {
+          .command-enter {
             position: absolute;
             height: 2.2rem;
             right: 3px;
@@ -193,11 +193,11 @@ export class CommandBarInput extends React.Component<CommandBarInputProps, Comma
             user-select: none;
             cursor: pointer;
           }
-          #command-enter:hover {
+          .command-enter:hover {
             color: ${LINK.BACKGROUND};
             background: ${LINK.FOREGROUND};
           }
-          #command-enter:active {
+          .command-enter:active {
             margin: 1px 0 0 1px;
           }
           .command-container :global(.react-autosuggest__input) {

@@ -46,6 +46,7 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
         <meta name="fb:admins" content="walcoorperation@gmail.com" key="fb_image_m"/>
         <meta name="description" content={description} key="description"/>
         <title>{title}</title>
+        <link rel="manifest" href="/manifest.json" />
         <link rel="preload" as="style" href="/css/common.css" key="int_common"/>
         <link rel="preload" as="style" href="/css/font.css" key="int_font"/>
         {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}

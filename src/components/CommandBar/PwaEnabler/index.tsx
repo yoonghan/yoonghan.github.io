@@ -41,6 +41,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
 
   async function checkRegistration() {
     const isRegistered = await getRegistration();
+
     if(!isRegistered) {
       const domain = window.location.origin;
       //Clear residues of cache in browser, hence next refresh are up-to-date.
@@ -56,17 +57,28 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
     setLabelText(isEnabled? ENABLED: DISABLED);
   }
 
+  const addToShortcutEvent = (e:any) => {
+    e.preventDefault();
+    e.prompt();
+  };
+
   React.useEffect(() => {
     checkRegistration();
-  }, [])
+
+    window.addEventListener('beforeinstallprompt', addToShortcutEvent);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', addToShortcutEvent);
+    }
+  }, []);
 
   React.useEffect(() => {
     if(isProcessing){
       if(isEnabled) {
-        register();
+        (register as any)();
       }
       else {
-        unregister();
+        (unregister as any)();
       }
       setTimeout(checkRegistration, 3000);
     }

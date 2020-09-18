@@ -18,13 +18,13 @@ exports[`CommandBar renders lazy normally 2`] = `
             <NoSSRCommandBar router={{...}}>
               <div className=\\"jsx-2638007119 container\\">
                 <CommandBarInput onSuggestedInputCallback={[Function (anonymous)]} onBlurCallback={[Function (anonymous)]} onFocusCallback={[Function (anonymous)]} onSubmitCallback={[Function (anonymous)]} suggestedInput=\\"\\">
-                  <form onSubmit={[Function (anonymous)]} className=\\"jsx-2334938183 command-container\\">
-                    <div className=\\"jsx-2334938183 command-text-container\\">
-                      <div className=\\"jsx-2334938183 command-text-prompt\\">
+                  <form onSubmit={[Function (anonymous)]} className=\\"jsx-3800717897 command-container\\">
+                    <div className=\\"jsx-3800717897 command-text-container\\">
+                      <div className=\\"jsx-3800717897 command-text-prompt\\">
                         walcron@tm$
                       </div>
-                      <div className=\\"jsx-2334938183 prompt\\">
-                        <span className=\\"jsx-2334938183 promptIn\\" />
+                      <div className=\\"jsx-3800717897 prompt\\">
+                        <span className=\\"jsx-3800717897 promptIn\\" />
                         <span />
                       </div>
                       <Autosuggest suggestions={{...}} onSuggestionsFetchRequested={[Function (anonymous)]} onSuggestionsClearRequested={[Function (anonymous)]} getSuggestionValue={[Function (anonymous)]} renderSuggestion={[Function (anonymous)]} inputProps={{...}} renderSuggestionsContainer={[Function: defaultRenderSuggestionsContainer]} shouldRenderSuggestions={[Function: defaultShouldRenderSuggestions]} alwaysRenderSuggestions={false} multiSection={false} focusInputOnSuggestionClick={true} highlightFirstSuggestion={false} theme={{...}} id=\\"1\\">
@@ -36,10 +36,10 @@ exports[`CommandBar renders lazy normally 2`] = `
                         </Autowhatever>
                       </Autosuggest>
                     </div>
-                    <button id=\\"command-enter\\" aria-label=\\"Enter\\" className=\\"jsx-2334938183 style-scope ytd-searchbox\\">
-                      <i className=\\"jsx-2334938183 fas fa-arrow-right\\" />
+                    <button aria-label=\\"Enter\\" className=\\"jsx-3800717897 command-enter style-scope ytd-searchbox\\">
+                      <i className=\\"jsx-3800717897 fas fa-arrow-right\\" />
                     </button>
-                    <JSXStyle id=\\"1731884614\\" dynamic={{...}} />
+                    <JSXStyle id=\\"3197114764\\" dynamic={{...}} />
                   </form>
                 </CommandBarInput>
                 <JSXStyle id=\\"2638007119\\" />
