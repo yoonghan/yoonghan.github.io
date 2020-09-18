@@ -17,6 +17,7 @@ const InvalidInput: React.SFC<InvalidInputProps> = ({invalidInput}) => {
       {trimInput(invalidInput)} - not found. type HELP.
       <style jsx>{`
         .error {
+          white-space: nowrap;
           font-family: Inconsolata;
           font-size: ${ERROR.FONT_SIZE};
           color: ${ERROR.FOREGROUND};
