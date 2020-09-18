@@ -3,29 +3,29 @@
 exports[`ButtonsBar renders closed normally 1`] = `"<Fragment />"`;
 
 exports[`ButtonsBar renders open normally 1`] = `
-"<div className=\\"jsx-1640828238 container\\">
-  <div className=\\"jsx-1640828238 message\\">
-    <h4 className=\\"jsx-1640828238\\">
+"<div className=\\"jsx-3717058259 container\\">
+  <div className=\\"jsx-3717058259 message\\">
+    <h4 className=\\"jsx-3717058259\\">
       This site uses cookies.
     </h4>
-    <p className=\\"jsx-1640828238\\">
+    <p className=\\"jsx-3717058259\\">
       This site uses cookie to monitor visits and usage traffics. We use google analytics, please 
-      <a href=\\"https://policies.google.com/\\" target=\\"_blank\\" className=\\"jsx-1640828238\\">
+      <a href=\\"https://policies.google.com/\\" target=\\"_blank\\" className=\\"jsx-3717058259\\">
          refer here
       </a>
       .
     </p>
-    <p className=\\"jsx-1640828238\\">
+    <p className=\\"jsx-3717058259\\">
       By proceeding on this website, you are accepting and agreed to the cookie usage.
     </p>
   </div>
-  <div className=\\"jsx-1640828238 button-container\\">
-    <button onClick={[Function: reactToCookieButton]} className=\\"jsx-1640828238\\">
+  <div className=\\"jsx-3717058259 button-container\\">
+    <button onClick={[Function: reactToCookieButton]} className=\\"jsx-3717058259\\">
       Close
     </button>
   </div>
-  <JSXStyle id=\\"2377300998\\" dynamic={{...}}>
-    a.__jsx-style-dynamic-selector{-webkit-text-decoration:underline;text-decoration:underline;}.container.__jsx-style-dynamic-selector{width:100%;bottom:0;position:fixed;background-color:rgba(50,50,100,0.9);color:#FFF;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:20px;}.message.__jsx-style-dynamic-selector{width:75%;font-size:0.9rem;}.button-container.__jsx-style-dynamic-selector{width:25%;text-align:center;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;}.button-container.__jsx-style-dynamic-selector&gt;button.__jsx-style-dynamic-selector{border-radius:5px;cursor:pointer;padding:1rem;background-color:#FFF;color:rgba(50,50,100,0.9);font-weight:bold;}@media only screen and (max-width:480px){.container.__jsx-style-dynamic-selector{padding:2px 10px;}}
+  <JSXStyle id=\\"585578432\\" dynamic={{...}}>
+    a.__jsx-style-dynamic-selector{-webkit-text-decoration:underline;text-decoration:underline;}.container.__jsx-style-dynamic-selector{width:100%;bottom:0;position:fixed;background-color:rgba(50,50,100,0.9);color:#FFF;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:20px;}.message.__jsx-style-dynamic-selector{width:75%;font-size:0.9rem;}.button-container.__jsx-style-dynamic-selector{width:25%;text-align:center;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;}.button-container.__jsx-style-dynamic-selector&gt;button.__jsx-style-dynamic-selector{border-radius:5px;cursor:pointer;padding:1rem;background-color:#FFF;color:rgba(50,50,100,0.9);font-weight:bold;}@media only screen and (max-width:480px){.container.__jsx-style-dynamic-selector{padding:2px 10px;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.button-container.__jsx-style-dynamic-selector{-webkit-align-self:flex-end;-ms-flex-item-align:end;align-self:flex-end;}.button-container.__jsx-style-dynamic-selector&gt;button.__jsx-style-dynamic-selector{-webkit-align-self:flex-end;-ms-flex-item-align:end;align-self:flex-end;background:none;color:unset;border:none;}}
   </JSXStyle>
 </div>"
 `;
