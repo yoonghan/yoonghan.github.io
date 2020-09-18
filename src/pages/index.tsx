@@ -18,7 +18,7 @@ import LetterBox from "../components/LetterBox";
 import CommandBar from "../components/CommandBar";
 import PageReaderIndicator from "../components/PageReaderIndicator";
 import Video from "../components/Video";
-import {PRIMARY_BLUE} from "../shared/style";
+import {LINK_COLOR} from "../shared/style";
 import NoJavascriptSupport from "../components/NoJavascriptSupport";
 
 const _getSchema = () => {
@@ -270,7 +270,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
               border: 0;
               text-decoration: underline;
               background: none;
-              color: ${PRIMARY_BLUE};
+              color: ${LINK_COLOR};
               cursor: pointer;
             }
             .section-end-container {

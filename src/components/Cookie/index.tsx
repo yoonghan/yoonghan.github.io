@@ -7,12 +7,13 @@
 **/
 
 import * as React from "react";
-import {COOKIEBOX} from "../../shared/style";
+import {COOKIEBOX, LINK_COLOR} from "../../shared/style";
 
 interface CookieProps {
   isClosed:boolean;
 }
 
+const cookiePrivacy = "https://policies.google.com/technologies/cookies";
 
 export const wasCookieRead = () => {
   const cookie = document.cookie;
@@ -50,7 +51,7 @@ const Cookie:React.FC<CookieProps> = (props) => {
     <div className={"container"}>
       <div className={"message"}>
         <h4>This site uses cookies.</h4>
-        <p>This site uses cookie to monitor visits and usage traffics. We use google analytics, please <a href="https://policies.google.com/" target="_blank"> refer here</a>.</p>
+        <p>This site uses cookie to monitor visits and usage traffics. We use google analytics, please <a href={cookiePrivacy} target="_blank"> refer here</a>.</p>
         <p>By proceeding on this website, you are accepting and agreed to the cookie usage.</p>
       </div>
       <div className={"button-container"}>
@@ -92,6 +93,10 @@ const Cookie:React.FC<CookieProps> = (props) => {
             flex-direction: column;
           }
 
+          .message {
+            width: 100%;
+          }
+
           .button-container {
             align-self: flex-end;
           }
@@ -99,7 +104,7 @@ const Cookie:React.FC<CookieProps> = (props) => {
           .button-container > button {
             align-self: flex-end;
             background: none;
-            color: unset;
+            color: ${LINK_COLOR};
             border: none;
           }
         }

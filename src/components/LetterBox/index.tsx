@@ -5,7 +5,7 @@ import Button from "../Button";
 import produce, {Draft} from "immer";
 import Modal from "../Modal";
 import EmailSender from "./EmailSender";
-import {LINK} from "../../shared/style";
+import {LINK, LINK_COLOR} from "../../shared/style";
 import {EMAIL} from "../../shared/const";
 import NoJavascriptSupport from "../NoJavascriptSupport";
 
@@ -113,7 +113,7 @@ class LetterBox extends React.PureComponent<LetterBoxProps, LetterBoxStates> {
                 margin-top: 20px;
               }
               .letterbox-input {
-                color: ${LINK.FOREGROUND};
+                color: ${LINK_COLOR};
                 background-color: transparent;
                 border: 1px solid ${LINK.FOREGROUND};
                 margin: 0;

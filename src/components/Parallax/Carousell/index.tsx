@@ -1,6 +1,7 @@
 `use strict`
 
 import * as React from "react";
+import {LINK_COLOR} from "../../../shared/style";
 
 interface IArticle {
   icon: string;
@@ -119,6 +120,9 @@ const Carousell:React.FC<ICarousell> = ({articles, uniqueCarousellName}) => {
         <div>{(parseInt(description[0], 10) !== articles.length - 1) && <div className="arrow right" onClick={_next}></div>}</div>
       </div>
       <style jsx>{`
+        a {
+          color: ${LINK_COLOR};
+        }
         .container {
           scroll-snap-type: x mandatory;
           display: flex;
