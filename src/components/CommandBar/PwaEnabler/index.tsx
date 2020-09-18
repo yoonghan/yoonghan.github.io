@@ -34,6 +34,10 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
         })(!(window['safari'] as any) || (window['safari'] as any).pushNotification);
   }
 
+  const _isIOSJs = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+
   function getRegistration() {
     const domain = window.location.hostname;
     if(navigator && navigator.serviceWorker) {
@@ -93,7 +97,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
   },[isEnabled]);
 
   const _drawMessageForSafari = () => {
-    if(_isSafariBrowserViaJs()) {
+    if(_isSafariBrowserViaJs() || _isIOSJs()) {
       setShowSafariMsg(true);
     }
   }
