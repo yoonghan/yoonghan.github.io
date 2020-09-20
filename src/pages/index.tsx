@@ -20,6 +20,7 @@ import PageReaderIndicator from "../components/PageReaderIndicator";
 import Video from "../components/Video";
 import {LINK_COLOR} from "../shared/style";
 import NoJavascriptSupport from "../components/NoJavascriptSupport";
+import Button from "../components/Button";
 
 const _getSchema = () => {
   const schemas = {
@@ -200,6 +201,16 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                     </div>
                   </div>
                 </ParallaxPlainSection>
+                <ParallaxPlainSection title="Android Download">
+                  <div className="section-end">
+                    Like us? Why not download us. It's PWA powered android native and not a webview.
+                    <div className="section-download">
+                      <Button href="https://play.google.com/store/apps/details?id=com.walcron.web" target="download">
+                        <i className="fab fa-google-play"></i> Playstore Download
+                      </Button>
+                    </div>
+                  </div>
+                </ParallaxPlainSection>
                 <ParallaxPlainSection>
                   <div className="section-end">
                     <span>this website is powered with:</span>
@@ -261,6 +272,11 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
             .section-quote {
               font-weight: bold;
               font-style: italic;
+            }
+            .section-download {
+              display: flex;
+              justify-content: center;
+              padding-top: 3rem;
             }
             .section-backtotop {
               display: flex;
