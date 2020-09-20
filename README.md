@@ -11,6 +11,16 @@ Run
 
 If there are missing webpack installation, manually execute 'npm install next'
 
+## Installation for Mobile
+Read https://developers.google.com/web/android/trusted-web-activity/quick-start
+
+Run
+```
+npm i -g @bubblewrap/cli
+bubblewrap init --manifest=https://www.walcron.com/manifest.json
+bubblewrap build
+```
+
 ## Development for Zeit
 1. Changes are based on *now.json*.
 
