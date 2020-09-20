@@ -50,6 +50,10 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
 
       <style jsx>{`
         .stopper {
+          opacity: 1;
+          padding: 20px;
+          border: 2px solid rgba(200,200,200,0.6);
+          margin: 1rem 0.5rem;
         }
         .container {
           display: flex;
@@ -58,18 +62,6 @@ const PlainSection:React.FC<IPlainSection> = ({title, children}) => {
           flex-direction: column;
           min-height: 90vh;
           padding: 3px;
-        }
-        .stopper::before {
-          content: '';
-          width: 95%;
-          height: 95vh;
-          border: 3px double rgba(100,100,100, 0.3);
-          z-index: -1;
-          background-color: rgba(2,2,2);
-          position: absolute;
-          left: 2.5%;
-          top: 2.5vh;
-
         }
         .title {
           text-align: center;
