@@ -1,0 +1,32 @@
+{
+  "packageId": "com.walcron.web",
+  "host": "www.walcron.com",
+  "name": "Walcron Web",
+  "launcherName": "Walcron",
+  "display": "fullscreen",
+  "themeColor": "#FFFFFF",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#000000",
+  "enableNotifications": false,
+  "startUrl": "/?utm_source=launcher",
+  "iconUrl": "https://www.walcron.com/pwa/android-icon-192x192.png",
+  "maskableIconUrl": "https://www.walcron.com/pwa/android-icon-192x192.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "walcron"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://www.walcron.com/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "appVersion": "1"
+}

@@ -49,6 +49,11 @@ const tribute = [
     "2": "One of the best dropdown, though it's deprecating",
     "3": "https://github.com/moroshko/react-autosuggest"
   },
+  {
+    "1": "Bubblewrap",
+    "2": "A nodejs project for lib/cli to generate pwa as android app",
+    "3": "https://github.com/GoogleChromeLabs/bubblewrap"
+  },
 ];
 
 export default tribute;
