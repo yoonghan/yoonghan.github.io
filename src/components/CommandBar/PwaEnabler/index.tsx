@@ -22,7 +22,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
   const [labelText, setLabelText] = React.useState(DISABLED);
   const [isEnabled, setEnabled] = React.useState(false);
   const [isShowSafariMsg, setShowSafariMsg] = React.useState(false);
-  const [isRegistered, getRegistration, isTwaApp] = usePwaHooks(isEnabled);
+  const [isRegistered, runRegistrationCheck, isTwaApp] = usePwaHooks(false);
 
   function onChangeEnabler() {
     setProcessing(true);
@@ -73,8 +73,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
       else {
         (unregister as any)();
       }
-      console.log('processing')
-      setTimeout(getRegistration, 1000);
+      setTimeout(runRegistrationCheck, 1000);
     }
   },[isEnabled, isProcessing]);
 
