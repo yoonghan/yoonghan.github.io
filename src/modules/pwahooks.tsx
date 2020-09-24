@@ -34,10 +34,13 @@ export function usePwaHooks(autoRegisterForApp:boolean) {
   }
 
   useEffect(() => {
-    //Auto register if opened from app.
-    if(autoRegisterForApp && document.referrer.includes(`android-app://${ANDROID_PACKAGE_NAME}`)) {
+    //utm_source is based on start_url defined in manifest.json 
+    if(document.referrer.includes(`android-app://${ANDROID_PACKAGE_NAME}`) ||
+      location.href.includes('?utm_source=launcher')) {
       setIsTwaApp(true);
-      (register as any)();
+      if(autoRegisterForApp){ //Auto register if opened from app.
+        (register as any)();
+      }
     }
 
     runRegistrationCheck();
