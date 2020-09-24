@@ -5,6 +5,7 @@ import Toggle from 'react-toggle';
 import Modal from "../../Modal";
 import { register, unregister } from 'next-offline/runtime';
 import {DIALOG, SHADOW} from "../../../shared/style";
+import {usePwaHooks} from "../../../modules/pwahooks";
 
 interface PwaEnablerProps {
   cancelCallback: () => void;
@@ -21,6 +22,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
   const [labelText, setLabelText] = React.useState(DISABLED);
   const [isEnabled, setEnabled] = React.useState(false);
   const [isShowSafariMsg, setShowSafariMsg] = React.useState(false);
+  const [isRegistered, getRegistration, isTwaApp] = usePwaHooks(isEnabled);
 
   function onChangeEnabler() {
     setProcessing(true);
@@ -38,44 +40,23 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   }
 
-  function getRegistration() {
-    const domain = window.location.hostname;
-    if(navigator && navigator.serviceWorker) {
-      return navigator.serviceWorker.getRegistration(domain);
-    }
-    else {
-      return new Promise((resolve) => {
-        resolve(false);
-      });
-    }
-  }
-
-  async function checkRegistration() {
-    const isRegistered = await getRegistration();
-
-    if(!isRegistered) {
-      const domain = window.location.origin;
-      //Clear residues of cache in browser, hence next refresh are up-to-date.
-      const workboxCache = await caches.open(`workbox-precache-v2-${domain}/`);
-      const workboxCacheKeys = await workboxCache.keys();
-      workboxCacheKeys.map(workboxCacheKey => {
-        workboxCache.delete(workboxCacheKey);
-      });
-    }
-    const isEnabled = (isRegistered && (isRegistered as any).scope) ? true: false;
-    setProcessing(false);
-    setEnabled(isEnabled);
-    setLabelText(isEnabled? ENABLED: DISABLED);
-  }
-
   const addToShortcutEvent = (e:any) => {
     e.preventDefault();
-    e.prompt();
+    //e.prompt();
   };
 
   React.useEffect(() => {
-    checkRegistration();
+    setProcessing(false);
+    if(isRegistered) {
+      setEnabled(true);
+    }
+    else {
+      setEnabled(false);
+    }
+    setLabelText(isRegistered? ENABLED: DISABLED);
+  }, [isRegistered]);
 
+  React.useEffect(() => {
     window.addEventListener('beforeinstallprompt', addToShortcutEvent);
 
     return () => {
@@ -92,9 +73,10 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
       else {
         (unregister as any)();
       }
-      setTimeout(checkRegistration, 3000);
+      console.log('processing')
+      setTimeout(getRegistration, 1000);
     }
-  },[isEnabled]);
+  },[isEnabled, isProcessing]);
 
   const _drawMessageForSafari = () => {
     if(_isSafariBrowserViaJs() || _isIOSJs()) {
@@ -137,6 +119,52 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
     }
   }
 
+  const _drawSelection = () => {
+    if(!isTwaApp) {
+      return (
+        <div className={"toggle-container"}>
+          <label>
+            <Toggle
+              id="toggle-pwa"
+              disabled={isProcessing}
+              checked={isEnabled}
+              onChange={onChangeEnabler} />
+            <span className={"label-text"}>{labelText}</span>
+          </label>
+          <style jsx>
+          {`
+            .toggle-container {
+              text-align: center;
+              margin-top: 2rem;
+            }
+            .label-text {
+              margin-left: 1rem;
+              vertical-align: middle;
+              font-weight: normal;
+              margin-bottom: 0;
+            }
+          `}
+          </style>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className={"toggle-container"}>
+          Trusted Web Application is detected, pwa is ENABLED.
+          <style jsx>
+          {`
+            .toggle-container {
+              text-align: center;
+              margin-top: 2rem;
+            }
+          `}
+          </style>
+        </div>
+      );
+    }
+  }
+
   return (
     <Modal cancelCallback={cancelCallback} ignoreSelfClose={true}>
       <div className={"container"}
@@ -149,16 +177,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
           For <strong>Safari</strong> browsers, you are required to click add to homescreen manually.
         </div>
 
-        <div className={"toggle-container"}>
-          <label>
-            <Toggle
-              id="toggle-pwa"
-              disabled={isProcessing}
-              checked={isEnabled}
-              onChange={onChangeEnabler} />
-            <span className={"label-text"}>{labelText}</span>
-          </label>
-        </div>
+        {_drawSelection()}
         {_showSafariMsg()}
         <style jsx>
         {`
@@ -167,16 +186,6 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
             color: ${DIALOG.BACKGROUND};
             background: ${DIALOG.FOREGROUND};
             box-shadow: 5px 5px 2px ${SHADOW};
-          }
-          .toggle-container {
-            text-align: center;
-            margin-top: 2rem;
-          }
-          .label-text {
-            margin-left: 1rem;
-            vertical-align: middle;
-            font-weight: normal;
-            margin-bottom: 0;
           }
         `}
         </style>
