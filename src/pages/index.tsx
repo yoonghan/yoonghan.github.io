@@ -58,7 +58,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
 
   //Declared to start hooks.
-  usePwaHooks(true);
+  const [{}, {}, isTwaApp] = usePwaHooks(true);
 
   const assetsToLoad = [
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.jpg"},
@@ -206,7 +206,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                     </div>
                   </div>
                 </ParallaxPlainSection>
-                <ParallaxPlainSection title="Android Download">
+                {!isTwaApp && (<ParallaxPlainSection title="Android Download">
                   <div className="section-end">
                     Like us? Why not download us. It's PWA powered android native and not a webview.
                     <div className="section-download">
@@ -215,7 +215,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                       </Button>
                     </div>
                   </div>
-                </ParallaxPlainSection>
+                </ParallaxPlainSection>)}
                 <ParallaxPlainSection>
                   <div className="section-end">
                     <span>this website is powered with:</span>
