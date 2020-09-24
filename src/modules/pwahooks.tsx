@@ -11,9 +11,13 @@ Do.
 3) Return back to the domain and register service worker again before running navigator.serviceWorker.getRegistration(domain)
 **/
 
-export function usePwaHooks(autoRegisterForApp:boolean, isDefaultEnabled:boolean) {
-  const [isRegistered, setIsRegistered] = useState(isDefaultEnabled);
+export function usePwaHooks(autoRegisterForApp:boolean) {
+  const [isRegistered, setIsRegistered] = useState(false);
   const [isTwaApp, setIsTwaApp] = useState(false);
+
+  function runRegistrationCheck() {
+    getRegistration();
+  }
 
   async function getRegistration() {
     const domain = window.location.hostname;
@@ -36,8 +40,8 @@ export function usePwaHooks(autoRegisterForApp:boolean, isDefaultEnabled:boolean
       (register as any)();
     }
 
-    getRegistration();
+    runRegistrationCheck();
   }, []);
 
-  return [isRegistered, getRegistration, isTwaApp];
+  return [isRegistered, runRegistrationCheck, isTwaApp];
 }
