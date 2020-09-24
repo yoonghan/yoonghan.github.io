@@ -21,6 +21,7 @@ import Video from "../components/Video";
 import {LINK_COLOR} from "../shared/style";
 import NoJavascriptSupport from "../components/NoJavascriptSupport";
 import Button from "../components/Button";
+import {usePwaHooks} from "../modules/pwahooks";
 
 const _getSchema = () => {
   const schemas = {
@@ -55,6 +56,10 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [loadPercentage, updateLoadPercentage] = React.useState(0);
+
+  //Declared to start hooks.
+  usePwaHooks(true);
+
   const assetsToLoad = [
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.jpg"},
     {type: EnumAssetLoader.IMAGE, src:"/img/welcome/walcron-authors.jpg"},
