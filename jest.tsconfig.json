@@ -3,8 +3,9 @@
     "module": "esnext",
     "target": "es6",
     "lib": [
-      "es2017",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "sourceMap": true,
     "strict": true,
@@ -33,6 +34,9 @@
       "node_modules/@types"
     ]
   },
+  "include": [
+    "./next-env.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "out",
