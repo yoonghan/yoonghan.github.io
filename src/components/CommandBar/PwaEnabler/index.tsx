@@ -42,7 +42,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
 
   const addToShortcutEvent = (e:any) => {
     e.preventDefault();
-    //e.prompt();
+    e.prompt();
   };
 
   React.useEffect(() => {
