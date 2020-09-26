@@ -124,3 +124,7 @@ All Cloudbase google authentication is store in private/ folder.
 
 ## Performance Testing
 Page performance is still very log (below 50%) using Lighthouse testing. Mainly because the goal was to create a parallax page and lowered the test case (load alone takes a percentage bar). This is to be improved in future.
+
+## TODO
+1. Figure to load webp images. Had removed modernizer compilation.
+2. Optimize font awesome.
