@@ -15,16 +15,16 @@ const MoveIcon: React.SFC<IMoveIcon> = (props) => {
 
   const _controlIconDisplay = () => {
     if(props.scrollContainer.current !== null) {
-      props.scrollContainer.current.addEventListener('mousemove', _controlIconDisplay);
-      props.scrollContainer.current.addEventListener('touchmove', _controlIconDisplay);
+      props.scrollContainer.current.addEventListener('mousemove', _controlIconDisplay, {passive: true});
+      props.scrollContainer.current.addEventListener('touchmove', _controlIconDisplay, {passive: true});
     }
     setShow(false);
   }
 
   React.useEffect(() => {
     if(props.scrollContainer.current !== null) {
-      props.scrollContainer.current.addEventListener('mousemove', _controlIconDisplay);
-      props.scrollContainer.current.addEventListener('touchmove', _controlIconDisplay);
+      props.scrollContainer.current.addEventListener('mousemove', _controlIconDisplay, {passive: true});
+      props.scrollContainer.current.addEventListener('touchmove', _controlIconDisplay, {passive: true});
     }
   }, []);
 

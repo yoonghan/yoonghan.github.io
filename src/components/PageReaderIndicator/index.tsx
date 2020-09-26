@@ -40,7 +40,7 @@ const PageReaderIndicator:React.FC<IPageReaderIndicator> = ({scrollContainer}) =
 
   React.useEffect(() => {
     if(scrollContainer.current !== null) {
-      scrollContainer.current.addEventListener('scroll', _updateScrollPercentage);
+      scrollContainer.current.addEventListener('scroll', _updateScrollPercentage, {passive: true});
     }
   }, [])
 
