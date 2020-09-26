@@ -35,7 +35,7 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
             href={"/motivation"}
             color={'rgba(51,153,67)'}
             >Motivation</Button>
-        <img src={graphImg} className="hidden-preload"/>
+        <img src={graphImg} className="hidden-preload" alt="graph-img"/>
         {showPortal.show &&
           <Portal
             imgSrc={graphImg}

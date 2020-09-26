@@ -9,7 +9,7 @@ const ConstructionSplashScreen: React.SFC<any> = () => {
     <div className={"construction-splash-screen-container"}>
       <div className={"construction-splash-screen-text-container"}>
         <div className={"banner"}>(404) NOT FOUND</div>
-        <img src="/img/construction.svg"/>
+        <img src="/img/construction.svg" alt="construction"/>
         <hr/>
         <div className={"buttonContainer"}>
           <Button href="/">Return as page is not found</Button>

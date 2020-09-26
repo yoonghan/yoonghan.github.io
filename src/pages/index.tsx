@@ -122,6 +122,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                     </div>
                   </ParallaxPlainSection>
                   <ParallaxFigure
+                    imageAlt="yoong-han"
                     imageSrc="/img/profile/han.jpg">
                     <div className="section-profile-title">
                       <div>01</div>
@@ -133,6 +134,7 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                     </div>
                   </ParallaxFigure>
                   <ParallaxFigure
+                    imageAlt="gladys-lee-wan"
                     imageSrc="/img/profile/gladys.jpg"
                     isImagePositionOnRight={true}
                     >

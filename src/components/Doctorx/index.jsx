@@ -25,7 +25,7 @@ const drawResult = (info, survey) => {
         <tbody>
           <tr>
             <td rowSpan={3}>
-              <img src={imgLocation}/>
+              <img src={imgLocation} alt={'location'}/>
             </td>
             <td>
               {address}
@@ -125,7 +125,7 @@ const Doctorx = (props) => {
             <div>
               <span>NOT SCANNABLE Form</span>
               <div style={{textAlign:"center", padding: "40px"}}>
-                <img src="https://i.pinimg.com/474x/d6/b1/b6/d6b1b6a619fdbbc777196a277c0fa049.jpg" style={{width:"200px"}}/>
+                <img src="https://i.pinimg.com/474x/d6/b1/b6/d6b1b6a619fdbbc777196a277c0fa049.jpg" style={{width:"200px"}} alt="location"/>
               </div>
             </div>
           </div>)

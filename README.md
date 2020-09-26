@@ -121,3 +121,6 @@ All Cloudbase google authentication is store in private/ folder.
 3. Robots.txt (https://technicalseo.com/tools/robots-txt/)
 4. Metadata/schematics test (https://search.google.com/structured-data/testing-tool/u/0/)
 5. Mozilla (https://observatory.mozilla.org/) - did not pass with flying colors, Now.sh issues.
+
+## Performance Testing
+Page performance is still very log (below 50%) using Lighthouse testing. Mainly because the goal was to create a parallax page and lowered the test case (load alone takes a percentage bar). This is to be improved in future.

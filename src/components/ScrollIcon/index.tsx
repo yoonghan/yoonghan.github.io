@@ -12,14 +12,14 @@ const ScrollIcon: React.SFC<IScrollIcon> = ({scrollContainer}) => {
 
   const _controlIconDisplay = () => {
     if(scrollContainer.current !== null) {
-      scrollContainer.current.addEventListener('scroll', _controlIconDisplay);
+      scrollContainer.current.addEventListener('scroll', _controlIconDisplay, {passive: true});
     }
     set({opacity: 0});
   }
 
   React.useEffect(() => {
     if(scrollContainer.current !== null) {
-      scrollContainer.current.addEventListener('scroll', _controlIconDisplay);
+      scrollContainer.current.addEventListener('scroll', _controlIconDisplay, {passive: true});
     }
   }, []);
 

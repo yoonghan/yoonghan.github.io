@@ -89,7 +89,7 @@ const PwaEnabler:React.FC<PwaEnablerProps> = ({cancelCallback}) => {
         <div className={'safari-container'}>
           For Safari mobile users, follow these steps.
           <ol>
-            <li>Tap on <img src="/pwa/safari-share.png" className='icon'/> "Share" icon.</li>
+            <li>Tap on <img src="/pwa/safari-share.png" className='icon' alt="safari-share"/> "Share" icon.</li>
             <li>Then select "Add Home Screen".</li>
           </ol>
           <style jsx>{`

@@ -30,8 +30,8 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
 
     if(overlayRef.current !== null && graphRef.current !== null) {
       _moveLens = moveLens(overlayRef.current, graphRef.current);
-      overlayRef.current.addEventListener("mousemove", _moveLens);
-      overlayRef.current.addEventListener("touchmove", _moveLens);
+      overlayRef.current.addEventListener("mousemove", _moveLens, {passive: true});
+      overlayRef.current.addEventListener("touchmove", _moveLens, {passive: true});
     }
 
     if(graphRef.current !== null) {
@@ -110,6 +110,7 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
       ref={portalRef}>
       <img
         id="imgid"
+        alt="portal-img"
         src={imgSrc}
         ref={graphRef}
         onLoad={zoomIntoImage}

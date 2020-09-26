@@ -24,7 +24,7 @@ exports[`Creation renders normally 1`] = `
       <h2 className=\\"jsx-1738278556 title\\">
         title1
       </h2>
-      <img src=\\"/img/creation/img1\\" alt=\\"Screenshot for title1\\" className=\\"jsx-2213729925\\" />
+      <img src=\\"/img/creation/img1\\" alt=\\"screenshot-title1\\" className=\\"jsx-2213729925\\" />
       <JSXStyle id=\\"2213729925\\">
         img.jsx-2213729925{max-width:400px;max-height:300px;}
       </JSXStyle>
@@ -48,7 +48,7 @@ exports[`Creation renders normally 1`] = `
       <h2 className=\\"jsx-1738278556 title\\">
         title2
       </h2>
-      <img src=\\"/img/creation/img2\\" alt=\\"Screenshot for title2\\" className=\\"jsx-2213729925\\" />
+      <img src=\\"/img/creation/img2\\" alt=\\"screenshot-title2\\" className=\\"jsx-2213729925\\" />
       <JSXStyle id=\\"2213729925\\">
         img.jsx-2213729925{max-width:400px;max-height:300px;}
       </JSXStyle>

@@ -17,7 +17,7 @@ const Card:React.FC<ICardProps> = (elem) => {
   return (
     <div onClick={()=>setShowDesc(true)} className="clicker">
       <figure>
-        <img src={elem.imgSrc} />
+        <img src={elem.imgSrc} alt={elem.title}/>
         <figcaption>{elem.title}</figcaption>
       </figure>
       {showDesc &&
