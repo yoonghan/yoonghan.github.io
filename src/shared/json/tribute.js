@@ -49,6 +49,11 @@ const tribute = [
     "2": "One of the best dropdown, though it's deprecating",
     "3": "https://github.com/moroshko/react-autosuggest"
   },
+  {
+    "1": "ImageOptim",
+    "2": "For image optimization",
+    "3": "https://imageoptim.com"
+  }
 ];
 
 export default tribute;
