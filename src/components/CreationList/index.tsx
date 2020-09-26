@@ -74,7 +74,7 @@ class CreationList extends React.PureComponent<CreationListProps, CreationListSt
     if(imgSrc) {
       return (
         <React.Fragment>
-          <img src={`/img/creation/${imgSrc}`} alt={`Screenshot for ${projectTitle}`}/>
+          <img src={`/img/creation/${imgSrc}`} alt={`screenshot-${projectTitle}`}/>
           <style jsx>{`
             img {
               max-width: 400px;

@@ -46,6 +46,7 @@ const AssetLoader: React.FC<IAssetLoader> =
     switch(assetSrcToLoad.type) {
       case EnumAssetLoader.IMAGE:
         return (<img
+          alt={"walcron-load"}
           src={assetSrcToLoad.src}
           className="image-loader"
           onLoad={()=>{setAssetLoadedCount(assetLoadedCount + 1)}}

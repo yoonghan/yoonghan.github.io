@@ -17,7 +17,7 @@ const ScrollToTop = () => {
   const [visible, setVisible] = React.useState(_isOverTheBar());
 
   React.useEffect(() => {
-    window.addEventListener("scroll", _handleScroll);
+    window.addEventListener("scroll", _handleScroll, {passive: true});
     return () => {
       window.removeEventListener("scroll", _handleScroll);
     };

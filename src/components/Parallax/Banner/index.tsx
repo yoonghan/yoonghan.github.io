@@ -106,8 +106,6 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
     };
     touchEndEvent = (event:any) => {
        var touchSlideEnd = event.changedTouches[0].clientX;
-       console.log(touchSlideStart, "touchSlideStart")
-       console.log(touchSlideEnd, "touchSlideEnd")
        if(Math.abs(touchSlideStart - touchSlideEnd) > 125){
           setShowPortal(true);
        }
@@ -122,8 +120,8 @@ const Banner:React.FC<IBanner> = ({scrollContainer}) => {
       scrollContainer.current.addEventListener('scroll', parallaxScrollForeground);
     }
     if(parallaxDisplayContainerRef.current !== null) {
-      parallaxDisplayContainerRef.current.addEventListener('touchstart', touchStartEvent);
-      parallaxDisplayContainerRef.current.addEventListener('touchend', touchEndEvent);
+      parallaxDisplayContainerRef.current.addEventListener('touchstart', touchStartEvent, {passive: true});
+      parallaxDisplayContainerRef.current.addEventListener('touchend', touchEndEvent, {passive: true});
     }
 
     refreshContainer();
