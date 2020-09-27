@@ -128,3 +128,4 @@ Page performance is still very log (below 50%) using Lighthouse testing. Mainly 
 ## TODO
 1. Figure to load webp images. Had removed modernizer compilation.
 2. Optimize font awesome.
+3. Need to checkout framer motion, to transition correctly loading bar to content. Look into animate presence.
