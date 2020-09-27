@@ -18,6 +18,8 @@ Run
 ```
 npm i -g @bubblewrap/cli
 bubblewrap init --manifest=https://www.walcron.com/manifest.json
+#Update the file twa-mainfest.json, make sure signingKey, alias "android" is changed to "walcron".
+#Passkey is google's key
 bubblewrap build
 ```
 
