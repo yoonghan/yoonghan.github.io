@@ -18,8 +18,8 @@
     "path": "./android.keystore",
     "alias": "walcron"
   },
-  "appVersionName": "3",
-  "appVersionCode": 3,
+  "appVersionName": "4",
+  "appVersionCode": 4,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://www.walcron.com/manifest.json",
@@ -27,5 +27,5 @@
   "features": {},
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
-  "appVersion": "1"
+  "appVersion": "4"
 }
