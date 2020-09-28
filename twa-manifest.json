@@ -9,7 +9,7 @@
   "navigationColorDark": "#000000",
   "navigationDividerColor": "#000000",
   "navigationDividerColorDark": "#000000",
-  "backgroundColor": "#000000",
+  "backgroundColor": "#FFFFFF",
   "enableNotifications": false,
   "startUrl": "/?utm_source=launcher",
   "iconUrl": "https://www.walcron.com/pwa/icon-512x512.png",
@@ -18,8 +18,8 @@
     "path": "./android.keystore",
     "alias": "walcron"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
+  "appVersionName": "3",
+  "appVersionCode": 3,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://www.walcron.com/manifest.json",
@@ -27,5 +27,5 @@
   "features": {},
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
-  "appVersion": "2"
+  "appVersion": "1"
 }
