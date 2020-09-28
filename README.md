@@ -21,6 +21,7 @@ bubblewrap init --manifest=https://www.walcron.com/manifest.json
 #Update the file twa-mainfest.json, make sure signingKey, alias "android" is changed to "walcron".
 #Passkey is google's key
 bubblewrap build
+#If screen is not fullscreen, check .well-known/assetlinks.json is correct. It is either the SHA-256 is wrong, or JSON is wrong. The previous debug problem was there is an extra comma in the JSON that cause a problem.
 ```
 
 ## Development for Zeit
