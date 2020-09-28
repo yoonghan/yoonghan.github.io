@@ -1,7 +1,7 @@
 [{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
-    "namespace": "web",
+    "namespace": "android_app",
     "package_name": "com.walcron.web",
     "sha256_cert_fingerprints": [
       "59:07:C1:16:4A:C7:80:E2:A6:FE:20:9C:D1:EA:B9:41:4F:74:73:B7:65:AB:8B:2F:1A:E4:E7:C6:68:B0:82:C2",
