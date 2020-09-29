@@ -36,7 +36,18 @@ withBundleAnalyzer(
       env: {
         PUSHER_APP_KEY: process.env.PUSHER_APP_KEY,
         PUSHER_NONAUTH_APP_KEY: process.env.PUSHER_NONAUTH_APP_KEY,
-        PUSHER_CLUSTER: process.env.PUSHER_CLUSTER
+        TWICE_NONAUTH_APP_KEY: process.env.TWICE_NONAUTH_APP_KEY,
+        TWICE_CHANNEL_NAME: process.env.TWICE_CHANNEL_NAME,
+        PUSHER_CLUSTER: process.env.PUSHER_CLUSTER,
+      },
+      webpack: (config, { isServer }) => {
+        if (!isServer) {
+          config.node = {
+            fs: 'empty',
+            module: 'empty'
+          }
+        }
+        return config;
       }
     }
   )

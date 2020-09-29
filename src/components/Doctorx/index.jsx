@@ -86,7 +86,7 @@ const Doctorx = (props) => {
   const toFillGoogleUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeFqSnCnMQG9T8481HHhEwidLzgwefnfh3vUVebHpH0BfNYyA/viewform";
   const _printSystem = React.useMemo(
     ()=>printSystem(setDisplayState)
-    ,[displayState]);;
+    ,[displayState]);
   const _printEvent = React.useMemo(
     ()=>printEvent(setDisplayState, setInfo)
     ,[displayState]);

@@ -46,6 +46,11 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets add pusher-nonauth-api-id a1
 #now secrets add pusher-nonauth-app-key a2
 #now secrets add pusher-nonauth-secret a3
+#now secrets add twice-nonauth-api-id 1
+#now secrets add twice-nonauth-app-key 2
+#now secrets add twice-nonauth-secret 3
+#now secrets add twice-channelname 4
+
 
 now secrets add pusher-cluster ap1
 npm run deploy
