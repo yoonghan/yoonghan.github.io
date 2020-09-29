@@ -89,6 +89,15 @@ class ApiController {
     return undefined;
   }
 
+  public static _createPusher(appId:string, key:string, secret:string, cluster:string) {
+    return new Pusher({
+      appId,
+      key,
+      secret,
+      cluster
+    });
+  }
+
   static getPusherApiClient():Pusher {
     if(typeof this.PUSHER_API_CLIENT === 'undefined') {
       throw "No go, no pusher api";
