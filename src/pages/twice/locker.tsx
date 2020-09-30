@@ -6,7 +6,7 @@ interface ILockers {
   noOfLockers: number;
 }
 
-const Locker:SFC<ILockers> = ({noOfLockers, groupId, appKey, cluster, channelName}) => {
+const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, cluster, channelName}) => {
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
@@ -21,13 +21,13 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, appKey, cluster, channelNam
       newState[messageInJson.lockerid] = _generateValue(messageInJson.state, newOrderId);
       setLockers(oldLockers => {return {...oldLockers, ...newState}});
     } catch(e) {
-      console.err(e);
+      console.error(e);
     }
-    setMessages(oldArray => [...oldArray, `event - ${msg}`])
+    setMessages(oldArray => [...oldArray, `[${new Date()} - event] ${msg}`])
   }
 
   const _printSystem = (msg:string) => {
-    setMessages(oldArray => [...oldArray, `system - ${msg}`])
+    setMessages(oldArray => [...oldArray, `[${new Date()} - system] ${msg}`])
   }
 
   const {connect, disconnect, isConnected} = withPusher(channelName, _printSystem, _printEvent, appKey, cluster, true);
@@ -91,7 +91,13 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, appKey, cluster, channelNam
 
     setIsUpdating(true);
 
-    const command = {"lockerid":lockerId, "orderId":lockers[lockerId].orderId, "state": _changeLockState(lockerId)};
+    const command = {
+      "origin": "web",
+      "lockerid":lockerId,
+      "businessPartnerId": businessPartnerId,
+      "orderId":lockers[lockerId].orderId,
+      "state": _changeLockState(lockerId)
+    };
 
     fetch('/api/locker/producer', {
       method: 'POST',
@@ -190,7 +196,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       channelName: TWICE_CHANNEL_NAME,
       cluster: PUSHER_CLUSTER,
       noOfLockers: 3,
-      groupId: 5
+      groupId: 5,
+      businessPartnerId: 'recZxB64vYTvdU9yN'
     },
   }
 };

@@ -87,6 +87,8 @@
     "TWICE_NONAUTH_APP_KEY": "@twice-nonauth-app-key",
     "TWICE_NONAUTH_SECRET": "@twice-nonauth-secret",
     "TWICE_CHANNEL_NAME": "@twice-channelname",
+    "AIRTABLE_API_KEY": "@airtable-api-key",
+    "AIRTABLE_BASE": "@airtable-base",
     "AUTH_API_CALL": "@auth-api-call",
     "FIREBASE_BUCKET": "@firebase-bucket",
     "FIREBASE_DATABASE": "@firebase-database"
