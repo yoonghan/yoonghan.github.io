@@ -8,8 +8,8 @@ export const config = {
 };
 
 const write = async (req: NextApiRequest, res: NextApiResponse, writer: any) => {
-  const {message} = req.body;
-  writer(message);
+  console.log(req.body, 'body');
+  writer(JSON.stringify(req.body));
   res.status(200).json({'status': 'ok'});
 }
 

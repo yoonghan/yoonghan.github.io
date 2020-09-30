@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^9.5.2",
+    "airtable": "^0.10.0",
     "firebase": "^7.19.0",
     "firebase-admin": "^9.1.1",
     "formidable": "^1.2.2",
