@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Server from 'socket.io';
-import { withKafkaConsumer } from '../../../modules/kafka';
+import { withKafkaConsumer, createKafkaConf } from '../../../modules/kafka';
 import { EnumAirtables, withAirtable } from '../../../modules/airtable';
 import ApiController from "../../../shared/api";
 import { PUSHER } from "../../../shared/const";
@@ -37,9 +37,12 @@ const _writer = (pusher:any, airtable:any, channelName:string) => (message: stri
 const consumeMessages = async (req: NextApiRequest, res: NextApiResponse, airtable: any) => {
   const {groupid} = req.body;
   const {TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, TWICE_CHANNEL_NAME, PUSHER_CLUSTER} = process.env;
+  const {KAFKA_PREFIX, KAFKA_BROKER_LIST, KAFKA_USERNAME, KAFKA_PASSWORD} = process.env;
+  const kafkaConf = createKafkaConf(KAFKA_BROKER_LIST.split(','), KAFKA_USERNAME, KAFKA_PASSWORD);
+
   const pusher = ApiController._createPusher(TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, PUSHER_CLUSTER);
   if(pusher !== null && typeof pusher !== "undefined") {
-    const disconnect = await withKafkaConsumer(groupid, _writer(pusher, airtable, TWICE_CHANNEL_NAME));
+    const disconnect = await withKafkaConsumer(kafkaConf, KAFKA_PREFIX, groupid, _writer(pusher, airtable, TWICE_CHANNEL_NAME));
     res.status(200).json({"status": "initiated"});
 
     setTimeout(() => {

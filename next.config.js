@@ -40,7 +40,11 @@ withBundleAnalyzer(
         TWICE_CHANNEL_NAME: process.env.TWICE_CHANNEL_NAME,
         PUSHER_CLUSTER: process.env.PUSHER_CLUSTER,
         AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
-        AIRTABLE_BASE: process.env.AIRTABLE_BASE
+        AIRTABLE_BASE: process.env.AIRTABLE_BASE,
+        KAFKA_PREFIX: process.env.KAFKA_PREFIX,
+        KAFKA_BROKER_LIST: process.env.KAFKA_BROKER_LIST,
+        KAFKA_USERNAME: process.env.KAFKA_USERNAME,
+        KAFKA_PASSWORD: process.env.KAFKA_PASSWORD
       },
       webpack: (config, { isServer }) => {
         if (!isServer) {

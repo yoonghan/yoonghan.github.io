@@ -2,25 +2,30 @@
 import { useState, useEffect } from "react";
 import Kafka from 'node-rdkafka';
 
-const kafkaConf = {
-  "metadata.broker.list": ["tricycle-01.srvs.cloudkafka.com:9094", "tricycle-02.srvs.cloudkafka.com:9094", "tricycle-03.srvs.cloudkafka.com:9094"],
-  "socket.keepalive.enable": true,
-  "security.protocol": "SASL_SSL",
-  "sasl.mechanisms": "SCRAM-SHA-256",
-  "sasl.username": "w8aimn9f",
-  "sasl.password": "YODPec9QQELZfpqwa3ciIdxWKtJYJBtx",
-  "debug": "generic,broker,security"
-};
+function _getTopic(prefix:string) { return `${prefix}default`}
 
-const prefix = "w8aimn9f";
-const topic = `${prefix}-default`;
+export function createKafkaConf (
+  brokerList: Array<string>,
+  username: string,
+  password: string,
+  keepalive = false
+) {
+  return {
+    "metadata.broker.list": brokerList,
+    "socket.keepalive.enable": keepalive,
+    "security.protocol": "SASL_SSL",
+    "sasl.mechanisms": "SCRAM-SHA-256",
+    "sasl.username": username,
+    "sasl.password": password
+  };
+}
 
-export function withKafkaProducer() {
+export function withKafkaProducer(kafkaConf:Object, prefix:string) {
   const producer = new Kafka.Producer(kafkaConf);
   const genMessage = msg => Buffer.from(`${msg}`);
 
   const write = (msg:string) => {
-    producer.produce(topic, -1, genMessage(msg), null);
+    producer.produce(_getTopic(prefix), -1, genMessage(msg), null);
   }
 
   const disconnect = () => {
@@ -48,7 +53,7 @@ export function withKafkaProducer() {
   });
 }
 
-export function withKafkaConsumer(groupId:string, writer:(msg:string) => void) {
+export function withKafkaConsumer(kafkaConf:Object, prefix:string, groupId:string, writer:(msg:string) => void) {
   //Kafka guarantees that a message is only read by a single consumer in the group.
   const consumerConf = kafkaConf;
   consumerConf['group.id'] = groupId;
@@ -68,7 +73,7 @@ export function withKafkaConsumer(groupId:string, writer:(msg:string) => void) {
 
     consumer.on("ready", function(arg) {
       console.log(`Consumer ${arg.name} ready`);
-      consumer.subscribe([topic]);
+      consumer.subscribe([_getTopic(prefix)]);
       consumer.consume();
       resolve(disconnect);
     });

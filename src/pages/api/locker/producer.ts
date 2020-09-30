@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withKafkaProducer } from '../../../modules/kafka';
+import { withKafkaProducer, createKafkaConf } from '../../../modules/kafka';
 
 export const config = {
     api: {
@@ -15,10 +15,12 @@ const write = async (req: NextApiRequest, res: NextApiResponse, writer: any) => 
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const {KAFKA_PREFIX, KAFKA_BROKER_LIST, KAFKA_USERNAME, KAFKA_PASSWORD} = process.env;
+  const kafkaConf = createKafkaConf(KAFKA_BROKER_LIST.split(','), KAFKA_USERNAME, KAFKA_PASSWORD);
 
   switch(req.method) {
     case "POST":
-      const writer = await withKafkaProducer();
+      const writer = await withKafkaProducer(kafkaConf, KAFKA_PREFIX);
       write(req, res, writer);
       break;
     default:

@@ -91,7 +91,11 @@
     "AIRTABLE_BASE": "@airtable-base",
     "AUTH_API_CALL": "@auth-api-call",
     "FIREBASE_BUCKET": "@firebase-bucket",
-    "FIREBASE_DATABASE": "@firebase-database"
+    "FIREBASE_DATABASE": "@firebase-database",
+    "KAFKA_PREFIX": "@kafka-prefix",
+    "KAFKA_BROKER_LIST": "@kafka-broker-list",
+    "KAFKA_USERNAME": "@kafka-broker-username",
+    "KAFKA_PASSWORD": "@kafka-broker-password"
   },
   "build": {
     "env": {
