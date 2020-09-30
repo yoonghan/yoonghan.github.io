@@ -113,6 +113,10 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     return false;
   }
 
+  const _isLockInputEnabled = (currentState:string) => {
+    return currentState === "lock";
+  }
+
   const _drawLockers = useCallback(() => {
     const drawnLockers = [];
     for (const [key, value] of Object.entries(lockers)) {
@@ -123,7 +127,14 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
             <legend className="screen-reader-only">#{key}</legend>
 
             <div className="container" >
-              <input type="text" placeholder="order id" onChange={_updateValue(key)} value={orderId}></input>
+              <input
+                type="text"
+                placeholder="order id"
+                onChange={_updateValue(key)}
+                value={orderId}
+                disabled={_isLockInputEnabled(value.state)}
+                >
+                </input>
               <input type="submit" value={_lockToBeState(value.state)}></input>
             </div>
           </fieldset>
@@ -196,7 +207,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       channelName: TWICE_CHANNEL_NAME,
       cluster: PUSHER_CLUSTER,
       noOfLockers: 3,
-      groupId: 5,
+      groupId: 2,
       businessPartnerId: 'recZxB64vYTvdU9yN'
     },
   }

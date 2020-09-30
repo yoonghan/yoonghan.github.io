@@ -54,7 +54,10 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets add twice-channelname 4
 #now secrets add airtable-api-key mustadd
 #now secrets add airtable-base mustadd
-
+#now secrets add kafka-prefix mustadd
+#now secrets add kafka-broker-list mustadd
+#now secrets add kafka-broker-username mustadd
+#now secrets add kafka-broker-password mustadd
 
 now secrets add pusher-cluster ap1
 npm run deploy
