@@ -8,8 +8,9 @@ export const config = {
 };
 
 const write = async (req: NextApiRequest, res: NextApiResponse, writer: any) => {
-  console.log(req.body, 'body');
-  writer(JSON.stringify(req.body));
+  const message = req.body;
+  message.triggerTime = new Date().toISOString();
+  writer(JSON.stringify(message));
   res.status(200).json({'status': 'ok'});
 }
 

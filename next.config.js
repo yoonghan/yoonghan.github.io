@@ -39,6 +39,8 @@ withBundleAnalyzer(
         TWICE_NONAUTH_APP_KEY: process.env.TWICE_NONAUTH_APP_KEY,
         TWICE_CHANNEL_NAME: process.env.TWICE_CHANNEL_NAME,
         PUSHER_CLUSTER: process.env.PUSHER_CLUSTER,
+        AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+        AIRTABLE_BASE: process.env.AIRTABLE_BASE
       },
       webpack: (config, { isServer }) => {
         if (!isServer) {

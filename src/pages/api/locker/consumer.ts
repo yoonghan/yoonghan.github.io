@@ -1,10 +1,29 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Server from 'socket.io';
 import { withKafkaConsumer } from '../../../modules/kafka';
+import { EnumAirtables, withAirtable } from '../../../modules/airtable';
 import ApiController from "../../../shared/api";
 import { PUSHER } from "../../../shared/const";
 
-const _writer = (pusher:any, channelName:string) => (message: string) => {
+const _writer = (pusher:any, airtable:any, channelName:string) => (message: string) => {
+  try{
+    const messageInJson = JSON.parse(message);
+    airtable.create(EnumAirtables.LOCK_LOG, [
+      {
+        "fields": {
+          "Order Id": messageInJson.orderId,
+          "Business Partner Id": [messageInJson.businessPartnerId],
+          "Locker Id": messageInJson.lockerid,
+          "Status": messageInJson.state,
+          "Trigger DateTime": messageInJson.triggerTime
+        }
+      }
+    ]);
+  }
+  catch(err) {
+    //skip
+  }
+
   pusher.trigger(
     `${PUSHER.channel_prefix}${channelName}`,
     `${PUSHER.event}`,
@@ -15,12 +34,12 @@ const _writer = (pusher:any, channelName:string) => (message: string) => {
   );
 }
 
-const consumeMessages = async (req: NextApiRequest, res: NextApiResponse) => {
+const consumeMessages = async (req: NextApiRequest, res: NextApiResponse, airtable: any) => {
   const {groupid} = req.body;
   const {TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, TWICE_CHANNEL_NAME, PUSHER_CLUSTER} = process.env;
   const pusher = ApiController._createPusher(TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, PUSHER_CLUSTER);
   if(pusher !== null && typeof pusher !== "undefined") {
-    const disconnect = await withKafkaConsumer(groupid, _writer(pusher, TWICE_CHANNEL_NAME));
+    const disconnect = await withKafkaConsumer(groupid, _writer(pusher, airtable, TWICE_CHANNEL_NAME));
     res.status(200).json({"status": "initiated"});
 
     setTimeout(() => {
@@ -39,10 +58,11 @@ const _sendMethodError = (res:NextApiResponse, messages:Array<string>) => {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json');
+  const airtable = withAirtable(process.env.AIRTABLE_API_KEY, process.env.AIRTABLE_BASE);
 
   switch(req.method) {
     case "POST":
-      consumeMessages(req, res);
+      consumeMessages(req, res, airtable);
       break;
     default:
       _sendMethodError(
