@@ -90,7 +90,10 @@ export function withKafkaConsumer(kafkaConf:Object, prefix:string, groupId:strin
     consumer.on("data", function(m) {
       const message = m.value.toString();
       writer(message);
-      consumer.commit(m);
+      try {
+        consumer.commit(m);
+      }
+      catch(err) {}
     });
 
     consumer.on('event.log', function(log) {
