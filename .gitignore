@@ -1,7 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-.env
-
 .private/
 private/
 
@@ -37,3 +35,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# ignore .env change
+.env
