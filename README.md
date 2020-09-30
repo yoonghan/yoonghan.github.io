@@ -11,6 +11,8 @@ Run
 
 If there are missing webpack installation, manually execute 'npm install next'
 
+*Update* Add AIRTABLE_API_KEY and AIRTABLE_BASE to .env file. It is no longer tracked.
+
 ## Development for Zeit
 1. Changes are based on *now.json*.
 
@@ -50,6 +52,8 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets add twice-nonauth-app-key 2
 #now secrets add twice-nonauth-secret 3
 #now secrets add twice-channelname 4
+#now secrets add airtable-api-key mustadd
+#now secrets add airtable-base mustadd
 
 
 now secrets add pusher-cluster ap1
