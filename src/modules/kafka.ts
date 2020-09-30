@@ -84,9 +84,8 @@ export function withKafkaConsumer(groupId:string, writer:(msg:string) => void) {
 
     consumer.on("data", function(m) {
       const message = m.value.toString();
-      console.log(message, 'message');
-      consumer.commit(m);
       writer(message);
+      consumer.commit(m);
     });
 
     consumer.on('event.log', function(log) {
