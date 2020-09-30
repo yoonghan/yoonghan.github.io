@@ -21,10 +21,11 @@ const consumeMessages = async (req: NextApiRequest, res: NextApiResponse) => {
   const pusher = ApiController._createPusher(TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, PUSHER_CLUSTER);
   if(pusher !== null && typeof pusher !== "undefined") {
     const disconnect = await withKafkaConsumer(groupid, _writer(pusher, TWICE_CHANNEL_NAME));
+    res.status(200).json({"status": "initiated"});
+
     setTimeout(() => {
       disconnect();
-      res.status(200).json({"status": "ok"});
-    }, 15000);
+    }, (req.body.wait?parseInt(req.body.wait, 10): 15000) );
   }
   else {
     res.status(400).json({"status": "fail"});

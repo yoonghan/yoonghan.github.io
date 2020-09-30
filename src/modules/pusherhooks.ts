@@ -3,11 +3,11 @@ import PusherJS from 'pusher-js';
 import { PUSHER } from "../shared/const";
 
 export enum EnumConnection {
-  StartConnecting,
-  StartDisconnecting,
-  Connected,
-  Disconnected,
-  Error
+  StartConnecting = "Start Connecting",
+  StartDisconnecting = "Start Disconnecting",
+  Connected = "Connected",
+  Disconnected = "Disconnected",
+  Error = "Error"
 }
 
 /** Updated using hook for better management **/
