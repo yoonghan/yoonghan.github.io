@@ -5,4 +5,6 @@ export const PUSHER = {
   //channel: "walcron_c",   //Deprecated - Channel is based on token returned.
   endpoint: "/api/pusherauth"
 }
-export const ANDROID_PACKAGE_NAME = "com.walcron.web"
+export const ANDROID_PACKAGE_NAME = "com.walcron.web";
+export const BUSINESS_PARTNER_ID = "recZxB64vYTvdU9yN"; //needed for insert
+export const PARTNER_ID = "7"; //needed for search

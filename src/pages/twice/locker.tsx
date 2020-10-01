@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback, useMemo, SFC } from 'react';
 import {withPusher} from "../../modules/pusherhooks";
+import {BUSINESS_PARTNER_ID, PARTNER_ID} from "../../shared/const";
 import { GetStaticProps } from 'next'
 
 interface ILockers {
   noOfLockers: number;
 }
 
-const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, cluster, channelName, backendServer}) => {
+const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds}) => {
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isRetrieving, setIsRetrieving] = useState(false);
   const [messages, setMessages] = React.useState([]);
 
   const _printEvent = (msg:string) => {
@@ -58,7 +58,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     return state === "lock"?"unlock":"lock";
   }, [lockers]);
 
-  const _updateValue = (lockerId:string) => (event:string) => {
+  const _updateValue = (lockerId:string) => (event:any) => {
     const value = event.target.value;
     const newState = {};
     newState[lockerId] = _generateValue(lockers[lockerId].state, value);
@@ -77,12 +77,11 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     const command = {
       "origin": "web",
       "lockerid":lockerId,
-      "businessPartnerId": businessPartnerId,
       "orderId":lockers[lockerId].orderId,
       "state": _changeLockState(lockerId)
     };
 
-    fetch(`${backendServer}/api/locker/trigger`, {
+    fetch(`${backendServer}/api/locker/trigger/${businessPartnerId}/${partnerId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -93,8 +92,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     .then(response => response.json)
     .then(response => {
       setIsUpdating(false);
-      setIsRetrieving(true)}
-    );
+    });
 
     return false;
   }
@@ -113,14 +111,14 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
             <legend className="screen-reader-only">#{key}</legend>
 
             <div className="container" >
-              <input
-                type="text"
-                placeholder="order id"
-                onChange={_updateValue(key)}
-                value={orderId}
-                disabled={_isLockInputEnabled(value.state)}
-                >
-                </input>
+              <select value={orderId} onChange={_updateValue(key)}>
+                <option value="">---Select an order---</option>
+                {
+                  availOrderIds.map(
+                    (availOrderId, idx) => <option value={availOrderId} key={`order-${idx}`}>{availOrderId}</option>
+                  )
+                }
+              </select>
               <input type="submit" value={_lockToBeState(value.state)}></input>
             </div>
           </fieldset>
@@ -141,13 +139,10 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     if(isUpdating) {
       return "Sending orderid and locking basket.";
     }
-    else if(isRetrieving) {
-      return "Getting latest status.";
-    }
     else {
       return "Awaiting next update.";
     }
-  }, [isUpdating, isRetrieving]);
+  }, [isUpdating]);
 
   const _drawnMessages = useCallback(() => {
     const elems = messages.map((elem, idx) => <li key={`msg-${idx}`}>{elem}</li>);
@@ -188,15 +183,24 @@ export const getStaticProps: GetStaticProps = async (context) => {
     BACKEND_SERVER
   } = process.env;
 
+  const availOrderIds = await fetch(`${BACKEND_SERVER}/api/locker/order/${BUSINESS_PARTNER_ID}/${PARTNER_ID}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    referrerPolicy: 'no-referrer'
+  }).then(res => res.json());
+
   return {
     props: {
       appKey: TWICE_NONAUTH_APP_KEY,
       channelName: TWICE_CHANNEL_NAME,
       cluster: PUSHER_CLUSTER,
       noOfLockers: 3,
-      groupId: 'tzuyu',
-      businessPartnerId: 'recZxB64vYTvdU9yN',
-      backendServer: BACKEND_SERVER
+      businessPartnerId: BUSINESS_PARTNER_ID,
+      partnerId: PARTNER_ID,
+      backendServer: BACKEND_SERVER,
+      availOrderIds: (availOrderIds.orders? availOrderIds.orders:[])
     },
   }
 };
