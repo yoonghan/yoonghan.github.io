@@ -21,7 +21,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
       newState[messageInJson.lockerid] = _generateValue(messageInJson.state, newOrderId);
       setLockers(oldLockers => {return {...oldLockers, ...newState}});
     } catch(e) {
-      console.error(e);
+      //console.error(e);
     }
     setMessages(oldArray => [...oldArray, `[${new Date()} - event] ${msg}`])
   }
@@ -48,7 +48,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
 
   useEffect(() => {
     if(isRetrieving) {
-      const command = {"groupid": groupId, "wait": 8000};
+      const command = {"groupid": groupId, "wait": 30000};
 
       fetch('/api/locker/consumer', {
         method: 'POST',
@@ -108,7 +108,10 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
       body: JSON.stringify(command)
     })
     .then(response => response.json)
-    .then(response => {setIsUpdating(false);setIsRetrieving(true)});
+    .then(response => {
+      setIsUpdating(false);
+      setIsRetrieving(true)}
+    );
 
     return false;
   }
@@ -207,7 +210,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       channelName: TWICE_CHANNEL_NAME,
       cluster: PUSHER_CLUSTER,
       noOfLockers: 3,
-      groupId: 2,
+      groupId: 'tzuyu',
       businessPartnerId: 'recZxB64vYTvdU9yN'
     },
   }
