@@ -90,7 +90,7 @@
     "AUTH_API_CALL": "@auth-api-call",
     "FIREBASE_BUCKET": "@firebase-bucket",
     "FIREBASE_DATABASE": "@firebase-database",
-    "BACKEND_SERVER": "https://backend.walcron.com"
+    "BACKEND_SERVER": "https://service.walcron.com"
   },
   "build": {
     "env": {
@@ -99,7 +99,7 @@
       "TWICE_NONAUTH_APP_KEY": "@twice-nonauth-app-key",
       "TWICE_CHANNEL_NAME": "@twice-channelname",
       "PUSHER_CLUSTER": "@pusher-cluster",
-      "BACKEND_SERVER": "https://backend.walcron.com"
+      "BACKEND_SERVER": "https://service.walcron.com"
     }
   }
 }
