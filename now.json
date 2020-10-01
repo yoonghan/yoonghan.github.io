@@ -87,15 +87,10 @@
     "TWICE_NONAUTH_APP_KEY": "@twice-nonauth-app-key",
     "TWICE_NONAUTH_SECRET": "@twice-nonauth-secret",
     "TWICE_CHANNEL_NAME": "@twice-channelname",
-    "AIRTABLE_API_KEY": "@airtable-api-key",
-    "AIRTABLE_BASE": "@airtable-base",
     "AUTH_API_CALL": "@auth-api-call",
     "FIREBASE_BUCKET": "@firebase-bucket",
     "FIREBASE_DATABASE": "@firebase-database",
-    "KAFKA_PREFIX": "@kafka-prefix",
-    "KAFKA_BROKER_LIST": "@kafka-broker-list",
-    "KAFKA_USERNAME": "@kafka-broker-username",
-    "KAFKA_PASSWORD": "@kafka-broker-password"
+    "BACKEND_SERVER": "https://backend.walcron.com"
   },
   "build": {
     "env": {
@@ -103,7 +98,8 @@
       "PUSHER_NONAUTH_APP_KEY": "@pusher-nonauth-app-key",
       "TWICE_NONAUTH_APP_KEY": "@twice-nonauth-app-key",
       "TWICE_CHANNEL_NAME": "@twice-channelname",
-      "PUSHER_CLUSTER": "@pusher-cluster"
+      "PUSHER_CLUSTER": "@pusher-cluster",
+      "BACKEND_SERVER": "https://backend.walcron.com"
     }
   }
 }

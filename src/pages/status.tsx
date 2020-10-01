@@ -37,7 +37,7 @@ const StatusReport: StatelessPage<any> = (props) => {
         </thead>
         <tbody>
           {_generateTableRow("Pusher API", props.pusherInterval, props.pusher)}
-          {_generateTableRow("GraphQL API", props.graphqlInterval, props.graphql)}
+          {_generateTableRow("Backend Server", props.serviceInterval, props.backendservice)}
         </tbody>
       </table>
       <style jsx>{`
@@ -74,16 +74,32 @@ StatusReport.getInitialProps = async({}) => {
   const pusherData = await pusherResponse.json();
   pusherInterval = _getTime() - pusherInterval;
 
-  let graphqlInterval = _getTime();
-  const graphqlResponse = await fetch("https://dashboardgraphql-rsqivokhvn.now.sh/api?query={agent(id:12){id}}")
-  const graphqlData = await graphqlResponse.json();
-  graphqlInterval = _getTime() - graphqlInterval;
+  let serviceInterval = _getTime();
+  let serviceData = undefined;
+  try {
+    const serviceResponse = await fetch(process.env.BACKEND_SERVER, {
+      method: 'GET',
+      mode: 'same-origin',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'text.html'
+      },
+      redirect: 'follow',
+      referrer: 'no-referrer'
+    });
+    serviceData = await serviceResponse.text();
+    serviceInterval = _getTime() - serviceInterval;
+  }
+  catch(err) {
+
+  }
 
   return {
     pusher: JSON.stringify(pusherData || ""),
     pusherInterval,
-    graphql: JSON.stringify(graphqlData || ""),
-    graphqlInterval
+    backendservice: (serviceData || ""),
+    serviceInterval
   };
 };
 

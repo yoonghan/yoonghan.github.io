@@ -6,7 +6,7 @@ interface ILockers {
   noOfLockers: number;
 }
 
-const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, cluster, channelName}) => {
+const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, cluster, channelName, backendServer}) => {
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
@@ -46,23 +46,6 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
     setLockers(mockLockers);
   }, []);
 
-  useEffect(() => {
-    if(isRetrieving) {
-      const command = {"groupid": groupId, "wait": 30000};
-
-      fetch('/api/locker/consumer', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(command)
-      })
-      .then(response => response.json)
-      .then(response => {setIsRetrieving(false)});
-    }
-  }, [isRetrieving]);
-
   const _generateValue = (state:string, orderId: string) => {
     return {state, orderId};
   }
@@ -99,7 +82,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, groupId, businessPartnerId, appKey, 
       "state": _changeLockState(lockerId)
     };
 
-    fetch('/api/locker/producer', {
+    fetch(`${backendServer}/api/locker/trigger`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -201,7 +184,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const {
     TWICE_NONAUTH_APP_KEY,
     TWICE_CHANNEL_NAME,
-    PUSHER_CLUSTER
+    PUSHER_CLUSTER,
+    BACKEND_SERVER
   } = process.env;
 
   return {
@@ -211,7 +195,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       cluster: PUSHER_CLUSTER,
       noOfLockers: 3,
       groupId: 'tzuyu',
-      businessPartnerId: 'recZxB64vYTvdU9yN'
+      businessPartnerId: 'recZxB64vYTvdU9yN',
+      backendServer: BACKEND_SERVER
     },
   }
 };
