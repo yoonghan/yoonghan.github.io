@@ -42,12 +42,19 @@ const consumeMessages = async (req: NextApiRequest, res: NextApiResponse, airtab
 
   const pusher = ApiController._createPusher(TWICE_NONAUTH_APP_ID, TWICE_NONAUTH_APP_KEY, TWICE_NONAUTH_SECRET, PUSHER_CLUSTER);
   if(pusher !== null && typeof pusher !== "undefined") {
-    const disconnect = await withKafkaConsumer(kafkaConf, KAFKA_PREFIX, groupid, _writer(pusher, airtable, TWICE_CHANNEL_NAME));
-    res.status(200).json({"status": "initiated"});
+    const pusherWriter = _writer(pusher, airtable, TWICE_CHANNEL_NAME);
+    try{
+      const disconnect = await withKafkaConsumer(kafkaConf, KAFKA_PREFIX, groupid, pusherWriter);
+      res.status(200).json({"status": "initiated"});
 
-    setTimeout(() => {
-      disconnect();
-    }, (req.body.wait?parseInt(req.body.wait, 10): 15000) );
+      setTimeout(() => {
+        disconnect();
+      }, (req.body.wait?parseInt(req.body.wait, 10): 15000) );
+    }
+    catch(err) {
+      pusherWriter(err);
+      _writer();
+    }
   }
   else {
     res.status(400).json({"status": "fail"});
