@@ -6,6 +6,7 @@ npm test
 if [ $? -eq 0 ]
 then
   npm run build
+  node site_map_generator.js
   if [ $? -eq 0 ]
   then
     echo "Successfully created file"
@@ -16,4 +17,3 @@ then
 else
   echo "Check failed script"
 fi
-
