@@ -13,7 +13,7 @@ const Order:SFC<IOrder> = ({backendServer, businessPartnerId}) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [message, setMessage] = React.useState('');
 
-  const CONTACT_TYPES_AVAILABLE = ["Push Notification", "Email", "SMS"];
+  const CONTACT_TYPES_AVAILABLE = ["Push Notification", "Email", "SMS", "Representative"];
 
   const _updateOrderId = (event:any) => {
     const value = event.target.value;
