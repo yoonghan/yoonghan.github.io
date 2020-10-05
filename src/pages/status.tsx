@@ -37,7 +37,8 @@ const StatusReport: StatelessPage<any> = (props) => {
         </thead>
         <tbody>
           {_generateTableRow("Pusher API", props.pusherInterval, props.pusher)}
-          {_generateTableRow("Backend Server", props.serviceInterval, props.backendservice)}
+          {_generateTableRow("Backend Server", props.serviceInterval, props.backendService)}
+          {_generateTableRow("App Service", props.appInterval, props.appService)}
         </tbody>
       </table>
       <style jsx>{`
@@ -83,7 +84,7 @@ StatusReport.getInitialProps = async({}) => {
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
-        'Content-Type': 'text.html'
+        'Content-Type': 'text/html'
       },
       redirect: 'follow',
       referrer: 'no-referrer'
@@ -95,11 +96,34 @@ StatusReport.getInitialProps = async({}) => {
 
   }
 
+  let appInterval = _getTime();
+  let appData = undefined;
+  try {
+    const appResponse = await fetch("https://app.walcron.com", {
+      method: 'GET',
+      mode: 'same-origin',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'text/html'
+      },
+      redirect: 'follow',
+      referrer: 'no-referrer'
+    });
+    appData = await appResponse.text();
+    appInterval = _getTime() - appInterval;
+  }
+  catch(err) {
+
+  }
+
   return {
     pusher: JSON.stringify(pusherData || ""),
     pusherInterval,
-    backendservice: (serviceData || ""),
-    serviceInterval
+    backendService: (serviceData || ""),
+    serviceInterval,
+    appService: (appData || ""),
+    appInterval
   };
 };
 
