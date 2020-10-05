@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {withPusher} from "../../modules/pusherhooks";
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 interface IControl {
   appKey: string;
@@ -61,7 +61,7 @@ const Control:React.SFC<IControl> = ({appKey, cluster, channelName}) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const {
     TWICE_NONAUTH_APP_KEY,
     TWICE_CHANNEL_NAME,
