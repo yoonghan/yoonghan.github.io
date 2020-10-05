@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, SFC } from 'react';
 import {withPusher} from "../../modules/pusherhooks";
-import {BUSINESS_PARTNER_ID} from "../../shared/const";
+import {BUSINESS_PARTNER_ID, PARTNER_ID} from "../../shared/const";
 import { GetServerSideProps } from 'next';
 
 interface IOrder {
