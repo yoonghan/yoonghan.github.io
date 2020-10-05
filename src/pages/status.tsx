@@ -99,7 +99,7 @@ StatusReport.getInitialProps = async({}) => {
   let appInterval = _getTime();
   let appData = undefined;
   try {
-    const appResponse = await fetch("https://app.walcron.com", {
+    const appResponse = await fetch("https://app.walcron.com/api/status", {
       method: 'GET',
       mode: 'same-origin',
       cache: 'no-cache',
