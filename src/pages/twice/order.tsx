@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useMemo, SFC } from 'react';
 import {withPusher} from "../../modules/pusherhooks";
 import {BUSINESS_PARTNER_ID} from "../../shared/const";
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 interface IOrder {
 }
 
-const Order:SFC<IOrder> = ({backendServer, businessPartnerId}) => {
+const Order:SFC<IOrder> = ({backendServer, businessPartnerId, partnerId}) => {
   const [orderId, setOrderId] = useState('');
   const [contactType, setContactType] = useState('');
   const [contactInfo, setContactInfo] = useState('');
@@ -62,7 +62,7 @@ const Order:SFC<IOrder> = ({backendServer, businessPartnerId}) => {
       "contact_info": contactInfo
     };
 
-    fetch(`${backendServer}/api/locker/order/${businessPartnerId}`, {
+    fetch(`${backendServer}/api/locker/order/${businessPartnerId}/${partnerId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -139,7 +139,7 @@ const Order:SFC<IOrder> = ({backendServer, businessPartnerId}) => {
   )
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const {
     BACKEND_SERVER
   } = process.env;
@@ -147,6 +147,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       businessPartnerId: BUSINESS_PARTNER_ID,
+      partnerId: PARTNER_ID,
       backendServer: BACKEND_SERVER
     },
   }
