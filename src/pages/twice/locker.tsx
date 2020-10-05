@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, SFC } from 'react';
 import {withPusher} from "../../modules/pusherhooks";
 import {BUSINESS_PARTNER_ID, PARTNER_ID} from "../../shared/const";
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 interface ILockers {
   noOfLockers: number;
@@ -175,7 +175,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const {
     TWICE_NONAUTH_APP_KEY,
     TWICE_CHANNEL_NAME,
