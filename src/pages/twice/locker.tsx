@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, SFC } from 'react';
 import {withPusher} from "../../modules/pusherhooks";
-import {BUSINESS_PARTNER_ID, PARTNER_ID} from "../../shared/const";
+import {BUSINESS_PARTNER_ID, PARTNER_ID, PUSHER} from "../../shared/const";
 import { GetServerSideProps } from 'next'
 
 interface ILockers {
@@ -11,9 +11,10 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
-  const [messages, setMessages] = React.useState([]);
+  const [messages, setMessages] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-  const _printEvent = (msg:string) => {
+  const _printLockEvent = (msg:string) => {
     try{
       const messageInJson = JSON.parse(msg);
       const newState = {};
@@ -23,26 +24,68 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
     } catch(e) {
       //console.error(e);
     }
-    setMessages(oldArray => [...oldArray, `[${new Date()} - event] ${msg}`])
+    setMessages(oldArray => [...oldArray, `[${new Date()} - lock event] ${msg}`])
   }
 
-  const _printSystem = (msg:string) => {
-    setMessages(oldArray => [...oldArray, `[${new Date()} - system] ${msg}`])
+  const _printLockPusherSystem = (msg:string) => {
+    setMessages(oldArray => [...oldArray, `[${new Date()} - lock system] ${msg}`])
   }
 
-  const {connect, disconnect, isConnected} = withPusher(channelName, _printSystem, _printEvent, appKey, cluster, true);
+  const _printOrderEvent = (msg:string) => {
+    try{
+      const messageInJson = JSON.parse(msg);
+      const currentOrders = [...orders];
+      //const elemFound = orders.find(order => order === messageInJson.order_id);
+      switch(messageInJson.status) {
+        case "Order Placed":
+          currentOrders.push(messageInJson.order_id);
+          setOrders(currentOrders);
+          break;
+      }
+    } catch(e) {
+      //console.error(e);
+    }
+  }
 
-  const _connectToPusher = () => {
-    connect();
+  const _printOrderPusherSystem = (msg:string) => {
+    setMessages(oldArray => [...oldArray, `[${new Date()} - order system] ${msg}`])
+  }
+
+  const {lockConnect, lockDisconnect, lockIsConnected} = (function (){
+    const {connect, disconnect, isConnected } = withPusher(PUSHER.lockEvent, channelName, _printLockPusherSystem, _printLockEvent, appKey, cluster, true);
+    return {
+      lockConnect: connect,
+      lockDisconnect: disconnect,
+      lockIsConnected: isConnected
+    }
+  })();
+
+  const {orderConnect, orderDisconnect, orderIsConnected} = (function (){
+    const {connect, disconnect, isConnected } = withPusher(PUSHER.orderEvent, channelName, _printOrderPusherSystem, _printOrderEvent, appKey, cluster, true);
+    return {
+      orderConnect: connect,
+      orderDisconnect: disconnect,
+      orderIsConnected: isConnected
+    }
+  })();
+
+  const _connectToLockPusher = () => {
+    lockConnect();
+  }
+
+  const _connectToOrderPusher = () => {
+    orderConnect();
   }
 
   useEffect(() => {
-    _connectToPusher();
+    _connectToLockPusher();
+    _connectToOrderPusher();
 
     const mockLockers = {};
     for(let i = 0; i < noOfLockers; i++) {
       mockLockers[`locker-${i}`] = _generateValue(DEFAULT_LOCK_STATE, "");
     }
+    setOrders(availOrderIds);
     setLockers(mockLockers);
   }, []);
 
@@ -111,11 +154,11 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
             <legend className="screen-reader-only">#{key}</legend>
 
             <div className="container" >
-              <select value={orderId} onChange={_updateValue(key)}>
+              <select value={orderId} onChange={_updateValue(key)} disabled={lockers[key].state === "lock"}>
                 <option value="">---Select an order---</option>
                 {
-                  availOrderIds.map(
-                    (availOrderId, idx) => <option value={availOrderId} key={`order-${idx}`}>{availOrderId}</option>
+                  orders.map(
+                    (orderId, idx) => <option value={orderId} key={`order-${idx}`}>{orderId}</option>
                   )
                 }
               </select>
@@ -133,7 +176,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
     }
 
     return drawnLockers;
-  }, [lockers, isUpdating]);
+  }, [lockers, isUpdating, orders]);
 
   const _drawDebug = useCallback(() => {
     if(isUpdating) {
