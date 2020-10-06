@@ -146,6 +146,24 @@ export const AvailableInput:ICommand = {
     action: EnumAction.COMMAND,
     exec: () => {window.open("/status"); return <React.Fragment/>}
   },
+  "share": {
+    description: "Spread our website!",
+    synonym: ["twitter", "whatsapp", "facebook"],
+    action: EnumAction.COMMAND,
+    exec: () => {
+      if(navigator.share) {
+        navigator.share({
+          "title": "Walcron",
+          "text": "An awesome website.",
+          "url": "https://www.walcron.com"
+        });
+        return <React.Fragment/>;
+      }
+      else {
+        return (<InvalidCommand invalidCommand={"Couldn't run HTML5 share."}/>);
+      }
+    }
+  },
   "help": {
     description: "Lost, confused, need help.",
     synonym: ["man", "info"],
