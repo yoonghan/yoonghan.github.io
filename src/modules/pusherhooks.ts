@@ -13,7 +13,8 @@ export enum EnumConnection {
 /** Updated using hook for better management **/
 
 export function withPusher (
-  _channelName:string,
+  _eventName: string,
+  _channelName: string,
   printConnectionCallback:(message:string) => void,
   printEventCallback:(message:string) => void,
   appKey:string, cluster:string, nonprivate=false, authEndpoint?: string) {
@@ -22,7 +23,7 @@ export function withPusher (
   let channel:any|undefined = undefined;
 
   const channelName = `${PUSHER.channel_prefix}${_channelName}`;
-  const eventName = nonprivate? PUSHER.event: `client-${PUSHER.event}`;
+  const eventName = nonprivate? _eventName: `client-${_eventName}`;
 
   const [pusher, setPusher] = useState(null);
   const [connectionStatus, setConnectionStatus] = useState(EnumConnection.Disconnected);
