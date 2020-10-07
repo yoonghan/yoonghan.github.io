@@ -19,7 +19,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
       const messageInJson = JSON.parse(msg);
       const newState = {};
       const newOrderId = (messageInJson.state === DEFAULT_LOCK_STATE? '': messageInJson.orderId);
-      newState[messageInJson.lockerid] = _generateValue(messageInJson.state, newOrderId);
+      newState[messageInJson.lockerId] = _generateValue(messageInJson.state, newOrderId);
       setLockers(oldLockers => {return {...oldLockers, ...newState}});
     } catch(e) {
       //console.error(e);
@@ -119,8 +119,8 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
 
     const command = {
       "origin": "web",
-      "lockerid":lockerId,
-      "orderId":lockers[lockerId].orderId,
+      "locker_id":lockerId,
+      "order_id":lockers[lockerId].orderId,
       "state": _changeLockState(lockerId)
     };
 
