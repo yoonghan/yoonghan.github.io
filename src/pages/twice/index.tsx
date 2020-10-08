@@ -43,11 +43,6 @@ const Index:SFC<any> = ({backendServer}) => {
     _doMonitorCheck()
   }, []);
 
-  const _changeTo = (select:EnumSelection) => {
-    console.log('select', select);
-    setSelection(select);
-  }
-
   const _drawnLockDialog = useMemo(() => (
     <form method="GET" action="/twice/locker">
       <fieldset disabled={!ready}>
@@ -125,10 +120,12 @@ const Index:SFC<any> = ({backendServer}) => {
       <div className="login-box-container">
         {!ready && (<div><em>MESSAGE: </em>{_drawnMessage}</div>)}
         <section>
+          {
+
+          }
           <div className={'selector-container'}>
-            <div onClick={()=>_changeTo(EnumSelection.ORDER)}>Order</div>
-            <div style={{padding: "0 1rem"}}> | </div>
-            <div onClick={()=>_changeTo(EnumSelection.LOCK)}>Lock</div>
+            {selection === EnumSelection.LOCK && <div onClick={()=> setSelection(EnumSelection.ORDER)}>Change to Order Login</div>}
+            {selection === EnumSelection.ORDER && <div onClick={()=> setSelection(EnumSelection.LOCK)}>Change to Lock Login</div>}
           </div>
           {_drawnDialog}
         </section>
