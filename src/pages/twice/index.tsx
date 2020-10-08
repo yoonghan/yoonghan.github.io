@@ -1,5 +1,6 @@
 import {SFC, useState, useEffect, useMemo} from 'react';
 import { GetServerSideProps } from 'next';
+import globalStyles from '../../shared/style';
 
 enum EnumSelection {
   LOCK,
@@ -104,18 +105,31 @@ const Index:SFC<any> = ({backendServer}) => {
   }, [selection, ready]);
 
   const _drawnMessage = useMemo(() => {
+    if(ready) {
+      return <span>Ready, and do login</span>
+    }
+
     if(retryCounter < allowedRetries) {
-      return <span>Warming up and getting server ready.</span>
+      return <span><em className="animate-blink">PLEASE WAIT: </em> Warming up and getting server ready.</span>
     }
     else {
-      return <span>Exhausted retry, maybe a refresh may help.</span>
+      return (
+        <span>
+          <em className="text-red">ERROR: </em> Exhausted retry, maybe a refresh may help.
+          <style jsx>{`
+              .text-red {
+                color: #f56565;
+              }
+          `}</style>
+        </span>
+      )
     }
-  }, [retryCounter])
+  }, [retryCounter, ready])
 
   return (
     <div className="container">
       <div className="login-box-container">
-        {!ready && (<div><em>MESSAGE: </em>{_drawnMessage}</div>)}
+        {_drawnMessage}
         <section>
           {
 
@@ -147,6 +161,9 @@ const Index:SFC<any> = ({backendServer}) => {
             justify-content: center;
           }
       `}</style>
+      <style jsx global>
+        {globalStyles}
+      </style>
     </div>
   );
 };
