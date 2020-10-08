@@ -7,7 +7,7 @@ interface ILockers {
   noOfLockers: number;
 }
 
-const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds}) => {
+const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds, lockerStatuses}) => {
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
@@ -81,12 +81,16 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
     _connectToLockPusher();
     _connectToOrderPusher();
 
-    const mockLockers = {};
-    for(let i = 0; i < noOfLockers; i++) {
-      mockLockers[`locker-${i}`] = _generateValue(DEFAULT_LOCK_STATE, "");
+    const initialLockers = {};
+    for(let i = 0; i < lockerStatuses.length; i++) {
+      const locker = lockerStatuses[i];
+      initialLockers[locker.lockerId] = _generateValue(
+        (locker.status? locker.status:DEFAULT_LOCK_STATE),
+        (locker.orderId? locker.orderId:""));
     }
+
     setOrders(availOrderIds);
-    setLockers(mockLockers);
+    setLockers(initialLockers);
   }, []);
 
   const _generateValue = (state:string, orderId: string) => {
@@ -226,7 +230,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     BACKEND_SERVER
   } = process.env;
 
-  const availOrderIds = await fetch(`${BACKEND_SERVER}/api/locker/order/${BUSINESS_PARTNER_ID}/${PARTNER_ID}`, {
+  const availOrderIds = await fetch(`${BACKEND_SERVER}/api/locker/${BUSINESS_PARTNER_ID}/${PARTNER_ID}/orders`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    referrerPolicy: 'no-referrer'
+  }).then(res => res.json());
+
+  const lockStatuses = await fetch(`${BACKEND_SERVER}/api/locker/${BUSINESS_PARTNER_ID}/${PARTNER_ID}/locks`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -243,7 +255,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       businessPartnerId: BUSINESS_PARTNER_ID,
       partnerId: PARTNER_ID,
       backendServer: BACKEND_SERVER,
-      availOrderIds: (availOrderIds.orders? availOrderIds.orders:[])
+      availOrderIds: (availOrderIds.orders? availOrderIds.orders:[]),
+      lockerStatuses: (lockStatuses.locks? lockStatuses.locks:[])
     },
   }
 };
