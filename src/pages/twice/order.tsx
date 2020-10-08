@@ -62,7 +62,7 @@ const Order:SFC<IOrder> = ({backendServer, businessPartnerId, partnerId}) => {
       "contact_info": contactInfo
     };
 
-    fetch(`${backendServer}/api/locker/order/${businessPartnerId}/${partnerId}`, {
+    fetch(`${backendServer}/api/locker/${businessPartnerId}/${partnerId}/order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
