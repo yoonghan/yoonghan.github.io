@@ -4,10 +4,10 @@ import {BUSINESS_PARTNER_ID, PARTNER_ID, PUSHER} from "../../shared/const";
 import { GetServerSideProps } from 'next'
 
 interface ILockers {
-  noOfLockers: number;
+
 }
 
-const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds, lockerStatuses}) => {
+const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds, lockerStatuses}) => {
   const DEFAULT_LOCK_STATE = 'unlock';
   const [lockers, setLockers] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
@@ -128,7 +128,7 @@ const Locker:SFC<ILockers> = ({noOfLockers, businessPartnerId, partnerId, appKey
       "state": _changeLockState(lockerId)
     };
 
-    fetch(`${backendServer}/api/locker/trigger/${businessPartnerId}/${partnerId}`, {
+    fetch(`${backendServer}/api/locker/${businessPartnerId}/${partnerId}/trigger`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -251,7 +251,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       appKey: TWICE_NONAUTH_APP_KEY,
       channelName: TWICE_CHANNEL_NAME,
       cluster: PUSHER_CLUSTER,
-      noOfLockers: 3,
       businessPartnerId: BUSINESS_PARTNER_ID,
       partnerId: PARTNER_ID,
       backendServer: BACKEND_SERVER,
