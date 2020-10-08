@@ -118,4 +118,13 @@ export default css.global`
   h1 {
     color: rgb(255, 132, 0);
   }
+  @keyframes fade {
+      from { opacity: 1.0; }
+      50% { opacity: 0.5; }
+      to { opacity: 1.0; }
+  }
+  .animate-blink {
+    animation:fade 1000ms infinite;
+    -webkit-animation:fade 1000ms infinite;
+  }
 `
