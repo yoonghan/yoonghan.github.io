@@ -30,9 +30,6 @@ const Index:SFC<any> = ({backendServer}) => {
     })
   }
 
-  const _runServerCheck = () => {
-  }
-
   useEffect(() => {
     if(!ready && retryCounter < allowedRetries) {
       setTimeout(_doMonitorCheck, retryWaitInterval)
