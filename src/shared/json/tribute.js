@@ -53,6 +53,21 @@ const tribute = [
     "1": "ImageOptim",
     "2": "For image optimization",
     "3": "https://imageoptim.com"
+  },
+  {
+    "1": "Tinypng",
+    "2": "For image optimization",
+    "3": "https://tinypng.com"
+  },
+  {
+    "1": "Svg spreact",
+    "2": "Combining SVG into sprite",
+    "3": "https://svgsprit.es/"
+  },
+  {
+    "1": "Convertio",
+    "2": "Convert image",
+    "3": "https://convertio.co/"
   }
 ];
 

@@ -10,10 +10,11 @@ interface IPortal {
   closeCallback: (e?:any) => void;
   clickLocationX: number;
   clickLocationY: number;
-  imgSrc: string;
+  imgJpgSrc: string;
+  imgWebpSrc: string;
 }
 
-const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY, imgSrc}) => {
+const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY, imgJpgSrc, imgWebpSrc}) => {
   const el = React.useMemo(() => document.createElement('div'), []);
   const graphRef = React.useRef<HTMLImageElement>(null);
   const portalRef = React.useRef<HTMLDivElement>(null);
@@ -103,18 +104,21 @@ const Portal:React.FC<IPortal> = ({closeCallback, clickLocationX, clickLocationY
     }
   }
 
-
   const drawPortal = () => (
     <div
       className="portal"
       ref={portalRef}>
-      <img
-        id="imgid"
-        alt="portal-img"
-        src={imgSrc}
-        ref={graphRef}
-        onLoad={zoomIntoImage}
-        className="hidden-image" />
+      <picture>
+        <source srcSet={imgWebpSrc} type="image/webp" />
+        <source srcSet={imgJpgSrc} type="image/jpg" />
+        <img
+          id="imgid"
+          alt="portal-img"
+          src={imgJpgSrc}
+          ref={graphRef}
+          onLoad={zoomIntoImage}
+          className="hidden-image" />
+      </picture>
       <div className="overlay-container"
         ref={overlayRef}
         ></div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import dynamic from "next/dynamic";
 import RequestInput from "./RequestInput";
+import dynamic from "next/dynamic";
+import NoSSR from 'react-no-ssr';
 
 const QrReaderLib = dynamic(
   () => import("react-qr-reader"),
@@ -106,7 +107,7 @@ const QrReader:React.SFC<IQrReader> = ({callback}) => {
   }, [scanError, counter]);
 
   return (
-    <div>{_renderInputRequest(_getState())}</div>
+    <><NoSSR><div>{_renderInputRequest(_getState())}</div></NoSSR></>
   )
 }
 

@@ -8,7 +8,8 @@ export enum EnumAssetLoader {
 
 interface IAsset {
   type: EnumAssetLoader;
-  src: string;
+  webpSrc: string;
+  pngSrc: string;
 }
 
 interface IAssetLoader {
@@ -20,54 +21,68 @@ interface IAssetLoader {
 const AssetLoader: React.FC<IAssetLoader> =
   ({assetsSrcToLoad, allAssetLoadedCallback, percentageLoad}) => {
   const [assetLoadedCount, setAssetLoadedCount] = React.useState(0);
+  const [assetsCreated, setAssetsCreated] = React.useState<Array<any>|null>(null);
 
   React.useEffect(()=> {
-    if(assetLoadedCount === assetsSrcToLoad.length) {
+    const total = _sumCompleted(assetsCreated);
+    if(total === assetsSrcToLoad.length) {
       if(allAssetLoadedCallback)
         allAssetLoadedCallback();
     }
     if(percentageLoad) {
-      let percentageShown = Math.floor(assetLoadedCount / assetsSrcToLoad.length * 100);
+      let percentageShown = Math.floor(total / assetsSrcToLoad.length * 100);
       percentageShown = percentageShown > 100?100:percentageShown;
       percentageLoad(percentageShown);
     }
   }, [assetLoadedCount]);
 
   React.useEffect(()=> {
-    const images = Array.from(document.querySelectorAll('.image-loader'));
-    var total = 0;
-    for(let i=0; i<images.length; i++) {
-      total += (images[i] as HTMLImageElement).complete?1: 0;
-    }
-    setAssetLoadedCount(total);
+    const assets = _loadAssets();
+    setAssetLoadedCount(_sumCompleted(assets));
+    setAssetsCreated(assets);
   }, []);
 
-  const loadAsset = (assetSrcToLoad:IAsset) => {
+  const _sumCompleted = (assets:Array<any>|null) => {
+    var total = 0;
+
+    if(assets === null) {
+      return 0;
+    }
+
+    for(let i=0; i<assets.length; i++) {
+      if(assets[i] !== null) {
+        total += (assets[i] as HTMLImageElement).complete?1: 0;
+      }
+      else {
+        total += 1;
+      }
+    }
+    return total;
+  }
+
+  const _updateAsset = () => {
+    setAssetLoadedCount(assetLoadedCount + 1)
+  }
+
+  const buildAsset = (assetSrcToLoad:IAsset) => {
     switch(assetSrcToLoad.type) {
       case EnumAssetLoader.IMAGE:
-        return (<img
-          alt={"walcron-load"}
-          src={assetSrcToLoad.src}
-          className="image-loader"
-          onLoad={()=>{setAssetLoadedCount(assetLoadedCount + 1)}}
-          onError={()=>{setAssetLoadedCount(assetLoadedCount + 1)}}
-          />);
+        var img = new Image();
+        img.src = assetSrcToLoad.webpSrc; //fine to load only webp image.
+        img.onload = _updateAsset;
+        img.onerror = _updateAsset;
+        return img;
       default:
-        return (<div></div>);
+        return null;
     }
   }
 
   const _loadAssets = () => {
-    return assetsSrcToLoad.map((assetSrcToLoad, i) => (
-      <div key={`asset_${i}`}>
-        {loadAsset(assetSrcToLoad)}
-      </div>
-    ))
+    return assetsSrcToLoad.map((assetSrcToLoad) => buildAsset(assetSrcToLoad))
   }
 
   return (
     <div style={{"display": "none"}}>
-      {_loadAssets()}
     </div>
   )
 }
