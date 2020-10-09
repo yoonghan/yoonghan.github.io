@@ -37,10 +37,6 @@ const Index:SFC<any> = ({backendServer}) => {
     }
   }, [retryCounter, ready]);
 
-  useEffect(() => {
-    _doMonitorCheck()
-  }, []);
-
   const _drawnLockDialog = useMemo(() => (
     <form method="GET" action="/twice/locker">
       <fieldset disabled={!ready}>
