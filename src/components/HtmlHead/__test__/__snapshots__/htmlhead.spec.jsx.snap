@@ -30,6 +30,7 @@ exports[`Header renders normally 1`] = `
       
                 html {
                   scroll-behavior: smooth;
+                  min-width: 320px;
                 }
                 body {
                   background: #000 url(/img/bg/type1.jpg) no-repeat left bottom;
@@ -95,6 +96,7 @@ exports[`Header renders with nofontawesome normally 1`] = `
       
                 html {
                   scroll-behavior: smooth;
+                  min-width: 320px;
                 }
                 body {
                   background: #000 url(/img/bg/type1.jpg) no-repeat left bottom;

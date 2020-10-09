@@ -9,7 +9,7 @@ export enum EnumAssetLoader {
 interface IAsset {
   type: EnumAssetLoader;
   webpSrc: string;
-  pngSrc: string;
+  jpgSrc: string;
 }
 
 interface IAssetLoader {
@@ -23,8 +23,22 @@ const AssetLoader: React.FC<IAssetLoader> =
   const [assetLoadedCount, setAssetLoadedCount] = React.useState(0);
   const [assetsCreated, setAssetsCreated] = React.useState<Array<any>|null>(null);
 
+  React.useEffect(() => {
+    if(assetsCreated === null) {
+      return;
+    }
+
+    for(let i=0; i<assetsCreated.length; i++) {
+      if(assetsCreated[i] !== null) {
+        const img = (assetsCreated[i] as HTMLImageElement);
+        img.onload = _updateAsset;
+        img.onerror = _updateAsset;
+      }
+    }
+  }, [assetsCreated]);
+
   React.useEffect(()=> {
-    const total = _sumCompleted(assetsCreated);
+    const total = assetLoadedCount;
     if(total === assetsSrcToLoad.length) {
       if(allAssetLoadedCallback)
         allAssetLoadedCallback();
@@ -61,16 +75,15 @@ const AssetLoader: React.FC<IAssetLoader> =
   }
 
   const _updateAsset = () => {
-    setAssetLoadedCount(assetLoadedCount + 1)
+    const total = _sumCompleted(assetsCreated);
+    setAssetLoadedCount(total);
   }
 
   const buildAsset = (assetSrcToLoad:IAsset) => {
     switch(assetSrcToLoad.type) {
       case EnumAssetLoader.IMAGE:
         var img = new Image();
-        img.src = assetSrcToLoad.webpSrc; //fine to load only webp image.
-        img.onload = _updateAsset;
-        img.onerror = _updateAsset;
+        img.src = assetSrcToLoad.jpgSrc; //load only png source
         return img;
       default:
         return null;
@@ -82,8 +95,7 @@ const AssetLoader: React.FC<IAssetLoader> =
   }
 
   return (
-    <div style={{"display": "none"}}>
-    </div>
+    <></>
   )
 }
 
