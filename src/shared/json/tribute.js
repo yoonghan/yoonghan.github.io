@@ -68,7 +68,17 @@ const tribute = [
     "1": "Convertio",
     "2": "Convert image",
     "3": "https://convertio.co/"
-  }
+  },
+  {
+    "1": "Mobile compatibiliy",
+    "2": "Benchmark to test if site is mobile friendly",
+    "3": "https://search.google.com/test/mobile-friendly"
+  },
+  {
+    "1": "SVGO",
+    "2": "Optimize svg, have not use it yet",
+    "3": "https://github.com/svg/svgo"
+  },
 ];
 
 export default tribute;
