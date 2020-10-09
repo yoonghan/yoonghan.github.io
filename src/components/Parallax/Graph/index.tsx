@@ -5,10 +5,11 @@ import Button from "../../Button";
 import Portal from "./Portal";
 
 interface IPortal {
-  graphImg: string;
+  graphWebpImg: string;
+  graphJpgImg: string;
 }
 
-const Graph:React.FC<IPortal> = ({graphImg}) => {
+const Graph:React.FC<IPortal> = ({graphJpgImg, graphWebpImg}) => {
   const [showPortal, setShowPortal] = React.useState({show:false, x:0, y:0});
 
   const toggleShowPortal = (e:any) => {
@@ -35,10 +36,19 @@ const Graph:React.FC<IPortal> = ({graphImg}) => {
             href={"/motivation"}
             color={'rgba(51,153,67)'}
             >Motivation</Button>
-        <img src={graphImg} className="hidden-preload" alt="graph-img"/>
+        <picture>
+          <source srcSet={graphWebpImg} type="image/webp" />
+          <source srcSet={graphJpgImg} type="image/jpg" />
+          <img
+            id="imgid"
+            alt="portal-img"
+            src={graphJpgImg}
+            className="hidden-preload" />
+        </picture>
         {showPortal.show &&
           <Portal
-            imgSrc={graphImg}
+            imgJpgSrc={graphJpgImg}
+            imgWebpSrc={graphWebpImg}
             closeCallback={toggleShowPortal}
             clickLocationX={showPortal.x}
             clickLocationY={showPortal.y}
