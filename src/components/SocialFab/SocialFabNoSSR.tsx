@@ -21,28 +21,43 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
 
   return (
     <div className="fab">
-      <span className="fab-action-button">
-          <i className="fab-action-button__icon"></i>
-      </span>
+      <div className="fab-action-button">
+        <svg className="fab-action-button__icon">
+          <use xlinkHref="/img/social/social-sprite.svg#action"></use>
+        </svg>
+      </div>
       <ul className="fab-buttons">
         <li className="fab-buttons__item">
-          <a className="fab-buttons__link" target="onnew" href="https://github.com/yoonghan/Walcron">
+          <a className="fab-buttons__link" target="onnew" href="//www.linkedin.com/in/han-yoong-33755361/">
+            <svg className="fab-action-button__icon">
+              <use xlinkHref="/img/social/social-sprite.svg#linkedin"></use>
+            </svg>
+          </a>
+        </li>
+        <li className="fab-buttons__item">
+          <a className="fab-buttons__link" target="onnew" href="//github.com/yoonghan/Walcron">
             <i className="icon-material icon-material_git"></i>
           </a>
         </li>
         <li className="fab-buttons__item">
-          <a className="fab-buttons__link" target="onnew" href="https://stackoverflow.com/users/3893990/han">
-            <i className="icon-material icon-material_so"></i>
+          <a className="fab-buttons__link" target="onnew" href="//stackoverflow.com/users/3893990/han">
+            <svg className="fab-action-button__icon">
+              <use xlinkHref="/img/social/social-sprite.svg#so"></use>
+            </svg>
           </a>
         </li>
         <li className="fab-buttons__item">
-          <a className="fab-buttons__link" target="onnew" href="https://www.facebook.com/walcron.coorperation">
-            <i className="icon-material icon-material_fb"></i>
+          <a className="fab-buttons__link" target="onnew" href="//www.facebook.com/walcron.coorperation">
+            <svg className="fab-action-button__icon">
+              <use xlinkHref="/img/social/social-sprite.svg#fb"></use>
+            </svg>
           </a>
         </li>
         <li className="fab-buttons__item">
           <a className="fab-buttons__link" onClick={onOpenEmail}>
-            <i className="icon-material icon-material_gm"></i>
+            <svg className="fab-action-button__icon">
+              <use xlinkHref="/img/social/social-sprite.svg#gm"></use>
+            </svg>
           </a>
         </li>
       </ul>
@@ -85,7 +100,9 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
           .fab-action-button {
             position: absolute;
             bottom: 0;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 56px;
             height: 56px;
             background-color: #000;
@@ -108,9 +125,8 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
 
           .fab-action-button__icon {
             display: inline-block;
-            width: 56px;
-            height: 56px;
-            background: url("/img/social/action.svg") center no-repeat;
+            width: 40px;
+            height: 40px;
           }
 
           .fab-buttons__item {
@@ -140,25 +156,9 @@ const SocialFabNoSSR: React.SFC<SocialFabNoSSRProps> = ({}) => {
             height: 40px;
           }
 
-          .icon-material_fb {
-            background: url("/img/social/fb.svg") center no-repeat;
-          }
-
-          .icon-material_gm {
-            background: url("/img/social/gm.svg") center no-repeat;
-          }
-
-          .icon-material_so {
-            background: url("/img/social/so.svg") center no-repeat;
-          }
-
           .icon-material_git {
             background: url("/img/social/git.png") center no-repeat;
             background-size: 38px;
-          }
-
-          .icon-material_li {
-            background: url("/img/social/linkedin.svg") center no-repeat;
           }
         `}
       </style>
