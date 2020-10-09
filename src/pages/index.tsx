@@ -61,11 +61,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [{}, {}, isTwaApp] = usePwaHooks(true);
 
   const assetsToLoad = [
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/fg-left.jpg"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/walcron-authors.jpg"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/profile/han.jpg"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/profile/gladys.jpg"},
-    {type: EnumAssetLoader.IMAGE, src:"/img/welcome/connection.png"}
+    {type: EnumAssetLoader.IMAGE, pngSrc:"/img/welcome/fg-left.jpg", webpSrc:"/img/welcome/walcron-authors.webp"},
+    {type: EnumAssetLoader.IMAGE, pngSrc:"/img/welcome/walcron-authors.jpg", webpSrc:"/img/welcome/walcron-authors.webp"}
   ];
 
   const _termsRead = (termsRead == 'true');
@@ -123,7 +120,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                   </ParallaxPlainSection>
                   <ParallaxFigure
                     imageAlt="yoong-han"
-                    imageSrc="/img/profile/han.jpg">
+                    imageJpgSrc="/img/profile/han.jpg"
+                    imageWebpSrc="/img/profile/han.webp">
                     <div className="section-profile-title">
                       <div>01</div>
                       <h3>Han Yoong</h3>
@@ -135,7 +133,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                   </ParallaxFigure>
                   <ParallaxFigure
                     imageAlt="gladys-lee-wan"
-                    imageSrc="/img/profile/gladys.jpg"
+                    imageJpgSrc="/img/profile/gladys.jpg"
+                    imageWebpSrc="/img/profile/gladys.webp"
                     isImagePositionOnRight={true}
                     >
                     <div className="section-profile-title right">
@@ -150,7 +149,9 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                 </div>
               </div>
               <ParallaxGraph
-                graphImg="/img/welcome/walcron-roadmap.jpg"/>
+                graphWebpImg="/img/welcome/walcron-roadmap.webp"
+                graphJpgImg="/img/welcome/walcron-roadmap.jpg"
+                />
               <div className="info-container relative">
                 <ParallaxPlainSection title="Are we freelance for hire ?">
                   <div className="section1">
@@ -194,7 +195,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
                 <ParallaxPlainSection title="Behind the scenes">
                   <Video
                     src="/mov/welcome.mp4"
-                    imgSrc="/img/welcome/girl-in-glass.jpg"
+                    imgJpgSrc="/img/welcome/girl-in-glass.jpg"
+                    imgWebpSrc="/img/welcome/girl-in-glass.jpg"
                     imgAlt="women in a len"
                     preload="none"
                   />

@@ -4,12 +4,13 @@ import * as React from "react";
 
 interface IVideo {
   src: string;
-  imgSrc: string;
+  imgJpgSrc: string;
+  imgWebpSrc: string;
   imgAlt: string;
   preload?: string;
 }
 
-const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, preload}) => {
+const Video:React.FC<IVideo> = ({src, imgJpgSrc, imgWebpSrc, imgAlt, preload}) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [sound, setSound] = React.useState(false);
   const [isPlaying, setPlaying] = React.useState(false);
@@ -61,7 +62,11 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, preload}) => {
         onClick={_toggleSoundAndPlay}
         onMouseOver={_hoverVideo}
         onMouseOut={_hideVideo}>
-        <img src={imgSrc} alt={imgAlt} />
+        <picture>
+          <source srcSet={imgWebpSrc} type="image/webp" />
+          <source srcSet={imgJpgSrc} type="image/jpg" />
+          <img src={imgJpgSrc} alt={imgAlt} />
+        </picture>
         <div className="overlay"><i className="fas fa-play-circle"></i></div>
         <video
           loop
@@ -101,7 +106,7 @@ const Video:React.FC<IVideo> = ({src, imgSrc, imgAlt, preload}) => {
           position: relative;
           max-width: 360px;
         }
-        .container-video > img {
+        .container-video > img, .container-video > picture > img {
           width: 100%;
           height: auto;
           display: block;

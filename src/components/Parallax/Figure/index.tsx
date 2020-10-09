@@ -6,11 +6,12 @@ import globalStyles from '../../../shared/style';
 
 interface IFigure {
   imageAlt: string;
-  imageSrc: string;
+  imageJpgSrc: string;
+  imageWebpSrc: string;
   isImagePositionOnRight?: boolean;
 }
 
-const Figure:React.FC<IFigure> = ({imageAlt, imageSrc, isImagePositionOnRight, children}) => {
+const Figure:React.FC<IFigure> = ({imageAlt, imageJpgSrc, imageWebpSrc, isImagePositionOnRight, children}) => {
   const markAndIndicator = useRef<HTMLDivElement>(null);
 
   const [animatedClassName, setAnimatedClassName] = useState("");
@@ -42,10 +43,14 @@ const Figure:React.FC<IFigure> = ({imageAlt, imageSrc, isImagePositionOnRight, c
     <>
       <div className={"container " + (isImagePositionOnRight?"inverse":"")}>
         <div className="figure">
-          <img
-            alt={imageAlt}
-            src={imageSrc}
-            className={"figure-border default-animate-height " + animatedClassName}/>
+          <picture className={"figure-border default-animate-height " + animatedClassName}>
+            <source srcSet={imageWebpSrc} type="image/webp" />
+            <source srcSet={imageJpgSrc} type="image/jpg" />
+            <img
+              alt={imageAlt}
+              src={imageJpgSrc}
+              className={"figure-border default-animate-height " + animatedClassName}/>
+          </picture>
         </div>
         <div
             className={"figure-caption default-animate-margin " + animatedClassName}
