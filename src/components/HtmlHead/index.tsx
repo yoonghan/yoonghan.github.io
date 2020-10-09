@@ -38,6 +38,7 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
         <style>{`
           html {
             scroll-behavior: smooth;
+            min-width: 320px;
           }
           body {
             background: #000 ${noBackground?'none':'url(/img/bg/type1.jpg)'} no-repeat left bottom;
