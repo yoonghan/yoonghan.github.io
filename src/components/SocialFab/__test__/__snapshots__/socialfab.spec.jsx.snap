@@ -5,33 +5,48 @@ exports[`SocialFab renders lazy normally 1`] = `
   <NoSSR>
     <Suspense fallback={{...}}>
       <SocialFabNoSSR>
-        <div className=\\"jsx-1029727041 fab\\">
-          <span className=\\"jsx-1029727041 fab-action-button\\">
-            <i className=\\"jsx-1029727041 fab-action-button__icon\\" />
-          </span>
-          <ul className=\\"jsx-1029727041 fab-buttons\\">
-            <li className=\\"jsx-1029727041 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://github.com/yoonghan/Walcron\\" className=\\"jsx-1029727041 fab-buttons__link\\">
-                <i className=\\"jsx-1029727041 icon-material icon-material_git\\" />
+        <div className=\\"jsx-3835316992 fab\\">
+          <div className=\\"jsx-3835316992 fab-action-button\\">
+            <svg className=\\"jsx-3835316992 fab-action-button__icon\\">
+              <use xlinkHref=\\"/img/social/social-sprite.svg#action\\" className=\\"jsx-3835316992\\" />
+            </svg>
+          </div>
+          <ul className=\\"jsx-3835316992 fab-buttons\\">
+            <li className=\\"jsx-3835316992 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"//www.linkedin.com/in/han-yoong-33755361/\\" className=\\"jsx-3835316992 fab-buttons__link\\">
+                <svg className=\\"jsx-3835316992 fab-action-button__icon\\">
+                  <use xlinkHref=\\"/img/social/social-sprite.svg#linkedin\\" className=\\"jsx-3835316992\\" />
+                </svg>
               </a>
             </li>
-            <li className=\\"jsx-1029727041 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://stackoverflow.com/users/3893990/han\\" className=\\"jsx-1029727041 fab-buttons__link\\">
-                <i className=\\"jsx-1029727041 icon-material icon-material_so\\" />
+            <li className=\\"jsx-3835316992 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"//github.com/yoonghan/Walcron\\" className=\\"jsx-3835316992 fab-buttons__link\\">
+                <i className=\\"jsx-3835316992 icon-material icon-material_git\\" />
               </a>
             </li>
-            <li className=\\"jsx-1029727041 fab-buttons__item\\">
-              <a target=\\"onnew\\" href=\\"https://www.facebook.com/walcron.coorperation\\" className=\\"jsx-1029727041 fab-buttons__link\\">
-                <i className=\\"jsx-1029727041 icon-material icon-material_fb\\" />
+            <li className=\\"jsx-3835316992 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"//stackoverflow.com/users/3893990/han\\" className=\\"jsx-3835316992 fab-buttons__link\\">
+                <svg className=\\"jsx-3835316992 fab-action-button__icon\\">
+                  <use xlinkHref=\\"/img/social/social-sprite.svg#so\\" className=\\"jsx-3835316992\\" />
+                </svg>
               </a>
             </li>
-            <li className=\\"jsx-1029727041 fab-buttons__item\\">
-              <a onClick={[Function: onOpenEmail]} className=\\"jsx-1029727041 fab-buttons__link\\">
-                <i className=\\"jsx-1029727041 icon-material icon-material_gm\\" />
+            <li className=\\"jsx-3835316992 fab-buttons__item\\">
+              <a target=\\"onnew\\" href=\\"//www.facebook.com/walcron.coorperation\\" className=\\"jsx-3835316992 fab-buttons__link\\">
+                <svg className=\\"jsx-3835316992 fab-action-button__icon\\">
+                  <use xlinkHref=\\"/img/social/social-sprite.svg#fb\\" className=\\"jsx-3835316992\\" />
+                </svg>
+              </a>
+            </li>
+            <li className=\\"jsx-3835316992 fab-buttons__item\\">
+              <a onClick={[Function: onOpenEmail]} className=\\"jsx-3835316992 fab-buttons__link\\">
+                <svg className=\\"jsx-3835316992 fab-action-button__icon\\">
+                  <use xlinkHref=\\"/img/social/social-sprite.svg#gm\\" className=\\"jsx-3835316992\\" />
+                </svg>
               </a>
             </li>
           </ul>
-          <JSXStyle id=\\"1029727041\\" />
+          <JSXStyle id=\\"3835316992\\" />
         </div>
       </SocialFabNoSSR>
     </Suspense>
