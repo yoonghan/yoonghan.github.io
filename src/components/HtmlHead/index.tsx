@@ -11,25 +11,6 @@ interface HtmlHeadProps {
 }
 
 export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawesome, noBackground}) => {
-  const _runPreload = () => {
-    const scriptElement = document.getElementById('id-scripts');
-    const elements = document.getElementsByTagName("link");
-    for(let i=0; i<elements.length; i++) {
-      const element = elements[i];
-
-      if(element.rel==="preload" && element.as==="style") {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = element.href;
-        scriptElement!.appendChild(link);
-      }
-    }
-  }
-
-  React.useEffect(() => {
-    setTimeout(_runPreload, 50);
-  },[]);
-
   return (
     <div id="id-scripts">
       <Head>
@@ -50,9 +31,9 @@ export const HtmlHead:React.FC<HtmlHeadProps> = ({title, description, nofontawes
         <link rel="apple-touch-icon" href="/pwa/apple-icon.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/pwa/apple-icon-152x152.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-icon-180x180.png" />
-        <link rel="preload" as="style" href="/css/common.css" key="int_common" />
-        <link rel="preload" as="style" href="/css/font.css" key="int_font"/>
-        {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" key="font"></link>)}
+        <link rel="preload" as="style" href="/css/common.css" key="int_common" onload={"this.rel='stylesheet'"}/>
+        <link rel="preload" as="style" href="/css/font.css" key="int_font" onload={"this.rel='stylesheet'"}/>
+        {!nofontawesome && (<link rel="preload" as="style" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" onload={"this.rel='stylesheet'"}></link>)}
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <style>{`
           html {
