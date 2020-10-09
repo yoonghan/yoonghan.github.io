@@ -61,8 +61,8 @@ const Main: StatelessPage<IMainProps> = ({termsRead}) => {
   const [{}, {}, isTwaApp] = usePwaHooks(true);
 
   const assetsToLoad = [
-    {type: EnumAssetLoader.IMAGE, pngSrc:"/img/welcome/fg-left.jpg", webpSrc:"/img/welcome/walcron-authors.webp"},
-    {type: EnumAssetLoader.IMAGE, pngSrc:"/img/welcome/walcron-authors.jpg", webpSrc:"/img/welcome/walcron-authors.webp"}
+    {type: EnumAssetLoader.IMAGE, jpgSrc:"/img/welcome/fg-left.jpg", webpSrc:"/img/welcome/walcron-authors.webp"},
+    {type: EnumAssetLoader.IMAGE, jpgSrc:"/img/welcome/walcron-authors.jpg", webpSrc:"/img/welcome/walcron-authors.webp"}
   ];
 
   const _termsRead = (termsRead == 'true');
