@@ -22,8 +22,9 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     try{
       const messageInJson = JSON.parse(msg);
       const newState = {};
-      const newOrderId = (messageInJson.state === DEFAULT_LOCK_STATE? '': messageInJson.orderId);
-      newState[messageInJson.lockerId] = _generateValue(messageInJson.state, newOrderId);
+      const _state = messageInJson.state.split[0] !== 'unlocked' ? DEFAULT_LOCK_STATE: messageInJson.state;
+      const newOrderId = (_state === DEFAULT_LOCK_STATE? '': messageInJson.orderId);
+      newState[messageInJson.lockerId] = _generateValue(_state, newOrderId);
       setLockers(oldLockers => {return {...oldLockers, ...newState}});
     } catch(e) {
       //console.error(e);
@@ -44,6 +45,13 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
         case "Order Placed":
           currentOrders.push(messageInJson.order_id);
           setOrders(currentOrders);
+          break;
+        case "Taken":
+          const idxFound = currentOrders.indexOf(messageInJson.order_id)
+          if(idxFound !== -1) {
+            currentOrders.splice(idxFound, 1);
+            setOrders(currentOrders);
+          }
           break;
       }
     } catch(e) {
@@ -110,6 +118,7 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
       case "locked":
         return "unlock"
       case "unlocked":
+      case "unlocked complete":
         return "lock"
       default:
         return "updating";
@@ -124,7 +133,8 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
   }
 
   const _isLockerUpdating = (state:string) => {
-    return state === "lock" || state === "unlock"
+    const _state = state.split(' ')[0];
+    return _state === "lock" || _state === "unlock"
   }
 
   const _submitLocker = (lockerId:string) => (event:any) => {
