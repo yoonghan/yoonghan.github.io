@@ -4,13 +4,17 @@ import {BUSINESS_PARTNER_ID, PARTNER_ID, PUSHER} from "../../shared/const";
 import { GetServerSideProps } from 'next'
 
 interface ILockers {
+  [key: string]: ILocker;
+}
 
+interface ILocker {
+  state: string;
+  orderId: string;
 }
 
 const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, channelName, backendServer, availOrderIds, lockerStatuses}) => {
-  const DEFAULT_LOCK_STATE = 'unlock';
-  const [lockers, setLockers] = useState({});
-  const [isUpdating, setIsUpdating] = useState(false);
+  const DEFAULT_LOCK_STATE = 'unlocked';
+  const [lockers, setLockers] = useState<ILockers>({});
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]);
 
@@ -93,16 +97,23 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     setLockers(initialLockers);
   }, []);
 
-  const _generateValue = (state:string, orderId: string) => {
+  const _generateValue = (state:string, orderId: string):ILocker => {
     return {state, orderId};
   }
 
   const _changeLockState = (lockerId:string) => {
-    return lockers[lockerId].state === "lock"?"unlock":"lock";
+    return (lockers[lockerId].state === "locked"|| lockers[lockerId].state === "lock")?"unlock":"lock";
   }
 
   const _lockToBeState = useCallback((state:string) => {
-    return state === "lock"?"unlock":"lock";
+    switch(state) {
+      case "locked":
+        return "unlock"
+      case "unlocked":
+        return "lock"
+      default:
+        return "updating";
+    }
   }, [lockers]);
 
   const _updateValue = (lockerId:string) => (event:any) => {
@@ -112,14 +123,16 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     setLockers({...lockers, ...newState});
   }
 
+  const _isLockerUpdating = (state:string) => {
+    return state === "lock" || state === "unlock"
+  }
+
   const _submitLocker = (lockerId:string) => (event:any) => {
     event.preventDefault();
 
     if (lockers[lockerId].orderId.trim() === '') {
       return;
     }
-
-    setIsUpdating(true);
 
     const command = {
       "origin": "web",
@@ -138,7 +151,7 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     })
     .then(response => response.json)
     .then(response => {
-      setIsUpdating(false);
+
     });
 
     return false;
@@ -154,7 +167,7 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
       const orderId = value.orderId;
       drawnLockers.push(
         <form key={`${key}`} onSubmit={_submitLocker(key)}>
-          <fieldset disabled={isUpdating}>
+          <fieldset disabled={_isLockerUpdating(value.state)}>
             <legend className="screen-reader-only">#{key}</legend>
 
             <div className="container" >
@@ -180,16 +193,16 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     }
 
     return drawnLockers;
-  }, [lockers, isUpdating, orders]);
+  }, [lockers, orders]);
 
   const _drawDebug = useCallback(() => {
-    if(isUpdating) {
-      return "Sending orderid and locking basket.";
+    for (const [key, value] of Object.entries(lockers)) {
+      if(_isLockerUpdating(value.state)) {
+        return "Sending orderid and locking basket.";
+      }
     }
-    else {
-      return "Awaiting next update.";
-    }
-  }, [isUpdating]);
+    return "Awaiting next update.";
+  }, [lockers]);
 
   const _drawnMessages = useCallback(() => {
     const elems = messages.map((elem, idx) => <li key={`msg-${idx}`}>{elem}</li>);
