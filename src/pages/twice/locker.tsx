@@ -22,7 +22,7 @@ const Locker:SFC<ILockers> = ({businessPartnerId, partnerId, appKey, cluster, ch
     try{
       const messageInJson = JSON.parse(msg);
       const newState = {};
-      const _state = messageInJson.state.split[0] !== 'unlocked' ? DEFAULT_LOCK_STATE: messageInJson.state;
+      const _state = messageInJson.state.split[0] === DEFAULT_LOCK_STATE ? DEFAULT_LOCK_STATE: messageInJson.state;
       const newOrderId = (_state === DEFAULT_LOCK_STATE? '': messageInJson.orderId);
       newState[messageInJson.lockerId] = _generateValue(_state, newOrderId);
       setLockers(oldLockers => {return {...oldLockers, ...newState}});
