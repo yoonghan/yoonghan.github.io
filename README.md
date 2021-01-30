@@ -19,6 +19,7 @@ If there are missing webpack installation, manually execute 'npm install next'
 ```
   npm install -g now-cli
   now dev
+  # in ubuntu run 'npm run dev'
 ```
 
 
