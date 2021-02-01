@@ -8,7 +8,7 @@ interface IFooter {
 const Footer: React.SFC<IFooter> = ({isRelative}) => {
   return (
     <footer style={isRelative?{'position':'relative'}: {}}>
-      <span>Walcron</span> 2014-<span id="footer-year">2020</span> &copy;
+      <span>Walcron</span> 2014-<span id="footer-year">2021</span> &copy;
     </footer>
   );
 }
