@@ -100,7 +100,7 @@ npm test
 ```
 
 ## Allowing PWA (offline website)
-Defaulted into production.
+Defaulted into production. To create an APK workable, install bubblewarp https://github.com/GoogleChromeLabs/bubblewrap/blob/main/packages/cli/README.md
 
 ## Understanding now.json for deployment.
 Incase there is a wonder AUTH_API_CALL is needed and there are 2 different build info for
