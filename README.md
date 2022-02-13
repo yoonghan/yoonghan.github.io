@@ -61,7 +61,8 @@ now secrets add auth-api-call http://localhost:3000
 #now secrets add kafka-broker-password mustadd
 
 now secrets add pusher-cluster ap1
-npm run deploy
+now deploy
+#now deploy --prod
 ```
 
 ## Deployment from Windows server to Unix System.
