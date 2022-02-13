@@ -75,7 +75,7 @@
     "react-autosuggest": "^10.0.2",
     "react-bell-chat": "^1.0.23",
     "react-coverflow": "^0.2.20",
-    "react-dropzone": "^11.0.3",
+    "react-dropzone": "^11.3.4",
     "react-helmet": "^6.1.0",
     "react-resize-detector": "^5.0.7",
     "react-spring": "^8.0.27",
