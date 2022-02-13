@@ -46,7 +46,6 @@ const uploadIntoSystem = async (req: NextApiRequest, res: NextApiResponse) => {
   const uuid = uuidv4();
   const storageBucket = ApiController.getFirebaseInitializeApp().storage().bucket();
   const option = {
-    //predefinedAcl: 'publicRead',
     gzip: true,
     metadata: {
       contentType: '',
