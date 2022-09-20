@@ -1,4 +1,6 @@
-# Next.js + Jest
+# Walcron, a personal website
+
+[![codecov](https://codecov.io/gh/yoonghan/Walcron/branch/master/graph/badge.svg?token=VXHPJSPNA1)](https://codecov.io/gh/yoonghan/Walcron)
 
 This example shows how to configure Jest to work with Next.js.
 
