@@ -31,7 +31,7 @@ pnpm create next-app --example with-jest with-jest-app
 npm test
 ```
 
-[build-badge]: https://img.shields.io/github/yoonghan/status/Walcron/react-testing-library/validate?logo=github&style=flat-square
+[build-badge]: https://img.shields.io/github/workflow/status/yoonghan/Walcron/validator?logo=github&style=flat-square
 [build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
 [coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan/Walcron.svg?style=flat-square
 [coverage]: https://codecov.io/gh/yoonghan/Walcron
