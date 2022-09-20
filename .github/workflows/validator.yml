@@ -50,7 +50,7 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage/
-          files: ./jest/cobetura-coverage.xml
+          directory: ./coverage/jest
+          files: ./cobetura-coverage.xml
           name: codecov-umbrella
           path_to_write_report: ./coverage/codecov_report.txt
