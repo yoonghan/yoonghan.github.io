@@ -1,4 +1,4 @@
-name: checker
+name: validator
 on:
   push:
     branches:
@@ -30,7 +30,7 @@ jobs:
         run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
       - name: ▶️ Run checker script
-        run: npm run test
+        run: npm run test:ci
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
