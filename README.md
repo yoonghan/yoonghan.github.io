@@ -1,10 +1,11 @@
 # Walcron, a personal website
 
-[![codecov](https://codecov.io/gh/yoonghan/Walcron/branch/master/graph/badge.svg?token=VXHPJSPNA1)](https://codecov.io/gh/yoonghan/Walcron)
+A personal website for self-learning interest.
 
-This example shows how to configure Jest to work with Next.js.
+----
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
+[![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
 
 ## How to Use
 
@@ -29,3 +30,8 @@ pnpm create next-app --example with-jest with-jest-app
 ```bash
 npm test
 ```
+
+[build-badge]: https://img.shields.io/github/yoonghan/status/Walcron/react-testing-library/validate?logo=github&style=flat-square
+[build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
+[coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan/Walcron.svg?style=flat-square
+[coverage]: https://codecov.io/gh/yoonghan/Walcron
