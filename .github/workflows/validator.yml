@@ -44,3 +44,8 @@ jobs:
         with:
           recreate: true
           path: code-coverage-results.md
+
+      - name: ⬆️ Upload coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          flags: ${{ matrix.react }}
