@@ -1,13 +1,13 @@
-import * as React from "react";
-import Head from "next/head";
-import Script from "next/script";
+import * as React from "react"
+import Head from "next/head"
+import Script from "next/script"
 
 const HtmlHead = ({
   description,
   title,
 }: {
-  description: string;
-  title: string;
+  description: string
+  title: string
 }) => {
   return (
     <>
@@ -87,7 +87,7 @@ const HtmlHead = ({
         }}
       />
     </>
-  );
-};
+  )
+}
 
-export default HtmlHead;
+export default HtmlHead
