@@ -1,0 +1,26 @@
+.scroll-percentage {
+    will-change: width;
+    transition: width 100ms linear;
+    position: fixed;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    background-color: #FF8400;
+    z-index: 999;
+    top: 0;
+  }
+
+  .indicator {
+    color: #333;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2px;
+    font-size: 0.75rem;
+  }
+
+  .indicator > div {
+    background: #FF8400;
+    padding: 0.25rem;
+    border-radius: 0 0 0.25rem 0.25rem;
+    white-space: nowrap;
+  }
