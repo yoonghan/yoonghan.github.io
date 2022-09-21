@@ -2,7 +2,7 @@
 
 A personal website for self-learning interest.
 
-----
+---
 
 [![Build Status][build-badge]][build]
 [![Code Coverage][coverage-badge]][coverage]
