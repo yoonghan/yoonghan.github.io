@@ -29,7 +29,10 @@ jobs:
       - name: ⚛️ Setup react
         run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-      - name: ▶️ Run checker script
+      - name: ▶️ Run linter script
+        run: npm run lint
+
+      - name: ▶️ Run test script
         run: npm run test:ci
 
       - name: Code Coverage Report
