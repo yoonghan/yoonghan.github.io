@@ -6,7 +6,13 @@ interface Props {
 
 const Footer = ({ isRelative }: Props) => {
   return (
-    <footer style={isRelative ? { position: "relative" } : {}}>
+    <footer
+      style={
+        isRelative
+          ? { position: "relative" }
+          : { position: "absolute", bottom: 0 }
+      }
+    >
       Walcron 2014-2022 &copy;
     </footer>
   )

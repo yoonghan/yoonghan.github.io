@@ -1,4 +1,7 @@
 .banner {
-    width: 100vw;
-    height: 100vh;
+    display: 'flex';
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

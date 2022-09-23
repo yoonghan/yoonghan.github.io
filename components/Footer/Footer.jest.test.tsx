@@ -14,6 +14,10 @@ describe("Footer", () => {
   it("should render a footer with correct footer message", () => {
     render(<Footer />)
     expect(screen.getByText(footerMessage)).toBeInTheDocument()
+    expect(screen.getByText(footerMessage)).toHaveStyle({
+      position: "absolute",
+      bottom: 0,
+    })
   })
 
   it("should render a footer that supports relative style", () => {
