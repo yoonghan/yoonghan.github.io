@@ -3,37 +3,37 @@
   "name": "Walcron Web",
   "icons": [
     {
-      "src":"/pwa/android-icon-36x36.png",
+      "src": "/pwa/android-icon-36x36.png",
       "sizes": "36x36",
       "type": "image/png"
     },
     {
-      "src":"/pwa/android-icon-48x48.png",
+      "src": "/pwa/android-icon-48x48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src":"/pwa/android-icon-72x72.png",
+      "src": "/pwa/android-icon-72x72.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src":"/pwa/android-icon-96x96.png",
+      "src": "/pwa/android-icon-96x96.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src":"/pwa/android-icon-144x144.png",
+      "src": "/pwa/android-icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src":"/pwa/android-icon-192x192.png",
+      "src": "/pwa/android-icon-192x192.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src":"/pwa/icon-512x512.png",
+      "src": "/pwa/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
