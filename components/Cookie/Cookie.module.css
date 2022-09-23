@@ -2,10 +2,11 @@
     width: 100%;
     bottom: 0;
     position: fixed;
-    background-color: "rgba(50,50,100,0.9)";
-    color: "#FFF";
+    background-color: rgba(50,50,100,0.9);
+    color: var(--text, #fff);
     display: flex;
     padding: 20px;
+    z-index: 999;
 }
 
 .message {
@@ -46,4 +47,4 @@
         color: "#00b4ef";
         border: none;
     }
-    }
+}

@@ -4,6 +4,8 @@ import Banner from "."
 describe("Banner", () => {
   it("renders a header", () => {
     render(<Banner />)
-    expect(screen.getByText("Walcron will be back online")).toBeInTheDocument()
+    expect(
+      screen.getByText("Currently we are under-construction")
+    ).toBeInTheDocument()
   })
 })

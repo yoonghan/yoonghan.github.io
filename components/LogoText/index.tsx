@@ -1,5 +1,7 @@
+import styles from "./Logo.module.css"
+
 function LogoText() {
-  return <span style={{ color: "rgb(255, 132, 0)" }}>Walcron</span>
+  return <span className={styles.logo}>&nbsp;Walcron&nbsp;</span>
 }
 
 export default LogoText

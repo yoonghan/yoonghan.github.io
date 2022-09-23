@@ -1,9 +1,12 @@
+import LogoText from "../LogoText"
 import styles from "./Banner.module.css"
 
 const Banner = () => {
   return (
     <div className={styles.banner}>
-      <h1>Walcron will be back online</h1>
+      <h1>
+        <LogoText /> will be back online
+      </h1>
       <h2>Currently we are under-construction</h2>
       <section>
         <span>What we are at:</span>
