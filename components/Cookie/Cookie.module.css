@@ -1,0 +1,50 @@
+.container{
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    background-color: rgba(50,50,100,0.9);
+    color: var(--text, #fff);
+    display: flex;
+    padding: 20px;
+    z-index: 999;
+}
+
+.message {
+    width: 75%;
+    font-size: 0.9rem;
+}
+.button-container {
+    width: 25%;
+    text-align: center;
+    align-self: center;
+}
+.button-container > button {
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: "#FFF";
+    color: "rgba(50,50,100,0.9)";
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 480px) {
+    .container{
+        padding: 2px 10px;
+        flex-direction: column;
+    }
+
+    .message {
+        width: 100%;
+    }
+
+    .button-container {
+        align-self: flex-end;
+    }
+
+    .button-container > button {
+        align-self: flex-end;
+        background: none;
+        color: "#00b4ef";
+        border: none;
+    }
+}

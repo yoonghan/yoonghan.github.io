@@ -1,0 +1,48 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  text-decoration: underline;
+}
+
+:root {
+  --text: #ffffff;
+  --logo: rgb(255, 132, 0)
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: scroll;
+}
+
+.container:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000 url(/img/welcome/walcron-authors.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.section-container {
+  max-width: 1024px;
+  margin: auto;
+  margin-bottom: 5rem;
+}
+
+.parallex-container {
+  position: sticky;
+  height: 100vh;
+  top: 0px;
+  display: flex;
+  overflow: hidden;
+}
