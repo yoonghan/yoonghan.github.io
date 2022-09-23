@@ -25,4 +25,9 @@ describe("Cookie", () => {
     await userEvent.click(screen.getByRole("button", { name: "Close" }))
     expect(document.cookie).toEqual("term=true")
   })
+
+  it("should have a 'cookie' role for testing", () => {
+    render(<Cookie isClosed={false} cookieName={"term"} />)
+    expect(screen.getByRole("cookie")).toBeInTheDocument()
+  })
 })
