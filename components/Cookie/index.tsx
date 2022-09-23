@@ -36,7 +36,12 @@ const Cookie = (props: CookieProps) => {
           <p>
             This site uses cookie to monitor visits and usage traffics. We use
             google analytics, please{" "}
-            <a href={cookiePrivacy} target="_blank" rel="noreferrer">
+            <a
+              href={cookiePrivacy}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "inherit" }}
+            >
               {" "}
               refer here
             </a>
@@ -47,7 +52,7 @@ const Cookie = (props: CookieProps) => {
             cookie usage.
           </p>
         </div>
-        <div className={styles.buttonContainer}>
+        <div className={styles["button-container"]}>
           <button onClick={reactToCookieButton}>Close</button>
         </div>
       </div>

@@ -14,16 +14,11 @@ describe("Footer", () => {
   it("should render a footer with correct footer message", () => {
     render(<Footer />)
     expect(screen.getByText(footerMessage)).toBeInTheDocument()
-    expect(screen.getByText(footerMessage)).toHaveStyle({
-      position: "absolute",
-      bottom: 0,
-    })
+    expect(screen.getByText(footerMessage)).toHaveClass("absolute")
   })
 
   it("should render a footer that supports relative style", () => {
     render(<Footer isRelative={true} />)
-    expect(screen.getByText(footerMessage)).toHaveStyle({
-      position: "relative",
-    })
+    expect(screen.getByText(footerMessage)).toHaveClass("relative")
   })
 })

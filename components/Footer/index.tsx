@@ -1,4 +1,5 @@
 import * as React from "react"
+import styles from "./Footer.module.css"
 
 interface Props {
   isRelative?: boolean
@@ -7,11 +8,9 @@ interface Props {
 const Footer = ({ isRelative }: Props) => {
   return (
     <footer
-      style={
-        isRelative
-          ? { position: "relative" }
-          : { position: "absolute", bottom: 0 }
-      }
+      className={`${styles.container} ${
+        isRelative ? styles.relative : styles.absolute
+      }`}
     >
       Walcron 2014-2022 &copy;
     </footer>
