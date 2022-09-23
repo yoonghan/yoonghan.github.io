@@ -1,0 +1,17 @@
+.container {
+    color: var(--text, '#ffffff');
+    margin: 0 0 0.5rem 0.5rem;
+}
+
+.relative {
+    position: relative;
+    color: var(--text, '#ffffff');
+    margin: 0 0 0.5rem 0.5rem;
+}
+
+.absolute {
+    position: absolute;
+    bottom: 0;
+    color: var(--text, '#ffffff');
+    margin: 0 0 0.5rem 0.5rem;
+}
