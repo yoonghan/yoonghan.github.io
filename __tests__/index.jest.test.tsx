@@ -1,6 +1,9 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import Home from "@/pages/index"
+import Home, { getServerSideProps } from "@/pages/index"
 import userEvent from "@testing-library/user-event"
+import { NextPageContext } from "next"
+import type { IncomingMessage, ServerResponse } from "http"
+import { setCookie, deleteCookie } from "cookies-next"
 
 describe("Home", () => {
   it("should render a construction site", () => {
@@ -23,6 +26,24 @@ describe("Home", () => {
       expect(
         within(cookieSection).queryByText(cookieText)
       ).not.toBeInTheDocument()
+    })
+  })
+
+  describe("getServerSideProps", () => {
+    let nextPageContext = {} as NextPageContext
+
+    it("should return termsRead as true when termsRead cookie exists", async () => {
+      setCookie("termsRead", "true", nextPageContext)
+      expect(await getServerSideProps(nextPageContext)).toStrictEqual({
+        props: { termsRead: true },
+      })
+    })
+
+    it("should return termsRead as false when termsRead cookie is missing", async () => {
+      deleteCookie("termsRead", nextPageContext)
+      expect(await getServerSideProps(nextPageContext)).toStrictEqual({
+        props: { termsRead: false },
+      })
     })
   })
 })
