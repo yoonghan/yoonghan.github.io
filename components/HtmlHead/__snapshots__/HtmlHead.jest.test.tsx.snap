@@ -77,11 +77,11 @@ exports[`HtmlHead has all the meta datas 1`] = `
   />
   <script
     defer=""
-    src="https://www.googletagmanager.com/gtag/js?id=UA-156082636-1"
+    src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
   />
   <script
     defer=""
-    id="ga"
+    id="google-analytics"
   />
   <script
     defer=""

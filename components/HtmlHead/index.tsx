@@ -61,31 +61,23 @@ const HtmlHead = ({
       </Head>
 
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=UA-156082636-1"
+        src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
         strategy="afterInteractive"
       />
-      <Script
-        id="ga"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)}
-          gtag('js', new Date());
-          gtag('config', 'UA-156082636-1');
-            `,
-        }}
-      />
-      <Script
-        id="reroute-https"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            if(location.hostname === "walcron.com") {
-              location.href="//www.walcron.com";
-            }`,
-        }}
-      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-9V9VC8N5XT');
+      `}
+      </Script>
+      <Script id="reroute-https" strategy="afterInteractive">
+        {`if(location.hostname === "walcron.com") {
+          location.href="//www.walcron.com";
+        }`}
+      </Script>
     </>
   )
 }
