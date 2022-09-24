@@ -62,17 +62,7 @@ const HtmlHead = ({
 
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=UA-156082636-1"
-        strategy="lazyOnload"
-      />
-      <Script
-        id="reroute-https"
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            if(location.hostname === "walcron.com") {
-              location.href="//www.walcron.com";
-            }`,
-        }}
       />
       <Script
         id="ga"
@@ -84,6 +74,16 @@ const HtmlHead = ({
           gtag('js', new Date());
           gtag('config', 'UA-156082636-1');
             `,
+        }}
+      />
+      <Script
+        id="reroute-https"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            if(location.hostname === "walcron.com") {
+              location.href="//www.walcron.com";
+            }`,
         }}
       />
     </>
