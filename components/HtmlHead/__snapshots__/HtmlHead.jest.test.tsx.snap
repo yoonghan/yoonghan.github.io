@@ -81,11 +81,11 @@ exports[`HtmlHead has all the meta datas 1`] = `
   />
   <script
     defer=""
-    id="reroute-https"
+    id="ga"
   />
   <script
     defer=""
-    id="ga"
+    id="reroute-https"
   />
 </head>
 `;
