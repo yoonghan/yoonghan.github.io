@@ -6,7 +6,7 @@ import { getCookie, hasCookie } from "cookies-next"
 import type { NextPageContext } from "next"
 
 interface Props {
-  termsRead: string
+  termsRead: boolean
 }
 
 function Home({ termsRead }: Props) {
@@ -23,7 +23,7 @@ function Home({ termsRead }: Props) {
         <Banner />
       </main>
 
-      <Cookie isClosed={termsRead === "true"} cookieName={"termsRead"} />
+      <Cookie isClosed={termsRead} cookieName={"termsRead"} />
       <Footer />
     </div>
   )
