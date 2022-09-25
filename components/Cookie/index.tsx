@@ -6,6 +6,7 @@
 
 import * as React from "react"
 import styles from "./Cookie.module.css"
+import { setCookie } from "cookies-next"
 
 interface CookieProps {
   isClosed: boolean
@@ -23,7 +24,7 @@ const Cookie = (props: CookieProps) => {
   }
 
   const saveCookieWithTerms = () => {
-    document.cookie = `${props.cookieName}=true`
+    setCookie(props.cookieName, "true")
   }
 
   if (isClosed) {
