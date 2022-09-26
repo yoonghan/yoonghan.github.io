@@ -1,4 +1,4 @@
-name: Create Snapshot
+name: Create Approved Snapshot
 
 on:
   workflow_dispatch:
@@ -38,11 +38,6 @@ jobs:
 
       - name: Upload approved snapshot artifacts
         uses: actions/upload-artifact@v3
-        with:
-          name: backstop-artifact
-          path: backstop_data/
-
-      - name: Verify Backstopjs snapshot is valid
         with:
           name: backstop-artifact
           path: backstop_data/
