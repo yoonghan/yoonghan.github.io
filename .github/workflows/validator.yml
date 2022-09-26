@@ -53,5 +53,5 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-      - name: ⬆️ Upload coverage report
+      - name: ⬆️ Check page change format
         uses: npm run backstop:test:prod
