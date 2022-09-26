@@ -3,7 +3,7 @@ name: Create Snapshot
 on:
   workflow_dispatch:
     inputs:
-      vercel_deployed_version:
+      vercel_deployed_url:
         description: Vercel reference url
         required: true
 
@@ -27,10 +27,16 @@ jobs:
         with:
           useLockFile: false
 
+      - name: Update to vercel deployed branch version
+        run: |
+          sed -i "s/http:\/\/localhost:3000/${{ github.event.inputs.vercel_deployed_url }}/g" backstop.json
+          cat backstop.json
+        shell: bash
+
       # as requested by the R
       - name: ⬆️ Run page rendering check
         continue-on-error: true
-        run: npm run backstop:test:deploy
+        run: npm run backstop:test
 
       - uses: actions/upload-artifact@v3
         with:

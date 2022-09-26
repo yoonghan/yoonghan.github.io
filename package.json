@@ -9,8 +9,7 @@
     "lint": "next lint",
     "backstop:approve": "backstop approve",
     "backstop:test": "backstop test",
-    "backstop:init": "backstop init",
-    "backstop:test:deploy": "sed 's/localhost:3000/www.walcron.com/g' backstop.json && backstop test"
+    "backstop:init": "backstop init"
   },
   "dependencies": {
     "backstopjs": "^6.1.1",

@@ -50,9 +50,11 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-      - name: Backstopjs snapshot is valid
-        run: echo $GITHUB_HEAD_REF
+      - name: Update to vercel deployed branch version
+        run: |
+          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-backstopjs-walcoorperation.vercel.app/g" backstop.json
+          cat backstop.json
         shell: bash
 
       - name: ⬆️ Run page rendering check
-        run: npm run backstop:test:deploy
+        run: npm run backstop:test
