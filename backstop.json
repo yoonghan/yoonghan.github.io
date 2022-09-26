@@ -4,7 +4,7 @@
     {
       "label": "phone",
       "width": 320,
-      "height": 480
+      "height": 1024
     },
     {
       "label": "tablet",
@@ -12,11 +12,30 @@
       "height": 768
     }
   ],
-  "onBeforeScript": "puppeteer/onBefore.js",
-  "onReadyScript": "puppeteer/onReady.js",
+  "onBeforeScript": "playwright/onBefore.js",
+  "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
       "label": "Walcron Homepage",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:3000",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 10,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Walcron Homepage with cookie accepted",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
       "referenceUrl": "",
@@ -36,8 +55,8 @@
     }
   ],
   "paths": {
-    "bitmaps_reference": "backstop_data/bitmaps_reference",
-    "bitmaps_test": "backstop_data/bitmaps_test",
+    "bitmaps_reference": "backstop_data/bitmaps_local_reference",
+    "bitmaps_test": "backstop_data/bitmaps_local_test",
     "engine_scripts": "backstop_data/engine_scripts",
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
@@ -45,8 +64,9 @@
   "report": [
     "browser"
   ],
-  "engine": "puppeteer",
+  "engine": "playwright",
   "engineOptions": {
+    "browser": "chromium",
     "args": [
       "--no-sandbox"
     ]

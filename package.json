@@ -8,8 +8,7 @@
     "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest",
     "lint": "next lint",
     "backstop:approve": "backstop approve",
-    "backstop:test": "backstop test",
-    "backstop:init": "backstop init"
+    "backstop:test": "backstop test"
   },
   "dependencies": {
     "backstopjs": "^6.1.1",
