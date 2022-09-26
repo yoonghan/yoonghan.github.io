@@ -11,9 +11,6 @@ const HtmlHead = ({
 }) => {
   return (
     <>
-      <head>
-        <title>Title</title>
-      </head>
       <Head>
         <meta charSet="utf-8" key="charset" />
         <meta
