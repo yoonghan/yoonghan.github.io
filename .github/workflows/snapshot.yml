@@ -1,9 +1,42 @@
-name: snapshot
-on: workflow_call
+name: Create Snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      vercel_deployed_version:
+        description: Vercel reference url
+        required: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Just to say hi
-        run: initially this was to take snapshot, but to checkout deps again, it's better not
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
+
+      # as requested by the R
+      - name: ⬆️ Run page rendering check
+        continue-on-error: true
+        run: npm run backstop:test:deploy
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/
+
+      - name: Backstopjs snapshot is valid
+        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash

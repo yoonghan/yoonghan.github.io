@@ -2,8 +2,6 @@ name: validator
 on:
   pull_request: {}
 jobs:
-  call-workflow-snapshot:
-    uses: ./.github/workflows/snapshot.yml
   build:
     runs-on: ubuntu-latest
     steps:
@@ -53,14 +51,8 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: ⬆️ Run page rendering check
-        continue-on-error: true
         run: npm run backstop:test:deploy
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: backstop-artifact
-          path: backstop_data/
-
       - name: Backstopjs snapshot is valid
-        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
+        run: echo $GITHUB_HEAD_REF
         shell: bash
