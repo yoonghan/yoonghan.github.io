@@ -12,8 +12,8 @@
       "height": 768
     }
   ],
-  "onBeforeScript": "playwright/onBefore.js",
-  "onReadyScript": "playwright/onReady.js",
+  "onBeforeScript": "puppeteer/onBefore.js",
+  "onReadyScript": "puppeteer/onReady.js",
   "scenarios": [
     {
       "label": "Walcron Homepage",
@@ -45,9 +45,8 @@
   "report": [
     "browser"
   ],
-  "engine": "playwright",
+  "engine": "puppeteer",
   "engineOptions": {
-    "browser": "chromium",
     "args": [
       "--no-sandbox"
     ]
