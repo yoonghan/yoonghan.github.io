@@ -38,5 +38,6 @@ next-env.d.ts
 #backstopjs
 backstop_data/html_report/
 bitmaps_test/
+bitmaps_local_test/
 
 Walcron.code-workspace
