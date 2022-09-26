@@ -35,4 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+#backstopjs
+backstop_data/html_report/
+bitmaps_test/
+
 Walcron.code-workspace
