@@ -50,9 +50,9 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-      - name: ⬆️ Run page rendering check
-        run: npm run backstop:test:deploy
-
       - name: Backstopjs snapshot is valid
         run: echo $GITHUB_HEAD_REF
         shell: bash
+
+      - name: ⬆️ Run page rendering check
+        run: npm run backstop:test:deploy
