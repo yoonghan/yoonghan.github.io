@@ -52,7 +52,7 @@ jobs:
 
       - name: Update to vercel deployed branch version
         run: |
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-backstopjs-walcoorperation.vercel.app/g" backstop.json
+          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
           cat backstop.json
         shell: bash
 
@@ -60,11 +60,12 @@ jobs:
         continue-on-error: true
         run: npm run backstop:test
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload snapshot artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: backstop-artifact
           path: backstop_data/
 
-      - name: Backstopjs snapshot is valid
+      - name: Verify Backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
