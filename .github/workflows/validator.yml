@@ -35,6 +35,9 @@ jobs:
       - name: ▶️ Run test script
         run: npm run test:ci
 
+      - name: ⬆️ Run page rendering check
+        run: npm run backstop:test:prod
+
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
@@ -52,6 +55,3 @@ jobs:
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
-
-      - name: ⬆️ Check page change format
-        uses: npm run backstop:test:prod
