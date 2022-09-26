@@ -42,7 +42,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: backstop-artifact
-          path: backstop_data/bitmaps_test/
+          path: backstop_data/
 
       - name: Extract branch name
         shell: bash
