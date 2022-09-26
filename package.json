@@ -6,9 +6,14 @@
     "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest",
-    "lint": "next lint"
+    "lint": "next lint",
+    "backstop:approve": "backstop approve",
+    "backstop:test": "backstop test",
+    "backstop:init": "backstop init",
+    "backstop:test:deploy": "sed 's/localhost:3000/www.walcron.com/g' backstop.json && backstop test"
   },
   "dependencies": {
+    "backstopjs": "^6.1.1",
     "cookies-next": "^2.1.1",
     "next": "latest",
     "react": "^18.1.0",
