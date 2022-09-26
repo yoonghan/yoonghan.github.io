@@ -65,7 +65,7 @@ Updating backstopJS snapshot.
 2. replace into bitmaps_reference.
 
 --By action
-1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop_data/bitmaps_reference/*
+1. Download the artifacts generated in latest requested workflow. Replace generated snapshot in backstop_data/bitmaps_reference/*
 2. replace into bitmaps_reference.
 
 
