@@ -1,10 +1,10 @@
 name: validator
 on:
-  push:
-    branches:
-      - v5
+  push: {}
   pull_request: {}
 jobs:
+  call-workflow-snapshot:
+    uses: ./.github/workflows/snapshot.yml
   build:
     runs-on: ubuntu-latest
     steps:
@@ -34,15 +34,6 @@ jobs:
 
       - name: ▶️ Run test script
         run: npm run test:ci
-
-      - name: ⬆️ Run page rendering check
-        continue-on-error: true
-        run: npm run backstop:test:deploy
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: backstop-artifact
-          path: backstop_data/
 
       - name: Extract branch name
         shell: bash

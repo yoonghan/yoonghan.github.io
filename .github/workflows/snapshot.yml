@@ -1,0 +1,18 @@
+name: snapshot
+on: workflow_call
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬆️ Run page rendering check
+        continue-on-error: true
+        run: npm run backstop:test:deploy
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/
+
+      - name: Backstopjs snapshot is valid
+        run: ./.github/scripts/snapshot-check.sh
+        shell: bash
