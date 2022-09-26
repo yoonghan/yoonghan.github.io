@@ -10,7 +10,6 @@ interface Props {
 }
 
 function Home({ termsRead }: Props) {
-	console.log('x');
   return (
     <div className="container">
       <HtmlHead
