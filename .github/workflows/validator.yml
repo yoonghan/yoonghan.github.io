@@ -50,7 +50,7 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-      - name: Update to vercel deployed branch version
+      - name: Update localhost with vercel deployed branch version
         run: |
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
           cat backstop.json
