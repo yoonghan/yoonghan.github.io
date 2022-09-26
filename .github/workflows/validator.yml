@@ -36,7 +36,12 @@ jobs:
         run: npm run test:ci
 
       - name: ⬆️ Run page rendering check
-        run: npm run backstop:test:prod
+        run: npm run backstop:test:deploy
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
