@@ -1,7 +1,11 @@
 {
   "root": true,
-  "extends": ["next/core-web-vitals"],
-  "plugins": ["testing-library"],
+  "extends": ["next/core-web-vitals", "eslint-config-prettier"],
+  "plugins": ["testing-library", "eslint-plugin-prettier"],
+  "rules": {
+    "no-console": 2,
+    "prettier/prettier": 2
+  },
   "overrides": [
     // Only uses Testing Library lint rules in test files
     {
