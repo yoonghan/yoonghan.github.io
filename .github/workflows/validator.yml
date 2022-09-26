@@ -1,8 +1,5 @@
 name: validator
 on:
-  push:
-    branches:
-      - v5
   pull_request: {}
 jobs:
   build:
@@ -52,3 +49,23 @@ jobs:
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
+
+      - name: Update localhost with vercel deployed branch version
+        run: |
+          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
+          cat backstop.json
+        shell: bash
+
+      - name: ⬆️ Run page rendering check
+        continue-on-error: true
+        run: npm run backstop:test
+
+      - name: Upload snapshot artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/
+
+      - name: Verify Backstopjs snapshot is valid
+        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
+        shell: bash
