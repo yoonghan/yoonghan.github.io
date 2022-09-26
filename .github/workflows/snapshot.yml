@@ -4,6 +4,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
+
       - name: ⬆️ Run page rendering check
         continue-on-error: true
         run: npm run backstop:test:deploy
@@ -14,5 +27,5 @@ jobs:
           path: backstop_data/
 
       - name: Backstopjs snapshot is valid
-        run: ./.github/scripts/snapshot-check.sh
+        run: echo $PWD && ./.github/scripts/snapshot-check.sh
         shell: bash

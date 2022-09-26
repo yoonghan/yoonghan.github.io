@@ -1,6 +1,5 @@
 name: validator
 on:
-  push: {}
   pull_request: {}
 jobs:
   call-workflow-snapshot:
