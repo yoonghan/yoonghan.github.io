@@ -33,11 +33,16 @@ jobs:
           cat backstop.json
         shell: bash
 
-      - name: ⬆️ Run page rendering check
-        continue-on-error: true
-        run: npm run backstop:test
+      - name: ⬆️ Create an approved snapshot
+        run: npm run backstop:approve
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload approved snapshot artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/
+
+      - name: Verify Backstopjs snapshot is valid
         with:
           name: backstop-artifact
           path: backstop_data/
