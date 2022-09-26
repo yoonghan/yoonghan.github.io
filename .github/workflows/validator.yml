@@ -57,4 +57,14 @@ jobs:
         shell: bash
 
       - name: ⬆️ Run page rendering check
+        continue-on-error: true
         run: npm run backstop:test
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/
+
+      - name: Backstopjs snapshot is valid
+        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
+        shell: bash

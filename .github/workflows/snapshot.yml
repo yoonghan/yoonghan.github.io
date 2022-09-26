@@ -33,7 +33,6 @@ jobs:
           cat backstop.json
         shell: bash
 
-      # as requested by the R
       - name: ⬆️ Run page rendering check
         continue-on-error: true
         run: npm run backstop:test
@@ -42,7 +41,3 @@ jobs:
         with:
           name: backstop-artifact
           path: backstop_data/
-
-      - name: Backstopjs snapshot is valid
-        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
-        shell: bash
