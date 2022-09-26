@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
@@ -37,6 +38,11 @@ jobs:
 
       - name: ⬆️ Run page rendering check
         run: npm run backstop:test:deploy
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: backstop-artifact
+          path: backstop_data/bitmaps_test/
 
       - name: Extract branch name
         shell: bash

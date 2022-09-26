@@ -18,7 +18,7 @@
     {
       "label": "Walcron Homepage",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "http://www.walcron.com",
+      "url": "https://www.walcron.com",
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
