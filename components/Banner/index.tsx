@@ -1,7 +1,8 @@
+import * as React from "react"
 import LogoText from "../LogoText"
 import styles from "./Banner.module.css"
 
-const Banner = () => {
+const Banner = ({ children }: { children?: React.ReactNode }) => {
   return (
     <div className={styles.banner}>
       <h1>
@@ -18,6 +19,7 @@ const Banner = () => {
           <li>Bye-bye Modernizer</li>
         </ul>
       </section>
+      {children && <section>{children}</section>}
     </div>
   )
 }
