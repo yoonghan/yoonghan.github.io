@@ -2,6 +2,7 @@ import Banner from "@/components/Banner"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
+import Link from "@/components/Link"
 import { getCookie, hasCookie } from "cookies-next"
 import type { NextPageContext } from "next"
 
@@ -20,7 +21,15 @@ function Home({ termsRead }: Props) {
       />
 
       <main>
-        <Banner />
+        <Banner>
+          See our progress by visiting us at{" "}
+          <Link
+            text="Github"
+            href="https://github.com/yoonghan/walcron"
+            logoUrl="/img/social/git.png"
+            logoAltText="Git Logo"
+          />
+        </Banner>
       </main>
 
       <Cookie isClosed={termsRead} cookieName={"termsRead"} />
