@@ -8,4 +8,13 @@ describe("Banner", () => {
       screen.getByText("Currently we are under-construction")
     ).toBeInTheDocument()
   })
+
+  it("renders can accept children", () => {
+    render(
+      <Banner>
+        <span>I am a child</span>
+      </Banner>
+    )
+    expect(screen.getByText("I am a child")).toBeInTheDocument()
+  })
 })

@@ -13,7 +13,8 @@ a {
 
 :root {
   --text: #ffffff;
-  --logo: rgb(255, 132, 0)
+  --logo: rgb(255, 132, 0);
+  --link: #0826ce;
 }
 
 .container {
