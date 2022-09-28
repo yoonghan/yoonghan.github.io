@@ -4,12 +4,12 @@ interface EmailSenderProps {
 }
 
 const EmailSender = ({ writeTo, writeFrom }: EmailSenderProps) => {
-  const _openMailSender = (writeTo: string, writeFrom: string) => {
+  useEffect(() => {
     const subject = encodeURIComponent(`Contact from ${writeFrom} website`)
     const body = "Hello there, "
 
     window.location.href = `mailto:${writeTo}?subject=${subject}&body=${body}`
-  }
+  }, [writeFrom, writeTo])
 
   return (
     <div className="container">
