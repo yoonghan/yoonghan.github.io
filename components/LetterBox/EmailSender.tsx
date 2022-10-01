@@ -1,3 +1,6 @@
+import { useEffect } from "react"
+import styles from "./EmailSender.module.css"
+
 interface EmailSenderProps {
   writeTo: string
   writeFrom: string
@@ -12,17 +15,8 @@ const EmailSender = ({ writeTo, writeFrom }: EmailSenderProps) => {
   }, [writeFrom, writeTo])
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       Apologies that we do require you to use your own mailbox
-      <style jsx>{`
-        .container {
-          padding: 50px;
-          background: #fff;
-          color: #000;
-          border-radius: 3px;
-          min-width: 150px;
-        }
-      `}</style>
     </div>
   )
 }
