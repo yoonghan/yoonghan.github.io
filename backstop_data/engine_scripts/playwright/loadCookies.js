@@ -1,16 +1,21 @@
-const fs = require('fs');
+const fs = require("fs")
 
 module.exports = async (browserContext, scenario) => {
-  let cookies = [];
-  const cookiePath = scenario.cookiePath;
+  let cookies = []
+  const cookiePath = scenario.cookiePath
+  const cookieDomain = scenario.cookieDomain
 
   // Read Cookies from File, if exists
-  if (fs.existsSync(cookiePath)) {
-    cookies = JSON.parse(fs.readFileSync(cookiePath));
+  if (cookiePath && fs.existsSync(cookiePath)) {
+    cookies = JSON.parse(fs.readFileSync(cookiePath))
   }
 
-  // Add cookies to browser
-  browserContext.addCookies(cookies);
+  // Replace with cookie with domain
+  cookies = cookies.map((cookie) => ({ ...cookie, domain: cookieDomain }))
 
-  console.log('Cookie state restored with:', JSON.stringify(cookies, null, 2));
-};
+  // Add cookies to browser
+  browserContext.addCookies(cookies)
+
+  // eslint-disable-next-line no-console
+  console.log("Cookie state restored with:", JSON.stringify(cookies, null, 2))
+}

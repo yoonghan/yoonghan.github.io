@@ -17,18 +17,9 @@
   "scenarios": [
     {
       "label": "Walcron Homepage",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
-      "referenceUrl": "",
-      "readyEvent": "",
-      "readySelector": "",
-      "delay": 10,
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "hoverSelector": "",
-      "clickSelector": "",
+      "delay": 500,
       "postInteractionWait": 0,
-      "selectors": [],
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
@@ -36,18 +27,29 @@
     },
     {
       "label": "Walcron Homepage with cookie accepted",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
-      "referenceUrl": "",
-      "readyEvent": "",
-      "readySelector": "",
-      "delay": 10,
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "hoverSelector": "",
+      "delay": 500,
       "clickSelector": "text=Close",
       "postInteractionWait": 0,
-      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Walcron with email entered and sent",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:3000",
+      "delay": 500,
+      "keyPressSelectors": [
+        {
+          "selector": "[placeHolder='Honorific and name']",
+          "keyPress": "Rascal"
+        }
+      ],
+      "clickSelector": "text=Send",
+      "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
