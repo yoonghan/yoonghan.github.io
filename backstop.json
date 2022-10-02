@@ -52,6 +52,25 @@
       "expect": 0,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Walcron Homepage that sends email",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:3000",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 10,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "text=Close;text=Send",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {
