@@ -2,6 +2,7 @@ import Banner from "@/components/Banner"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
+import LetterBox from "@/components/LetterBox"
 import Link from "@/components/Link"
 import { getCookie, hasCookie } from "cookies-next"
 import type { NextPageContext } from "next"
@@ -29,6 +30,8 @@ function Home({ termsRead }: Props) {
             logoUrl="/img/social/git.png"
             logoAltText="Git Logo"
           />
+          <hr />
+          <LetterBox />
         </Banner>
       </main>
 
