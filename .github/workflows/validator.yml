@@ -26,10 +26,10 @@ jobs:
       - name: ⚛️ Setup react
         run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-      - name: ▶️ Run linter script
-        run: npm run lint
+      - name: ▶️ Validate lint, prettier and next js
+        run: npm run build
 
-      - name: ▶️ Run test script
+      - name: ▶️ Validate test script
         run: npm run test:ci
 
       - name: Code Coverage Report
@@ -59,16 +59,16 @@ jobs:
           cat backstop.json
         shell: bash
 
-      - name: ⬆️ Run page rendering check
+      - name: ▶️ Run page rendering check
         continue-on-error: true
         run: npm run backstop:test
 
-      - name: Upload snapshot artifacts
+      - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
         with:
           name: backstop-artifact
           path: backstop_data/
 
-      - name: Verify Backstopjs snapshot is valid
+      - name: Validate Backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
