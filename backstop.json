@@ -18,7 +18,7 @@
     {
       "label": "Walcron Homepage",
       "url": "http://localhost:3000",
-      "delay": 10,
+      "delay": 500,
       "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
@@ -28,7 +28,7 @@
     {
       "label": "Walcron Homepage with cookie accepted",
       "url": "http://localhost:3000",
-      "delay": 10,
+      "delay": 500,
       "clickSelector": "text=Close",
       "postInteractionWait": 0,
       "selectorExpansion": true,
@@ -41,7 +41,7 @@
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
-      "delay": 10,
+      "delay": 500,
       "keyPressSelectors": [
         {
           "selector": "[placeHolder='Honorific and name']",

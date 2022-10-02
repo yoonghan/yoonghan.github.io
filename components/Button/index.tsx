@@ -68,7 +68,7 @@ const Button = ({ href, text, onClick, target, styling }: ButtonProps) => {
     return style
   }, [styling])
 
-  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } })
+  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 300 } })
 
   const renderButton = () => {
     if (onClick) {
