@@ -31,6 +31,18 @@ describe("LetterBox", () => {
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
   })
 
+  it("should submit an email request with form submit", async () => {
+    render(<LetterBox />)
+
+    expect(screen.queryByRole("modal")).not.toBeInTheDocument
+    await userEvent.type(
+      screen.getByPlaceholderText("Honorific and name"),
+      "test@email.com{enter}"
+    )
+    expect(screen.getByRole("modal")).toBeInTheDocument
+    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+  })
+
   it("should  not to submit an email if no name is entered", async () => {
     render(<LetterBox />)
 
