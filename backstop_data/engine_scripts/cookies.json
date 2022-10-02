@@ -1,9 +1,8 @@
 [
   {
-    "domain": ".www.walcron.com",
     "path": "/",
     "name": "termsRead",
-    "value": "false",
+    "value": "true",
     "expirationDate": 1798790400,
     "hostOnly": false,
     "httpOnly": false,
