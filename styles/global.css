@@ -16,6 +16,8 @@ a {
   --logo: rgb(255, 132, 0);
   --link: #0826ce;
   --dialog-text: #ffffff;
+  --button: #000;
+  --button-bg: #fff;
 }
 
 .container {
