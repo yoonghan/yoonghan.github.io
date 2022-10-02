@@ -11,6 +11,11 @@ describe("Home", () => {
       screen.getByText("Currently we are under-construction")
     ).toBeInTheDocument()
     expect(screen.getAllByText("See our progress by visiting us at"))
+    expect(
+      screen.getAllByText(
+        "If you are interested to talk to us, leave us your contact. Let us reach you instead."
+      )
+    )
   })
 
   it("should be able to click on the cookie button", async () => {
