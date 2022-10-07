@@ -1,7 +1,6 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import Home, { getServerSideProps } from "@/pages/index"
+import Home, { getStaticProps } from "@/pages/index"
 import userEvent from "@testing-library/user-event"
-import { NextPageContext } from "next"
 import { setCookie, deleteCookie } from "cookies-next"
 
 describe("Home", () => {
@@ -34,19 +33,17 @@ describe("Home", () => {
     })
   })
 
-  describe("getServerSideProps", () => {
-    let nextPageContext = {} as NextPageContext
-
+  describe("getStaticProps", () => {
     it("should return termsRead as true when termsRead cookie exists", async () => {
-      setCookie("termsRead", true, nextPageContext)
-      expect(await getServerSideProps(nextPageContext)).toStrictEqual({
+      setCookie("termsRead", true)
+      expect(await getStaticProps()).toStrictEqual({
         props: { termsRead: true },
       })
     })
 
     it("should return termsRead as false when termsRead cookie is missing", async () => {
-      deleteCookie("termsRead", nextPageContext)
-      expect(await getServerSideProps(nextPageContext)).toStrictEqual({
+      deleteCookie("termsRead")
+      expect(await getStaticProps()).toStrictEqual({
         props: { termsRead: false },
       })
     })

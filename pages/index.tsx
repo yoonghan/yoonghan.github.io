@@ -41,12 +41,10 @@ function Home({ termsRead }: Props) {
   )
 }
 
-export async function getServerSideProps({ req, res }: NextPageContext) {
+export async function getStaticProps() {
   return {
     props: {
-      termsRead: hasCookie("termsRead", { req, res })
-        ? getCookie("termsRead", { req, res })
-        : false,
+      termsRead: hasCookie("termsRead") ? getCookie("termsRead") : false,
     },
   }
 }
