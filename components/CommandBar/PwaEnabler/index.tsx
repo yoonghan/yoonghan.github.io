@@ -53,12 +53,12 @@ const PwaEnabler = ({ onCancel }: Props) => {
   useEffect(() => {
     if (isProcessing) {
       if (isEnabled) {
-        ;(register as any)()
+        //(register as any)()
         _drawMessageForSafari()
       } else {
-        ;(unregister as any)()
+        //(unregister as any)()
       }
-      setTimeout(runRegistrationCheck, 1000)
+      //setTimeout(runRegistrationCheck, 1000)
     }
   }, [isEnabled, isProcessing])
 
