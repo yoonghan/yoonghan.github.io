@@ -56,6 +56,7 @@ const CommandBarInput = (props: Props) => {
     onFocus: onFocus,
     onBlur: onBlur,
     maxLength: 22,
+    "data-testid": "commandBar",
   } as unknown as InputProps<string>
 
   return (
@@ -82,8 +83,9 @@ const CommandBarInput = (props: Props) => {
       <button
         className={`${styles["command-enter"]} style-scope ytd-searchbox`}
         aria-label="Enter"
+        data-testid="commandBar-enter"
       >
-        <i className="fas fa-arrow-right"></i>
+        <i className="fas fa-arrow-right">&#x21AA;</i>
       </button>
     </form>
   )
