@@ -1,0 +1,11 @@
+.container {
+  padding: 10px 10px 40px 10px;
+  color: #000;
+  background: var(--dialog-text);
+  box-shadow: 5px 5px 2px var(--shadow);
+}
+.container th {
+  color: --var(table-header);
+  background-color: --var(table-header-bg);
+  font-weight: bold;
+}
