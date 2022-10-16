@@ -54,6 +54,32 @@
       "expect": 0,
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Commandbar can search",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:3000",
+      "delay": 500,
+      "keyPressSelectors": [
+        {
+          "selector": "[data-testid='commandBar']",
+          "keyPress": "help"
+        }
+      ],
+      "clickSelector": "[data-testid='commandBar-enter']",
+      "postInteractionWait": 400,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false,
+      "viewports": [
+        {
+          "label": "tablet",
+          "width": 1024,
+          "height": 768
+        }
+      ]
     }
   ],
   "paths": {

@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner"
+import CommandBar from "@/components/CommandBar"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
@@ -22,6 +23,7 @@ function Home({ termsRead }: Props) {
       />
 
       <main>
+        <CommandBar />
         <Banner>
           See our progress by visiting us at{" "}
           <Link
