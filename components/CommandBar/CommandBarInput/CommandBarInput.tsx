@@ -63,7 +63,7 @@ const CommandBarInput = (props: Props) => {
     <form onSubmit={onSubmit} className={styles["command-container"]}>
       <div className={styles["command-text-container"]}>
         <div className={styles["command-text-prompt"]}>walcron@tm$</div>
-        <div className={styles["prompt"]}>
+        <div className="prompt">
           <span className={styles["promptIn"]}>{props.suggestedInput}</span>
           {showPrompt && <span data-testid="prompter">&#9608;</span>}
         </div>
@@ -87,6 +87,20 @@ const CommandBarInput = (props: Props) => {
       >
         <i className="fas fa-arrow-right">&#x21AA;</i>
       </button>
+      <style jsx>{`
+        .prompt {
+          z-index: -1;
+          color: var(--link);
+          font-family: Inconsolata;
+          position: absolute;
+          left: 5.2rem;
+          top: 0.6rem;
+          animation-name: blink;
+          font-size: 0.8rem;
+          animation-duration: 800ms;
+          animation-iteration-count: infinite;
+        }
+      `}</style>
     </form>
   )
 }
