@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
 
 html,
 body {
@@ -18,6 +18,15 @@ a {
   --dialog-text: #ffffff;
   --button: #000;
   --button-bg: #fff;
+  --table-header: #fff;
+  --table-header-bg: #343a40;
+  --table-header-border: #454d55;
+  --table: #000;
+  --table-bg: #fff;
+  --table-border: 1px solid #dee2e6;
+  --table-hover: #e9e9e9;
+  --table-even-bg: #d9d9d9;
+  --shadow: grey;
 }
 
 .container {
@@ -28,13 +37,14 @@ a {
 }
 
 .container:before {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0.5;
-  background: #000 url(/img/welcome/walcron-authors.webp) no-repeat center center;
+  background: #000 url(/img/welcome/walcron-authors.webp) no-repeat center
+    center;
   background-size: cover;
 }
 
@@ -50,4 +60,31 @@ a {
   top: 0px;
   display: flex;
   overflow: hidden;
+}
+
+table {
+  border-spacing: 0;
+}
+
+tbody td,
+tbody th {
+  border-top: var(--table-border);
+}
+td:first-child {
+  padding-right: 10px;
+}
+tr:nth-child(even) {
+  background-color: var(--table-even-bg);
+}
+tr:hover {
+  background-color: var(--table-even-bg);
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

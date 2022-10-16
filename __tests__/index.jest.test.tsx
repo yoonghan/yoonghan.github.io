@@ -4,9 +4,16 @@ import userEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
 import { setCookie, deleteCookie } from "cookies-next"
 
+jest.mock("next/router", () => require("next-router-mock"))
+
 describe("Home", () => {
-  it("should render a construction site", () => {
+  const renderComponent = async () => {
     render(<Home termsRead={false} />)
+    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
+  }
+
+  it("should render a construction site", async () => {
+    await renderComponent()
     expect(
       screen.getByText("Currently we are under-construction")
     ).toBeInTheDocument()
@@ -21,7 +28,7 @@ describe("Home", () => {
   it("should be able to click on the cookie button", async () => {
     const cookieText = "This site uses cookies."
 
-    render(<Home termsRead={false} />)
+    await render(<Home termsRead={false} />)
     const cookieSection = screen.getByRole("cookie")
     expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
     userEvent.click(
