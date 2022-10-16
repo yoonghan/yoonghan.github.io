@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  color: var(--link);
+  padding: 1.5rem;
+}
+.container div {
+  color: var(--link);
+  font-size: 2rem;
+  cursor: pointer;
+}
+.navmenu-link {
+  padding-left: 10px;
+  padding-top: 0.5rem;
+  text-decoration: none;
+  color: var(--link);
+}
