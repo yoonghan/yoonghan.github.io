@@ -40,7 +40,7 @@ const NavMenu = ({ router }: Props) => {
   return (
     <nav className={styles.container}>
       <div onClick={goBack(router)} role="return">
-        <i className="fas fa-chevron-left"></i>
+        Location: &nbsp;
       </div>
       <span className="link">{writeLink(router)}</span>
     </nav>
