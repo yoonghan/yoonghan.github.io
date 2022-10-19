@@ -17,7 +17,10 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
     const link = iLink.link
     const title = iLink.title
     const _activeIdx = activeIndex || 0
-    const className = styles["btnsbar-item"] + " " + (_activeIdx === idx ? styles["is-active"] : "")
+    const className =
+      styles["btnsbar-item"] +
+      " " +
+      (_activeIdx === idx ? styles["is-active"] : "")
     return (
       <li className={`${className}`} key={`btns-bar_${idx}`}>
         <Link href={link}>
@@ -28,7 +31,9 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
   }
 
   return (
-    <ul className={`${styles.btnsbar} ${styles["with-indicator"]}`}>{menuTexts.map(_generateMenu)}</ul>
+    <ul className={`${styles.btnsbar} ${styles["with-indicator"]}`}>
+      {menuTexts.map(_generateMenu)}
+    </ul>
   )
 }
 

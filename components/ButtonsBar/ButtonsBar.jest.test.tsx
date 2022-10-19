@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react"
 import ButtonsBar from "."
 
 describe("ButtonsBar", () => {
-
   it("should display button bar", () => {
     render(
       <ButtonsBar

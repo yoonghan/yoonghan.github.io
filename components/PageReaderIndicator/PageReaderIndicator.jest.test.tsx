@@ -21,7 +21,7 @@ describe("PageReaderIndicator", () => {
       writable: true,
       value: 100,
     })
-  }) 
+  })
 
   afterAll(() => {
     if (

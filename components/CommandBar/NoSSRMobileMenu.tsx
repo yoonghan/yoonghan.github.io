@@ -8,7 +8,8 @@ const AVAILABLE_MENUS: Array<ILink> = [
   {
     title: "Home",
     link: "/",
-  },{
+  },
+  {
     title: "About",
     link: "/about",
   },
