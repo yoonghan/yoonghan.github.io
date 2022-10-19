@@ -64,6 +64,14 @@ describe("CommandBarInput", () => {
     expect(submitFn).toHaveBeenCalled()
   })
 
+  it("should be able to choose and submit by button", async () => {
+    const submitFn = jest.fn((e) => e.preventDefault())
+    renderComponent({ onSubmitCallback: submitFn })
+    await userEvent.type(screen.getByRole("textbox"), "help")
+    await userEvent.click(screen.getByRole("button", { name: "Enter" }))
+    expect(submitFn).toHaveBeenCalled()
+  })
+
   it("should allow only 22 max characters", async () => {
     renderComponent({})
     const input = screen.getByRole("textbox")

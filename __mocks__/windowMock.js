@@ -25,6 +25,12 @@ export const spyOnReferrer = (location) => {
   jest.spyOn(document, "referrer", "get").mockReturnValue(location)
 }
 
+export const spyOnScrollTo = () => {
+  const scrollToSpy = jest.fn()
+  global.window.scrollTo = scrollToSpy
+  return scrollToSpy
+}
+
 export const setShareNavigator = () => {
   Object.defineProperty(window.navigator, "share", {
     value: () => {},

@@ -80,6 +80,15 @@
           "height": 768
         }
       ]
+    },
+    {
+      "label": "About Page",
+      "url": "http://localhost:3000/about",
+      "delay": 1000,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {

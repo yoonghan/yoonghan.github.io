@@ -1,0 +1,79 @@
+.btnsbar {
+    list-style: none;
+    margin: 10px auto;
+    max-width: 720px;
+    padding: 0;
+    width: 100%;
+    display: flex;
+}
+
+.btnsbar-item {
+    color: #86a3eb;
+    background: rgba(255, 255, 255, 0.1);
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    border: 1px solid;
+}
+.btnsbar-item:first-child {
+    border-radius: 3px 0 0 3px;
+}
+.btnsbar-item:last-child {
+    border-radius: 0 3px 3px 0;
+}
+.btnsbar-item.is-active a {
+    color: #86a3eb !important;
+    font-weight: bold;
+}
+.btnsbar-item a {
+    color: var(--link);
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btnsbar-item a:hover {
+    color: #000;
+}
+.with-indicator {
+    position: relative;
+    z-index: 0;
+}
+.with-indicator .btnsbar-item:last-child:after {
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    transition: left 1s ease;
+    border-radius: 3px;
+}
+.with-indicator .btnsbar-item:last-child:after {
+    background: #fff;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.with-indicator
+    .btnsbar-item:last-child:hover:after, .with-indicator
+    .btnsbar-item:last-child.is-active:after {
+    left: 66.66666666666666% !important;
+}
+
+.btnsbar:before,
+.btnsbar:after {
+    content: " ";
+    display: table;
+}
+
+.btnsbar:after {
+    clear: both;
+}

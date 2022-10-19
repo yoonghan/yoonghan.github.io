@@ -1,0 +1,36 @@
+.scroller {
+  right: 2rem;
+  position: fixed;
+  bottom: 2rem;
+  cursor: pointer;
+  color: var(--link);
+  opacity: 0.7;
+  padding: 5px;
+  border-radius: 3px;
+  z-index: 999;
+}
+
+.scroller:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0px;
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-bottom: solid 5px #fff;
+  border-left: solid 5px transparent;
+  border-right: solid 5px transparent;
+}
+
+@media only screen and (max-width: 480px) {
+  .scroller {
+    bottom: 0;
+    right: 0;
+    padding: 5px 20px;
+    border-radius: 0;
+  }
+  .scroller:before {
+    margin-left: 25px;
+  }
+}
