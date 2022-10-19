@@ -9,6 +9,10 @@ const AVAILABLE_MENUS: Array<ILink> = [
     title: "Home",
     link: "/",
   },
+  {
+    title: "About",
+    link: "/about",
+  },
 ]
 
 interface NoSSRMobileMenuProps extends WithRouterProps {}

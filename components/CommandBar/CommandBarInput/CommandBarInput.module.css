@@ -5,9 +5,11 @@
   top: 1.5rem;
   width: 260px;
 }
+
 .promptIn {
   visibility: hidden;
 }
+
 .command-text-prompt {
   width: 5rem;
   height: 2.2rem;
@@ -19,11 +21,12 @@
   color: var(--link);
   font-family: Inconsolata;
 }
+
 .command-enter {
   position: absolute;
   height: 2.2rem;
   right: 3px;
-  transition-property: color, background;
+  transition-property: color;
   transition-duration: 0.15s;
   transition-timing-function: ease-in-out;
   color: var(--link);
@@ -33,13 +36,16 @@
   user-select: none;
   cursor: pointer;
 }
+
 .command-enter:hover {
   color: var(--link-bg);
   background: var(--link);
 }
+
 .command-enter:active {
   margin: 1px 0 0 1px;
 }
+
 .command-container :global(.react-autosuggest__input) {
   font-family: Inconsolata;
   background-color: transparent;
@@ -57,9 +63,11 @@
   color: var(--link);
   text-shadow: 0 0 0 #ebebeb;
 }
+
 .command-container :global(.react-autosuggest__input:focus) {
   outline: none;
 }
+
 .command-container :global(.react-autosuggest__input--focused) {
   outline: none;
 }

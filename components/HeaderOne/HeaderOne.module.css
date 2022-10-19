@@ -1,0 +1,20 @@
+.lined {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lined:before,
+.lined:after {
+  content: "";
+  border-top: 2px solid;
+  margin: 0 20px 0 0;
+  flex: 1 0 20px;
+  max-width: 20px;
+}
+
+.lined:after {
+  margin: 0 0 0 20px;
+}

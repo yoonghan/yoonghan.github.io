@@ -1,26 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import ButtonsBar from "."
 
-describe("ButtonBar", () => {
-  let consoleWarnMock: jest.SpyInstance<
-    void,
-    [message?: any, ...optionalParams: any[]]
-  >
-  let consoleErrorMock: jest.SpyInstance<
-    void,
-    [message?: any, ...optionalParams: any[]]
-  >
-
-  beforeEach(() => {
-    consoleWarnMock = jest.spyOn(console, "warn").mockImplementation()
-    consoleErrorMock = jest.spyOn(console, "error").mockImplementation()
-  })
-
-  afterEach(() => {
-    consoleWarnMock.mockRestore()
-    consoleErrorMock.mockRestore()
-  })
-
+describe("ButtonsBar", () => {
   it("should display button bar", () => {
     render(
       <ButtonsBar
@@ -84,10 +65,5 @@ describe("ButtonBar", () => {
       />
     )
     expect(screen.getByText("only 1")).toBeInTheDocument()
-    expect(consoleWarnMock).toHaveBeenCalled()
-
-    expect(consoleErrorMock).toHaveBeenCalledWith(
-      "Provide only 3 and only 3 menuItems."
-    )
   })
 })
