@@ -1,11 +1,10 @@
 .container {
   display: flex;
   color: var(--link);
-  padding: 1.5rem;
+  padding: 2rem 0;
 }
 .container div {
   color: var(--link);
-  font-size: 2rem;
   cursor: pointer;
 }
 .navmenu-link {

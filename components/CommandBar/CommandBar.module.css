@@ -1,3 +1,33 @@
 .container {
   position: relative;
 }
+
+.header {
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
+}
+.header.commandPromptOnly{
+  left: 0;
+  right: 0;
+}
+.desktop.shift-to-right {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+@media only screen and (max-width: 480px) {
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none !important;
+  }
+}
