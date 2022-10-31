@@ -15,9 +15,11 @@ a {
   --text: #ffffff;
   --logo: rgb(255, 132, 0);
   --link: #0826ce;
-  --dialog-text: #ffffff;
+  --link-light: #206db9;
+  --dialog-text: #204ebb;
   --button: #000;
   --button-bg: #fff;
+  --border-color: rgba(66, 66, 66);
   --table-header: #fff;
   --table-header-bg: #343a40;
   --table-header-border: #454d55;
@@ -28,25 +30,14 @@ a {
   --table-even-bg: #d9d9d9;
   --shadow: grey;
   --header-1: #000;
+  --header-title: #efdab9;
 }
 
 .container {
   width: 100vw;
   height: 100vh;
   position: relative;
-  overflow: scroll;
-}
-
-.container:before {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.5;
-  background: #000 url(/img/welcome/walcron-authors.webp) no-repeat center
-    center;
-  background-size: cover;
+  background-color: #343233;
 }
 
 .section-container {
@@ -107,4 +98,17 @@ p,
 
 h2 {
   text-align: center;
+}
+
+span.strikethrough {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.footer {
+  color: var(--text);
+}
+
+.title {
+  color: var(--header-title);
 }
