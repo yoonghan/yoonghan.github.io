@@ -1,42 +1,48 @@
-
-  .container {
-    padding: 1rem;
-    position: relative;
-    color: var(--button);
-    background: var(--button-bg);
-    transition-property: 'color', 'background';
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in-out;
-    color: #000;
-    font-size: 1rem;
-    text-align: center;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    border: 1px solid;
-    margin: 0 1px 1px 0;
-    user-select: none;
-    white-space: nowrap;
-    box-shadow: 0 2px 2px 0 rgba(22, 22, 22, 0.14),
-      0 1px 5px 0 rgba(22, 22, 22, 0.12),
-      0 3px 1px -2px rgba(22, 22, 22, 0.2);
-  }
-  .container:hover {
-    background: var(--button);;
-    color: var(--button-bg);;
-  }
-  .container:active {
-    margin: 1px 0 0 1px;
-  }
-  .container.small {
-    padding: 0.5rem;
-    font-size: 0.7rem;
-  }
-  .container.invert {
-    background: rgba(25, 25, 25, 1);
-    color: #fff;
-  }
-  .container.invert:hover {
-    color: rgba(25, 25, 25, 1);
-    background: #fff;
-  }
+.container {
+  padding: 1rem;
+  position: relative;
+  color: var(--button);
+  background: var(--button-bg);
+  transition-property: "color", "background";
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
+  color: #000;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid;
+  margin: 0 1px 1px 0;
+  user-select: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 2px 0 rgba(22, 22, 22, 0.14),
+    0 1px 5px 0 rgba(22, 22, 22, 0.12), 0 3px 1px -2px rgba(22, 22, 22, 0.2);
+}
+.container:hover {
+  background: var(--button);
+  color: var(--button-bg);
+}
+.container:active {
+  margin: 1px 0 0 1px;
+}
+.container.small {
+  padding: 0.5rem;
+  font-size: 0.7rem;
+}
+.container.invert {
+  background: rgba(25, 25, 25, 1);
+  color: #fff;
+}
+.container.invert:hover {
+  color: rgba(25, 25, 25, 1);
+  background: #fff;
+}
+.container.orange {
+  background: var(--button-orange-bg);
+  color: var(--button-orange);
+}
+.container.orange:hover {
+  background: var(--button-orange);
+  color: var(--button-orange-bg);
+}

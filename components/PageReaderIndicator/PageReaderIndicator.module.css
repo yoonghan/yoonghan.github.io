@@ -1,4 +1,4 @@
-.scroll-percentage {
+.container {
   will-change: width;
   transition: width 100ms linear;
   position: fixed;

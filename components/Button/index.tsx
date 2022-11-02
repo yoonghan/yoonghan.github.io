@@ -8,7 +8,7 @@ interface ButtonProps {
   href?: string
   target?: string
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  color?: string
+  color?: "orange" | "white"
   text: string
   styling?: {
     small: boolean
@@ -56,7 +56,14 @@ const LinkButton = ({
   }
 }
 
-const Button = ({ href, text, onClick, target, styling }: ButtonProps) => {
+const Button = ({
+  href,
+  text,
+  color,
+  onClick,
+  target,
+  styling,
+}: ButtonProps) => {
   const definedClass = useMemo(() => {
     let style = styles.container
     if (styling?.small) {
@@ -65,8 +72,11 @@ const Button = ({ href, text, onClick, target, styling }: ButtonProps) => {
     if (styling?.inverted) {
       style += " " + styles.invert
     }
+    if (color) {
+      style += " " + styles[color]
+    }
     return style
-  }, [styling])
+  }, [styling, color])
 
   const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 300 } })
 

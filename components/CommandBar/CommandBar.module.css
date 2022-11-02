@@ -6,8 +6,9 @@
   text-align: center;
   position: relative;
   padding: 0 1rem;
+  background-color: #fff;
 }
-.header.commandPromptOnly{
+.header.commandPromptOnly {
   left: 0;
   right: 0;
 }
