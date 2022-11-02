@@ -20,9 +20,11 @@ p {
   --logo: rgb(255, 132, 0);
   --link: #0826ce;
   --link-light: #206db9;
-  --dialog-text: #204ebb;
+  --dialog-text: #fff;
   --button: #000;
   --button-bg: #fff;
+  --button-orange: #222;
+  --button-orange-bg: rgb(255, 132, 0);
   --border-color: rgba(66, 66, 66);
   --table-header: #fff;
   --table-header-bg: #343a40;

@@ -48,12 +48,16 @@ const Parallax = ({ scrollContainer, children }: Props) => {
         styles["section-container"]
       ) as HTMLCollectionOf<HTMLDivElement>
     )
-  }, [])
+  }, [scrollContainer])
 
   useEffect(() => {
     const scrollContainerRef = scrollContainer.current
 
-    scrollContainerRef?.addEventListener("scroll", parallaxScrollForeground)
+    if (scrollContainerRef !== null) {
+      scrollContainerRef.style.height = "100vh"
+      scrollContainerRef.style.overflowY = "scroll"
+      scrollContainerRef.addEventListener("scroll", parallaxScrollForeground)
+    }
 
     refreshContainer()
 

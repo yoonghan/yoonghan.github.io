@@ -33,10 +33,7 @@ function Home({ termsRead }: Props) {
 
       <main className={styles.homepage}>
         <PageReaderIndicator scrollContainer={scrollContainerRef} />
-        <div
-          ref={scrollContainerRef}
-          style={{ height: "100vh", overflow: "scroll" }}
-        >
+        <div ref={scrollContainerRef}>
           <CommandBar />
           <Parallax scrollContainer={scrollContainerRef}>
             <section id="introduction" className={styles.introduction}>
@@ -134,6 +131,7 @@ function Home({ termsRead }: Props) {
                 <Button
                   href="https://github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
                   text="View workflows code"
+                  color="orange"
                 ></Button>
               </article>
               <div className={styles.snapshots}>
@@ -200,6 +198,14 @@ function Home({ termsRead }: Props) {
               </div>
             </section>
             <section id="Merging and Production Deployment">
+              <div className={styles.snapshots}>
+                <Image
+                  src="/img/welcome/introduction-final-deployment.webp"
+                  alt="Failed deployment that cannot be merged"
+                  width={640}
+                  height={400}
+                />
+              </div>
               <article>
                 <h2 className="title">Go Live</h2>
                 <p>

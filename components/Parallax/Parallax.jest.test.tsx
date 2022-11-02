@@ -33,6 +33,23 @@ describe("Parallax", () => {
     expect(screen.getByText("two")).toBeInTheDocument()
   })
 
+  it("should render main container with scrolling properties", () => {
+    render(
+      <Main>
+        {(ref) => (
+          <Parallax scrollContainer={ref}>
+            <div>one</div>
+            <div>one</div>
+          </Parallax>
+        )}
+      </Main>
+    )
+    expect(screen.getByTestId("scrollContainer")).toHaveStyle({
+      overflowY: "scroll",
+      height: "100vh",
+    })
+  })
+
   it("should render correctly height of parallax base on no# of child elements", () => {
     render(
       <Main>
