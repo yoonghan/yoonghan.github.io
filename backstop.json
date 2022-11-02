@@ -82,9 +82,24 @@
       ]
     },
     {
+      "label": "Walcron Homepage is scrollable",
+      "url": "http://localhost:3000",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 500,
+      "postInteractionWait": 0,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "scrollBySelector": {
+        "id": "#parallax-container"
+      },
+      "requireSameDimensions": true
+    },
+    {
       "label": "About Page",
       "url": "http://localhost:3000/about",
-      "delay": 1000,
+      "delay": 500,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,

@@ -7,6 +7,16 @@
   gap: 2rem;
 }
 
+@media only screen and (max-width: 640px) {
+  .homepage section {
+    flex-direction: column;
+  }
+
+  .homepage section .snapshots {
+    margin: 0 1rem;
+  }
+}
+
 section.introduction {
   display: block;
   color: var(--text);

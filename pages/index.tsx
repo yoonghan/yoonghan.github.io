@@ -33,7 +33,7 @@ function Home({ termsRead }: Props) {
 
       <main className={styles.homepage}>
         <PageReaderIndicator scrollContainer={scrollContainerRef} />
-        <div ref={scrollContainerRef}>
+        <div ref={scrollContainerRef} id="parallax-container">
           <CommandBar />
           <Parallax scrollContainer={scrollContainerRef}>
             <section id="introduction" className={styles.introduction}>
@@ -85,7 +85,7 @@ function Home({ termsRead }: Props) {
                 />
               </div>
             </section>
-            <section id="Github pull request" className="colorme">
+            <section id="github-pull-request" className="colorme">
               <div className={styles.snapshots}>
                 <Image
                   src="/img/welcome/introduction-pull-request.webp"
@@ -114,7 +114,7 @@ function Home({ termsRead }: Props) {
                 </p>
               </article>
             </section>
-            <section id="Github workflow">
+            <section id="github-workflow">
               <article>
                 <h2 className="title">Github workflow</h2>
                 <p>

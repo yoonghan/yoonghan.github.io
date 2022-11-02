@@ -1,9 +1,10 @@
-module.exports = async (page, scenario) => {
+module.exports = async (page, scenario, viewport) => {
   const hoverSelector = scenario.hoverSelectors || scenario.hoverSelector
   const clickSelector = scenario.clickSelectors || scenario.clickSelector
   const keyPressSelector =
     scenario.keyPressSelectors || scenario.keyPressSelector
   const scrollToSelector = scenario.scrollToSelector
+  const scrollBySelector = scenario.scrollBySelector
   const postInteractionWait = scenario.postInteractionWait // selector [str] | ms [int]
 
   if (keyPressSelector) {
@@ -43,5 +44,20 @@ module.exports = async (page, scenario) => {
     await page.evaluate((scrollToSelector) => {
       document.querySelector(scrollToSelector).scrollIntoView()
     }, scrollToSelector)
+  }
+
+  if (scrollBySelector) {
+    await page.waitForSelector(scrollBySelector.id)
+    await page.evaluate(
+      ([{ id, posY }, viewPortHeight]) => {
+        if (!id) {
+          // eslint-disable-next-line no-console
+          console.error("Definition is missing [id]")
+        }
+        const element = document.querySelector(id)
+        element.scrollBy(0, posY || viewPortHeight)
+      },
+      [scrollBySelector, viewport.height]
+    )
   }
 }
