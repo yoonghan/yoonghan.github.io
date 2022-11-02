@@ -7,7 +7,7 @@ module.exports = async (
 ) => {
   // eslint-disable-next-line no-console
   console.log("SCENARIO > " + scenario.label)
-  await require("./clickAndHoverHelper")(page, scenario)
+  await require("./clickAndHoverHelper")(page, scenario, viewport)
 
   // add more ready handlers here...
 }

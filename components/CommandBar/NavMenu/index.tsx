@@ -13,7 +13,7 @@ const writeLink = (router: NextRouter) => {
     if (path === "") {
       return index === 0 ? (
         <a href={"/"} key={`_linkroot`} className={"navmenu-link"}>
-          /
+          home
         </a>
       ) : null
     } else if (path !== "") {
@@ -24,8 +24,8 @@ const writeLink = (router: NextRouter) => {
           key={`_link${path}`}
           className={styles.navmenuLink}
         >
-          <span> </span>
-          {path}/
+          {" "}
+          &gt; {path}
         </a>
       )
     }
@@ -33,15 +33,9 @@ const writeLink = (router: NextRouter) => {
   return splittedLinks
 }
 const NavMenu = ({ router }: Props) => {
-  const goBack = (router: NextRouter) => () => {
-    router.push("/")
-  }
-
   return (
     <nav className={styles.container}>
-      <div onClick={goBack(router)} role="return">
-        Location: &nbsp;
-      </div>
+      <div>Site Map: &nbsp;</div>
       <span className="link">{writeLink(router)}</span>
     </nav>
   )

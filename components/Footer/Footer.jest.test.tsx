@@ -21,4 +21,9 @@ describe("Footer", () => {
     render(<Footer isRelative={true} />)
     expect(screen.getByText(footerMessage)).toHaveClass("relative")
   })
+
+  it("should render with additional classname if passed", () => {
+    render(<Footer className={"sampleClass"} />)
+    expect(screen.getByText(footerMessage)).toHaveClass("sampleClass")
+  })
 })

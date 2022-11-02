@@ -17,8 +17,8 @@ const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
         .error {
           white-space: nowrap;
           font-family: Inconsolata;
-          font-size: #ff000;
-          color: #ffffff;
+          font-size: 1rem;
+          color: #3333ff;
           position: absolute;
           top: 0;
           left: 0;
