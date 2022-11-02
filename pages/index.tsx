@@ -13,6 +13,7 @@ import { getCookie, hasCookie } from "cookies-next"
 import type { NextPageContext } from "next"
 import { useRef } from "react"
 import styles from "./index.module.css"
+import Button from "@/components/Button"
 
 interface Props {
   termsRead: boolean
@@ -88,6 +89,14 @@ function Home({ termsRead }: Props) {
               </div>
             </section>
             <section id="Github pull request" className="colorme">
+              <div className={styles.snapshots}>
+                <Image
+                  src="/img/welcome/introduction-pull-request.webp"
+                  alt="Pull Request for Code merge"
+                  width={640}
+                  height={400}
+                />
+              </div>
               <article>
                 <h2 className="title">Github pull request</h2>
                 <p>
@@ -95,12 +104,16 @@ function Home({ termsRead }: Props) {
                   <strong>
                     <span className="strikethrough">MUST</span> HAVE
                   </strong>{" "}
-                  go thru &quot;pull request&quot; -&gt; &quot;100%
-                  validated&quot; -&gt; &quot;
+                  to go thru a &quot;pull request&quot; -&gt; &quot;100%
+                  validated&quot;
                 </p>
                 <p>
                   No direct &quot;master&quot; branch check-in. But it&apos;s
                   never disallowed for admin.
+                </p>
+                <p>
+                  <i>Debatable:</i> May not be a fit to for Continous
+                  Integration flow on branching, but fit for us.
                 </p>
               </article>
             </section>
@@ -118,15 +131,29 @@ function Home({ termsRead }: Props) {
                   <li>Publish code coverage for README tagging.</li>
                   <li>Validate previous vs latest User-Interface change.</li>
                 </ol>
-                <p>
-                  Code can be viewed at{" "}
-                  <a href="https://github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml">
-                    Walcron github .workflow
-                  </a>
-                </p>
+                <Button
+                  href="https://github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
+                  text="View workflows code"
+                ></Button>
               </article>
+              <div className={styles.snapshots}>
+                <Image
+                  src="/img/welcome/introduction-build-workflow.webp"
+                  alt="Use Github build workflow"
+                  width={640}
+                  height={400}
+                />
+              </div>
             </section>
             <section id="Vercel deployment" className="colorme">
+              <div className={styles.snapshots}>
+                <Image
+                  src="/img/welcome/introduction-vercel-deployment.webp"
+                  alt="Deployment in vercel"
+                  width={640}
+                  height={400}
+                />
+              </div>
               <article>
                 <h2 className="title">
                   Vercel Deployment to testing environment
@@ -162,6 +189,15 @@ function Home({ termsRead }: Props) {
                   </li>
                 </ol>
               </article>
+
+              <div className={styles.snapshots}>
+                <Image
+                  src="/img/welcome/introduction-backstop-ui-check.webp"
+                  alt="Check UI previous vs current"
+                  width={640}
+                  height={400}
+                />
+              </div>
             </section>
             <section id="Merging and Production Deployment">
               <article>
@@ -171,6 +207,15 @@ function Home({ termsRead }: Props) {
                   merged!
                 </p>
               </article>
+            </section>
+
+            <section id="Contact us">
+              <div className={`center ${styles.contactus}`}>
+                <h2>Contact Us</h2>
+                <div className="p-padding">
+                  <LetterBox />
+                </div>
+              </div>
             </section>
           </Parallax>
         </div>

@@ -12,7 +12,6 @@ section.introduction {
   color: var(--text);
   background: #000 url(/img/welcome/connection.png) repeat center center;
   filter: saturate(80%);
-  width: calc(100vw - 20px);
 }
 
 .introduction h1 {
@@ -46,6 +45,10 @@ section.introduction {
 
 .homepage section .snapshots:hover {
   animation: sepia 1s forwards;
+}
+
+.homepage section .contactus {
+  color: var(--text);
 }
 
 @keyframes sepia {

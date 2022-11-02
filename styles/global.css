@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  text-align: justify;
+}
+
 :root {
   --text: #ffffff;
   --logo: rgb(255, 132, 0);
@@ -111,4 +115,12 @@ span.strikethrough {
 
 .title {
   color: var(--header-title);
+}
+
+.center {
+  flex-direction: column;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  vertical-align: center;
 }
