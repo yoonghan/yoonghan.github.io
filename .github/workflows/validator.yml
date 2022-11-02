@@ -53,7 +53,7 @@ jobs:
       - name: Check vercel deployed service service URL
         uses: jtalk/url-health-check-action@v2
         with:
-          url: https://walcron-git-${{GITHUB_HEAD_REF}}-walcoorperation.vercel.app
+          url: https://walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app
           max-attempts: 3
           retry-delay: 5s
 
