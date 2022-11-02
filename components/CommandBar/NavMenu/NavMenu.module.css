@@ -1,11 +1,6 @@
 .container {
   display: flex;
-  color: var(--link);
   padding: 2rem 0;
-}
-.container div {
-  color: var(--link);
-  cursor: pointer;
 }
 .navmenu-link {
   padding-left: 10px;

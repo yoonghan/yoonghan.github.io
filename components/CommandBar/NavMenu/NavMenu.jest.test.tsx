@@ -9,28 +9,27 @@ describe("NavMenu", () => {
   it("should render nav menu", () => {
     singletonRouter.push("")
     render(<NavMenu />)
-    expect(screen.getByText("/")).toBeInTheDocument()
+    expect(screen.getByText("home")).toBeInTheDocument()
   })
 
   it("should render nav menu with root", () => {
     singletonRouter.push("/")
     render(<NavMenu />)
-    expect(screen.getByText("/")).toBeInTheDocument()
+    expect(screen.getByText("home")).toBeInTheDocument()
   })
 
   it("should render nav menu with menu", () => {
     singletonRouter.push("/about")
     render(<NavMenu />)
-    expect(screen.getByText("/")).toBeInTheDocument()
-    expect(screen.getByText("about/")).toBeInTheDocument()
+    expect(screen.getByText("home")).toBeInTheDocument()
+    expect(screen.getByText("> about")).toBeInTheDocument()
   })
 
-  it("should be able to go back when clicked", async () => {
+  it("should be able to go back when clicked", () => {
     singletonRouter.push("/")
     singletonRouter.push("/about")
     render(<NavMenu />)
     expect(singletonRouter.pathname).toBe("/about")
-    await userEvent.click(screen.getByRole("return"))
-    expect(singletonRouter.pathname).toBe("/")
+    expect(screen.getByText("home")).toHaveAttribute("href", "/")
   })
 })
