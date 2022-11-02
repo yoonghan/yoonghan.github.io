@@ -84,7 +84,7 @@ const About = () => {
               {
                 name: "Han Yoong",
                 description: (
-                  <div>
+                  <p>
                     A passionate coder who is now stuck in a proprietery
                     software and hardware industry. In his free time, he spends
                     time to read and experiment new ways to improve the{" "}
@@ -94,14 +94,14 @@ const About = () => {
                     <br />
                     <br />
                     <i>An enthusiast programmer.</i>
-                  </div>
+                  </p>
                 ),
                 imgSrc: "/img/profile/han.jpg",
               },
               {
                 name: "Gladys Tai",
                 description: (
-                  <div>
+                  <p>
                     An achiever with a bad-ass attitude. She always complains
                     that she wouldn&apos;t make it in time or the task are too
                     complex to handle. However,{" "}
@@ -113,7 +113,7 @@ const About = () => {
                     <br />
                     <br />
                     <i>She is a worrier and a warrior.</i>
-                  </div>
+                  </p>
                 ),
                 imgSrc: "/img/profile/gladys.jpg",
               },
@@ -123,7 +123,7 @@ const About = () => {
         <hr />
         <section>
           <h2>Contact</h2>
-          <div className="p-padding">
+          <div className="p-padding center">
             <LetterBox />
           </div>
         </section>

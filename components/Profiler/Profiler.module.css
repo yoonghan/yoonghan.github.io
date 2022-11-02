@@ -8,12 +8,13 @@
     flex-direction: column;
   }
   .user:nth-child(even) {
-    text-align: right
+    text-align: right;
   }
 }
 
 .user {
   padding: 30px;
+  text-align: center;
 }
 
 .name {

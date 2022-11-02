@@ -45,7 +45,7 @@ const PageReaderIndicator = ({ scrollContainer }: Props) => {
 
   return (
     <div
-      className={styles.scrollPercentage}
+      className={styles.container}
       ref={scrollMonitorRef}
       data-testid="scroll-container"
     >
