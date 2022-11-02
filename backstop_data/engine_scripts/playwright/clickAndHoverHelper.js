@@ -61,5 +61,5 @@ module.exports = async (page, scenario, viewport) => {
       [scrollBySelector, viewport.height]
     )
   }
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
 }
