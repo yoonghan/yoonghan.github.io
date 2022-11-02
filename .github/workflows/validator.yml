@@ -50,6 +50,13 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
+      - name: Check vercel deployed service service URL
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app
+          max-attempts: 3
+          retry-delay: 5s
+
       - name: Update localhost with vercel deployed branch version
         run: |
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
