@@ -2,7 +2,7 @@ name: Validate new deployments
 on:
   pull_request: {}
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
@@ -50,6 +50,8 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
+  snapshot:
+    runs-on: ubuntu-latest
       - name: Update localhost with vercel deployed branch version
         run: |
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
