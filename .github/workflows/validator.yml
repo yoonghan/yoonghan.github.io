@@ -50,8 +50,6 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-  snapshot:
-    runs-on: ubuntu-latest
       - name: Update localhost with vercel deployed branch version
         run: |
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
@@ -59,10 +57,6 @@ jobs:
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
-        shell: bash
-
-      - name: ▶️ Validate Vercel deployment
-        run: chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app
         shell: bash
 
       - name: ▶️ Run page rendering check
