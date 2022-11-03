@@ -2,17 +2,17 @@ name: Validate new deployments
 on:
   pull_request: {}
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.9.1
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
@@ -69,6 +69,6 @@ jobs:
           name: backstop-artifact
           path: backstop_data/
 
-      - name: Validate Backstopjs snapshot is valid
+      - name: ▶️ Validate Backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
