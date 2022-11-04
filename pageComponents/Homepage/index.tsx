@@ -8,53 +8,16 @@ import PageReaderIndicator from "@/components/PageReaderIndicator"
 import Parallax, { ScrollHandler } from "@/components/Parallax"
 import ScrollIcon from "@/components/ScrollIcon"
 import { useRef, useMemo, useEffect, useState } from "react"
-import styles from "./homepage.module.css"
+import styles from "./Homepage.module.css"
 import Button from "@/components/Button"
 import SocialFab from "@/components/SocialFab"
 import Navigator from "@/components/Navigator"
 import Cookie from "@/components/Cookie"
+import { links } from "./links"
 
 interface Props {
   termsRead: boolean
 }
-
-const links = [
-  {
-    id: "1",
-    desc: "Test Driven Development",
-    link: "1",
-  },
-  {
-    id: "2",
-    desc: "Github Pull Request",
-    link: "2",
-  },
-  {
-    id: "3",
-    desc: "Github Workflow",
-    link: "3",
-  },
-  {
-    id: "4",
-    desc: "Testing Deployment",
-    link: "4",
-  },
-  {
-    id: "5",
-    desc: "UI/UX Validation",
-    link: "5",
-  },
-  {
-    id: "6",
-    desc: "Going Live",
-    link: "6",
-  },
-  {
-    id: "7",
-    desc: "Contact Us",
-    link: "7",
-  },
-]
 
 function Home({ termsRead }: Props) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)

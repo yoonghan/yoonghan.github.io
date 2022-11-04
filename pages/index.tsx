@@ -1,13 +1,13 @@
 import { getCookie, hasCookie } from "cookies-next"
 import type { NextPageContext } from "next"
-import Home from "./homepage"
+import Homepage from "@/pageComponents/Homepage"
 
 interface Props {
   termsRead: boolean
 }
 
 function Index({ termsRead }: Props) {
-  return <Home termsRead={termsRead} />
+  return <Homepage termsRead={termsRead} />
 }
 
 export async function getServerSideProps({ req, res }: NextPageContext) {
