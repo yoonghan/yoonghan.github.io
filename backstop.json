@@ -42,14 +42,12 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
       "delay": 500,
-      "keyPressSelectors": [
-        {
-          "selector": "[placeHolder='Honorific and name']",
-          "keyPress": "Rascal"
-        }
-      ],
-      "clickSelector": "text=Send",
-      "postInteractionWait": 0,
+      "scrollBySelector": {
+        "id": "#parallax-container",
+        "posY": 10000
+      },
+      "clickSelector": "text=Write To Us",
+      "postInteractionWait": 1000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
@@ -87,13 +85,26 @@
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
-      "postInteractionWait": 0,
+      "postInteractionWait": 1000,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.4,
       "scrollBySelector": {
         "id": "#parallax-container"
       },
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Walcron Homepage can access from navigation",
+      "url": "http://localhost:3000",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 500,
+      "postInteractionWait": 1000,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "clickSelector": "nav:has-text('Testing Deployment')",
       "requireSameDimensions": true
     },
     {
@@ -102,7 +113,7 @@
       "delay": 500,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.4,
       "requireSameDimensions": true
     }
   ],

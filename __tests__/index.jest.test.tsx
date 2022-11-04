@@ -1,6 +1,12 @@
-import { render, screen, waitFor, within } from "@testing-library/react"
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react"
 import Home, { getServerSideProps } from "@/pages/index"
-import userEvent from "@testing-library/user-event"
+import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
 import { setCookie, deleteCookie } from "cookies-next"
 
@@ -18,7 +24,7 @@ describe("Home", () => {
     await render(<Home termsRead={false} />)
     const cookieSection = screen.getByRole("cookie")
     expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
-    userEvent.click(
+    UserEvent.click(
       within(cookieSection).getByRole("button", { name: "Close" })
     )
     await waitFor(() => {
@@ -43,6 +49,50 @@ describe("Home", () => {
       expect(await getServerSideProps(nextPageContext)).toStrictEqual({
         props: { termsRead: false },
       })
+    })
+  })
+
+  describe("able to navigate", () => {
+    it("should have the following links", async () => {
+      window.innerHeight = 500
+      render(<Home termsRead={false} />)
+
+      const navigation = within(
+        screen.getByRole("navigation", {
+          name: "Site Navigation",
+        })
+      )
+
+      const scrollToFn = jest.fn()
+      // eslint-disable-next-line testing-library/no-node-access
+      const parallaxContainer = document.getElementById("parallax-container")
+      if (parallaxContainer !== null) {
+        parallaxContainer.scrollTo = scrollToFn
+        jest
+          .spyOn(parallaxContainer, "offsetHeight", "get")
+          .mockReturnValue(500)
+      }
+
+      await UserEvent.click(navigation.getByText("Test Driven Development"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 500)
+
+      await UserEvent.click(navigation.getByText("Going Live"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 3000)
+
+      await UserEvent.click(navigation.getByText("Github Pull Request"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 1000)
+
+      await UserEvent.click(navigation.getByText("Github Workflow"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 1500)
+
+      await UserEvent.click(navigation.getByText("Testing Deployment"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 2000)
+
+      await UserEvent.click(navigation.getByText("UI/UX Validation"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 2500)
+
+      await UserEvent.click(navigation.getByText("Contact Us"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 3500)
     })
   })
 })

@@ -20,7 +20,6 @@
 section.introduction {
   display: block;
   color: var(--text);
-  background: #000 url(/img/welcome/connection.png) repeat center center;
   filter: saturate(80%);
 }
 
@@ -29,6 +28,10 @@ section.introduction {
   text-align: center;
   font-size: 3rem;
   color: var(--text);
+}
+
+.introduction .info {
+  display: flex;
 }
 
 .homepage section > article {
