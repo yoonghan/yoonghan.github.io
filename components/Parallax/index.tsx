@@ -1,4 +1,11 @@
-import { Children, useCallback, useEffect, useRef, useState } from "react"
+import {
+  Children,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  forwardRef,
+} from "react"
 import styles from "./Parallax.module.css"
 import {
   activeWindowIndex,
@@ -11,7 +18,14 @@ interface Props {
   children: React.ReactNode
 }
 
-const Parallax = ({ scrollContainer, children }: Props) => {
+export type ScrollHandler = {
+  scroll: (index: number) => void
+}
+
+const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
+  { scrollContainer, children },
+  ref
+) {
   const arrayChildren = Children.toArray(children)
   const windowInnerHeight = useRef(0)
   const parallaxDisplayContainerRef = useRef<HTMLDivElement>(null)
@@ -41,6 +55,16 @@ const Parallax = ({ scrollContainer, children }: Props) => {
   const refreshContainer = useCallback(() => {
     windowInnerHeight.current = window.innerHeight
   }, [])
+
+  useImperativeHandle(ref, () => ({
+    scroll(index: number) {
+      const scrollContainerRef = scrollContainer.current
+      if (scrollContainerRef !== null) {
+        const height = scrollContainerRef.offsetHeight
+        scrollContainerRef.scrollTo(0, index * height)
+      }
+    },
+  }))
 
   useEffect(() => {
     parallaxSectionsRef.current = Array.from(
@@ -91,6 +115,6 @@ const Parallax = ({ scrollContainer, children }: Props) => {
       </div>
     </div>
   )
-}
+})
 
 export default Parallax

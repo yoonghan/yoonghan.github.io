@@ -37,6 +37,9 @@ p {
   --shadow: grey;
   --header-1: #000;
   --header-title: #efdab9;
+  --z-index-modal: 200;
+  --z-index-modal-content: 201;
+  --z-index-page-reader: 100;
 }
 
 .container {

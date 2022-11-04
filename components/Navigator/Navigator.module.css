@@ -1,0 +1,65 @@
+.mainContainer {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  direction: ltr;
+  margin-left: 20px;
+}
+
+.container {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sitemap {
+  padding-left: 20px;
+}
+
+.dot {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+.dot::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 132, 0);
+  border-radius: 50%;
+}
+
+.container:first-child > span:first-child {
+  top: 11px;
+}
+.container:last-child > span:first-child {
+  bottom: 40px;
+}
+.container:last-child .icon {
+  background: rgb(21, 178, 21);
+  color: rgb(255, 255, 255);
+}
+.container > span:first-child {
+  top: 0;
+  left: 4px;
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  background-color: #858b94;
+}
+.container > span:nth-child(2) {
+  left: 0;
+  text-align: center;
+  position: absolute;
+  top: 5px;
+}
+.container > .content {
+  padding-bottom: 18px;
+}
+.container > .content p {
+  margin: 0;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}

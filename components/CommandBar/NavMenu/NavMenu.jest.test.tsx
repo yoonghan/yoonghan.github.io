@@ -32,4 +32,11 @@ describe("NavMenu", () => {
     expect(singletonRouter.pathname).toBe("/about")
     expect(screen.getByText("home")).toHaveAttribute("href", "/")
   })
+
+  it("should contain a navigation with Site Map named", () => {
+    render(<NavMenu />)
+    expect(
+      screen.getByRole("navigation", { name: "Site Map" })
+    ).toBeInTheDocument()
+  })
 })

@@ -6,7 +6,7 @@
   width: 0%;
   left: 0;
   background-color: #ff8400;
-  z-index: 999;
+  z-index: var(--z-index-page-reader);
   top: 0;
 }
 
