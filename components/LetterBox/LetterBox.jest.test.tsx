@@ -21,7 +21,7 @@ describe("LetterBox", () => {
     )
 
     expect(screen.queryByRole("modal")).not.toBeInTheDocument
-    await userEvent.click(screen.getByRole("button"))
+    await userEvent.click(screen.getByRole("button", { name: "Write To Us" }))
     expect(screen.getByRole("modal")).toBeInTheDocument
 
     expect(window.location.href).toContain(
@@ -41,12 +41,5 @@ describe("LetterBox", () => {
     )
     expect(screen.getByRole("modal")).toBeInTheDocument
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
-  })
-
-  it("should  not to submit an email if no name is entered", async () => {
-    render(<LetterBox />)
-
-    await userEvent.click(screen.getByRole("button"))
-    expect(screen.queryByRole("modal")).not.toBeInTheDocument
   })
 })
