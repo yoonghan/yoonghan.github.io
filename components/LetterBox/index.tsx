@@ -41,7 +41,7 @@ const LetterBox = () => {
         <Button text="Write To Us" />
         {isDialogShown && (
           <Modal onCancel={onClose}>
-            <EmailSender writeFrom={(name || "").trim()} writeTo={email} />
+            <EmailSender writeFrom={name.trim()} writeTo={email} />
           </Modal>
         )}
       </form>
