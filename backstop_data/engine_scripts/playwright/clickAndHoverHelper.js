@@ -7,6 +7,22 @@ module.exports = async (page, scenario, viewport) => {
   const scrollBySelector = scenario.scrollBySelector
   const postInteractionWait = scenario.postInteractionWait // selector [str] | ms [int]
 
+  if (scrollBySelector) {
+    await page.waitForSelector(scrollBySelector.id)
+    await page.evaluate(
+      ([{ id, posY }, viewPortHeight]) => {
+        if (!id) {
+          // eslint-disable-next-line no-console
+          console.error("Definition is missing [id]")
+        }
+        console.log("scrollby", posY || viewPortHeight)
+        const element = document.querySelector(id)
+        element.scrollBy(0, posY || viewPortHeight)
+      },
+      [scrollBySelector, viewport.height]
+    )
+  }
+
   if (keyPressSelector) {
     for (const keyPressSelectorItem of [].concat(keyPressSelector)) {
       await page.waitForSelector(keyPressSelectorItem.selector)
@@ -45,21 +61,4 @@ module.exports = async (page, scenario, viewport) => {
       document.querySelector(scrollToSelector).scrollIntoView()
     }, scrollToSelector)
   }
-
-  if (scrollBySelector) {
-    await page.waitForSelector(scrollBySelector.id)
-    await page.evaluate(
-      ([{ id, posY }, viewPortHeight]) => {
-        if (!id) {
-          // eslint-disable-next-line no-console
-          console.error("Definition is missing [id]")
-        }
-        console.log("scrollby", posY || viewPortHeight)
-        const element = document.querySelector(id)
-        element.scrollBy(0, posY || viewPortHeight)
-      },
-      [scrollBySelector, viewport.height]
-    )
-  }
-  await page.waitForTimeout(1000)
 }

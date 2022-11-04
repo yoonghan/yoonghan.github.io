@@ -1,26 +1,34 @@
 import { render, screen, fireEvent } from "@testing-library/react"
+import UserEvent from "@testing-library/user-event"
 import React, { RefObject, useRef } from "react"
-import Parallax from "."
+import Parallax, { ScrollHandler } from "."
 
 describe("Parallax", () => {
   const Main = ({
     children,
+    scrollTo = jest.fn(),
   }: {
-    children: (ref: RefObject<HTMLDivElement>) => React.ReactNode
+    children: (
+      ref: RefObject<HTMLDivElement>,
+      childRef: RefObject<ScrollHandler>
+    ) => React.ReactNode
+    scrollTo?: (x: number, y: number) => void
   }) => {
     const tempRef = useRef<HTMLDivElement>(null)
+    const childRef = useRef<ScrollHandler>(null)
 
     return (
       <div ref={tempRef} data-testid={"scrollContainer"}>
-        {children(tempRef)}
+        {children(tempRef, childRef)}
       </div>
     )
   }
 
   /* eslint-disable testing-library/no-node-access */
   it("should render correctly with multiple elements", () => {
+    const scrollTo = jest.fn()
     render(
-      <Main>
+      <Main scrollTo={scrollTo}>
         {(ref) => (
           <Parallax scrollContainer={ref}>
             <div>one</div>
@@ -134,5 +142,41 @@ describe("Parallax", () => {
     unmount()
     window.innerHeight = 1000
     window.dispatchEvent(new Event("resize"))
+  })
+
+  it("should be able to scroll based on window provided", async () => {
+    const scrollTo = jest.fn()
+
+    window.innerHeight = 500
+    render(
+      <Main scrollTo={scrollTo}>
+        {(ref, subRef) => (
+          <Parallax scrollContainer={ref} ref={subRef}>
+            <div
+              data-testid="part-1"
+              onClick={() => subRef?.current?.scroll(1)}
+            >
+              one
+            </div>
+            <div
+              data-testid="part-2"
+              onClick={() => subRef?.current?.scroll(0)}
+            >
+              two
+            </div>
+          </Parallax>
+        )}
+      </Main>
+    )
+
+    const parentElem = screen.getByTestId("scrollContainer")
+    parentElem.scrollTo = scrollTo
+    jest.spyOn(parentElem, "offsetHeight", "get").mockReturnValue(500)
+
+    await UserEvent.click(screen.getByTestId("part-1"))
+    expect(scrollTo).toHaveBeenCalledWith(0, 500)
+
+    await UserEvent.click(screen.getByTestId("part-2"))
+    expect(scrollTo).toHaveBeenCalledWith(0, 0)
   })
 })

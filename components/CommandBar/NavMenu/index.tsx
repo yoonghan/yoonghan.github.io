@@ -34,7 +34,7 @@ const writeLink = (router: NextRouter) => {
 }
 const NavMenu = ({ router }: Props) => {
   return (
-    <nav className={styles.container}>
+    <nav className={styles.container} aria-label="Site Map">
       <div>Site Map: &nbsp;</div>
       <span className="link">{writeLink(router)}</span>
     </nav>
