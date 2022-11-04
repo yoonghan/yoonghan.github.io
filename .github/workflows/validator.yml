@@ -59,6 +59,10 @@ jobs:
           cat backstop.json
         shell: bash
 
+      - name: ▶️ Verify Vercel deployment
+        run: chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app
+        shell: bash
+
       - name: ▶️ Run page rendering check
         continue-on-error: true
         run: npm run backstop:test
