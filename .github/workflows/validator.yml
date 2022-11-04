@@ -2,7 +2,7 @@ name: Validate new deployments
 on:
   pull_request: {}
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
