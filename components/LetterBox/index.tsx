@@ -19,10 +19,6 @@ const LetterBox = () => {
   }
 
   const onSendButtonClick = () => {
-    if (!name || name.trim() === "") {
-      return
-    }
-
     setIsDialogShown(true)
   }
 
@@ -42,10 +38,10 @@ const LetterBox = () => {
           onChange={(event) => setName(event.target.value)}
           value={name}
         />
-        <Button text="Send" />
+        <Button text="Write To Us" />
         {isDialogShown && (
           <Modal onCancel={onClose}>
-            <EmailSender writeFrom={name.trim()} writeTo={email} />
+            <EmailSender writeFrom={(name || "").trim()} writeTo={email} />
           </Modal>
         )}
       </form>
