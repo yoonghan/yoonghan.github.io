@@ -95,7 +95,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Walcron Homepage can access from navigation",
+      "label": "Walcron Homepage on Desktop/tablet can access from navigation",
       "url": "http://localhost:3000",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
@@ -105,7 +105,14 @@
       "expect": 0,
       "misMatchThreshold": 0.4,
       "clickSelector": "nav:has-text('Testing Deployment')",
-      "requireSameDimensions": true
+      "requireSameDimensions": true,
+      "viewports": [
+        {
+          "label": "tablet",
+          "width": 1024,
+          "height": 768
+        }
+      ]
     },
     {
       "label": "About Page",
