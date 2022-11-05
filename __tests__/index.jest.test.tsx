@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react"
+import { render, screen, waitFor, within } from "@testing-library/react"
 import Home, { getServerSideProps } from "@/pages/index"
 import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
