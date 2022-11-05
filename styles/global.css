@@ -1,3 +1,4 @@
+@import "var.css";
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
 
 html,
@@ -13,33 +14,6 @@ a {
 
 p {
   text-align: justify;
-}
-
-:root {
-  --text: #ffffff;
-  --logo: rgb(255, 132, 0);
-  --link: #0826ce;
-  --link-light: #206db9;
-  --dialog-text: #fff;
-  --button: #000;
-  --button-bg: #fff;
-  --button-orange: #222;
-  --button-orange-bg: rgb(255, 132, 0);
-  --border-color: rgba(66, 66, 66);
-  --table-header: #fff;
-  --table-header-bg: #343a40;
-  --table-header-border: #454d55;
-  --table: #000;
-  --table-bg: #fff;
-  --table-border: 1px solid #dee2e6;
-  --table-hover: #e9e9e9;
-  --table-even-bg: #d9d9d9;
-  --shadow: grey;
-  --header-1: #000;
-  --header-title: #efdab9;
-  --z-index-modal: 200;
-  --z-index-modal-content: 201;
-  --z-index-page-reader: 100;
 }
 
 .container {

@@ -30,8 +30,46 @@ section.introduction {
   color: var(--text);
 }
 
+.introduction h3 {
+  max-width: 640px;
+  text-align: justify;
+  font-size: 1rem;
+  color: var(--text);
+}
+
 .introduction .info {
   display: flex;
+  gap: 2rem;
+}
+
+.introduction .info article {
+  max-width: 640px;
+  flex: auto;
+  margin: 0 auto;
+}
+
+.introduction .show {
+  margin-top: 3rem;
+  position: relative;
+  max-width: 640px;
+  height: 240px;
+  background-image: url("/img/welcome/fg-left.webp");
+  background-size: contain;
+}
+.introduction .show > div:first-child {
+  position: absolute;
+  top: 2rem;
+  font-size: 5vh;
+  transform: rotate(-5deg);
+  color: rgb(143, 130, 188);
+}
+.introduction .show > div:last-child {
+  position: absolute;
+  top: 7rem;
+  left: 0.5rem;
+  font-size: 7vh;
+  transform: rotate(2deg);
+  color: rgb(243, 152, 0);
 }
 
 .homepage section > article {
@@ -70,5 +108,19 @@ section.introduction {
   }
   to {
     filter: sepia(100%);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .introduction aside {
+    display: none;
+  }
+
+  .introduction .info {
+    justify-content: center;
+  }
+
+  .introduction .info article {
+    flex: unset;
   }
 }
