@@ -38,18 +38,21 @@ function Home({ termsRead }: Props) {
             }
           />
           <article>
-            <p>
-              We&apos;re just a normal coder and keen to explore. But I guess
-              it&apos;s fun to explain how his website/repo works.
-            </p>
-            <p>Our objective</p>
-            <ul>
-              <li>Bringing latest Next.JS codes</li>
-              <li>100% code coverage website</li>
-              <li>Hello typescript</li>
-              <li>Bye-bye Internet Explorer</li>
-              <li>Bye-bye Modernizer</li>
-            </ul>
+            <div>
+              <h3>
+                This is a sandbox website for us to explore Web Development.
+                <br />
+                <br />
+                We&apos;re just a normal coder and keen to explore.
+                <br />
+                But I guess it&apos;s nice show{" "}
+                <i>&quot;How we built this website&quot;</i>
+              </h3>
+              <div className={styles.show}>
+                <div>LET US SHOW YOU</div>
+                <div>HOW THIS SITE IS BUILT</div>
+              </div>
+            </div>
             <ScrollIcon
               scrollContainer={scrollContainerRef}
               text="Scroll for more"
@@ -162,19 +165,15 @@ function Home({ termsRead }: Props) {
       <section key="user interface">
         <article>
           <h2 className="title">UI/UX Validation</h2>
-          <p>
-            <strong>SAY NO</strong> to odd layout and displays to user after
-            deployment. We run this via Behaviour Driven Development.
-          </p>
+          <p>A better alternative than code Snapshot sampling.</p>
           <ol>
             <li>
-              Playwright script is written to capture different screen with user
-              predicting-behaviours. Screen are then compared and goes thru an{" "}
-              <strong>approval</strong> workflow.
+              Playwright script is written to capture different mobile and
+              desktop layouts with different simulated user interactions.
             </li>
             <li>
-              A report will be generated to compare the differences, if
-              it&apos;s ok an approval is made, updated and committed.
+              A report will be generated to compare against the previous version
+              layout, it will then run thru a workflow to get it approved.
             </li>
           </ol>
         </article>
