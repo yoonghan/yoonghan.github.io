@@ -1,2 +1,2 @@
 export const isExternalLink = (href: string) =>
-  href && /^(http:\/\/)|(https:\/\/)/.test(href)
+  href && /^(http:\/\/)|(https:\/\/)|^\/\//.test(href)
