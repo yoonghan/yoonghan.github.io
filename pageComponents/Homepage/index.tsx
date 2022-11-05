@@ -76,6 +76,12 @@ function Home({ termsRead }: Props) {
             It&apos;s <i>100% code coverage</i> and it&apos;s normally achieved
             immediately on new functions/class written.
           </p>
+          <Button
+            href="//github.com/yoonghan/Walcron/blob/master/README.md"
+            target="_workflow"
+            text="View Test Coverage"
+            color="orange"
+          ></Button>
         </article>
         <div className={styles.snapshots}>
           <Image
@@ -113,6 +119,12 @@ function Home({ termsRead }: Props) {
             <i>Debatable:</i> May not be a fit to for Continous Integration flow
             on branching, but fit for us.
           </p>
+          <Button
+            href="//github.com/yoonghan/Walcron/pull/45"
+            target="_workflow"
+            text="View Merged Request"
+            color="orange"
+          ></Button>
         </article>
       </section>,
       <section key="workflow">
@@ -130,7 +142,8 @@ function Home({ termsRead }: Props) {
             <li>Validate previous vs latest User-Interface change.</li>
           </ol>
           <Button
-            href="https://github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
+            href="//github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
+            target="_workflow"
             text="View workflows code"
             color="orange"
           ></Button>
@@ -176,6 +189,11 @@ function Home({ termsRead }: Props) {
               layout, it will then run thru a workflow to get it approved.
             </li>
           </ol>
+          <Button
+            href="//github.com/yoonghan/Walcron/actions/workflows/snapshot.yml"
+            target="_workflow"
+            text="Generate One"
+          />
         </article>
         <div className={styles.snapshots}>
           <Image
