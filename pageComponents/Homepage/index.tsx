@@ -8,53 +8,16 @@ import PageReaderIndicator from "@/components/PageReaderIndicator"
 import Parallax, { ScrollHandler } from "@/components/Parallax"
 import ScrollIcon from "@/components/ScrollIcon"
 import { useRef, useMemo, useEffect, useState } from "react"
-import styles from "./homepage.module.css"
+import styles from "./Homepage.module.css"
 import Button from "@/components/Button"
 import SocialFab from "@/components/SocialFab"
 import Navigator from "@/components/Navigator"
 import Cookie from "@/components/Cookie"
+import { links } from "./links"
 
 interface Props {
   termsRead: boolean
 }
-
-const links = [
-  {
-    id: "1",
-    desc: "Test Driven Development",
-    link: "1",
-  },
-  {
-    id: "2",
-    desc: "Github Pull Request",
-    link: "2",
-  },
-  {
-    id: "3",
-    desc: "Github Workflow",
-    link: "3",
-  },
-  {
-    id: "4",
-    desc: "Testing Deployment",
-    link: "4",
-  },
-  {
-    id: "5",
-    desc: "UI/UX Validation",
-    link: "5",
-  },
-  {
-    id: "6",
-    desc: "Going Live",
-    link: "6",
-  },
-  {
-    id: "7",
-    desc: "Contact Us",
-    link: "7",
-  },
-]
 
 function Home({ termsRead }: Props) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -75,18 +38,21 @@ function Home({ termsRead }: Props) {
             }
           />
           <article>
-            <p>
-              We&apos;re just a normal coder and keen to explore. But I guess
-              it&apos;s fun to explain how his website/repo works.
-            </p>
-            <p>Our objective</p>
-            <ul>
-              <li>Bringing latest Next.JS codes</li>
-              <li>100% code coverage website</li>
-              <li>Hello typescript</li>
-              <li>Bye-bye Internet Explorer</li>
-              <li>Bye-bye Modernizer</li>
-            </ul>
+            <div>
+              <h3>
+                This is a sandbox website for us to explore Web Development.
+                <br />
+                <br />
+                We&apos;re just a normal coder and keen to explore.
+                <br />
+                But I guess it&apos;s nice show{" "}
+                <i>&quot;How we built this website&quot;</i>
+              </h3>
+              <div className={styles.show}>
+                <div>LET US SHOW YOU</div>
+                <div>HOW THIS SITE IS BUILT</div>
+              </div>
+            </div>
             <ScrollIcon
               scrollContainer={scrollContainerRef}
               text="Scroll for more"
@@ -110,6 +76,12 @@ function Home({ termsRead }: Props) {
             It&apos;s <i>100% code coverage</i> and it&apos;s normally achieved
             immediately on new functions/class written.
           </p>
+          <Button
+            href="//github.com/yoonghan/Walcron/blob/master/README.md"
+            target="_workflow"
+            text="View Test Coverage"
+            color="orange"
+          ></Button>
         </article>
         <div className={styles.snapshots}>
           <Image
@@ -147,6 +119,12 @@ function Home({ termsRead }: Props) {
             <i>Debatable:</i> May not be a fit to for Continous Integration flow
             on branching, but fit for us.
           </p>
+          <Button
+            href="//github.com/yoonghan/Walcron/pull/45"
+            target="_workflow"
+            text="View Merged Request"
+            color="orange"
+          ></Button>
         </article>
       </section>,
       <section key="workflow">
@@ -164,7 +142,8 @@ function Home({ termsRead }: Props) {
             <li>Validate previous vs latest User-Interface change.</li>
           </ol>
           <Button
-            href="https://github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
+            href="//github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
+            target="_workflow"
             text="View workflows code"
             color="orange"
           ></Button>
@@ -199,21 +178,22 @@ function Home({ termsRead }: Props) {
       <section key="user interface">
         <article>
           <h2 className="title">UI/UX Validation</h2>
-          <p>
-            <strong>SAY NO</strong> to odd layout and displays to user after
-            deployment. We run this via Behaviour Driven Development.
-          </p>
+          <p>A better alternative than code Snapshot sampling.</p>
           <ol>
             <li>
-              Playwright script is written to capture different screen with user
-              predicting-behaviours. Screen are then compared and goes thru an{" "}
-              <strong>approval</strong> workflow.
+              Playwright script is written to capture different mobile and
+              desktop layouts with different simulated user interactions.
             </li>
             <li>
-              A report will be generated to compare the differences, if
-              it&apos;s ok an approval is made, updated and committed.
+              A report will be generated to compare against the previous version
+              layout, it will then run thru a workflow to get it approved.
             </li>
           </ol>
+          <Button
+            href="//github.com/yoonghan/Walcron/actions/workflows/snapshot.yml"
+            target="_workflow"
+            text="Generate One"
+          />
         </article>
         <div className={styles.snapshots}>
           <Image
