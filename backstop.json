@@ -85,7 +85,7 @@
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
-      "postInteractionWait": 1000,
+      "postInteractionWait": 2000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,

@@ -1,7 +1,7 @@
 import * as React from "react"
 import NavMenu from "./NavMenu"
 import Logo from "../Logo"
-import NoSSRMobileMenu from "./NoSSRMobileMenu"
+import MobileMenu from "./MobileMenu"
 import styles from "./CommandBar.module.css"
 import dynamic from "next/dynamic"
 
@@ -42,7 +42,7 @@ const CommandBar = ({
       </div>
       {!disableMobile && !commandPromptOnly && (
         <div className={styles["mobile"]}>
-          <NoSSRMobileMenu />
+          <MobileMenu />
         </div>
       )}
       {disableMobile && <Logo />}
