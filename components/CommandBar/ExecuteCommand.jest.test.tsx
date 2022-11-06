@@ -76,6 +76,24 @@ describe("CommandBar", () => {
     })
   })
 
+  describe("history", () => {
+    it("should return history", function () {
+      render(<div>{createCommandBar()("history")}</div>)
+      expect(routeCallback).toHaveBeenLastCalledWith("/history")
+    })
+
+    it("should return history", function () {
+      render(<div>{createCommandBar()("cd history")}</div>)
+      expect(routeCallback).toHaveBeenLastCalledWith("/history")
+    })
+
+    it("should return error if current page is history", function () {
+      render(<div>{createCommandBar("/history")("cd /history")}</div>)
+      expect(routeCallback).not.toHaveBeenLastCalledWith()
+      expect(screen.getByText("Msg: This is the page")).toBeInTheDocument()
+    })
+  })
+
   describe("pwd", () => {
     it("should return current url", function () {
       render(<div>{createCommandBar()("pwd")}</div>)
