@@ -29,11 +29,6 @@
   display: none;
 }
 
-.loading {
-  font-family: "Inconsolata";
-  color: green;
-}
-
 @media only screen and (max-width: 480px) {
   .mobile {
     display: block;

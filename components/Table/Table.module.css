@@ -1,0 +1,29 @@
+.container thead th {
+  color: var(--table-header);
+  background-color: var(--table-header-bg);
+}
+
+.container tbody th {
+  padding: 1rem 2rem;
+  border-top: var(--table-border);
+  padding-bottom: 1rem;
+}
+
+.container tr > td {
+  padding: 1rem 2rem;
+  border-top: var(--table-border);
+  padding-bottom: 1rem;
+}
+
+.container tr > td:first-child {
+  padding-right: 10px;
+}
+
+.container tr {
+  color: var(--table);
+  background-color: var(--table-bg);
+}
+
+.container tr:hover {
+  background-color: var(--table-hover);
+}

@@ -70,6 +70,18 @@ export const AvailableInput: ICommand = {
       return <React.Fragment />
     },
   },
+  history: {
+    synonym: ["cd /history", "cd history"],
+    description: "History",
+    action: EnumAction.LINK,
+    exec: (router: any) => {
+      if (router.route === "/history") {
+        return <InvalidCommand invalidCommand={"This is the page"} />
+      }
+      router.push("/history")
+      return <React.Fragment />
+    },
+  },
   exit: {
     synonym: ["cd", "cd /"],
     description: "Return to main page",
