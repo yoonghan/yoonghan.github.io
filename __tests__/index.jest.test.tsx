@@ -85,8 +85,11 @@ describe("Home", () => {
       await UserEvent.click(navigation.getByText("UI/UX Validation"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 2500)
 
-      await UserEvent.click(navigation.getByText("Contact Us"))
+      await UserEvent.click(navigation.getByText("Video About Us"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 3500)
+
+      await UserEvent.click(navigation.getByText("Contact Us"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 4000)
     })
   })
 })
