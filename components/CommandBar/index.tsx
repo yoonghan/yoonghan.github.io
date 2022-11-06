@@ -1,7 +1,7 @@
 import * as React from "react"
 import NavMenu from "./NavMenu"
 import Logo from "../Logo"
-import NoSSRMobileMenu from "./NoSSRMobileMenu"
+import MobileMenu from "./MobileMenu"
 import styles from "./CommandBar.module.css"
 import dynamic from "next/dynamic"
 
@@ -12,7 +12,11 @@ export interface CommandBarNoSSRProps {
 
 const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
   ssr: false,
-  loading: () => <div className={styles.loading}>Loading Shell command...</div>,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Shell command...
+    </div>
+  ),
 })
 
 const CommandBar = ({
@@ -38,7 +42,7 @@ const CommandBar = ({
       </div>
       {!disableMobile && !commandPromptOnly && (
         <div className={styles["mobile"]}>
-          <NoSSRMobileMenu />
+          <MobileMenu />
         </div>
       )}
       {disableMobile && <Logo />}

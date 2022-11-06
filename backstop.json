@@ -85,7 +85,7 @@
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
-      "postInteractionWait": 1000,
+      "postInteractionWait": 2000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,
@@ -117,6 +117,15 @@
     {
       "label": "About Page",
       "url": "http://localhost:3000/about",
+      "delay": 500,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "History Page",
+      "url": "http://localhost:3000/history",
       "delay": 500,
       "selectorExpansion": true,
       "expect": 0,
