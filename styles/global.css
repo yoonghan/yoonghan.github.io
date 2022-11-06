@@ -16,25 +16,12 @@ p {
   text-align: justify;
 }
 
-.container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  background-color: #343233;
+.text-align-left {
+  text-align: left;
 }
 
-.section-container {
-  max-width: 1024px;
-  margin: auto;
-  margin-bottom: 5rem;
-}
-
-.parallex-container {
-  position: sticky;
-  height: 100vh;
-  top: 0px;
-  display: flex;
-  overflow: hidden;
+.pb-5 {
+  padding-bottom: 5rem;
 }
 
 table {
@@ -106,4 +93,9 @@ span.strikethrough {
 
 video::-webkit-media-controls {
   display: none !important;
+}
+
+.page-aligned-container {
+  margin: auto;
+  max-width: 640px;
 }

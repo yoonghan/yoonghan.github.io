@@ -87,7 +87,7 @@ const CommandBarInput = (props: Props) => {
         aria-label="Enter"
         data-testid="commandBar-enter"
       >
-        <i className="fas fa-arrow-right">&#x21AA;</i>
+        <i>&#x21AA;</i>
       </button>
       <style jsx>{`
         .prompt {

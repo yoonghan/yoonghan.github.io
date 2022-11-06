@@ -1,3 +1,10 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #343233;
+}
+
 .homepage section {
   display: flex;
   justify-content: center;

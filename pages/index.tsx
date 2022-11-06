@@ -25,7 +25,7 @@ function Index({ termsRead }: Props) {
   )
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <HtmlHead
         title={"Walcron"}
         description={
