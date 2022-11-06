@@ -4,13 +4,13 @@ import styles from "./Navigator.module.css"
 interface Props {
   label: string
   links: Array<ILink>
-  onLinkClick: (link: string) => void
+  onLinkClick: (link: string | number) => void
 }
 
 interface ILink {
   id: string
   desc: string
-  link: string
+  link: string | number
 }
 
 const Navigator = ({ links, onLinkClick, label }: Props) => {
