@@ -100,11 +100,11 @@
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
-      "postInteractionWait": 1000,
+      "postInteractionWait": 2000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,
-      "clickSelector": "nav:has-text('Testing Deployment')",
+      "clickSelector": "nav:has-text('UI/UX Validation')",
       "requireSameDimensions": true,
       "viewports": [
         {
