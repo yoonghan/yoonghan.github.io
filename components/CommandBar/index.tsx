@@ -12,7 +12,7 @@ export interface CommandBarNoSSRProps {
 
 const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
   ssr: false,
-  loading: () => <div className="header">Initializing...</div>,
+  loading: () => <div className={styles.loading}>Loading Shell command...</div>,
 })
 
 const CommandBar = ({

@@ -9,7 +9,7 @@ describe("CommandBar", () => {
     expect(
       screen.queryByRole("img", { name: "walcron-logo" })
     ).not.toBeInTheDocument()
-    expect(screen.getByText("Initializing...")).toBeInTheDocument()
+    expect(screen.getByText("Loading Shell command...")).toBeInTheDocument()
     expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
   })
 
