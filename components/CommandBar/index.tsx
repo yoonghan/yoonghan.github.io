@@ -1,14 +1,49 @@
 import * as React from "react"
+import NavMenu from "./NavMenu"
+import Logo from "../Logo"
+import NoSSRMobileMenu from "./NoSSRMobileMenu"
+import styles from "./CommandBar.module.css"
 import dynamic from "next/dynamic"
-import { CommandBarNoSSRProps } from "./CommandBarNoSSR"
 
-const CommandBarNoSSRComponent = dynamic(() => import("./CommandBarNoSSR"), {
+export interface CommandBarNoSSRProps {
+  disableMobile?: boolean
+  commandPromptOnly?: boolean
+}
+
+const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
   ssr: false,
-  loading: () => <div className="header">Initializing...</div>,
+  loading: () => <div className={styles.loading}>Loading Shell command...</div>,
 })
 
-const CommandBar = (props: CommandBarNoSSRProps) => {
-  return <CommandBarNoSSRComponent {...props} />
+const CommandBar = ({
+  disableMobile,
+  commandPromptOnly,
+}: CommandBarNoSSRProps) => {
+  return (
+    <div
+      className={`${styles["header"]} ${
+        commandPromptOnly ? styles["commandPromptOnly"] : ""
+      }`}
+      id="commandbar"
+    >
+      <div
+        className={
+          (!commandPromptOnly ? styles["desktop"] : "") +
+          " " +
+          (!disableMobile && !commandPromptOnly ? styles["shift-to-right"] : "")
+        }
+      >
+        <NoSSRCommandBar />
+        {!disableMobile && !commandPromptOnly && <NavMenu />}
+      </div>
+      {!disableMobile && !commandPromptOnly && (
+        <div className={styles["mobile"]}>
+          <NoSSRMobileMenu />
+        </div>
+      )}
+      {disableMobile && <Logo />}
+    </div>
+  )
 }
 
 export default React.memo(CommandBar)
