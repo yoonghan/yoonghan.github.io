@@ -40,7 +40,7 @@ const About = () => {
         <script type="application/ld+json">{_getSchema()}</script>
       </Head>
       <CommandBar />
-      <div>
+      <div className={"page-aligned-container"}>
         <HeaderOne title={"About our mission"} isLined={true} />
         <section>
           <p>

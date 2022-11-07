@@ -6,6 +6,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: Roboto, Arial;
+  min-width: 320px;
 }
 
 a {
@@ -22,6 +23,11 @@ p {
 
 .pb-5 {
   padding-bottom: 5rem;
+}
+
+.px-3 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 table {
@@ -97,5 +103,10 @@ video::-webkit-media-controls {
 
 .page-aligned-container {
   margin: auto;
-  max-width: 640px;
+  max-width: 1024px;
+  padding: 0 1rem;
+}
+
+.page-container {
+  width: 100%;
 }

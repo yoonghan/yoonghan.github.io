@@ -84,7 +84,7 @@ export const siteHistory = [
   {
     id: "2022",
     date: "2022",
-    desc: "Officially migrate to Latest Next to a full CI/CD deployment",
+    desc: "Migrate to Latest NextJS with a full CI/CD deployment",
     faIcon: "fas fa-tractor",
   },
 ]
