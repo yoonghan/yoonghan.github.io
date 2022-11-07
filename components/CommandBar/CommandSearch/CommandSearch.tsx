@@ -72,7 +72,7 @@ export const AvailableInput: ICommand = {
   },
   history: {
     synonym: ["cd /history", "cd history"],
-    description: "History",
+    description: "Walcron development history.",
     action: EnumAction.LINK,
     exec: (router: any) => {
       if (router.route === "/history") {
@@ -84,7 +84,7 @@ export const AvailableInput: ICommand = {
   },
   exit: {
     synonym: ["cd", "cd /"],
-    description: "Return to main page",
+    description: "Return to main page.",
     action: EnumAction.LINK,
     exec: (router: any) => {
       if (router.route === "/") {
@@ -95,7 +95,7 @@ export const AvailableInput: ICommand = {
     },
   },
   "cd ..": {
-    description: "Return to previous page",
+    description: "Return to previous page.",
     action: EnumAction.LINK,
     exec: (router: any) => {
       if (router.route !== "/") {
@@ -105,7 +105,7 @@ export const AvailableInput: ICommand = {
     },
   },
   "=": {
-    description: "Do Math",
+    description: "Do Math.",
     action: EnumAction.COMMAND,
     exec: () => <InvalidCommand invalidCommand={"Provide an equation"} />,
   },
