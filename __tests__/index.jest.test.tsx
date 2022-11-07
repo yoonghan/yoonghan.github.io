@@ -91,5 +91,19 @@ describe("Home", () => {
       await UserEvent.click(navigation.getByText("Contact Us"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 4000)
     })
+
+    it("should return to top once clicked", async () => {
+      render(<Home termsRead={false} />)
+
+      const scrollToFn = jest.fn()
+      // eslint-disable-next-line testing-library/no-node-access
+      const parallaxContainer = document.getElementById("parallax-container")
+      if (parallaxContainer !== null) {
+        parallaxContainer.scrollTo = scrollToFn
+      }
+
+      await UserEvent.click(screen.getByText("Return to top"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 0)
+    })
   })
 })

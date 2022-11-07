@@ -68,7 +68,7 @@ export const generateSections = (
         }
       />
       <article>
-        <div>
+        <div className="px-3">
           <h3>
             This is a sandbox website for us to explore Web Development.
             <br />
@@ -268,6 +268,10 @@ export const generateSections = (
       </div>
       <div className="section-end">
         <h6>This website is powered with: Next.JS with Typescript on Vercel</h6>
+        <Button
+          onClick={() => scrollHandlerRef?.current?.scrollToTop()}
+          text={"Return to top"}
+        />
       </div>
     </div>
   </section>,

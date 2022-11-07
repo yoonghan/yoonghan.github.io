@@ -20,6 +20,7 @@ interface Props {
 
 export type ScrollHandler = {
   scroll: (index: number) => void
+  scrollToTop: () => void
 }
 
 const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
@@ -56,15 +57,23 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
     windowInnerHeight.current = window.innerHeight
   }, [])
 
-  useImperativeHandle(ref, () => ({
-    scroll(index: number) {
-      const scrollContainerRef = scrollContainer.current
-      if (scrollContainerRef !== null) {
-        const height = scrollContainerRef.offsetHeight
-        scrollContainerRef.scrollTo(0, index * height)
-      }
-    },
-  }))
+  useImperativeHandle(ref, () => {
+    return {
+      scroll(index: number) {
+        const scrollContainerRef = scrollContainer.current
+        if (scrollContainerRef !== null) {
+          const height = scrollContainerRef.offsetHeight
+          scrollContainerRef.scrollTo(0, index * height)
+        }
+      },
+      scrollToTop() {
+        const scrollContainerRef = scrollContainer.current
+        if (scrollContainerRef !== null) {
+          scrollContainerRef.scrollTo(0, 0)
+        }
+      },
+    }
+  })
 
   useEffect(() => {
     parallaxSectionsRef.current = Array.from(
