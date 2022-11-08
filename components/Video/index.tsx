@@ -68,7 +68,7 @@ const Video = ({ src, imgJpgSrc, imgWebpSrc, imgAlt, preload }: Props) => {
         <picture>
           <source srcSet={imgWebpSrc} type="image/webp" />
           <source srcSet={imgJpgSrc} type="image/jpg" />
-          <img src={imgJpgSrc} alt={imgAlt} />
+          <img src={imgJpgSrc} alt={imgAlt} width="756" height="1008" />
         </picture>
         <div className={styles.overlay}>
           <i className="fas fa-play-circle"></i>

@@ -108,6 +108,11 @@ section.introduction {
   color: var(--text);
 }
 
+.link {
+  cursor: pointer;
+  color: var(--button-orange-bg);
+}
+
 @keyframes sepia {
   from {
     filter: sepia(0%);
