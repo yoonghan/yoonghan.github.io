@@ -113,7 +113,6 @@ const Button = ({
     <animated.div
       style={{
         display: "inline-flex",
-        opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
       }}
     >
       {renderButton()}

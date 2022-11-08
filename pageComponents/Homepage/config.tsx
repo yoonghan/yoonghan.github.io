@@ -268,10 +268,12 @@ export const generateSections = (
       </div>
       <div className="section-end">
         <h6>This website is powered with: Next.JS with Typescript on Vercel</h6>
-        <Button
+        <div
           onClick={() => scrollHandlerRef?.current?.scrollToTop()}
-          text={"Return to top"}
-        />
+          className={styles.link}
+        >
+          Return to top
+        </div>
       </div>
     </div>
   </section>,

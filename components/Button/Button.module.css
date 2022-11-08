@@ -3,10 +3,9 @@
   position: relative;
   color: var(--button);
   background: var(--button-bg);
-  transition-property: "color", "background";
+  transition-property: color, background;
   transition-duration: 0.15s;
   transition-timing-function: ease-in-out;
-  color: #000;
   font-size: 1rem;
   text-align: center;
   border-radius: 0.5rem;

@@ -28,6 +28,6 @@ describe("Cookie", () => {
 
   it("should have a 'cookie' role for testing", () => {
     render(<Cookie isClosed={false} cookieName={"term"} />)
-    expect(screen.getByRole("cookie")).toBeInTheDocument()
+    expect(screen.getByTestId("cookie-dialog")).toBeInTheDocument()
   })
 })
