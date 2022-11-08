@@ -31,7 +31,7 @@ const Cookie = (props: CookieProps) => {
     return <React.Fragment />
   } else {
     return (
-      <div className={styles.container} role="cookie">
+      <div className={styles.container} data-testid="cookie-dialog">
         <div className={styles.message}>
           <h4>This site uses cookies.</h4>
           <p>

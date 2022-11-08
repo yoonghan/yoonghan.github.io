@@ -62,11 +62,6 @@
   z-index: -1;
 }
 
-.with-indicator .btnsbar-item:last-child:hover:after,
-.with-indicator .btnsbar-item:last-child.is-active:after {
-  left: 66.66666666666666% !important;
-}
-
 .btnsbar:before,
 .btnsbar:after {
   content: " ";

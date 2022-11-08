@@ -16,7 +16,7 @@ describe("Home", () => {
     const cookieText = "This site uses cookies."
 
     await render(<Home termsRead={false} />)
-    const cookieSection = screen.getByRole("cookie")
+    const cookieSection = screen.getByTestId("cookie-dialog")
     expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
     UserEvent.click(
       within(cookieSection).getByRole("button", { name: "Close" })
