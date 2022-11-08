@@ -10,4 +10,8 @@ module.exports = withBundleAnalyzer({
     config.module.noParse = [require.resolve("typescript/lib/typescript.js")]
     return config
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
 })
