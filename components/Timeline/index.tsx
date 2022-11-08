@@ -16,7 +16,7 @@ interface IEvent {
 const Timeline = ({ events }: Props) => {
   const createLinks = useMemo(() => {
     return events.map(({ id, faIcon, date, special, desc }, idx) => (
-      <li className={styles.container} key={`timeline_${id}`}>
+      <li key={`timeline_${id}`}>
         <span></span>
         <span>
           {faIcon ? (
@@ -36,7 +36,7 @@ const Timeline = ({ events }: Props) => {
     ))
   }, [events])
 
-  return <ul className={styles.mainContainer}>{createLinks}</ul>
+  return <ul className={styles.container}>{createLinks}</ul>
 }
 
 export default Timeline
