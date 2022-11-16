@@ -116,3 +116,9 @@ video::-webkit-media-controls {
 .page-container {
   width: 100%;
 }
+
+ul.u-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 1rem;
+}
