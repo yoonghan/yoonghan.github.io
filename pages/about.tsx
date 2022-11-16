@@ -127,7 +127,6 @@ const About = () => {
             <LetterBox />
           </div>
         </section>
-        <div className="footer" />
       </div>
       <ScrollToTop />
       <Footer isRelative={true} />

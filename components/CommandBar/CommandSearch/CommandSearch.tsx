@@ -52,21 +52,14 @@ export const AvailableInput: ICommand = {
     },
   },
   ls: {
-    synonym: [
-      "dir",
-      "cd creation",
-      "cd /creation",
-      "cd /invent",
-      "cd showcase",
-      "cd /showcase",
-    ],
+    synonym: ["dir", "cd listing", "cd /listing", "cd showcase"],
     description: "What's there ?",
     action: EnumAction.LINK,
     exec: (router: any) => {
-      if (router.route === "/creation") {
+      if (router.route === "/listing") {
         return <InvalidCommand invalidCommand={"This is the page"} />
       }
-      router.push("/creation")
+      router.push("/listing")
       return <React.Fragment />
     },
   },
