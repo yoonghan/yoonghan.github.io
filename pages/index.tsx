@@ -1,5 +1,5 @@
 import Parallax, { ScrollHandler } from "@/components/Parallax"
-import { getCookie, hasCookie } from "cookies-next"
+import { getCookie, setCookie } from "cookies-next"
 import type { NextPageContext } from "next"
 import { generateSections } from "@/pageComponents/Homepage/config"
 import styles from "@/pageComponents/Homepage/Homepage.module.css"
@@ -50,11 +50,14 @@ function Index({ termsRead }: Props) {
 }
 
 export async function getServerSideProps({ req, res }: NextPageContext) {
+  let cookieTermsRead = !!getCookie("termsRead", { req, res })
+  if (!cookieTermsRead) {
+    setCookie("termsRead", "true", { res, req, maxAge: 60 * 6 * 24 })
+  }
+
   return {
     props: {
-      termsRead: hasCookie("termsRead", { req, res })
-        ? getCookie("termsRead", { req, res })
-        : false,
+      termsRead: cookieTermsRead,
     },
   }
 }
