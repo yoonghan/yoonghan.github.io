@@ -1,18 +1,17 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import History from "@/pages/history"
+import Listing from "@/pages/listing"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
-describe("History", () => {
+describe("About", () => {
   const renderComponent = async () => {
-    render(<History />)
+    render(<Listing />)
     expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
   }
 
   it("should render the page with the important components", async () => {
     await renderComponent()
-    expect(screen.getByText("Site's history"))
-    expect(screen.getByText("Motivational books"))
+    expect(screen.getByText("Playground projects"))
   })
 
   it("should be able to scroll up", async () => {

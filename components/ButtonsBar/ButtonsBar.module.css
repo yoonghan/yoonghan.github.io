@@ -27,8 +27,10 @@
   border-radius: 0 3px 3px 0;
 }
 .btnsbar-item.is-active a {
-  color: #86a3eb !important;
   font-weight: bold;
+
+  background: var(--button) !important;
+  color: var(--button-bg) !important;
 }
 .btnsbar-item a {
   color: var(--link);

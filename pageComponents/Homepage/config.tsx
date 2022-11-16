@@ -69,7 +69,7 @@ export const generateSections = (
       />
       <article>
         <div className="px-3">
-          <h3>
+          <p className="px-0">
             This is a sandbox website for us to explore Web Development.
             <br />
             <br />
@@ -77,7 +77,7 @@ export const generateSections = (
             <br />
             But I guess it&apos;s nice show{" "}
             <i>&quot;How we built this website&quot;</i>
-          </h3>
+          </p>
           <div className={styles.show}>
             <div>LET US SHOW YOU</div>
             <div>HOW THIS SITE IS BUILT</div>
@@ -267,7 +267,9 @@ export const generateSections = (
         <LetterBox />
       </div>
       <div className="section-end">
-        <h6>This website is powered with: Next.JS with Typescript on Vercel</h6>
+        <small>
+          This website is powered with: Next.JS with Typescript on Vercel
+        </small>
         <div
           onClick={() => scrollHandlerRef?.current?.scrollToTop()}
           className={styles.link}
