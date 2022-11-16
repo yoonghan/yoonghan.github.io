@@ -5,7 +5,7 @@ import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import Link from "next/link"
 import HeaderOne from "@/components/HeaderOne"
-import styles from "@/pageComponents/SiteMap/SiteMap.module.css"
+import styles from "@/pageComponents/Sitemap/Sitemap.module.css"
 
 const SiteMap = ({}) => {
   return (
