@@ -13,7 +13,7 @@ const History = ({}) => {
   return (
     <>
       <HtmlHead
-        title={"Page History"}
+        title={"Walcron History"}
         description={
           "Site history and External knowledge and things I worked on."
         }

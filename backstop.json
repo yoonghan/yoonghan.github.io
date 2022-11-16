@@ -118,16 +118,22 @@
       "label": "About Page",
       "url": "http://localhost:3000/about",
       "delay": 500,
-      "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.4,
+      "misMatchThreshold": 0.5,
       "requireSameDimensions": true
     },
     {
       "label": "History Page",
       "url": "http://localhost:3000/history",
       "delay": 500,
-      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Listing Page",
+      "url": "http://localhost:3000/listing",
+      "delay": 500,
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true

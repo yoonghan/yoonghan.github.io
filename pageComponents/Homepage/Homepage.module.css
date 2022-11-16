@@ -109,6 +109,7 @@ section.introduction {
 }
 
 .link {
+  padding-top: 1rem;
   cursor: pointer;
   color: var(--button-orange-bg);
 }

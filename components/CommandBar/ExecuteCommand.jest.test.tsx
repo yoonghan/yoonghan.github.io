@@ -103,13 +103,13 @@ describe("CommandBar", () => {
   })
 
   describe("ls", () => {
-    it("should return creation page", function () {
+    it("should return listing page", function () {
       render(<div>{createCommandBar()("ls")}</div>)
-      expect(routeCallback).toHaveBeenLastCalledWith("/creation")
+      expect(routeCallback).toHaveBeenLastCalledWith("/listing")
     })
 
-    it("should return error if current page is creation", function () {
-      render(<div>{createCommandBar("/creation")("ls")}</div>)
+    it("should return error if current page is listing", function () {
+      render(<div>{createCommandBar("/listing")("ls")}</div>)
       expect(routeCallback).not.toHaveBeenLastCalledWith()
       expect(screen.getByText("Msg: This is the page")).toBeInTheDocument()
     })
