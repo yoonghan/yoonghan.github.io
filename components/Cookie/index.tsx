@@ -6,7 +6,7 @@
 
 import * as React from "react"
 import styles from "./Cookie.module.css"
-import { setCookie } from "cookies-next"
+import { getCookie, setCookie } from "cookies-next"
 
 interface CookieProps {
   isClosed: boolean
@@ -20,11 +20,6 @@ const Cookie = (props: CookieProps) => {
 
   const reactToCookieButton = () => {
     setClosed(true)
-    saveCookieWithTerms()
-  }
-
-  const saveCookieWithTerms = () => {
-    setCookie(props.cookieName, "true")
   }
 
   if (isClosed) {

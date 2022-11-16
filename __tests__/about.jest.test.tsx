@@ -1,8 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import About from "@/pages/about"
-import userEvent from "@testing-library/user-event"
-import { NextPageContext } from "next"
-import { setCookie, deleteCookie } from "cookies-next"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
