@@ -8,7 +8,7 @@ import {
 
 describe("usePwaHooks", () => {
   afterEach(() => {
-    jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   it("should be false when autoregister set to FALSE", () => {

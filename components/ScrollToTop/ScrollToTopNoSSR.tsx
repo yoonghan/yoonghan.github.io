@@ -31,7 +31,11 @@ const ScrollToTopNoSSR = () => {
   return (
     <React.Fragment>
       {visible && (
-        <div onClick={clickScrollUp} className={styles.scroller}>
+        <div
+          onClick={clickScrollUp}
+          className={styles.scroller}
+          aria-hidden={true}
+        >
           Up
         </div>
       )}

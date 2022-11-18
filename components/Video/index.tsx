@@ -63,7 +63,10 @@ const Video = ({ src, imgJpgSrc, imgWebpSrc, imgAlt, preload }: Props) => {
         className={styles["container-video"]}
         onClick={toggleSoundAndPlay}
         onMouseOver={hoverVideo}
+        onBlur={hoverVideo}
         onMouseOut={hideVideo}
+        onFocus={hoverVideo}
+        aria-hidden="true"
       >
         <picture>
           <source srcSet={imgWebpSrc} type="image/webp" />

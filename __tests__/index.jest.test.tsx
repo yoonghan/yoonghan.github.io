@@ -2,7 +2,7 @@ import { render, screen, waitFor, within } from "@testing-library/react"
 import Home, { getServerSideProps } from "@/pages/index"
 import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
-import { setCookie, deleteCookie } from "cookies-next"
+import * as Cookie from "cookies-next"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
@@ -31,18 +31,41 @@ describe("Home", () => {
   describe("getServerSideProps", () => {
     let nextPageContext = {} as NextPageContext
 
-    it("should return termsRead as true when termsRead cookie exists", async () => {
-      setCookie("termsRead", true, nextPageContext)
+    afterEach(() => {
+      jest.restoreAllMocks()
+    })
+
+    it("should return termsRead as false on first load, and subsequent calls are true", async () => {
+      expect(await getServerSideProps(nextPageContext)).toStrictEqual({
+        props: { termsRead: false },
+      })
+
+      expect(Cookie.getCookie("termsRead", nextPageContext)).toBe(true)
+
       expect(await getServerSideProps(nextPageContext)).toStrictEqual({
         props: { termsRead: true },
       })
     })
 
-    it("should return termsRead as false when termsRead cookie is missing", async () => {
-      deleteCookie("termsRead", nextPageContext)
+    it("should return termsRead as false when termsRead cookie is missing/deleted", async () => {
+      Cookie.deleteCookie("termsRead", nextPageContext)
       expect(await getServerSideProps(nextPageContext)).toStrictEqual({
         props: { termsRead: false },
       })
+    })
+
+    it("should set the right cookie values when loaded, ignoring server info", async () => {
+      Cookie.deleteCookie("termsRead", nextPageContext)
+      const setCookieFn = jest.fn()
+      const spiedCookie = jest.spyOn(Cookie, "setCookie")
+      spiedCookie.mockImplementation(setCookieFn)
+      await getServerSideProps(nextPageContext)
+      expect(setCookieFn).toBeCalledWith("termsRead", "true", {
+        maxAge: 31536000,
+        req: undefined,
+        res: undefined,
+      })
+      spiedCookie.mockRestore()
     })
   })
 

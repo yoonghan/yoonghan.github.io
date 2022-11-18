@@ -37,9 +37,9 @@ describe("SocialFabNoSSR", () => {
   it("should show letterbox dialog if email button is pressed", async () => {
     render(<SocialFabNoSSR />)
     await UserEvent.click(screen.getByRole("button", { name: "gmail" }))
-    expect(screen.getByRole("modal")).toBeInTheDocument()
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
 
     await UserEvent.click(screen.getByRole("button", { name: "[ESC]" }))
-    expect(screen.queryByRole("modal")).not.toBeInTheDocument()
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
   })
 })
