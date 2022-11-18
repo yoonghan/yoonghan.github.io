@@ -28,7 +28,7 @@ const Cookie = (props: CookieProps) => {
     return (
       <div className={styles.container} data-testid="cookie-dialog">
         <div className={styles.message}>
-          <h4>This site uses cookies.</h4>
+          <div className={styles.title}>This site uses cookies.</div>
           <p>
             This site uses cookie to monitor visits and usage traffics. We use
             google analytics, please{" "}
