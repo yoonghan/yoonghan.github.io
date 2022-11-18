@@ -20,12 +20,19 @@
   cursor: pointer;
   border: 1px solid;
 }
+
+.btnsbar-item:not(:first-child) {
+  border-left: none;
+}
+
 .btnsbar-item:first-child {
   border-radius: 3px 0 0 3px;
 }
+
 .btnsbar-item:last-child {
   border-radius: 0 3px 3px 0;
 }
+
 .btnsbar-item.is-active a {
   font-weight: bold;
 
@@ -62,12 +69,6 @@
   left: 0;
   width: 100%;
   z-index: -1;
-}
-
-.btnsbar:before,
-.btnsbar:after {
-  content: " ";
-  display: table;
 }
 
 .btnsbar:after {
