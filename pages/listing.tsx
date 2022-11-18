@@ -26,8 +26,8 @@ const Listing = ({}) => {
       </div>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
+          <h1 className="title">Playground projects</h1>
           <section>
-            <h1 className="title">Playground projects</h1>
             <p>
               Projects that we are working on
               <small>(due to migration most are not moved over)</small>
