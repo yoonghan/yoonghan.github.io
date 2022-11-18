@@ -20,6 +20,9 @@ const Navigator = ({ links, onLinkClick, label }: Props) => {
         className={styles.container}
         key={`navigator_${id}`}
         onClick={() => onLinkClick(link)}
+        onKeyUp={() => onLinkClick(link)}
+        tabIndex={0}
+        role="menuitem"
       >
         <span></span>
         <span>

@@ -21,8 +21,8 @@ describe("Link", () => {
       />
     )
     expect(screen.getByText("I am a logo link")).toBeInTheDocument()
-    expect(
-      screen.getByRole("link-icon", { name: "Link Icon" })
-    ).toHaveAttribute("src")
+    expect(screen.getByRole("img", { name: "Link Icon" })).toHaveAttribute(
+      "src"
+    )
   })
 })

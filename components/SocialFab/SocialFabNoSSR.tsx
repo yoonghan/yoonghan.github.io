@@ -73,7 +73,13 @@ const SocialFabNoSSR = ({}: Props) => {
           </a>
         </li>
         <li className={styles.item}>
-          <div onClick={onOpenEmail} aria-label="gmail" role="button">
+          <div
+            onClick={onOpenEmail}
+            aria-label="gmail"
+            role="button"
+            onKeyPress={onOpenEmail}
+            tabIndex={0}
+          >
             <svg className={styles.fabActionButtonIcon}>
               <use xlinkHref="/img/social/social-sprite.svg#gm"></use>
             </svg>
