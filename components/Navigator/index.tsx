@@ -39,7 +39,9 @@ const Navigator = ({ links, onLinkClick, label }: Props) => {
     <aside>
       <span className={styles.sitemap}>Site Map:</span>
       <nav aria-label={label}>
-        <ul className={styles.mainContainer}>{createLinks}</ul>
+        <ul className={styles.mainContainer} role="menu">
+          {createLinks}
+        </ul>
       </nav>
     </aside>
   )
