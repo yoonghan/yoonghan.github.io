@@ -6,7 +6,7 @@ interface Props {
   className?: string
 }
 
-const Footer = ({ isRelative, className }: Props) => {
+const Footer = ({ isRelative = true, className }: Props) => {
   return (
     <footer
       className={`${styles.container} ${

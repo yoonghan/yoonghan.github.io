@@ -5,3 +5,25 @@
   color: var(--text);
   padding-top: 2rem;
 }
+
+.container li {
+  margin-bottom: 1rem;
+}
+
+.alert {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.lessonImg {
+  padding-top: 0.5rem;
+  max-width: 640px;
+}
+
+.container .code {
+  color: var(--code);
+  font-style: italic;
+}

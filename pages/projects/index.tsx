@@ -57,6 +57,12 @@ const Projects = ({}) => {
                     "Experimenting a POC of Modular Apps. Idea is Mini Apps can be installed separately from a hosted website, what special is that those miniapps can use Native features like camera and written separately.",
                   href: "https://github.com/yoonghan/ReactNative-Modular",
                 },
+                {
+                  id: "lesson",
+                  title: "React Lesson",
+                  description: "Important lesson learned.",
+                  href: "/projects/lessons",
+                },
               ]}
             />
           </section>

@@ -44,7 +44,7 @@ function Index({ termsRead }: Props) {
         <SocialFab />
       </main>
       <Cookie isClosed={termsRead} cookieName={"termsRead"} />
-      <Footer className={"footer"} />
+      <Footer className={"footer"} isRelative={false} />
     </div>
   )
 }
