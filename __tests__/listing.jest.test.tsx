@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import Listing from "@/pages/listing"
+import Projects from "@/pages/projects"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
-describe("About", () => {
+describe("Projects", () => {
   const renderComponent = async () => {
-    render(<Listing />)
+    render(<Projects />)
     expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
   }
 
