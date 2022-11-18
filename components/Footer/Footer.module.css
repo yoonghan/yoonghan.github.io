@@ -1,22 +1,23 @@
 .container {
-    margin: 0 0 0.5rem 0.5rem;
+  margin: 0;
 }
 
 .relative {
-    position: relative;
-    padding-top: 2rem;
+  position: relative;
+  padding-top: 2rem;
+  padding: 0 0 0.5rem 0.5rem;
 }
 
 .absolute {
-    position: absolute;
-    bottom: 0;
-    margin: 0 0 0.5rem 0.5rem;
+  position: absolute;
+  bottom: 0;
+  margin: 0 0 0.5rem 0.5rem;
 }
 
 @media only screen and (max-width: 480px) {
-    .absolute {
-        text-align: center;
-        left: 0;
-        right: 0;
-    }
+  .absolute {
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
 }

@@ -10,7 +10,7 @@ import {
 } from "./CommandSearch/CommandSearch"
 
 function evaluateMath(mathEval: string): string {
-  const evaluatedResult: any = Function(`"use strict";return ${mathEval}`)()
+  const evaluatedResult = Function(`"use strict";return ${mathEval}`)()
   return evaluatedResult
 }
 
