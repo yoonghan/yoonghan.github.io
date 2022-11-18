@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 import { createRef, useEffect } from "react"
 import { createPortal } from "react-dom"
 import styles from "./Modal.module.css"
@@ -5,7 +7,9 @@ import modalRootCreator from "./modalRootCreator"
 
 interface ModalProps {
   isModal?: boolean
-  onCancel: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onCancel: (
+    event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+  ) => void
   children: React.ReactNode
 }
 
@@ -34,7 +38,9 @@ const Modal = ({ isModal = false, onCancel, children }: ModalProps) => {
     }
   }, [documentBody, escRef, onCancel])
 
-  const onContainerClick = (event: React.MouseEvent<HTMLElement>) => {
+  const onContainerClick = (
+    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+  ) => {
     if (!isModal && event.target === dialogContainerRef?.current) {
       onCancel(event)
     }
@@ -42,13 +48,15 @@ const Modal = ({ isModal = false, onCancel, children }: ModalProps) => {
 
   return createPortal(
     <div
-      role={"modal"}
+      role={"dialog"}
       className={styles.container}
       onClick={onContainerClick}
+      onKeyUp={onContainerClick}
       ref={dialogContainerRef}
+      tabIndex={-1}
     >
       <div className={styles.content}>{children}</div>
-      <button ref={escRef} onClick={onCancel}>
+      <button ref={escRef} onClick={onCancel} tabIndex={1}>
         [ESC]
       </button>
     </div>,

@@ -52,7 +52,7 @@ function Index({ termsRead }: Props) {
 export async function getServerSideProps({ req, res }: NextPageContext) {
   let cookieTermsRead = !!getCookie("termsRead", { req, res })
   if (!cookieTermsRead) {
-    setCookie("termsRead", "true", { res, req, maxAge: 60 * 6 * 24 })
+    setCookie("termsRead", "true", { res, req, maxAge: 60 * 60 * 24 * 365 })
   }
 
   return {

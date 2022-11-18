@@ -23,7 +23,7 @@ describe("Navigator", () => {
     expect(
       screen.getByRole("navigation", { name: "Site Name" })
     ).toBeInTheDocument()
-    expect(screen.getAllByRole("listitem")).toHaveLength(2)
+    expect(screen.getAllByRole("menuitem")).toHaveLength(2)
   })
 
   it("should render timeline correctly", () => {
@@ -31,21 +31,21 @@ describe("Navigator", () => {
 
     expect(screen.getByText("Site Map:")).toBeInTheDocument()
 
-    const groupId1 = within(screen.getAllByRole("listitem")[0])
+    const groupId1 = within(screen.getAllByRole("menuitem")[0])
     expect(groupId1.getByText("Hello a long desc")).toBeInTheDocument()
 
-    const groupId2 = within(screen.getAllByRole("listitem")[1])
+    const groupId2 = within(screen.getAllByRole("menuitem")[1])
     expect(groupId2.getByText("Another desc")).toBeInTheDocument()
   })
 
-  it("should user is able to click on the links", async () => {
+  it("should user is able to click or keyenter on the links", async () => {
     const linkFn = jest.fn()
     render(<Navigator links={links} onLinkClick={linkFn} label="Site" />)
 
-    await UserEvent.click(screen.getAllByRole("listitem")[0])
+    await UserEvent.click(screen.getAllByRole("menuitem")[0])
     expect(linkFn).toBeCalledWith("link1")
 
-    await UserEvent.click(screen.getAllByRole("listitem")[1])
+    await UserEvent.type(screen.getAllByRole("menuitem")[1], "{enter}")
     expect(linkFn).toBeCalledWith("link2")
   })
 })

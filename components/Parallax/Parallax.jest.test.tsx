@@ -155,12 +155,14 @@ describe("Parallax", () => {
             <div
               data-testid="part-1"
               onClick={() => subRef?.current?.scroll(1)}
+              aria-hidden="true"
             >
               one
             </div>
             <div
               data-testid="part-2"
               onClick={() => subRef?.current?.scroll(0)}
+              aria-hidden="true"
             >
               two
             </div>
