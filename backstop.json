@@ -131,8 +131,8 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Listing Page",
-      "url": "http://localhost:3000/listing",
+      "label": "Projects Page",
+      "url": "http://localhost:3000/projects",
       "delay": 500,
       "expect": 0,
       "misMatchThreshold": 0.4,
