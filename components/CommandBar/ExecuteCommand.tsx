@@ -8,11 +8,9 @@ import {
   IAvailableInput,
   EnumAction,
 } from "./CommandSearch/CommandSearch"
-import * as ts from "typescript"
 
 function evaluateMath(mathEval: string): string {
-  const result = ts.transpile(mathEval)
-  const evaluatedResult: any = eval(result)
+  const evaluatedResult: any = Function(`"use strict";return ${mathEval}`)()
   return evaluatedResult
 }
 
