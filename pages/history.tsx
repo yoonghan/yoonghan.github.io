@@ -28,8 +28,8 @@ const History = ({}) => {
         <CommandBar />
       </div>
       <div className={"page-aligned-container"}>
+        <HeaderOne title={"Site's history"} isLined={true} />
         <section>
-          <HeaderOne title={"Site's history"} isLined={true} />
           <Timeline events={siteHistory} />
         </section>
         <section>

@@ -5,14 +5,14 @@ import HtmlHead from "@/components/HtmlHead"
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "@/pageComponents/Listing/Listing.module.css"
+import styles from "@/pageComponents/Projects/Projects.module.css"
 import LetterBox from "@/components/LetterBox"
 
-const Listing = ({}) => {
+const Projects = ({}) => {
   return (
     <>
       <HtmlHead
-        title={"Listing"}
+        title={"Projects"}
         description={"Playground projects that we had been working on."}
       />
       <Head>
@@ -26,8 +26,8 @@ const Listing = ({}) => {
       </div>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
+          <h1 className="title">Playground projects</h1>
           <section>
-            <h1 className="title">Playground projects</h1>
             <p>
               Projects that we are working on
               <small>(due to migration most are not moved over)</small>
@@ -75,4 +75,4 @@ const Listing = ({}) => {
   )
 }
 
-export default memo(Listing)
+export default memo(Projects)
