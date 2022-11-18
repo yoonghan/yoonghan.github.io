@@ -23,9 +23,7 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
       (_activeIdx === idx ? styles["is-active"] : "")
     return (
       <li className={`${className}`} key={`btns-bar_${idx}`}>
-        <Link href={link}>
-          <a>{title}</a>
-        </Link>
+        <Link href={link}>{title}</Link>
       </li>
     )
   }

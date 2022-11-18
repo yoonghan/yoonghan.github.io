@@ -26,15 +26,7 @@ type RequiresBothLogo =
 const Link = ({ text, href, logoUrl, logoAltText }: RequiresBothLogo) => {
   const logo = (() => {
     if (logoUrl && logoAltText) {
-      return (
-        <Image
-          src={logoUrl}
-          alt={logoAltText}
-          width={15}
-          height={15}
-          role={"link-icon"}
-        />
-      )
+      return <Image src={logoUrl} alt={logoAltText} width={15} height={15} />
     }
     return null
   })()

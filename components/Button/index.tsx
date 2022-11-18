@@ -1,7 +1,6 @@
 import { useMemo } from "react"
 import Link from "next/link"
 import { isExternalLink } from "./isExternalLink"
-import { useSpring, animated } from "react-spring"
 import styles from "./Button.module.css"
 
 interface ButtonProps {
@@ -78,46 +77,30 @@ const Button = ({
     return style
   }, [styling, color])
 
-  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 300 } })
-
-  const renderButton = () => {
-    if (onClick) {
-      return (
-        <ClickableButton
-          onClick={onClick}
-          text={text}
-          definedClass={definedClass}
-        />
-      )
-    }
-
-    if (href) {
-      return (
-        <LinkButton
-          href={href}
-          target={target}
-          text={text}
-          definedClass={definedClass}
-        />
-      )
-    }
-
+  if (onClick) {
+    return (
+      <ClickableButton
+        onClick={onClick}
+        text={text}
+        definedClass={definedClass}
+      />
+    )
+  } else if (href) {
+    return (
+      <LinkButton
+        href={href}
+        target={target}
+        text={text}
+        definedClass={definedClass}
+      />
+    )
+  } else {
     return (
       <button type="submit" className={definedClass}>
         {text}
       </button>
     )
   }
-
-  return (
-    <animated.div
-      style={{
-        display: "inline-flex",
-      }}
-    >
-      {renderButton()}
-    </animated.div>
-  )
 }
 
 export default Button
