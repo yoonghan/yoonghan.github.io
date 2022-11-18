@@ -3,7 +3,7 @@ import SiteMap from "@/pages/sitemap"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
-describe("About", () => {
+describe("SiteMap", () => {
   const renderComponent = async () => {
     render(<SiteMap />)
     expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()

@@ -10,8 +10,7 @@ describe("MobileMenu", () => {
     expect(screen.getByText("Home")).toBeInTheDocument()
     expect(screen.getByText("About")).toBeInTheDocument()
     expect(screen.getByText("History")).toBeInTheDocument()
-    //TODO: Next version
-    // expect(screen.getByText("Showcase")).toBeInTheDocument()
+    expect(screen.getByText("Projects")).toBeInTheDocument()
   })
 
   it("should be active if it's the route is the selected item", () => {
