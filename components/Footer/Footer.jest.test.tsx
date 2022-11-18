@@ -14,12 +14,12 @@ describe("Footer", () => {
   it("should render a footer with correct footer message", () => {
     render(<Footer />)
     expect(screen.getByText(footerMessage)).toBeInTheDocument()
-    expect(screen.getByText(footerMessage)).toHaveClass("absolute")
+    expect(screen.getByText(footerMessage)).toHaveClass("relative")
   })
 
-  it("should render a footer that supports relative style", () => {
-    render(<Footer isRelative={true} />)
-    expect(screen.getByText(footerMessage)).toHaveClass("relative")
+  it("should render a footer that supports absolute style", () => {
+    render(<Footer isRelative={false} />)
+    expect(screen.getByText(footerMessage)).toHaveClass("absolute")
   })
 
   it("should render with additional classname if passed", () => {
