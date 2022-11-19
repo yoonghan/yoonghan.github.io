@@ -11,19 +11,21 @@ describe("Footer", () => {
     expect(currentYear).toEqual(2022)
   })
 
-  it("should render a footer with correct footer message", () => {
-    render(<Footer />)
-    expect(screen.getByText(footerMessage)).toBeInTheDocument()
-    expect(screen.getByText(footerMessage)).toHaveClass("relative")
-  })
-
-  it("should render a footer that supports absolute style", () => {
-    render(<Footer isRelative={false} />)
-    expect(screen.getByText(footerMessage)).toHaveClass("absolute")
-  })
-
   it("should render with additional classname if passed", () => {
     render(<Footer className={"sampleClass"} />)
-    expect(screen.getByText(footerMessage)).toHaveClass("sampleClass")
+    expect(screen.getByRole("contentinfo")).toHaveClass("sampleClass")
+  })
+
+  it("should contain links for sitemap and privacy", () => {
+    render(<Footer className={"sampleClass"} />)
+    expect(screen.getByText("Privacy")).toBeInTheDocument()
+    expect(screen.getByText("Site Map")).toBeInTheDocument()
+    expect(screen.getByText("Site Map")).toHaveAttribute("href", "/sitemap")
+  })
+
+  it("should contain for main sites", () => {
+    render(<Footer className={"sampleClass"} />)
+    expect(screen.getByText("Learn")).toBeInTheDocument()
+    expect(screen.getByText("Projects")).toBeInTheDocument()
   })
 })

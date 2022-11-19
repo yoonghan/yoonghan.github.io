@@ -39,7 +39,7 @@ const History = ({}) => {
         <div className={"pb-5"}></div>
         <ScrollToTop />
       </div>
-      <Footer isRelative={true} />
+      <Footer />
     </>
   )
 }
