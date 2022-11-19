@@ -30,7 +30,12 @@ const SiteMap = ({}) => {
                 <Link href="/history">HISTORY</Link>
               </li>
               <li>
-                <Link href="/listing">PROJECTS</Link>
+                <Link href="/projects">PROJECTS</Link>
+                <ul className={"u-list"}>
+                  <li>
+                    <Link href="/projects/lessons">Lessons Learned</Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
