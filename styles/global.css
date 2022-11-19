@@ -124,3 +124,7 @@ ul.u-list {
   margin: 0;
   padding-left: 1rem;
 }
+
+.border-b {
+  border-bottom: 1px solid var(--border-color);
+}
