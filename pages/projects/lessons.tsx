@@ -98,7 +98,7 @@ const Lessons = ({}) => {
             </section>
           </article>
         </div>
-        <Footer isRelative={true} />
+        <Footer />
         <ScrollToTop />
       </div>
     </>

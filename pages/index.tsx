@@ -10,6 +10,7 @@ import CommandBar from "@/components/CommandBar"
 import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
+import LetterBox from "@/components/LetterBox"
 
 interface Props {
   termsRead: boolean
@@ -40,11 +41,35 @@ function Index({ termsRead }: Props) {
           <Parallax scrollContainer={scrollContainerRef} ref={scrollHandlerRef}>
             {sections}
           </Parallax>
+          <section key="contact us">
+            <div className={`center ${styles.miscellaneous}`}>
+              <h2>Contact Us</h2>
+              <div className="p-padding">
+                <LetterBox />
+              </div>
+              <div className="section-end">
+                <small>
+                  This website is powered with: Next.JS with Typescript on
+                  Vercel
+                </small>
+                <div
+                  onClick={() => scrollHandlerRef?.current?.scrollToTop()}
+                  onKeyUp={() => scrollHandlerRef?.current?.scrollToTop()}
+                  className={styles.link}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Return to top
+                </div>
+              </div>
+            </div>
+          </section>
+          ,
+          <Footer className={"footer"} />
         </div>
         <SocialFab />
       </main>
       <Cookie isClosed={termsRead} cookieName={"termsRead"} />
-      <Footer className={"footer"} isRelative={false} />
     </div>
   )
 }

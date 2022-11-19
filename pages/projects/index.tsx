@@ -74,7 +74,7 @@ const Projects = ({}) => {
             <LetterBox />
           </div>
         </section>
-        <Footer isRelative={true} />
+        <Footer />
         <ScrollToTop />
       </div>
     </>

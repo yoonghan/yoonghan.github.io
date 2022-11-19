@@ -41,7 +41,7 @@ const SiteMap = ({}) => {
           </li>
         </ul>
       </div>
-      <Footer isRelative={true} />
+      <Footer />
       <ScrollToTop />
     </>
   )
