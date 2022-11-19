@@ -11,15 +11,9 @@ describe("Footer", () => {
     expect(currentYear).toEqual(2022)
   })
 
-  it("should render a footer with correct footer message", () => {
-    render(<Footer />)
-    expect(screen.getByText(footerMessage)).toBeInTheDocument()
-    expect(screen.getByText(footerMessage)).toHaveClass("relative")
-  })
-
   it("should render with additional classname if passed", () => {
     render(<Footer className={"sampleClass"} />)
-    expect(screen.getByText(footerMessage)).toHaveClass("sampleClass")
+    expect(screen.getByRole("contentinfo")).toHaveClass("sampleClass")
   })
 
   it("should contain links for sitemap and privacy", () => {
