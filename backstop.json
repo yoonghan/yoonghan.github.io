@@ -104,7 +104,7 @@
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,
-      "clickSelector": "nav:has-text('UI/UX Validation')",
+      "clickSelector": "nav:has-text('Testing Deployment')",
       "requireSameDimensions": true,
       "viewports": [
         {
