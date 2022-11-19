@@ -260,23 +260,4 @@ export const generateSections = (
       />
     </div>
   </section>,
-  <section key="contact us">
-    <div className={`center ${styles.miscellaneous}`}>
-      <h2>Contact Us</h2>
-      <div className="p-padding">
-        <LetterBox />
-      </div>
-      <div className="section-end">
-        <small>
-          This website is powered with: Next.JS with Typescript on Vercel
-        </small>
-        <div
-          onClick={() => scrollHandlerRef?.current?.scrollToTop()}
-          className={styles.link}
-        >
-          Return to top
-        </div>
-      </div>
-    </div>
-  </section>,
 ]

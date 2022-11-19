@@ -129,7 +129,7 @@ const About = () => {
         </section>
       </div>
       <ScrollToTop />
-      <Footer isRelative={true} />
+      <Footer />
     </React.Fragment>
   )
 }
