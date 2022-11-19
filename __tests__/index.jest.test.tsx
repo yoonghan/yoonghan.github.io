@@ -110,12 +110,9 @@ describe("Home", () => {
 
       await UserEvent.click(navigation.getByText("Video About Us"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 3500)
-
-      await UserEvent.click(navigation.getByText("Contact Us"))
-      expect(scrollToFn).toHaveBeenCalledWith(0, 4000)
     })
 
-    it("should return to top once clicked", async () => {
+    it("should return to top once clicked or keyed", async () => {
       render(<Home termsRead={false} />)
 
       const scrollToFn = jest.fn()
@@ -126,6 +123,9 @@ describe("Home", () => {
       }
 
       await UserEvent.click(screen.getByText("Return to top"))
+      expect(scrollToFn).toHaveBeenCalledWith(0, 0)
+
+      await UserEvent.type(screen.getByText("Return to top"), "{enter}")
       expect(scrollToFn).toHaveBeenCalledWith(0, 0)
     })
   })

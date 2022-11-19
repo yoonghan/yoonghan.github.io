@@ -37,10 +37,6 @@ const navigationLinks = [
     id: "7",
     desc: "Video About Us",
   },
-  {
-    id: "8",
-    desc: "Contact Us",
-  },
 ]
 
 export const generatedLinks = navigationLinks.map((navigationLink, index) => ({
