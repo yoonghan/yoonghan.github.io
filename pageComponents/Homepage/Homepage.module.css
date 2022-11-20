@@ -107,6 +107,12 @@ section.introduction {
 
 .homepage section .miscellaneous {
   color: var(--text);
+  z-index: 1;
+  background-color: #343233;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link {
