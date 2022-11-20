@@ -8,7 +8,7 @@ interface Props {
 
 const Footer = ({ className }: Props) => {
   return (
-    <footer className={`${styles.container} ${className}`}>
+    <footer className={`${styles.container} ${className || ""}`}>
       <div className="border-b"></div>
       <div className={styles.flex}>
         <ul>
