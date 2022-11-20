@@ -3,19 +3,25 @@ import Home, { getServerSideProps } from "@/pages/index"
 import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
 import * as Cookie from "cookies-next"
+import { assertFooter } from "./utils/_footer"
+import { assertMenu } from "./utils/_menu"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Home", () => {
-  const renderComponent = async () => {
+  const renderComponent = () => {
     render(<Home termsRead={false} />)
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
   }
+
+  it("should have a menu", async () => {
+    renderComponent()
+    await assertMenu()
+  })
 
   it("should be able to click on the cookie button", async () => {
     const cookieText = "This site uses cookies."
 
-    await render(<Home termsRead={false} />)
+    render(<Home termsRead={false} />)
     const cookieSection = screen.getByTestId("cookie-dialog")
     expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
     UserEvent.click(
@@ -128,5 +134,10 @@ describe("Home", () => {
       await UserEvent.type(screen.getByText("Return to top"), "{enter}")
       expect(scrollToFn).toHaveBeenCalledWith(0, 0)
     })
+  })
+
+  it("should render the page with footer", () => {
+    renderComponent()
+    assertFooter()
   })
 })

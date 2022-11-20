@@ -1,16 +1,22 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, within } from "@testing-library/react"
 import SiteMap from "@/pages/sitemap"
+import { assertFooter } from "./utils/_footer"
+import { assertMenu } from "./utils/_menu"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
 describe("SiteMap", () => {
-  const renderComponent = async () => {
+  const renderComponent = () => {
     render(<SiteMap />)
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
   }
 
-  it("should render the page with right links", async () => {
-    await renderComponent()
+  it("should have a menu", async () => {
+    renderComponent()
+    await assertMenu()
+  })
+
+  it("should render the page with right links", () => {
+    renderComponent()
     expect(screen.getByText("HOME")).toHaveAttribute("href", "/")
     expect(screen.getByText("ABOUT US")).toHaveAttribute("href", "/about")
     expect(screen.getByText("HISTORY")).toHaveAttribute("href", "/history")
@@ -19,5 +25,10 @@ describe("SiteMap", () => {
       "href",
       "/projects/lessons"
     )
+  })
+
+  it("should render the page with footer", () => {
+    renderComponent()
+    assertFooter()
   })
 })
