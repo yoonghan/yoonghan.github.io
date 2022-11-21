@@ -21,7 +21,7 @@ describe("SiteMap", () => {
     expect(screen.getByText("ABOUT US")).toHaveAttribute("href", "/about")
     expect(screen.getByText("HISTORY")).toHaveAttribute("href", "/history")
     expect(screen.getByText("PROJECTS")).toHaveAttribute("href", "/projects")
-    expect(screen.getByText("Lessons Learned")).toHaveAttribute(
+    expect(screen.getByText("LESSONS")).toHaveAttribute(
       "href",
       "/projects/lessons"
     )
