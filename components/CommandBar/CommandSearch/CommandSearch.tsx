@@ -1,3 +1,4 @@
+import { findPageByPath } from "@/config/pages"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import HelpDialog from "../HelpDialog"
@@ -7,18 +8,6 @@ import Output from "./Output"
 export enum EnumAction {
   COMMAND,
   LINK,
-}
-
-const ABOUT_LINK = {
-  action: EnumAction.LINK,
-  url: "/about",
-  exec: (router: any) => {
-    if (router.route === "/about") {
-      return <InvalidCommand invalidCommand={"This is the page"} />
-    }
-    router.push("/about")
-    return <React.Fragment />
-  },
 }
 
 export interface ICommand {
@@ -33,16 +22,28 @@ export interface IAvailableInput {
   synonym?: Array<string>
 }
 
+const generateLink = (url: string) => ({
+  action: EnumAction.LINK,
+  exec: (router: any) => {
+    const link = findPageByPath(url)?.path
+    if (router.route === link) {
+      return <InvalidCommand invalidCommand={"This is the page"} />
+    }
+    router.push(link)
+    return <React.Fragment />
+  },
+})
+
 export const AvailableInput: ICommand = {
   whoami: {
     synonym: ["cd about", "cd /about"],
     description: "Get to know this site.",
-    ...ABOUT_LINK,
+    ...generateLink("/about"),
   },
   "su - walcron": {
     synonym: ["sudo su", "sudo walcron", "su -", "sudo su -"],
     description: "Know us by being us.",
-    ...ABOUT_LINK,
+    ...generateLink("/about"),
   },
   pwd: {
     description: "Lost, and need direction.",
@@ -60,26 +61,12 @@ export const AvailableInput: ICommand = {
       "cd /projects",
     ],
     description: "What's there ?",
-    action: EnumAction.LINK,
-    exec: (router: any) => {
-      if (router.route === "/projects") {
-        return <InvalidCommand invalidCommand={"This is the page"} />
-      }
-      router.push("/projects")
-      return <React.Fragment />
-    },
+    ...generateLink("/projects"),
   },
   history: {
     synonym: ["cd /history", "cd history"],
     description: "Walcron development history.",
-    action: EnumAction.LINK,
-    exec: (router: any) => {
-      if (router.route === "/history") {
-        return <InvalidCommand invalidCommand={"This is the page"} />
-      }
-      router.push("/history")
-      return <React.Fragment />
-    },
+    ...generateLink("/history"),
   },
   exit: {
     synonym: ["cd", "cd /"],
