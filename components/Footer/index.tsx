@@ -1,37 +1,58 @@
-import * as React from "react"
+import { useMemo, memo, useCallback } from "react"
 import styles from "./Footer.module.css"
 import Link from "next/link"
+import { sortedFooterPages, PageConfig } from "../../config/pages"
 
 interface Props {
   className?: string
 }
 
 const Footer = ({ className }: Props) => {
+  const renameDisplays = (display: string) => {
+    switch (display) {
+      case "Projects":
+        return "All"
+      default:
+        return display
+    }
+  }
+
+  const renderLinks = useCallback(
+    (footerPage: PageConfig) => (
+      <li key={footerPage.display}>
+        <Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
+      </li>
+    ),
+    []
+  )
+
+  const renderedLearn = useMemo(() => {
+    return sortedFooterPages
+      .filter((footerPage) => !footerPage.path.startsWith("/projects"))
+      .map((footerPage) => renderLinks(footerPage))
+  }, [renderLinks])
+
+  const renderedProjects = useMemo(() => {
+    return sortedFooterPages
+      .filter((footerPage) => footerPage.path.startsWith("/projects"))
+      .map((footerPage) => renderLinks(footerPage))
+  }, [renderLinks])
+
   return (
     <footer className={`${styles.container} ${className || ""}`}>
       <div className="border-b"></div>
       <div className={styles.flex}>
-        <ul>
+        <ul aria-label="Learn">
           <li>
             <strong>Learn</strong>
           </li>
-          <li>
-            <Link href="/about">About Us</Link>
-          </li>
-          <li>
-            <Link href="/history">History</Link>
-          </li>
+          {renderedLearn}
         </ul>
-        <ul>
+        <ul aria-label="Projects">
           <li>
             <strong>Projects</strong>
           </li>
-          <li>
-            <Link href="/projects">All</Link>
-          </li>
-          <li>
-            <Link href="/projects/lessons">Lesson</Link>
-          </li>
+          {renderedProjects}
         </ul>
       </div>
       <div className="border-b"></div>
@@ -53,4 +74,4 @@ const Footer = ({ className }: Props) => {
   )
 }
 
-export default Footer
+export default memo(Footer)

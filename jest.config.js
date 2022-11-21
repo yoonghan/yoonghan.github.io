@@ -17,6 +17,7 @@ const customJestConfig = {
     "^@/components/(.*)$": "<rootDir>/components/$1",
     "^@/pageComponents/(.*)$": "<rootDir>/pageComponents/$1",
     "^@/pages/(.*)$": "<rootDir>/pages/$1",
+    "^@/config/(.*)$": "<rootDir>/config/$1",
   },
   testEnvironment: "jest-environment-jsdom",
   coverageReporters: ["text", "cobertura"],

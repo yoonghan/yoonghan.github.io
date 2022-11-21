@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, within } from "@testing-library/react"
 import Footer from "."
 
 describe("Footer", () => {
@@ -32,5 +32,20 @@ describe("Footer", () => {
     render(<Footer />)
     expect(screen.getByText("Learn")).toBeInTheDocument()
     expect(screen.getByText("Projects")).toBeInTheDocument()
+  })
+
+  it("should group Projects correctly", () => {
+    render(<Footer />)
+    const projectMenuItem = screen.getByLabelText("Projects")
+    expect(within(projectMenuItem).getByText("All")).toBeInTheDocument
+    expect(within(projectMenuItem).getByText("Lessons")).toBeInTheDocument
+    expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument
+  })
+
+  it("should group Learn correctly", () => {
+    render(<Footer />)
+    const projectMenuItem = screen.getByLabelText("Learn")
+    expect(within(projectMenuItem).getByText("Home")).toBeInTheDocument
+    expect(within(projectMenuItem).queryByText("Lessons")).not.toBeInTheDocument
   })
 })
