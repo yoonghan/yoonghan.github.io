@@ -1,5 +1,4 @@
 import Button from "@/components/Button"
-import LetterBox from "@/components/LetterBox"
 import LogoText from "@/components/LogoText"
 import ScrollIcon from "@/components/ScrollIcon"
 import Video from "@/components/Video"
@@ -69,9 +68,10 @@ export const generateSections = (
             This is a sandbox website for us to explore Web Development.
             <br />
             <br />
-            We&apos;re just a normal coder and keen to explore.
+            We&apos;re just a regular coder who are keen to explore with Web
+            technologies.
             <br />
-            But I guess it&apos;s nice show{" "}
+            But I guess it&apos;s nice to explain
             <i>&quot;How we built this website&quot;</i>
           </p>
           <div className={styles.show}>
@@ -90,17 +90,15 @@ export const generateSections = (
     <article>
       <h2 className="title">Test Driven Development</h2>
       <p>
-        Test are written before the implementation(¯\_(ツ)_/¯), but due to the
-        access of old components there were many written test were carried out
-        over the existing component.
+        Test are written before the implementation(¯\_(ツ)_/¯). Old components
+        were written with new testcases for full code coverage.
       </p>
       <p>
-        Only 1 SNAPSHOT used for test is ever taken for <strong>React</strong>!
-        (yes it&apos;s for html header)
+        Only 1 SNAPSHOT test were ever taken for <strong>React</strong>! (yes
+        it&apos;s for html header)
       </p>
       <p>
-        It&apos;s <i>100% code coverage</i> and it&apos;s normally achieved
-        immediately on new functions/class written.
+        It&apos;s an end-to-end <i>100% code coverage</i>.
       </p>
       <Button
         href="//github.com/yoonghan/Walcron/blob/master/README.md"
@@ -137,12 +135,8 @@ export const generateSections = (
         to go thru a &quot;pull request&quot; -&gt; &quot;100% validated&quot;
       </p>
       <p>
-        No direct &quot;master&quot; branch check-in. But it&apos;s never
-        disallowed for admin.
-      </p>
-      <p>
-        <i>Debatable:</i> May not be a fit to for Continous Integration flow on
-        branching, but fit for us.
+        New commits have only 2 branches, master and develop to fit in{" "}
+        <strong>Continous Integration</strong> methodology.
       </p>
       <Button
         href="//github.com/yoonghan/Walcron/pull/45"
@@ -155,10 +149,7 @@ export const generateSections = (
   <section key="workflow">
     <article>
       <h2 className="title">Github Workflow</h2>
-      <p>
-        During the pull-request, will automatically go thru the intesive check
-        of (in order):
-      </p>
+      <p>During the pull-request, an automatically is carried out in order:</p>
       <ol>
         <li>Linting, Prettifier.</li>
         <li>Type check build with NextJS.</li>
@@ -194,8 +185,8 @@ export const generateSections = (
     <article>
       <h2 className="title">Testing Deployment</h2>
       <p>
-        A hook was created in vercel, and it automatically builds and deploys a{" "}
-        <strong>development</strong> environment on every new commit.
+        A hook was created in vercel, and it automatically builds and deploy a{" "}
+        <strong>development</strong> environment version for every new commit.
       </p>
     </article>
   </section>,
@@ -210,7 +201,7 @@ export const generateSections = (
         </li>
         <li>
           A report will be generated to compare against the previous version
-          layout, it will then run thru a workflow to get it approved.
+          layout, it will then run thru an approval workflow.
         </li>
       </ol>
       <Button
@@ -239,9 +230,12 @@ export const generateSections = (
     </div>
     <article>
       <h2 className="title">Going Live</h2>
-      <p>Only commits that passes the Github can be approved and merged!</p>
+      <p>Only commits that passes all checks can be approved and merged!</p>
 
-      <p>Once live, it goes to https://www.walcron.com</p>
+      <p>
+        Once merged, it&apos;s automatically pushes to master and publishes to
+        https://www.walcron.com
+      </p>
     </article>
   </section>,
   <section key="short-clip-about-us">
