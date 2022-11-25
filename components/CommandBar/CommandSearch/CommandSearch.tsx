@@ -2,6 +2,7 @@ import { findPageByPath } from "@/config/pages"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import HelpDialog from "../HelpDialog"
+import PwaEnabler from "../PwaEnabler"
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
 
@@ -126,6 +127,17 @@ export const AvailableInput: ICommand = {
           onCancel={cancellationCallback}
           specialInputCallback={specialInputCallback}
         />,
+        element
+      )
+    },
+  },
+  pwa: {
+    description: "Enable PWA",
+    synonym: ["offline"],
+    action: EnumAction.COMMAND,
+    exec: (element: HTMLDivElement, cancellationCallback: () => void) => {
+      return createPortal(
+        <PwaEnabler onCancel={cancellationCallback} />,
         element
       )
     },

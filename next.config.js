@@ -2,9 +2,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
 
-module.exports = withBundleAnalyzer({
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: false,
 })
+
+module.exports = withBundleAnalyzer(
+  withPWA({
+    i18n: {
+      locales: ["en"],
+      defaultLocale: "en",
+    },
+  })
+)
