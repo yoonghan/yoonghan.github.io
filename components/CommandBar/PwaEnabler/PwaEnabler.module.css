@@ -1,0 +1,37 @@
+.container {
+  color: #000;
+  background-color: #fff;
+  padding: 10px 10px 2rem 10px;
+  box-shadow: 5px 5px 2px var(--shadow);
+}
+
+.container .icon {
+  width: auto;
+  height: 20px;
+}
+.container .safari-container {
+  margin-top: 20px;
+  border-top: 1px solid;
+  padding-top: 20px;
+  opacity: 1;
+  animation: fadein 2s linear;
+}
+
+.container .toggleContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+.container .labelText {
+  margin-left: 1rem;
+  vertical-align: super;
+  font-weight: normal;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -17,6 +17,22 @@ export const setServiceNavigator = () => {
   Object.defineProperty(window.navigator, "serviceWorker", {
     value: {
       getRegistration: () => Promise.resolve(true),
+      ready: new Promise((registration) => {
+        registration({
+          unregister: () => {
+            jest
+              .spyOn(window.navigator.serviceWorker, "getRegistration")
+              .mockResolvedValue(false)
+          },
+        })
+      }),
+      register: (_swPath, _options) =>
+        new Promise((resolve, _reject) => {
+          jest
+            .spyOn(window.navigator.serviceWorker, "getRegistration")
+            .mockResolvedValue(true)
+          resolve("registered")
+        }),
     },
   })
 }
