@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { register } from "./utils/register"
 /**
 If await navigator.serviceWorker.getRegistration(domain) is returning as undefined after registered.
 Do.
@@ -35,14 +36,12 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
     ) {
       setIsTwaApp(true)
       if (autoRegisterForApp) {
-        //Auto register if opened from app.
-        // TODO: Find a good tool
-        //(register as any)()
+        register()
       }
     }
 
     getRegistration()
   }, [autoRegisterForApp])
 
-  return [isRegistered, isTwaApp]
+  return { isRegistered, isTwaApp, getRegistration }
 }

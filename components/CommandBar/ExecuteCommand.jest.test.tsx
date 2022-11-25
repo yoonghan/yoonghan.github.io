@@ -189,4 +189,16 @@ describe("CommandBar", () => {
       expect(screen.getByText("Help")).toBeInTheDocument()
     })
   })
+
+  describe("pwa", () => {
+    it("should show pwa", function () {
+      render(<div>{createCommandBar()("pwa")}</div>)
+      expect(screen.getByText("Progressive Web App")).toBeInTheDocument()
+    })
+
+    it("should show pwa if typed offline", function () {
+      render(<div>{createCommandBar()("offline")}</div>)
+      expect(screen.getByText("Progressive Web App")).toBeInTheDocument()
+    })
+  })
 })
