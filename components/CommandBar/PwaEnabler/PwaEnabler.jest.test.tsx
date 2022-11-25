@@ -53,10 +53,20 @@ describe("PwaEnabler", () => {
       expect(await screen.findByText("Installed")).toBeInTheDocument()
       await UserEvent.click(screen.getByText("Installed"))
       expect(await screen.findByText("Processing")).toBeInTheDocument()
-      expect(await screen.findByText("Disabled")).toBeInTheDocument()
+      expect(
+        await screen.findByText("Disabled", undefined, {
+          timeout: 2000,
+          interval: 500,
+        })
+      ).toBeInTheDocument()
       await UserEvent.click(screen.getByText("Disabled"))
       expect(await screen.findByText("Processing")).toBeInTheDocument()
-      expect(await screen.findByText("Installed")).toBeInTheDocument()
+      expect(
+        await screen.findByText("Installed", undefined, {
+          timeout: 2000,
+          interval: 500,
+        })
+      ).toBeInTheDocument()
     })
 
     it("should show special message for safari users when installed", async () => {
