@@ -15,19 +15,19 @@ jest.mock("next/link", () => ({
 
 describe("Button", () => {
   it("should render the button text", () => {
-    render(<Button text="Button Text" />)
+    render(<Button>Button Text</Button>)
     expect(screen.getByRole("button")).toHaveTextContent("Button Text")
   })
 
   it("should render the button which is clickable", async () => {
     const clickFn = jest.fn()
-    render(<Button text="Click Me" onClick={clickFn} />)
+    render(<Button onClick={clickFn}>Click Me</Button>)
     await userEvent.click(screen.getByRole("button", { name: "Click Me" }))
     expect(clickFn).toHaveBeenCalled()
   })
 
   it("should render the button with external href", async () => {
-    render(<Button text="Link Me" href={"http://www.google.com"} />)
+    render(<Button href={"http://www.google.com"}>Link Me</Button>)
     const linkButton = screen.getByRole("link", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
 
@@ -36,7 +36,9 @@ describe("Button", () => {
 
   it("should render the button with external href with target", async () => {
     render(
-      <Button text="Link Me" href={"http://www.google.com"} target={"_blank"} />
+      <Button href={"http://www.google.com"} target={"_blank"}>
+        Link Me
+      </Button>
     )
     const linkButton = screen.getByRole("link", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
@@ -45,7 +47,7 @@ describe("Button", () => {
   })
 
   it("should render the button with internal href using next/link", async () => {
-    render(<Button text="Page Me" href={"page2"} />)
+    render(<Button href={"page2"}>Page Me</Button>)
     const linkButton = screen.getByRole("link", { name: "Page Me" })
     expect(linkButton).toHaveAttribute("href", "page2")
     expect(linkButton).toHaveAttribute("data-testid", "next-link")
@@ -54,29 +56,29 @@ describe("Button", () => {
   describe("styling", () => {
     it("should support all", () => {
       render(
-        <Button text="Button Text" styling={{ small: true, inverted: true }} />
+        <Button styling={{ small: true, inverted: true }}>Button Text</Button>
       )
       expect(screen.getByRole("button")).toHaveClass("container small invert")
     })
 
     it("should support only small", () => {
       render(
-        <Button text="Button Text" styling={{ small: true, inverted: false }} />
+        <Button styling={{ small: true, inverted: false }}>Button Text</Button>
       )
       expect(screen.getByRole("button")).toHaveClass("container small")
     })
 
     it("should support only inverted", () => {
       render(
-        <Button text="Button Text" styling={{ small: false, inverted: true }} />
+        <Button styling={{ small: false, inverted: true }}>Button Text</Button>
       )
       expect(screen.getByRole("button")).toHaveClass("container invert")
     })
 
     it("should support color change", () => {
-      const view = render(<Button text="Button Text" color={"orange"} />)
+      const view = render(<Button color={"orange"}>Button Text</Button>)
       expect(screen.getByRole("button")).toHaveClass("container orange")
-      view.rerender(<Button text="Button Text" color={"white"} />)
+      view.rerender(<Button color={"white"}>Button Text</Button>)
       expect(screen.getByRole("button")).toHaveClass("container white")
     })
   })

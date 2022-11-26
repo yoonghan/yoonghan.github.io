@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { ReactNode, useMemo } from "react"
 import Link from "next/link"
 import { isExternalLink } from "./isExternalLink"
 import styles from "./Button.module.css"
@@ -8,48 +8,48 @@ interface ButtonProps {
   target?: string
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
   color?: "orange" | "white"
-  text: string
   styling?: {
     small: boolean
     inverted: boolean
   }
+  children: ReactNode
 }
 
 const ClickableButton = ({
   onClick,
-  text,
+  children,
   definedClass,
 }: {
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  text: string
+  children: ReactNode
   definedClass: string
 }) => (
   <button className={definedClass} onClick={onClick}>
-    {text}
+    {children}
   </button>
 )
 
 const LinkButton = ({
   href,
   target,
-  text,
+  children,
   definedClass,
 }: {
   href: string
   target?: string
-  text: string
+  children: ReactNode
   definedClass: string
 }) => {
   if (isExternalLink(href)) {
     return (
       <a href={href} target={target || "_self"}>
-        <button className={definedClass}>{text}</button>
+        <button className={definedClass}>{children}</button>
       </a>
     )
   } else {
     return (
       <Link href={href}>
-        <span className={definedClass}>{text}</span>
+        <span className={definedClass}>{children}</span>
       </Link>
     )
   }
@@ -57,7 +57,7 @@ const LinkButton = ({
 
 const Button = ({
   href,
-  text,
+  children,
   color,
   onClick,
   target,
@@ -79,25 +79,20 @@ const Button = ({
 
   if (onClick) {
     return (
-      <ClickableButton
-        onClick={onClick}
-        text={text}
-        definedClass={definedClass}
-      />
+      <ClickableButton onClick={onClick} definedClass={definedClass}>
+        {children}
+      </ClickableButton>
     )
   } else if (href) {
     return (
-      <LinkButton
-        href={href}
-        target={target}
-        text={text}
-        definedClass={definedClass}
-      />
+      <LinkButton href={href} target={target} definedClass={definedClass}>
+        {children}
+      </LinkButton>
     )
   } else {
     return (
       <button type="submit" className={definedClass}>
-        {text}
+        {children}
       </button>
     )
   }

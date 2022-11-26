@@ -12,3 +12,8 @@ export const isIOS = () =>
   /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream
 
 export const isMacOrIOS = () => isSafariBrowser() || isIOS()
+
+export const isAndroid = () => {
+  var ua = navigator.userAgent.toLowerCase()
+  return ua.indexOf("android") > -1
+}

@@ -9,6 +9,10 @@ afterEach(() => {
   jest.restoreAllMocks()
 })
 
+export const spyAsAndroid = () => {
+  jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("Android")
+}
+
 export const spyAsIPad = () => {
   jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("iPad")
 }
