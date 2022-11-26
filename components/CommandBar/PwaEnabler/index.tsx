@@ -10,9 +10,11 @@ import Toggle from "react-toggle"
 import Image from "next/image"
 import Modal from "../../Modal"
 import { usePwaHooks } from "./usePwaHooks"
-import { isMacOrIOS } from "./utils/browserCheck"
+import { isAndroid, isMacOrIOS } from "./utils/browserCheck"
 import { register, unregister } from "./utils/register"
 import styles from "./PwaEnabler.module.css"
+import Button from "@/components/Button"
+import { ANDROID_PACKAGE_NAME } from "./utils/const"
 
 interface Props {
   onCancel: () => void
@@ -57,29 +59,44 @@ const PwaEnabler = ({ onCancel }: Props) => {
   }, [isEnabled, isProcessing, getRegistration])
 
   const drawnSafariMsg = useMemo(() => {
-    if (isMacOrIOS() && isRegistered) {
-      return (
-        <div className={styles["safari-container"]}>
-          For Safari mobile users, follow these steps.
-          <ol>
-            <li>
-              Tap on{" "}
-              <Image
-                src="/pwa/safari-share.png"
-                className={styles.icon}
-                alt="Sharing in Safari"
-                width={20}
-                height={33}
-              />{" "}
-              (Share) icon.
-            </li>
-            <li>Then select (Add Home Screen).</li>
-          </ol>
-        </div>
-      )
-    } else {
-      return <Fragment />
+    if (isRegistered) {
+      if (isAndroid()) {
+        return (
+          <div className={styles["mobile-container"]}>
+            You can get our download too at: <br />
+            <br />
+            <Button
+              href={`https://play.google.com/store/apps/details?id=${ANDROID_PACKAGE_NAME}`}
+              target="download"
+            >
+              <i className="fab fa-google-play"></i> Playstore Download
+            </Button>
+          </div>
+        )
+      }
+      if (isMacOrIOS()) {
+        return (
+          <div className={styles["mobile-container"]}>
+            For Safari mobile users, follow these steps.
+            <ol>
+              <li>
+                Tap on{" "}
+                <Image
+                  src="/pwa/safari-share.png"
+                  className={styles.icon}
+                  alt="Sharing in Safari"
+                  width={20}
+                  height={33}
+                />{" "}
+                (Share) icon.
+              </li>
+              <li>Then select (Add Home Screen).</li>
+            </ol>
+          </div>
+        )
+      }
     }
+    return <Fragment />
   }, [isRegistered])
 
   const drawnSelection = useMemo(() => {
