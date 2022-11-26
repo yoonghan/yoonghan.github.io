@@ -1,6 +1,6 @@
-import { isIOS, isSafariBrowser, isMacOrIOS } from "./browserCheck"
+import { isIOS, isSafariBrowser, isMacOrIOS, isAndroid } from "./browserCheck"
 import "../../../../__mocks__/windowMock"
-import { spyAsIPad } from "../../../../__mocks__/windowMock"
+import { spyAsIPad, spyAsAndroid } from "../../../../__mocks__/windowMock"
 
 describe("BrowserCheck", () => {
   const originalWindowHtmlElem = window["HTMLElement"]
@@ -11,6 +11,13 @@ describe("BrowserCheck", () => {
     window["HTMLElement"] = originalWindowHtmlElem
     window["safari" as any] = originalSafari
     window["MSStream" as any] = originalMsStream
+  })
+
+  describe("isAndroid", () => {
+    it("should consider as android", () => {
+      spyAsAndroid()
+      expect(isAndroid()).toBeTruthy()
+    })
   })
 
   describe("isSafariBrowser", () => {

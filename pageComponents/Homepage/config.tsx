@@ -103,9 +103,10 @@ export const generateSections = (
       <Button
         href="//github.com/yoonghan/Walcron/blob/master/README.md"
         target="_workflow"
-        text="View Test Coverage"
         color="orange"
-      ></Button>
+      >
+        View Test Coverage
+      </Button>
     </article>
     <div className={styles.snapshots}>
       <Image
@@ -141,9 +142,10 @@ export const generateSections = (
       <Button
         href="//github.com/yoonghan/Walcron/pull/45"
         target="_workflow"
-        text="View Merged Request"
         color="orange"
-      ></Button>
+      >
+        View Merged Request
+      </Button>
     </article>
   </section>,
   <section key="workflow">
@@ -160,9 +162,10 @@ export const generateSections = (
       <Button
         href="//github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml"
         target="_workflow"
-        text="View workflows code"
         color="orange"
-      ></Button>
+      >
+        View workflows code
+      </Button>
     </article>
     <div className={styles.snapshots}>
       <Image
@@ -207,8 +210,9 @@ export const generateSections = (
       <Button
         href="//github.com/yoonghan/Walcron/actions/workflows/snapshot.yml"
         target="_workflow"
-        text="Generate One"
-      />
+      >
+        Generate One
+      </Button>
     </article>
     <div className={styles.snapshots}>
       <Image

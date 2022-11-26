@@ -4,6 +4,7 @@ import PwaEnabler from "."
 import {
   setServiceNavigator,
   spyAsIPad,
+  spyAsAndroid,
   spyOnReferrer,
 } from "../../../__mocks__/windowMock"
 
@@ -73,7 +74,16 @@ describe("PwaEnabler", () => {
       spyAsIPad()
       renderComponent()
       expect(await screen.findByText("Installed")).toBeInTheDocument()
-      expect(screen.getByText("For Safari mobile users, follow these steps."))
+      expect(
+        screen.getByText("For Safari mobile users, follow these steps.")
+      ).toBeInTheDocument()
+    })
+
+    it("should show a button for android download for android users when installed", async () => {
+      spyAsAndroid()
+      renderComponent()
+      expect(await screen.findByText("Installed")).toBeInTheDocument()
+      expect(screen.getByText("Playstore Download")).toBeInTheDocument()
     })
   })
 })
