@@ -38,7 +38,7 @@ const LetterBox = () => {
           onChange={(event) => setName(event.target.value)}
           value={name}
         />
-        <Button text="Write To Us" />
+        <Button>Write To Us</Button>
         {isDialogShown && (
           <Modal onCancel={onClose}>
             <EmailSender writeFrom={name.trim()} writeTo={email} />
