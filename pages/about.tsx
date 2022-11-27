@@ -7,6 +7,8 @@ import CommandBar from "../components/CommandBar"
 import ScrollToTop from "../components/ScrollToTop"
 import Footer from "../components/Footer"
 import HtmlHead from "@/components/HtmlHead"
+import hanImg from "@/images/profile/han.webp"
+import gladysImg from "@/images/profile/gladys.webp"
 
 const _getSchema = () => {
   const schemas = {
@@ -96,7 +98,7 @@ const About = () => {
                     <i>An enthusiast programmer.</i>
                   </p>
                 ),
-                imgSrc: "/img/profile/han.jpg",
+                imgSrc: hanImg,
               },
               {
                 name: "Gladys Tai",
@@ -115,7 +117,7 @@ const About = () => {
                     <i>She is a worrier and a warrior.</i>
                   </p>
                 ),
-                imgSrc: "/img/profile/gladys.jpg",
+                imgSrc: gladysImg,
               },
             ]}
           />

@@ -20,7 +20,8 @@
       "@/pageComponents/*": ["pageComponents/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
-      "@/config/*": ["config/*"]
+      "@/config/*": ["config/*"],
+      "@/images/*": ["public/img/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
