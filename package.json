@@ -25,6 +25,7 @@
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
+    "@types/jest": "^29.2.3",
     "@types/react": "18.0.9",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-toggle": "^4.0.3",
