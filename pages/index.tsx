@@ -87,4 +87,6 @@ export async function getServerSideProps({ req, res }: NextPageContext) {
   }
 }
 
+export const config = { runtime: "nodejs" }
+
 export default Index

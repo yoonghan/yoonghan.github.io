@@ -12,6 +12,6 @@ describe("Amp", () => {
   })
 
   it("should expose config as true", () => {
-    expect(config).toStrictEqual({ amp: true })
+    expect(config).toStrictEqual({ amp: true, runtime: "nodejs" })
   })
 })

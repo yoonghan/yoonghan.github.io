@@ -1,5 +1,5 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import Home, { getServerSideProps } from "@/pages/index"
+import Home, { getServerSideProps, config } from "@/pages/index"
 import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
 import * as Cookie from "cookies-next"
@@ -16,6 +16,10 @@ describe("Home", () => {
   it("should have a menu", async () => {
     renderComponent()
     await assertMenu()
+  })
+
+  it("should expose config with runtime set to nodejs as edge will not work", () => {
+    expect(config).toStrictEqual({ runtime: "nodejs" })
   })
 
   it("should be able to click on the cookie button", async () => {
