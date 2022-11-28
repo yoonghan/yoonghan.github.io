@@ -35,7 +35,7 @@ const Amp = () => {
             <amp-carousel
               id="carousel-with-preview"
               layout="fixed-height"
-              height={400}
+              height={500}
               type="slides"
               aria-label="Carousel with slide previews"
             >
@@ -62,6 +62,7 @@ const Amp = () => {
           <div>
             <h2>A Video About Us</h2>
             <amp-video
+              controls=""
               width="640"
               height="360"
               layout="responsive"
