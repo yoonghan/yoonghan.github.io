@@ -5,19 +5,23 @@ import Script from "next/script"
 const HtmlHead = ({
   description,
   title,
+  isAmp = false,
 }: {
   description: string
   title: string
+  isAmp?: boolean
 }) => {
   return (
     <>
       <Head>
         <meta charSet="utf-8" key="charset" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=5"
-          key="viewport"
-        />
+        {!isAmp && (
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5"
+            key="viewport"
+          />
+        )}
         <meta name="og:title" content="Walcron Coorperation" key="fb_title" />
         <meta name="og:type" content="profile" key="fb_type" />
         <meta

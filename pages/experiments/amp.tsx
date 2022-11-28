@@ -1,14 +1,19 @@
 import Footer from "@/components/Footer"
 import LogoText from "@/components/LogoText"
 import Head from "next/head"
+import HtmlHead from "@/components/HtmlHead"
 import { siteDevelopmentSections } from "@/pageComponents/Homepage/config"
 
 /** Ignore anything that starts with amp. */
 const Amp = () => {
   return (
     <>
+      <HtmlHead
+        isAmp={true}
+        title="Walcron, a testbed for developer's project."
+        description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
+      />
       <Head>
-        <title>Walcron, a testbed for developer&apos;s project.</title>
         <script
           async
           custom-element="amp-carousel"
