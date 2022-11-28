@@ -20,9 +20,11 @@
       "@/pageComponents/*": ["pageComponents/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
-      "@/config/*": ["config/*"]
-    }
+      "@/config/*": ["config/*"],
+      "@/images/*": ["public/img/*"]
+    },
+    "typeRoots": ["amp.d.ts"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "amp.d.ts"],
   "exclude": ["node_modules"]
 }

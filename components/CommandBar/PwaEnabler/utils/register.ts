@@ -9,6 +9,7 @@ export function register(swPath?: string, options?: RegistrationOptions) {
       })
       .catch(function (registrationError) {
         console.warn("SW registration failed: ", registrationError)
+        console.warn("PWA is disabled in development mode.")
       })
   }
 }

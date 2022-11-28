@@ -129,3 +129,11 @@ ul.u-list {
 .border-b {
   border-bottom: 1px solid var(--border-color);
 }
+
+pre.code {
+  overflow: scroll;
+  max-width: 100%;
+  color: var(--code);
+  background: var(--code-bg);
+  padding: 1rem 2rem;
+}
