@@ -33,5 +33,17 @@ describe("HtmlHead", () => {
       container: document.head,
     })
     expect(document.head).toMatchSnapshot()
+    expect(document.head.innerHTML).toContain("viewport")
+  })
+
+  it("has all the meta datas except viewport", () => {
+    render(
+      <HtmlHead title="Walcron" description="my description" isAmp={true} />,
+      {
+        container: document.head,
+      }
+    )
+    expect(document.head).toMatchSnapshot()
+    expect(document.head.innerHTML).not.toContain("viewport")
   })
 })
