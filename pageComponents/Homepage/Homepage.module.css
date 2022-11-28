@@ -4,6 +4,10 @@
   background-color: #343233;
 }
 
+.container section.reverse {
+  flex-direction: row-reverse;
+}
+
 .homepage section {
   display: flex;
   justify-content: center;

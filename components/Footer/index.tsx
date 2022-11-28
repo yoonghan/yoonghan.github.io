@@ -1,5 +1,4 @@
 import { useMemo, memo, useCallback } from "react"
-import styles from "./Footer.module.css"
 import Link from "next/link"
 import { sortedFooterPages, PageConfig } from "../../config/pages"
 
@@ -39,9 +38,9 @@ const Footer = ({ className }: Props) => {
   }, [renderLinks])
 
   return (
-    <footer className={`${styles.container} ${className || ""}`}>
+    <footer className={`container ${className || ""}`}>
       <div className="border-b"></div>
-      <div className={styles.flex}>
+      <div className={"flex"}>
         <ul aria-label="Learn">
           <li>
             <strong>Learn</strong>
@@ -57,7 +56,7 @@ const Footer = ({ className }: Props) => {
       </div>
       <div className="border-b"></div>
       <small>Walcron 2014-2022 &copy;</small>
-      <ul className={styles.sidelink}>
+      <ul className={"sidelink"}>
         <li>
           <Link
             href="https://policies.google.com/technologies/cookies"
@@ -70,6 +69,59 @@ const Footer = ({ className }: Props) => {
           <Link href="/sitemap">Site Map</Link>
         </li>
       </ul>
+      <style jsx>{`
+        .container {
+          margin: 0 auto;
+          position: relative;
+          padding: 8rem 0.5rem 0.5rem 0.5rem;
+          max-width: 1024px;
+        }
+
+        .container .flex {
+          display: flex;
+        }
+
+        .container :global(a) {
+          color: inherit;
+          font-size: 0.75rem;
+        }
+
+        .container :global(ul) {
+          list-style: none;
+        }
+
+        .container :global(li) {
+          margin: 0.5rem 0;
+        }
+
+        .container ul.sidelink {
+          margin: 0;
+          display: inline-flex;
+        }
+
+        .container ul.sidelink > :global(li) {
+          padding: 0 1rem;
+          border-right: 1px solid;
+        }
+
+        .container ul.sidelink > :global(li:last-child) {
+          border-right: 0;
+        }
+
+        @media only screen and (max-width: 480px) {
+          .container {
+            text-align: center;
+            padding-bottom: 0.5rem;
+          }
+
+          .container ul.sidelink {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </footer>
   )
 }

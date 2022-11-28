@@ -145,6 +145,22 @@
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
+    },
+    {
+      "label": "AMP Page",
+      "url": "http://localhost:3000/amp",
+      "delay": 100,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "haveCustomHeaders": false,
+      "requireSameDimensions": true,
+      "viewports": [
+        {
+          "label": "mobile",
+          "width": 640,
+          "height": 768
+        }
+      ]
     }
   ],
   "paths": {
