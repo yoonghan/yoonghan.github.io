@@ -6,10 +6,12 @@ const HtmlHead = ({
   description,
   title,
   isAmp = false,
+  canonical,
 }: {
   description: string
   title: string
   isAmp?: boolean
+  canonical?: string
 }) => {
   return (
     <>
@@ -22,6 +24,7 @@ const HtmlHead = ({
             key="viewport"
           />
         )}
+        <link rel="canonical" href={canonical ? canonical : ""} />
         <meta name="og:title" content="Walcron Coorperation" key="fb_title" />
         <meta name="og:type" content="profile" key="fb_type" />
         <meta
