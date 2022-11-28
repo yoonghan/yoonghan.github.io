@@ -5,7 +5,12 @@ import Image from "next/image"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
-import LetterBox from "@/components/LetterBox"
+
+//Images
+import imgBrowserDownloadChunk from "@/images/lesson/1/browser-download-chunk.jpg"
+import imgAnalyzeReportSize from "@/images/lesson/1/analyze-report-size.jpg"
+import imgTypescriptImport from "@/images/lesson/1/typescript-import.jpg"
+import imgFinalResult from "@/images/lesson/1/final-result.jpg"
 
 const Lessons = ({}) => {
   return (
@@ -37,10 +42,8 @@ const Lessons = ({}) => {
                 chunk goes up-to 837kb.
                 <div className={styles.lessonImg}>
                   <Image
-                    src="/img/lesson/1/browser-download-chunk.jpg"
+                    src={imgBrowserDownloadChunk}
                     alt="Chunk size was big"
-                    width="2014"
-                    height="1232"
                   />
                 </div>
               </li>
@@ -48,12 +51,7 @@ const Lessons = ({}) => {
                 Ran `npm run analyze`, which was configured in next.config.js.
                 Shows the big chunk was due to typescript ~902kb to load.
                 <div className={styles.lessonImg}>
-                  <Image
-                    src="/img/lesson/1/analyze-report-size.jpg"
-                    alt="Big file size"
-                    width="2450"
-                    height="1200"
-                  />
+                  <Image src={imgAnalyzeReportSize} alt="Big file size" />
                 </div>
               </li>
               <li>
@@ -62,12 +60,7 @@ const Lessons = ({}) => {
                 and found a file <strong>importing the WHOLE typescript</strong>{" "}
                 !
                 <div className={styles.lessonImg}>
-                  <Image
-                    src="/img/lesson/1/typescript-import.jpg"
-                    alt="Imported typescript"
-                    width="998"
-                    height="408"
-                  />
+                  <Image src={imgTypescriptImport} alt="Imported typescript" />
                 </div>
               </li>
               <li>
@@ -85,12 +78,7 @@ const Lessons = ({}) => {
               <li>
                 Replaced code with Function and file size was fixed!
                 <div className={styles.lessonImg}>
-                  <Image
-                    src="/img/lesson/1/final-result.jpg"
-                    alt="Small JS chunks only"
-                    width="1332"
-                    height="948"
-                  />
+                  <Image src={imgFinalResult} alt="Small JS chunks only" />
                 </div>
               </li>
             </ol>
@@ -102,15 +90,14 @@ const Lessons = ({}) => {
               behaviours cannot be redefined. If test case runs after it&apos;s
               used hence it cannot be erased.
             </p>
-            <pre>
-              describe(&quot;xx&quot;, () =&gt; &#123; it(&quot;should
-              one&quot;, () =&gt; &#123;...&#124;) --navigator.share = undefined
-              it(&quot;should two&quot;, () =&gt;
-              &#123;Object.defineProperty(window.navigator,
-              &quot;share&quot;...&#124;) it(&quot;should three&quot;, () =&gt;
-              &#123;...&#124;) --navigator.share = what defined in &quot;should
-              two&quot; &#124;
-            </pre>
+            {/* prettier-ignore */}
+            <pre className={"code"}>{`
+              describe( "test", () => {
+                it("should one", ()=>{console.log(navigator.share)}) // = undefined 
+                it("should two", ()=> {Object.defineProperty(window.navigator, "share"...}) 
+                it("should three", ()=>; {console.log(navigator.share)}) // = function (); 
+              }
+            `}</pre>
           </article>
         </div>
         <Footer />
