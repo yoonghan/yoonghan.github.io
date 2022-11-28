@@ -27,13 +27,23 @@ const Footer = ({ className }: Props) => {
 
   const renderedLearn = useMemo(() => {
     return sortedFooterPages
-      .filter((footerPage) => !footerPage.path.startsWith("/projects"))
+      .filter(
+        (footerPage) =>
+          !footerPage.path.startsWith("/projects") &&
+          !footerPage.path.startsWith("/experiments")
+      )
       .map((footerPage) => renderLinks(footerPage))
   }, [renderLinks])
 
   const renderedProjects = useMemo(() => {
     return sortedFooterPages
       .filter((footerPage) => footerPage.path.startsWith("/projects"))
+      .map((footerPage) => renderLinks(footerPage))
+  }, [renderLinks])
+
+  const renderedExperiments = useMemo(() => {
+    return sortedFooterPages
+      .filter((footerPage) => footerPage.path.startsWith("/experiments"))
       .map((footerPage) => renderLinks(footerPage))
   }, [renderLinks])
 
@@ -52,6 +62,12 @@ const Footer = ({ className }: Props) => {
             <strong>Projects</strong>
           </li>
           {renderedProjects}
+        </ul>
+        <ul aria-label="Experiments">
+          <li>
+            <strong>Experiments</strong>
+          </li>
+          {renderedExperiments}
         </ul>
       </div>
       <div className="border-b"></div>

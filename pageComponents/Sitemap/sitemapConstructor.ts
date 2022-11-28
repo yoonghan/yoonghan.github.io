@@ -11,7 +11,7 @@ export class SiteMapConstructor {
   private level: any = { results: this.results }
 
   removeRootSplit = (paths: string[]) => {
-    if (paths.length === 2 && paths[0] === "" && paths[1] === "") {
+    if (paths.length === 2 && paths[0] === paths[1]) {
       paths.pop()
     }
   }

@@ -148,7 +148,7 @@
     },
     {
       "label": "AMP Page",
-      "url": "http://localhost:3000/amp",
+      "url": "http://localhost:3000/experiments/amp",
       "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.4,

@@ -4,7 +4,7 @@ import Head from "next/head"
 import { siteDevelopmentSections } from "@/pageComponents/Homepage/config"
 
 /** Ignore anything that starts with amp. */
-const AMP = () => {
+const Amp = () => {
   return (
     <>
       <Head>
@@ -96,4 +96,4 @@ const AMP = () => {
 }
 export const config = { amp: true }
 
-export default AMP
+export default Amp

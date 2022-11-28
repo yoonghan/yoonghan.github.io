@@ -1,7 +1,7 @@
-export enum FilterOption {
+enum FilterOption {
   NOT_MENU,
   NOT_FOOTER,
-  NOT_SIDE_MAP,
+  NOT_SITE_MAP,
 }
 
 export type PageConfig = {
@@ -33,12 +33,22 @@ const pages: PageConfig[] = [
     filterOptions: [FilterOption.NOT_MENU],
   },
   {
+    path: "/experiments",
+    display: "Experiments",
+    filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
+  },
+  {
+    path: "/experiments/amp",
+    display: "Accelerated Mobile Pages",
+    filterOptions: [FilterOption.NOT_MENU],
+  },
+  {
     path: "/sitemap",
     display: "Site Map",
     filterOptions: [
       FilterOption.NOT_MENU,
       FilterOption.NOT_FOOTER,
-      FilterOption.NOT_SIDE_MAP,
+      FilterOption.NOT_SITE_MAP,
     ],
   },
 ]
@@ -58,7 +68,7 @@ export const sortedMenuPages = sortedPages.filter(
 )
 
 export const sortedSiteMapPages = sortedPages.filter(
-  (page) => !page.filterOptions?.includes(FilterOption.NOT_SIDE_MAP)
+  (page) => !page.filterOptions?.includes(FilterOption.NOT_SITE_MAP)
 )
 
 export const sortedFooterPages = sortedPages.filter(

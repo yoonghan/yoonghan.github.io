@@ -1,4 +1,4 @@
-import Amp, { config } from "@/pages/amp"
+import Amp, { config } from "@/pages/experiments/amp"
 import { render, screen, waitFor, within } from "@testing-library/react"
 
 jest.mock("next/router", () => require("next-router-mock"))
