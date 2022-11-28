@@ -6,7 +6,6 @@ import Image from "next/image"
 import Navigator from "@/components/Navigator"
 import { RefObject } from "react"
 import { ScrollHandler } from "@/components/Parallax"
-import styles from ""
 
 export const siteDevelopmentSections = [
   {

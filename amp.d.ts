@@ -3,7 +3,16 @@
 // https://github.com/Microsoft/TypeScript/issues/15449
 // https://stackoverflow.com/questions/50585952/typescript-and-google-amp-property-amp-img-does-not-exist-on-type-jsx-intrin
 import * as React from "react"
-// why null ?
+
+// Any element you create will be accepted
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any
+    }
+  }
+}
+
 type _ANY = any
 type _ANYS = any
 declare module "react" {
@@ -104,6 +113,7 @@ declare module "react" {
     "data-src"?: _ANY
     "data-tag"?: _ANY
     "'default'"?: _ANYS | _ANY
+    fallback?: _ANY
     kind?: _ANYS
     label?: _ANY
     srclang?: _ANY
