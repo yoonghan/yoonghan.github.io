@@ -9,6 +9,10 @@ exports[`HtmlHead has all the meta datas 1`] = `
     content="width=device-width, initial-scale=1.0, maximum-scale=5"
     name="viewport"
   />
+  <link
+    href=""
+    rel="canonical"
+  />
   <meta
     content="Walcron Coorperation"
     name="og:title"
@@ -94,6 +98,10 @@ exports[`HtmlHead has all the meta datas except viewport 1`] = `
 <head>
   <meta
     charset="utf-8"
+  />
+  <link
+    href=""
+    rel="canonical"
   />
   <meta
     content="Walcron Coorperation"
