@@ -100,6 +100,6 @@ const Amp = () => {
     </>
   )
 }
-export const config = { amp: true }
+export const config = { amp: true, runtime: "nodejs" }
 
 export default Amp
