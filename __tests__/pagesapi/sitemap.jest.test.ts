@@ -1,0 +1,36 @@
+import sitemapGenerator from "@/pages/api/sitemap"
+import { NextRequest } from "next/server"
+import "../../__mocks__/fetchMock"
+
+describe("sitemap", () => {
+  let nextRequest = {} as NextRequest
+
+  const noSpaceRegex = /\s/g
+  const removeAllSpace = (text: string) => text.replaceAll(noSpaceRegex, "")
+
+  it("should generate there right header", async () => {
+    const response: Response = sitemapGenerator(nextRequest)
+    expect(response.headers).toStrictEqual({
+      headers: {
+        "Cache-control": "stale-while-revalidate, s-maxage=3600",
+        "content-type": "text/xml",
+      },
+      status: 200,
+    })
+  })
+
+  it("should generate there right body", async () => {
+    const response: Response = sitemapGenerator(nextRequest)
+    const responseText = removeAllSpace(await response.text())
+
+    expect(
+      responseText.startsWith(
+        `<?xmlversion=\"1.0\"encoding=\"UTF-8\"?><urlsetxmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">`
+      )
+    ).toBeTruthy()
+    expect(responseText.endsWith(`</urlset>`)).toBeTruthy()
+    expect(responseText).toContain(
+      `<url><loc>https://www.walcron.com/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`
+    )
+  })
+})
