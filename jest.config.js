@@ -11,7 +11,7 @@ const customJestConfig = {
     "<rootDir>/jest.setup.js",
     "react-intersection-observer/test-utils",
   ],
-  modulePathIgnorePatterns: ["<rootDir>/__tests__/utils"],
+  modulePathIgnorePatterns: ["<rootDir>/__tests__/utils", "<rootDir>/__e2e__"],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
     "^@/components/(.*)$": "<rootDir>/components/$1",

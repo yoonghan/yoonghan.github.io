@@ -147,22 +147,6 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Sitemap XML Page",
-      "url": "http://localhost:3000/sitemap.xml",
-      "delay": 500,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "haveCustomHeaders": false,
-      "requireSameDimensions": true,
-      "viewports": [
-        {
-          "label": "mobile",
-          "width": 640,
-          "height": 768
-        }
-      ]
-    },
-    {
       "label": "AMP Page",
       "url": "http://localhost:3000/experiments/amp",
       "delay": 100,
