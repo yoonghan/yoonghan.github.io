@@ -24,7 +24,7 @@ const HtmlHead = ({
             key="viewport"
           />
         )}
-        <link rel="canonical" href={canonical ? canonical : ""} />
+        {canonical && <link rel="canonical" href={canonical} />}
         <meta name="og:title" content="Walcron Coorperation" key="fb_title" />
         <meta name="og:type" content="profile" key="fb_type" />
         <meta

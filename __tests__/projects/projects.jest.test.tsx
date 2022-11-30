@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, within } from "@testing-library/react"
 import Projects from "@/pages/projects"
-import { assertFooter } from "./utils/_footer"
-import { assertMenu } from "./utils/_menu"
+import { assertFooter } from "../utils/_footer"
+import { assertMenu } from "../utils/_menu"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
