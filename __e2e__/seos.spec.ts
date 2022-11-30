@@ -5,4 +5,11 @@ test.describe("important! SEO urls", () => {
     await page.goto("/sitemap.xml")
     expect(await page.content()).toContain("https://www.walcron.com/")
   })
+
+  test("should be able to see robots.txt", async ({ page }) => {
+    await page.goto("/robots.txt")
+    expect(await page.content()).toContain(
+      "Sitemap: https://www.walcron.com/sitemap.xml"
+    )
+  })
 })
