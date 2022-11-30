@@ -21,7 +21,7 @@ const config: PlaywrightTestConfig = {
     command: "npm run dev",
     url: baseURL,
     timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: process.env.CI === "true",
   },
 
   use: {

@@ -69,7 +69,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
-        run: npm run playwright:test
+        run: CI=true && npm run playwright:test
 
       - name: ▶️ Run page rendering check
         continue-on-error: true
