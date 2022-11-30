@@ -24,6 +24,13 @@
       "@/images/*": ["public/img/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "amp.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types.d.ts",
+    "amp.d.ts",
+    "playwright.config.js"
+  ],
   "exclude": ["node_modules"]
 }

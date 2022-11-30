@@ -9,6 +9,7 @@
     "lint": "next lint",
     "backstop:approve": "backstop approve",
     "backstop:test": "backstop test",
+    "playwright:test": "playwright test",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
+    "@playwright/test": "^1.28.1",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
