@@ -46,4 +46,22 @@ describe("HtmlHead", () => {
     expect(document.head).toMatchSnapshot()
     expect(document.head.innerHTML).not.toContain("viewport")
   })
+
+  it("has canonical info", () => {
+    render(
+      <HtmlHead
+        title="Walcron"
+        description="my description"
+        canonical={"canonical info"}
+      />,
+      {
+        container: document.head,
+      }
+    )
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "canonical info"
+    )
+  })
 })

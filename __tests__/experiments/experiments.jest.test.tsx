@@ -1,9 +1,9 @@
 import Experiment, { config } from "@/pages/experiments"
-import { render, screen, waitFor, within } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
-describe("Experiment", () => {
+describe("Experiments", () => {
   it("should render page correctly to inform we are in development phase", () => {
     render(<Experiment />)
     expect(
