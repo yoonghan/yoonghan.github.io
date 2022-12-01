@@ -6,6 +6,8 @@ import {
   sortedPages,
   findPageByPath,
 } from "./pages"
+import fs from "fs"
+import { paste } from "@testing-library/user-event/dist/types/clipboard"
 
 describe("pages", () => {
   it("should be able to sort pages by path", () => {
@@ -61,5 +63,55 @@ describe("pages", () => {
       display: "About Us",
       path: "/about",
     })
+  })
+})
+
+describe("all sites are defined", () => {
+  const getFiles = (srcpath: string): string[] => {
+    return fs
+      .readdirSync(srcpath, {
+        withFileTypes: true,
+      })
+      .flatMap((file) => {
+        const relativePath = `${srcpath}/${file.name}`
+        if (file.isDirectory()) {
+          return getFiles(relativePath)
+        } else {
+          return relativePath
+        }
+      })
+  }
+
+  const remapFiles = (
+    files: string[],
+    rootPath: string,
+    ignoredFiles: string[]
+  ): string[] => {
+    const removeRootPath = (file: string) =>
+      file.substring(rootPath.length, file.length)
+
+    const removeExtension = (file: string) => file.split(".")[0]
+
+    const renameIndex = (file: string) => {
+      const replacedFile = file.replace("/index", "")
+      return replacedFile === "" ? "/" : replacedFile
+    }
+
+    return files
+      .map((file) => renameIndex(removeExtension(removeRootPath(file))))
+      .filter(
+        (file) => !ignoredFiles.includes(file) && !file.startsWith("/api")
+      )
+  }
+
+  it("should be declare in actual page/ directory", async () => {
+    const pagesFolder = "./pages"
+    const ignoredFiles = ["/_app", "/_document"]
+    const allPages = remapFiles(
+      getFiles(pagesFolder),
+      pagesFolder,
+      ignoredFiles
+    )
+    expect(allPages.sort()).toEqual(sortedPages.map((page) => page.path))
   })
 })
