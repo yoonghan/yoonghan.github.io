@@ -1,6 +1,10 @@
 name: Validate new deployments
 on:
-  pull_request: {}
+  pull_request:
+    inputs:
+      overrideURL:
+        description: Override URL
+        required: false
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -50,19 +54,17 @@ jobs:
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
 
-      - name: Update localhost with vercel deployed branch version
+      - name: ▶️ Verify Vercel deployment and update branch
         run: |
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/localhost/.walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
+          chmod a+x ./.github/scripts/deployment-check.sh && URL=$(./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app)
+          echo url-${URL}
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" backstop.json
+          sed -i "s/localhost/.${URL}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" playwright.config.ts
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" playwright.config.ts
           cat playwright.config.ts
-        shell: bash
-
-      - name: ▶️ Verify Vercel deployment
-        run: chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app
         shell: bash
 
       - name: ▶️ Install playwright browsers

@@ -10,9 +10,9 @@ do
         sleep 5
         counter=$((counter + 1))
     else
+        echo "walcron-git-${GITHUB_HEAD_REF//\//\\/}"
         exit 0
     fi
 done
 
-echo "Site is still down $1"
-exit 1
+echo "walcron"
