@@ -1,6 +1,10 @@
 name: Validate new deployments
 on:
-  pull_request: {}
+  pull_request:
+    inputs:
+      overrideURL:
+        description: Override URL
+        required: false
 jobs:
   build:
     runs-on: ubuntu-latest
