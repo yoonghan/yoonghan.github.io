@@ -55,6 +55,7 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: ▶️ Verify Vercel deployment and update branch
+        continue-on-error: true
         run: |
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app
           echo GITHUB_HEAD_REF:${GITHUB_HEAD_REF//\//\\/}
@@ -78,7 +79,6 @@ jobs:
           cat backstop.json
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-walcoorperation.vercel.app/g" playwright.config.ts
           cat playwright.config.ts
-          exit 0
         shell: bash
 
       - name: ▶️ Install playwright browsers
