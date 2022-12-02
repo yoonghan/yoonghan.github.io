@@ -78,6 +78,7 @@ jobs:
           cat backstop.json
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-walcoorperation.vercel.app/g" playwright.config.ts
           cat playwright.config.ts
+          exit 0
         shell: bash
 
       - name: ▶️ Install playwright browsers
