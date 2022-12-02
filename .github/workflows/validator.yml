@@ -55,7 +55,6 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: ▶️ Verify Vercel deployment and update branch
-        continue-on-error: true
         run: |
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app
           echo GITHUB_HEAD_REF:${GITHUB_HEAD_REF//\//\\/}
@@ -69,6 +68,7 @@ jobs:
         shell: bash
 
       - name: Use master branch instead
+        continue-on-error: true
         if: ${{ failure() }}
         run: |
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-walcoorperation.vercel.app
