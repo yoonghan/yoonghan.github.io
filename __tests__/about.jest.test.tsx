@@ -17,13 +17,13 @@ describe("About", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("About our mission"))
-    expect(screen.getByText("The developers"))
+    expect(screen.getAllByText("About Us")).toHaveLength(2)
+    expect(screen.getByText("The developers")).toBeInTheDocument()
     expect(
-      screen.getAllByText(
+      screen.getByText(
         "If you are interested to talk to us, leave us your contact. Let us reach you instead."
       )
-    )
+    ).toBeInTheDocument()
   })
 
   it("should be able to scroll up", () => {

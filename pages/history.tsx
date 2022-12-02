@@ -30,6 +30,7 @@ const History = ({}) => {
       <div className={"page-aligned-container"}>
         <HeaderOne title={"Site's history"} isLined={true} />
         <section>
+          <h2 className="text-align-left">Improvement Timeline</h2>
           <Timeline events={siteHistory} />
         </section>
         <section>

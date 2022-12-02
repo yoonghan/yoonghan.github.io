@@ -169,7 +169,7 @@ export const generateSections = (
             scrollHandlerRef?.current?.scroll(Number(link))
           }
         />
-        <article>
+        <div>
           <div className="px-3">
             <p className="px-0">
               This is a sandbox website for us to explore Web Development.
@@ -190,15 +190,18 @@ export const generateSections = (
             scrollContainer={scrollContainerRef}
             text="Scroll for more"
           />
-        </article>
+        </div>
       </div>
     </section>,
     ...siteDevelopmentSections.map((siteDevelopmentSection, index) => {
       if (siteDevelopmentSection.skip) return null
       return (
-        <section
+        <div
           key={siteDevelopmentSection.id}
-          className={reverseDisplayForEvenSection(index, styles)}
+          className={`${styles.section} ${reverseDisplayForEvenSection(
+            index,
+            styles
+          )}`}
         >
           <article>
             <h2 className="title">{siteDevelopmentSection.title}</h2>
@@ -223,12 +226,12 @@ export const generateSections = (
               />
             </div>
           )}
-        </section>
+        </div>
       )
     }),
-    <section key="short-clip-about-us">
-      <div className={`center ${styles.miscellaneous}`}>
-        <h2>{siteDevelopmentSections[6].title}</h2>
+    <div key="short-clip-about-us" className={styles.miscellaneous}>
+      <h2>{siteDevelopmentSections[6].title}</h2>
+      <div className={"center"}>
         <Video
           src="/movie/about-walcron.mp4"
           imgJpgSrc="/img/welcome/girl-in-glass.jpg"
@@ -237,5 +240,5 @@ export const generateSections = (
           preload="none"
         />
       </div>
-    </section>,
+    </div>,
   ].filter((section) => section !== null)

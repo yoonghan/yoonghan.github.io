@@ -35,9 +35,9 @@ const Amp = () => {
           Welcome (again) to Walcron Coorperation, with Google&apos;s
           Accelerated Mobile Page(s).
         </p>
-        <section>
+        <div className="pb-3">
           <article>
-            <div className={"title"}>How we create the website:</div>
+            <h2 className={"title"}>How we create the website:</h2>
             <amp-carousel
               id="carousel-with-preview"
               layout="fixed-height"
@@ -49,7 +49,7 @@ const Amp = () => {
                 if (siteDevelopment.skip) return null
                 return (
                   <div key={siteDevelopment.id}>
-                    <h2 className="title">{siteDevelopment.title}</h2>
+                    <h3 className="title">{siteDevelopment.title}</h3>
                     {siteDevelopment.desc}
                     {siteDevelopment.link && (
                       <button
@@ -63,25 +63,25 @@ const Amp = () => {
               })}
             </amp-carousel>
           </article>
+        </div>
+        <section key="short-clip-about-us" className="pb-3">
+          <h2>A Video About Us</h2>
+          <amp-video
+            controls=""
+            width="640"
+            height="360"
+            layout="responsive"
+            poster="/img/welcome/girl-in-glass.webp"
+          >
+            <source src="/movie/about-walcron.mp4" type="video/mp4" />
+            <div fallback="">
+              <p>This browser does not support the video element.</p>
+            </div>
+          </amp-video>
         </section>
-        <section key="short-clip-about-us">
-          <div>
-            <h2>A Video About Us</h2>
-            <amp-video
-              controls=""
-              width="640"
-              height="360"
-              layout="responsive"
-              poster="/img/welcome/girl-in-glass.webp"
-            >
-              <source src="/movie/about-walcron.mp4" type="video/mp4" />
-              <div fallback="">
-                <p>This browser does not support the video element.</p>
-              </div>
-            </amp-video>
-          </div>
-        </section>
-        <section>Currently we are still in development phase for AMP.</section>
+        <div className="pb-3">
+          Currently we are still in development phase for AMP.
+        </div>
         <hr />
         <Footer />
       </div>
@@ -94,7 +94,7 @@ const Amp = () => {
         .amp-carousel-slide {
           padding: 80px;
         }
-        section {
+        .pb-3 {
           padding-bottom: 3rem;
         }
       `}</style>

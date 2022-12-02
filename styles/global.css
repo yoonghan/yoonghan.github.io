@@ -103,7 +103,7 @@ span.strikethrough {
   text-align: center;
   display: flex;
   align-items: center;
-  vertical-align: center;
+  vertical-align: middle;
 }
 
 video::-webkit-media-controls {
