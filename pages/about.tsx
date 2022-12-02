@@ -43,8 +43,8 @@ const About = () => {
       </Head>
       <CommandBar />
       <div className={"page-aligned-container"}>
-        <HeaderOne title={"About our mission"} isLined={true} />
         <section>
+          <HeaderOne title={"About our mission"} isLined={true} />
           <p>
             Walcron is a by-product of a couple&apos;s journey in IT industry.
             The Walcron website was created for experimentation in optimizing
