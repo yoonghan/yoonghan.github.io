@@ -56,7 +56,7 @@ jobs:
 
       - name: ▶️ Verify Vercel deployment and update branch
         run: |
-          chmod a+x ./.github/scripts/deployment-check.sh && URL=./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app
+          chmod a+x ./.github/scripts/deployment-check.sh && URL=$(./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app)
           echo url-${URL}
           sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/localhost/.${URL}-walcoorperation.vercel.app/g" backstop.json
@@ -68,7 +68,6 @@ jobs:
         shell: bash
 
       - name: ▶️ Install playwright browsers
-        if: always()
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check

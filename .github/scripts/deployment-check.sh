@@ -10,8 +10,9 @@ do
         sleep 5
         counter=$((counter + 1))
     else
-        return "walcron-git-${GITHUB_HEAD_REF:${GITHUB_HEAD_REF//\//\\/}"
+        echo "walcron-git-${GITHUB_HEAD_REF//\//\\/}"
+        exit 0
     fi
 done
 
-return "walcron"
+echo "walcron"
