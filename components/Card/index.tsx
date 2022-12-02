@@ -16,10 +16,10 @@ const Card = ({ cards }: Props) => {
       {cards.map(({ id, title, description, target, href }) => (
         <li key={id}>
           <a href={href} target={target || "blank"}>
-            <div>
+            <section>
               <h3>{title}</h3>
-              <p>{description}</p>
-            </div>
+              <div>{description}</div>
+            </section>
           </a>
         </li>
       ))}

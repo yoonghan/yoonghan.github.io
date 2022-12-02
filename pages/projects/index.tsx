@@ -63,6 +63,13 @@ const Projects = ({}) => {
                   description: "Important lesson learned.",
                   href: "/projects/lessons",
                 },
+                {
+                  id: "links",
+                  title: "Checklist of links",
+                  description:
+                    "Checklist to manually check website performance/rating.",
+                  href: "/projects/checklist",
+                },
               ]}
             />
           </section>

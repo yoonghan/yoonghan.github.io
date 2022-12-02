@@ -7,19 +7,19 @@
   margin: 0 auto;
 }
 
-.container > li div {
+.container > li section {
   color: var(--button);
   background-color: var(--button-bg);
   padding: 1rem;
   border-radius: 0.5rem;
 }
 
-.container > li div:hover {
+.container > li section:hover {
   color: var(--button-bg);
   background-color: var(--button);
 }
 
-.container > li div > h3 {
+.container > li section > h3 {
   padding-bottom: 1rem;
 }
 
