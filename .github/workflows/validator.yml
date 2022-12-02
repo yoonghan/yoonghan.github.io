@@ -56,32 +56,19 @@ jobs:
 
       - name: ▶️ Verify Vercel deployment and update branch
         run: |
-          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app
-          echo GITHUB_HEAD_REF:${GITHUB_HEAD_REF//\//\\/}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/localhost/.walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app/g" backstop.json
+          chmod a+x ./.github/scripts/deployment-check.sh && URL=./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app
+          echo url-${URL}
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" backstop.json
+          sed -i "s/localhost/.${URL}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app/g" playwright.config.ts
-          cat playwright.config.ts
-        shell: bash
-
-      - name: Use master branch instead
-        continue-on-error: true
-        if: ${{ failure() }}
-        run: |
-          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://walcron-walcoorperation.vercel.app
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/localhost/.walcron-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
-          sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
-          cat backstop.json
-          sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-walcoorperation.vercel.app/g" playwright.config.ts
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" playwright.config.ts
           cat playwright.config.ts
         shell: bash
 
       - name: ▶️ Install playwright browsers
+        if: always()
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
