@@ -41,8 +41,11 @@ function Index({ termsRead }: Props) {
           <Parallax scrollContainer={scrollContainerRef} ref={scrollHandlerRef}>
             {sections}
           </Parallax>
-          <section key="contact us">
-            <div className={`center ${styles.miscellaneous}`}>
+          <div
+            key="contact us"
+            className={`${styles.section} ${styles.miscellaneous}`}
+          >
+            <div className={"center"}>
               <h2>Contact Us</h2>
               <div className="p-padding">
                 <LetterBox />
@@ -63,7 +66,7 @@ function Index({ termsRead }: Props) {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
           ,
           <Footer className={"footer"} />
         </div>
