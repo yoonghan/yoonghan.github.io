@@ -45,6 +45,7 @@ jobs:
 
       - name: Update localhost with vercel deployed branch version
         run: |
+          echo $GITHUB_HEAD_REF
           sed -i "s/http:\/\/localhost:3000/https:\/\/walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/localhost/.walcron-git-${GITHUB_HEAD_REF}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
