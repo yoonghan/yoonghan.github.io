@@ -4,11 +4,12 @@
   background-color: #343233;
 }
 
-.container section.reverse {
+.container .section.reverse {
   flex-direction: row-reverse;
 }
 
-.homepage section {
+.homepage section,
+.homepage .section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,11 +19,13 @@
 }
 
 @media only screen and (max-width: 640px) {
-  .homepage section {
+  .homepage section,
+  .homepage .section {
     flex-direction: column;
   }
 
-  .homepage section .snapshots {
+  .homepage section .snapshots,
+  .homepage .section .snapshots {
     margin: 0 1rem;
   }
 }
@@ -53,7 +56,7 @@ section.introduction {
   gap: 2rem;
 }
 
-.introduction .info article {
+.introduction .info > div {
   max-width: 640px;
   flex: auto;
   margin: 0 auto;
@@ -83,7 +86,7 @@ section.introduction {
   color: rgb(243, 152, 0);
 }
 
-.homepage section > article {
+.homepage .section > article {
   max-width: 420px;
   padding: 1rem;
   background-color: rgba(66, 66, 66, 0.6);
@@ -93,26 +96,28 @@ section.introduction {
   color: var(--text);
 }
 
-.homepage section > article li {
+.homepage .section > article li {
   padding-bottom: 1rem;
 }
 
-.homepage section > article a {
+.homepage .section > article a {
   color: var(--link-light);
 }
 
-.homepage section .snapshots {
+.homepage .section .snapshots {
   border-radius: 0.5rem;
 }
 
-.homepage section .snapshots:hover {
+.homepage .section .snapshots:hover {
   animation: sepia 1s forwards;
 }
 
-.homepage section .miscellaneous {
+.homepage .miscellaneous {
   color: var(--text);
+}
+
+.homepage .miscellaneous > div {
   z-index: 1;
-  background-color: #343233;
   height: 100vh;
   display: flex;
   justify-content: center;

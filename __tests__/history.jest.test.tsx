@@ -17,8 +17,8 @@ describe("History", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("Site's history"))
-    expect(screen.getByText("Motivational books"))
+    expect(screen.getByText("Site's history")).toBeInTheDocument()
+    expect(screen.getByText("Motivational books")).toBeInTheDocument()
   })
 
   it("should be able to scroll up", async () => {
