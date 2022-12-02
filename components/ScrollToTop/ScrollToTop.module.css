@@ -3,11 +3,15 @@
   position: fixed;
   bottom: 2rem;
   cursor: pointer;
-  color: var(--link);
+  color: var(--text);
   opacity: 0.7;
   padding: 5px;
   border-radius: 3px;
   z-index: 999;
+}
+
+.scroller.light {
+  color: var(--link);
 }
 
 .scroller:before {

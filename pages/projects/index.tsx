@@ -29,7 +29,7 @@ const Projects = ({}) => {
           <h1 className="title">Playground projects</h1>
           <section>
             <p>
-              Projects that we are working on
+              Projects that we are working on{" "}
               <small>(due to migration most are not moved over)</small>
             </p>
             <Card
@@ -62,6 +62,13 @@ const Projects = ({}) => {
                   title: "React Lesson",
                   description: "Important lesson learned.",
                   href: "/projects/lessons",
+                },
+                {
+                  id: "links",
+                  title: "Checklist of links",
+                  description:
+                    "Checklist to manually check website performance/rating.",
+                  href: "/projects/checklist",
                 },
               ]}
             />
