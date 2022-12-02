@@ -1,5 +1,6 @@
 import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
+import Button from "@/components/Button"
 import HtmlHead from "@/components/HtmlHead"
 import Image from "next/image"
 import { memo } from "react"
@@ -68,7 +69,9 @@ const Lessons = ({}) => {
                 Unlike lodash, transpile is included only in typescript.
                 Apparently eval can be replaced, it&apos;s actually{" "}
                 <i>Function</i>.
-                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+                <Button href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">
+                  Global_Object
+                </Button>
                 <div className={styles.code}>
                   const evaluatedResult = Function(&ldquo;&quot;use
                   strict&quot;;return $&#123;mathEval&#125;&rdquo;)() return
