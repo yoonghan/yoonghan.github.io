@@ -42,7 +42,7 @@ jobs:
 
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request' && !startsWith(github.base_ref, 'dependabot/')
+        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
         with:
           recreate: true
           path: code-coverage-results.md
