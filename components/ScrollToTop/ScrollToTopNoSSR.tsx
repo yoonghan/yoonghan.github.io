@@ -10,7 +10,7 @@ const _isOverTheBar = () => {
   return currentScrollPos > 320
 }
 
-const ScrollToTopNoSSR = () => {
+const ScrollToTopNoSSR = ({ isLight = false }: { isLight?: boolean }) => {
   const [visible, setVisible] = React.useState(_isOverTheBar())
 
   const _handleScroll = () => {
@@ -33,7 +33,7 @@ const ScrollToTopNoSSR = () => {
       {visible && (
         <div
           onClick={clickScrollUp}
-          className={styles.scroller}
+          className={`${styles.scroller} ${isLight ? styles.light : ""}`}
           aria-hidden={true}
         >
           Up

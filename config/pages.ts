@@ -33,6 +33,11 @@ const pages: PageConfig[] = [
     filterOptions: [FilterOption.NOT_MENU],
   },
   {
+    path: "/projects/checklist",
+    display: "Checklist of links",
+    filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
+  },
+  {
     path: "/experiments",
     display: "Experiments",
     filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],

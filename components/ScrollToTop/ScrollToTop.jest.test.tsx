@@ -16,4 +16,11 @@ describe("ScrollToTop", () => {
     await userEvent.click(screen.getByText("Up"))
     expect(scrollToFn).toHaveBeenCalledWith(0, 0)
   })
+
+  it("should add 'dark' class for dark background", () => {
+    render(<ScrollToTopWithNoSSR isLight={true} />)
+
+    fireEvent.scroll(window, { target: { pageYOffset: 321 } })
+    expect(screen.getByText("Up")).toHaveClass("light")
+  })
 })

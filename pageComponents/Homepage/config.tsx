@@ -206,7 +206,7 @@ export const generateSections = (
             {siteDevelopmentSection.link && (
               <Button
                 href={siteDevelopmentSection.link.src}
-                target="_workflow"
+                target="workflow"
                 color="orange"
               >
                 {siteDevelopmentSection.link.label}
