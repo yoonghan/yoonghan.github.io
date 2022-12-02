@@ -43,17 +43,15 @@ const About = () => {
       </Head>
       <CommandBar />
       <div className={"page-aligned-container"}>
-        <section>
-          <HeaderOne title={"About our mission"} isLined={true} />
-          <p>
-            Walcron is a by-product of a couple&apos;s journey in IT industry.
-            The Walcron website was created for experimentation in optimizing
-            and prototyping new Web technologies. Ocassionally this is being
-            re-contributed back into the open-source community. Han and Gladys
-            started the Walcron website to log their development journey. As
-            well as to experiment real-time working websites.
-          </p>
-        </section>
+        <HeaderOne title={"About Us"} isLined={true} />
+        <p>
+          Walcron is a by-product of a couple&apos;s journey in IT industry. The
+          Walcron website was created for experimentation in optimizing and
+          prototyping new Web technologies. Ocassionally this is being
+          re-contributed back into the open-source community. Han and Gladys
+          started the Walcron website to log their development journey. As well
+          as to experiment real-time working websites.
+        </p>
         <hr />
         <section>
           <h2>What do we do?</h2>
