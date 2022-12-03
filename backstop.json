@@ -90,7 +90,8 @@
       "expect": 0,
       "misMatchThreshold": 0.4,
       "scrollBySelector": {
-        "id": "#parallax-container"
+        "id": "#parallax-container",
+        "posY": 2048
       },
       "requireSameDimensions": true
     },
