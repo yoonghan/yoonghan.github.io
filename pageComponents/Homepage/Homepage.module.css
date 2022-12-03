@@ -24,6 +24,10 @@
     flex-direction: column;
   }
 
+  .homepage .section.reverse {
+    flex-direction: column-reverse;
+  }
+
   .homepage section .snapshots,
   .homepage .section .snapshots {
     margin: 0 1rem;
