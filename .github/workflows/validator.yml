@@ -1,15 +1,11 @@
 name: Validate new deployments
 on:
-  pull_request:
-    inputs:
-      overrideURL:
-        description: Override URL
-        required: false
+  pull_request: {}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
+      - name: 🛑 Cancel previous runs
         uses: styfle/cancel-workflow-action@0.11.0
 
       - name: ⬇️ Checkout repo
@@ -30,13 +26,13 @@ jobs:
       - name: ⚛️ Setup react
         run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-      - name: ▶️ Validate lint, prettier and next js
+      - name: ✅ Validate lint, prettier and nextJS build
         run: npm run build
 
-      - name: ▶️ Validate test script
+      - name: ✅ Validate test script
         run: npm run test:ci
 
-      - name: 📁 Code Coverage Report
+      - name: 📁 Code coverage report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           filename: coverage/**/cobertura-coverage.xml
@@ -67,7 +63,7 @@ jobs:
           cat playwright.config.ts
         shell: bash
 
-      - name: ⎔ Install playwright browsers
+      - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
@@ -83,6 +79,6 @@ jobs:
           name: backstop-artifact
           path: backstop_data/
 
-      - name: ✅ Validate Backstopjs snapshot is valid
+      - name: ✅ Validate backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
