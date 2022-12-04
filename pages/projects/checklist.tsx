@@ -6,6 +6,7 @@ import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import Table from "@/components/Table"
+import TroubleshootPwaCheckList from "@/pageComponents/Projects/Checklist"
 
 const links: Array<{ [key: string]: string }> = [
   {
@@ -46,6 +47,9 @@ const ImportantLinks = ({}) => {
             Note: Page is not robot indexed and viewable only by desktop. May
             change only in future.
           </span>
+          <br />
+          <br />
+          <TroubleshootPwaCheckList />
           <br />
           <br />
           <Table headers={["Site", "Description", "Url"]} list={links} />

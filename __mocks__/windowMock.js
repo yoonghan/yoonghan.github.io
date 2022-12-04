@@ -28,6 +28,21 @@ export const setServiceNavigator = () => {
               .spyOn(window.navigator.serviceWorker, "getRegistration")
               .mockResolvedValue(false)
           },
+          addEventListener: (event, callback) => {
+            switch (event) {
+              case "updatefound":
+                return callback()
+            }
+          },
+          installing: {
+            state: "installed",
+            addEventListener: (event, callback) => {
+              switch (event) {
+                case "statechange":
+                  callback()
+              }
+            },
+          },
         })
       }),
       register: (_swPath, _options) =>
