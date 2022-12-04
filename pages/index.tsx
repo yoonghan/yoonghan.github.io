@@ -46,7 +46,7 @@ function Index({ termsRead }: Props) {
             className={`${styles.section} ${styles.miscellaneous}`}
           >
             <div className={"center"}>
-              <h2>Contact Us +X</h2>
+              <h2>Contact Us</h2>
               <div className="p-padding">
                 <LetterBox />
               </div>
