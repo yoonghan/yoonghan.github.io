@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { ANDROID_PACKAGE_NAME } from "./utils/const"
 import { register } from "./utils/register"
 /**
@@ -12,6 +12,32 @@ Do.
 export function usePwaHooks(autoRegisterForApp: boolean) {
   const [isRegistered, setIsRegistered] = useState(false)
   const [isTwaApp, setIsTwaApp] = useState(false)
+  const [hasLatestUpdate, setHasLatestUpdate] = useState<boolean>(false)
+  const [isLatestInstalled, setIsLatestInstalled] = useState<boolean>(false)
+
+  const checkLatestPwa = useCallback(async () => {
+    if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+      const registration = await navigator.serviceWorker.ready
+
+      if (registration) {
+        registration.addEventListener("updatefound", (event) => {
+          setHasLatestUpdate(true)
+          const newSW = registration.installing
+          if (newSW !== null) {
+            newSW.addEventListener("statechange", (event) => {
+              if (newSW.state === "installed") {
+                setIsLatestInstalled(true)
+              }
+            })
+          }
+        })
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    checkLatestPwa()
+  }, [checkLatestPwa])
 
   async function getRegistration() {
     const domain = window.location.hostname
@@ -42,5 +68,11 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
     getRegistration()
   }, [autoRegisterForApp])
 
-  return { isRegistered, isTwaApp, getRegistration }
+  return {
+    isRegistered,
+    isTwaApp,
+    getRegistration,
+    hasLatestUpdate,
+    isLatestInstalled,
+  }
 }
