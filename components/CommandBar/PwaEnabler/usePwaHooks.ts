@@ -18,11 +18,9 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
 
   useEffect(() => {
     if (navigator && navigator.serviceWorker && navigator.serviceWorker.ready) {
+      setIsOffline(!navigator.onLine)
       navigator.serviceWorker.ready.then((registration) => {
         if (registration) {
-          registration.addEventListener("offline", (event) => {
-            setIsOffline(true)
-          })
           registration.addEventListener("updatefound", (event) => {
             setHasLatestUpdate(true)
             const newSW = registration.installing
