@@ -30,7 +30,6 @@ describe("Checklist", () => {
       assertValue(screen.getByText("PWA Registered"), true)
       assertValue(screen.getByText("Detected New Update (N/T)"), true)
       assertValue(screen.getByText("Update Installed (N/T)"), true)
-      assertValue(screen.getByText("PWA run offline"), true)
     })
 
     it("should be able to set twa to true", async () => {
