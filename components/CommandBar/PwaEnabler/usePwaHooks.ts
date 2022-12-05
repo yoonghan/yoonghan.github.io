@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { ANDROID_PACKAGE_NAME } from "./utils/const"
 import { register } from "./utils/register"
 /**
@@ -16,26 +16,26 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
   const [hasLatestUpdate, setHasLatestUpdate] = useState<boolean>(false)
   const [isLatestInstalled, setIsLatestInstalled] = useState<boolean>(false)
 
-  useMemo(async () => {
-    if (navigator.serviceWorker && navigator.serviceWorker.ready) {
-      const registration = await navigator.serviceWorker.ready
-
-      if (registration) {
-        registration.addEventListener("offline", (event) => {
-          setIsOffline(true)
-        })
-        registration.addEventListener("updatefound", (event) => {
-          setHasLatestUpdate(true)
-          const newSW = registration.installing
-          if (newSW !== null) {
-            newSW.addEventListener("statechange", (event) => {
-              if (newSW.state === "installed") {
-                setIsLatestInstalled(true)
-              }
-            })
-          }
-        })
-      }
+  useEffect(() => {
+    if (navigator && navigator.serviceWorker && navigator.serviceWorker.ready) {
+      navigator.serviceWorker.ready.then((registration) => {
+        if (registration) {
+          registration.addEventListener("offline", (event) => {
+            setIsOffline(true)
+          })
+          registration.addEventListener("updatefound", (event) => {
+            setHasLatestUpdate(true)
+            const newSW = registration.installing
+            if (newSW !== null) {
+              newSW.addEventListener("statechange", (event) => {
+                if (newSW.state === "installed") {
+                  setIsLatestInstalled(true)
+                }
+              })
+            }
+          })
+        }
+      })
     }
   }, [])
 
