@@ -65,6 +65,7 @@ describe("usePwaHooks", () => {
       const { isLatestInstalled, hasLatestUpdate, isOffline } = result.current
       expect(hasLatestUpdate).toBe(true)
       expect(isLatestInstalled).toBe(true)
+      expect(isOffline).toBe(true)
     })
   })
 })
