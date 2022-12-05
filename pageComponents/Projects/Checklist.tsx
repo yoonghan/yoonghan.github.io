@@ -18,7 +18,7 @@ const TroubleshootPwaCheckList = () => {
       Status: changeStatus(isRegistered),
     },
     {
-      Property: "Trusted Site App (N/R)",
+      Property: "Trusted Site App (N/R, query string issue)",
       Status: changeStatus(isTwaApp),
     },
     {
