@@ -26,11 +26,10 @@ describe("Checklist", () => {
     it("should be able to set all service to true, except for twa", async () => {
       setServiceNavigator()
       render(<TroubleshootPwaCheckList />)
-      expect(await screen.findAllByText("true")).toHaveLength(4)
+      expect(await screen.findAllByText("true")).toHaveLength(3)
       assertValue(screen.getByText("PWA Registered"), true)
       assertValue(screen.getByText("Detected New Update (N/T)"), true)
       assertValue(screen.getByText("Update Installed (N/T)"), true)
-      assertValue(screen.getByText("PWA run offline"), true)
     })
 
     it("should be able to set twa to true", async () => {
