@@ -31,6 +31,7 @@ export const setServiceNavigator = () => {
           addEventListener: (event, callback) => {
             switch (event) {
               case "updatefound":
+              case "offline":
                 return callback()
             }
           },
