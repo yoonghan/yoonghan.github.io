@@ -62,6 +62,7 @@ const Projects = ({}) => {
                   title: "React Lesson",
                   description: "Important lesson learned.",
                   href: "/projects/lessons",
+                  target: "_self",
                 },
                 {
                   id: "links",
@@ -69,6 +70,7 @@ const Projects = ({}) => {
                   description:
                     "Checklist to manually check website performance/rating.",
                   href: "/projects/checklist",
+                  target: "_self",
                 },
               ]}
             />
