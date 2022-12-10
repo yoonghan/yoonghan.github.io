@@ -40,6 +40,8 @@
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
     "next-router-mock": "^0.7.4",
+    "pusher-js": "^7.5.0",
+    "pusher-js-mock": "^0.3.8",
     "react-autosuggest": "^10.1.0",
     "react-intersection-observer": "^9.4.0",
     "react-toggle": "^4.1.3",
