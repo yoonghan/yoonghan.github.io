@@ -102,6 +102,22 @@ const Lessons = ({}) => {
               }
             `}</pre>
           </article>
+          <article>
+            <h2>Jest Library Mock import must always be the first</h2>
+            <p>
+              Jest mocked import for library order is important and must always
+              be the first to override the import of the original 3rd party
+              library.
+            </p>
+            {/* prettier-ignore */}
+            <pre className={"code"}>{`
+              import "../__mocked__/pusherMock"; //mock library must be the first.
+              import X from "someComponentThatUsesPusher"
+              --OR--
+              jest.mock('pusher', () => class Pusher{});
+              import Pusher from 'pusher'; //then only it takes effect.
+            `}</pre>
+          </article>
         </div>
         <Footer />
         <ScrollToTop />

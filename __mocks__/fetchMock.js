@@ -9,3 +9,9 @@ global.Response = class Response {
 
   text = async () => this.responseMessage
 }
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({}),
+  })
+)

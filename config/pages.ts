@@ -38,6 +38,11 @@ const pages: PageConfig[] = [
     filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
   },
   {
+    path: "/projects/messenger",
+    display: "Chat/Messenger",
+    filterOptions: [FilterOption.NOT_MENU],
+  },
+  {
     path: "/experiments",
     display: "Experiments",
     filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
