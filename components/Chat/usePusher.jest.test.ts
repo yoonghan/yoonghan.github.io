@@ -1,8 +1,7 @@
-import { renderHook, waitFor } from "@testing-library/react"
+import { renderHook } from "@testing-library/react"
 import { EnumConnectionStatus, usePusher } from "./usePusher"
 import "../../__mocks__/pusherMock"
 import { act } from "react-dom/test-utils"
-import { useEffect, useState } from "react"
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -10,8 +9,6 @@ describe("usePusher", () => {
     channelName?: string
     printConnectionCallback?: (message: string) => void
     printEventCallback?: (message: string) => void
-    appKey?: string
-    cluster?: string
     nonprivate?: boolean
     authEndpoint?: string
   }) => {
@@ -21,8 +18,8 @@ describe("usePusher", () => {
         channelName: props.channelName || "TEST_CHANNEL_NAME",
         printConnectionCallback: props.printConnectionCallback || jest.fn(),
         printEventCallback: props.printEventCallback || jest.fn(),
-        appKey: props.appKey || "TEST_APP_KEY",
-        cluster: props.cluster || "TEST_CLUSTER",
+        appKey: "TEST_APP_KEY",
+        cluster: "TEST_CLUSTER",
         nonprivate: props.nonprivate,
         authEndpoint: props.authEndpoint,
       },
@@ -50,15 +47,18 @@ describe("usePusher", () => {
     expect(printEventCallback).not.toBeCalled()
   })
 
-  it("should not add client to event name if channel is public", () => {
+  it("should not create a channel name with private- prefixed if it is a non-private chat", () => {
+    const printConnectionCallback = jest.fn()
+    const printEventCallback = jest.fn()
     const { result } = createPusher({
       channelName: "CHANNEL",
       eventName: "RANDOM_EVENT",
+      printConnectionCallback,
+      printEventCallback,
       nonprivate: true,
     })
     const client = result.current
     expect(client.channelName).toBe("wal_CHANNEL")
-    expect(client.eventName).toBe("RANDOM_EVENT")
   })
 
   it("should be able to connect", async () => {
@@ -81,7 +81,6 @@ describe("usePusher", () => {
       result.current.emitConnection("connected")
     })
 
-    expect(printConnectionCallback).toBeCalledWith("Connected")
     expect(result.current.connectionStatus).toBe(EnumConnectionStatus.Connected)
     expect(result.current.isConnected).toBe(true)
   })
@@ -90,6 +89,7 @@ describe("usePusher", () => {
     const printEventCallback = jest.fn()
     const { result } = createPusher({ printEventCallback })
     expect(result.current.send("A message")).toBe(false)
+    expect(result.current.emit("A message", 0)).toBe(false)
   })
 
   describe("Connected behavior", () => {
@@ -142,6 +142,8 @@ describe("usePusher", () => {
     })
 
     it("should be able to handle general error", async () => {
+      jest.spyOn(console, "error").mockImplementation(() => {})
+
       const { result, printConnectionCallback } = await createConnectedPusher()
       await act(async () => {
         result.current.emitConnection("error")
@@ -173,11 +175,21 @@ describe("usePusher", () => {
     })
 
     it("should be able to send message", async () => {
-      const { result } = await createConnectedPusher()
+      const { result, printEventCallback } = await createConnectedPusher()
       act(() => {
         const message = result.current.send("Hello message")
+        expect(message).toBe(false) //will always return false, doesn't matter
+      })
+      expect(printEventCallback).not.toBeCalled()
+    })
+
+    it("should be able to emit message", async () => {
+      const { result, printEventCallback } = await createConnectedPusher()
+      act(() => {
+        const message = result.current.emit("Hello message", 2)
         expect(message).toBe(true)
       })
+      expect(printEventCallback).toBeCalledWith("Hello message", 2)
     })
 
     it("should not allow, connection that is already connected", async () => {

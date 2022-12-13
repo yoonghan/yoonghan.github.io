@@ -10,14 +10,18 @@ export class PusherAPIClient {
   public static client: Pusher | undefined = PusherAPIClient.initPusher()
 
   public static initPusher() {
-    const { PUSHER_APP_KEY, PUSHER_APP_ID, PUSHER_SECRET, PUSHER_CLUSTER } =
-      process.env
-    if (process && PUSHER_APP_KEY) {
+    const {
+      NEXT_PUBLIC_PUSHER_APP_KEY,
+      PUSHER_APP_ID,
+      PUSHER_SECRET,
+      NEXT_PUBLIC_PUSHER_CLUSTER,
+    } = process.env
+    if (process && NEXT_PUBLIC_PUSHER_APP_KEY) {
       const pusherClient = new Pusher({
         appId: PUSHER_APP_ID || "",
-        key: PUSHER_APP_KEY,
+        key: NEXT_PUBLIC_PUSHER_APP_KEY,
         secret: PUSHER_SECRET || "",
-        cluster: PUSHER_CLUSTER || "",
+        cluster: NEXT_PUBLIC_PUSHER_CLUSTER || "",
         useTLS: true,
       })
       return pusherClient

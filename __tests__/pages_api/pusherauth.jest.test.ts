@@ -1,5 +1,5 @@
 import "../../__mocks__/pusherMock"
-import pusherAuth, { PusherAPIClient } from "@/pages/api/pusherauth"
+import pusherAuth, { PusherAPIClient, config } from "@/pages/api/pusherauth"
 import { mockResponse, setEnv } from "../../__mocks__/apiMock"
 
 describe("pusherauth", () => {
@@ -42,13 +42,17 @@ describe("pusherauth", () => {
     })
   })
 
+  it("should use nodejs runtime", () => {
+    expect(config).toStrictEqual({ runtime: "nodejs" })
+  })
+
   describe("environment setup", () => {
     beforeEach(() => {
       setEnv({
-        PUSHER_APP_KEY: "SampleKey",
-        PUSHER_APP_ID: "",
+        NEXT_PUBLIC_PUSHER_APP_KEY: "SampleKey",
+        APP_ID: "",
         PUSHER_SECRET: "",
-        PUSHER_CLUSTER: "",
+        NEXT_PUBLIC_PUSHER_CLUSTER: "",
       })
       PusherAPIClient.reInitialize()
     })

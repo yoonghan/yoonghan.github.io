@@ -14,7 +14,7 @@ type Props = {
   eventName: string
   channelName: string
   printConnectionCallback: (message: string) => void
-  printEventCallback: (message: string) => void
+  printEventCallback: (message: string, senderId?: number) => void
   appKey: string
   cluster: string
   nonprivate?: boolean
@@ -30,9 +30,7 @@ export function usePusher(props: Props) {
   const channelName = props.nonprivate
     ? prefixChannelName
     : `private-${prefixChannelName}`
-  const eventName = props.nonprivate
-    ? props.eventName
-    : `client-${props.eventName}`
+  const eventName = `client-${props.eventName}`
 
   const [connectionStatus, setConnectionStatus] = useState(
     EnumConnectionStatus.Disconnected
@@ -40,14 +38,17 @@ export function usePusher(props: Props) {
 
   useEffect(() => {
     printConnectionCallback("Changed Status: " + connectionStatus)
-  }, [connectionStatus, printConnectionCallback])
+  }, [connectionStatus])
 
   const subscribeToChannel = () => {
     if (pusherChannelClient.current) {
       channel.current = pusherChannelClient.current.subscribe(channelName)
-      channel.current.bind(eventName, (data: any) => {
-        printEventCallback(data.message)
-      })
+      channel.current.bind(
+        eventName,
+        (data: { message: string; senderId?: number }) => {
+          printEventCallback(data.message, data.senderId)
+        }
+      )
     }
   }
 
@@ -55,7 +56,6 @@ export function usePusher(props: Props) {
     if (pusherChannelClient.current) {
       pusherChannelClient.current.connection.bind("connected", () => {
         setConnectionStatus(EnumConnectionStatus.Connected)
-        printConnectionCallback("Connected")
       })
     }
   }
@@ -87,6 +87,7 @@ export function usePusher(props: Props) {
           pusherChannelClient.current = undefined
           channel.current = undefined
         } else {
+          console.error(error)
           setConnectionStatus(EnumConnectionStatus.Error)
           printConnectionCallback("Interruption error encountered")
         }
@@ -133,9 +134,17 @@ export function usePusher(props: Props) {
     }
   }
 
-  const postMessage = (message: string) => {
+  const sendMessage = (message: string) => {
     if (channel.current) {
-      channel.current.emit(eventName, { message })
+      const isSent = channel.current.trigger(eventName, { message })
+      return isSent
+    }
+    return false
+  }
+
+  const emitMessage = (message: string, senderId: number) => {
+    if (channel.current) {
+      channel.current.emit(eventName, { senderId, message })
       return true
     }
     return false
@@ -165,7 +174,8 @@ export function usePusher(props: Props) {
 
   return {
     connect,
-    send: postMessage,
+    send: sendMessage, //sender does not receive emitted data
+    emit: emitMessage, //sender receive emitted data
     emitConnection: emitConnectionEvent,
     disconnect,
     isConnected,
