@@ -26,8 +26,8 @@ jobs:
       - name: ⚛️ Setup react
         run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-      - name: ✅ Validate lint, prettier and nextJS build
-        run: npm run build
+      - name: ✅ Validate lint, prettier
+        run: npm run lint
 
       - name: ✅ Validate test script
         run: npm run test:ci
