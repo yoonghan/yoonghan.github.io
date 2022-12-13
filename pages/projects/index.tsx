@@ -72,6 +72,14 @@ const Projects = ({}) => {
                   href: "/projects/checklist",
                   target: "_self",
                 },
+                {
+                  id: "chat",
+                  title: "Chat / Messenger",
+                  description:
+                    "If you want to talk publicly you can try this! Nothing is private you don't even know who is listening.",
+                  href: "/projects/messenger",
+                  target: "_self",
+                },
               ]}
             />
           </div>
