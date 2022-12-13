@@ -118,7 +118,7 @@
     {
       "label": "About Page",
       "url": "http://localhost:3000/about",
-      "delay": 500,
+      "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.5,
       "requireSameDimensions": true
@@ -134,7 +134,15 @@
     {
       "label": "Projects Page",
       "url": "http://localhost:3000/projects",
-      "delay": 500,
+      "delay": 200,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Chat or Messenger Page",
+      "url": "http://localhost:3000/projects/messenger",
+      "delay": 300,
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
