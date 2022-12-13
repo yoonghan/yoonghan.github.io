@@ -135,5 +135,5 @@ pre.code {
   max-width: 100%;
   color: var(--code);
   background: var(--code-bg);
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }

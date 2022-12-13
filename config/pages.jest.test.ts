@@ -98,6 +98,7 @@ describe("all sites are defined", () => {
     }
 
     return files
+      .filter((file: string) => file.indexOf("/.") === -1) //remove all hidden files, like .DS_Store
       .map((file) => renameIndex(removeExtension(removeRootPath(file))))
       .filter(
         (file) => !ignoredFiles.includes(file) && !file.startsWith("/api")
