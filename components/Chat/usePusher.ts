@@ -38,7 +38,7 @@ export function usePusher(props: Props) {
 
   useEffect(() => {
     printConnectionCallback("Changed Status: " + connectionStatus)
-  }, [connectionStatus])
+  }, [connectionStatus, printConnectionCallback])
 
   const subscribeToChannel = () => {
     if (pusherChannelClient.current) {
@@ -87,6 +87,7 @@ export function usePusher(props: Props) {
           pusherChannelClient.current = undefined
           channel.current = undefined
         } else {
+          // eslint-disable-next-line no-console
           console.error(error)
           setConnectionStatus(EnumConnectionStatus.Error)
           printConnectionCallback("Interruption error encountered")

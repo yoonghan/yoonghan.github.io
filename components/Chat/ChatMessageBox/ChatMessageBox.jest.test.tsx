@@ -8,12 +8,12 @@ describe("ChatMessageBox", () => {
   const renderComponent = (onMessageSend = jest.fn()) =>
     render(<ChatMessageBox onMessageSend={onMessageSend} />)
 
-  it("should render component correctly", () => {
+  it("should render component correctly", async () => {
     renderComponent()
     expect(screen.getByText("Loading Chat Room")).toBeInTheDocument()
     expect(screen.getByLabelText("Message:")).toBeInTheDocument()
     expect(screen.getByRole("button", { name: "Send" })).toBeInTheDocument()
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.queryByText("Loading Chat Room")).not.toBeInTheDocument()
     })
   })

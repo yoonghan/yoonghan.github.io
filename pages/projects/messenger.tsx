@@ -38,11 +38,14 @@ const Messenger = ({ appKey, cluster }: Props) => {
 
   useEffect(() => {
     pusher.connect()
-  }, [])
+  }, [pusher])
 
-  const onMessageSend = useCallback((message: string) => {
-    pusher.send(message)
-  }, [])
+  const onMessageSend = useCallback(
+    (message: string) => {
+      pusher.send(message)
+    },
+    [pusher]
+  )
 
   return (
     <>
