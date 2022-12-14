@@ -144,7 +144,7 @@
       "url": "http://localhost:3000/projects/messenger",
       "delay": 300,
       "expect": 0,
-      "misMatchThreshold": 0.4,
+      "misMatchThreshold": 0.6,
       "requireSameDimensions": true
     },
     {
