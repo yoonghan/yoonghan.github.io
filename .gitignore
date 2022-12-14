@@ -41,3 +41,7 @@ bitmaps_test/
 bitmaps_local_test/
 
 Walcron.code-workspace
+
+#pwa files, it's auto regenerate.
+public/sw.js
+public/workbox*
