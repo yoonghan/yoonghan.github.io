@@ -19,7 +19,7 @@ describe("Messenger", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("A Walcron Chat Program"))
+    expect(screen.getByText("A Walcron Chat Program")).toBeInTheDocument()
   })
 
   it("should render the page with footer", () => {
@@ -75,5 +75,12 @@ describe("Messenger", () => {
     unmount()
     expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
     spy.mockClear()
+  })
+
+  it("should only display connection ONCE", () => {
+    renderComponent()
+    expect(
+      screen.getByText("Changed Status: Start Connecting")
+    ).toBeInTheDocument()
   })
 })
