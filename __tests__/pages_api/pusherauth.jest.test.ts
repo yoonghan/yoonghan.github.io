@@ -1,4 +1,3 @@
-import "../../__mocks__/pusherMock"
 import pusherAuth, { PusherAPIClient, config } from "@/pages/api/pusherauth"
 import { mockResponse, setEnv } from "../../__mocks__/apiMock"
 

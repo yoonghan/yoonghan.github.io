@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import "../../__mocks__/pusherMock"
 import "../../__mocks__/apiMock"
 import UserEvent from "@testing-library/user-event"
 import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
@@ -10,9 +9,8 @@ import { EmptyStaticPropsContext, setEnv } from "../../__mocks__/apiMock"
 jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Messenger", () => {
-  const renderComponent = () => {
+  const renderComponent = () =>
     render(<Messenger appKey={"sampleAppKey"} cluster={"sampleCluster"} />)
-  }
 
   it("should have a menu", async () => {
     renderComponent()
@@ -21,7 +19,7 @@ describe("Messenger", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("A Walcron Chat Program"))
+    expect(screen.getByText("A Walcron Chat Program")).toBeInTheDocument()
   })
 
   it("should render the page with footer", () => {
@@ -51,7 +49,7 @@ describe("Messenger", () => {
     render(<Messenger appKey={""} cluster={""} />)
     expect(
       screen.getByText(
-        "Messenger initialization failed due to missing environment variable"
+        "Messenger initialization failed due to missing environment variable."
       )
     ).toBeInTheDocument()
   })
@@ -66,5 +64,23 @@ describe("Messenger", () => {
 
     expect(screen.getByLabelText("Message:")).toHaveValue("")
     expect(screen.getByText("sample message")).toBeInTheDocument()
+  })
+
+  it("should send a disconnect when component is unmounted", async () => {
+    const dispatchEventFn = jest.fn()
+    const spy = jest
+      .spyOn(window, "dispatchEvent")
+      .mockImplementationOnce(dispatchEventFn)
+    const { unmount } = renderComponent()
+    unmount()
+    expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
+    spy.mockClear()
+  })
+
+  it("should only display connection ONCE", () => {
+    renderComponent()
+    expect(
+      screen.getByText("Changed Status: Start Connecting")
+    ).toBeInTheDocument()
   })
 })
