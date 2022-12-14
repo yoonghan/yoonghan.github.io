@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import "../../__mocks__/pusherMock"
 import "../../__mocks__/apiMock"
 import UserEvent from "@testing-library/user-event"
 import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
@@ -51,7 +50,7 @@ describe("Messenger", () => {
     render(<Messenger appKey={""} cluster={""} />)
     expect(
       screen.getByText(
-        "Messenger initialization failed due to missing environment variable"
+        "Messenger initialization failed due to missing environment variable."
       )
     ).toBeInTheDocument()
   })

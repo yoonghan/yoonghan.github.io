@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import PusherJS, { Channel } from "pusher-js"
-import { PUSHER } from "./config"
+import { PUSHER } from "../config"
 import { Transport } from "pusher-js/types/src/core/config"
 
 export enum EnumConnectionStatus {

@@ -3,7 +3,7 @@ import ChatMessageBox from "@/components/Chat/ChatMessageBox"
 import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useMemo, useRef } from "react"
 import { GetStaticProps } from "next"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
@@ -16,29 +16,36 @@ interface Props {
 const Messenger = ({ appKey, cluster }: Props) => {
   const chatMessageBoxRef = useRef<MessageHandler>(null)
 
-  const printMessage = useCallback(
-    (sender?: number) => (message: string) => {
-      if (chatMessageBoxRef.current !== null) {
-        chatMessageBoxRef.current.addMessage(sender, message)
-      }
-    },
-    []
-  )
+  const printMessage = (sender?: number) => (message: string) => {
+    if (chatMessageBoxRef.current !== null) {
+      chatMessageBoxRef.current.addMessage(sender, message)
+    }
+  }
+
+  const connectionPrinter = useMemo(() => printMessage(undefined), [])
+  const eventPrinter = useMemo(() => printMessage(2), [])
 
   const pusher = usePusher({
     eventName: "walcron_messenger",
     channelName: "FunChat",
-    printConnectionCallback: printMessage(undefined),
-    printEventCallback: printMessage(2),
+    printConnectionCallback: connectionPrinter,
+    printEventCallback: eventPrinter,
     appKey: appKey,
     cluster: cluster,
     nonprivate: false,
     authEndpoint: "/api/pusherauth",
   })
 
+  /**
+   * Need to remove exhaustive-dep as usePusher is initialized twice.
+   * Check React-18 breaking change https://github.com/reactwg/react-18/discussions/18
+   */
   useEffect(() => {
     pusher.connect()
-  }, [pusher])
+
+    return pusher.disconnect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onMessageSend = useCallback(
     (message: string) => {
@@ -85,5 +92,5 @@ export const config = { runtime: "nodejs" }
 
 export default withNonEmptyEnvCheck(
   Messenger,
-  "Messenger initialization failed due to missing environment variable"
+  "Messenger initialization failed due to missing environment variable."
 )

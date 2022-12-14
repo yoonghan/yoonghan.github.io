@@ -1,6 +1,5 @@
 import { renderHook } from "@testing-library/react"
 import { EnumConnectionStatus, usePusher } from "."
-import "../../../__mocks__/pusherMock"
 import { act } from "react-dom/test-utils"
 
 describe("usePusher", () => {
