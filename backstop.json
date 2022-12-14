@@ -126,7 +126,7 @@
     {
       "label": "History Page",
       "url": "http://localhost:3000/history",
-      "delay": 500,
+      "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
