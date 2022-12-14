@@ -43,7 +43,10 @@ const Messenger = ({ appKey, cluster }: Props) => {
   useEffect(() => {
     pusher.connect()
 
-    return pusher.disconnect
+    return () => {
+      // eslint-disable-next-line no-console
+      pusher.disconnect()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

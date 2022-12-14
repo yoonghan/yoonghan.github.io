@@ -9,9 +9,8 @@ import { EmptyStaticPropsContext, setEnv } from "../../__mocks__/apiMock"
 jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Messenger", () => {
-  const renderComponent = () => {
+  const renderComponent = () =>
     render(<Messenger appKey={"sampleAppKey"} cluster={"sampleCluster"} />)
-  }
 
   it("should have a menu", async () => {
     renderComponent()
@@ -65,5 +64,16 @@ describe("Messenger", () => {
 
     expect(screen.getByLabelText("Message:")).toHaveValue("")
     expect(screen.getByText("sample message")).toBeInTheDocument()
+  })
+
+  it("should send a disconnect when component is unmounted", async () => {
+    const dispatchEventFn = jest.fn()
+    const spy = jest
+      .spyOn(window, "dispatchEvent")
+      .mockImplementationOnce(dispatchEventFn)
+    const { unmount } = renderComponent()
+    unmount()
+    expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
+    spy.mockClear()
   })
 })

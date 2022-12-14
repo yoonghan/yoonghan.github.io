@@ -114,6 +114,10 @@ describe("usePusher", () => {
     }
 
     it("should be able to disconnect", async () => {
+      const dispatchEventFn = jest.fn()
+      const spy = jest
+        .spyOn(window, "dispatchEvent")
+        .mockImplementationOnce(dispatchEventFn)
       const { result } = await createConnectedPusher()
       await act(() => {
         result.current.disconnect()
@@ -123,6 +127,8 @@ describe("usePusher", () => {
         EnumConnectionStatus.Disconnected
       )
       expect(result.current.isConnected).toBe(false)
+      expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
+      spy.mockClear()
     })
 
     it("should be able to disconnect", async () => {

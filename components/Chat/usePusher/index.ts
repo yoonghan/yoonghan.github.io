@@ -159,6 +159,7 @@ export function usePusher(props: Props) {
 
   const disconnect = () => {
     if (pusherChannelClient.current) {
+      window.dispatchEvent(new Event("disconnect"))
       pusherChannelClient.current.disconnect()
     }
   }
