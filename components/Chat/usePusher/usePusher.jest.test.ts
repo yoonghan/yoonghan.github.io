@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react"
 import { EnumConnectionStatus, usePusher } from "."
 import { act } from "react-dom/test-utils"
+import React from "react"
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -114,10 +115,10 @@ describe("usePusher", () => {
     }
 
     it("should be able to disconnect", async () => {
-      const dispatchEventFn = jest.fn()
+      const debugEventFn = jest.fn()
       const spy = jest
-        .spyOn(window, "dispatchEvent")
-        .mockImplementationOnce(dispatchEventFn)
+        .spyOn(React, "useDebugValue")
+        .mockImplementation(debugEventFn)
       const { result } = await createConnectedPusher()
       await act(() => {
         result.current.disconnect()
@@ -127,7 +128,7 @@ describe("usePusher", () => {
         EnumConnectionStatus.Disconnected
       )
       expect(result.current.isConnected).toBe(false)
-      expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
+      expect(debugEventFn).toBeCalledWith("connection:Disconnected")
       spy.mockClear()
     })
 

@@ -49,7 +49,6 @@ describe("PwaEnabler", () => {
     })
 
     it("should be able to toggle PWA to disabled when service is installed", async () => {
-      jest.spyOn(console, "log").mockImplementation(() => {})
       renderComponent()
       expect(await screen.findByText("Installed")).toBeInTheDocument()
       await UserEvent.click(screen.getByText("Installed"))

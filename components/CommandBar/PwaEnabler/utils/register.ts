@@ -1,17 +1,16 @@
-/* eslint-disable no-console */
-
-export function register(swPath?: string, options?: RegistrationOptions) {
+export async function register(swPath?: string, options?: RegistrationOptions) {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register(swPath || "/sw.js", options)
-      .then(function (registration) {
-        console.log("SW registered: ", registration)
-      })
-      .catch(function (registrationError) {
-        console.warn("SW registration failed: ", registrationError)
-        console.warn("PWA is disabled in development mode.")
-      })
+    try {
+      await navigator.serviceWorker.register(swPath || "/sw.js", options)
+      return true
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      // still need this, it's for debugging...even though it did not work
+      console.error(error)
+      return false
+    }
   }
+  return false
 }
 
 export function unregister() {

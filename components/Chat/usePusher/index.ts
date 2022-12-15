@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useDebugValue } from "react"
 import PusherJS, { Channel } from "pusher-js"
 import { PUSHER } from "../config"
 import { Transport } from "pusher-js/types/src/core/config"
@@ -35,6 +35,8 @@ export function usePusher(props: Props) {
   const [connectionStatus, setConnectionStatus] = useState(
     EnumConnectionStatus.Disconnected
   )
+
+  useDebugValue("connection:" + connectionStatus)
 
   useEffect(() => {
     printConnectionCallback("Changed Status: " + connectionStatus)
@@ -159,7 +161,6 @@ export function usePusher(props: Props) {
 
   const disconnect = () => {
     if (pusherChannelClient.current) {
-      window.dispatchEvent(new Event("disconnect"))
       pusherChannelClient.current.disconnect()
     }
   }
