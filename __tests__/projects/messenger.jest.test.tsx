@@ -1,10 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "../../__mocks__/apiMock"
 import UserEvent from "@testing-library/user-event"
 import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import { EmptyStaticPropsContext, setEnv } from "../../__mocks__/apiMock"
+import React from "react"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
@@ -67,20 +68,13 @@ describe("Messenger", () => {
   })
 
   it("should send a disconnect when component is unmounted", async () => {
-    const dispatchEventFn = jest.fn()
+    const debugEventFn = jest.fn()
     const spy = jest
-      .spyOn(window, "dispatchEvent")
-      .mockImplementationOnce(dispatchEventFn)
+      .spyOn(React, "useDebugValue")
+      .mockImplementation(debugEventFn)
     const { unmount } = renderComponent()
     unmount()
-    expect(dispatchEventFn).toBeCalledWith(new Event("disconnected"))
+    expect(debugEventFn).toBeCalledWith("connection:Disconnected")
     spy.mockClear()
-  })
-
-  it("should only display connection ONCE", () => {
-    renderComponent()
-    expect(
-      screen.getByText("Changed Status: Start Connecting")
-    ).toBeInTheDocument()
   })
 })

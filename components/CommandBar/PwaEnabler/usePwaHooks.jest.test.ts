@@ -6,10 +6,6 @@ import {
 } from "../../../__mocks__/windowMock"
 
 describe("usePwaHooks", () => {
-  beforeEach(() => {
-    jest.spyOn(console, "log").mockImplementation(() => {})
-  })
-
   it("should be false when autoregister set to FALSE", () => {
     const { result } = renderHook(usePwaHooks, { initialProps: false })
     const { isTwaApp } = result.current

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import ChatMessageDialog from "."
+import ChatMessageDialog, { authors, userId } from "."
 import { Message } from "react-bell-chat"
 
 describe("ChatMessageDialog", () => {
@@ -36,10 +36,14 @@ describe("ChatMessageDialog", () => {
         isSend: true,
       },
     ])
-    expect(await screen.findByText("ME")).toBeInTheDocument()
-    expect(screen.getByText("First Message")).toBeInTheDocument()
-    expect(screen.getByText("SEC")).toBeInTheDocument()
+
+    expect(await screen.findByText("First Message")).toBeInTheDocument()
+    expect(screen.getByText("Anon")).toBeInTheDocument()
     expect(screen.getByText("Second Message")).toBeInTheDocument()
     expect(screen.getAllByText(formatDateToTime(createdOn))).toHaveLength(2)
+  })
+
+  it("should have the first authors to be the user", () => {
+    expect(userId).toBe(authors[0].id)
   })
 })

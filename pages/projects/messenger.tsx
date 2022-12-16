@@ -25,7 +25,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
   const connectionPrinter = useMemo(() => printMessage(undefined), [])
   const eventPrinter = useMemo(() => printMessage(2), [])
 
-  const pusher = usePusher({
+  const { connect, disconnect, send } = usePusher({
     eventName: "walcron_messenger",
     channelName: "FunChat",
     printConnectionCallback: connectionPrinter,
@@ -37,24 +37,22 @@ const Messenger = ({ appKey, cluster }: Props) => {
   })
 
   /**
-   * Need to remove exhaustive-dep as usePusher is initialized twice.
-   * Check React-18 breaking change https://github.com/reactwg/react-18/discussions/18
+   * Found reason that useHook returning "object" does a re-render if as dependency
    */
   useEffect(() => {
-    pusher.connect()
+    connect()
 
     return () => {
-      // eslint-disable-next-line no-console
-      pusher.disconnect()
+      disconnect()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const onMessageSend = useCallback(
     (message: string) => {
-      pusher.send(message)
+      send(message)
     },
-    [pusher]
+    [send]
   )
 
   return (
