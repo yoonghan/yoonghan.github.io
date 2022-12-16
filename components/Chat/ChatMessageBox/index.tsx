@@ -1,13 +1,14 @@
 import {
   FormEvent,
   forwardRef,
-  useCallback,
   useImperativeHandle,
   useRef,
   useState,
 } from "react"
 import ChatMessageDialog, { MessageHandler } from "./ChatMessageDialog"
 import styles from "./ChatMessageBox.module.css"
+import Button from "@/components/Button"
+import TextArea from "@/components/Input/TextArea"
 
 interface Props {
   onMessageSend: (message: string) => void
@@ -18,11 +19,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
 
-    const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-    }, [])
-
-    const sendMessage = () => {
+    const sendMessage = (e?: Event | FormEvent) => {
+      e?.preventDefault()
       if (chatMessageDialogRef.current !== null && message !== "") {
         chatMessageDialogRef.current.addMessage(1, message)
         onMessageSend(message)
@@ -43,20 +41,27 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
     return (
       <div className={styles.container}>
         <ChatMessageDialog ref={chatMessageDialogRef} />
-        <form action="" onSubmit={handleSubmit}>
+        <br />
+        <form action="" onSubmit={sendMessage}>
           <fieldset>
-            <label>
-              Message:
-              <input
-                onChange={(event) => setMessage(event.target.value)}
-                value={message}
-                placeholder="Your Message"
-              />
-            </label>
+            <label htmlFor="message">Message: </label>
+            <br />
+            <TextArea
+              onChange={(event) => {
+                setMessage(event.target.value)
+              }}
+              onSubmit={sendMessage}
+              value={message}
+              additionalProps={{
+                id: "message",
+                placeholder: "Your Message",
+                rows: 5,
+              }}
+            />
           </fieldset>
-          <button type="submit" onClick={sendMessage}>
+          <Button {...{ type: "submit" }} color="grey">
             Send
-          </button>
+          </Button>
         </form>
       </div>
     )

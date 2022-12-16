@@ -35,21 +35,18 @@ describe("register", () => {
     await waitFor(async () => {
       expect(await window.navigator.serviceWorker.getRegistration()).toBe(false)
     })
-    register()
-    await waitFor(async () => {
-      expect(await window.navigator.serviceWorker.getRegistration()).toBe(true)
-    })
+    const registered = register()
+    expect(registered).toBeTruthy()
+    expect(await window.navigator.serviceWorker.getRegistration()).toBe(true)
   })
 
   it("should be able to reject registration", async () => {
-    const warnFn = jest.fn()
-    jest.spyOn(console, "warn").mockImplementation(warnFn)
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {})
     jest
       .spyOn(window.navigator.serviceWorker, "register")
       .mockRejectedValue("reject")
-    register()
-    await waitFor(() => {
-      expect(warnFn).toHaveBeenCalledWith("SW registration failed: ", "reject")
-    })
+    const registered = await register()
+    expect(registered).toBeFalsy()
+    spy.mockClear()
   })
 })

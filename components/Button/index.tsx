@@ -7,7 +7,7 @@ interface ButtonProps {
   href?: string
   target?: string
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  color?: "orange" | "white"
+  color?: "orange" | "white" | "grey"
   styling?: {
     small: boolean
     inverted: boolean
@@ -19,12 +19,13 @@ const ClickableButton = ({
   onClick,
   children,
   definedClass,
+  ...additionalProps
 }: {
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void
   children: ReactNode
   definedClass: string
 }) => (
-  <button className={definedClass} onClick={onClick}>
+  <button className={definedClass} onClick={onClick} {...additionalProps}>
     {children}
   </button>
 )
@@ -42,7 +43,7 @@ const LinkButton = ({
 }) => {
   if (isExternalLink(href)) {
     return (
-      <a href={href} target={target || "_self"}>
+      <a href={href} target={target || "_self"} rel="external">
         <button className={definedClass}>{children}</button>
       </a>
     )
@@ -62,6 +63,7 @@ const Button = ({
   onClick,
   target,
   styling,
+  ...additionalProps
 }: ButtonProps) => {
   const definedClass = useMemo(() => {
     let style = styles.container
@@ -79,7 +81,11 @@ const Button = ({
 
   if (onClick) {
     return (
-      <ClickableButton onClick={onClick} definedClass={definedClass}>
+      <ClickableButton
+        onClick={onClick}
+        definedClass={definedClass}
+        {...additionalProps}
+      >
         {children}
       </ClickableButton>
     )
@@ -91,7 +97,7 @@ const Button = ({
     )
   } else {
     return (
-      <button type="submit" className={definedClass}>
+      <button type="submit" className={definedClass} {...additionalProps}>
         {children}
       </button>
     )

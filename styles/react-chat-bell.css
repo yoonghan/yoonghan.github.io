@@ -1,0 +1,15 @@
+.react-bell-chat__chat-panel {
+  border: 1px solid;
+}
+
+.react-bell-chat__chat-bubble--user {
+  background-color: #00bf00;
+}
+
+.react-bell-chat__chat-bubble--recipient {
+  background-color: #bbbbbb;
+}
+
+.react-bell-chat__chat-bubble {
+  white-space: pre-wrap;
+}

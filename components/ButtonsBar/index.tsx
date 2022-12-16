@@ -29,9 +29,9 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
   }
 
   return (
-    <ul className={`${styles.btnsbar} ${styles["with-indicator"]}`}>
+    <menu className={`${styles.btnsbar} ${styles["with-indicator"]}`}>
       {menuTexts.map(_generateMenu)}
-    </ul>
+    </menu>
   )
 }
 
