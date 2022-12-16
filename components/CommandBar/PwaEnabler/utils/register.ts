@@ -5,7 +5,6 @@ export async function register(swPath?: string, options?: RegistrationOptions) {
       return true
     } catch (error) {
       // eslint-disable-next-line no-console
-      // still need this, it's for debugging...even though it did not work
       console.error(error)
       return false
     }
