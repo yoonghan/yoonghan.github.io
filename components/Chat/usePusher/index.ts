@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useDebugValue } from "react"
+import { useRef, useDebugValue } from "react"
 import PusherJS, { Channel } from "pusher-js"
 import { PUSHER } from "../config"
 import { Transport } from "pusher-js/types/src/core/config"
@@ -25,6 +25,9 @@ export function usePusher(props: Props) {
   const { printConnectionCallback, printEventCallback, appKey, cluster } = props
   const pusherChannelClient = useRef<PusherJS>()
   const channel = useRef<Channel>()
+  const connectionStatus = useRef<EnumConnectionStatus>(
+    EnumConnectionStatus.Disconnected
+  )
 
   const prefixChannelName = `${PUSHER.channel_prefix}${props.channelName}`
   const channelName = props.nonprivate
@@ -32,15 +35,14 @@ export function usePusher(props: Props) {
     : `private-${prefixChannelName}`
   const eventName = `client-${props.eventName}`
 
-  const [connectionStatus, setConnectionStatus] = useState(
-    EnumConnectionStatus.Disconnected
-  )
+  useDebugValue("connection:" + connectionStatus.current)
 
-  useDebugValue("connection:" + connectionStatus)
-
-  useEffect(() => {
-    printConnectionCallback("Changed Status: " + connectionStatus)
-  }, [connectionStatus, printConnectionCallback])
+  const updateConnectionStatus = (
+    latestConnectionStatus: EnumConnectionStatus
+  ) => {
+    connectionStatus.current = latestConnectionStatus
+    printConnectionCallback(`Changed Status: ${latestConnectionStatus}`)
+  }
 
   const subscribeToChannel = () => {
     if (pusherChannelClient.current) {
@@ -57,7 +59,7 @@ export function usePusher(props: Props) {
   const monitorConnection = () => {
     if (pusherChannelClient.current) {
       pusherChannelClient.current.connection.bind("connected", () => {
-        setConnectionStatus(EnumConnectionStatus.Connected)
+        updateConnectionStatus(EnumConnectionStatus.Connected)
       })
     }
   }
@@ -65,7 +67,7 @@ export function usePusher(props: Props) {
   const monitorFail = () => {
     if (pusherChannelClient.current) {
       pusherChannelClient.current.connection.bind("failed", () => {
-        setConnectionStatus(EnumConnectionStatus.Disconnected)
+        updateConnectionStatus(EnumConnectionStatus.Disconnected)
         printConnectionCallback(
           "Connection failed as websocket is not supported by browser"
         )
@@ -85,13 +87,13 @@ export function usePusher(props: Props) {
           printConnectionCallback(
             "A different Id was requested, please refresh the page."
           )
-          setConnectionStatus(EnumConnectionStatus.Disconnected)
+          updateConnectionStatus(EnumConnectionStatus.Disconnected)
           pusherChannelClient.current = undefined
           channel.current = undefined
         } else {
           // eslint-disable-next-line no-console
           console.error(error)
-          setConnectionStatus(EnumConnectionStatus.Error)
+          updateConnectionStatus(EnumConnectionStatus.Error)
           printConnectionCallback("Interruption error encountered")
         }
       })
@@ -101,7 +103,7 @@ export function usePusher(props: Props) {
   const monitorDisconnected = () => {
     if (pusherChannelClient.current) {
       pusherChannelClient.current.connection.bind("disconnected", () => {
-        setConnectionStatus(EnumConnectionStatus.Disconnected)
+        updateConnectionStatus(EnumConnectionStatus.Disconnected)
         printConnectionCallback("Disconnected")
         pusherChannelClient.current = undefined
         channel.current = undefined
@@ -115,7 +117,7 @@ export function usePusher(props: Props) {
       return
     }
 
-    setConnectionStatus(EnumConnectionStatus.StartConnecting)
+    updateConnectionStatus(EnumConnectionStatus.StartConnecting)
     printConnectionCallback("Establishing Connection, please wait.")
 
     const enabledTransports: Transport[] = ["sockjs", "ws"]
@@ -165,15 +167,19 @@ export function usePusher(props: Props) {
     }
   }
 
-  const isConnected = (() => {
-    switch (connectionStatus) {
+  const isConnected = () => {
+    switch (connectionStatus.current) {
       case EnumConnectionStatus.Connected:
       case EnumConnectionStatus.Error:
         return true
       default:
         return false
     }
-  })()
+  }
+
+  const getConnectionStatus = () => {
+    return connectionStatus.current
+  }
 
   return {
     connect,
@@ -182,7 +188,7 @@ export function usePusher(props: Props) {
     emitConnection: emitConnectionEvent,
     disconnect,
     isConnected,
-    connectionStatus,
+    getConnectionStatus,
     channelName,
     eventName,
   }

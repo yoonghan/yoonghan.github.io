@@ -36,14 +36,11 @@ describe("usePusher", () => {
       printEventCallback,
     })
     const client = result.current
-    expect(client.connectionStatus).toBe(EnumConnectionStatus.Disconnected)
-    expect(client.isConnected).toBe(false)
+    expect(client.getConnectionStatus()).toBe(EnumConnectionStatus.Disconnected)
+    expect(client.isConnected()).toBe(false)
     expect(client.channelName).toBe("private-wal_CHANNEL")
     expect(client.eventName).toBe("client-RANDOM_EVENT")
-
-    expect(printConnectionCallback).toBeCalledWith(
-      "Changed Status: Disconnected"
-    )
+    expect(printConnectionCallback).not.toBeCalled()
     expect(printEventCallback).not.toBeCalled()
   })
 
@@ -74,15 +71,15 @@ describe("usePusher", () => {
     expect(printConnectionCallback).toBeCalledWith(
       "Establishing Connection, please wait."
     )
-    expect(result.current.connectionStatus).toBe(
-      EnumConnectionStatus.StartConnecting
-    )
+
     await act(async () => {
       result.current.emitConnection("connected")
     })
 
-    expect(result.current.connectionStatus).toBe(EnumConnectionStatus.Connected)
-    expect(result.current.isConnected).toBe(true)
+    expect(result.current.getConnectionStatus()).toBe(
+      EnumConnectionStatus.Connected
+    )
+    expect(result.current.isConnected()).toBe(true)
   })
 
   it("should not be able to send message when it's not connected", () => {
@@ -105,7 +102,7 @@ describe("usePusher", () => {
         result.current.connect()
         result.current.emitConnection("connected")
       })
-      expect(result.current.isConnected).toBe(true)
+      expect(result.current.isConnected()).toBe(true)
 
       return {
         result,
@@ -124,10 +121,10 @@ describe("usePusher", () => {
         result.current.disconnect()
       })
 
-      expect(result.current.connectionStatus).toBe(
+      expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Disconnected
       )
-      expect(result.current.isConnected).toBe(false)
+      expect(result.current.isConnected()).toBe(false)
       expect(debugEventFn).toBeCalledWith("connection:Disconnected")
       spy.mockClear()
     })
@@ -141,10 +138,10 @@ describe("usePusher", () => {
       expect(printConnectionCallback).toBeCalledWith(
         "Connection failed as websocket is not supported by browser"
       )
-      expect(result.current.connectionStatus).toBe(
+      expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Disconnected
       )
-      expect(result.current.isConnected).toBe(false)
+      expect(result.current.isConnected()).toBe(false)
     })
 
     it("should be able to handle general error", async () => {
@@ -158,8 +155,10 @@ describe("usePusher", () => {
       expect(printConnectionCallback).toBeCalledWith(
         "Interruption error encountered"
       )
-      expect(result.current.connectionStatus).toBe(EnumConnectionStatus.Error)
-      expect(result.current.isConnected).toBe(true)
+      expect(result.current.getConnectionStatus()).toBe(
+        EnumConnectionStatus.Error
+      )
+      expect(result.current.isConnected()).toBe(true)
     })
 
     it("should be able to handle websocket error", async () => {
@@ -174,10 +173,10 @@ describe("usePusher", () => {
       expect(printConnectionCallback).toBeCalledWith(
         "A different Id was requested, please refresh the page."
       )
-      expect(result.current.connectionStatus).toBe(
+      expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Disconnected
       )
-      expect(result.current.isConnected).toBe(false)
+      expect(result.current.isConnected()).toBe(false)
     })
 
     it("should be able to send message", async () => {

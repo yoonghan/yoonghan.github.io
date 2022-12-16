@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "../../__mocks__/apiMock"
 import UserEvent from "@testing-library/user-event"
 import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
@@ -76,12 +76,5 @@ describe("Messenger", () => {
     unmount()
     expect(debugEventFn).toBeCalledWith("connection:Disconnected")
     spy.mockClear()
-  })
-
-  it("should only display connection ONCE", () => {
-    renderComponent()
-    expect(
-      screen.getByText("Changed Status: Start Connecting")
-    ).toBeInTheDocument()
   })
 })
