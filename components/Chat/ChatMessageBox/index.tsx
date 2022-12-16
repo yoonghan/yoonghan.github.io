@@ -8,6 +8,7 @@ import {
 } from "react"
 import ChatMessageDialog, { MessageHandler } from "./ChatMessageDialog"
 import styles from "./ChatMessageBox.module.css"
+import Button from "@/components/Button"
 
 interface Props {
   onMessageSend: (message: string) => void
@@ -43,10 +44,11 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
     return (
       <div className={styles.container}>
         <ChatMessageDialog ref={chatMessageDialogRef} />
+        <br />
         <form action="" onSubmit={handleSubmit}>
           <fieldset>
             <label>
-              Message:
+              Message: <br />
               <input
                 onChange={(event) => setMessage(event.target.value)}
                 value={message}
@@ -54,9 +56,9 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
               />
             </label>
           </fieldset>
-          <button type="submit" onClick={sendMessage}>
+          <Button {...{ type: "submit" }} onClick={sendMessage} color="grey">
             Send
-          </button>
+          </Button>
         </form>
       </div>
     )

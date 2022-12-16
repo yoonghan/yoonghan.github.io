@@ -1,3 +1,21 @@
+.container {
+  margin: 2px;
+}
+
 .container form {
   display: flex;
+}
+
+.container fieldset {
+  margin: 0;
+  width: 100%;
+}
+
+.container input {
+  font-size: 1rem;
+  width: 100%;
+}
+
+.container button {
+  min-width: 10rem;
 }
