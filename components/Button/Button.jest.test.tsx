@@ -32,6 +32,7 @@ describe("Button", () => {
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
 
     expect(linkButton).toHaveAttribute("target", "_self")
+    expect(linkButton).toHaveAttribute("rel", "external")
   })
 
   it("should render the button with external href with target", async () => {

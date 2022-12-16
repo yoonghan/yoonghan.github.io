@@ -42,7 +42,7 @@ const LinkButton = ({
 }) => {
   if (isExternalLink(href)) {
     return (
-      <a href={href} target={target || "_self"}>
+      <a href={href} target={target || "_self"} rel="external">
         <button className={definedClass}>{children}</button>
       </a>
     )
