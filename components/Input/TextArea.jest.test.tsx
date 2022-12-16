@@ -35,7 +35,6 @@ describe("TextArea", () => {
     let hasNewLine = false
     const onChangeFn = jest.fn()
     onChangeFn.mockImplementation((event: ChangeEvent<HTMLTextAreaElement>) => {
-      // eslint-disable-next-line no-console
       if (event.target.value === "\r\n") {
         hasNewLine = true
       }
