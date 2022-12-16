@@ -26,12 +26,27 @@ describe("Button", () => {
     expect(clickFn).toHaveBeenCalled()
   })
 
+  it("should be able to add additional props for button", async () => {
+    const clickFn = jest.fn()
+    const additionalProps = { type: "submit" }
+    render(
+      <Button onClick={clickFn} {...additionalProps}>
+        Click Me
+      </Button>
+    )
+    const button = screen.getByRole("button", { name: "Click Me" })
+    await userEvent.click(button)
+    expect(button).toHaveAttribute("type", "submit")
+    expect(clickFn).toHaveBeenCalled()
+  })
+
   it("should render the button with external href", async () => {
     render(<Button href={"http://www.google.com"}>Link Me</Button>)
     const linkButton = screen.getByRole("link", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
 
     expect(linkButton).toHaveAttribute("target", "_self")
+    expect(linkButton).toHaveAttribute("rel", "external")
   })
 
   it("should render the button with external href with target", async () => {
