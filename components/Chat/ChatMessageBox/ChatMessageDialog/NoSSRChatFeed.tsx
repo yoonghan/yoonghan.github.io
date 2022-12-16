@@ -1,4 +1,5 @@
 import { ChatFeed, Message, ChatFeedApi, Author } from "react-bell-chat"
+import CustomMessage from "./CustomMessage"
 
 interface Props {
   messages: Message[]

@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react"
 import { useEffect } from "react"
 import { useState } from "react"
-import { Message } from "react-bell-chat"
+import { Message, ChatBubbleProps } from "react-bell-chat"
 
 import dynamic from "next/dynamic"
 

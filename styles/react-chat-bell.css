@@ -9,3 +9,7 @@
 .react-bell-chat__chat-bubble--recipient {
   background-color: #bbbbbb;
 }
+
+.react-bell-chat__chat-bubble {
+  white-space: pre-wrap;
+}
