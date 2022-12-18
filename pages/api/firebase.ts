@@ -42,14 +42,13 @@ class Firebase {
       FIREBASE_CLIENT_X509_CERT_URL,
     }
     if (hasEmptyValueInObject(keyValue)) {
-      throw new Error("One of the Firebase key was not initialized")
+      throw new Error("One of the Firebase key was not initialized.")
     }
     return keyValue as { [key: string]: string }
   }
 
   public static getFirebaseInitializeApp = () => {
     const validCredentials = this.getValidCredentials()
-
     if (admin.apps.length === 0) {
       admin.initializeApp({
         credential: admin.credential.cert(
@@ -65,21 +64,9 @@ class Firebase {
     Firebase.getFirebaseInitializeApp().storage().bucket()
 }
 
-const getUploadedFileUrl = async (
-  uploadFileName: string,
-  retrieveToken: string
-) => {
-  const storageBucket = Firebase.getStorageBucket()
-  const cloudFileName = storageBucket.file(uploadFileName)
-  const cloudFile = (await cloudFileName.get())[0]
-
-  const firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/"
-  return `${firebaseUrl}${cloudFile.metadata.bucket}/o/${cloudFile.metadata.name}?alt=media&token=${retrieveToken}`
-}
-
-const fetchFileExtension = (filename: string) => {
+export const getFileExtension = (filename: string) => {
   const idxWithDotIncluded = filename.lastIndexOf(".")
-  if (idxWithDotIncluded < 1) {
+  if (idxWithDotIncluded === -1 || idxWithDotIncluded === filename.length - 1) {
     return ""
   } else {
     return filename.substring(idxWithDotIncluded)
@@ -92,6 +79,18 @@ const uploadIntoSystem = async (
   resolve: (value: unknown) => void,
   reject: (reason?: any) => void
 ) => {
+  const getUploadedFileUrl = async (
+    uploadFileName: string,
+    retrieveToken: string
+  ) => {
+    const storageBucket = Firebase.getStorageBucket()
+    const cloudFileName = storageBucket.file(uploadFileName)
+    const cloudFile = (await cloudFileName.get())[0]
+
+    const firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/"
+    return `${firebaseUrl}${cloudFile.metadata.bucket}/o/${cloudFile.metadata.name}?alt=media&token=${retrieveToken}`
+  }
+
   const uuid = uuidv4()
   const storageBucket = Firebase.getStorageBucket()
   const option = {
@@ -107,26 +106,18 @@ const uploadIntoSystem = async (
   const form = formidable({})
   form.onPart = (part) => {
     if (!part.originalFilename || !part.mimetype) {
-      res.status(500).json({
-        status: "fail",
-        error: "File provided has issues",
-      })
-      reject()
+      reject("File provided has issues.")
       return
     }
     const uploadFileName =
-      new Date().getTime() + fetchFileExtension(part.originalFilename)
+      new Date().getTime() + getFileExtension(part.originalFilename)
     const cloudFileName = storageBucket.file(uploadFileName)
     option.metadata.contentType = part.mimetype
 
     part
       .pipe(cloudFileName.createWriteStream(option))
       .on("error", function (err) {
-        res.status(500).json({
-          status: "fail",
-          error: `File stream failed. ${err.message}`,
-        })
-        reject()
+        reject(`File stream failed. ${err.message}`)
       })
       .on("finish", async function () {
         try {
@@ -137,17 +128,12 @@ const uploadIntoSystem = async (
           })
           resolve("ok")
         } catch (e: any) {
-          res.status(400).json({
-            status: "fail",
-            error: `File not downloadable. ${e.message}`,
-          })
-          reject()
+          reject(`File not downloadable. ${e.message}`)
         }
       })
   }
-  form.parse(req, function () {
-    //Do nothing, it's to kickstart onPart
-  })
+
+  form.parse(req)
 }
 
 export const config = {
@@ -162,12 +148,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
       return new Promise((resolve, reject) =>
-        uploadIntoSystem(req, res, resolve, reject)
-      )
-      break
+        uploadIntoSystem(req, res, resolve, reject).catch((err) => {
+          reject(err)
+        })
+      ).catch((err) => {
+        res.status(500).json({
+          error: err.message ? err.message : err,
+        })
+      })
     default:
       res.status(405).json({
-        error: `method ${req.method} not recognized.`,
+        error: `Method ${req.method} not recognized.`,
       })
   }
 }

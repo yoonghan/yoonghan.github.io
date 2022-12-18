@@ -118,6 +118,18 @@ const Lessons = ({}) => {
               import Pusher from 'pusher'; //then only it takes effect.
             `}</pre>
           </article>
+          <article>
+            <h2>
+              Jest library with 3rd party library import under NEXT.JS is
+              unsolvable
+            </h2>
+            <p>
+              Error of `Cannot use import statement outside a module`, cannot be
+              solved at the moment when 3rd party library are executed via mock.
+              Only solution is to mock the whole library with jest.mock('whole
+              library').
+            </p>
+          </article>
         </div>
         <Footer />
         <ScrollToTop />
