@@ -28,9 +28,8 @@ describe("Button", () => {
 
   it("should be able to add additional props for button", async () => {
     const clickFn = jest.fn()
-    const additionalProps = { type: "submit" }
     render(
-      <Button onClick={clickFn} {...additionalProps}>
+      <Button onClick={clickFn} additionalProps={{ type: "submit" }}>
         Click Me
       </Button>
     )
