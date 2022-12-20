@@ -1,5 +1,5 @@
 .container {
-  padding: 10px 10px 40px 10px;
+  padding: 2rem;
   color: #000;
   background: var(--dialog-text);
   box-shadow: 5px 5px 2px var(--shadow);
@@ -12,6 +12,15 @@
 }
 
 .container .button {
-  display: "flex";
-  justify-content: space-between;
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.container .button button {
+  padding: 0.5rem 1rem;
+}
+
+.container .button .primary {
+  background-color: var(--button-orange-bg);
 }

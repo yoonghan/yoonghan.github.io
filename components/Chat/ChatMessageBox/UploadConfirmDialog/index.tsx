@@ -19,9 +19,11 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
   return (
     <Modal onCancel={onClick("no")} isModal={true}>
       <div className={style.container}>
-        <p>This file will be shared publicly. Are you sure?</p>
+        This file will be shared publicly. Are you sure?
         <div className={style.button}>
-          <button onClick={onClick("yes")}>Yes</button>
+          <button onClick={onClick("yes")} className={style.primary}>
+            Yes
+          </button>
           <button onClick={onClick("no")}>No</button>
         </div>
       </div>

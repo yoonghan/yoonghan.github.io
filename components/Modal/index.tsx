@@ -15,7 +15,6 @@ interface ModalProps {
 
 const Modal = ({ isModal = false, onCancel, children }: ModalProps) => {
   modalRootCreator.create()
-  const dialogContainerRef = createRef<HTMLDivElement>()
   const escRef = createRef<HTMLButtonElement>()
   const documentBody = document.body
   const documentModal = document.querySelector("#modal-root") as Element
@@ -41,25 +40,23 @@ const Modal = ({ isModal = false, onCancel, children }: ModalProps) => {
   const onContainerClick = (
     event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
   ) => {
-    if (!isModal && event.target === dialogContainerRef?.current) {
+    if (!isModal) {
       onCancel(event)
     }
   }
 
   return createPortal(
-    <div
-      role={"dialog"}
+    <dialog
+      open
       className={styles.container}
       onClick={onContainerClick}
-      onKeyUp={onContainerClick}
-      ref={dialogContainerRef}
-      tabIndex={-1}
+      onKeyUp={() => {}}
     >
       <div className={styles.content}>{children}</div>
       <button ref={escRef} onClick={onCancel} tabIndex={1}>
         [ESC]
       </button>
-    </div>,
+    </dialog>,
     documentModal
   )
 }
