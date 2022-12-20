@@ -1,7 +1,9 @@
 import {
   FormEvent,
   forwardRef,
+  useCallback,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from "react"
@@ -10,6 +12,7 @@ import styles from "./ChatMessageBox.module.css"
 import Button from "@/components/Button"
 import TextArea from "@/components/Input/TextArea"
 import { useDropzone } from "react-dropzone"
+import UploadConfirmDialog from "./UploadConfirmDialog"
 
 interface Props {
   onMessageSend: (message: string) => void
@@ -18,37 +21,35 @@ interface Props {
 const dropFile =
   (callback: (message: string, notifyReceipient?: boolean) => void) =>
   (acceptedFiles: File[]) => {
-    if (acceptedFiles.length !== 1) {
-      alert("System supports only single file")
-    }
+    const formData = new FormData()
+    formData.append("file", acceptedFiles[0])
 
-    const shouldUpload = confirm("Share file ?")
+    callback(`Uploading file ${acceptedFiles[0].name}...`)
 
-    if (shouldUpload) {
-      const formData = new FormData()
-      formData.append("file", acceptedFiles[0])
-
-      callback(`Uploading file ${acceptedFiles[0].name}...`)
-
-      fetch("/api/firebase", {
-        method: "POST",
-        body: formData,
+    fetch("/api/firebase", {
+      method: "POST",
+      body: formData,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          callback(`Uploaded ${data.data}`, true)
+        } else {
+          callback(`File upload failed`)
+        }
       })
-        .then((resp) => resp.json())
-        .then((data) => {
-          if (data.status === "ok") {
-            callback(`Uploaded ${data.data}`, true)
-          } else {
-            callback(`File upload failed`)
-          }
-        })
-    }
+      .catch((err) => {
+        callback(`File upload failed, (${err})`)
+      })
   }
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ onMessageSend }, ref) {
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
+    const [filesToUpload, setFilesToUpload] = useState<File[]>()
+    const [isShownUploadConfirmDialog, setShowUploadConfirmDialog] =
+      useState(false)
 
     const sendMessage = (e?: Event | FormEvent) => {
       e?.preventDefault()
@@ -66,10 +67,28 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       }
     }
 
-    const onDrop = dropFile(sendFileMessage)
+    const dropFileWithMessage = useMemo(() => dropFile(sendFileMessage), [])
+
+    const onDrop = (acceptedFiles: File[]) => {
+      if (acceptedFiles && acceptedFiles.length > 0) {
+        setFilesToUpload(acceptedFiles)
+        setShowUploadConfirmDialog(true)
+      }
+    }
+
     const { getRootProps, getInputProps, inputRef } = useDropzone({
       onDrop,
     })
+
+    const onUploadConfirmReply = useCallback(
+      (response: "yes" | "no") => {
+        if (response === "yes" && filesToUpload !== undefined) {
+          dropFileWithMessage(filesToUpload)
+        }
+        setShowUploadConfirmDialog(false)
+      },
+      [dropFileWithMessage, filesToUpload]
+    )
 
     useImperativeHandle(ref, () => {
       return {
@@ -110,9 +129,13 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
             <hr />
 
             <label htmlFor="file-upload">Upload File: </label>
-            <input {...getInputProps()} id="file-upload" />
+            <input
+              {...getInputProps()}
+              id="file-upload"
+              data-testid="file-uploader"
+            />
             <button
-              id="command-upload"
+              id="file-upload-btn"
               aria-label="Upload"
               onClick={() => {
                 inputRef.current?.click()
@@ -125,6 +148,9 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
             Send
           </Button>
         </form>
+        {isShownUploadConfirmDialog && (
+          <UploadConfirmDialog onReplyClick={onUploadConfirmReply} />
+        )}
       </div>
     )
   }
