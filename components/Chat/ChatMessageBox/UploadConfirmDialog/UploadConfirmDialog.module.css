@@ -1,0 +1,26 @@
+.container {
+  padding: 2rem;
+  color: #000;
+  background: var(--dialog-text);
+  box-shadow: 5px 5px 2px var(--shadow);
+}
+
+.container th {
+  color: --var(table-header);
+  background-color: --var(table-header-bg);
+  font-weight: bold;
+}
+
+.container .button {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.container .button button {
+  padding: 0.5rem 1rem;
+}
+
+.container .button .primary {
+  background-color: var(--button-orange-bg);
+}

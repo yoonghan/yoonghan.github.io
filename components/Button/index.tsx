@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from "react"
+import { ButtonHTMLAttributes, ReactNode, useMemo } from "react"
 import Link from "next/link"
 import { isExternalLink } from "./isExternalLink"
 import styles from "./Button.module.css"
@@ -13,17 +13,19 @@ interface ButtonProps {
     inverted: boolean
   }
   children: ReactNode
+  additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
 }
 
 const ClickableButton = ({
   onClick,
   children,
   definedClass,
-  ...additionalProps
+  additionalProps,
 }: {
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void
   children: ReactNode
   definedClass: string
+  additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
 }) => (
   <button className={definedClass} onClick={onClick} {...additionalProps}>
     {children}
@@ -63,7 +65,7 @@ const Button = ({
   onClick,
   target,
   styling,
-  ...additionalProps
+  additionalProps,
 }: ButtonProps) => {
   const definedClass = useMemo(() => {
     let style = styles.container
@@ -84,7 +86,7 @@ const Button = ({
       <ClickableButton
         onClick={onClick}
         definedClass={definedClass}
-        {...additionalProps}
+        additionalProps={additionalProps}
       >
         {children}
       </ClickableButton>
