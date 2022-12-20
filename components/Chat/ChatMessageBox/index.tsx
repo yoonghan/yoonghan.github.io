@@ -60,14 +60,20 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       setMessage("")
     }
 
-    const sendFileMessage = (message: string, notifyReceipient = false) => {
-      if (chatMessageDialogRef.current !== null) {
-        chatMessageDialogRef.current.addMessage(undefined, message)
-        if (notifyReceipient) onMessageSend(message)
-      }
-    }
+    const sendFileMessage = useCallback(
+      (message: string, notifyReceipient = false) => {
+        if (chatMessageDialogRef.current !== null) {
+          chatMessageDialogRef.current.addMessage(undefined, message)
+          if (notifyReceipient) onMessageSend(message)
+        }
+      },
+      [onMessageSend]
+    )
 
-    const dropFileWithMessage = useMemo(() => dropFile(sendFileMessage), [])
+    const dropFileWithMessage = useMemo(
+      () => dropFile(sendFileMessage),
+      [sendFileMessage]
+    )
 
     const onDrop = (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
