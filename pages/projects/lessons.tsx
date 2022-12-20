@@ -126,8 +126,8 @@ const Lessons = ({}) => {
             <p>
               Error of `Cannot use import statement outside a module`, cannot be
               solved at the moment when 3rd party library are executed via mock.
-              Only solution is to mock the whole library with jest.mock('whole
-              library').
+              Only solution is to mock the whole library with
+              jest.mock(&apos;whole library&apos;).
             </p>
           </article>
         </div>
