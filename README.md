@@ -43,6 +43,11 @@ npm run backstop:test  //To test
 npm run backstop:approve // Approve the new website ok
 ```
 
+## Setting environments
+
+1. Install vercel Cli, with `npm i -g vercel`
+2. Pull all the environment into local with `vercel env pull .env.local`. This wil create an environment straight for testing. Incase, there are reset of environment to setup in Vercel, refer to .env file.
+
 ## Run Github workflows
 
 Project is tied closely with github.
@@ -67,7 +72,7 @@ Updating backstopJS snapshot.
 
 --By pull request
 
-1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop_data/bitmaps_test/_/!failed_.png
+1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop*data/bitmaps_test/*/!failed\_.png
 2. replace into bitmaps_reference.
 
 --By action

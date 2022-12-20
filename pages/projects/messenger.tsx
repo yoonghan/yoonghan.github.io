@@ -7,6 +7,7 @@ import { useCallback, useEffect, useMemo, useRef } from "react"
 import { GetStaticProps } from "next"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
+import Head from "next/head"
 
 interface Props {
   appKey: string
@@ -61,6 +62,12 @@ const Messenger = ({ appKey, cluster }: Props) => {
         title={"Messenger"}
         description={"Public chat messenger between 2 person."}
       />
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
+        />
+      </Head>
       <div>
         <CommandBar />
       </div>
