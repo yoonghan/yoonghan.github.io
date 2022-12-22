@@ -8,3 +8,15 @@ import { defaultFallbackInView } from "react-intersection-observer"
 
 global.IntersectionObserver = jest.fn()
 defaultFallbackInView(false)
+
+HTMLDialogElement.prototype.show = jest.fn(function mock() {
+  this.open = true
+})
+
+HTMLDialogElement.prototype.showModal = jest.fn(function mock() {
+  this.open = true
+})
+
+HTMLDialogElement.prototype.close = jest.fn(function mock() {
+  this.open = false
+})

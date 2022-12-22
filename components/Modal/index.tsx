@@ -16,44 +16,36 @@ interface ModalProps {
 const Modal = ({ isModal = false, onCancel, children }: ModalProps) => {
   modalRootCreator.create()
   const escRef = createRef<HTMLButtonElement>()
-  const documentBody = document.body
+  const dialogElem = createRef<HTMLDialogElement>()
   const documentModal = document.querySelector("#modal-root") as Element
 
   useEffect(() => {
-    const keyListenerEvent = (evt: KeyboardEvent) => {
-      if (evt.key === "esc" || evt.key === "Escape") {
-        onCancel()
-      }
-    }
-
     if (escRef.current !== null) {
       escRef.current.focus()
     }
+  }, [escRef])
 
-    documentBody.addEventListener("keyup", keyListenerEvent)
-
-    return () => {
-      documentBody.removeEventListener("keyup", keyListenerEvent)
-    }
-  }, [documentBody, escRef, onCancel])
-
-  const onContainerClick = (
-    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
-  ) => {
+  useEffect(() => {
     if (!isModal) {
-      onCancel(event)
+      return onCancel
     }
-  }
+  }, [isModal, onCancel])
+
+  useEffect(() => {
+    if (dialogElem.current !== null && !dialogElem.current.open) {
+      if (isModal) {
+        dialogElem.current.show()
+      } else {
+        dialogElem.current.showModal()
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isModal])
 
   return createPortal(
-    <dialog
-      open
-      className={styles.container}
-      onClick={onContainerClick}
-      onKeyUp={() => {}}
-    >
+    <dialog className={styles.container} ref={dialogElem}>
       <div className={styles.content}>{children}</div>
-      <button ref={escRef} onClick={onCancel} tabIndex={1}>
+      <button ref={escRef} onClick={onCancel}>
         [ESC]
       </button>
     </dialog>,

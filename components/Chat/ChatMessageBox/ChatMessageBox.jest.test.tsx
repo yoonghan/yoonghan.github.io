@@ -9,6 +9,15 @@ describe("ChatMessageBox", () => {
   const renderComponent = (onMessageSend = jest.fn()) =>
     render(<ChatMessageBox onMessageSend={onMessageSend} />)
 
+  const clickDialogYes = async () => {
+    expect(
+      await screen.findByText(
+        "This file will be shared publicly. Are you sure?"
+      )
+    ).toBeInTheDocument()
+    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+  }
+
   it("should render component correctly", async () => {
     renderComponent()
     expect(screen.getByText("Loading Chat Room")).toBeInTheDocument()
@@ -58,10 +67,7 @@ describe("ChatMessageBox", () => {
       screen.getByTestId("file-uploader"),
       new File(["A file content."], "chucknorris.png", { type: "image/png" })
     )
-    expect(
-      screen.getByText("This file will be shared publicly. Are you sure?")
-    ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+    await clickDialogYes()
     expect(
       await screen.findByText("Uploading file chucknorris.png...")
     ).toBeInTheDocument()
@@ -80,10 +86,7 @@ describe("ChatMessageBox", () => {
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" })
     )
-    expect(
-      screen.getByText("This file will be shared publicly. Are you sure?")
-    ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+    await clickDialogYes()
     expect(
       await screen.findByText("Uploading file jamesmillar.jpg...")
     ).toBeInTheDocument()
@@ -102,10 +105,7 @@ describe("ChatMessageBox", () => {
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" })
     )
-    expect(
-      screen.getByText("This file will be shared publicly. Are you sure?")
-    ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+    await clickDialogYes()
     expect(
       await screen.findByText("Uploading file jamesmillar.jpg...")
     ).toBeInTheDocument()
@@ -125,10 +125,7 @@ describe("ChatMessageBox", () => {
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" })
     )
-    expect(
-      screen.getByText("This file will be shared publicly. Are you sure?")
-    ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+    await clickDialogYes()
     expect(
       await screen.findByText("Uploading file jamesmillar.jpg...")
     ).toBeInTheDocument()
@@ -136,6 +133,29 @@ describe("ChatMessageBox", () => {
       await screen.findByText(`File upload failed, (Server failed)`)
     ).toBeInTheDocument()
     expect(messageSendFn).not.toBeCalled()
+  })
+
+  it("should not do anything when dialog clicked is no", async () => {
+    const messageSendFn = jest.fn()
+    const uploadFilename = "jamesmillar.jpg"
+    ;(global.fetch as unknown as jest.Mock).mockRejectedValue("Server failed")
+    renderComponent(messageSendFn)
+    await UserEvent.click(screen.getByRole("button", { name: "Upload" }))
+    await UserEvent.upload(
+      screen.getByTestId("file-uploader"),
+      new File(["A file content."], uploadFilename, { type: "image/jpeg" })
+    )
+
+    expect(
+      await screen.findByText(
+        "This file will be shared publicly. Are you sure?"
+      )
+    ).toBeInTheDocument()
+    await UserEvent.click(screen.getByRole("button", { name: "No" }))
+
+    expect(
+      screen.queryByText("This file will be shared publicly. Are you sure?")
+    ).not.toBeInTheDocument()
   })
 
   describe("integration", () => {
