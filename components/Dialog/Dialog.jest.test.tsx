@@ -16,7 +16,7 @@ describe("Dialog", () => {
   }) => {
     render(
       <Dialog isNotModal={isNotModal} onCancel={onCancel}>
-        <div>Nothing</div>
+        <div data-testid="child-in-dialog">Nothing</div>
       </Dialog>
     )
   }
@@ -25,7 +25,6 @@ describe("Dialog", () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
     const button = screen.getByRole("button", { name: "[ESC]" })
-    expect(button).toHaveAttribute("tabIndex", "0")
     await userEvent.click(button)
     expect(onCancel).toHaveBeenCalled()
   })
@@ -44,12 +43,26 @@ describe("Dialog", () => {
     expect(onCancel).toHaveBeenCalled()
   })
 
-  it("should render the model and cannot be closed by clicking anything outside and only by button", async () => {
+  it("should render the model will close and will close when outer dialog is click", async () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
     await userEvent.click(screen.getByRole("dialog"))
+    expect(onCancel).toHaveBeenCalled()
+  })
+
+  it("should render the model will close will not close when the child DIV is clicked", async () => {
+    const onCancel = jest.fn()
+    renderModal({ onCancel: onCancel })
+    await userEvent.click(screen.getByTestId("child-in-dialog"))
     expect(onCancel).not.toHaveBeenCalled()
-    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+  })
+
+  it("should render non modal, it cannot be closed by clicking anything outside and only by button", async () => {
+    const onCancel = jest.fn()
+    renderModal({ isNotModal: true, onCancel: onCancel })
+    await userEvent.click(screen.getByRole("dialog"))
+    expect(onCancel).not.toHaveBeenCalled()
+    await userEvent.click(screen.getByRole("button", { name: "×" }))
     expect(onCancel).toHaveBeenCalled()
   })
 })
