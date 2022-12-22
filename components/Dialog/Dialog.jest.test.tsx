@@ -25,28 +25,25 @@ describe("Dialog", () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
     const button = screen.getByRole("button", { name: "[ESC]" })
-    expect(button).toHaveFocus()
+    expect(button).toHaveAttribute("tabIndex", "0")
     await userEvent.click(button)
     expect(onCancel).toHaveBeenCalled()
   })
 
-  //Behaviour cannot be tested until jsdom is fixed.
-  xit("should render the model and can be closed by using esc keyboard", async () => {
+  it("should render the model and can be closed by using esc keyboard", async () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
     await userEvent.type(screen.getByRole("dialog"), "{esc}")
     expect(onCancel).toHaveBeenCalled()
   })
 
-  //Behaviour cannot be tested until jsdom is fixed.
-  xit("should render the model and can be closed by using Escape keyboard", async () => {
+  it("should render the model and can be closed by using Escape keyboard", async () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
     await userEvent.type(screen.getByRole("dialog"), "{Escape}")
     expect(onCancel).toHaveBeenCalled()
   })
 
-  //Behaviour cannot be tested until jsdom is fixed.
   xit("should render the model and can be closed by clicking anything outside", async () => {
     const onCancel = jest.fn()
     renderModal({ isNotModal: true, onCancel: onCancel })

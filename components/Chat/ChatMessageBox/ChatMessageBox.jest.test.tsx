@@ -15,7 +15,8 @@ describe("ChatMessageBox", () => {
         "This file will be shared publicly. Are you sure?"
       )
     ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
+    const yesBtn = await screen.findByRole("button", { name: "Yes" })
+    await UserEvent.click(yesBtn)
   }
 
   it("should render component correctly", async () => {
