@@ -13,7 +13,7 @@ describe("HelpDialog", () => {
     const cancelFn = jest.fn()
     render(<HelpDialog onCancel={cancelFn} specialInputCallback={jest.fn()} />)
 
-    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+    await userEvent.click(screen.getByRole("button", { name: "×" }))
     expect(cancelFn).toHaveBeenCalled()
   })
 

@@ -15,6 +15,6 @@ describe("NoSSRCommandBar", () => {
     await userEvent.click(screen.getByRole("button", { name: "Enter" }))
     expect(screen.getByText("Help")).toBeInTheDocument()
     expect(screen.queryByTestId("prompter")).not.toBeInTheDocument()
-    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+    await userEvent.click(screen.getByRole("button", { name: "×" }))
   })
 })
