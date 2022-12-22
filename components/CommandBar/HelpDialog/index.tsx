@@ -1,4 +1,4 @@
-import Modal from "../../Modal"
+import Dialog from "../../Dialog"
 import HelpContent from "./content"
 
 interface Props {
@@ -13,9 +13,9 @@ const HelpDialog = ({ onCancel, specialInputCallback }: Props) => {
   }
 
   return (
-    <Modal onCancel={onCancel} isModal={true}>
+    <Dialog onCancel={onCancel} isNotModal={true}>
       <HelpContent updateSelectedInput={updateSelectedInput} />
-    </Modal>
+    </Dialog>
   )
 }
 

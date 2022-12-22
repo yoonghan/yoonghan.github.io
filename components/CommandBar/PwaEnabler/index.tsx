@@ -8,7 +8,7 @@ import {
 } from "react"
 import Toggle from "react-toggle"
 import Image from "next/image"
-import Modal from "../../Modal"
+import Dialog from "../../Dialog"
 import { usePwaHooks } from "./usePwaHooks"
 import { isAndroid, isMacOrIOS } from "./utils/browserCheck"
 import { register, unregister } from "./utils/register"
@@ -120,7 +120,7 @@ const PwaEnabler = ({ onCancel }: Props) => {
   }, [isEnabled, isProcessing, isTwaApp, labelText, onChangeEnabler])
 
   return (
-    <Modal onCancel={onCancel} isModal={true}>
+    <Dialog onCancel={onCancel} isNotModal={true}>
       <div className={styles.container} ref={dialogContainerRef}>
         <h4>Progressive Web App</h4>
         <div>
@@ -135,7 +135,7 @@ const PwaEnabler = ({ onCancel }: Props) => {
         <div className={styles.toggleContainer}>{drawnSelection}</div>
         {drawnSafariMsg}
       </div>
-    </Modal>
+    </Dialog>
   )
 }
 
