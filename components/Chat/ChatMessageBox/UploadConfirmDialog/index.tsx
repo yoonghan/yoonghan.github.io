@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import Modal from "../../../Modal"
+import Dialog from "../../../Dialog"
 import style from "./UploadConfirmDialog.module.css"
 
 type ReplyGiven = "yes" | "no"
@@ -17,7 +17,7 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
   )
 
   return (
-    <Modal onCancel={onClick("no")} isModal={true}>
+    <Dialog onCancel={onClick("no")} isNotModal={true}>
       <div className={style.container}>
         This file will be shared publicly. Are you sure?
         <div className={style.button}>
@@ -27,7 +27,7 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
           <button onClick={onClick("no")}>No</button>
         </div>
       </div>
-    </Modal>
+    </Dialog>
   )
 }
 

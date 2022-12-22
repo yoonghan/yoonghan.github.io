@@ -1,7 +1,7 @@
 function create() {
-  if (document.getElementById("modal-root") === null) {
+  if (document.getElementById("dialog-root") === null) {
     const portalRoot = document.createElement("div")
-    portalRoot.setAttribute("id", "modal-root")
+    portalRoot.setAttribute("id", "dialog-root")
     document.body.appendChild(portalRoot)
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Button from "../Button"
-import Modal from "../Modal"
+import Dialog from "../Dialog"
 import EmailSender from "./EmailSender"
 import styles from "./LetterBox.module.css"
 
@@ -41,9 +41,9 @@ const LetterBox = () => {
         <Button>Write To Us</Button>
       </form>
       {isDialogShown && (
-        <Modal onCancel={onClose}>
+        <Dialog onCancel={onClose}>
           <EmailSender writeFrom={name.trim()} writeTo={email} />
-        </Modal>
+        </Dialog>
       )}
     </div>
   )

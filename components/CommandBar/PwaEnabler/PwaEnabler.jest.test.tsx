@@ -21,7 +21,7 @@ describe("PwaEnabler", () => {
   it("should render correctly with PWA disabled", async () => {
     const closeFn = jest.fn()
     renderComponent(closeFn)
-    await UserEvent.click(screen.getByText("[ESC]"))
+    await UserEvent.click(screen.getByText("×"))
     expect(closeFn).toHaveBeenCalled()
   })
 
