@@ -44,13 +44,6 @@ describe("Dialog", () => {
     expect(onCancel).toHaveBeenCalled()
   })
 
-  xit("should render the model and can be closed by clicking anything outside", async () => {
-    const onCancel = jest.fn()
-    renderModal({ isNotModal: true, onCancel: onCancel })
-    await userEvent.click(screen.getByRole("dialog"))
-    expect(onCancel).toHaveBeenCalled()
-  })
-
   it("should render the model and cannot be closed by clicking anything outside and only by button", async () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
