@@ -1,12 +1,7 @@
 import { renderHook } from "@testing-library/react"
-import {
-  EnumConnectionStatus,
-  EventEmitter,
-  isEventEmitter,
-  isNoOfUserEmitter,
-  NoOfUserEmitter,
-  usePusher,
-} from "."
+import { usePusher } from "."
+import { EnumConnectionStatus } from "./type/ConnectionStatus"
+import { isEventEmitter, isNoOfUserEmitter } from "./type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
 

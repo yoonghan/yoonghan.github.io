@@ -2,29 +2,8 @@ import { useRef, useDebugValue } from "react"
 import PusherJS, { Channel } from "pusher-js"
 import { PUSHER } from "../config"
 import { Transport } from "pusher-js/types/src/core/config"
-
-export enum EnumConnectionStatus {
-  StartConnecting = "Start Connecting",
-  Connected = "Connected",
-  Disconnected = "Disconnected",
-  Error = "Error",
-}
-
-export type EventEmitter = (message: string, senderId: number) => boolean
-export type NoOfUserEmitter = (subscription_count: number) => boolean
-export type Emitter = EventEmitter | NoOfUserEmitter
-
-export const isEventEmitter = (
-  function1: Emitter
-): function1 is EventEmitter => {
-  return function1.length === 2
-}
-
-export const isNoOfUserEmitter = (
-  function1: Emitter
-): function1 is NoOfUserEmitter => {
-  return function1.length === 1
-}
+import { Emitter } from "./type/Emitter"
+import { EnumConnectionStatus } from "./type/ConnectionStatus"
 
 type Props = {
   eventName: string
