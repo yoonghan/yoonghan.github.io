@@ -1,5 +1,7 @@
 import { renderHook } from "@testing-library/react"
-import { EnumConnectionStatus, usePusher } from "."
+import { usePusher } from "."
+import { EnumConnectionStatus } from "./type/ConnectionStatus"
+import { isEventEmitter, isNoOfUserEmitter } from "./type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
 
@@ -86,7 +88,16 @@ describe("usePusher", () => {
     const printEventCallback = jest.fn()
     const { result } = createPusher({ printEventCallback })
     expect(result.current.send("A message")).toBe(false)
-    expect(result.current.emit("A message", 0)).toBe(false)
+
+    const noOfUserEmitter = result.current.emit("NoOfUsers")
+    const eventEmitter = result.current.emit("Event")
+    expect(
+      isEventEmitter(eventEmitter) ? eventEmitter("A message", 0) : true
+    ).toBe(false)
+
+    expect(isNoOfUserEmitter(noOfUserEmitter) ? noOfUserEmitter(2) : true).toBe(
+      false
+    )
   })
 
   describe("Connected behavior", () => {
@@ -191,7 +202,10 @@ describe("usePusher", () => {
     it("should be able to emit message", async () => {
       const { result, printEventCallback } = await createConnectedPusher()
       act(() => {
-        const message = result.current.emit("Hello message", 2)
+        const emitter = result.current.emit("Event")
+        const message = isEventEmitter(emitter)
+          ? emitter("Hello message", 2)
+          : false
         expect(message).toBe(true)
       })
       expect(printEventCallback).toBeCalledWith("Hello message", 2)
@@ -207,6 +221,16 @@ describe("usePusher", () => {
       expect(printConnectionCallback).toBeCalledWith(
         "Connection is already established"
       )
+    })
+
+    it("should be able to emit no of users", async () => {
+      const { result, printConnectionCallback } = await createConnectedPusher()
+      act(() => {
+        const emitter = result.current.emit("NoOfUsers")
+        const message = isNoOfUserEmitter(emitter) ? emitter(2) : false
+        expect(message).toBe(true)
+      })
+      expect(printConnectionCallback).toBeCalledWith("Active user count: 2")
     })
   })
 })
