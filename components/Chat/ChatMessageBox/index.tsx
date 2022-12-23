@@ -33,7 +33,7 @@ const dropFile =
       .then((resp) => resp.json())
       .then((data) => {
         if (data.status === "ok") {
-          callback(`Uploaded ${data.data}`, true)
+          callback(`${data.data}`, true)
         } else {
           callback(`File upload failed`)
         }
