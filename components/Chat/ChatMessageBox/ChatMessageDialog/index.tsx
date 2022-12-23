@@ -1,9 +1,15 @@
-import { forwardRef, useImperativeHandle, useRef } from "react"
+import { forwardRef, useImperativeHandle, useReducer, useRef } from "react"
 import { useEffect } from "react"
 import { useState } from "react"
 import { Message, ChatBubbleProps } from "react-bell-chat"
 
 import dynamic from "next/dynamic"
+import {
+  MessageActionType,
+  messageReducer,
+  messageReducerInitialState,
+} from "./useMessageReducer/useMessageReducer"
+import { MessageType } from "../../config/MessageType"
 
 const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
   ssr: false,
@@ -45,7 +51,10 @@ export const authors = [
 
 const ChatMessageDialog = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
-    const [messages, setMessages] = useState<Message[]>(initialMessage || [])
+    const [messages, dispatch] = useReducer(
+      messageReducer,
+      initialMessage || messageReducerInitialState
+    )
     const height = useRef<number>(0)
 
     useEffect(() => {
@@ -55,16 +64,14 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
     useImperativeHandle(ref, () => {
       return {
         addMessage(senderId: number | undefined, message: string) {
-          setMessages([
-            ...messages,
-            {
-              id: messages.length,
-              authorId: senderId,
+          dispatch({
+            type: MessageActionType.Add,
+            payload: {
               message,
-              createdOn: new Date(),
-              isSend: true,
+              type: MessageType.TEXT,
+              authorId: senderId,
             },
-          ])
+          })
         },
       }
     })

@@ -31,7 +31,7 @@ describe("ChatMessageDialog", () => {
       {
         id: 1,
         authorId: 2,
-        message: "Second Message",
+        message: "T|Second Message",
         createdOn,
         isSend: true,
       },

@@ -1,5 +1,6 @@
 import { ChatFeed, Message, ChatFeedApi, Author } from "react-bell-chat"
 import CustomMessageRender from "./CustomMessageRender"
+import CustomSystemChatBubble from "./CustomSystemChatBubble"
 
 interface Props {
   messages: Message[]
@@ -25,6 +26,7 @@ const NoSSRChatFeed = ({ messages, authors, height, yourAuthorId }: Props) => {
       maxHeight={requiredHeight}
       ref={triggerFeed as any}
       CustomMessageRender={CustomMessageRender}
+      CustomSystemChatBubble={CustomSystemChatBubble}
     />
   )
 }

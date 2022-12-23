@@ -1,4 +1,5 @@
-import { isALink } from "@/components/Chat/config/MessageHelper"
+import { decodeMessage } from "@/components/Chat/config/MessageFormatter"
+import { MessageType } from "@/components/Chat/config/MessageType"
 import { Message, MessageRenderProps } from "react-bell-chat"
 
 const CustomMessageRender = ({
@@ -12,14 +13,17 @@ const CustomMessageRender = ({
     </span>
   )
 
-  if (isALink(message.message)) {
-    return (
-      <a href={message.message} target={"_blank"} rel="noreferrer">
-        {renderMessage("[File Received]")}
-      </a>
-    )
-  } else {
-    return renderMessage(message.message)
+  const complexMessage = decodeMessage(message.message)
+
+  switch (complexMessage.messageType) {
+    case MessageType.FILE:
+      return (
+        <a href={complexMessage.message} target={"_blank"} rel="noreferrer">
+          {renderMessage("[File Received]")}
+        </a>
+      )
+    default:
+      return renderMessage(complexMessage.message)
   }
 }
 
