@@ -4,12 +4,17 @@ import { PUSHER } from "../config"
 import { Transport } from "pusher-js/types/src/core/config"
 import { Emitter } from "./type/Emitter"
 import { EnumConnectionStatus } from "./type/ConnectionStatus"
+import { MessageType } from "../config/MessageType"
 
 type Props = {
   eventName: string
   channelName: string
-  printConnectionCallback: (message: string) => void
-  printEventCallback: (message: string, senderId?: number) => void
+  printConnectionCallback: (message: string, messageType: MessageType) => void
+  printEventCallback: (
+    message: string,
+    messageType: MessageType,
+    senderId?: number
+  ) => void
   appKey: string
   cluster: string
   nonprivate?: boolean
@@ -36,7 +41,10 @@ export function usePusher(props: Props) {
     latestConnectionStatus: EnumConnectionStatus
   ) => {
     connectionStatus.current = latestConnectionStatus
-    printConnectionCallback(`Changed Status: ${latestConnectionStatus}`)
+    printConnectionCallback(
+      `Status: ${latestConnectionStatus}`,
+      MessageType.CONNECTION
+    )
   }
 
   const subscribeToChannel = () => {
@@ -45,7 +53,7 @@ export function usePusher(props: Props) {
       channel.current.bind(
         eventName,
         (data: { message: string; senderId?: number }) => {
-          printEventCallback(data.message, data.senderId)
+          printEventCallback(data.message, MessageType.TEXT, data.senderId)
         }
       )
     }
@@ -57,7 +65,8 @@ export function usePusher(props: Props) {
         "pusher:subscription_count",
         (data: { subscription_count: string }) => {
           printConnectionCallback(
-            `Active user count: ${data.subscription_count}`
+            `Active user count: ${data.subscription_count}`,
+            MessageType.USERCOUNT
           )
         }
       )
@@ -77,7 +86,8 @@ export function usePusher(props: Props) {
       pusherChannelClient.current.connection.bind("failed", () => {
         updateConnectionStatus(EnumConnectionStatus.Disconnected)
         printConnectionCallback(
-          "Connection failed as websocket is not supported by browser"
+          "Connection failed as websocket is not supported by browser",
+          MessageType.CONNECTION_ERROR
         )
         pusherChannelClient.current = undefined
         channel.current = undefined
@@ -93,7 +103,8 @@ export function usePusher(props: Props) {
           error?.error?.data?.code !== 1006
         ) {
           printConnectionCallback(
-            "A different Id was requested, please refresh the page."
+            "A different Id was requested, please refresh the page.",
+            MessageType.CONNECTION_ERROR
           )
           updateConnectionStatus(EnumConnectionStatus.Disconnected)
           pusherChannelClient.current = undefined
@@ -102,7 +113,10 @@ export function usePusher(props: Props) {
           // eslint-disable-next-line no-console
           console.error(error)
           updateConnectionStatus(EnumConnectionStatus.Error)
-          printConnectionCallback("Interruption error encountered")
+          printConnectionCallback(
+            "Interruption error encountered",
+            MessageType.CONNECTION_ERROR
+          )
         }
       })
     }
@@ -112,7 +126,7 @@ export function usePusher(props: Props) {
     if (pusherChannelClient.current) {
       pusherChannelClient.current.connection.bind("disconnected", () => {
         updateConnectionStatus(EnumConnectionStatus.Disconnected)
-        printConnectionCallback("Disconnected")
+        printConnectionCallback("Disconnected", MessageType.CONNECTION_ERROR)
         pusherChannelClient.current = undefined
         channel.current = undefined
       })
@@ -121,12 +135,18 @@ export function usePusher(props: Props) {
 
   const connect = () => {
     if (pusherChannelClient.current) {
-      printConnectionCallback("Connection is already established")
+      printConnectionCallback(
+        "Connection is already established",
+        MessageType.TEXT
+      )
       return
     }
 
     updateConnectionStatus(EnumConnectionStatus.StartConnecting)
-    printConnectionCallback("Establishing Connection, please wait.")
+    printConnectionCallback(
+      "Establishing Connection, please wait.",
+      MessageType.TEXT
+    )
 
     const enabledTransports: Transport[] = ["sockjs", "ws"]
 

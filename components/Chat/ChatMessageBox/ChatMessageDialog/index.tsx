@@ -1,7 +1,6 @@
 import { forwardRef, useImperativeHandle, useReducer, useRef } from "react"
 import { useEffect } from "react"
-import { useState } from "react"
-import { Message, ChatBubbleProps } from "react-bell-chat"
+import { Message } from "react-bell-chat"
 
 import dynamic from "next/dynamic"
 import {
@@ -21,7 +20,11 @@ const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
 })
 
 export type MessageHandler = {
-  addMessage: (senderId: number | undefined, message: string) => void
+  addMessage: (
+    senderId: number | undefined,
+    message: string,
+    messageType?: MessageType
+  ) => void
 }
 
 export interface Props {
@@ -63,12 +66,16 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
 
     useImperativeHandle(ref, () => {
       return {
-        addMessage(senderId: number | undefined, message: string) {
+        addMessage(
+          senderId: number | undefined,
+          message: string,
+          messageType: MessageType = MessageType.TEXT
+        ) {
           dispatch({
             type: MessageActionType.Add,
             payload: {
               message,
-              type: MessageType.TEXT,
+              type: messageType,
               authorId: senderId,
             },
           })

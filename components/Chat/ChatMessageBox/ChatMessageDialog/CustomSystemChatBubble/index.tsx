@@ -1,4 +1,6 @@
 import { decodeMessage } from "@/components/Chat/config/MessageFormatter"
+import { MessageType } from "@/components/Chat/config/MessageType"
+import { CSSProperties } from "react"
 import {
   Author,
   ChatBubbleProps,
@@ -9,20 +11,30 @@ import {
 const CustomSystemChatBubble = ({
   message,
   ...remainingProps
-}: ChatBubbleProps<unknown, Message<string>, Author>) => {
-  const renderMessage = (formattedMessage: string) => (
+}: ChatBubbleProps<any, Message<string>, Author>) => {
+  const renderMessage = (
+    formattedMessage: string,
+    textStyle?: CSSProperties
+  ) => (
     <SystemChatBubble
+      {...remainingProps}
+      styles={{
+        systemChatBubbleContainer: textStyle,
+      }}
       message={{
         ...message,
         message: formattedMessage,
       }}
-      {...remainingProps}
     />
   )
 
   const complexMessage = decodeMessage(message.message)
 
-  switch (complexMessage.message) {
+  switch (complexMessage.messageType) {
+    case MessageType.CONNECTION:
+      return renderMessage(complexMessage.message, { color: "deepskyblue" })
+    case MessageType.CONNECTION_ERROR:
+      return renderMessage(complexMessage.message, { color: "darkred" })
     default:
       return renderMessage(complexMessage.message)
   }

@@ -13,6 +13,7 @@ import Button from "@/components/Button"
 import TextArea from "@/components/Input/TextArea"
 import { useDropzone } from "react-dropzone"
 import UploadConfirmDialog from "./UploadConfirmDialog"
+import { MessageType } from "../config/MessageType"
 
 interface Props {
   onMessageSend: (message: string) => void
@@ -98,9 +99,17 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 
     useImperativeHandle(ref, () => {
       return {
-        addMessage(senderId: number | undefined, message: string) {
+        addMessage(
+          senderId: number | undefined,
+          message: string,
+          messageType?: MessageType
+        ) {
           if (chatMessageDialogRef.current !== null) {
-            chatMessageDialogRef.current.addMessage(senderId, message)
+            chatMessageDialogRef.current.addMessage(
+              senderId,
+              message,
+              messageType
+            )
           }
         },
       }

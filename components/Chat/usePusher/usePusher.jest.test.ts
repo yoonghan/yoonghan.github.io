@@ -4,6 +4,7 @@ import { EnumConnectionStatus } from "./type/ConnectionStatus"
 import { isEventEmitter, isNoOfUserEmitter } from "./type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
+import { MessageType } from "../config/MessageType"
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -71,7 +72,8 @@ describe("usePusher", () => {
       result.current.connect()
     })
     expect(printConnectionCallback).toBeCalledWith(
-      "Establishing Connection, please wait."
+      "Establishing Connection, please wait.",
+      MessageType.TEXT
     )
 
     await act(async () => {
@@ -147,7 +149,8 @@ describe("usePusher", () => {
       })
 
       expect(printConnectionCallback).toBeCalledWith(
-        "Connection failed as websocket is not supported by browser"
+        "Connection failed as websocket is not supported by browser",
+        MessageType.CONNECTION_ERROR
       )
       expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Disconnected
@@ -164,7 +167,8 @@ describe("usePusher", () => {
       })
 
       expect(printConnectionCallback).toBeCalledWith(
-        "Interruption error encountered"
+        "Interruption error encountered",
+        MessageType.CONNECTION_ERROR
       )
       expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Error
@@ -182,7 +186,8 @@ describe("usePusher", () => {
       })
 
       expect(printConnectionCallback).toBeCalledWith(
-        "A different Id was requested, please refresh the page."
+        "A different Id was requested, please refresh the page.",
+        MessageType.CONNECTION_ERROR
       )
       expect(result.current.getConnectionStatus()).toBe(
         EnumConnectionStatus.Disconnected
@@ -208,7 +213,11 @@ describe("usePusher", () => {
           : false
         expect(message).toBe(true)
       })
-      expect(printEventCallback).toBeCalledWith("Hello message", 2)
+      expect(printEventCallback).toBeCalledWith(
+        "Hello message",
+        2,
+        MessageType.TEXT
+      )
     })
 
     it("should not allow, connection that is already connected", async () => {
@@ -219,7 +228,8 @@ describe("usePusher", () => {
       })
 
       expect(printConnectionCallback).toBeCalledWith(
-        "Connection is already established"
+        "Connection is already established",
+        MessageType.TEXT
       )
     })
 
@@ -230,7 +240,10 @@ describe("usePusher", () => {
         const message = isNoOfUserEmitter(emitter) ? emitter(2) : false
         expect(message).toBe(true)
       })
-      expect(printConnectionCallback).toBeCalledWith("Active user count: 2")
+      expect(printConnectionCallback).toBeCalledWith(
+        "Active user count: 2",
+        MessageType.USERCOUNT
+      )
     })
   })
 })

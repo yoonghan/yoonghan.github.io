@@ -8,6 +8,7 @@ import { GetStaticProps } from "next"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import Head from "next/head"
+import { MessageType } from "@/components/Chat/config/MessageType"
 
 interface Props {
   appKey: string
@@ -17,11 +18,12 @@ interface Props {
 const Messenger = ({ appKey, cluster }: Props) => {
   const chatMessageBoxRef = useRef<MessageHandler>(null)
 
-  const printMessage = (sender?: number) => (message: string) => {
-    if (chatMessageBoxRef.current !== null) {
-      chatMessageBoxRef.current.addMessage(sender, message)
+  const printMessage =
+    (sender?: number) => (message: string, messageType: MessageType) => {
+      if (chatMessageBoxRef.current !== null) {
+        chatMessageBoxRef.current.addMessage(sender, message, messageType)
+      }
     }
-  }
 
   const connectionPrinter = useMemo(() => printMessage(undefined), [])
   const eventPrinter = useMemo(() => printMessage(2), [])
@@ -38,7 +40,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
   })
 
   /**
-   * Found reason that useHook returning "object" does a re-render if as dependency
+   * Found reason that useHook returning "object" does a re-render if used as dependency
    */
   useEffect(() => {
     connect()
