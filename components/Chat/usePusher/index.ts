@@ -5,6 +5,7 @@ import { Transport } from "pusher-js/types/src/core/config"
 import { Emitter } from "./type/Emitter"
 import { EnumConnectionStatus } from "./type/ConnectionStatus"
 import { MessageType } from "../config/MessageType"
+import { decodeMessage, encodeMessage } from "../config/MessageFormatter"
 
 type Props = {
   eventName: string
@@ -53,7 +54,12 @@ export function usePusher(props: Props) {
       channel.current.bind(
         eventName,
         (data: { message: string; senderId?: number }) => {
-          printEventCallback(data.message, MessageType.TEXT, data.senderId)
+          const complexMessage = decodeMessage(data.message)
+          printEventCallback(
+            complexMessage.message,
+            complexMessage.messageType,
+            data.senderId
+          )
         }
       )
     }
@@ -168,9 +174,12 @@ export function usePusher(props: Props) {
     }
   }
 
-  const sendMessage = (message: string) => {
+  const sendMessage = (message: string, messageType: MessageType) => {
     if (channel.current) {
-      const isSent = channel.current.trigger(eventName, { message })
+      const complexMessage = encodeMessage(message, messageType)
+      const isSent = channel.current.trigger(eventName, {
+        message: complexMessage,
+      })
       return isSent
     }
     return false

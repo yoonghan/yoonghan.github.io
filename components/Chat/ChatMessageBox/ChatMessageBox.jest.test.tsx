@@ -4,6 +4,7 @@ import UserEvent from "@testing-library/user-event"
 import { useRef } from "react"
 import "../../../__mocks__/fetchMock"
 import ChatMessageBox from "."
+import { MessageType } from "../config/MessageType"
 
 describe("ChatMessageBox", () => {
   const renderComponent = (onMessageSend = jest.fn()) =>
@@ -92,7 +93,7 @@ describe("ChatMessageBox", () => {
       await screen.findByText("Uploading file jamesmillar.jpg...")
     ).toBeInTheDocument()
     expect(await screen.findByText(`${serverFileName}`)).toBeInTheDocument()
-    expect(messageSendFn).toBeCalledWith(`${serverFileName}`)
+    expect(messageSendFn).toBeCalledWith(`${serverFileName}`, MessageType.FILE)
   })
 
   it("should be able to handle failed", async () => {

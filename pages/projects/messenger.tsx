@@ -52,8 +52,8 @@ const Messenger = ({ appKey, cluster }: Props) => {
   }, [])
 
   const onMessageSend = useCallback(
-    (message: string) => {
-      send(message)
+    (message: string, messageType: MessageType) => {
+      send(message, messageType)
     },
     [send]
   )

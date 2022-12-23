@@ -5,6 +5,7 @@ import { isEventEmitter, isNoOfUserEmitter } from "./type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
 import { MessageType } from "../config/MessageType"
+import { encodeMessage } from "../config/MessageFormatter"
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -89,7 +90,7 @@ describe("usePusher", () => {
   it("should not be able to send message when it's not connected", () => {
     const printEventCallback = jest.fn()
     const { result } = createPusher({ printEventCallback })
-    expect(result.current.send("A message")).toBe(false)
+    expect(result.current.send("A message", MessageType.TEXT)).toBe(false)
 
     const noOfUserEmitter = result.current.emit("NoOfUsers")
     const eventEmitter = result.current.emit("Event")
@@ -198,7 +199,7 @@ describe("usePusher", () => {
     it("should be able to send message", async () => {
       const { result, printEventCallback } = await createConnectedPusher()
       act(() => {
-        const message = result.current.send("Hello message")
+        const message = result.current.send("Hello message", MessageType.TEXT)
         expect(message).toBe(false) //will always return false, doesn't matter
       })
       expect(printEventCallback).not.toBeCalled()
@@ -215,8 +216,24 @@ describe("usePusher", () => {
       })
       expect(printEventCallback).toBeCalledWith(
         "Hello message",
-        2,
-        MessageType.TEXT
+        MessageType.TEXT,
+        2
+      )
+    })
+
+    it("should be able to emit complex message", async () => {
+      const { result, printEventCallback } = await createConnectedPusher()
+      act(() => {
+        const emitter = result.current.emit("Event")
+        const message = isEventEmitter(emitter)
+          ? emitter(encodeMessage("Hello message", MessageType.CONNECTION), 2)
+          : false
+        expect(message).toBe(true)
+      })
+      expect(printEventCallback).toBeCalledWith(
+        "Hello message",
+        MessageType.CONNECTION,
+        2
       )
     })
 

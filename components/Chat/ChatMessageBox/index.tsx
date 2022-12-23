@@ -16,7 +16,7 @@ import UploadConfirmDialog from "./UploadConfirmDialog"
 import { MessageType } from "../config/MessageType"
 
 interface Props {
-  onMessageSend: (message: string) => void
+  onMessageSend: (message: string, messageType: MessageType) => void
 }
 
 const dropFile =
@@ -56,7 +56,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       e?.preventDefault()
       if (chatMessageDialogRef.current !== null && message !== "") {
         chatMessageDialogRef.current.addMessage(userId, message)
-        onMessageSend(message)
+        onMessageSend(message, MessageType.TEXT)
       }
       setMessage("")
     }
@@ -65,7 +65,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       (message: string, notifyReceipient = false) => {
         if (chatMessageDialogRef.current !== null) {
           chatMessageDialogRef.current.addMessage(undefined, message)
-          if (notifyReceipient) onMessageSend(message)
+          if (notifyReceipient) onMessageSend(message, MessageType.FILE)
         }
       },
       [onMessageSend]
