@@ -5,8 +5,8 @@ describe("MessageFormatter", () => {
   it("should be able to encode message correctly", () => {
     expect(encodeMessage("hi", MessageType.FILE)).toBe("F|hi")
     expect(encodeMessage("|HIsdf", MessageType.FILE)).toBe("F||HIsdf")
-    expect(encodeMessage("this is a long message", MessageType.MESSAGE)).toBe(
-      "M|this is a long message"
+    expect(encodeMessage("this is a long message", MessageType.TEXT)).toBe(
+      "T|this is a long message"
     )
   })
 
@@ -15,9 +15,13 @@ describe("MessageFormatter", () => {
       messageType: MessageType.FILE,
       message: "hi",
     })
-    expect(decodeMessage("M|this is a long message")).toStrictEqual({
-      messageType: MessageType.MESSAGE,
+    expect(decodeMessage("T|this is a long message")).toStrictEqual({
+      messageType: MessageType.TEXT,
       message: "this is a long message",
+    })
+    expect(decodeMessage("I am wrongly formatted")).toStrictEqual({
+      messageType: MessageType.TEXT,
+      message: "I am wrongly formatted",
     })
   })
 })

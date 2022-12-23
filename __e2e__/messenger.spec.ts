@@ -26,8 +26,12 @@ test.describe("Messenger", () => {
     expect(await page.content()).not.toContain("Hello World")
     await page.getByPlaceholder("Your Message").fill("Hello World")
     await page.getByRole("button", { name: "Send" }).click()
-    expect(page.getByPlaceholder("Your Message")).toHaveValue("")
-    expect(await page.content()).toContain("Hello World")
+    await page.waitForSelector(".react-bell-chat__chat-bubble")
+    expect(
+      page
+        .locator(".react-bell-chat__chat-scroll-area")
+        .getByText("Hello World")
+    ).toBeDefined()
   })
 
   test("should show a pop up to indicate file upload", async ({ page }) => {

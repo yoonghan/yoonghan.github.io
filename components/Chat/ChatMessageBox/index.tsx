@@ -13,9 +13,10 @@ import Button from "@/components/Button"
 import TextArea from "@/components/Input/TextArea"
 import { useDropzone } from "react-dropzone"
 import UploadConfirmDialog from "./UploadConfirmDialog"
+import { MessageType } from "../config/MessageType"
 
 interface Props {
-  onMessageSend: (message: string) => void
+  onMessageSend: (message: string, messageType: MessageType) => void
 }
 
 const dropFile =
@@ -55,7 +56,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       e?.preventDefault()
       if (chatMessageDialogRef.current !== null && message !== "") {
         chatMessageDialogRef.current.addMessage(userId, message)
-        onMessageSend(message)
+        onMessageSend(message, MessageType.TEXT)
       }
       setMessage("")
     }
@@ -64,7 +65,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       (message: string, notifyReceipient = false) => {
         if (chatMessageDialogRef.current !== null) {
           chatMessageDialogRef.current.addMessage(undefined, message)
-          if (notifyReceipient) onMessageSend(message)
+          if (notifyReceipient) onMessageSend(message, MessageType.FILE)
         }
       },
       [onMessageSend]
@@ -98,9 +99,17 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 
     useImperativeHandle(ref, () => {
       return {
-        addMessage(senderId: number | undefined, message: string) {
+        addMessage(
+          senderId: number | undefined,
+          message: string,
+          messageType?: MessageType
+        ) {
           if (chatMessageDialogRef.current !== null) {
-            chatMessageDialogRef.current.addMessage(senderId, message)
+            chatMessageDialogRef.current.addMessage(
+              senderId,
+              message,
+              messageType
+            )
           }
         },
       }
