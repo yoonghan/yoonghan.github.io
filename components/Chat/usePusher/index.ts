@@ -10,6 +10,22 @@ export enum EnumConnectionStatus {
   Error = "Error",
 }
 
+export type EventEmitter = (message: string, senderId: number) => boolean
+export type NoOfUserEmitter = (subscription_count: number) => boolean
+export type Emitter = EventEmitter | NoOfUserEmitter
+
+export const isEventEmitter = (
+  function1: Emitter
+): function1 is EventEmitter => {
+  return function1.length === 2
+}
+
+export const isNoOfUserEmitter = (
+  function1: Emitter
+): function1 is NoOfUserEmitter => {
+  return function1.length === 1
+}
+
 type Props = {
   eventName: string
   channelName: string
@@ -51,6 +67,19 @@ export function usePusher(props: Props) {
         eventName,
         (data: { message: string; senderId?: number }) => {
           printEventCallback(data.message, data.senderId)
+        }
+      )
+    }
+  }
+
+  const monitorOnlineUsers = () => {
+    if (channel.current) {
+      channel.current.bind(
+        "pusher:subscription_count",
+        (data: { subscription_count: string }) => {
+          printConnectionCallback(
+            `Active user count: ${data.subscription_count}`
+          )
         }
       )
     }
@@ -136,6 +165,7 @@ export function usePusher(props: Props) {
       monitorError()
       monitorDisconnected()
       monitorFail()
+      monitorOnlineUsers()
     }
   }
 
@@ -147,12 +177,28 @@ export function usePusher(props: Props) {
     return false
   }
 
-  const emitMessage = (message: string, senderId: number) => {
-    if (channel.current) {
-      channel.current.emit(eventName, { senderId, message })
-      return true
+  const emit = (type: "Event" | "NoOfUsers"): Emitter => {
+    switch (type) {
+      case "Event":
+        return (message: string, senderId: number) => {
+          if (channel.current) {
+            channel.current.emit(eventName, { senderId, message })
+            return true
+          }
+          return false
+        }
+      case "NoOfUsers": {
+        return (subscription_count: number) => {
+          if (channel.current) {
+            channel.current.emit("pusher:subscription_count", {
+              subscription_count,
+            })
+            return true
+          }
+          return false
+        }
+      }
     }
-    return false
   }
 
   const emitConnectionEvent = (event: string, message?: any) => {
@@ -184,7 +230,7 @@ export function usePusher(props: Props) {
   return {
     connect,
     send: sendMessage, //sender does not receive emitted data
-    emit: emitMessage, //sender receive emitted data
+    emit, //sender receive emitted data
     emitConnection: emitConnectionEvent,
     disconnect,
     isConnected,
