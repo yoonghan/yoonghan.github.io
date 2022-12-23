@@ -91,10 +91,8 @@ describe("ChatMessageBox", () => {
     expect(
       await screen.findByText("Uploading file jamesmillar.jpg...")
     ).toBeInTheDocument()
-    expect(
-      await screen.findByText(`Uploaded ${serverFileName}`)
-    ).toBeInTheDocument()
-    expect(messageSendFn).toBeCalledWith(`Uploaded ${serverFileName}`)
+    expect(await screen.findByText(`${serverFileName}`)).toBeInTheDocument()
+    expect(messageSendFn).toBeCalledWith(`${serverFileName}`)
   })
 
   it("should be able to handle failed", async () => {
