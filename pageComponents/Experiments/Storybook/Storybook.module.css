@@ -7,3 +7,11 @@
   color: #fff;
   border-radius: 0.5rem;
 }
+
+.container > section::after {
+  content: "";
+  border-bottom: 5px double #000;
+  padding-top: 2rem;
+  width: 100vw;
+  position: absolute;
+}
