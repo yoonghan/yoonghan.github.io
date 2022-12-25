@@ -53,6 +53,11 @@ const pages: PageConfig[] = [
     filterOptions: [FilterOption.NOT_MENU],
   },
   {
+    path: "/experiments/storybook",
+    display: "storybook",
+    filterOptions: [FilterOption.NOT_MENU],
+  },
+  {
     path: "/sitemap",
     display: "Site Map",
     filterOptions: [

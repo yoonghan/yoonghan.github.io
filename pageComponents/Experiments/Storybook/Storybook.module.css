@@ -1,0 +1,9 @@
+.container > section > h2 {
+  text-align: left;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem 1rem;
+  background-color: #000;
+  color: #fff;
+  border-radius: 0.5rem;
+}
