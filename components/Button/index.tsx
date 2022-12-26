@@ -7,7 +7,7 @@ interface ButtonProps {
   href?: string
   target?: string
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  color?: "orange" | "white" | "grey"
+  color?: "orange" | "white" | "grey" | "blue"
   styling?: {
     small: boolean
     inverted: boolean
