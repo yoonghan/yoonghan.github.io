@@ -169,6 +169,7 @@
       "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.4,
+      "postInteractionWait": 500,
       "requireSameDimensions": true
     },
     {
@@ -178,6 +179,7 @@
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
+      "postInteractionWait": 500,
       "clickSelector": "text=Show Dialog"
     },
     {
@@ -187,6 +189,7 @@
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
+      "postInteractionWait": 500,
       "clickSelector": "text=Show Confirmation Dialog"
     }
   ],
