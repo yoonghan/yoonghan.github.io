@@ -178,7 +178,7 @@
       "delay": 100,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
-      "postInteractionWait": 1000,
+      "postInteractionWait": 500,
       "clickSelector": "text=Show Dialog"
     },
     {
@@ -187,7 +187,7 @@
       "delay": 100,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
-      "postInteractionWait": 1000,
+      "postInteractionWait": 500,
       "clickSelector": "text=Show Confirmation Dialog"
     }
   ],
