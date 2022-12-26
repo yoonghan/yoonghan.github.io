@@ -136,6 +136,10 @@ const Footer = ({ className }: Props) => {
             padding: 0;
             justify-content: center;
           }
+
+          .container ul {
+            padding-left: 1rem;
+          }
         }
       `}</style>
     </footer>

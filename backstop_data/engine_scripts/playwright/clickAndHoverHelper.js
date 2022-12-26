@@ -15,7 +15,6 @@ module.exports = async (page, scenario, viewport) => {
           // eslint-disable-next-line no-console
           console.error("Definition is missing [id]")
         }
-        console.log("scrollby", posY || viewPortHeight)
         const element = document.querySelector(id)
         element.scrollBy(0, posY || viewPortHeight)
       },
@@ -50,7 +49,7 @@ module.exports = async (page, scenario, viewport) => {
   if (postInteractionWait) {
     if (parseInt(postInteractionWait) > 0) {
       await page.waitForTimeout(postInteractionWait)
-    } else {
+    } else if (postInteractionWait) {
       await page.waitForSelector(postInteractionWait)
     }
   }
