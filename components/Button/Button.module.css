@@ -40,6 +40,7 @@
 .container.orange {
   background: var(--button-orange-bg);
   color: var(--button-orange);
+  border-color: var(--button-orange-bg);
 }
 .container.orange:hover {
   background: var(--button-orange);
@@ -48,8 +49,18 @@
 .container.grey {
   background: var(--button-grey-bg);
   color: var(--button-grey);
+  border-color: var(--button-grey-bg);
 }
 .container.grey:hover {
   background: var(--button-grey);
   color: var(--button-grey-bg);
+}
+.container.blue {
+  background: var(--button-blue-bg);
+  color: var(--button-blue);
+  border-color: var(--button-blue-bg);
+}
+.container.blue:hover {
+  background: var(--button-blue);
+  color: var(--button-blue-bg);
 }

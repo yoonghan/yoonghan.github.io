@@ -1,4 +1,5 @@
-import { useCallback } from "react"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
+import { useCallback, useMemo } from "react"
 import Dialog from "../../../Dialog"
 import style from "./UploadConfirmDialog.module.css"
 
@@ -16,17 +17,18 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
     [onReplyClick]
   )
 
+  const onClickNo = useMemo(() => onClick("no"), [onClick])
+  const onClickYes = useMemo(() => onClick("yes"), [onClick])
+
   return (
     <Dialog onCancel={onClick("no")} isNotModal={true}>
-      <div className={style.container}>
-        This file will be shared publicly. Are you sure?
-        <div className={style.button}>
-          <button onClick={onClick("yes")} className={style.primary}>
-            Yes
-          </button>
-          <button onClick={onClick("no")}>No</button>
-        </div>
-      </div>
+      <ConfirmationDialog
+        title="Upload File"
+        onCancel={onClickNo}
+        onNoClick={onClickNo}
+        onYesClick={onClickYes}
+        message="This file will be shared publicly. Are you sure?"
+      />
     </Dialog>
   )
 }
