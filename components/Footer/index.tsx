@@ -106,7 +106,7 @@ const Footer = ({ className }: Props) => {
           list-style: none;
         }
 
-        .container ul li {
+        .container :global(li) {
           margin: 0.5rem 0;
         }
 
