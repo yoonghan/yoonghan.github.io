@@ -102,11 +102,11 @@ const Footer = ({ className }: Props) => {
           font-size: 0.75rem;
         }
 
-        .container :global(ul) {
+        .container ul {
           list-style: none;
         }
 
-        .container :global(li) {
+        .container ul li {
           margin: 0.5rem 0;
         }
 
@@ -135,6 +135,10 @@ const Footer = ({ className }: Props) => {
             margin: 0;
             padding: 0;
             justify-content: center;
+          }
+
+          .container ul {
+            padding-left: 1rem;
           }
         }
       `}</style>

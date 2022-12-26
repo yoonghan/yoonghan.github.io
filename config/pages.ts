@@ -54,7 +54,7 @@ const pages: PageConfig[] = [
   },
   {
     path: "/experiments/storybook",
-    display: "storybook",
+    display: "Storybook",
     filterOptions: [FilterOption.NOT_MENU],
   },
   {
