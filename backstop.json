@@ -162,6 +162,32 @@
           "height": 768
         }
       ]
+    },
+    {
+      "label": "Storybook",
+      "url": "http://localhost:3000/experiments/storybook",
+      "delay": 100,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Storybook - Dialog",
+      "url": "http://localhost:3000/experiments/storybook",
+      "delay": 100,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true,
+      "clickSelector": "text=Show Dialog"
+    },
+    {
+      "label": "Storybook - Confirmation ",
+      "url": "http://localhost:3000/experiments/storybook",
+      "delay": 100,
+      "expect": 0,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true,
+      "clickSelector": "text=Show Confirmation Dialog"
     }
   ],
   "paths": {

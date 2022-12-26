@@ -11,7 +11,6 @@
 .container > section::after {
   content: "";
   border-bottom: 5px double #000;
-  padding-top: 2rem;
+  padding: 2rem;
   width: 100vw;
-  position: absolute;
 }
