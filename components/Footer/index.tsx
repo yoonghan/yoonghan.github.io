@@ -102,7 +102,7 @@ const Footer = ({ className }: Props) => {
           font-size: 0.75rem;
         }
 
-        .container ul {
+        .container :global(ul) {
           list-style: none;
         }
 
