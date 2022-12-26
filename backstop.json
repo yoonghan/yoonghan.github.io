@@ -176,20 +176,18 @@
       "label": "Storybook - Dialog",
       "url": "http://localhost:3000/experiments/storybook",
       "delay": 100,
-      "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
-      "postInteractionWait": 500,
+      "postInteractionWait": 1000,
       "clickSelector": "text=Show Dialog"
     },
     {
       "label": "Storybook - Confirmation ",
       "url": "http://localhost:3000/experiments/storybook",
       "delay": 100,
-      "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,
-      "postInteractionWait": 500,
+      "postInteractionWait": 1000,
       "clickSelector": "text=Show Confirmation Dialog"
     }
   ],
