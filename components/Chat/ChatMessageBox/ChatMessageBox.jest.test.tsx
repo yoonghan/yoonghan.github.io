@@ -151,7 +151,7 @@ describe("ChatMessageBox", () => {
         "This file will be shared publicly. Are you sure?"
       )
     ).toBeInTheDocument()
-    await UserEvent.click(screen.getByRole("button", { name: "No" }))
+    await UserEvent.click(await screen.findByRole("button", { name: "No" }))
 
     expect(
       screen.queryByText("This file will be shared publicly. Are you sure?")
