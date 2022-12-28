@@ -1,7 +1,5 @@
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { useCallback, useMemo } from "react"
-import Dialog from "../../../Dialog"
-
 type ReplyGiven = "yes" | "no"
 
 interface Props {
@@ -9,12 +7,15 @@ interface Props {
 }
 
 const DownloadConfirmDialog = ({ onReplyClick }: Props) => {
-  const onClick = (reply: ReplyGiven) => () => {
-    onReplyClick(reply)
-  }
+  const onClick = useCallback(
+    (reply: ReplyGiven) => () => {
+      onReplyClick(reply)
+    },
+    [onReplyClick]
+  )
 
-  const onClickNo = onClick("no")
-  const onClickYes = onClick("yes")
+  const onClickNo = useMemo(() => onClick("no"), [onClick])
+  const onClickYes = useMemo(() => onClick("yes"), [onClick])
 
   return (
     <ConfirmationDialog

@@ -1,6 +1,5 @@
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { useCallback, useMemo } from "react"
-import Dialog from "../../../Dialog"
 
 type ReplyGiven = "yes" | "no"
 
@@ -20,15 +19,13 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
   const onClickYes = useMemo(() => onClick("yes"), [onClick])
 
   return (
-    <Dialog onCancel={onClick("no")} isNotModal={true}>
-      <ConfirmationDialog
-        title="Upload File"
-        onCancel={onClickNo}
-        onNoClick={onClickNo}
-        onYesClick={onClickYes}
-        message="This file will be shared publicly. Are you sure?"
-      />
-    </Dialog>
+    <ConfirmationDialog
+      title="Upload File"
+      onCancel={onClickNo}
+      onNoClick={onClickNo}
+      onYesClick={onClickYes}
+      message="This file will be shared publicly. Are you sure?"
+    />
   )
 }
 

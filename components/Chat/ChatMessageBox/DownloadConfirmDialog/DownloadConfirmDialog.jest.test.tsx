@@ -17,6 +17,7 @@ describe("DownloadConfirmDialog", () => {
     render(<DownloadConfirmDialog onReplyClick={responseFn} />)
 
     await userEvent.click(screen.getByRole("button", { name: "Yes" }))
+    expect(responseFn).toHaveBeenCalledTimes(1)
     expect(responseFn).toHaveBeenCalledWith("yes")
   })
 
@@ -25,6 +26,7 @@ describe("DownloadConfirmDialog", () => {
     render(<DownloadConfirmDialog onReplyClick={responseFn} />)
 
     await userEvent.click(screen.getByRole("button", { name: "No" }))
+    expect(responseFn).toHaveBeenCalledTimes(1)
     expect(responseFn).toHaveBeenCalledWith("no")
   })
 })
