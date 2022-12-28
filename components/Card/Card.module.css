@@ -7,12 +7,26 @@
   margin: 0 auto;
 }
 
+.container h3 {
+  margin: 0;
+  padding: 2rem 2rem 0 2rem;
+  font-size: 1.25rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+}
+
+.container > li {
+  margin-top: 5px;
+}
+
 .container > li section {
   color: var(--button);
   background-color: var(--button-bg);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
   height: 100%;
+  border-top: 5px solid var(--button);
 }
 
 .container > li section:hover {
@@ -21,7 +35,8 @@
 }
 
 .container > li section > div {
-  padding: 0.5rem;
+  padding: 2rem;
+  color: #555;
 }
 
 @media only screen and (max-width: 480px) {
