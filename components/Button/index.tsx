@@ -27,7 +27,12 @@ const ClickableButton = ({
   definedClass: string
   additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
 }) => (
-  <button className={definedClass} onClick={onClick} {...additionalProps}>
+  <button
+    className={definedClass}
+    onClick={onClick}
+    type="button"
+    {...additionalProps}
+  >
     {children}
   </button>
 )
