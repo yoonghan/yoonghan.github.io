@@ -1,13 +1,12 @@
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { useCallback, useMemo } from "react"
-
 type ReplyGiven = "yes" | "no"
 
 interface Props {
   onReplyClick: (yesOrNo: ReplyGiven) => void
 }
 
-const UploadConfirmDialog = ({ onReplyClick }: Props) => {
+const DownloadConfirmDialog = ({ onReplyClick }: Props) => {
   const onClick = useCallback(
     (reply: ReplyGiven) => () => {
       onReplyClick(reply)
@@ -20,13 +19,13 @@ const UploadConfirmDialog = ({ onReplyClick }: Props) => {
 
   return (
     <ConfirmationDialog
-      title="Upload File"
+      title="Download Unverified File"
       onCancel={onClickNo}
       onNoClick={onClickNo}
       onYesClick={onClickYes}
-      message="This file will be shared publicly. Are you sure?"
+      message="It's a public file and may contain malicious content. Are you sure you want to download it?"
     />
   )
 }
 
-export default UploadConfirmDialog
+export default DownloadConfirmDialog

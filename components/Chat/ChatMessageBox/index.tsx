@@ -80,6 +80,9 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       if (acceptedFiles && acceptedFiles.length > 0) {
         setFilesToUpload(acceptedFiles)
         setShowUploadConfirmDialog(true)
+        if (inputRef.current) {
+          inputRef.current.value = ""
+        }
       }
     }
 
