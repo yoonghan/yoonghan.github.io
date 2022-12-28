@@ -1,7 +1,6 @@
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { useCallback, useMemo } from "react"
 import Dialog from "../../../Dialog"
-import style from "./UploadConfirmDialog.module.css"
 
 type ReplyGiven = "yes" | "no"
 

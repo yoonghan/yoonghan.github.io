@@ -37,10 +37,10 @@ const ConfirmationDialog = ({
         <hr />
         <form onSubmit={onSubmit}>
           <div className={styles.buttonContainer}>
-            <Button additionalProps={{ type: "submit" }} color="blue">
-              {yesButtonText || "Yes"}
+            <Button color="blue">{yesButtonText || "Yes"}</Button>
+            <Button additionalProps={{ type: "button" }} onClick={onNoClick}>
+              {noButtonText || "No"}
             </Button>
-            <Button onClick={onNoClick}>{noButtonText || "No"}</Button>
           </div>
         </form>
       </div>
