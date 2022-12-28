@@ -45,4 +45,22 @@ test.describe("Messenger", () => {
     //no possible way to test this unfortunately.
     //await page.click("#file-upload-btn")
   })
+
+  test("should show a pop up again if reuploaded after no/yes is click", async ({
+    page,
+  }) => {
+    await page.goto("/projects/messenger")
+    expect(await page.content()).toContain("A Walcron Chat Program")
+    await page.setInputFiles('input[type="file"]', "upload/sample.txt")
+
+    expect(await page.content()).toContain(
+      "This file will be shared publicly. Are you sure?"
+    )
+    await page.getByRole("button", { name: "No" }).click()
+    await page.setInputFiles('input[type="file"]', "upload/sample.txt")
+
+    expect(await page.content()).toContain(
+      "This file will be shared publicly. Are you sure?"
+    )
+  })
 })
