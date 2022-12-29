@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APPROVE_RUN_NUMBER=`cat ../../backstop.approve`
+APPROVE_RUN_NUMBER=`cat ./backstop.approve`
 
 echo github [$GITHUB_RUN_NUMBER]
 echo approve [$APPROVE_RUN_NUMBER]
