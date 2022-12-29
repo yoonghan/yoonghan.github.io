@@ -64,6 +64,7 @@ jobs:
         with:
           commit_message: Update backstop with auto approval
           file_pattern: "backstop_data/bitmaps_reference/*.png"
+          skip_checkout: true
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
