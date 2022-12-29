@@ -9,5 +9,5 @@ if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
     echo 'auto approving backstop'
     npm run backstop:approve
     rm ./backstop_data/bitmaps_test/*/failed*
-    echo "approve=true" >> $GITHUB_ENV
+    echo "BACKSTOP_APPROVED=true" >> $GITHUB_ENV
 fi
