@@ -73,6 +73,10 @@ jobs:
         continue-on-error: true
         run: npm run backstop:test
 
+      - name: ✅ Auto approve
+        run: chmod a+x ./.github/scripts/auto-approval.sh
+        shell: bash
+
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
         with:
