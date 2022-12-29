@@ -48,7 +48,7 @@ jobs:
         shell: bash
         id: autoapproval
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: 💼 stefanzweifel/git-auto-commit-action@v4
         if: steps.autoapproval.outputs.approve == 'true'
         with:
           commit_message: Update backstop with auto approval
