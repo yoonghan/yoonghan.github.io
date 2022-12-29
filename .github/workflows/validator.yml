@@ -43,9 +43,15 @@ jobs:
         continue-on-error: true
         run: npm run backstop:test
 
-      - name: ✅ Auto approve
+      - name: ❓ Auto approve
         run: chmod a+x ./.github/scripts/auto-approval.sh && ./.github/scripts/auto-approval.sh
         shell: bash
+        id: autoapproval
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.autoapproval.outputs.approve == 'true'
+        with:
+          commit_message: Update backstop with auto approval
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
