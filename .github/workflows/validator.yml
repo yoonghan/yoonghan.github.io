@@ -44,13 +44,27 @@ jobs:
         run: npm run backstop:test
 
       - name: ❓ Auto approve
-        run: chmod a+x ./.github/scripts/auto-approval.sh && ./.github/scripts/auto-approval.sh
-        shell: bash
         id: autoapproval
+        run: |
+          APPROVE_RUN_NUMBER=`cat ./backstop.approve`
+          echo github [$GITHUB_RUN_NUMBER]
+          echo approve [$APPROVE_RUN_NUMBER]
+          echo
+          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
+              echo 'auto approving backstop'
+              npm run backstop:approve
+              rm ./backstop_data/bitmaps_test/*/failed*
+              echo "BACKSTOP_APPROVED=true" >> $GITHUB_ENV
+          fi
+
+      - name: Get approval
+        run: |
+          echo "The selected color is ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}"
+          echo "Overall ${{ BACKSTOP_APPROVED}}"
 
       - name: 💼 Auto commit on approved backstop
         uses: stefanzweifel/git-auto-commit-action@v4
-        if: steps.autoapproval.outputs.approve == 'true'
+        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
           commit_message: Update backstop with auto approval
 
