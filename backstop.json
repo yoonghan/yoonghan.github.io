@@ -1,5 +1,5 @@
 {
-  "id": "backstop_default",
+  "id": "walcron_",
   "viewports": [
     {
       "label": "phone",
@@ -16,7 +16,7 @@
   "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
-      "label": "Walcron Homepage",
+      "label": "Homepage",
       "url": "http://localhost:3000",
       "delay": 500,
       "postInteractionWait": 0,
@@ -26,7 +26,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Walcron Homepage with cookie accepted",
+      "label": "Homepage with cookie accepted",
       "url": "http://localhost:3000",
       "delay": 500,
       "clickSelector": "text=Close",
@@ -37,7 +37,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Walcron with email entered and sent",
+      "label": "Homepage with email entered and sent",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
@@ -54,7 +54,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Commandbar can search",
+      "label": "Homepage Commandbar search",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "label": "Walcron Homepage is scrollable",
+      "label": "Homepage is scrollable",
       "url": "http://localhost:3000",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
@@ -96,7 +96,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Walcron Homepage on Desktop/tablet can access from navigation",
+      "label": "Homepage on Desktop/tablet can access from navigation",
       "url": "http://localhost:3000",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
