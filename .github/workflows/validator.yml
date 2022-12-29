@@ -54,6 +54,7 @@ jobs:
               echo 'Auto approve backstop'
               npm run backstop:approve
               rm -rf ./backstop_data/bitmaps_test/*
+              git checkout -- backstop.json
               echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
           fi
 
@@ -62,8 +63,7 @@ jobs:
         if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
           commit_message: Update backstop with auto approval
-          file_pattern: "backstop_data/*"
-          skip_checkout: true
+          file_pattern: "backstop_data/bitmaps_reference/.png"
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
