@@ -63,7 +63,7 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git config commit_author autobot
+          git config commit.author autobot
           git add ./backstop_data/bitmaps_reference/*
           git commit -m "Auto Commit - backstop approval"
           git status
