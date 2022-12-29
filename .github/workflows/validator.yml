@@ -63,7 +63,7 @@ jobs:
         with:
           commit_message: Update backstop with auto approval
           file_pattern: "backstop_data/*"
-          branch: develop
+          skip_checkout: true
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
