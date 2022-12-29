@@ -63,7 +63,7 @@ jobs:
         if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
           commit_message: Update backstop with auto approval
-          file_pattern: "backstop_data/bitmaps_reference/.png"
+          file_pattern: "backstop_data/bitmaps_reference/*.png"
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
