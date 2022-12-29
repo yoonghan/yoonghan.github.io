@@ -57,14 +57,9 @@ jobs:
               echo "BACKSTOP_APPROVED=true" >> $GITHUB_ENV
           fi
 
-      - name: Get approval
-        run: |
-          echo "The selected color is ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}"
-          echo "Overall ${{ env.BACKSTOP_APPROVED }}"
-
       - name: 💼 Auto commit on approved backstop
         uses: stefanzweifel/git-auto-commit-action@v4
-        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
+        if: env.BACKSTOP_APPROVED == 'true'
         with:
           commit_message: Update backstop with auto approval
           file_pattern: "backstop_data/*"
