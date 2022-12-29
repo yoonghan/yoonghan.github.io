@@ -65,9 +65,9 @@ jobs:
       - name: 💼 Auto commit on approved backstop
         uses: stefanzweifel/git-auto-commit-action@v4
         if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
-        file_pattern: "backstop_data/*"
         with:
           commit_message: Update backstop with auto approval
+          file_pattern: "backstop_data/*"
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
