@@ -24,9 +24,11 @@ function Storybook() {
         <h1>Component Storybook</h1>
         <p>
           Instead of having a dedicated storybook component, we have decided to
-          create a simple 1 pager to render whatever we wanted to. In this way,
-          we can avoid having to maintain another setup and thing can work
-          straight out of the box.
+          create a simple 1 pager to render whatever we wanted to.
+        </p>
+        <p>
+          In this way, we can avoid having to maintain another setup and thing
+          can work straight out of the box.
         </p>
         <StoryMaker items={storyBookList} />
       </div>

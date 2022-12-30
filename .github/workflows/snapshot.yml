@@ -7,7 +7,7 @@ on:
         description: Vercel reference url without https://
 
 jobs:
-  build:
+  approver:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
