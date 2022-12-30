@@ -5,6 +5,11 @@ on:
     inputs:
       vercel_deployed_url:
         description: Vercel reference url without https://
+  pull_request:
+    types:
+      - synchronize
+    paths:
+      - "backstop.approve"
 
 jobs:
   approver:
@@ -34,13 +39,21 @@ jobs:
         id: domain
         shell: bash
         run: |
+          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
+          echo github [$GITHUB_RUN_NUMBER]
+          echo approve [$APPROVE_RUN_NUMBER]
           echo "url: ${{ github.event.inputs.vercel_deployed_url }}"
-          echo "branch: ${{ github.ref_name }}"
+          echo "branch: ${{ github.ref_name }}, ${{ github.head_ref }}"
           url=""
-          if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
-            url="walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
+          echo
+          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
+            url="walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app"
           else
-            url=${{ github.event.inputs.vercel_deployed_url }}
+            if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
+              url="walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
+            else
+              url=${{ github.event.inputs.vercel_deployed_url }}
+            fi
           fi
           echo "URL=${url//\//\\/}" >> $GITHUB_OUTPUT
           echo "URL set to ${url}"
