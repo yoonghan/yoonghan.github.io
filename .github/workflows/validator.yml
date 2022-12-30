@@ -102,7 +102,3 @@ jobs:
         with:
           name: backstop-artifact
           path: backstop_data/
-
-      - name: ✅ Validate backstopjs snapshot is valid
-        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
-        shell: bash
