@@ -35,5 +35,5 @@ jobs:
         with:
           deployed_url: ${{ github.head_ref }}
           branch: ${{ github.head_ref }}
-        secret:
+        secrets:
           PAT: ${{ secrets.PAT }}
