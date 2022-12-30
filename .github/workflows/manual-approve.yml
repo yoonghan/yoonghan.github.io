@@ -7,17 +7,17 @@ on:
         description: Vercel reference url without https://
 
 jobs:
-   cancel:
+  cancel:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
-        
-  approve:
-    uses: ./.github/workflows/reusable-approval.yml
-    with:
-      deployed_url: ${{ github.ref_name }}
-      branch: ${{ github.ref_name }}
-    secret:
-      PAT: ${{ secrets.PAT }}
-      
+
+      - name: Manual Approve Backstop
+        uses: ./.github/workflows/reusable-approval.yml
+        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
+        with:
+          deployed_url: ${{ github.ref_name }}
+          branch: ${{ github.ref_name }}
+        secret:
+          PAT: ${{ secrets.PAT }}

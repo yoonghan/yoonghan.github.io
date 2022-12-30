@@ -33,7 +33,7 @@ jobs:
               echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
           fi
 
-      -name: Manual Approve
+      - name: Approve Backstop
         uses: ./.github/workflows/reusable-approval.yml
         if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
