@@ -7,14 +7,14 @@ inputs:
     required: true
     type: string
 
-jobs:
+runs:
   using: "composite"
 
   steps:
     - name: ⎔ Setup node
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node }}
+        node-version: 16
         cache: "npm"
 
     - name: 📥 Download deps
@@ -26,7 +26,7 @@ jobs:
       id: domain
       shell: bash
       run: |
-        url="walcron-git-${{ github.event.inputs.branch }}-walcoorperation.vercel.app"
+        url="walcron-git-${{ inputs.branch }}-walcoorperation.vercel.app"
         echo "URL=${url//\//\\/}" >> $GITHUB_OUTPUT
         echo "URL set to ${url}"
 
