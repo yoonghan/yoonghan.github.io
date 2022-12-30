@@ -16,7 +16,7 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.ref_name }}
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
@@ -34,10 +34,10 @@ jobs:
         shell: bash
         run: |
           echo "url: ${{ github.event.inputs.vercel_deployed_url }}"
-          echo "branch: ${{ github.ref }}"
+          echo "branch: ${{ github.ref_name }}"
           url=""
           if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
-            url="https://walcron-git-${{ github.ref }}-walcoorperation.vercel.app"
+            url="https://walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
           else
             url=${{ github.event.inputs.vercel_deployed_url }}
           fi
