@@ -9,7 +9,7 @@ on:
     types:
       - synchronize
     paths:
-      - "backstop.approve"
+      - "backstopjs.approve"
 
 jobs:
   approver:

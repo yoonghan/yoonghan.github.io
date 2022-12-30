@@ -2,7 +2,7 @@ name: Validate new deployments
 on:
   pull_request:
     paths-ignore:
-      - "backstop.approve"
+      - "backstopjs.approve"
 jobs:
   build:
     runs-on: ubuntu-latest
