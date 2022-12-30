@@ -10,6 +10,8 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
@@ -72,6 +74,28 @@ jobs:
       - name: ▶️ Run page rendering check
         continue-on-error: true
         run: npm run backstop:test
+
+      - name: ❓ Auto approve
+        id: autoapproval
+        run: |
+          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
+          echo github [$GITHUB_RUN_NUMBER]
+          echo approve [$APPROVE_RUN_NUMBER]
+          echo
+          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
+              echo 'Auto approve backstop'
+              npm run backstop:approve
+              rm -rf ./backstop_data/bitmaps_test/*
+              git checkout -- backstop.json
+              echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 💼 Auto commit on approved backstop
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
+        with:
+          commit_message: Update backstop with auto approval
+          file_pattern: "backstop_data/bitmaps_reference/*.png"
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@v3
