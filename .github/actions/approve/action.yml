@@ -36,14 +36,17 @@ runs:
         deployed_url: ${{ steps.domain.outputs.URL }}
 
     - name: ⬆️ Run a test to generate snapshot
+      shell: bash
       continue-on-error: true
       run: npm run backstop:test
 
     - name: ⬆️ Create an approved snapshot
+      shell: bash
       run: npm run backstop:approve
 
     - name: 💼 Auto commit on approved backstop
       uses: stefanzweifel/git-auto-commit-action@v4
+      shell: bash
       with:
         commit_message: Update backstop with auto approval
         file_pattern: "backstop_data/bitmaps_reference/*.png"
