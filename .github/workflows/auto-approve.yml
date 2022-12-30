@@ -14,6 +14,12 @@ jobs:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
 
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+          ref: ${{ github.event.inputs.branch }}
+
       - name: ❓ Auto approve
         id: autoapproval
         run: |

@@ -15,12 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
-          ref: ${{ github.event.inputs.branch }}
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
