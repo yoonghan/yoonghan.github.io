@@ -33,7 +33,7 @@ jobs:
           fi
 
       - name: Approve Backstop
-        uses: ./.github/actions/reusable-approval.yml
+        uses: ./.github/actions/approve
         if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
           deployed_url: ${{ github.head_ref }}
