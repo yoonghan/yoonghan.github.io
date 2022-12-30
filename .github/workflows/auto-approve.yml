@@ -1,10 +1,6 @@
 name: Create Approved Snapshot By File
 
 on:
-  workflow_dispatch:
-    inputs:
-      vercel_deployed_url:
-        description: Vercel reference url without https://
   pull_request:
     types:
       - synchronize

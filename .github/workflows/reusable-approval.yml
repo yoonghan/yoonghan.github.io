@@ -1,18 +1,5 @@
 name: Reusable approval
 
-on:
-  workflow_dispatch:
-    inputs:
-      deployed_url:
-        required: true
-        type: string
-      branch:
-        required: true
-        type: string
-    secrets:
-      PAT:
-        required: true
-
 jobs:
   approver:
     runs-on: ubuntu-latest
