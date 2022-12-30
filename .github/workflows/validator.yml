@@ -54,17 +54,19 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: ✅ Verify Vercel deployment and update branch
+        id: verifier
         run: |
           chmod a+x ./.github/scripts/deployment-check.sh && URL=$(./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app)
           echo url-${URL}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/localhost/.${URL}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
-          sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
-          cat backstop.json
           sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" playwright.config.ts
           cat playwright.config.ts
+          echo "VERCEL_URL=${URL}" >> $GITHUB_OUTPUT
         shell: bash
+
+      - name: Override Backstop
+        uses: ./.github/workflows/reusable-override-backstop.yml
+        with:
+          deployed_url: ${steps.verifier.outputs.VERCEL_URL}
 
       - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps

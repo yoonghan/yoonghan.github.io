@@ -1,4 +1,4 @@
-name: Create Approved Snapshot Manually
+name: Trigger manual approval
 
 on:
   workflow_dispatch:
