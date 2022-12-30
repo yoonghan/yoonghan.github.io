@@ -8,7 +8,7 @@ on:
       - "backstopjs.approve"
 
 jobs:
-  approve:
+  auto_approve:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs

@@ -1,7 +1,7 @@
 name: Override backstop
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       deployed_url:
         description: Vercel reference url without https://
