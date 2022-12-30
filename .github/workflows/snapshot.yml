@@ -16,6 +16,7 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.PAT }}
           ref: ${{ github.ref_name }}
 
       - name: ⎔ Setup node
