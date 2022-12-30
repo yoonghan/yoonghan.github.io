@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       vercel_deployed_url:
-        description: Vercel reference url
+        description: Vercel reference url without https://
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
           echo "branch: ${{ github.ref_name }}"
           url=""
           if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
-            url="https://walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
+            url="walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
           else
             url=${{ github.event.inputs.vercel_deployed_url }}
           fi
@@ -46,7 +46,8 @@ jobs:
 
       - name: Update to vercel deployed branch version
         run: |
-          sed -i "s/http:\/\/localhost:3000/${{ steps.domain.outputs.URL }}/g" backstop.json
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${{ steps.domain.outputs.URL }}/g" backstop.json
+          sed -i "s/localhost/.${{ steps.domain.outputs.URL }}-walcoorperation.vercel.app/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
