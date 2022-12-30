@@ -35,7 +35,7 @@ jobs:
           echo "URL set to ${url}"
 
       - name: Override Backstop
-        uses: ./.github/workflows/reusable-override-backstop.yml
+        uses: ./.github/workflows/reusable-backstop.yml
         with:
           deployed_url: ${{ steps.domain.outputs.URL }}
 
