@@ -6,6 +6,7 @@ on:
       - synchronize
     paths:
       - "backstopjs.approve"
+      - "*.approve"
 
 jobs:
   auto_approve:
