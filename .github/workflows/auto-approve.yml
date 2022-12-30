@@ -9,9 +9,29 @@ on:
 
 jobs:
   approve:
-    uses: ./.github/workflows/reusable-approval.yml
-    with:
-      deployed_url: ${{ github.head_ref }}
-      branch: ${{ github.head_ref }}
-    secrets:
-      PAT: ${{ secrets.PAT }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ❓ Auto approve
+        id: autoapproval
+        run: |
+          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
+          echo github [$GITHUB_RUN_NUMBER]
+          echo approve [$APPROVE_RUN_NUMBER]
+          echo
+          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
+              echo 'Auto approve backstop'
+              npm run backstop:approve
+              rm -rf ./backstop_data/bitmaps_test/*
+              git checkout -- backstop.json
+              echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Approve Backstop
+        uses: ./.github/workflows/reusable-approval.yml
+        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
+        with:
+          deployed_url: ${{ github.head_ref }}
+          branch: ${{ github.head_ref }}

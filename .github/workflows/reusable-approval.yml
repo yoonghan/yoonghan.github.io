@@ -9,9 +9,6 @@ on:
       branch:
         required: true
         type: string
-    secrets:
-      PAT:
-        required: true
 
 jobs:
   approve:
