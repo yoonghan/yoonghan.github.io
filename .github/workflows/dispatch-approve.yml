@@ -20,7 +20,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
 
       - name: Approve Backstop
-        uses: ./.github/workflows/reusable-approval.yml
+        uses: ./.github/actions/reusable-approval.yml
         with:
           deployed_url: ${{ github.ref_name }}
           branch: ${{ github.ref_name }}

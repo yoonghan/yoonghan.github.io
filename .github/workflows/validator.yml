@@ -64,7 +64,7 @@ jobs:
         shell: bash
 
       - name: Override Backstop
-        uses: ./.github/workflows/reusable-override-backstop.yml
+        uses: ./.github/actions/reusable-override-backstop.yml
         with:
           deployed_url: ${steps.verifier.outputs.VERCEL_URL}
 
