@@ -1,7 +1,7 @@
 name: Reusable approval
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       deployed_url:
         required: true
@@ -14,8 +14,9 @@ on:
         required: true
 
 jobs:
-  commit-file:
+  approve:
     runs-on: ubuntu-latest
+
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
