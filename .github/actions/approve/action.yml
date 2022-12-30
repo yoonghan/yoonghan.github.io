@@ -31,7 +31,7 @@ runs:
         echo "URL set to ${url}"
 
     - name: Override Backstop
-      uses: ./.github/workflows/reusable-backstop.yml
+      uses: ./.github/actions/backstop-override
       with:
         deployed_url: ${{ steps.domain.outputs.URL }}
 
