@@ -35,7 +35,7 @@ jobs:
           echo "entered url: ${{ github.event.inputs.vercel_deployed_url }}"
           url=""
           if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
-            url="https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app"
+            url="https://walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app"
           else
             url=${{ github.event.inputs.vercel_deployed_url }}
           fi
@@ -44,7 +44,7 @@ jobs:
 
       - name: Update to vercel deployed branch version
         run: |
-          sed -i "s/http:\/\/localhost:3000/${{ steps.domain.outputs.URL }}/g" backstop.json
+          sed -i "s/http:\/\/localhost:3000/${{ steps.domain.outputs.URL }//\//\\/}/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
