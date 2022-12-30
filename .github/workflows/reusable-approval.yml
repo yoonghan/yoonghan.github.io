@@ -1,28 +1,28 @@
-name: Create Approved Snapshot
+name: Reusable approval
 
 on:
   workflow_dispatch:
     inputs:
-      vercel_deployed_url:
+      deployed_url:
         description: Vercel reference url without https://
-  pull_request:
-    types:
-      - synchronize
-    paths:
-      - "backstopjs.approve"
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+    secrets:
+      PAT: 
+        required: true
 
-jobs:
+jobs:=
   approver:
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
-
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.PAT }}
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.event.inputs.branch }}
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
@@ -35,26 +35,11 @@ jobs:
         with:
           useLockFile: false
 
-      - name: Determine domain
+      - name: Set domain
         id: domain
         shell: bash
         run: |
-          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
-          echo github [$GITHUB_RUN_NUMBER]
-          echo approve [$APPROVE_RUN_NUMBER]
-          echo "url: ${{ github.event.inputs.vercel_deployed_url }}"
-          echo "branch: ${{ github.ref_name }}, ${{ github.head_ref }}"
-          url=""
-          echo
-          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
-            url="walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app"
-          else
-            if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
-              url="walcron-git-${{ github.ref_name }}-walcoorperation.vercel.app"
-            else
-              url=${{ github.event.inputs.vercel_deployed_url }}
-            fi
-          fi
+          url="walcron-git-${{ github.event.inputs.branch }}-walcoorperation.vercel.app"
           echo "URL=${url//\//\\/}" >> $GITHUB_OUTPUT
           echo "URL set to ${url}"
 
