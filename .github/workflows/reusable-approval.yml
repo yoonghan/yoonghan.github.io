@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
     inputs:
       deployed_url:
-        description: Vercel reference url without https://
         required: true
         type: string
       branch:
