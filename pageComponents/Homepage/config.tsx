@@ -61,9 +61,7 @@ export const siteDevelopmentSections = [
     title: "Github Workflow",
     desc: (
       <>
-        <p>
-          During the pull-request, an automatically is carried out in order:
-        </p>
+        <p>During the pull-request, a verification is carried out in order:</p>
         <ol>
           <li>Linting, Prettifier.</li>
           <li>Type check build with NextJS.</li>
@@ -84,7 +82,7 @@ export const siteDevelopmentSections = [
     title: "Testing Deployment",
     desc: (
       <p>
-        A hook was created in vercel, and it automatically builds and deploy a{" "}
+        A hook was created in vercel, that automatically builds and deploy a{" "}
         <strong>development</strong> environment version for every new commit.
       </p>
     ),
@@ -103,7 +101,7 @@ export const siteDevelopmentSections = [
           </li>
           <li>
             A report will be generated to compare against the previous version
-            layout, it will then run thru an approval workflow.
+            layout, which will then run thru an approval workflow.
           </li>
         </ol>
       </>
