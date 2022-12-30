@@ -5,7 +5,6 @@ on:
     inputs:
       vercel_deployed_url:
         description: Vercel reference url
-        required: true
 
 jobs:
   build:
@@ -16,6 +15,8 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
@@ -27,9 +28,23 @@ jobs:
         with:
           useLockFile: false
 
+      - name: Determine domain
+        id: domain
+        shell: bash
+        run: |
+          echo "entered url: ${{ github.event.inputs.vercel_deployed_url }}"
+          url=""
+          if [ "${{ github.event.inputs.vercel_deployed_url }}" = "" ]; then
+            url="https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app"
+          else
+            url=${{ github.event.inputs.vercel_deployed_url }}
+          fi
+          echo "URL=${url}" >> $GITHUB_OUTPUT
+          echo "URL set to ${url}"
+
       - name: Update to vercel deployed branch version
         run: |
-          sed -i "s/http:\/\/localhost:3000/${{ github.event.inputs.vercel_deployed_url }}/g" backstop.json
+          sed -i "s/http:\/\/localhost:3000/${{ steps.domain.outputs.URL }}/g" backstop.json
           sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
           sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
           cat backstop.json
@@ -42,8 +57,8 @@ jobs:
       - name: ⬆️ Create an approved snapshot
         run: npm run backstop:approve
 
-      - name: Upload approved snapshot artifacts
-        uses: actions/upload-artifact@v3
+      - name: 💼 Auto commit on approved backstop
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: backstop-artifact
-          path: backstop_data/
+          commit_message: Update backstop with auto approval
+          file_pattern: "backstop_data/bitmaps_reference/*.png"
