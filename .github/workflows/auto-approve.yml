@@ -19,6 +19,9 @@ on:
       deployed_url:
         description: Vercel deployed url, no http://
         type: string
+    secrets:
+      PAT:
+        description: Checkout secret.
 
 jobs:
   auto_approve:
