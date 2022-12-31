@@ -5,7 +5,8 @@ on:
     inputs:
       branch:
         description: Branchname to execute
-        default: ${{ github.ref_name }}
+        type: string
+        required: true
   workflow_call:
     inputs:
       branch:
