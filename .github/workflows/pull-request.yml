@@ -31,12 +31,12 @@ jobs:
 
   Approve:
     needs: TaskDecider
-    if: needs.TaskDecider.outputs.TO_APPROVE == "true"
+    if: needs.TaskDecider.outputs.TO_APPROVE == true
     uses: ./.github/workflows/auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
 
   Validate:
     needs: TaskDecider
-    if: needs.TaskDecider.outputs.TO_APPROVE == "false"
+    if: needs.TaskDecider.outputs.TO_APPROVE == false
     uses: ./.github/workflows/validator.yml
