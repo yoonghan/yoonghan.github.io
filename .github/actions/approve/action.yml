@@ -1,0 +1,40 @@
+name: Reusable approval
+inputs:
+  deployed_url:
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: ⎔ Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: "npm"
+
+    - name: 📥 Download deps
+      uses: bahmutov/npm-install@v1
+      with:
+        useLockFile: false
+
+    - name: Override Backstop
+      uses: ./.github/actions/backstop-override
+      with:
+        deployed_url: ${{ inputs.deployed_url }}
+
+    - name: ⬆️ Run a test to generate snapshot
+      shell: bash
+      continue-on-error: true
+      run: npm run backstop:test
+
+    - name: ⬆️ Create an approved snapshot
+      shell: bash
+      run: npm run backstop:approve
+
+    - name: 💼 Auto commit on approved backstop
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update backstop with auto approval
+        file_pattern: "backstop_data/bitmaps_reference/*.png"

@@ -1,6 +1,18 @@
 name: Validate new deployments
+
 on:
-  pull_request: {}
+  workflow_dispatch:
+    inputs:
+      deployed_url:
+        description: Deployed url to approve
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      deployed_url:
+        description: Vercel deployed url, no http://
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: "npm"
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
@@ -52,16 +65,16 @@ jobs:
 
       - name: ✅ Verify Vercel deployment and update branch
         run: |
-          chmod a+x ./.github/scripts/deployment-check.sh && URL=$(./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app)
-          echo url-${URL}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/localhost/.${URL}-walcoorperation.vercel.app/g" backstop.json
-          sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
-          sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
-          cat backstop.json
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" playwright.config.ts
+          URL=${{ inputs.deployed_url }}
+          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL//\//\\/}/g" playwright.config.ts
           cat playwright.config.ts
         shell: bash
+
+      - name: Override Backstop
+        uses: ./.github/actions/backstop-override
+        with:
+          deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps
