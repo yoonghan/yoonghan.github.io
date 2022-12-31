@@ -1,6 +1,12 @@
 name: Validate new deployments
 
 on:
+  workflow_dispatch:
+    inputs:
+      deployed_url:
+        description: Deployed url to approve
+        type: string
+        required: true
   workflow_call:
     inputs:
       deployed_url:
@@ -61,7 +67,7 @@ jobs:
         run: |
           URL=${{ inputs.deployed_url }}
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
-          sed -i "s/http:\/\/localhost:3000/https://${URL//\//\\/}/g" playwright.config.ts
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL//\//\\/}/g" playwright.config.ts
           cat playwright.config.ts
         shell: bash
 
