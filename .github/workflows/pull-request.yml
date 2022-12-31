@@ -28,15 +28,3 @@ jobs:
           else
               echo "BACKSTOP_APPROVED=false" >> $GITHUB_OUTPUT
           fi
-
-  Approve:
-    needs: TaskDecider
-    if: needs.TaskDecider.outputs.TO_APPROVE == "true"
-    uses: ./.github/workflows/pull-request.yml
-    with:
-      branch: ${{ github.head_ref }}
-
-  Validate:
-    needs: TaskDecider
-    if: needs.TaskDecider.outputs.TO_APPROVE == "false"
-    uses: ./.github/workflows/validator.yml
