@@ -6,7 +6,7 @@ inputs:
     required: true
     type: string
 
-jobs:
+runs:
   using: "composite"
 
   steps:
