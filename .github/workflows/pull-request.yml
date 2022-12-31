@@ -33,6 +33,8 @@ jobs:
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == "true"
     uses: ./.github/workflows/pull-request.yml
+    with:
+      branch: ${{ github.head_ref }}
 
   Validate:
     needs: TaskDecider

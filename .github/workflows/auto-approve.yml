@@ -1,7 +1,16 @@
 name: Create Approved Snapshot By File
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branchname to execute
+        default: ${{ github.ref_name }}
+  workflow_call:
+    inputs:
+      branch:
+        description: Branchname to execute
+        default: ${{ github.ref_name }}
 
 jobs:
   auto_approve:
@@ -14,22 +23,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.PAT }}
-          ref: ${{ github.head_ref }}
-
-      - name: ❓ Auto approve
-        id: autoapproval
-        run: |
-          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
-          echo github [$GITHUB_RUN_NUMBER]
-          echo approve [$APPROVE_RUN_NUMBER]
-          echo
-          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
-              echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
-          fi
+          ref: ${{ github.inputs.branch }}
 
       - name: Approve Backstop
         uses: ./.github/actions/approve
-        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
         with:
-          deployed_url: ${{ github.head_ref }}
-          branch: ${{ github.head_ref }}
+          deployed_url: ${{ github.inputs.branch }}
+          branch: ${{ github.inputs.branch }}
