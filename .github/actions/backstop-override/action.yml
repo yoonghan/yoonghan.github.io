@@ -12,8 +12,8 @@ jobs:
   steps:
     - name: Update to vercel deployed branch version
       run: |
-        sed -i "s/http:\/\/localhost:3000/https:\/\/${{ deployed_url }}/g" backstop.json
-        sed -i "s/localhost/.${{ deployed_url }}/g" backstop.json
+        sed -i "s/http:\/\/localhost:3000/https:\/\/${{ inputs.deployed_url }}/g" backstop.json
+        sed -i "s/localhost/.${{ inputs.deployed_url }}/g" backstop.json
         sed -i "s/bitmaps_local_reference/bitmaps_reference/" backstop.json
         sed -i "s/bitmaps_local_test/bitmaps_test/" backstop.json
         cat backstop.json
