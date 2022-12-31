@@ -7,10 +7,17 @@ on:
         description: Branchname to execute
         type: string
         required: true
+      deployed_url:
+        description: Deployed url to approve
+        type: string
+        required: true
   workflow_call:
     inputs:
       branch:
         description: Branchname to execute
+        type: string
+      deployed_url:
+        description: Vercel deployed url, no http://
         type: string
 
 jobs:
@@ -18,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.11.0
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.PAT }}
           ref: ${{ github.inputs.branch }}
@@ -29,5 +36,5 @@ jobs:
       - name: Approve Backstop
         uses: ./.github/actions/approve
         with:
-          deployed_url: ${{ github.inputs.branch }}
+          deployed_url: ${{ github.inputs.deployed_url }}
           branch: ${{ github.inputs.branch }}

@@ -11,10 +11,10 @@ jobs:
       TO_APPROVE: ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}
     steps:
       - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.11.0
 
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: ❓ Auto approve
         id: autoapproval
@@ -35,6 +35,7 @@ jobs:
     uses: ./.github/workflows/auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
+      deployed_url: ${{ github.head_ref }}
 
   Validate:
     needs: TaskDecider
