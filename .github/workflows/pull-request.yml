@@ -18,6 +18,7 @@ jobs:
 
       - name: ❓ Auto approve
         id: autoapproval
+        shell: bash
         run: |
           APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
           echo github [$GITHUB_RUN_NUMBER]
@@ -45,3 +46,12 @@ jobs:
     uses: ./.github/workflows/validator.yml
     with:
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
+
+  build:
+    needs: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅ Just to say i am ok
+        run: |
+          echo "All good to merge"
+        shell: bash
