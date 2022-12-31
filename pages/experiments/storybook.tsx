@@ -21,12 +21,12 @@ function Storybook() {
         <CommandBar />
       </div>
       <div className={styles.container}>
-        <h1>Component storybook</h1>
+        <h1>Component Storybook</h1>
         <p>
-          Instead of having a dedicated storybook component, decided to have a
-          simple 1 page to render whatever i wanted to. In this way i can avoid
-          having to maintain another setup and thing can work straight out of
-          the box.
+          Instead of having a dedicated storybook component, we have decided to
+          create a simple 1 pager to render whatever we wanted to. In this way,
+          we can avoid having to maintain another setup and thing can work
+          straight out of the box.
         </p>
         <StoryMaker items={storyBookList} />
       </div>

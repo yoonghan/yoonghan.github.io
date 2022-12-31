@@ -1,0 +1,57 @@
+name: Main code on pull request
+
+on:
+  pull_request: {}
+
+jobs:
+  TaskDecider:
+    name: TaskDecider
+    runs-on: ubuntu-latest
+    outputs:
+      TO_APPROVE: ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ❓ Auto approve
+        id: autoapproval
+        shell: bash
+        run: |
+          APPROVE_RUN_NUMBER=`cat ./backstopjs.approve`
+          echo github [$GITHUB_RUN_NUMBER]
+          echo approve [$APPROVE_RUN_NUMBER]
+          echo
+          if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
+              echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
+          else
+              echo "BACKSTOP_APPROVED=false" >> $GITHUB_OUTPUT
+          fi
+
+  Approve:
+    needs: TaskDecider
+    if: needs.TaskDecider.outputs.TO_APPROVE == 'true'
+    uses: ./.github/workflows/auto-approve.yml
+    with:
+      branch: ${{ github.head_ref }}
+      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
+    secrets:
+      PAT: ${{ secrets.PAT }}
+
+  Validate:
+    needs: TaskDecider
+    if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
+    uses: ./.github/workflows/validator.yml
+    with:
+      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
+
+  build:
+    needs: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅ Just to say i am ok
+        run: |
+          echo "All good to merge"
+        shell: bash

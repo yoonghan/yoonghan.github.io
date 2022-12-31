@@ -1,0 +1,43 @@
+name: Create Approved Snapshot By File
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branchname to execute
+        type: string
+        required: true
+      deployed_url:
+        description: Deployed url to approve
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      branch:
+        description: Branchname to execute
+        type: string
+      deployed_url:
+        description: Vercel deployed url, no http://
+        type: string
+    secrets:
+      PAT:
+        description: Checkout secret.
+
+jobs:
+  auto_approve:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          ref: ${{ inputs.branch }}
+
+      - name: ✅ Approve Backstop
+        uses: ./.github/actions/approve
+        with:
+          deployed_url: ${{ inputs.deployed_url }}
+          branch: ${{ inputs.branch }}
