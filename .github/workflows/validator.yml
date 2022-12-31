@@ -78,7 +78,8 @@ jobs:
 
       - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps
-        cache: "playwright"
+        with:
+          cache: "playwright"
 
       - name: ▶️ Run page functional check
         run: CI=true && npm run playwright:test
