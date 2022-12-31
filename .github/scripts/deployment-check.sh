@@ -10,7 +10,7 @@ do
         sleep 5
         counter=$((counter + 1))
     else
-        echo "walcron-git-${GITHUB_HEAD_REF//\//\\/}"
+        echo "$1"
         exit 0
     fi
 done
