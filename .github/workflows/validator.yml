@@ -1,8 +1,8 @@
 name: Validate new deployments
+
 on:
-  pull_request:
-    paths-ignore:
-      - "backstopjs.approve"
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
       - name: Override Backstop
         uses: ./.github/actions/backstop-override
         with:
-          deployed_url: ${steps.verifier.outputs.VERCEL_URL}
+          deployed_url: ${{ steps.verifier.outputs.VERCEL_URL }}
 
       - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps

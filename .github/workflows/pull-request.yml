@@ -1,20 +1,20 @@
-name: Create Approved Snapshot By File
+name: Main code on pull request
 
 on:
-  workflow_dispatch: {}
+  pull_request:
 
 jobs:
-  auto_approve:
+  TaskDecider:
+    name: TaskDecider
     runs-on: ubuntu-latest
+    outputs:
+      TO_APPROVE: ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
-          ref: ${{ github.head_ref }}
 
       - name: ❓ Auto approve
         id: autoapproval
@@ -25,11 +25,16 @@ jobs:
           echo
           if [ "$APPROVE_RUN_NUMBER" = "$GITHUB_RUN_NUMBER" ]; then
               echo "BACKSTOP_APPROVED=true" >> $GITHUB_OUTPUT
+          else
+              echo "BACKSTOP_APPROVED=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Approve Backstop
-        uses: ./.github/actions/approve
-        if: steps.autoapproval.outputs.BACKSTOP_APPROVED == 'true'
-        with:
-          deployed_url: ${{ github.head_ref }}
-          branch: ${{ github.head_ref }}
+  Approve:
+    needs: TaskDecider
+    if: needs.TaskDecider.outputs.TO_APPROVE == "true"
+    uses: ./.github/workflows/pull-request.yml
+
+  Validate:
+    needs: TaskDecider
+    if: needs.TaskDecider.outputs.TO_APPROVE == "false"
+    uses: ./.github/workflows/validator.yml
