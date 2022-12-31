@@ -10,7 +10,7 @@ on:
     inputs:
       branch:
         description: Branchname to execute
-        default: ${{ github.head_ref }}
+        type: string
 
 jobs:
   auto_approve:
