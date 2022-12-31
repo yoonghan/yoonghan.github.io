@@ -1,7 +1,11 @@
 name: Validate new deployments
 
 on:
-  workflow_call: {}
+  workflow_call:
+    inputs:
+      deployed_url:
+        description: Vercel deployed url, no http://
+        type: string
 
 jobs:
   build:
@@ -54,19 +58,17 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: ✅ Verify Vercel deployment and update branch
-        id: verifier
         run: |
-          chmod a+x ./.github/scripts/deployment-check.sh && URL=$(./.github/scripts/deployment-check.sh https://walcron-git-${GITHUB_HEAD_REF//\//\\/}-walcoorperation.vercel.app)
-          echo url-${URL}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL}-walcoorperation.vercel.app/g" playwright.config.ts
+          URL=${{ inputs.deployed_url }}
+          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
+          sed -i "s/http:\/\/localhost:3000/https://${URL//\//\\/}/g" playwright.config.ts
           cat playwright.config.ts
-          echo "VERCEL_URL=${URL}" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Override Backstop
         uses: ./.github/actions/backstop-override
         with:
-          deployed_url: ${{ steps.verifier.outputs.VERCEL_URL }}
+          deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
         run: npx playwright install --with-deps

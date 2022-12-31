@@ -35,7 +35,7 @@ jobs:
     uses: ./.github/workflows/auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
-      deployed_url: ${{ github.head_ref }}-walcoorperation.vercel.app
+      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
     secrets:
       PAT: ${{ secrets.PAT }}
 
@@ -43,3 +43,5 @@ jobs:
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
     uses: ./.github/workflows/validator.yml
+    with:
+      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app

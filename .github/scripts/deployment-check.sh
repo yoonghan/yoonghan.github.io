@@ -10,7 +10,6 @@ do
         sleep 5
         counter=$((counter + 1))
     else
-        echo "$1"
         exit 0
     fi
 done
