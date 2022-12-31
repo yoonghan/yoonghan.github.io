@@ -35,7 +35,7 @@ jobs:
     uses: ./.github/workflows/auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
-      deployed_url: ${{ github.head_ref }}
+      deployed_url: ${{ github.head_ref }}-walcoorperation.vercel.app
     secrets:
       PAT: ${{ secrets.PAT }}
 
