@@ -73,7 +73,7 @@ export const siteDevelopmentSections = [
     ),
     link: {
       label: "View Workflow Def.",
-      src: "//github.com/yoonghan/Walcron/blob/master/.github/workflows/validator.yml",
+      src: "//github.com/yoonghan/Walcron/blob/master/.github/workflows/pull-request.yml",
     },
     img: "/img/welcome/introduction-build-workflow.webp",
   },
@@ -96,19 +96,20 @@ export const siteDevelopmentSections = [
         <p>A better alternative than code Snapshot sampling.</p>
         <ol>
           <li>
-            Playwright script is written to capture different mobile and desktop
-            layouts with different simulated user interactions.
+            A playwright script is written to generate reports on latest UI
+            changes, which will then run thru an approval workflow.
           </li>
           <li>
-            A report will be generated to compare against the previous version
-            layout, which will then run thru an approval workflow.
+            Implemented as well with auto approval, that autofix the snapshots
+            and revalidate the pull-request again.
           </li>
         </ol>
       </>
     ),
+
     link: {
-      label: "Generate Adhoc Snapshot",
-      src: "//github.com/yoonghan/Walcron/actions/workflows/snapshot.yml",
+      label: "View Workflow Def.",
+      src: "//github.com/yoonghan/Walcron/blob/master/.github/workflows/auto-approve.yml",
     },
     img: "/img/welcome/introduction-backstop-ui-check.webp",
   },
