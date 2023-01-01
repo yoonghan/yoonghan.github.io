@@ -27,3 +27,8 @@
 .container tr:hover {
   background-color: var(--table-hover);
 }
+
+.container {
+  min-width: 480px;
+  overflow-x: scroll;
+}

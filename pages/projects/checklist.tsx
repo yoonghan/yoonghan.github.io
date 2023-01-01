@@ -2,27 +2,51 @@ import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
-import { memo } from "react"
+import { memo, ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import Table from "@/components/Table"
 import TroubleshootPwaCheckList from "@/pageComponents/Projects/Checklist"
 
-const links: Array<{ [key: string]: string }> = [
+const links: Array<{ [key: string]: ReactNode }> = [
   {
     Site: "Google Search Console",
     Description: "Check site usability and update search sitemap",
-    Url: "https://search.google.com/search-console",
+    Url: (
+      <a
+        href="https://search.google.com/search-console"
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        link
+      </a>
+    ),
   },
   {
     Site: "Page Speed",
     Description: "Alternative to lighthouse, check page performance",
-    Url: "https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.walcron.com%2F",
+    Url: (
+      <a
+        href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.walcron.com%2F"
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        link
+      </a>
+    ),
   },
   {
     Site: "Page Validator",
     Description: "Page validator",
-    Url: "https://validator.w3.org/nu/?doc=https%3A%2F%2Fwww.walcron.com%2F",
+    Url: (
+      <a
+        href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fwww.walcron.com%2F"
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        link
+      </a>
+    ),
   },
 ]
 
