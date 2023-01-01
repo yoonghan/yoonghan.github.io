@@ -82,7 +82,7 @@ export const siteDevelopmentSections = [
     title: "Testing Deployment",
     desc: (
       <p>
-        A hook was created in vercel, that automatically builds and deploy a{" "}
+        A hook was created in Vercel, that automatically build and deploy a{" "}
         <strong>development</strong> environment version for every new commit.
       </p>
     ),
@@ -100,7 +100,7 @@ export const siteDevelopmentSections = [
             changes, which will then run thru an approval workflow.
           </li>
           <li>
-            Implemented as well with auto approval, that autofix the snapshots
+            Implemented an auto approval workflow, that autofixes the snapshots
             and revalidate the pull-request again.
           </li>
         </ol>
@@ -120,8 +120,8 @@ export const siteDevelopmentSections = [
       <>
         <p>Only commits that passes all checks can be approved and merged!</p>
         <p>
-          Once merged, it&apos;s automatically pushes to master and publishes to
-          https://www.walcron.com
+          Once merged, it&apos;s automatically pushed into master and publishes
+          to https://www.walcron.com
         </p>
       </>
     ),

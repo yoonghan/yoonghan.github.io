@@ -40,4 +40,9 @@ jobs:
         uses: ./.github/actions/approve
         with:
           deployed_url: ${{ inputs.deployed_url }}
-          branch: ${{ inputs.branch }}
+
+      - name: 💼 Auto commit on approved backstop
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update backstop with auto approval
+          file_pattern: "backstop_data/bitmaps_reference/*.png"

@@ -38,9 +38,3 @@ runs:
     - name: 💽 Create an approved snapshot
       shell: bash
       run: npm run backstop:approve
-
-    - name: 💼 Auto commit on approved backstop
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Update backstop with auto approval
-        file_pattern: "backstop_data/bitmaps_reference/*.png"

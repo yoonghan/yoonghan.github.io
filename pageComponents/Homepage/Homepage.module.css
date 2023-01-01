@@ -107,6 +107,10 @@ section.introduction {
   color: var(--link-light);
 }
 
+.homepage .section > article button {
+  margin: 0.5rem;
+}
+
 .homepage .section .snapshots {
   border-radius: 0.5rem;
 }
