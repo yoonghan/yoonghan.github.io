@@ -95,11 +95,11 @@ const Lessons = ({}) => {
             </p>
             {/* prettier-ignore */}
             <pre className={"code"}>{`
-              describe( "test", () => {
-                it("should one", ()=>{console.log(navigator.share)}) // = undefined 
-                it("should two", ()=> {Object.defineProperty(window.navigator, "share"...}) 
-                it("should three", ()=>; {console.log(navigator.share)}) // = function (); 
-              }
+ describe( "test", () => {
+   it("should one", ()=>{console.log(navigator.share)}) // = undefined 
+   it("should two", ()=> {Object.defineProperty(window.navigator, "share"...}) 
+   it("should three", ()=>; {console.log(navigator.share)}) // = function (); 
+ }
             `}</pre>
           </article>
           <article>
@@ -111,11 +111,11 @@ const Lessons = ({}) => {
             </p>
             {/* prettier-ignore */}
             <pre className={"code"}>{`
-              import "../__mocked__/pusherMock"; //mock library must be the first.
-              import X from "someComponentThatUsesPusher"
-              --OR--
-              jest.mock('pusher', () => class Pusher{});
-              import Pusher from 'pusher'; //then only it takes effect.
+ import "../__mocked__/pusherMock"; //mock library must be the first.
+ import X from "someComponentThatUsesPusher"
+ --OR--
+ jest.mock('pusher', () => class Pusher{});
+ import Pusher from 'pusher'; //then only it takes effect.
             `}</pre>
           </article>
           <article>
