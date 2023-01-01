@@ -24,12 +24,18 @@ runs:
       with:
         deployed_url: ${{ inputs.deployed_url }}
 
-    - name: ⬆️ Run a test to generate snapshot
+    - name: ✅ Verify deployment and update branch
+      run: |
+        URL=${{ inputs.deployed_url }}
+        chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
+      shell: bash
+
+    - name: 📸 Run a test to generate snapshot
       shell: bash
       continue-on-error: true
       run: npm run backstop:test
 
-    - name: ⬆️ Create an approved snapshot
+    - name: 💽 Create an approved snapshot
       shell: bash
       run: npm run backstop:approve
 
