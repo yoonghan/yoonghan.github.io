@@ -14,7 +14,7 @@ on:
         type: string
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel previous runs
@@ -64,8 +64,27 @@ jobs:
         uses: codecov/codecov-action@v3
         if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
 
+  e2e:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
       - name: ✅ Verify Vercel deployment and update branch
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: |
           URL=${{ inputs.deployed_url }}
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
@@ -75,31 +94,25 @@ jobs:
 
       - name: Override Backstop
         uses: ./.github/actions/backstop-override
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         with:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
         run: CI=true && npm run playwright:test
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
 
       - name: ▶️ Run page rendering check
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         continue-on-error: true
         run: npm run backstop:test
 
       - name: ⬆️ Upload snapshot artifacts
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         uses: actions/upload-artifact@v3
         with:
           name: backstop-artifact
           path: backstop_data/
 
       - name: ✅ Validate backstopjs snapshot is valid
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
