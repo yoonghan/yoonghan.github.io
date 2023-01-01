@@ -93,7 +93,7 @@ git add backstopjs.approve
 git push
 ```
 
-[build-badge]: https://img.shields.io/github/workflow/status/yoonghan/Walcron/validator?logo=github&style=flat-square
-[build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
+[build-badge]: https://img.shields.io/github/workflow/status/yoonghan/Walcron/pull-request?logo=github&style=flat-square
+[build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Apull-request
 [coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan/Walcron.svg?style=flat-square
 [coverage]: https://codecov.io/gh/yoonghan/Walcron
