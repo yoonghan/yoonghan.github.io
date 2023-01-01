@@ -66,8 +66,8 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
-    if: !startsWith(github.head_ref , 'dependabot/')
-
+    if: |
+      !startsWith(github.head_ref , 'dependabot/')
     steps:
       - name: 🛑 Cancel previous runs
         uses: styfle/cancel-workflow-action@0.11.0
