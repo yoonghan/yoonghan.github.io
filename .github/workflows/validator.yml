@@ -55,19 +55,19 @@ jobs:
 
       - name: + Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
         with:
           recreate: true
           path: code-coverage-results.md
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
 
   e2e:
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-
+    if: |
+      !startsWith(github.head_ref , 'dependabot/')
     steps:
       - name: 🛑 Cancel previous runs
         uses: styfle/cancel-workflow-action@0.11.0
