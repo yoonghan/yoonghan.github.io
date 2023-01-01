@@ -55,15 +55,17 @@ jobs:
 
       - name: + Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         with:
           recreate: true
           path: code-coverage-results.md
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
 
       - name: ✅ Verify Vercel deployment and update branch
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: |
           URL=${{ inputs.deployed_url }}
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
@@ -73,25 +75,31 @@ jobs:
 
       - name: Override Backstop
         uses: ./.github/actions/backstop-override
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         with:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
         run: CI=true && npm run playwright:test
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
 
       - name: ▶️ Run page rendering check
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         continue-on-error: true
         run: npm run backstop:test
 
       - name: ⬆️ Upload snapshot artifacts
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         uses: actions/upload-artifact@v3
         with:
           name: backstop-artifact
           path: backstop_data/
 
       - name: ✅ Validate backstopjs snapshot is valid
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
