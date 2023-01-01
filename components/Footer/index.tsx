@@ -71,7 +71,7 @@ const Footer = ({ className }: Props) => {
         </ul>
       </div>
       <div className="border-b"></div>
-      <small>Walcron 2014-2022 &copy;</small>
+      <small>Walcron 2014-2023 &copy;</small>
       <ul className={"sidelink"}>
         <li>
           <Link

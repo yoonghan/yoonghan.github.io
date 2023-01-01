@@ -4,11 +4,10 @@ import Footer from "."
 describe("Footer", () => {
   const currentYear = new Date().getFullYear()
 
-  //Purposely set this in test case to fail!!
-  const footerMessage = `Walcron 2014-${currentYear} ©`
-
   it("should check that we are in the latest year!", () => {
-    expect(currentYear).toEqual(2022)
+    render(<Footer />)
+    const footerMessage = `Walcron 2014-${currentYear} ©`
+    expect(screen.getByText(footerMessage)).toBeInTheDocument()
   })
 
   it("should render with additional classname if passed", () => {
