@@ -7,7 +7,7 @@ describe("Table", () => {
     render(
       <Table
         headers={["headerOne", "headerTwo"]}
-        list={[{ headerOne: "value1", headerTwo: "value2" }]}
+        list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
       />
     )
     expect(
