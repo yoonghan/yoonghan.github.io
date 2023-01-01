@@ -14,7 +14,7 @@ on:
         type: string
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel previous runs
@@ -55,13 +55,34 @@ jobs:
 
       - name: + Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         with:
           recreate: true
           path: code-coverage-results.md
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+
+  e2e:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
 
       - name: ✅ Verify Vercel deployment and update branch
         run: |
