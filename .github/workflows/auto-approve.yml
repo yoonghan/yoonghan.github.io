@@ -22,10 +22,16 @@ on:
     secrets:
       PAT:
         description: Checkout secret.
+    outputs:
+      HAVE_APPROVAL:
+        description: "Inform there are changes from auto commit"
+        value: ${{ jobs.auto_approve.outputs.changes_detected }}
 
 jobs:
   auto_approve:
     runs-on: ubuntu-latest
+    outputs:
+      changes_detected: ${{ steps.auto-commit-action.outputs.changes_detected }}
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -43,6 +49,7 @@ jobs:
 
       - name: 💼 Auto commit on approved backstop
         uses: stefanzweifel/git-auto-commit-action@v4
+        id: auto-commit-action
         with:
           commit_message: Update backstop with auto approval
           file_pattern: "backstop_data/bitmaps_reference/*.png"

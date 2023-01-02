@@ -47,6 +47,20 @@ jobs:
     with:
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
 
+  PostApprove:
+    needs: Approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔎 Check for new commit.
+        run: |
+          echo "Has change: ${{ needs.Approve.outputs.HAVE_APPROVAL }}"
+          if [ "${{ needs.Approve.outputs.HAVE_APPROVAL }}" = "false" ]; then
+            echo "One should never reach this line."
+            echo "backstopjs.approve triggered an approve, but nothing got approved to re-trigger revalidation workflow."
+            exit 1
+          fi
+        shell: bash
+
   build:
     needs: Validate
     runs-on: ubuntu-latest
