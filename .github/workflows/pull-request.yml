@@ -51,7 +51,7 @@ jobs:
     needs: Approve
     runs-on: ubuntu-latest
     steps:
-      - name: ❌ Fail workflow
+      - name: 🔎 Check for new commit.
         run: |
           echo "Has change: ${{ needs.Approve.outputs.HAVE_APPROVAL }}"
           if [ "${{ needs.Approve.outputs.HAVE_APPROVAL }}" = "false" ]; then
