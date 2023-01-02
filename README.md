@@ -79,7 +79,7 @@ Updating backstopJS snapshot.
 --By action
 
 1. Download the artifacts generated in latest requested workflow. Replace generated snapshot in backstop_data/bitmaps_reference/\*
-2. replace into bitmaps_reference.xw
+2. replace into bitmaps_reference.
 
 --Auto approval _(Recommended)_
 
