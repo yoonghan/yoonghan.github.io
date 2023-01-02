@@ -54,9 +54,11 @@ jobs:
       - name: ❌ Fail workflow
         run: |
           echo "Has change: ${{ needs.Approve.outputs.HAVE_APPROVAL }}"
-          echo "One should never reach this line."
-          echo "backstopjs.approve triggered an approve, but nothing got approved to re-trigger revalidation workflow."
-          exit 1
+          if [ "${{ needs.Approve.outputs.HAVE_APPROVAL }}" = "false" ]; then
+            echo "One should never reach this line."
+            echo "backstopjs.approve triggered an approve, but nothing got approved to re-trigger revalidation workflow."
+            exit 1
+          fi
         shell: bash
 
   build:
