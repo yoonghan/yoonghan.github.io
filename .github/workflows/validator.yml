@@ -98,7 +98,7 @@ jobs:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
         run: CI=true && npm run playwright:test
