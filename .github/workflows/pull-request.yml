@@ -51,14 +51,12 @@ jobs:
     needs: Approve
     runs-on: ubuntu-latest
     steps:
-      - name: 🔎 Fail if nothing is approved
+      - name: ❌ Fail workflow
         run: |
-          if [ ${{ needs.Approve.outputs.HAVE_APPROVAL }} = "true" ]; then
-            echo "All good"
-          else
-            echo "Committed backstopjs.approve, but no changes is detected to revalidate."
-            exit 1
-          fi
+          echo "Has change: ${{ needs.Approve.outputs.HAVE_APPROVAL }}"
+          echo "One should never reach this line."
+          echo "backstopjs.approve triggered an approve, but nothing got approved to re-trigger revalidation workflow."
+          exit 1
         shell: bash
 
   build:
