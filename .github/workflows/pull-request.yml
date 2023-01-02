@@ -53,7 +53,7 @@ jobs:
     steps:
       - name: 🔎 Fail if nothing is approved
         run: |
-          if [ ${needs.Approve.outputs.HAVE_CHANGES} = "true" ]; then
+          if [ ${needs.Approve.outputs.HAVE_APPROVAL} = "true" ]; then
             echo "All good"
           else
             echo "Committed backstopjs.approve, but no changes is detected to revalidate."
