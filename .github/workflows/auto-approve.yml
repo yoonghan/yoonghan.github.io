@@ -22,6 +22,8 @@ on:
     secrets:
       PAT:
         description: Checkout secret.
+    outputs:
+      HAVE_CHANGES: ${{ steps.auto-commit-action.outputs.changes_detected }}
 
 jobs:
   auto_approve:

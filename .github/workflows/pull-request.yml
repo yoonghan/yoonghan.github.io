@@ -47,6 +47,20 @@ jobs:
     with:
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
 
+  PostApprove:
+    needs: Approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔎 Fail if nothing is approved
+        run: |
+          if [ ${needs.Approve.outputs.HAVE_CHANGES} = "true" ]; then
+            echo "All good"
+          else
+            echo "Committed backstopjs.approve, but no changes is detected to revalidate."
+            exit 1
+          fi
+        shell: bash
+
   build:
     needs: Validate
     runs-on: ubuntu-latest
