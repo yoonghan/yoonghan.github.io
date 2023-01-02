@@ -17,12 +17,6 @@ const Tables = (
           "header three": <span>lorem ipsum tu la tu cove</span>,
           "header four": <span>two</span>,
         },
-        {
-          "header one": "three",
-          "header two": "three",
-          "header three": "three",
-          "header four": "three",
-        },
       ]}
     />
   </div>
