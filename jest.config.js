@@ -11,13 +11,16 @@ const customJestConfig = {
     "<rootDir>/jest.setup.js",
     "react-intersection-observer/test-utils",
   ],
-  modulePathIgnorePatterns: ["<rootDir>/__tests__/utils", "<rootDir>/__e2e__"],
+  modulePathIgnorePatterns: [
+    "<rootDir>/src/__tests__/utils",
+    "<rootDir>/__e2e__",
+  ],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
-    "^@/components/(.*)$": "<rootDir>/components/$1",
-    "^@/pageComponents/(.*)$": "<rootDir>/pageComponents/$1",
-    "^@/pages/(.*)$": "<rootDir>/pages/$1",
-    "^@/config/(.*)$": "<rootDir>/config/$1",
+    "^@/components/(.*)$": "<rootDir>/src/components/$1",
+    "^@/pageComponents/(.*)$": "<rootDir>/src/pageComponents/$1",
+    "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+    "^@/config/(.*)$": "<rootDir>/src/config/$1",
     "^@/images/*": "<rootDir>/public/img/$1",
   },
   testEnvironment: "jest-environment-jsdom",
