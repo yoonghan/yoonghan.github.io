@@ -1,4 +1,4 @@
-name: Validate new deployments
+name: Validate project codes
 
 on:
   workflow_dispatch:

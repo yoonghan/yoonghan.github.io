@@ -1,4 +1,4 @@
-name: Main code on pull request
+name: Pull request to approve / validate
 
 on:
   pull_request: {}
