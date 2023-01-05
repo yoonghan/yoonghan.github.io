@@ -1,10 +1,12 @@
+name: Merge with reports
+
 on:
   pull_request:
     types:
       - closed
 
 jobs:
-  if_merged:
+  mergeCodes:
     if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     steps:
