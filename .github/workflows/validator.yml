@@ -60,10 +60,6 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
-      - name: ⬆️ Upload coverage report
-        uses: codecov/codecov-action@v3
-        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'dependabot/')
-
   e2e:
     runs-on: ubuntu-latest
     if: |
