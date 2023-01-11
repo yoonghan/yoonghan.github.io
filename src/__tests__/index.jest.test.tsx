@@ -113,13 +113,16 @@ describe("Home", () => {
       expect(scrollToFn).toHaveBeenCalledWith(0, 1500)
 
       await UserEvent.click(navigation.getByText("Testing Deployment"))
-      expect(scrollToFn).toHaveBeenCalledWith(0, 2000)
+      expect(scrollToFn).toHaveBeenNthCalledWith(5, 0, 2000)
 
       await UserEvent.click(navigation.getByText("UI/UX Validation"))
-      expect(scrollToFn).toHaveBeenCalledWith(0, 2500)
+      expect(scrollToFn).toHaveBeenNthCalledWith(6, 0, 2500)
+
+      await UserEvent.click(navigation.getByText("Periodic Security Checks"))
+      expect(scrollToFn).toHaveBeenNthCalledWith(7, 0, 3500)
 
       await UserEvent.click(navigation.getByText("Video About Us"))
-      expect(scrollToFn).toHaveBeenCalledWith(0, 3500)
+      expect(scrollToFn).toHaveBeenNthCalledWith(8, 0, 4000)
     })
 
     it("should return to top once clicked or keyed", async () => {
