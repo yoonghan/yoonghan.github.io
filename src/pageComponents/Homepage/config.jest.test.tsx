@@ -31,6 +31,6 @@ describe("config", () => {
   })
 
   it("should have right length for siteDevelopmentSections", () => {
-    expect(siteDevelopmentSections).toHaveLength(7)
+    expect(siteDevelopmentSections).toHaveLength(8)
   })
 })
