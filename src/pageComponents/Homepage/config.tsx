@@ -129,6 +129,23 @@ export const siteDevelopmentSections = [
   },
   {
     id: "7",
+    title: "Periodic Security Checks",
+    desc: (
+      <>
+        <p>
+          Github code security are Enabled within the project to ensure the
+          project quality is great.
+        </p>
+      </>
+    ),
+    link: {
+      label: "View Security",
+      src: "//github.com/yoonghan/Walcron/security/code-scanning",
+    },
+    img: "/img/welcome/introduction-security-check.webp",
+  },
+  {
+    id: "8",
     title: "Video About Us",
     desc: <></>,
     skip: true,
