@@ -24,9 +24,11 @@ describe("Dialog", () => {
   it("should render the model, button is focused and can be used to close", async () => {
     const onCancel = jest.fn()
     renderModal({ onCancel: onCancel })
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
     const button = screen.getByRole("button", { name: "[ESC]" })
     await userEvent.click(button)
     expect(onCancel).toHaveBeenCalled()
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
   })
 
   it("should render the model and can be closed by using esc keyboard", async () => {
@@ -64,5 +66,15 @@ describe("Dialog", () => {
     expect(onCancel).not.toHaveBeenCalled()
     await userEvent.click(screen.getByRole("button", { name: "×" }))
     expect(onCancel).toHaveBeenCalled()
+  })
+
+  it("should remove dialog completely", async () => {
+    const onCancel = jest.fn()
+    renderModal({ onCancel: onCancel })
+    expect(screen.getByText("Nothing")).toBeInTheDocument()
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
+    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
+    expect(screen.queryByText("Nothing")).not.toBeInTheDocument()
   })
 })
