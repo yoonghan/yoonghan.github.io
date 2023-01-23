@@ -12,6 +12,7 @@ interface Props {
   onYesClick: () => void
   yesButtonText?: string
   noButtonText?: string
+  nonPortal?: boolean
 }
 
 const ConfirmationDialog = ({
@@ -22,6 +23,7 @@ const ConfirmationDialog = ({
   onCancel,
   yesButtonText,
   noButtonText,
+  nonPortal = true,
 }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
@@ -45,7 +47,7 @@ const ConfirmationDialog = ({
   }
 
   return (
-    <Dialog onCancel={onCancel} ref={dialogRef}>
+    <Dialog onCancel={onCancel} ref={dialogRef} nonPortal={nonPortal}>
       <div className={styles.container}>
         <div>
           <h4>{title}</h4>
@@ -66,7 +68,7 @@ const ConfirmationDialog = ({
 }
 
 export const confirmationDialogWrapper = (props: Props) => {
-  return createConfirmation(ConfirmationDialog)(props)
+  return createConfirmation(ConfirmationDialog)({ ...props, nonPortal: true })
 }
 
 export default React.memo(ConfirmationDialog)

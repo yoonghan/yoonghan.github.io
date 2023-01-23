@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useState,
 } from "react"
 import { createPortal } from "react-dom"
@@ -17,6 +18,7 @@ interface DialogProps {
   isNotModal?: boolean
   onCancel: () => void
   children: React.ReactNode
+  nonPortal: boolean
 }
 
 export interface DialogHandler {
@@ -24,7 +26,10 @@ export interface DialogHandler {
 }
 
 const Dialog = forwardRef<DialogHandler, DialogProps>(
-  function DialogWithHandler({ isNotModal = false, onCancel, children }, ref) {
+  function DialogWithHandler(
+    { isNotModal = false, onCancel, children, nonPortal = false },
+    ref
+  ) {
     dialogRootCreator.create()
     const dialogElem = createRef<HTMLDialogElement>()
     const documentDialog = document.querySelector("#dialog-root") as Element
@@ -72,24 +77,36 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
       onCancel()
     }, [onCancel])
 
-    return createPortal(
-      <>
-        {showDialog && (
-          <dialog
-            className={styles.container}
-            ref={dialogElem}
-            onClose={_onCancel}
-            onClick={onDialogClick}
-          >
-            <div className={styles.content} onClick={onContentClick}>
-              {children}
-            </div>
-            <button onClick={_onCancel}>{isNotModal ? "×" : "[ESC]"}</button>
-          </dialog>
-        )}
-      </>,
-      documentDialog
+    const dialog = useMemo(
+      () => (
+        <>
+          {showDialog && (
+            <dialog
+              className={styles.container}
+              ref={dialogElem}
+              onClose={_onCancel}
+              onClick={onDialogClick}
+            >
+              <div className={styles.content} onClick={onContentClick}>
+                {children}
+              </div>
+              <button onClick={_onCancel}>{isNotModal ? "×" : "[ESC]"}</button>
+            </dialog>
+          )}
+        </>
+      ),
+      [
+        _onCancel,
+        children,
+        dialogElem,
+        isNotModal,
+        onContentClick,
+        onDialogClick,
+        showDialog,
+      ]
     )
+
+    return nonPortal ? dialog : createPortal(dialog, documentDialog)
   }
 )
 

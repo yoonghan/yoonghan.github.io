@@ -15,7 +15,7 @@ describe("Dialog", () => {
     ) => void
   }) => {
     render(
-      <Dialog isNotModal={isNotModal} onCancel={onCancel}>
+      <Dialog isNotModal={isNotModal} onCancel={onCancel} nonPortal={false}>
         <div data-testid="child-in-dialog">Nothing</div>
       </Dialog>
     )
