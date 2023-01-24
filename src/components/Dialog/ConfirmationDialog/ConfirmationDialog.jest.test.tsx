@@ -94,7 +94,7 @@ describe("ConfirmationDialog", () => {
     })
   })
 
-  describe("confirmation dialog", () => {
+  describe("Confirmation dialog", () => {
     const Wrapper = ({
       onCancel,
       onYesClick,

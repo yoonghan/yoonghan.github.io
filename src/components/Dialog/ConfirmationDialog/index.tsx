@@ -1,5 +1,5 @@
 import Button from "../../Button"
-import React, { useRef } from "react"
+import React, { useCallback, useRef } from "react"
 import Dialog, { DialogHandler } from ".."
 import styles from "./ConfirmationDialog.module.css"
 import { createConfirmation } from "react-confirm"
@@ -28,24 +28,23 @@ const ConfirmationDialog = ({
 }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    onYesClick()
-  }
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      if (dialogRef.current !== null) {
+        dialogRef.current.close()
+        _onYesClick()
+      }
+    },
+    [_onYesClick]
+  )
 
-  const onYesClick = () => {
-    if (dialogRef.current !== null) {
-      dialogRef.current.close()
-      _onYesClick()
-    }
-  }
-
-  const onNoClick = () => {
+  const onNoClick = useCallback(() => {
     if (dialogRef.current !== null) {
       dialogRef.current.close()
       _onNoClick()
     }
-  }
+  }, [_onNoClick])
 
   return (
     <Dialog onCancel={onCancel} ref={dialogRef} nonPortal={nonPortal}>
