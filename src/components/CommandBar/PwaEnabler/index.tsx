@@ -120,7 +120,7 @@ const PwaEnabler = ({ onCancel }: Props) => {
   }, [isEnabled, isProcessing, isTwaApp, labelText, onChangeEnabler])
 
   return (
-    <Dialog onCancel={onCancel}>
+    <Dialog onCancel={onCancel} nonPortal={false}>
       <div className={styles.container} ref={dialogContainerRef}>
         <h4>Progressive Web App</h4>
         <div>
