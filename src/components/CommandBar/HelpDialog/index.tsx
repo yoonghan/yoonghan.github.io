@@ -13,7 +13,7 @@ const HelpDialog = ({ onCancel, specialInputCallback }: Props) => {
   }
 
   return (
-    <Dialog onCancel={onCancel}>
+    <Dialog onCancel={onCancel} nonPortal={false}>
       <HelpContent updateSelectedInput={updateSelectedInput} />
     </Dialog>
   )

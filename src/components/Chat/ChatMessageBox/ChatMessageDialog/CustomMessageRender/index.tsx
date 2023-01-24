@@ -2,8 +2,8 @@ import { decodeMessage } from "../../../config/MessageFormatter"
 import { MessageType } from "../../../config/MessageType"
 import { useCallback, useState } from "react"
 import { Message, MessageRenderProps } from "react-bell-chat"
-import DownloadConfirmDialog from "../../DownloadConfirmDialog"
 import Button from "@/components/Button"
+import { confirmationDialogWrapper } from "@/components/Dialog/ConfirmationDialog"
 
 const CustomMessageRender = ({
   message,
@@ -11,7 +11,6 @@ const CustomMessageRender = ({
   style,
 }: MessageRenderProps<string, Message<string>>) => {
   const [allowDownload, setAllowDownload] = useState(false)
-  const [showDownloadDialog, setShowDownloadDialog] = useState(false)
 
   const renderMessage = useCallback(
     (message: string) => (
@@ -22,10 +21,20 @@ const CustomMessageRender = ({
     [className, style]
   )
 
-  const downloadConfirmed = (reply: "yes" | "no") => {
-    setAllowDownload(reply === "yes")
-    setShowDownloadDialog(false)
-  }
+  const onCancelClick = useCallback(() => {
+    setAllowDownload(false)
+  }, [])
+
+  const downloadCheck = useCallback(async () => {
+    await confirmationDialogWrapper({
+      title: "Download Unverified File",
+      onCancel: onCancelClick,
+      onNoClick: onCancelClick,
+      onYesClick: () => setAllowDownload(true),
+      message:
+        "It's a public file and may contain malicious content. Are you sure you want to download it?",
+    })
+  }, [onCancelClick])
 
   const complexMessage = decodeMessage(message.message)
 
@@ -38,12 +47,7 @@ const CustomMessageRender = ({
               {renderMessage("[File Received]")}
             </a>
           ) : (
-            <Button onClick={() => setShowDownloadDialog(true)}>
-              Open file ?
-            </Button>
-          )}
-          {showDownloadDialog && (
-            <DownloadConfirmDialog onReplyClick={downloadConfirmed} />
+            <Button onClick={downloadCheck}>Open file ?</Button>
           )}
         </>
       )
