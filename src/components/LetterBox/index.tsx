@@ -1,21 +1,19 @@
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { createConfirmation } from "react-confirm"
 import Button from "../Button"
-import Dialog from "../Dialog"
 import dialogRootCreator from "../Dialog/dialogRootCreator"
 import EmailSender from "./EmailSender"
 import styles from "./LetterBox.module.css"
-
-const confirmation = createConfirmation(
-  EmailSender,
-  1000,
-  dialogRootCreator.create()
-)
 
 export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
 
 const LetterBox = () => {
   const [name, setName] = useState("")
+
+  const confirmation = useMemo(
+    () => createConfirmation(EmailSender, 1000, dialogRootCreator.create()),
+    []
+  )
 
   const onSubmitPressed = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -30,7 +28,7 @@ const LetterBox = () => {
         setName("")
       },
     })
-  }, [name])
+  }, [confirmation, name])
 
   return (
     <div>

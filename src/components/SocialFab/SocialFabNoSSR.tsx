@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useMemo } from "react"
 import { createConfirmation } from "react-confirm"
 import dialogRootCreator from "../Dialog/dialogRootCreator"
 import { email } from "../LetterBox"
@@ -7,14 +7,13 @@ import styles from "./SocialFab.module.css"
 
 interface Props {}
 
-const confirmation = createConfirmation(
-  EmailSender,
-  1000,
-  dialogRootCreator.create()
-)
-
 const SocialFabNoSSR = ({}: Props) => {
-  function onOpenEmail() {
+  const confirmation = useMemo(
+    () => createConfirmation(EmailSender, 1000, dialogRootCreator.create()),
+    []
+  )
+
+  const onOpenEmail = () => {
     confirmation({
       writeFrom: "",
       writeTo: email,
