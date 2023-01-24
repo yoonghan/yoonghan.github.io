@@ -12,7 +12,7 @@ const confirmation = createConfirmation(
   dialogRootCreator.create()
 )
 
-const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
+export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
 
 const LetterBox = () => {
   const [name, setName] = useState("")

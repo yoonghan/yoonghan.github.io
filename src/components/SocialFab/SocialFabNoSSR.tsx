@@ -1,18 +1,25 @@
 import * as React from "react"
+import { createConfirmation } from "react-confirm"
+import dialogRootCreator from "../Dialog/dialogRootCreator"
+import { email } from "../LetterBox"
 import EmailSender from "../LetterBox/EmailSender"
 import styles from "./SocialFab.module.css"
 
 interface Props {}
 
+const confirmation = createConfirmation(
+  EmailSender,
+  1000,
+  dialogRootCreator.create()
+)
+
 const SocialFabNoSSR = ({}: Props) => {
-  const [isEmailShown, setEmailShown] = React.useState(false)
-
   function onOpenEmail() {
-    setEmailShown(true)
-  }
-
-  function closeCallback() {
-    setEmailShown(false)
+    confirmation({
+      writeFrom: "",
+      writeTo: email,
+      onCancel: () => {},
+    })
   }
 
   return (
@@ -85,13 +92,6 @@ const SocialFabNoSSR = ({}: Props) => {
           </div>
         </li>
       </ul>
-      {isEmailShown && (
-        <EmailSender
-          writeTo={"Walcron Website"}
-          writeFrom={""}
-          onCancel={closeCallback}
-        />
-      )}
     </div>
   )
 }
