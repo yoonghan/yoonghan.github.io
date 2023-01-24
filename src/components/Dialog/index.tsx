@@ -56,14 +56,22 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
           dialogElem.current.showModal()
         }
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isNotModal])
+    }, [dialogElem, isNotModal])
+
+    const cancel = useCallback(() => {
+      close()
+      onCancel()
+    }, [close, onCancel])
+
+    const onCloseClick = useCallback(() => {
+      cancel()
+    }, [cancel])
 
     const onDialogClick = useCallback(() => {
-      if (dialogElem.current !== null && !isNotModal) {
-        dialogElem.current.close()
+      if (!isNotModal) {
+        cancel()
       }
-    }, [dialogElem, isNotModal])
+    }, [cancel, isNotModal])
 
     const onContentClick = useCallback(
       (event: React.MouseEvent<HTMLDivElement>) => {
@@ -72,11 +80,6 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
       []
     )
 
-    const _onCancel = useCallback(() => {
-      setShowDialog(false)
-      onCancel()
-    }, [onCancel])
-
     const dialog = useMemo(
       () => (
         <>
@@ -84,22 +87,23 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
             <dialog
               className={styles.container}
               ref={dialogElem}
-              onClose={_onCancel}
               onClick={onDialogClick}
             >
               <div className={styles.content} onClick={onContentClick}>
                 {children}
               </div>
-              <button onClick={_onCancel}>{isNotModal ? "×" : "[ESC]"}</button>
+              <button onClick={onCloseClick}>
+                {isNotModal ? "×" : "[ESC]"}
+              </button>
             </dialog>
           )}
         </>
       ),
       [
-        _onCancel,
         children,
         dialogElem,
         isNotModal,
+        onCloseClick,
         onContentClick,
         onDialogClick,
         showDialog,

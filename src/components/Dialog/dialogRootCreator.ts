@@ -5,7 +5,8 @@ function create() {
   }
   const portalRoot = document.createElement("div")
   portalRoot.setAttribute("id", "dialog-root")
-  return document.body.appendChild(portalRoot)
+  document.body.appendChild(portalRoot)
+  return portalRoot
 }
 
 const props = { create }
