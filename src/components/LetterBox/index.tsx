@@ -41,7 +41,7 @@ const LetterBox = () => {
         <Button>Write To Us</Button>
       </form>
       {isDialogShown && (
-        <Dialog onCancel={onClose}>
+        <Dialog onCancel={onClose} nonPortal={false}>
           <EmailSender writeFrom={name.trim()} writeTo={email} />
         </Dialog>
       )}

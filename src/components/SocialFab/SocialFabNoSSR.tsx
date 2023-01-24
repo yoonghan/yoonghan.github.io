@@ -87,7 +87,7 @@ const SocialFabNoSSR = ({}: Props) => {
         </li>
       </ul>
       {isEmailShown && (
-        <Dialog onCancel={closeCallback}>
+        <Dialog onCancel={closeCallback} nonPortal={false}>
           <EmailSender writeTo={"Walcron Website"} writeFrom={""} />
         </Dialog>
       )}

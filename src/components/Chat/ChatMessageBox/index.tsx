@@ -12,8 +12,8 @@ import styles from "./ChatMessageBox.module.css"
 import Button from "../../Button"
 import TextArea from "../../Input/TextArea"
 import { useDropzone } from "react-dropzone"
-import UploadConfirmDialog from "./UploadConfirmDialog"
 import { MessageType } from "../config/MessageType"
+import { confirmationDialogWrapper } from "@/components/Dialog/ConfirmationDialog"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
@@ -48,9 +48,6 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ onMessageSend }, ref) {
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
-    const [filesToUpload, setFilesToUpload] = useState<File[]>()
-    const [isShownUploadConfirmDialog, setShowUploadConfirmDialog] =
-      useState(false)
 
     const sendMessage = (e?: Event | FormEvent) => {
       e?.preventDefault()
@@ -76,29 +73,29 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       [sendFileMessage]
     )
 
-    const onDrop = (acceptedFiles: File[]) => {
+    const onCancelClick = useCallback(() => {}, [])
+
+    const onDrop = async (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
-        setFilesToUpload(acceptedFiles)
-        setShowUploadConfirmDialog(true)
+        const filesToUpload = acceptedFiles
         if (inputRef.current) {
           inputRef.current.value = ""
         }
+        await confirmationDialogWrapper({
+          title: "Upload File",
+          onCancel: onCancelClick,
+          onNoClick: onCancelClick,
+          onYesClick: () => {
+            filesToUpload && dropFileWithMessage(filesToUpload)
+          },
+          message: "This file will be shared publicly. Are you sure?",
+        })
       }
     }
 
     const { getRootProps, getInputProps, inputRef } = useDropzone({
       onDrop,
     })
-
-    const onUploadConfirmReply = useCallback(
-      (response: "yes" | "no") => {
-        if (response === "yes" && filesToUpload !== undefined) {
-          dropFileWithMessage(filesToUpload)
-        }
-        setShowUploadConfirmDialog(false)
-      },
-      [dropFileWithMessage, filesToUpload]
-    )
 
     useImperativeHandle(ref, () => {
       return {
@@ -166,9 +163,6 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
             Send
           </Button>
         </form>
-        {isShownUploadConfirmDialog && (
-          <UploadConfirmDialog onReplyClick={onUploadConfirmReply} />
-        )}
       </div>
     )
   }
