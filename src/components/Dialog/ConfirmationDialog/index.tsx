@@ -3,6 +3,7 @@ import React, { useRef } from "react"
 import Dialog, { DialogHandler } from ".."
 import styles from "./ConfirmationDialog.module.css"
 import { createConfirmation } from "react-confirm"
+import dialogRootCreator from "../dialogRootCreator"
 
 interface Props {
   title: string
@@ -68,7 +69,11 @@ const ConfirmationDialog = ({
 }
 
 export const confirmationDialogWrapper = (props: Props) => {
-  return createConfirmation(ConfirmationDialog)({ ...props, nonPortal: true })
+  return createConfirmation(
+    ConfirmationDialog,
+    1000,
+    dialogRootCreator.create()
+  )({ ...props, nonPortal: true })
 }
 
 export default React.memo(ConfirmationDialog)
