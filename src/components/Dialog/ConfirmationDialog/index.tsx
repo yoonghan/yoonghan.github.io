@@ -5,11 +5,17 @@ import styles from "./ConfirmationDialog.module.css"
 import { createConfirmation } from "react-confirm"
 import dialogRootCreator from "../dialogRootCreator"
 
+enum Action {
+  Cancel,
+  Yes,
+  No,
+}
+
 interface Props {
   title: string
   message: string
-  onCancel: () => void
-  onNoClick: () => void
+  onCancel?: () => void
+  onNoClick?: () => void
   onYesClick: () => void
   yesButtonText?: string
   noButtonText?: string
@@ -19,45 +25,61 @@ interface Props {
 const ConfirmationDialog = ({
   title,
   message,
-  onNoClick: _onNoClick,
-  onYesClick: _onYesClick,
-  onCancel,
+  onNoClick = () => {},
+  onYesClick,
+  onCancel = () => {},
   yesButtonText,
   noButtonText,
   nonPortal = true,
 }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
-  const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if (dialogRef.current !== null) {
-        dialogRef.current.close()
-        _onYesClick()
-      }
-    },
-    [_onYesClick]
+  const onAction = useCallback(
+    (action: Action) =>
+      (
+        e?:
+          | React.FormEvent<HTMLFormElement>
+          | React.MouseEvent<HTMLButtonElement>
+      ) => {
+        e?.preventDefault()
+
+        if (dialogRef.current !== null) {
+          dialogRef.current.close()
+        }
+        switch (action) {
+          case Action.Cancel:
+            onCancel()
+            break
+          case Action.No:
+            onNoClick()
+            break
+          case Action.Yes:
+            onYesClick()
+            break
+        }
+      },
+    [onYesClick, onCancel, onNoClick]
   )
 
-  const onNoClick = useCallback(() => {
-    if (dialogRef.current !== null) {
-      dialogRef.current.close()
-      _onNoClick()
-    }
-  }, [_onNoClick])
-
   return (
-    <Dialog onCancel={onCancel} ref={dialogRef} nonPortal={nonPortal}>
+    <Dialog
+      onCancel={onAction(Action.Cancel)}
+      ref={dialogRef}
+      nonPortal={nonPortal}
+    >
       <div className={styles.container}>
         <div>
           <h4>{title}</h4>
           <p>{message}</p>
         </div>
         <hr />
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onAction(Action.Yes)}>
           <div className={styles.buttonContainer}>
             <Button color="blue">{yesButtonText || "Yes"}</Button>
-            <Button additionalProps={{ type: "button" }} onClick={onNoClick}>
+            <Button
+              additionalProps={{ type: "button" }}
+              onClick={onAction(Action.No)}
+            >
               {noButtonText || "No"}
             </Button>
           </div>

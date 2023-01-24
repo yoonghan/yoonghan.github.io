@@ -95,22 +95,12 @@ describe("ConfirmationDialog", () => {
   })
 
   describe("Confirmation dialog", () => {
-    const Wrapper = ({
-      onCancel,
-      onYesClick,
-      onNoClick,
-    }: {
-      onCancel: () => void
-      onYesClick: () => void
-      onNoClick: () => void
-    }) => {
+    const Wrapper = ({ onYesClick }: { onYesClick: () => void }) => {
       const onClick = async () => {
         await confirmationDialogWrapper({
           title: "Sample Title",
           message: "Dialog Pop up",
-          onCancel: onCancel,
           onYesClick: onYesClick,
-          onNoClick: onNoClick,
         })
       }
 
@@ -119,13 +109,7 @@ describe("ConfirmationDialog", () => {
 
     it("should trigger a dialog when clicked and can close on Yes button pressed", async () => {
       const yesBtnFn = jest.fn()
-      render(
-        <Wrapper
-          onCancel={jest.fn()}
-          onYesClick={yesBtnFn}
-          onNoClick={jest.fn()}
-        />
-      )
+      render(<Wrapper onYesClick={yesBtnFn} />)
       await UserEvent.click(screen.getByText("Click Me"))
       expect(await screen.findByText("Sample Title")).toBeInTheDocument()
       await UserEvent.click(await screen.findByRole("button", { name: "Yes" }))
