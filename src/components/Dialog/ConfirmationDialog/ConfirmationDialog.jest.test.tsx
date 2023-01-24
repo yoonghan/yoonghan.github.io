@@ -24,15 +24,13 @@ describe("ConfirmationDialog", () => {
   })
 
   it("should have custom Yes/No button", async () => {
-    const onYesClick = jest.fn()
-    const onNoClick = jest.fn()
     render(
       <ConfirmationDialog
         title={"I am Title"}
         message={"Message one"}
         onCancel={jest.fn()}
-        onYesClick={onYesClick}
-        onNoClick={onNoClick}
+        onYesClick={jest.fn()}
+        onNoClick={jest.fn()}
         yesButtonText={"Yupe"}
         noButtonText={"Oh uh"}
       />
@@ -114,6 +112,24 @@ describe("ConfirmationDialog", () => {
       expect(await screen.findByText("Sample Title")).toBeInTheDocument()
       await UserEvent.click(await screen.findByRole("button", { name: "Yes" }))
       expect(yesBtnFn).toBeCalled()
+      await waitFor(() => {
+        expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
+      })
+    })
+
+    it("should just close when cancel or no is triggered", async () => {
+      const yesBtnFn = jest.fn()
+      render(<Wrapper onYesClick={yesBtnFn} />)
+      await UserEvent.click(screen.getByText("Click Me"))
+      expect(await screen.findByText("Sample Title")).toBeInTheDocument()
+      await UserEvent.type(screen.getByRole("dialog"), "{escape}")
+      await waitFor(() => {
+        expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
+      })
+
+      await UserEvent.click(screen.getByText("Click Me"))
+      expect(await screen.findByText("Sample Title")).toBeInTheDocument()
+      await UserEvent.click(await screen.findByRole("button", { name: "No" }))
       await waitFor(() => {
         expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
       })
