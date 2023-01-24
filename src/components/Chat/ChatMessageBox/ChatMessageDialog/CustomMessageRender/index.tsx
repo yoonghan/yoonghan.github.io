@@ -21,16 +21,20 @@ const CustomMessageRender = ({
     [className, style]
   )
 
-  const downloadCheck = async () => {
+  const onCancelClick = useCallback(() => {
+    setAllowDownload(false)
+  }, [])
+
+  const downloadCheck = useCallback(async () => {
     await confirmationDialogWrapper({
       title: "Download Unverified File",
-      onCancel: () => setAllowDownload(false),
-      onNoClick: () => setAllowDownload(false),
+      onCancel: onCancelClick,
+      onNoClick: onCancelClick,
       onYesClick: () => setAllowDownload(true),
       message:
         "It's a public file and may contain malicious content. Are you sure you want to download it?",
     })
-  }
+  }, [onCancelClick])
 
   const complexMessage = decodeMessage(message.message)
 

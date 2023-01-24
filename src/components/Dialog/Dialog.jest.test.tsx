@@ -6,6 +6,7 @@ describe("Dialog", () => {
   const renderModal = ({
     isNotModal = false,
     onCancel = jest.fn(),
+    nonPortal = false,
   }: {
     isNotModal?: boolean
     onCancel?: (
@@ -13,9 +14,10 @@ describe("Dialog", () => {
         | React.MouseEvent<HTMLElement, MouseEvent>
         | React.KeyboardEvent<HTMLElement>
     ) => void
+    nonPortal?: boolean
   }) => {
     render(
-      <Dialog isNotModal={isNotModal} onCancel={onCancel} nonPortal={false}>
+      <Dialog isNotModal={isNotModal} onCancel={onCancel} nonPortal={nonPortal}>
         <div data-testid="child-in-dialog">Nothing</div>
       </Dialog>
     )
@@ -68,9 +70,19 @@ describe("Dialog", () => {
     expect(onCancel).toHaveBeenCalled()
   })
 
-  it("should remove dialog completely", async () => {
+  it("should remove dialog completely if portal", async () => {
     const onCancel = jest.fn()
-    renderModal({ onCancel: onCancel })
+    renderModal({ onCancel: onCancel, nonPortal: false })
+    expect(screen.getByText("Nothing")).toBeInTheDocument()
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
+    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
+    expect(screen.queryByText("Nothing")).not.toBeInTheDocument()
+  })
+
+  it("should remove dialog completely if non-portal", async () => {
+    const onCancel = jest.fn()
+    renderModal({ onCancel: onCancel, nonPortal: true })
     expect(screen.getByText("Nothing")).toBeInTheDocument()
     expect(screen.getByRole("dialog")).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))

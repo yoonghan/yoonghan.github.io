@@ -27,7 +27,7 @@ export interface DialogHandler {
 
 const Dialog = forwardRef<DialogHandler, DialogProps>(
   function DialogWithHandler(
-    { isNotModal = false, onCancel, children, nonPortal = false },
+    { isNotModal = false, onCancel, children, nonPortal },
     ref
   ) {
     dialogRootCreator.create()

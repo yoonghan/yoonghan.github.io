@@ -73,6 +73,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       [sendFileMessage]
     )
 
+    const onCancelClick = useCallback(() => {}, [])
+
     const onDrop = async (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
         const filesToUpload = acceptedFiles
@@ -81,8 +83,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
         }
         await confirmationDialogWrapper({
           title: "Upload File",
-          onCancel: () => {},
-          onNoClick: () => {},
+          onCancel: onCancelClick,
+          onNoClick: onCancelClick,
           onYesClick: () => {
             filesToUpload && dropFileWithMessage(filesToUpload)
           },
