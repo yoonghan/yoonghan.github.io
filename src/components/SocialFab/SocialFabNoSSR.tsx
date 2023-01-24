@@ -1,5 +1,4 @@
 import * as React from "react"
-import Dialog from "../Dialog"
 import EmailSender from "../LetterBox/EmailSender"
 import styles from "./SocialFab.module.css"
 
@@ -87,9 +86,11 @@ const SocialFabNoSSR = ({}: Props) => {
         </li>
       </ul>
       {isEmailShown && (
-        <Dialog onCancel={closeCallback} nonPortal={false}>
-          <EmailSender writeTo={"Walcron Website"} writeFrom={""} />
-        </Dialog>
+        <EmailSender
+          writeTo={"Walcron Website"}
+          writeFrom={""}
+          onCancel={closeCallback}
+        />
       )}
     </div>
   )
