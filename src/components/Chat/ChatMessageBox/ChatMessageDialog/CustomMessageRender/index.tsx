@@ -3,7 +3,8 @@ import { MessageType } from "../../../config/MessageType"
 import { useCallback, useState } from "react"
 import { Message, MessageRenderProps } from "react-bell-chat"
 import Button from "@/components/Button"
-import { confirmationDialogWrapper } from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 const CustomMessageRender = ({
   message,
@@ -11,6 +12,7 @@ const CustomMessageRender = ({
   style,
 }: MessageRenderProps<string, Message<string>>) => {
   const [allowDownload, setAllowDownload] = useState(false)
+  const confirm = useDialogCreation(ConfirmationDialog)
 
   const renderMessage = useCallback(
     (message: string) => (
@@ -21,20 +23,15 @@ const CustomMessageRender = ({
     [className, style]
   )
 
-  const onCancelClick = useCallback(() => {
-    setAllowDownload(false)
-  }, [])
-
   const downloadCheck = useCallback(async () => {
-    await confirmationDialogWrapper({
+    await confirm({
       title: "Download Unverified File",
-      onCancel: onCancelClick,
-      onNoClick: onCancelClick,
       onYesClick: () => setAllowDownload(true),
       message:
         "It's a public file and may contain malicious content. Are you sure you want to download it?",
+      nonPortal: true,
     })
-  }, [onCancelClick])
+  }, [confirm])
 
   const complexMessage = decodeMessage(message.message)
 

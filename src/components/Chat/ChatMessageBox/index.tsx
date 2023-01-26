@@ -13,7 +13,8 @@ import Button from "../../Button"
 import TextArea from "../../Input/TextArea"
 import { useDropzone } from "react-dropzone"
 import { MessageType } from "../config/MessageType"
-import { confirmationDialogWrapper } from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
@@ -46,6 +47,7 @@ const dropFile =
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ onMessageSend }, ref) {
+    const confirm = useDialogCreation(ConfirmationDialog)
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
 
@@ -73,22 +75,19 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       [sendFileMessage]
     )
 
-    const onCancelClick = useCallback(() => {}, [])
-
     const onDrop = async (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
         const filesToUpload = acceptedFiles
         if (inputRef.current) {
           inputRef.current.value = ""
         }
-        await confirmationDialogWrapper({
+        await confirm({
           title: "Upload File",
-          onCancel: onCancelClick,
-          onNoClick: onCancelClick,
           onYesClick: () => {
             filesToUpload && dropFileWithMessage(filesToUpload)
           },
           message: "This file will be shared publicly. Are you sure?",
+          nonPortal: true,
         })
       }
     }
