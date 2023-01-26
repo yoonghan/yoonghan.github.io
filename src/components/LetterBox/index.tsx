@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { createConfirmation } from "react-confirm"
 import Button from "../Button"
 import dialogRootCreator from "../Dialog/dialogRootCreator"
@@ -9,11 +9,12 @@ export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
 
 const LetterBox = () => {
   const [name, setName] = useState("")
+  const confirmationRef = useRef<(props: any) => Promise<string>>()
 
-  const confirmation = useMemo(
-    () => createConfirmation(EmailSender, 1000, dialogRootCreator.create()),
-    []
-  )
+  useEffect(() => {
+    const elem = dialogRootCreator.create()
+    confirmationRef.current = createConfirmation(EmailSender, 1000, elem)
+  }, [])
 
   const onSubmitPressed = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -21,14 +22,16 @@ const LetterBox = () => {
   }
 
   const onSendButtonClick = useCallback(() => {
-    confirmation({
-      writeFrom: name.trim(),
-      writeTo: email,
-      onCancel: () => {
-        setName("")
-      },
-    })
-  }, [confirmation, name])
+    if (confirmationRef.current) {
+      confirmationRef.current({
+        writeFrom: name.trim(),
+        writeTo: email,
+        onCancel: () => {
+          setName("")
+        },
+      })
+    }
+  }, [confirmationRef, name])
 
   return (
     <div>
