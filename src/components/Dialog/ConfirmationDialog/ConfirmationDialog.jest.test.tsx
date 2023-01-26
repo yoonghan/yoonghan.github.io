@@ -90,5 +90,35 @@ describe("ConfirmationDialog", () => {
       expect(onCancel).toBeCalled()
       assertDialog(false)
     })
+
+    it("should do still close if default of cancel is rendered as undefined", async () => {
+      render(
+        <ConfirmationDialog
+          title={"I am Title"}
+          message={
+            "Can you React from a shooting bullet travelling at lightspeed?"
+          }
+          onYesClick={jest.fn()}
+        />
+      )
+      assertDialog(true)
+      await UserEvent.type(screen.getByRole("dialog"), "{escape}")
+      assertDialog(false)
+    })
+
+    it("should do still close if default of No is rendered as undefined", async () => {
+      render(
+        <ConfirmationDialog
+          title={"I am Title"}
+          message={
+            "Can you React from a shooting bullet travelling at lightspeed?"
+          }
+          onYesClick={jest.fn()}
+        />
+      )
+      assertDialog(true)
+      await UserEvent.click(screen.getByRole("button", { name: "No" }))
+      assertDialog(false)
+    })
   })
 })
