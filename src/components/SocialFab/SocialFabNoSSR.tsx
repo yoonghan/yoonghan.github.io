@@ -1,19 +1,19 @@
-import * as React from "react"
-import Dialog from "../Dialog"
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
+import { email } from "../LetterBox"
 import EmailSender from "../LetterBox/EmailSender"
 import styles from "./SocialFab.module.css"
 
 interface Props {}
 
 const SocialFabNoSSR = ({}: Props) => {
-  const [isEmailShown, setEmailShown] = React.useState(false)
+  const confirm = useDialogCreation(EmailSender)
 
-  function onOpenEmail() {
-    setEmailShown(true)
-  }
-
-  function closeCallback() {
-    setEmailShown(false)
+  const onOpenEmail = () => {
+    confirm({
+      writeFrom: "",
+      writeTo: email,
+      onCancel: () => {},
+    })
   }
 
   return (
@@ -86,11 +86,6 @@ const SocialFabNoSSR = ({}: Props) => {
           </div>
         </li>
       </ul>
-      {isEmailShown && (
-        <Dialog onCancel={closeCallback} nonPortal={false}>
-          <EmailSender writeTo={"Walcron Website"} writeFrom={""} />
-        </Dialog>
-      )}
     </div>
   )
 }
