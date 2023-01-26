@@ -1,28 +1,31 @@
-import { useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { createConfirmation } from "react-confirm"
 import Button from "../Button"
-import Dialog from "../Dialog"
+import dialogRootCreator from "../Dialog/dialogRootCreator"
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
 import EmailSender from "./EmailSender"
 import styles from "./LetterBox.module.css"
 
-const LetterBox = () => {
-  const [isDialogShown, setIsDialogShown] = useState(false)
-  const [name, setName] = useState("")
+export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
 
-  const onClose = () => {
-    setIsDialogShown(false)
-    setName("")
-  }
+const LetterBox = () => {
+  const [name, setName] = useState("")
+  const confirm = useDialogCreation(EmailSender)
 
   const onSubmitPressed = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     onSendButtonClick()
   }
 
-  const onSendButtonClick = () => {
-    setIsDialogShown(true)
-  }
-
-  const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
+  const onSendButtonClick = useCallback(() => {
+    confirm({
+      writeFrom: name.trim(),
+      writeTo: email,
+      onCancel: () => {
+        setName("")
+      },
+    })
+  }, [confirm, name])
 
   return (
     <div>
@@ -40,11 +43,6 @@ const LetterBox = () => {
         />
         <Button>Write To Us</Button>
       </form>
-      {isDialogShown && (
-        <Dialog onCancel={onClose} nonPortal={false}>
-          <EmailSender writeFrom={name.trim()} writeTo={email} />
-        </Dialog>
-      )}
     </div>
   )
 }
