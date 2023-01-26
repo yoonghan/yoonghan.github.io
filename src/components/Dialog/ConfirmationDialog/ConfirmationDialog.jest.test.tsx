@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react"
-import ConfirmationDialog, { confirmationDialogWrapper } from "."
+import { render, screen } from "@testing-library/react"
+import ConfirmationDialog from "."
 import UserEvent from "@testing-library/user-event"
 
 describe("ConfirmationDialog", () => {
@@ -89,50 +89,6 @@ describe("ConfirmationDialog", () => {
       await UserEvent.type(screen.getByRole("dialog"), "{escape}")
       expect(onCancel).toBeCalled()
       assertDialog(false)
-    })
-  })
-
-  describe("Confirmation dialog", () => {
-    const Wrapper = ({ onYesClick }: { onYesClick: () => void }) => {
-      const onClick = async () => {
-        await confirmationDialogWrapper({
-          title: "Sample Title",
-          message: "Dialog Pop up",
-          onYesClick: onYesClick,
-        })
-      }
-
-      return <button onClick={onClick}>Click Me</button>
-    }
-
-    it("should trigger a dialog when clicked and can close on Yes button pressed", async () => {
-      const yesBtnFn = jest.fn()
-      render(<Wrapper onYesClick={yesBtnFn} />)
-      await UserEvent.click(screen.getByText("Click Me"))
-      expect(await screen.findByText("Sample Title")).toBeInTheDocument()
-      await UserEvent.click(await screen.findByRole("button", { name: "Yes" }))
-      expect(yesBtnFn).toBeCalled()
-      await waitFor(() => {
-        expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
-      })
-    })
-
-    it("should just close when cancel or no is triggered", async () => {
-      const yesBtnFn = jest.fn()
-      render(<Wrapper onYesClick={yesBtnFn} />)
-      await UserEvent.click(screen.getByText("Click Me"))
-      expect(await screen.findByText("Sample Title")).toBeInTheDocument()
-      await UserEvent.type(screen.getByRole("dialog"), "{escape}")
-      await waitFor(() => {
-        expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
-      })
-
-      await UserEvent.click(screen.getByText("Click Me"))
-      expect(await screen.findByText("Sample Title")).toBeInTheDocument()
-      await UserEvent.click(await screen.findByRole("button", { name: "No" }))
-      await waitFor(() => {
-        expect(screen.queryByText("Sample Title")).not.toBeInTheDocument()
-      })
     })
   })
 })

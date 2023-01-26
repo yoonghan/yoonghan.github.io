@@ -10,9 +10,9 @@ export const useDialogCreation = <T>(component: ComponentType<T>) => {
     confirmationRef.current = createConfirmation(component, 1000, elem)
   }, [component])
 
-  const confirm = useCallback((props: T) => {
+  const confirm = useCallback(async (props: T) => {
     if (confirmationRef.current) {
-      confirmationRef.current({ ...props, nonPortal: true })
+      await confirmationRef.current({ ...props, nonPortal: true })
     }
   }, [])
 

@@ -2,8 +2,6 @@ import Button from "../../Button"
 import React, { useCallback, useRef } from "react"
 import Dialog, { DialogHandler } from ".."
 import styles from "./ConfirmationDialog.module.css"
-import { createConfirmation } from "react-confirm"
-import dialogRootCreator from "../dialogRootCreator"
 
 enum Action {
   Cancel,
@@ -87,14 +85,6 @@ const ConfirmationDialog = ({
       </div>
     </Dialog>
   )
-}
-
-export const confirmationDialogWrapper = (props: Props) => {
-  return createConfirmation(
-    ConfirmationDialog,
-    1000,
-    dialogRootCreator.create()
-  )({ ...props, nonPortal: true })
 }
 
 export default React.memo(ConfirmationDialog)

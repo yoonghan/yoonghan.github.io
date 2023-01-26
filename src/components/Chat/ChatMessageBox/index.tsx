@@ -13,7 +13,8 @@ import Button from "../../Button"
 import TextArea from "../../Input/TextArea"
 import { useDropzone } from "react-dropzone"
 import { MessageType } from "../config/MessageType"
-import { confirmationDialogWrapper } from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
@@ -46,6 +47,7 @@ const dropFile =
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ onMessageSend }, ref) {
+    const confirm = useDialogCreation(ConfirmationDialog)
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
 
@@ -79,7 +81,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
         if (inputRef.current) {
           inputRef.current.value = ""
         }
-        await confirmationDialogWrapper({
+        await confirm({
           title: "Upload File",
           onYesClick: () => {
             filesToUpload && dropFileWithMessage(filesToUpload)
