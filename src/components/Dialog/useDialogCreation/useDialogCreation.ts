@@ -1,6 +1,6 @@
 import { ComponentType, useCallback, useEffect, useRef } from "react"
 import { createConfirmation } from "react-confirm"
-import dialogRootCreator from "./dialogRootCreator"
+import dialogRootCreator from "../dialogRootCreator"
 
 export const useDialogCreation = <T>(component: ComponentType<T>) => {
   const confirmationRef = useRef<(props: T) => Promise<string>>()

@@ -1,4 +1,4 @@
-import { useDialogCreation } from "../Dialog/useDialogCreation"
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
 import { email } from "../LetterBox"
 import EmailSender from "../LetterBox/EmailSender"
 import styles from "./SocialFab.module.css"

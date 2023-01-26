@@ -3,7 +3,7 @@ import { MessageType } from "../../../config/MessageType"
 import { useCallback, useState } from "react"
 import { Message, MessageRenderProps } from "react-bell-chat"
 import Button from "@/components/Button"
-import { useDialogCreation } from "@/components/Dialog/useDialogCreation"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 const CustomMessageRender = ({

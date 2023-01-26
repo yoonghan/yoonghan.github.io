@@ -13,7 +13,7 @@ import Button from "../../Button"
 import TextArea from "../../Input/TextArea"
 import { useDropzone } from "react-dropzone"
 import { MessageType } from "../config/MessageType"
-import { useDialogCreation } from "@/components/Dialog/useDialogCreation"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 interface Props {

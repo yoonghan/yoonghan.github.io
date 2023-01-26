@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { createConfirmation } from "react-confirm"
 import Button from "../Button"
 import dialogRootCreator from "../Dialog/dialogRootCreator"
-import { useDialogCreation } from "../Dialog/useDialogCreation"
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
 import EmailSender from "./EmailSender"
 import styles from "./LetterBox.module.css"
 
