@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { createConfirmation } from "react-confirm"
 import Button from "../Button"
 import dialogRootCreator from "../Dialog/dialogRootCreator"
+import { useDialogCreation } from "../Dialog/useDialogCreation"
 import EmailSender from "./EmailSender"
 import styles from "./LetterBox.module.css"
 
@@ -9,12 +10,7 @@ export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
 
 const LetterBox = () => {
   const [name, setName] = useState("")
-  const confirmationRef = useRef<(props: any) => Promise<string>>()
-
-  useEffect(() => {
-    const elem = dialogRootCreator.create()
-    confirmationRef.current = createConfirmation(EmailSender, 1000, elem)
-  }, [])
+  const confirm = useDialogCreation(EmailSender)
 
   const onSubmitPressed = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -22,16 +18,14 @@ const LetterBox = () => {
   }
 
   const onSendButtonClick = useCallback(() => {
-    if (confirmationRef.current) {
-      confirmationRef.current({
-        writeFrom: name.trim(),
-        writeTo: email,
-        onCancel: () => {
-          setName("")
-        },
-      })
-    }
-  }, [confirmationRef, name])
+    confirm({
+      writeFrom: name.trim(),
+      writeTo: email,
+      onCancel: () => {
+        setName("")
+      },
+    })
+  }, [confirm, name])
 
   return (
     <div>
