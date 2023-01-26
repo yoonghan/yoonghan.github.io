@@ -29,6 +29,7 @@ const CustomMessageRender = ({
       onYesClick: () => setAllowDownload(true),
       message:
         "It's a public file and may contain malicious content. Are you sure you want to download it?",
+      nonPortal: true,
     })
   }, [confirm])
 

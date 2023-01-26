@@ -87,6 +87,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
             filesToUpload && dropFileWithMessage(filesToUpload)
           },
           message: "This file will be shared publicly. Are you sure?",
+          nonPortal: true,
         })
       }
     }
