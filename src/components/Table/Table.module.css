@@ -1,3 +1,7 @@
+.container {
+  overflow-x: scroll;
+}
+
 .container thead th {
   color: var(--table-header);
   background-color: var(--table-header-bg);
