@@ -1,6 +1,5 @@
 import { usePusher } from "@/components/Chat/usePusher"
 import ChatMessageBox from "@/components/Chat/ChatMessageBox"
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import { useCallback, useEffect, useMemo, useRef } from "react"
@@ -9,6 +8,7 @@ import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDial
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import Head from "next/head"
 import { MessageType } from "@/components/Chat/config/MessageType"
+import Menu from "@/components/Menu"
 
 interface Props {
   appKey: string
@@ -71,7 +71,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
         />
       </Head>
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <hr />
       <section>

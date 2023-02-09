@@ -30,32 +30,28 @@ const pages: PageConfig[] = [
   {
     path: "/projects/lessons",
     display: "Lessons",
-    filterOptions: [FilterOption.NOT_MENU],
   },
   {
     path: "/projects/checklist",
     display: "Checklist of links",
-    filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
+    filterOptions: [FilterOption.NOT_FOOTER],
   },
   {
     path: "/projects/messenger",
     display: "Chat/Messenger",
-    filterOptions: [FilterOption.NOT_MENU],
   },
   {
     path: "/experiments",
     display: "Experiments",
-    filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER],
+    filterOptions: [FilterOption.NOT_FOOTER],
   },
   {
     path: "/experiments/amp",
     display: "Accelerated Mobile Pages",
-    filterOptions: [FilterOption.NOT_MENU],
   },
   {
     path: "/experiments/storybook",
     display: "Storybook",
-    filterOptions: [FilterOption.NOT_MENU],
   },
   {
     path: "/sitemap",
@@ -71,6 +67,11 @@ const pages: PageConfig[] = [
 export const findPageByPath = (path: string) =>
   pages.find((page) => page.path === path)
 
+export const findAllChildByPath = (path: string) => {
+  const parentPath = isSubMenu(path) ? "/" + path.split("/")[1] : path
+  return pages.filter((page) => page.path.startsWith(parentPath + "/"))
+}
+
 export const sortPagesByPath = (pageConfigs: PageConfig[]) =>
   pageConfigs.sort((a: PageConfig, b: PageConfig) =>
     a.path.localeCompare(b.path)
@@ -78,8 +79,13 @@ export const sortPagesByPath = (pageConfigs: PageConfig[]) =>
 
 export const sortedPages = sortPagesByPath(pages)
 
-export const sortedMenuPages = sortedPages.filter(
-  (page) => !page.filterOptions?.includes(FilterOption.NOT_MENU)
+const isSubMenu = (path: string) => path.split("/").length !== 2
+
+export const sortedMenuPagesWithFilteredHomeAndSubMenu = sortedPages.filter(
+  (page) =>
+    !page.filterOptions?.includes(FilterOption.NOT_MENU) &&
+    page.display !== "Home" &&
+    !isSubMenu(page.path)
 )
 
 export const sortedSiteMapPages = sortedPages.filter(

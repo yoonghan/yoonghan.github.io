@@ -1,4 +1,3 @@
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
@@ -7,6 +6,7 @@ import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import Table from "@/components/Table"
 import TroubleshootPwaCheckList from "@/pageComponents/Projects/Checklist"
+import Menu from "@/components/Menu"
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
@@ -61,7 +61,7 @@ const ImportantLinks = ({}) => {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
