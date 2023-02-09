@@ -6,11 +6,11 @@ import styles from "@/pageComponents/Homepage/Homepage.module.css"
 import { useMemo, useRef } from "react"
 import HtmlHead from "@/components/HtmlHead"
 import PageReaderIndicator from "@/components/PageReaderIndicator"
-import CommandBar from "@/components/CommandBar"
 import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import LetterBox from "@/components/LetterBox"
+import Menu from "@/components/Menu"
 
 interface Props {
   termsRead: boolean
@@ -37,7 +37,7 @@ function Index({ termsRead }: Props) {
       <main className={styles.homepage}>
         <PageReaderIndicator scrollContainer={scrollContainerRef} />
         <div ref={scrollContainerRef} id="parallax-container">
-          <CommandBar />
+          <Menu />
           <Parallax scrollContainer={scrollContainerRef} ref={scrollHandlerRef}>
             {sections}
           </Parallax>

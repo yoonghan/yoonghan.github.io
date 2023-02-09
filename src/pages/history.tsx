@@ -1,4 +1,3 @@
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import Head from "next/head"
 import HeaderOne from "@/components/HeaderOne"
@@ -8,6 +7,7 @@ import Table from "@/components/Table"
 import { nonFictionBooks, siteHistory } from "@/pageComponents/History/config"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
+import Menu from "@/components/Menu"
 
 const History = ({}) => {
   return (
@@ -25,7 +25,7 @@ const History = ({}) => {
         />
       </Head>
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={"page-aligned-container"}>
         <HeaderOne title={"Site's history"} isLined={true} />

@@ -28,19 +28,19 @@ const ScrollToTopNoSSR = ({ isLight = false }: { isLight?: boolean }) => {
     window.scrollTo(0, 0)
   }
 
-  return (
-    <React.Fragment>
-      {visible && (
-        <div
-          onClick={clickScrollUp}
-          className={`${styles.scroller} ${isLight ? styles.light : ""}`}
-          aria-hidden={true}
-        >
-          Up
-        </div>
-      )}
-    </React.Fragment>
-  )
+  if (visible) {
+    return (
+      <div
+        onClick={clickScrollUp}
+        className={`${styles.scroller} ${isLight ? styles.light : ""}`}
+        aria-hidden={true}
+      >
+        Up
+      </div>
+    )
+  } else {
+    return <div data-testid="scroll-to-top"></div>
+  }
 }
 
 export default ScrollToTopNoSSR

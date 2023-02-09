@@ -1,7 +1,6 @@
 import singletonRouter from "next/router"
 import { render, screen } from "@testing-library/react"
 import NavMenu from "."
-import userEvent from "@testing-library/user-event"
 
 jest.mock("next/router", () => require("next-router-mock"))
 

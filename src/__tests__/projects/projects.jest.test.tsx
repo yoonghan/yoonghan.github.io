@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react"
 import Projects from "@/pages/projects"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
+import { assertScrollToTop } from "../utils/_scrollToTop"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
@@ -10,9 +11,10 @@ describe("Projects", () => {
     render(<Projects />)
   }
 
-  it("should have a menu", async () => {
+  it("should have a menu and scroll to top", async () => {
     renderComponent()
     await assertMenu()
+    await assertScrollToTop()
   })
 
   it("should render the page with the important components", () => {

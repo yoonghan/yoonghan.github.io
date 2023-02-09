@@ -1,0 +1,37 @@
+.container {
+  background-color: var(--menu-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container .menu {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 2rem;
+}
+
+.container .menu img {
+  padding-right: 1rem;
+}
+
+.container .menu a {
+  white-space: nowrap;
+}
+
+.container .divider {
+  padding: 0 1rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .container .menu {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .container .menu img {
+    width: 15px;
+  }
+
+  .container .divider {
+    padding: 0 0.5rem;
+  }
+}

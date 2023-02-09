@@ -1,4 +1,3 @@
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import Button from "@/components/Button"
 import HtmlHead from "@/components/HtmlHead"
@@ -12,13 +11,14 @@ import imgBrowserDownloadChunk from "@/images/lesson/1/browser-download-chunk.jp
 import imgAnalyzeReportSize from "@/images/lesson/1/analyze-report-size.jpg"
 import imgTypescriptImport from "@/images/lesson/1/typescript-import.jpg"
 import imgFinalResult from "@/images/lesson/1/final-result.jpg"
+import Menu from "@/components/Menu"
 
 const Lessons = ({}) => {
   return (
     <>
       <HtmlHead title={"Lesson"} description={"Lessons learned"} />
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
