@@ -1,3 +1,4 @@
+import Menu from "@/components/Menu"
 import dynamic from "next/dynamic"
 import ButtonsBar from "./ButtonsBar"
 import Cards from "./Cards"
@@ -15,6 +16,10 @@ export const storyBookList = [
   {
     title: "Dialogs",
     component: <NoSSRDialog />,
+  },
+  {
+    title: "Menu",
+    component: <Menu />,
   },
   {
     title: "Cards",
