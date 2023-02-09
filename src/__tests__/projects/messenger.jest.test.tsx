@@ -13,18 +13,13 @@ describe("Messenger", () => {
   const renderComponent = () =>
     render(<Messenger appKey={"sampleAppKey"} cluster={"sampleCluster"} />)
 
-  it("should have a menu", async () => {
+  it("should have a menu and important loaded info", async () => {
     renderComponent()
     await assertMenu()
-  })
-
-  it("should render the page with the important components", () => {
-    renderComponent()
     expect(screen.getByText("A Walcron Chat Program")).toBeInTheDocument()
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
+    expect(
+      await screen.findByText("Status: Start Connecting")
+    ).toBeInTheDocument()
     assertFooter()
   })
 

@@ -5,6 +5,7 @@ import { NextPageContext } from "next"
 import * as Cookie from "cookies-next"
 import { assertFooter } from "./utils/_footer"
 import { assertMenu } from "./utils/_menu"
+import { assertSocialFab } from "./utils/_socialFab"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
@@ -13,9 +14,11 @@ describe("Home", () => {
     render(<Home termsRead={false} />)
   }
 
-  it("should have a menu", async () => {
+  it("should have a menu and social fab loaded and footer", async () => {
     renderComponent()
     await assertMenu()
+    await assertSocialFab()
+    assertFooter()
   })
 
   it("should expose config with runtime set to nodejs as edge will not work", () => {
@@ -141,10 +144,5 @@ describe("Home", () => {
       await UserEvent.type(screen.getByText("Return to top"), "{enter}")
       expect(scrollToFn).toHaveBeenCalledWith(0, 0)
     })
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
   })
 })

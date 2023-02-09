@@ -8,6 +8,7 @@ describe("ScrollToTop", () => {
   it("should render scroller correctly", async () => {
     render(<ScrollToTopWithNoSSR />)
     expect(screen.queryByText("Up")).not.toBeInTheDocument()
+    expect(screen.getByTestId("scroll-to-top")).toBeInTheDocument()
 
     fireEvent.scroll(window, { target: { pageYOffset: 321 } })
     expect(screen.getByText("Up")).toBeInTheDocument()

@@ -1,10 +1,10 @@
-import CommandBar from "@/components/CommandBar"
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
 import styles from "@/pageComponents/Experiments/Storybook/Storybook.module.css"
 import Footer from "@/components/Footer"
 import StoryMaker from "@/pageComponents/Experiments/Storybook/StoryMaker"
 import { storyBookList } from "@/pageComponents/Experiments/Storybook/config/componentList"
+import Menu from "@/components/Menu"
 
 function Storybook() {
   return (
@@ -17,7 +17,7 @@ function Storybook() {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={styles.container}>
         <h1>Component Storybook</h1>

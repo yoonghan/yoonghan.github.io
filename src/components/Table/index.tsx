@@ -20,16 +20,18 @@ const Table = ({ list, headers }: Props) => {
   })
 
   return (
-    <table className={styles.container}>
-      <thead>
-        <tr>
-          {headers.map((header, idx) => (
-            <th key={`table_header_${idx}`}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>{listOfObjects}</tbody>
-    </table>
+    <div className={styles.container}>
+      <table>
+        <thead>
+          <tr>
+            {headers.map((header, idx) => (
+              <th key={`table_header_${idx}`}>{header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>{listOfObjects}</tbody>
+      </table>
+    </div>
   )
 }
 

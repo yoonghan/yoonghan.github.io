@@ -1,4 +1,3 @@
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import { Fragment, memo, useMemo } from "react"
@@ -11,6 +10,7 @@ import {
   SiteMapConstructor,
 } from "@/pageComponents/Sitemap/sitemapConstructor"
 import { sortedSiteMapPages } from "@/config/pages"
+import Menu from "@/components/Menu"
 
 const SiteMap = ({}) => {
   const groupedMenu = useMemo(
@@ -39,7 +39,7 @@ const SiteMap = ({}) => {
     <>
       <HtmlHead title={"Site Map"} description={"Website links and site."} />
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={`${styles.container} page-aligned-container`}>
         <HeaderOne title={"Sitemap"} isLined={false} />

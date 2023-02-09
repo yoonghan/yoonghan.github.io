@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 3rem;
+  font-size: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+.container a {
+  white-space: nowrap;
+}
+
+.container .divider {
+  padding: 0 1rem;
+}

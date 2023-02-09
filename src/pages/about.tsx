@@ -3,12 +3,12 @@ import Head from "next/head"
 import LetterBox from "@/components/LetterBox"
 import HeaderOne from "@/components/HeaderOne"
 import Profiler from "@/components/Profiler"
-import CommandBar from "@/components/CommandBar"
 import ScrollToTop from "@/components/ScrollToTop"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
+import Menu from "@/components/Menu"
 
 const _getSchema = () => {
   const schemas = {
@@ -41,7 +41,7 @@ const About = () => {
       <Head>
         <script type="application/ld+json">{_getSchema()}</script>
       </Head>
-      <CommandBar />
+      <Menu />
       <div className={"page-aligned-container"}>
         <HeaderOne title={"About Us"} isLined={true} />
         <p>

@@ -1,4 +1,3 @@
-import CommandBar from "@/components/CommandBar"
 import Footer from "@/components/Footer"
 import Head from "next/head"
 import HtmlHead from "@/components/HtmlHead"
@@ -7,6 +6,7 @@ import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import LetterBox from "@/components/LetterBox"
+import Menu from "@/components/Menu"
 
 const Projects = ({}) => {
   return (
@@ -22,7 +22,7 @@ const Projects = ({}) => {
         />
       </Head>
       <div>
-        <CommandBar />
+        <Menu />
       </div>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>

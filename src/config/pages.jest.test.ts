@@ -1,10 +1,11 @@
 import {
-  sortedMenuPages,
+  sortedMenuPagesWithFilteredHomeAndSubMenu,
   sortedFooterPages,
   sortPagesByPath,
   sortedSiteMapPages,
   sortedPages,
   findPageByPath,
+  findAllChildByPath,
 } from "./pages"
 import fs from "fs"
 
@@ -39,9 +40,11 @@ describe("pages", () => {
   })
 
   it("should filter menu with NON_MENU filterOption", () => {
-    const menuPageMappedByDisplay = sortedMenuPages.map((page) => page.path)
-    expect(menuPageMappedByDisplay).toContain("/")
+    const menuPageMappedByDisplay =
+      sortedMenuPagesWithFilteredHomeAndSubMenu.map((page) => page.path)
+    expect(menuPageMappedByDisplay).not.toContain("/")
     expect(menuPageMappedByDisplay).not.toContain(["/projects/lessons"])
+    expect(menuPageMappedByDisplay).toContain("/experiments")
   })
 
   it("should filter footer with NON_FOOTER filterOption", () => {
@@ -62,6 +65,30 @@ describe("pages", () => {
       display: "About Us",
       path: "/about",
     })
+  })
+
+  it("should be able to list out all the child by path", () => {
+    expect(findAllChildByPath("/about")).toStrictEqual([])
+    expect(findAllChildByPath("/experiments")).toStrictEqual([
+      {
+        path: "/experiments/amp",
+        display: "Accelerated Mobile Pages",
+      },
+      {
+        path: "/experiments/storybook",
+        display: "Storybook",
+      },
+    ])
+    expect(findAllChildByPath("/experiments/amp")).toStrictEqual([
+      {
+        path: "/experiments/amp",
+        display: "Accelerated Mobile Pages",
+      },
+      {
+        path: "/experiments/storybook",
+        display: "Storybook",
+      },
+    ])
   })
 })
 
