@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useSpring, animated } from "react-spring"
+import { useSpring, animated } from "@react-spring/web"
 import styles from "./ScrollIcon.module.css"
 
 interface Props {

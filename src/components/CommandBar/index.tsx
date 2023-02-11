@@ -1,12 +1,9 @@
 import * as React from "react"
-import NavMenu from "./NavMenu"
-import Logo from "../Logo"
-import MobileMenu from "./MobileMenu"
 import styles from "./CommandBar.module.css"
 import dynamic from "next/dynamic"
+import NavMenu from "./NavMenu"
 
 export interface CommandBarNoSSRProps {
-  disableMobile?: boolean
   commandPromptOnly?: boolean
 }
 
@@ -19,10 +16,7 @@ const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
   ),
 })
 
-const CommandBar = ({
-  disableMobile,
-  commandPromptOnly,
-}: CommandBarNoSSRProps) => {
+const CommandBar = ({ commandPromptOnly }: CommandBarNoSSRProps) => {
   return (
     <div
       className={`${styles["header"]} ${
@@ -32,20 +26,18 @@ const CommandBar = ({
     >
       <div
         className={
-          (!commandPromptOnly ? styles["desktop"] : "") +
-          " " +
-          (!disableMobile && !commandPromptOnly ? styles["shift-to-right"] : "")
+          !commandPromptOnly
+            ? `${styles["desktop"]} ${styles["shift-to-right"]}`
+            : ""
         }
       >
         <NoSSRCommandBar />
-        {!disableMobile && !commandPromptOnly && <NavMenu />}
+        {!commandPromptOnly && (
+          <div className={styles.menu}>
+            <NavMenu />
+          </div>
+        )}
       </div>
-      {!disableMobile && !commandPromptOnly && (
-        <div className={styles["mobile"]}>
-          <MobileMenu />
-        </div>
-      )}
-      {disableMobile && <Logo />}
     </div>
   )
 }
