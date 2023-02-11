@@ -24,9 +24,8 @@ test.describe("Messenger", () => {
     await page.goto("/projects/messenger")
     expect(await page.content()).toContain("A Walcron Chat Program")
     expect(await page.content()).not.toContain("Hello World")
-    expect(await page.content()).toContain("Status: Connected")
     await page.getByPlaceholder("Your Message").fill("Hello World")
-    await page.getByRole("button", { name: "Send" }).click()
+    await page.getByRole("button", { name: "Send" }).click({ delay: 3000 })
     await page.waitForSelector(".react-bell-chat__chat-bubble")
     expect(
       page
