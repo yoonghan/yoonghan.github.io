@@ -3,7 +3,6 @@ import LogoText from "@/components/LogoText"
 import Head from "next/head"
 import HtmlHead from "@/components/HtmlHead"
 import { siteDevelopmentSections } from "@/pageComponents/Homepage/config"
-import Menu from "@/components/Menu"
 
 /** Ignore anything that starts with amp. */
 const Amp = () => {
@@ -27,7 +26,6 @@ const Amp = () => {
           src="https://cdn.ampproject.org/v0/amp-video-0.1.js"
         ></script>
       </Head>
-      <Menu />
       <div className="container">
         <h1 className="title">
           Welcome to <LogoText /> Coorperation
