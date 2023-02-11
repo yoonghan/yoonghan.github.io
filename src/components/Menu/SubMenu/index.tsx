@@ -27,7 +27,6 @@ const SubMenu = ({ router }: Props) => {
                 {menu.display}
               </Link>
             )}
-            <span className={style.divider}></span>
           </React.Fragment>
         ))}
       </div>

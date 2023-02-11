@@ -15,7 +15,7 @@
 .container .wrapper {
   display: flex;
   justify-content: center;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0;
 }
 
 .container .menu img {
@@ -31,7 +31,7 @@
 }
 
 .container .switchButton {
-  padding: 1rem;
+  padding-right: 1rem;
   color: var(--button);
   background: var(--menu-bg);
   font-weight: bold;
@@ -42,7 +42,7 @@
 
 @media only screen and (max-width: 480px) {
   .container .menu {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
     font-size: 0.75rem;
   }
 
