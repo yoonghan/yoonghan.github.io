@@ -1,9 +1,18 @@
 .container {
   background-color: var(--menu-bg);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.container .command {
+  flex: 1;
 }
 
 .container .menu {
+  flex: 1;
+}
+
+.container .wrapper {
   display: flex;
   justify-content: center;
   padding: 0.5rem 2rem;
@@ -19,6 +28,16 @@
 
 .container .divider {
   padding: 0 1rem;
+}
+
+.container .switchButton {
+  padding: 1rem;
+  color: var(--button);
+  background: var(--menu-bg);
+  font-weight: bold;
+  cursor: pointer;
+  border: 0;
+  user-select: none;
 }
 
 @media only screen and (max-width: 480px) {
