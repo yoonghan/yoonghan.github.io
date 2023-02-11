@@ -1,5 +1,6 @@
 import { sortedMenuPagesWithFilteredHomeAndSubMenu } from "@/config/pages"
 import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import singletonRouter from "next/router"
 import Menu from "."
 
@@ -20,7 +21,6 @@ describe("Menu", () => {
   it("should redirect to the right link, randomly picking project", () => {
     render(<Menu />)
     const projectLink = screen.getByText("Projects")
-    expect(projectLink).toBeInTheDocument()
     expect(projectLink).toHaveAttribute("href", "/projects")
   })
 
@@ -29,7 +29,18 @@ describe("Menu", () => {
     render(<Menu />)
     expect(screen.getByText("Accelerated Mobile Pages")).toBeInTheDocument()
     const experimentPath = screen.getByText("Experiments")
-    expect(experimentPath).toBeInTheDocument()
     expect(experimentPath).not.toHaveAttribute("href", "/experiments")
+  })
+
+  it("should change when toggle with right, left pointer", async () => {
+    render(<Menu />)
+    const leftArrow = "〈"
+    const rightArrow = "〉"
+    expect(screen.getByText("Projects")).toBeInTheDocument()
+    await userEvent.click(screen.getByText(leftArrow))
+    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
+    await userEvent.click(screen.getByText(rightArrow))
+    expect(screen.getByText("Projects")).toBeInTheDocument()
+    expect(screen.getByText(leftArrow)).toBeInTheDocument()
   })
 })
