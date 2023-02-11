@@ -96,7 +96,7 @@
       "url": "http://localhost:3000",
       "delay": 500,
       "clickSelector": "text=〈",
-      "postInteractionWait": 4000,
+      "postInteractionWait": 5000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
