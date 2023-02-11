@@ -1,4 +1,4 @@
-import { useSpring, animated } from "react-spring"
+import { useSpring, animated } from "@react-spring/web"
 
 const loaderStyle = (styleprops: any) => {
   return {

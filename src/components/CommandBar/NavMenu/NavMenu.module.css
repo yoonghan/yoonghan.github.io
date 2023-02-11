@@ -1,6 +1,7 @@
 .container {
   display: flex;
   padding: 2rem 0;
+  font-size: 0.75rem;
 }
 .navmenu-link {
   padding-left: 10px;
