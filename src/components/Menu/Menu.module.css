@@ -34,10 +34,11 @@
 }
 
 .container .switchButton:focus {
-  -webkit-tap-highlight-color: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .container .switchButton:focus-visible {
+  -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 
