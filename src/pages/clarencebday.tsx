@@ -21,7 +21,7 @@ const ClarenceBday = () => {
         <tbody>
           <tr>
             <td>Time:</td>
-            <td>5:00pm onwards</td>
+            <td>6:00pm onwards</td>
           </tr>
           <tr>
             <td>Date:</td>
