@@ -34,7 +34,7 @@
 }
 
 .container .switchButton:focus {
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: none;
 }
 
 .container .switchButton:focus-visible {
