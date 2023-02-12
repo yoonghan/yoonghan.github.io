@@ -5,7 +5,6 @@
 .header {
   text-align: center;
   position: relative;
-  background-color: #fff;
 }
 
 .header.commandPromptOnly {

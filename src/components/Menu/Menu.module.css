@@ -2,7 +2,7 @@
   background-color: var(--menu-bg);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 }
 
 .container .wrapper {
@@ -31,6 +31,10 @@
   border: 0;
   user-select: none;
   padding: 0;
+}
+
+.container .switchButton:focus-visible {
+  outline: none;
 }
 
 @media only screen and (max-width: 480px) {
