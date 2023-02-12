@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import History from "@/pages/history"
 import { assertFooter } from "./utils/_footer"
 import { assertMenu } from "./utils/_menu"
