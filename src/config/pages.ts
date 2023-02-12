@@ -14,6 +14,7 @@ const pages: PageConfig[] = [
   {
     path: "/",
     display: "Home",
+    filterOptions: [FilterOption.NOT_MENU],
   },
   {
     path: "/about",
@@ -26,6 +27,15 @@ const pages: PageConfig[] = [
   {
     path: "/projects",
     display: "Projects",
+  },
+  {
+    path: "/clarencebday",
+    display: "Clarence B'day",
+    filterOptions: [
+      FilterOption.NOT_MENU,
+      FilterOption.NOT_FOOTER,
+      FilterOption.NOT_SITE_MAP,
+    ],
   },
   {
     path: "/projects/lessons",
@@ -84,7 +94,6 @@ const isSubMenu = (path: string) => path.split("/").length !== 2
 export const sortedMenuPagesWithFilteredHomeAndSubMenu = sortedPages.filter(
   (page) =>
     !page.filterOptions?.includes(FilterOption.NOT_MENU) &&
-    page.display !== "Home" &&
     !isSubMenu(page.path)
 )
 
