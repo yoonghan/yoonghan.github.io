@@ -76,7 +76,12 @@ const Menu = ({ router }: Props) => {
       <animated.div className={style.menu} style={{ ...springMenu }}>
         <div className={style.wrapper}>
           <a href="/">
-            <img src="/img/logo/logo-color.svg" alt="home" width={18} />
+            <img
+              src="/img/logo/logo-color.svg"
+              alt="home"
+              width={18}
+              height={18}
+            />
           </a>
           {sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu, index) => (
             <React.Fragment key={menu.path}>
