@@ -33,6 +33,10 @@
   padding: 0;
 }
 
+.container .switchButton:focus {
+  -webkit-tap-highlight-color: none;
+}
+
 .container .switchButton:focus-visible {
   outline: none;
 }
