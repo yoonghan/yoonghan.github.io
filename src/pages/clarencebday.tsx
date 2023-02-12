@@ -67,7 +67,7 @@ const ClarenceBday = () => {
         alt="parking"
         width={1180}
         height={1180}
-        layout="responsive"
+        layout={"responsive" as any}
       />
     </>
   )
