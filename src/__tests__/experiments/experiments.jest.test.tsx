@@ -1,18 +1,23 @@
-import Experiment, { config } from "@/pages/experiments"
+import Experiment from "@/pages/experiments"
 import { render, screen } from "@testing-library/react"
 import { assertMenu } from "../utils/_menu"
+import { assertScrollToTop } from "../utils/_scrollToTop"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Experiments", () => {
-  it("should render page correctly to inform we are in development phase", async () => {
+  const renderComponent = () => {
     render(<Experiment />)
-    expect(
-      screen.getByText("Currently we are still in development phase for AMP.")
-    ).toBeInTheDocument()
+  }
+
+  it("should have a menu and scroll to top", async () => {
+    renderComponent()
+    await assertMenu()
+    await assertScrollToTop()
   })
 
-  it("should expose config as true", () => {
-    expect(config).toStrictEqual({ amp: true, runtime: "nodejs" })
+  it("should render page correctly", async () => {
+    render(<Experiment />)
+    expect(screen.getByText("Experimental projects")).toBeInTheDocument()
   })
 })
