@@ -18,9 +18,7 @@ const Experiments = ({}) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
         />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
           <h1 className="title">Experimental projects</h1>
@@ -43,6 +41,13 @@ const Experiments = ({}) => {
                   title: "Storybook",
                   description: "Design and styling of UX/UI of Walcron page.",
                   href: "/experiments/storybook",
+                  target: "_self",
+                },
+                {
+                  id: "performance",
+                  title: "Performance",
+                  description: "Validate react performance",
+                  href: "/experiments/performance",
                   target: "_self",
                 },
               ]}

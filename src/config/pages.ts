@@ -64,6 +64,10 @@ const pages: PageConfig[] = [
     display: "Storybook",
   },
   {
+    path: "/experiments/performance",
+    display: "Performance",
+  },
+  {
     path: "/sitemap",
     display: "Site Map",
     filterOptions: [
