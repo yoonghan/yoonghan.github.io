@@ -17,9 +17,7 @@ const Lessons = ({}) => {
   return (
     <>
       <HtmlHead title={"Lesson"} description={"Lessons learned"} />
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
           <h1 className="title">Lessons learned from projects</h1>
