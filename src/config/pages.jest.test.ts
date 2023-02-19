@@ -75,6 +75,10 @@ describe("pages", () => {
         display: "Accelerated Mobile Pages",
       },
       {
+        path: "/experiments/performance",
+        display: "Performance",
+      },
+      {
         path: "/experiments/storybook",
         display: "Storybook",
       },
@@ -83,6 +87,10 @@ describe("pages", () => {
       {
         path: "/experiments/amp",
         display: "Accelerated Mobile Pages",
+      },
+      {
+        path: "/experiments/performance",
+        display: "Performance",
       },
       {
         path: "/experiments/storybook",
