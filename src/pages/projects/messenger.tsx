@@ -70,9 +70,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
         />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <hr />
       <section>
         <h1>A Walcron Chat Program</h1>

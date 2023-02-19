@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { getDefaultNormalizer, render, screen } from "@testing-library/react"
 import ChatMessageDialog, { authors, userId } from "."
 import { Message } from "react-bell-chat"
 
@@ -40,7 +40,11 @@ describe("ChatMessageDialog", () => {
     expect(await screen.findByText("First Message")).toBeInTheDocument()
     expect(screen.getByText("Anon")).toBeInTheDocument()
     expect(screen.getByText("Second Message")).toBeInTheDocument()
-    expect(screen.getAllByText(formatDateToTime(createdOn))).toHaveLength(2)
+    expect(
+      screen.getAllByText(formatDateToTime(createdOn), {
+        normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
+      })
+    ).toHaveLength(2)
   })
 
   it("should have the first authors to be the user", () => {

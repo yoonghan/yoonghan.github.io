@@ -21,9 +21,7 @@ const Projects = ({}) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
         />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
           <h1 className="title">Playground projects</h1>
