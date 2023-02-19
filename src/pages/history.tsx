@@ -24,9 +24,7 @@ const History = ({}) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
         />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={"page-aligned-container"}>
         <HeaderOne title={"Site's history"} isLined={true} />
         <section>

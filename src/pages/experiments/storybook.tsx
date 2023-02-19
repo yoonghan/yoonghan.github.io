@@ -16,9 +16,7 @@ function Storybook() {
       <Head>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={styles.container}>
         <h1>Component Storybook</h1>
         <p>

@@ -38,9 +38,7 @@ const SiteMap = ({}) => {
   return (
     <>
       <HtmlHead title={"Site Map"} description={"Website links and site."} />
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={`${styles.container} page-aligned-container`}>
         <HeaderOne title={"Sitemap"} isLined={false} />
         {draw(groupedMenu)}

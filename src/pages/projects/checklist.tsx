@@ -60,9 +60,7 @@ const ImportantLinks = ({}) => {
       <Head>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
           <h1 className="title">Important Checklist Links</h1>
