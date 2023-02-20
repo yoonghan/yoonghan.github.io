@@ -9,7 +9,7 @@ import {
   messageReducerInitialState,
 } from "./useMessageReducer/useMessageReducer"
 import { MessageType } from "../../config/MessageType"
- 
+
 const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
   ssr: false,
   loading: () => (

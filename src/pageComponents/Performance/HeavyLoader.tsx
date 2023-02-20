@@ -40,6 +40,7 @@ const HeavyLoaderNoSSR = ({}) => {
     if (initializeRef.current) {
       window.performance.mark("Callback")
     }
+    console.log(toggleState)
     return arrayOfRecords.map((_, i) => <span key={`c_${i}`}>{i},</span>)
   }, [toggleState])
 
@@ -47,6 +48,7 @@ const HeavyLoaderNoSSR = ({}) => {
     if (initializeRef.current) {
       window.performance.mark("Memo")
     }
+    console.log(toggleState)
     return arrayOfRecords.map((_, i) => <span key={`m_${i}`}>{i},</span>)
   }, [toggleState])
 
