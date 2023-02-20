@@ -12,7 +12,6 @@ const Amp = () => {
         isAmp={true}
         title="Walcron, a testbed for developer's project."
         description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
-        canonical="https://www.walcron.com/experiments"
       />
       <Head>
         <script

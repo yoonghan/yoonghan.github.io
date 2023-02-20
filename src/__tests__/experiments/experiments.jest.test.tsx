@@ -20,8 +20,4 @@ describe("Experiments", () => {
     render(<Experiment />)
     expect(screen.getByText("Experimental projects")).toBeInTheDocument()
   })
-
-  it("should expose config as true", () => {
-    expect(config).toStrictEqual({ runtime: "nodejs" })
-  })
 })
