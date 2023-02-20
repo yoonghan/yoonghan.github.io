@@ -68,4 +68,6 @@ const Experiments = ({}) => {
   )
 }
 
+export const config = { runtime: "nodejs" }
+
 export default memo(Experiments)
