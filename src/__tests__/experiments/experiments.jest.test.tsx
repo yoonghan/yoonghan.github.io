@@ -1,4 +1,4 @@
-import Experiment from "@/pages/experiments"
+import Experiment, { config } from "@/pages/experiments"
 import { render, screen } from "@testing-library/react"
 import { assertMenu } from "../utils/_menu"
 import { assertScrollToTop } from "../utils/_scrollToTop"
@@ -19,5 +19,9 @@ describe("Experiments", () => {
   it("should render page correctly", async () => {
     render(<Experiment />)
     expect(screen.getByText("Experimental projects")).toBeInTheDocument()
+  })
+
+  it("should expose config as true", () => {
+    expect(config).toStrictEqual({ runtime: "nodejs" })
   })
 })
