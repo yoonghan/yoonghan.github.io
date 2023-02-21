@@ -93,6 +93,11 @@ git add backstopjs.approve
 git push
 ```
 
+# Vercel/NextJS
+
+1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.
+2. To build without previous build cache; click redeploy button from Vercel dashboard(a menu from the 3 vertical dots) and uncheck "Build with previous build cache".
+
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/Walcron/pull-request.yml
 [build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
 [coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan/Walcron.svg?style=flat-square
