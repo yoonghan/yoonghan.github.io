@@ -13,7 +13,7 @@ const customJestConfig = {
   ],
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__/utils",
-    "<rootDir>/__e2e__",
+    "<rootDir>/src/__e2e__",
   ],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
