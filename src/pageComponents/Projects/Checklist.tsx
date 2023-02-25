@@ -7,6 +7,13 @@ export interface PostedJob {
 }
 
 export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
+  const convertToTodaysDate = (createdAt?: string) => {
+    if (!createdAt) {
+      return "N/A"
+    }
+    return new Date(createdAt).toLocaleString()
+  }
+
   return (
     <section>
       <h3>CronJob</h3>
@@ -16,7 +23,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
         list={[
           {
             Active: postedJob ? "True" : "False",
-            "Last Execution": postedJob?.createdAt || "N/A",
+            "Last Execution": convertToTodaysDate(postedJob?.createdAt),
             "Job Executed": postedJob?.jobName || "N/A",
           },
         ]}

@@ -12,16 +12,17 @@ describe("Checklist", () => {
     })
 
     it("should render as active if post is there", () => {
+      const date = new Date()
       render(
         <CronJobCheckList
           postedJob={{
             jobName: "Test Cron Job",
-            createdAt: "2022-02-11",
+            createdAt: date.toISOString(),
           }}
         />
       )
       expect(screen.getByText("CronJob")).toBeInTheDocument()
-      expect(screen.getByText("2022-02-11")).toBeInTheDocument()
+      expect(screen.getByText(date.toLocaleString())).toBeInTheDocument()
       expect(screen.getByText("True")).toBeInTheDocument()
       expect(screen.getByText("Test Cron Job")).toBeInTheDocument()
     })
