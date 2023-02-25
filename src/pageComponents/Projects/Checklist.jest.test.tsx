@@ -1,8 +1,32 @@
 import { render, within, screen } from "@testing-library/react"
-import TroubleshootPwaCheckList from "./Checklist"
+import { CronJobCheckList, TroubleshootPwaCheckList } from "./Checklist"
 import { setServiceNavigator } from "../../__mocks__/windowMock"
 
 describe("Checklist", () => {
+  describe("CronJobCheckList", () => {
+    it("should render as inactive if post is missing", () => {
+      render(<CronJobCheckList />)
+      expect(screen.getByText("CronJob")).toBeInTheDocument()
+      expect(screen.getByText("False")).toBeInTheDocument()
+      expect(screen.getAllByText("N/A")).toHaveLength(2)
+    })
+
+    it("should render as active if post is there", () => {
+      render(
+        <CronJobCheckList
+          postedJob={{
+            jobName: "Test Cron Job",
+            createdAt: "2022-02-11",
+          }}
+        />
+      )
+      expect(screen.getByText("CronJob")).toBeInTheDocument()
+      expect(screen.getByText("2022-02-11")).toBeInTheDocument()
+      expect(screen.getByText("True")).toBeInTheDocument()
+      expect(screen.getByText("Test Cron Job")).toBeInTheDocument()
+    })
+  })
+
   describe("TroubleshootPwaCheckList", () => {
     const assertValue = (component: HTMLElement, value: boolean) => {
       // eslint-disable-next-line testing-library/no-node-access

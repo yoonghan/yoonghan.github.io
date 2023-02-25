@@ -21,6 +21,7 @@
       "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["styles/*"],
       "@/config/*": ["src/config/*"],
+      "@/transport/*": ["src/transport/*"],
       "@/images/*": ["public/img/*"]
     }
   },

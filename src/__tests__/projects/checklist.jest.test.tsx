@@ -1,8 +1,11 @@
-import { render, screen, fireEvent, within } from "@testing-library/react"
-import Checklist from "@/pages/projects/checklist"
+import { prismaMock } from "../../__mocks__/prismaMock"
+import { render, screen, fireEvent } from "@testing-library/react"
+import Checklist, { config } from "@/pages/projects/checklist"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import { assertScrollToTop } from "../utils/_scrollToTop"
+import { CronJob } from "@prisma/client"
+import { getServerSideProps } from "@/pages/projects/checklist"
 
 jest.mock("next/router", () => require("next-router-mock"))
 
@@ -20,6 +23,8 @@ describe("Checklist links", () => {
   it("should render the page with the important components", () => {
     renderComponent()
     expect(screen.getByText("Important Checklist Links"))
+    expect(screen.getByText("PWA"))
+    expect(screen.getByText("CronJob"))
   })
 
   it("should be able to scroll up", () => {
@@ -32,5 +37,41 @@ describe("Checklist links", () => {
   it("should render the page with footer", () => {
     renderComponent()
     assertFooter()
+  })
+
+  it("should expose config with runtime set to nodejs as edge will not work", () => {
+    expect(config).toStrictEqual({ runtime: "nodejs" })
+  })
+
+  describe("prisma/db connection", () => {
+    const postedCronJob: CronJob = {
+      createdAt: new Date(),
+      jobName: "Test Cron Job",
+      id: 1,
+    }
+
+    it("should be able to return the correct post", async () => {
+      prismaMock.cronJob.findFirst.mockResolvedValue(postedCronJob)
+      const response = await getServerSideProps()
+      const { id, ...resultWithoutId } = postedCronJob
+      expect(response).toStrictEqual({
+        props: {
+          postedCronJob: {
+            ...resultWithoutId,
+            createdAt: postedCronJob.createdAt.toISOString(),
+          },
+        },
+      })
+    })
+
+    it("should be able to handle if post returned are empty", async () => {
+      prismaMock.cronJob.findFirst.mockResolvedValue(null)
+      const response = await getServerSideProps()
+      expect(response).toStrictEqual({
+        props: {
+          postedCronJob: undefined,
+        },
+      })
+    })
   })
 })
