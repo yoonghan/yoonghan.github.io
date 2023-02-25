@@ -1,7 +1,31 @@
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"
 
-const TroubleshootPwaCheckList = () => {
+export interface PostedJob {
+  createdAt: string
+  jobName: string
+}
+
+export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
+  return (
+    <section>
+      <h3>CronJob</h3>
+      <p>Check Cron job has executed.</p>
+      <Table
+        headers={["Active", "Last Execution", "Job Executed"]}
+        list={[
+          {
+            Active: postedJob ? "True" : "False",
+            "Last Execution": postedJob?.createdAt || "N/A",
+            "Job Executed": postedJob?.jobName || "N/A",
+          },
+        ]}
+      />
+    </section>
+  )
+}
+
+export const TroubleshootPwaCheckList = () => {
   const {
     isRegistered,
     isTwaApp,
@@ -47,5 +71,3 @@ const TroubleshootPwaCheckList = () => {
     </section>
   )
 }
-
-export default TroubleshootPwaCheckList
