@@ -37,7 +37,10 @@ test.describe("Messenger", () => {
   test("should show a pop up to indicate file upload", async ({ page }) => {
     await page.goto("/projects/messenger")
     expect(await page.content()).toContain("A Walcron Chat Program")
-    await page.setInputFiles('input[type="file"]', "__e2e__/upload/sample.txt")
+    await page.setInputFiles(
+      'input[type="file"]',
+      "src/__e2e__/upload/sample.txt"
+    )
     expect(await page.content()).toContain(
       "This file will be shared publicly. Are you sure?"
     )
@@ -51,13 +54,19 @@ test.describe("Messenger", () => {
   }) => {
     await page.goto("/projects/messenger")
     expect(await page.content()).toContain("A Walcron Chat Program")
-    await page.setInputFiles('input[type="file"]', "__e2e__/upload/sample.txt")
+    await page.setInputFiles(
+      'input[type="file"]',
+      "src/__e2e__/upload/sample.txt"
+    )
 
     expect(await page.content()).toContain(
       "This file will be shared publicly. Are you sure?"
     )
     await page.getByRole("button", { name: "No" }).click()
-    await page.setInputFiles('input[type="file"]', "__e2e__/upload/sample.txt")
+    await page.setInputFiles(
+      'input[type="file"]',
+      "src/__e2e__/upload/sample.txt"
+    )
 
     expect(await page.content()).toContain(
       "This file will be shared publicly. Are you sure?"
