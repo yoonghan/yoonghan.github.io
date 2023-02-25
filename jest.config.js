@@ -21,6 +21,7 @@ const customJestConfig = {
     "^@/pageComponents/(.*)$": "<rootDir>/src/pageComponents/$1",
     "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
     "^@/config/(.*)$": "<rootDir>/src/config/$1",
+    "^@/transport/(.*)$": "<rootDir>/src/transport/$1",
     "^@/images/*": "<rootDir>/public/img/$1",
   },
   testEnvironment: "jest-environment-jsdom",

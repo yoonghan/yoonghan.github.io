@@ -1,12 +1,18 @@
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
-import { memo, ReactNode } from "react"
+import { ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import Table from "@/components/Table"
-import TroubleshootPwaCheckList from "@/pageComponents/Projects/Checklist"
+import {
+  TroubleshootPwaCheckList,
+  PostedJob,
+  CronJobCheckList,
+} from "@/pageComponents/Projects/Checklist"
 import Menu from "@/components/Menu"
+import { CronJob } from "@prisma/client"
+import prismaClient from "@/transport/prismaClient"
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
@@ -50,7 +56,11 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
 ]
 
-const ImportantLinks = ({}) => {
+type Props = {
+  postedCronJob?: PostedJob
+}
+
+const CheckList = ({ postedCronJob }: Props) => {
   return (
     <>
       <HtmlHead
@@ -74,6 +84,9 @@ const ImportantLinks = ({}) => {
           <TroubleshootPwaCheckList />
           <br />
           <br />
+          <CronJobCheckList postedJob={postedCronJob} />
+          <br />
+          <br />
           <Table headers={["Site", "Description", "Url"]} list={links} />
         </div>
         <Footer />
@@ -83,4 +96,28 @@ const ImportantLinks = ({}) => {
   )
 }
 
-export default memo(ImportantLinks)
+export const config = { runtime: "nodejs" }
+
+const cleanupPostResponse = (post: CronJob | null): PostedJob | undefined => {
+  if (post && post !== null) {
+    return {
+      jobName: post.jobName,
+      createdAt: post.createdAt.toISOString(),
+    }
+  }
+
+  return undefined
+}
+
+export async function getServerSideProps(): Promise<{
+  props: Props
+}> {
+  const firstCronJob = await prismaClient.cronJob.findFirst()
+  return {
+    props: {
+      postedCronJob: cleanupPostResponse(firstCronJob),
+    },
+  }
+}
+
+export default CheckList
