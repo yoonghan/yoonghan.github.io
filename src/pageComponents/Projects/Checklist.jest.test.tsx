@@ -35,6 +35,7 @@ describe("Checklist", () => {
           normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
         })
       ).toBeInTheDocument()
+      expect(screen.getByText(date.toLocaleString())).toBeInTheDocument()
       expect(screen.getByText("True")).toBeInTheDocument()
       expect(screen.getByText("Test Cron Job")).toBeInTheDocument()
     })
