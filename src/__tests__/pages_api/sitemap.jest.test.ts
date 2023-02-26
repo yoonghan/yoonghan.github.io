@@ -10,12 +10,10 @@ describe("sitemap", () => {
 
   it("should generate there right header", async () => {
     const response: Response = sitemapGenerator(nextRequest)
+    expect(response.status).toBe(200)
     expect(response.headers).toStrictEqual({
-      headers: {
-        "Cache-control": "stale-while-revalidate, s-maxage=3600",
-        "content-type": "text/xml",
-      },
-      status: 200,
+      "Cache-control": "stale-while-revalidate, s-maxage=3600",
+      "content-type": "text/xml",
     })
   })
 
