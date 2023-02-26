@@ -45,6 +45,10 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     return <></>
   }, [convertToLocalDate, cronHistory])
 
+  useEffect(() => {
+    setJsLocalDate(convertToLocalDate(postedJob?.createdAt))
+  }, [convertToLocalDate, postedJob?.createdAt])
+
   return (
     <section>
       <h3>CronJob</h3>
