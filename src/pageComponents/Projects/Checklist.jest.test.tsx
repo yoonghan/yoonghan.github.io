@@ -1,5 +1,10 @@
 import "../../__mocks__/fetchMock"
-import { render, within, screen } from "@testing-library/react"
+import {
+  render,
+  within,
+  screen,
+  getDefaultNormalizer,
+} from "@testing-library/react"
 import { CronJobCheckList, TroubleshootPwaCheckList } from "./Checklist"
 import { setServiceNavigator } from "../../__mocks__/windowMock"
 import userEvent from "@testing-library/user-event"
@@ -25,7 +30,11 @@ describe("Checklist", () => {
         />
       )
       expect(screen.getByText("CronJob")).toBeInTheDocument()
-      expect(screen.getByText(date.toLocaleString())).toBeInTheDocument()
+      expect(
+        screen.getByText(date.toLocaleString(), {
+          normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
+        })
+      ).toBeInTheDocument()
       expect(screen.getByText("True")).toBeInTheDocument()
       expect(screen.getByText("Test Cron Job")).toBeInTheDocument()
     })
