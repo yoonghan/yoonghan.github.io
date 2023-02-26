@@ -1,13 +1,16 @@
 global.Response = class Response {
   responseMessage
-  headers
+  serverResponse
 
-  constructor(responseMessage, headers) {
+  constructor(responseMessage, serverResponse) {
     this.responseMessage = responseMessage
-    this.headers = headers
+    this.serverResponse = serverResponse
+    this.headers = serverResponse.headers
+    this.status = serverResponse.status
   }
 
   text = async () => this.responseMessage
+  json = async () => JSON.parse(this.responseMessage)
 }
 
 global.fetch = jest.fn(() =>
