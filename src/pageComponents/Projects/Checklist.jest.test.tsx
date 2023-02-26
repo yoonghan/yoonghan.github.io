@@ -1,6 +1,9 @@
+import "../../__mocks__/fetchMock"
 import { render, within, screen } from "@testing-library/react"
 import { CronJobCheckList, TroubleshootPwaCheckList } from "./Checklist"
 import { setServiceNavigator } from "../../__mocks__/windowMock"
+import userEvent from "@testing-library/user-event"
+import { fetchMock } from "../../__mocks__/fetchMock"
 
 describe("Checklist", () => {
   describe("CronJobCheckList", () => {
@@ -25,6 +28,40 @@ describe("Checklist", () => {
       expect(screen.getByText(date.toLocaleString())).toBeInTheDocument()
       expect(screen.getByText("True")).toBeInTheDocument()
       expect(screen.getByText("Test Cron Job")).toBeInTheDocument()
+    })
+
+    it("should hide View More button after click and display table", async () => {
+      fetchMock.mockResolvedValue({
+        json: () =>
+          Promise.resolve([
+            {
+              id: 1,
+              createdAt: "2023-02-25T09:57:37.271Z",
+              jobName: "Written from cron job",
+            },
+            {
+              id: 2,
+              createdAt: "2023-02-25T10:10:54.125Z",
+              jobName: "Written from cron job",
+            },
+          ]),
+      })
+      const date = new Date()
+      render(
+        <CronJobCheckList
+          postedJob={{
+            jobName: "Test Cron Job",
+            createdAt: date.toISOString(),
+          }}
+        />
+      )
+      await userEvent.click(screen.getByRole("button", { name: "View More" }))
+      expect(
+        screen.queryByRole("button", { name: "View More" })
+      ).not.toBeInTheDocument()
+      expect(screen.getByText("Job Created At")).toBeInTheDocument()
+      expect(screen.getByText("Job Name")).toBeInTheDocument()
+      expect(screen.getAllByText("Written from cron job")).toHaveLength(2)
     })
   })
 

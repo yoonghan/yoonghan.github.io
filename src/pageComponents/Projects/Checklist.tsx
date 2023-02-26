@@ -1,6 +1,8 @@
+import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"
-import { useCallback, useEffect, useState } from "react"
+import { CronJob } from "@prisma/client"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 export interface PostedJob {
   createdAt: string
@@ -9,6 +11,7 @@ export interface PostedJob {
 
 export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
+  const [cronHistory, setCronHistory] = useState<CronJob[] | null>(null)
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -17,9 +20,30 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     return new Date(createdAt).toLocaleString()
   }, [])
 
+  const onClickViewMore = useCallback(async () => {
+    const response = await fetch("/api/cron?view=history")
+    const json: CronJob[] = await response.json()
+    setCronHistory(json)
+  }, [])
+
   useEffect(() => {
     setJsLocalDate(convertToLocalDate(postedJob?.createdAt))
   }, [convertToLocalDate, postedJob?.createdAt])
+
+  const histories = useMemo(() => {
+    if (cronHistory !== null) {
+      return (
+        <Table
+          headers={["Job Created At", "Job Name"]}
+          list={cronHistory.map((history) => ({
+            "Job Created At": convertToLocalDate(`${history.createdAt}`),
+            "Job Name": history.jobName,
+          }))}
+        />
+      )
+    }
+    return <></>
+  }, [convertToLocalDate, cronHistory])
 
   return (
     <section>
@@ -35,6 +59,12 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
           },
         ]}
       />
+      {cronHistory == null && (
+        <Button onClick={onClickViewMore} color="orange">
+          View More
+        </Button>
+      )}
+      {cronHistory !== null && histories}
     </section>
   )
 }

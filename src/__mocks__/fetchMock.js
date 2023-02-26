@@ -13,8 +13,9 @@ global.Response = class Response {
   json = async () => JSON.parse(this.responseMessage)
 }
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({}),
-  })
-)
+export const fetchMock = jest.fn()
+fetchMock.mockResolvedValue({
+  json: () => Promise.resolve({}),
+})
+
+global.fetch = fetchMock
