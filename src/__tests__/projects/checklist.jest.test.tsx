@@ -50,8 +50,9 @@ describe("Checklist links", () => {
       id: 1,
     }
 
-    it("should be able to return the correct post", async () => {
-      prismaMock.cronJob.findFirst.mockResolvedValue(postedCronJob)
+    it("should be able to return post with createAt as descending order", async () => {
+      const mockFn = prismaMock.cronJob.findFirst
+      mockFn.mockResolvedValue(postedCronJob)
       const response = await getServerSideProps()
       const { id, ...resultWithoutId } = postedCronJob
       expect(response).toStrictEqual({
@@ -62,6 +63,7 @@ describe("Checklist links", () => {
           },
         },
       })
+      expect(mockFn).toBeCalledWith({ orderBy: { createdAt: "desc" } })
     })
 
     it("should be able to handle if post returned are empty", async () => {
