@@ -1,5 +1,6 @@
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"
+import { useCallback, useEffect, useState } from "react"
 
 export interface PostedJob {
   createdAt: string
@@ -7,12 +8,18 @@ export interface PostedJob {
 }
 
 export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
-  const convertToTodaysDate = (createdAt?: string) => {
+  const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
+
+  const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
       return "N/A"
     }
     return new Date(createdAt).toLocaleString()
-  }
+  }, [])
+
+  useEffect(() => {
+    setJsLocalDate(convertToLocalDate(postedJob?.createdAt))
+  }, [convertToLocalDate, postedJob?.createdAt])
 
   return (
     <section>
@@ -23,7 +30,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
         list={[
           {
             Active: postedJob ? "True" : "False",
-            "Last Execution": convertToTodaysDate(postedJob?.createdAt),
+            "Last Execution": jsLocalDate,
             "Job Executed": postedJob?.jobName || "N/A",
           },
         ]}
