@@ -112,7 +112,11 @@ const cleanupPostResponse = (post: CronJob | null): PostedJob | undefined => {
 export async function getServerSideProps(): Promise<{
   props: Props
 }> {
-  const firstCronJob = await prismaClient.cronJob.findFirst()
+  const firstCronJob = await prismaClient.cronJob.findFirst({
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
   return {
     props: {
       postedCronJob: cleanupPostResponse(firstCronJob),
