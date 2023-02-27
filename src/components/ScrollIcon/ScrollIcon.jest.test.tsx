@@ -36,10 +36,13 @@ describe("ScrollIcon", () => {
     const parent = screen.getByTestId("parent-elem")
     const scrollIcon = screen.getByTestId("scroll-icon")
     fireEvent.scroll(parent)
-    await waitFor(() => {
-      // eslint-disable-next-line testing-library/no-node-access
-      expect(scrollIcon.parentElement).toHaveStyle({ opacity: 0 })
-    })
+    await waitFor(
+      () => {
+        // eslint-disable-next-line testing-library/no-node-access
+        expect(scrollIcon.parentElement).toHaveStyle({ opacity: 0 })
+      },
+      { interval: 1000 }
+    )
   })
 
   it("should be able to display a text in the scroll icon", () => {

@@ -1,6 +1,8 @@
-import { render, screen, act } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import NoSSRCommandBar from "./NoSSRCommandBar"
+
+jest.mock("next/router", () => require("next-router-mock"))
 
 describe("NoSSRCommandBar", () => {
   it("should render command input", () => {
