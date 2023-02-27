@@ -24,7 +24,7 @@ describe("cron", () => {
     })
     const cronJob = require("@/pages/api/cron").default
     const nextRequest = new NextApiRequestMock({
-      query: { view: "history" },
+      query: { action: "history" },
       method: "POST",
     })
     const { nextResponse } = mockResponse(setHeaderFn, setStatusFn)
