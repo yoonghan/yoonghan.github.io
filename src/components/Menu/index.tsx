@@ -35,6 +35,9 @@ const Menu = ({ router }: Props) => {
   const [springButton, apiButton] = useSpring(() => ({
     from: { transform: "rotate(0deg)" },
   }))
+  const [springButtonSpan, apiButtonSpan] = useSpring(() => ({
+    from: { opacity: 1 },
+  }))
   useChain([menuRef, commandRef])
 
   const isNotLastRecord = (index: number) => {
@@ -49,6 +52,9 @@ const Menu = ({ router }: Props) => {
         apiButton.start({
           to: { transform: "rotate(180deg)" },
         })
+        apiButtonSpan.start({
+          to: { opacity: 0 },
+        })
         apiMenu.start({
           to: { scale: 0, width: "0" },
         })
@@ -61,19 +67,26 @@ const Menu = ({ router }: Props) => {
           to: { scale: 1, width: "100%" },
         })
         apiCommand.start({
-          to: { scale: 0, width: "0%", height: "0" },
+          to: { scale: 0, width: "0", height: "0" },
         })
         apiButton.start({
           to: { transform: "rotate(0deg)" },
         })
+        apiButtonSpan.start({
+          to: { opacity: 1 },
+        })
         return Display.Menu
       }
     })
-  }, [apiButton, apiCommand, apiMenu])
+  }, [apiButton, apiButtonSpan, apiCommand, apiMenu])
 
   return (
     <div className={style.container}>
-      <animated.div className={style.menu} style={{ ...springMenu }}>
+      <animated.div
+        className={style.menu}
+        style={{ ...springMenu }}
+        data-testid="menu"
+      >
         <div className={style.wrapper}>
           <a href="/">
             <img
@@ -98,7 +111,11 @@ const Menu = ({ router }: Props) => {
         </div>
         <SubMenu />
       </animated.div>
-      <animated.div className={style.command} style={{ ...springCommand }}>
+      <animated.div
+        className={style.command}
+        style={{ ...springCommand }}
+        data-testid="command-menu"
+      >
         <CommandBar />
       </animated.div>
       <animated.button
@@ -106,7 +123,13 @@ const Menu = ({ router }: Props) => {
         className={style.switchButton}
         style={{ ...springButton }}
       >
-        〈
+        <animated.span
+          style={{ ...springButtonSpan }}
+          className={style.searchText}
+        >
+          search
+        </animated.span>{" "}
+        〉
       </animated.button>
     </div>
   )

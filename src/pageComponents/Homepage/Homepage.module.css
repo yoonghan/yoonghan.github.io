@@ -113,6 +113,15 @@ section.introduction {
 
 .homepage .section .snapshots {
   border-radius: 0.5rem;
+  max-width: 100%;
+  position: relative;
+  height: 400px;
+  width: 640px;
+}
+
+.homepage .section .snapshots > img {
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .homepage .section .snapshots:hover {
