@@ -107,6 +107,7 @@ git push
 npm run prisma:generate //create ts schema
 npm run prisma:push //push to PlanetScale, main branch
 ```
+
 =======
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/Walcron/pull-request.yml

@@ -1,5 +1,5 @@
 import { sortedMenuPagesWithFilteredHomeAndSubMenu } from "@/config/pages"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import singletonRouter from "next/router"
 import Menu from "."
@@ -41,13 +41,39 @@ describe("Menu", () => {
   })
 
   it("should change when toggle with right, left pointer", async () => {
+    const assertIsShown = (testid: string) => {
+      expect(screen.getByTestId(testid)).toHaveStyle({
+        width: "100%",
+        transform: "none",
+      })
+    }
+
+    const assertIsHidden = (testid: string) => {
+      expect(screen.getByTestId(testid)).toHaveStyle({
+        width: "0",
+        transform: "scale(0)",
+      })
+    }
+
     render(<Menu />)
-    const leftArrow = "〈"
-    expect(screen.getByText("Projects")).toBeInTheDocument()
-    await userEvent.click(screen.getByText(leftArrow))
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
-    await userEvent.click(screen.getByText(leftArrow))
-    expect(await screen.findByText("Projects")).toBeInTheDocument()
-    await waitForCommandBar()
+    const leftArrow = "search 〉"
+    assertIsShown("menu")
+    assertIsHidden("command-menu")
+    await userEvent.click(screen.getByRole("button", { name: leftArrow }))
+    await waitFor(
+      () => {
+        assertIsHidden("menu")
+      },
+      { interval: 1000 }
+    )
+    assertIsShown("command-menu")
+    await userEvent.click(screen.getByRole("button", { name: leftArrow }))
+    await waitFor(
+      () => {
+        assertIsShown("menu")
+      },
+      { interval: 1000 }
+    )
+    assertIsHidden("command-menu")
   })
 })

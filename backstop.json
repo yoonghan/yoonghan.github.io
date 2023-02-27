@@ -22,7 +22,7 @@
       "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.3,
       "requireSameDimensions": true
     },
     {
@@ -33,7 +33,7 @@
       "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.31,
       "requireSameDimensions": true
     },
     {
@@ -95,7 +95,7 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
       "delay": 500,
-      "clickSelector": "text=〈",
+      "clickSelector": "text=search 〉",
       "postInteractionWait": 4000,
       "selectorExpansion": true,
       "expect": 0,

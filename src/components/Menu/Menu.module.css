@@ -3,6 +3,8 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   padding-right: 1rem;
+  max-width: 1024px;
+  margin: auto;
 }
 
 .container .wrapper {
@@ -24,6 +26,7 @@
 }
 
 .container .switchButton {
+  white-space: nowrap;
   color: var(--button);
   background: transparent;
   font-weight: bold;
@@ -54,5 +57,11 @@
 
   .container .divider {
     padding: 0 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .container .searchText {
+    display: none;
   }
 }
