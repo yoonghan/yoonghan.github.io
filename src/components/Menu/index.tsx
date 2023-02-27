@@ -82,55 +82,57 @@ const Menu = ({ router }: Props) => {
 
   return (
     <div className={style.container}>
-      <animated.div
-        className={style.menu}
-        style={{ ...springMenu }}
-        data-testid="menu"
-      >
-        <div className={style.wrapper}>
-          <a href="/">
-            <img
-              src="/img/logo/logo-color.svg"
-              alt="home"
-              width={18}
-              height={18}
-            />
-          </a>
-          {sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu, index) => (
-            <React.Fragment key={menu.path}>
-              {isCurrentPath(menu.path) ? (
-                <i>{menu.display}</i>
-              ) : (
-                <Link href={menu.path}>{menu.display}</Link>
-              )}
-              {isNotLastRecord(index) && (
-                <span className={style.divider}>|</span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-        <SubMenu />
-      </animated.div>
-      <animated.div
-        className={style.command}
-        style={{ ...springCommand }}
-        data-testid="command-menu"
-      >
-        <CommandBar />
-      </animated.div>
-      <animated.button
-        onClick={onSwitchClick}
-        className={style.switchButton}
-        style={{ ...springButton }}
-      >
-        <animated.span
-          style={{ ...springButtonSpan }}
-          className={style.searchText}
+      <div className={style.subContainer}>
+        <animated.div
+          className={style.menu}
+          style={{ ...springMenu }}
+          data-testid="menu"
         >
-          search
-        </animated.span>{" "}
-        〉
-      </animated.button>
+          <div className={style.wrapper}>
+            <a href="/">
+              <img
+                src="/img/logo/logo-color.svg"
+                alt="home"
+                width={18}
+                height={18}
+              />
+            </a>
+            {sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu, index) => (
+              <React.Fragment key={menu.path}>
+                {isCurrentPath(menu.path) ? (
+                  <i>{menu.display}</i>
+                ) : (
+                  <Link href={menu.path}>{menu.display}</Link>
+                )}
+                {isNotLastRecord(index) && (
+                  <span className={style.divider}>|</span>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+          <SubMenu />
+        </animated.div>
+        <animated.div
+          className={style.command}
+          style={{ ...springCommand }}
+          data-testid="command-menu"
+        >
+          <CommandBar />
+        </animated.div>
+        <animated.button
+          onClick={onSwitchClick}
+          className={style.switchButton}
+          style={{ ...springButton }}
+        >
+          <animated.span
+            style={{ ...springButtonSpan }}
+            className={style.searchText}
+          >
+            search
+          </animated.span>{" "}
+          〉
+        </animated.button>
+      </div>
     </div>
   )
 }

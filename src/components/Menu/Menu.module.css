@@ -1,6 +1,9 @@
 .container {
   background-color: var(--menu-bg);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.subContainer {
   display: flex;
   padding-right: 1rem;
   max-width: 1024px;
