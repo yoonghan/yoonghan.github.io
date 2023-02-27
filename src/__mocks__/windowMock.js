@@ -1,9 +1,7 @@
 global.window = Object.create(window)
+const windowLocation = window.location
 Object.defineProperty(window, "location", {
-  value: {
-    href: "",
-    assign: jest.fn(),
-  },
+  value: { ...windowLocation },
 })
 
 afterEach(() => {
