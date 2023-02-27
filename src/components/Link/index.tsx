@@ -1,13 +1,6 @@
-import { renderToHTML } from "next/dist/server/render"
 import Image from "next/image"
 import React from "react"
-
-interface Props {
-  text: string
-  href?: string
-  logoUrl: string
-  logoAltText: string
-}
+import style from "./Link.module.css"
 
 type RequiresBothLogo =
   | {
@@ -32,21 +25,12 @@ const Link = ({ text, href, logoUrl, logoAltText }: RequiresBothLogo) => {
   })()
 
   return (
-    <span className={"link"}>
+    <span className={style.link}>
       <LinkWrapper href={href}>
         {logo && logo}
         {logo && " "}
         {text}
       </LinkWrapper>
-      <style jsx global>
-        {`
-          .link > a, .link > span, .link > a:hover {
-              color: var(--link, #00f);
-              text-decoration: none;
-            }
-          }
-        `}
-      </style>
     </span>
   )
 }
