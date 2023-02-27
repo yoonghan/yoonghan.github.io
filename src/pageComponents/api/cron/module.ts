@@ -42,13 +42,17 @@ const generateResponse = (status: number, body: CronJob[] | CreateResponse) =>
   })
 
 export const execute = async (
-  view?: string | string[],
+  action?: string | string[],
   method: string = "GET"
 ): Promise<Response> => {
-  switch (view) {
-    case "history":
+  switch (action) {
+    case undefined:
       return await listCronHistory()
-    default:
+    case "log":
       return await executeCron(method)
+    default:
+      return generateResponse(400, {
+        message: "Only GET with action query of log",
+      })
   }
 }
