@@ -6,11 +6,11 @@ type CreateResponse = {
   error?: unknown
 }
 
-const writeAPost = async () => {
+const logJob = async (method: string) => {
   try {
     await prismaClient.cronJob.create({
       data: {
-        jobName: "Written from cron job",
+        jobName: `${method.toUpperCase()} via cron job`,
       },
     })
     return {
@@ -24,8 +24,8 @@ const writeAPost = async () => {
   }
 }
 
-const executeCron = async (): Promise<Response> => {
-  const result = await writeAPost()
+const executeCron = async (method: string): Promise<Response> => {
+  const result = await logJob(method)
   const hasError = result.error
 
   return generateResponse(hasError ? 500 : 200, result)
@@ -41,11 +41,14 @@ const generateResponse = (status: number, body: CronJob[] | CreateResponse) =>
     status: status,
   })
 
-export const execute = async (view?: string | string[]): Promise<Response> => {
+export const execute = async (
+  view?: string | string[],
+  method: string = "GET"
+): Promise<Response> => {
   switch (view) {
     case "history":
       return await listCronHistory()
     default:
-      return await executeCron()
+      return await executeCron(method)
   }
 }
