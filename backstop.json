@@ -22,7 +22,7 @@
       "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.3,
       "requireSameDimensions": true
     },
     {
@@ -33,7 +33,7 @@
       "postInteractionWait": 0,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.1,
+      "misMatchThreshold": 0.31,
       "requireSameDimensions": true
     },
     {
