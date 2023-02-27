@@ -95,7 +95,7 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000",
       "delay": 500,
-      "clickSelector": "text=〈",
+      "clickSelector": "text=search 〉",
       "postInteractionWait": 4000,
       "selectorExpansion": true,
       "expect": 0,
