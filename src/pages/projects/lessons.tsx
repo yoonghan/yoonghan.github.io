@@ -43,6 +43,7 @@ const Lessons = ({}) => {
                   <Image
                     src={imgBrowserDownloadChunk}
                     alt="Chunk size was big"
+                    fill={true}
                   />
                 </div>
               </li>
@@ -50,7 +51,11 @@ const Lessons = ({}) => {
                 Ran `npm run analyze`, which was configured in next.config.js.
                 Shows the big chunk was due to typescript ~902kb to load.
                 <div className={styles.lessonImg}>
-                  <Image src={imgAnalyzeReportSize} alt="Big file size" />
+                  <Image
+                    src={imgAnalyzeReportSize}
+                    alt="Big file size"
+                    fill={true}
+                  />
                 </div>
               </li>
               <li>
@@ -59,7 +64,11 @@ const Lessons = ({}) => {
                 and found a file <strong>importing the WHOLE typescript</strong>{" "}
                 !
                 <div className={styles.lessonImg}>
-                  <Image src={imgTypescriptImport} alt="Imported typescript" />
+                  <Image
+                    src={imgTypescriptImport}
+                    alt="Imported typescript"
+                    fill={true}
+                  />
                 </div>
               </li>
               <li>
@@ -79,7 +88,11 @@ const Lessons = ({}) => {
               <li>
                 Replaced code with Function and file size was fixed!
                 <div className={styles.lessonImg}>
-                  <Image src={imgFinalResult} alt="Small JS chunks only" />
+                  <Image
+                    src={imgFinalResult}
+                    alt="Small JS chunks only"
+                    fill={true}
+                  />
                 </div>
               </li>
             </ol>
