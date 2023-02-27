@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "source .env.local && next dev",
     "build": "next build",
-    "start": "source .env.local && next start",
+    "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest",
     "lint": "next lint",
