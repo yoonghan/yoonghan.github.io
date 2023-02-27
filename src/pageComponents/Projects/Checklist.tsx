@@ -21,7 +21,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   }, [])
 
   const onClickViewMore = useCallback(async () => {
-    const response = await fetch("/api/cron?view=history")
+    const response = await fetch("/api/cron")
     const json: CronJob[] = await response.json()
     setCronHistory(json)
   }, [])
