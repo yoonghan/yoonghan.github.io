@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "source .env.local && next start",
     "test": "jest --watch",
     "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest",
     "lint": "next lint",
