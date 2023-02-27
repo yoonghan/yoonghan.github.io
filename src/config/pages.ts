@@ -29,15 +29,6 @@ const pages: PageConfig[] = [
     display: "Projects",
   },
   {
-    path: "/clarencebday",
-    display: "Clarence B'day",
-    filterOptions: [
-      FilterOption.NOT_MENU,
-      FilterOption.NOT_FOOTER,
-      FilterOption.NOT_SITE_MAP,
-    ],
-  },
-  {
     path: "/projects/lessons",
     display: "Lessons",
   },

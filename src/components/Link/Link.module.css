@@ -1,0 +1,6 @@
+.link > a,
+.link > span,
+.link > a:hover {
+  color: var(--link, #00f);
+  text-decoration: none;
+}
