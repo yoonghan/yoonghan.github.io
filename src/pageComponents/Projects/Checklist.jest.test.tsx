@@ -41,6 +41,7 @@ describe("Checklist", () => {
 
     it("should hide View More button after click and display table", async () => {
       fetchMock.mockResolvedValue({
+        ok: true,
         json: () =>
           Promise.resolve([
             {
@@ -68,10 +69,34 @@ describe("Checklist", () => {
       expect(
         screen.queryByRole("button", { name: "View More" })
       ).not.toBeInTheDocument()
+      expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
       expect(screen.getByText("Job Created At")).toBeInTheDocument()
       expect(screen.getByText("Job Name")).toBeInTheDocument()
       expect(screen.getAllByText("Written from cron job")).toHaveLength(2)
     })
+  })
+
+  it("should hide View More button and show error", async () => {
+    fetchMock.mockResolvedValue({
+      ok: false,
+      json: () => Promise.resolve([]),
+    })
+    const date = new Date()
+    render(
+      <CronJobCheckList
+        postedJob={{
+          jobName: "Test Cron Job",
+          createdAt: date.toISOString(),
+        }}
+      />
+    )
+    await userEvent.click(screen.getByRole("button", { name: "View More" }))
+    expect(
+      screen.queryByRole("button", { name: "View More" })
+    ).not.toBeInTheDocument()
+    expect(
+      screen.getByText("Fetch to /api/cron failed, try again later")
+    ).toBeInTheDocument()
   })
 
   describe("TroubleshootPwaCheckList", () => {
