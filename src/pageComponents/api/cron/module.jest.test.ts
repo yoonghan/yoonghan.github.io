@@ -9,7 +9,7 @@ describe("cron/Module", () => {
       jobName: "Test CronJob",
       createdAt: new Date(),
     })
-    const response = await execute()
+    const response = await execute("log")
     expect(response.status).toBe(200)
     expect(await response.json()).toStrictEqual({
       message: "Posted a cron job",
@@ -24,7 +24,7 @@ describe("cron/Module", () => {
       jobName: "Test CronJob",
       createdAt: new Date(),
     })
-    await execute(undefined, requestMethod)
+    await execute("log", requestMethod)
     expect(mockFn).toBeCalledWith({
       data: {
         jobName: `POST via cron job`,
@@ -37,7 +37,7 @@ describe("cron/Module", () => {
     expectedErrorMessage: string
   ) => {
     prismaMock.cronJob.create.mockRejectedValue(error)
-    const response = await execute()
+    const response = await execute("log")
     expect(response.status).toBe(500)
     expect(await response.json()).toStrictEqual({
       message: "Fail to write",
@@ -55,7 +55,7 @@ describe("cron/Module", () => {
     assertFailCases(errorMessage, errorMessage)
   })
 
-  it("should display listing when passed with view = history query", async () => {
+  it("should display listing when passed with action = history query", async () => {
     const historyResult = [
       {
         id: 1,
@@ -69,7 +69,7 @@ describe("cron/Module", () => {
       },
     ]
     prismaMock.cronJob.findMany.mockResolvedValue(historyResult)
-    const response = await execute("history")
+    const response = await execute()
     expect(response.status).toBe(200)
     expect(await response.json()).toStrictEqual(
       historyResult.map((it) => ({
@@ -77,5 +77,13 @@ describe("cron/Module", () => {
         createdAt: `${it.createdAt.toISOString()}`,
       }))
     )
+  })
+
+  it("should display error if action has no query", async () => {
+    const response = await execute("invalid")
+    expect(response.status).toBe(400)
+    expect(await response.json()).toStrictEqual({
+      message: "Only GET with action query of log",
+    })
   })
 })
