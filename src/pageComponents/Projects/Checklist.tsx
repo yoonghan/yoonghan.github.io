@@ -3,6 +3,7 @@ import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"
 import { CronJob } from "@prisma/client"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { useFetch } from "usehooks-ts"
 
 export interface PostedJob {
   createdAt: string
@@ -11,7 +12,9 @@ export interface PostedJob {
 
 export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
-  const [cronHistory, setCronHistory] = useState<CronJob[] | null>(null)
+  const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
+  const { data: cronHistoryData, error: cronHistoryError } =
+    useFetch<CronJob[]>(cronHistoryUrl)
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -21,29 +24,31 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   }, [])
 
   const onClickViewMore = useCallback(async () => {
-    const response = await fetch("/api/cron")
-    const json: CronJob[] = await response.json()
-    setCronHistory(json)
+    setCronHistoryUrl("/api/cron")
   }, [])
 
   useEffect(() => {
     setJsLocalDate(convertToLocalDate(postedJob?.createdAt))
   }, [convertToLocalDate, postedJob?.createdAt])
 
-  const histories = useMemo(() => {
-    if (cronHistory !== null) {
+  const cronHistories = useMemo(() => {
+    if (cronHistoryData) {
       return (
         <Table
           headers={["Job Created At", "Job Name"]}
-          list={cronHistory.map((history) => ({
+          list={cronHistoryData.map((history) => ({
             "Job Created At": convertToLocalDate(`${history.createdAt}`),
             "Job Name": history.jobName,
           }))}
         />
       )
     }
+
+    if (cronHistoryError) {
+      return <span>Fetch to {cronHistoryUrl} failed, try again later</span>
+    }
     return <></>
-  }, [convertToLocalDate, cronHistory])
+  }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
   return (
     <section>
@@ -59,12 +64,12 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
           },
         ]}
       />
-      {cronHistory == null && (
+      {!cronHistoryUrl && (
         <Button onClick={onClickViewMore} color="orange">
           View More
         </Button>
       )}
-      {cronHistory !== null && histories}
+      {cronHistories}
     </section>
   )
 }
