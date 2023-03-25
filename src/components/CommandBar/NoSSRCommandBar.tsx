@@ -3,15 +3,14 @@
   **/
 
 import * as React from "react"
-import { withRouter } from "next/router"
-import { WithRouterProps } from "next/dist/client/with-router"
 import CommandBarInput from "./CommandBarInput/CommandBarInput"
 import { exec } from "./ExecuteCommand"
 import styles from "./CommandBar.module.css"
+import { usePathname, useRouter } from "next/navigation"
 
-export interface NoSSRCommandBarProps extends WithRouterProps {}
-
-const NoSSRCommandBar = (props: NoSSRCommandBarProps) => {
+const NoSSRCommandBar = () => {
+  const router = useRouter()
+  const currentPath = usePathname()
   const [suggestedInput, setSuggestedInput] = React.useState("")
   const [renderExecutedCommand, setRenderExecutedCommand] = React.useState(
     <React.Fragment />
@@ -44,7 +43,13 @@ const NoSSRCommandBar = (props: NoSSRCommandBarProps) => {
     event.preventDefault()
 
     setRenderExecutedCommand(
-      exec(elem, cancelExecutedCommand, props.router, inputCallback)(typedInput)
+      exec(
+        elem,
+        cancelExecutedCommand,
+        router,
+        currentPath,
+        inputCallback
+      )(typedInput)
     )
   }
 
@@ -62,4 +67,4 @@ const NoSSRCommandBar = (props: NoSSRCommandBarProps) => {
   )
 }
 
-export default withRouter(NoSSRCommandBar)
+export default NoSSRCommandBar

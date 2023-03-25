@@ -1,14 +1,16 @@
 import { render, screen } from "@testing-library/react"
-import { NextRouter } from "next/dist/shared/lib/router/router"
 import { exec } from "./ExecuteCommand"
 import "../../__mocks__/windowMock"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 describe("CommandBar", () => {
   let routeCallback: jest.Mock<any, any>
   let routeBackCallback: jest.Mock<any, any>
   let specialInputCallback: jest.Mock<any, any>
 
-  const createCommandBar = (routeLocation = "/samplePage") => {
+  const createCommandBar = (
+    routeLocation: string | undefined | null = "/samplePage"
+  ) => {
     routeCallback = jest.fn()
     routeBackCallback = jest.fn()
     const globalAny = global
@@ -17,10 +19,15 @@ describe("CommandBar", () => {
     const route = {
       push: routeCallback,
       back: routeBackCallback,
-      route: routeLocation,
-    } as unknown as NextRouter
+    } as unknown as AppRouterInstance
     specialInputCallback = jest.fn()
-    return exec(divElement, cancelCallback, route, specialInputCallback)
+    return exec(
+      divElement,
+      cancelCallback,
+      route,
+      routeLocation,
+      specialInputCallback
+    )
   }
 
   it("should return nothing if command is empty", function () {
@@ -99,6 +106,12 @@ describe("CommandBar", () => {
       render(<div>{createCommandBar()("pwd")}</div>)
       expect(routeCallback).not.toHaveBeenCalled()
       expect(screen.getByText("Output: /samplePage")).toBeInTheDocument()
+    })
+
+    it("should return root if pathname detected is null", function () {
+      render(<div>{createCommandBar(null)("pwd")}</div>)
+      expect(routeCallback).not.toHaveBeenCalled()
+      expect(screen.getByText("Output: /")).toBeInTheDocument()
     })
   })
 

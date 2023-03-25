@@ -1,4 +1,5 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
+import "../__mocks__/routerMock"
 import Home, { getServerSideProps, config } from "@/pages/index"
 import UserEvent from "@testing-library/user-event"
 import { NextPageContext } from "next"
@@ -6,8 +7,6 @@ import * as Cookie from "cookies-next"
 import { assertFooter } from "./utils/_footer"
 import { assertMenu } from "./utils/_menu"
 import { assertSocialFab } from "./utils/_socialFab"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Home", () => {
   const renderComponent = () => {

@@ -1,24 +1,23 @@
 import { render, screen } from "@testing-library/react"
-import singletonRouter from "next/router"
+import { usePathnameFn } from "../../../__mocks__/routerMock"
+import "../../../__mocks__/routerMock"
 import SubMenu from "."
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("SubMenu", () => {
   it("should render nothing when there is no url", () => {
-    singletonRouter.push("")
+    usePathnameFn.mockReturnValue("")
     render(<SubMenu />)
     expect(screen.getByTestId("empty")).toBeInTheDocument()
   })
 
   it("should render nothing when there is not sub menu", () => {
-    singletonRouter.push("/about")
+    usePathnameFn.mockReturnValue("/about")
     render(<SubMenu />)
     expect(screen.getByTestId("empty")).toBeInTheDocument()
   })
 
   it("should render correctly when there are submenu elements", () => {
-    singletonRouter.push("/experiments")
+    usePathnameFn.mockReturnValue("/experiments")
     render(<SubMenu />)
     const ampPath = screen.getByText("Accelerated Mobile Pages")
     expect(ampPath).toBeInTheDocument()
@@ -26,7 +25,7 @@ describe("SubMenu", () => {
   })
 
   it("should prevent sub menu to be linkable", () => {
-    singletonRouter.push("/experiments/amp")
+    usePathnameFn.mockReturnValue("/experiments/amp")
     render(<SubMenu />)
     const ampPath = screen.getByText("Accelerated Mobile Pages")
     expect(ampPath).toBeInTheDocument()

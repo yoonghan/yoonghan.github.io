@@ -1,34 +1,31 @@
-import singletonRouter from "next/router"
 import { render, screen } from "@testing-library/react"
+import { usePathnameFn } from "../../../__mocks__/routerMock"
+import "../../../__mocks__/routerMock"
 import NavMenu from "."
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("NavMenu", () => {
   it("should render nav menu", () => {
-    singletonRouter.push("")
+    usePathnameFn.mockReturnValue("")
     render(<NavMenu />)
     expect(screen.getByText("home")).toBeInTheDocument()
   })
 
   it("should render nav menu with root", () => {
-    singletonRouter.push("/")
+    usePathnameFn.mockReturnValue("/")
     render(<NavMenu />)
     expect(screen.getByText("home")).toBeInTheDocument()
   })
 
   it("should render nav menu with menu", () => {
-    singletonRouter.push("/about")
+    usePathnameFn.mockReturnValue("/about")
     render(<NavMenu />)
     expect(screen.getByText("home")).toBeInTheDocument()
     expect(screen.getByText("> about")).toBeInTheDocument()
   })
 
   it("should be able to go back when clicked", () => {
-    singletonRouter.push("/")
-    singletonRouter.push("/about")
+    usePathnameFn.mockReturnValue("/about")
     render(<NavMenu />)
-    expect(singletonRouter.pathname).toBe("/about")
     expect(screen.getByText("home")).toHaveAttribute("href", "/")
   })
 
