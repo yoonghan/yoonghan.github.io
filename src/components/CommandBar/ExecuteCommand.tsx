@@ -37,6 +37,7 @@ export function exec(
   element: HTMLDivElement,
   cancellationCallback: () => void,
   router?: NextRouter,
+  currentPath?: string | null,
   specialInputCallback?: (input: string) => void
 ) {
   const executeBasedOnType = (
@@ -60,7 +61,7 @@ export function exec(
   }
 
   const executeLink = (inputCommand: string) => {
-    if (router) return AvailableInput[inputCommand].exec(router)
+    if (router) return AvailableInput[inputCommand].exec(router, currentPath)
   }
 
   /**

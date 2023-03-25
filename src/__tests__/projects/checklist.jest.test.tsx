@@ -1,4 +1,5 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
+import "../../__mocks__/routerMock"
 import { render, screen, fireEvent } from "@testing-library/react"
 import Checklist, { config } from "@/pages/projects/checklist"
 import { assertFooter } from "../utils/_footer"
@@ -6,8 +7,6 @@ import { assertMenu } from "../utils/_menu"
 import { assertScrollToTop } from "../utils/_scrollToTop"
 import { CronJob } from "@prisma/client"
 import { getServerSideProps } from "@/pages/projects/checklist"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Checklist links", () => {
   const renderComponent = () => {

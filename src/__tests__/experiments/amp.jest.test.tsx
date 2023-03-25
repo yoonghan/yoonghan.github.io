@@ -1,7 +1,6 @@
+import "../../__mocks__/routerMock"
 import Amp, { config } from "@/pages/experiments/amp"
 import { render, screen } from "@testing-library/react"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Amp", () => {
   it("should render page correctly to inform we are in development phase", () => {

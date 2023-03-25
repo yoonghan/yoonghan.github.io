@@ -1,9 +1,8 @@
-import Experiment, { config } from "@/pages/experiments"
+import Experiment from "@/pages/experiments"
+import "../../__mocks__/routerMock"
 import { render, screen } from "@testing-library/react"
 import { assertMenu } from "../utils/_menu"
 import { assertScrollToTop } from "../utils/_scrollToTop"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Experiments", () => {
   const renderComponent = () => {

@@ -1,4 +1,5 @@
 import { findPageByPath } from "@/config/pages"
+import { NextRouter } from "next/router"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import HelpDialog from "../HelpDialog"
@@ -25,9 +26,9 @@ export interface IAvailableInput {
 
 const generateLink = (url: string) => ({
   action: EnumAction.LINK,
-  exec: (router: any) => {
+  exec: (router: any, path: string) => {
     const link = findPageByPath(url)?.path
-    if (router.route === link) {
+    if (path === link) {
       return <InvalidCommand invalidCommand={"This is the page"} />
     }
     router.push(link)
@@ -49,8 +50,8 @@ export const AvailableInput: ICommand = {
   pwd: {
     description: "Lost, and need direction.",
     action: EnumAction.LINK,
-    exec: (router: any) => {
-      return <Output output={router.route} />
+    exec: (_router: any, pathname: string | null) => {
+      return <Output output={pathname || ""} />
     },
   },
   ls: {
@@ -73,8 +74,8 @@ export const AvailableInput: ICommand = {
     synonym: ["cd", "cd /"],
     description: "Return to main page.",
     action: EnumAction.LINK,
-    exec: (router: any) => {
-      if (router.route === "/") {
+    exec: (router: NextRouter, pathname: string) => {
+      if (pathname === "/") {
         return <InvalidCommand invalidCommand={"Already at root"} />
       }
       router.push("/")
@@ -84,8 +85,8 @@ export const AvailableInput: ICommand = {
   "cd ..": {
     description: "Return to previous page.",
     action: EnumAction.LINK,
-    exec: (router: any) => {
-      if (router.route !== "/") {
+    exec: (router: NextRouter, pathname: string) => {
+      if (pathname !== "/") {
         router.back()
         return <React.Fragment />
       } else return <InvalidCommand invalidCommand={"Already at root"} />

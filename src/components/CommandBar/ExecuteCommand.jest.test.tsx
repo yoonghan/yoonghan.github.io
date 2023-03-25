@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { NextRouter } from "next/dist/shared/lib/router/router"
+import { NextRouter } from "next/router"
 import { exec } from "./ExecuteCommand"
 import "../../__mocks__/windowMock"
 
@@ -17,10 +17,15 @@ describe("CommandBar", () => {
     const route = {
       push: routeCallback,
       back: routeBackCallback,
-      route: routeLocation,
     } as unknown as NextRouter
     specialInputCallback = jest.fn()
-    return exec(divElement, cancelCallback, route, specialInputCallback)
+    return exec(
+      divElement,
+      cancelCallback,
+      route,
+      routeLocation,
+      specialInputCallback
+    )
   }
 
   it("should return nothing if command is empty", function () {
