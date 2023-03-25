@@ -10,26 +10,41 @@ import {
 import fs from "fs"
 
 describe("pages", () => {
-  it("should be able to sort pages by path", () => {
+  it("should be able to sort pages by path, nonRoot is always the last", () => {
     const pagesToSort = [
       {
         path: "/history",
         display: "History",
         description: "Walcron Progress and History",
+        order: 4,
       },
       {
         path: "/",
         display: "Home",
         description: "Homepage",
+        order: 1,
       },
       {
         path: "/about",
         display: "About Us",
         description: "About Us and Walcron",
+        order: 2,
+      },
+      {
+        path: "/projects",
+        display: "Projects",
+        description: "Projects",
+        order: 3,
+      },
+      {
+        path: "/projects/experiment",
+        display: "Experiment",
+        description: "Experiment",
+        order: 2,
       },
     ]
     expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-      ["/", "/about", "/history"]
+      ["/", "/about", "/projects", "/history", "/projects/experiment"]
     )
   })
 
@@ -60,16 +75,22 @@ describe("pages", () => {
     expect(footerPageMappedByDisplay).not.toContain(["/sitemap"])
   })
 
-  it("should be able to pageConfig by path", () => {
+  it("should be able to ge pageConfig by path", () => {
     expect(findPageByPath("/about")).toStrictEqual({
       display: "About Us",
+      order: 2,
       path: "/about",
     })
   })
 
   it("should be able to list out all the child by path", () => {
     expect(findAllChildByPath("/about")).toStrictEqual([])
-    expect(findAllChildByPath("/experiments")).toStrictEqual([
+    expect(
+      findAllChildByPath("/experiments").map(({ path, display }) => ({
+        path,
+        display,
+      }))
+    ).toStrictEqual([
       {
         path: "/experiments/amp",
         display: "Accelerated Mobile Pages",
@@ -83,7 +104,12 @@ describe("pages", () => {
         display: "Storybook",
       },
     ])
-    expect(findAllChildByPath("/experiments/amp")).toStrictEqual([
+    expect(
+      findAllChildByPath("/experiments/amp").map(({ path, display }) => ({
+        path,
+        display,
+      }))
+    ).toStrictEqual([
       {
         path: "/experiments/amp",
         display: "Accelerated Mobile Pages",
@@ -147,6 +173,6 @@ describe("all sites are defined", () => {
       pagesFolder,
       ignoredFiles
     )
-    expect(allPages.sort()).toEqual(sortedPages.map((page) => page.path))
+    expect(allPages.sort()).toEqual(sortedPages.map((page) => page.path).sort())
   })
 })
