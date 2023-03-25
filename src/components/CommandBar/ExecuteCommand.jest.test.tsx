@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import { NextRouter } from "next/router"
 import { exec } from "./ExecuteCommand"
 import "../../__mocks__/windowMock"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 describe("CommandBar", () => {
   let routeCallback: jest.Mock<any, any>
@@ -17,7 +17,7 @@ describe("CommandBar", () => {
     const route = {
       push: routeCallback,
       back: routeBackCallback,
-    } as unknown as NextRouter
+    } as unknown as AppRouterInstance
     specialInputCallback = jest.fn()
     return exec(
       divElement,

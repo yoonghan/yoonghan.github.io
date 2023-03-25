@@ -1,5 +1,5 @@
 import { findPageByPath } from "@/config/pages"
-import { NextRouter } from "next/router"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import HelpDialog from "../HelpDialog"
@@ -74,7 +74,7 @@ export const AvailableInput: ICommand = {
     synonym: ["cd", "cd /"],
     description: "Return to main page.",
     action: EnumAction.LINK,
-    exec: (router: NextRouter, pathname: string) => {
+    exec: (router: AppRouterInstance, pathname: string) => {
       if (pathname === "/") {
         return <InvalidCommand invalidCommand={"Already at root"} />
       }
@@ -85,7 +85,7 @@ export const AvailableInput: ICommand = {
   "cd ..": {
     description: "Return to previous page.",
     action: EnumAction.LINK,
-    exec: (router: NextRouter, pathname: string) => {
+    exec: (router: AppRouterInstance, pathname: string) => {
       if (pathname !== "/") {
         router.back()
         return <React.Fragment />
