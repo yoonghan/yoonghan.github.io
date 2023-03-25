@@ -51,7 +51,7 @@ export const AvailableInput: ICommand = {
     description: "Lost, and need direction.",
     action: EnumAction.LINK,
     exec: (_router: any, pathname: string | null) => {
-      return <Output output={pathname || ""} />
+      return <Output output={pathname || "/"} />
     },
   },
   ls: {

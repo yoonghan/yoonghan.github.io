@@ -8,7 +8,9 @@ describe("CommandBar", () => {
   let routeBackCallback: jest.Mock<any, any>
   let specialInputCallback: jest.Mock<any, any>
 
-  const createCommandBar = (routeLocation = "/samplePage") => {
+  const createCommandBar = (
+    routeLocation: string | undefined | null = "/samplePage"
+  ) => {
     routeCallback = jest.fn()
     routeBackCallback = jest.fn()
     const globalAny = global
@@ -104,6 +106,12 @@ describe("CommandBar", () => {
       render(<div>{createCommandBar()("pwd")}</div>)
       expect(routeCallback).not.toHaveBeenCalled()
       expect(screen.getByText("Output: /samplePage")).toBeInTheDocument()
+    })
+
+    it("should return root if pathname detected is null", function () {
+      render(<div>{createCommandBar(null)("pwd")}</div>)
+      expect(routeCallback).not.toHaveBeenCalled()
+      expect(screen.getByText("Output: /")).toBeInTheDocument()
     })
   })
 
