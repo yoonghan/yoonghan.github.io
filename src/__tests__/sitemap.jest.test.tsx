@@ -1,10 +1,9 @@
-import { render, screen, within } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
+import "../__mocks__/routerMock"
 import SiteMap from "@/pages/sitemap"
 import { assertFooter } from "./utils/_footer"
 import { assertMenu } from "./utils/_menu"
 import { assertScrollToTop } from "./utils/_scrollToTop"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("SiteMap", () => {
   const renderComponent = () => {

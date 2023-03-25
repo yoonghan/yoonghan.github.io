@@ -1,24 +1,24 @@
+"use client"
+
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
+
 import { sortedMenuPagesWithFilteredHomeAndSubMenu } from "@/config/pages"
 import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web"
-import { WithRouterProps } from "next/dist/client/with-router"
 import Link from "next/link"
-import { withRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import React, { useCallback, useState } from "react"
 import CommandBar from "../CommandBar"
 import style from "./Menu.module.css"
 import SubMenu from "./SubMenu"
-
-export interface Props extends WithRouterProps {}
 
 enum Display {
   Menu,
   Command,
 }
 
-const Menu = ({ router }: Props) => {
-  const pathname = router.pathname
+const Menu = () => {
+  const pathname = usePathname()
   const [_display, setDisplay] = useState(Display.Menu)
 
   const menuRef = useSpringRef()
@@ -137,4 +137,4 @@ const Menu = ({ router }: Props) => {
   )
 }
 
-export default withRouter(Menu)
+export default Menu

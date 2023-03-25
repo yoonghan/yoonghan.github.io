@@ -1,10 +1,9 @@
 import { sortedMenuPagesWithFilteredHomeAndSubMenu } from "@/config/pages"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import singletonRouter from "next/router"
+import { usePathnameFn } from "../../__mocks__/routerMock"
+import "../../__mocks__/routerMock"
 import Menu from "."
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Menu", () => {
   const waitForCommandBar = async () => {
@@ -32,7 +31,7 @@ describe("Menu", () => {
   })
 
   it("should show experiments submenus and current selected path is non attributed", async () => {
-    singletonRouter.push("/experiments")
+    usePathnameFn.mockReturnValue("/experiments")
     render(<Menu />)
     expect(screen.getByText("Accelerated Mobile Pages")).toBeInTheDocument()
     const experimentPath = screen.getByText("Experiments")

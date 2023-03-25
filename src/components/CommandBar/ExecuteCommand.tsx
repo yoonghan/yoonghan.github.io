@@ -2,12 +2,12 @@ import * as React from "react"
 import InvalidInput from "./InvalidInput"
 import InvalidCommand from "./CommandSearch/InvalidCommand"
 import Output from "./CommandSearch/Output"
-import { NextRouter } from "next/router"
 import {
   AvailableInput,
   IAvailableInput,
   EnumAction,
 } from "./CommandSearch/CommandSearch"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 function evaluateMath(mathEval: string): string {
   const evaluatedResult = Function(`"use strict";return ${mathEval}`)()
@@ -36,7 +36,8 @@ function isSpecialCommand(inputCommand: string) {
 export function exec(
   element: HTMLDivElement,
   cancellationCallback: () => void,
-  router?: NextRouter,
+  router?: AppRouterInstance,
+  currentPath?: string | null,
   specialInputCallback?: (input: string) => void
 ) {
   const executeBasedOnType = (
@@ -60,7 +61,7 @@ export function exec(
   }
 
   const executeLink = (inputCommand: string) => {
-    if (router) return AvailableInput[inputCommand].exec(router)
+    if (router) return AvailableInput[inputCommand].exec(router, currentPath)
   }
 
   /**

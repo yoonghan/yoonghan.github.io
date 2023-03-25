@@ -1,13 +1,9 @@
 import * as React from "react"
-import { withRouter, NextRouter } from "next/router"
-import { WithRouterProps } from "next/dist/client/with-router"
 import styles from "./NavMenu.module.css"
+import { usePathname } from "next/navigation"
 
-export interface Props extends WithRouterProps {}
-
-const writeLink = (router: NextRouter) => {
-  const pathname = router.pathname
-  const paths = pathname.split("/")
+const writeLink = (pathname: string | null) => {
+  const paths = (pathname || "/").split("/")
   let accumulatedPath = ""
   const splittedLinks = paths.map((path, index) => {
     if (path === "") {
@@ -32,13 +28,14 @@ const writeLink = (router: NextRouter) => {
   })
   return splittedLinks
 }
-const NavMenu = ({ router }: Props) => {
+const NavMenu = () => {
+  const pathName = usePathname()
   return (
     <nav className={styles.container} aria-label="Site Map">
       <div>Site Map: &nbsp;</div>
-      <span className="link">{writeLink(router)}</span>
+      <span className="link">{writeLink(pathName)}</span>
     </nav>
   )
 }
 
-export default withRouter(NavMenu)
+export default NavMenu

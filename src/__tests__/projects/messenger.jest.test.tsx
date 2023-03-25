@@ -1,13 +1,11 @@
 import { render, screen } from "@testing-library/react"
-import "../../__mocks__/apiMock"
+import "../../__mocks__/routerMock"
 import UserEvent from "@testing-library/user-event"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import { EmptyStaticPropsContext, setEnv } from "../../__mocks__/apiMock"
 import React from "react"
 import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("Messenger", () => {
   const renderComponent = () =>

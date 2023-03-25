@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import "../../__mocks__/routerMock"
 import NoSSRCommandBar from "./NoSSRCommandBar"
-
-jest.mock("next/router", () => require("next-router-mock"))
 
 describe("NoSSRCommandBar", () => {
   it("should render command input", () => {
@@ -12,7 +11,6 @@ describe("NoSSRCommandBar", () => {
 
   it("should allow me to do a help and cancel", async () => {
     render(<NoSSRCommandBar />)
-    const input = screen.getByRole("textbox")
     await userEvent.type(screen.getByRole("textbox"), "help")
     await userEvent.click(screen.getByRole("button", { name: "Enter" }))
     expect(screen.getByText("Help")).toBeInTheDocument()

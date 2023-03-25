@@ -55,6 +55,7 @@ module.exports = withBundleAnalyzer(
     },
     experimental: {
       runtime: "experimental-edge",
+      appDir: true,
     },
   })
 )
