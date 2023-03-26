@@ -1,0 +1,26 @@
+{
+  "name": "snake",
+  "version": "0.1.0",
+  "files": [
+    "snake_bg.wasm",
+    "snake.js",
+    "snake.d.ts"
+  ],
+  "module": "snake.js",
+  "types": "snake.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "pusher": "^5.1.2",
+    "react-dom": "^18.2.0",
+    "next-pwa": "^5.6.0",
+    "@react-spring/web": "^9.6.1",
+    "backstopjs": "^6.1.1",
+    "react-dropzone": "^14.2.3",
+    "react": "^18.2.0",
+    "next": "^13.2.4",
+    "firebase-admin": "^11.4.1",
+    "@prisma/client": "^4.10.1",
+    "cookies-next": "^2.1.1",
+    "prisma": "^4.10.1"
+  }
+}
