@@ -51,5 +51,4 @@ public/workbox*
 **/*.rs.bk
 Cargo.lock
 bin/
-pkg/
 wasm-pack.log/target
