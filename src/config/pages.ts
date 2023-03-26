@@ -50,6 +50,11 @@ const pages: PageConfig[] = [
     order: 3,
   },
   {
+    path: "/projects/snake",
+    display: "Snake Game",
+    order: 3,
+  },
+  {
     path: "/experiments",
     display: "Experiments",
     filterOptions: [FilterOption.NOT_FOOTER],
@@ -93,7 +98,7 @@ export const findAllChildByPath = (path: string) => {
 export const sortPagesByPath = (pageConfigs: PageConfig[]) => {
   const pathOrder = ({ order, path }: { order: number; path: string }) => {
     const isPathRoot = path.split("/").length == 2
-    return isPathRoot ? `${order}-${path}` : `99-${path}`
+    return isPathRoot ? `${order}-${path}` : `99-${order}-${path}`
   }
   return pageConfigs.sort((a: PageConfig, b: PageConfig) => {
     const aPathWithOrder = pathOrder(a)

@@ -31,20 +31,52 @@ describe("pages", () => {
         order: 2,
       },
       {
+        path: "/projects/experiment",
+        display: "Experiment",
+        description: "Experiment",
+        order: 1,
+      },
+      {
+        path: "/projects",
+        display: "Projects",
+        description: "Projects",
+        order: 3,
+      },
+    ]
+    expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
+      ["/", "/about", "/projects", "/history", "/projects/experiment"]
+    )
+  })
+
+  it("should ne able to sort non-root", () => {
+    const pagesToSort = [
+      {
         path: "/projects",
         display: "Projects",
         description: "Projects",
         order: 3,
       },
       {
+        path: "/projects/amp",
+        display: "Amp",
+        description: "Amp",
+        order: 2,
+      },
+      {
+        path: "/projects/camp",
+        display: "Camo",
+        description: "Camp",
+        order: 3,
+      },
+      {
         path: "/projects/experiment",
         display: "Experiment",
         description: "Experiment",
-        order: 2,
+        order: 1,
       },
     ]
     expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-      ["/", "/about", "/projects", "/history", "/projects/experiment"]
+      ["/projects", "/projects/experiment", "/projects/amp", "/projects/camp"]
     )
   })
 
