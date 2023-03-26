@@ -1,0 +1,24 @@
+.container {
+  padding: 1rem;
+}
+
+.container .configuration {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.container .scoreBoard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 20px;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 3px;
+  max-width: 640px;
+}
+
+.container .gameBoard {
+  display: flex;
+  justify-content: center;
+}
