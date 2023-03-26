@@ -1,6 +1,6 @@
 import styles from "./Snake.module.css"
 import { InitOutput, World } from "snake-game"
-import { useDeferredValue, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Game, { GameProps } from "./Game"
 
 type Props = {
