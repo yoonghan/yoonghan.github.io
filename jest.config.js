@@ -14,6 +14,8 @@ const customJestConfig = {
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__/utils",
     "<rootDir>/src/__e2e__",
+    "<rootDir>/src/rust",
+    "<rootDir>/pkg",
   ],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
