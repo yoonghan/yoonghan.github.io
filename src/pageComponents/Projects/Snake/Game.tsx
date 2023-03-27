@@ -29,6 +29,11 @@ const Game = ({
   const [points, setPoints] = useState(0)
   const [buttonText, setButtonText] = useState("Play")
 
+  const preventKeyboardEvent = (e: Event) => {
+    e.preventDefault()
+    return false
+  }
+
   const getStatus = useCallback(() => {
     switch (world.game_status()) {
       case GameStatus.Play:
@@ -164,14 +169,7 @@ const Game = ({
       }
     })
 
-    window.addEventListener(
-      "keydown",
-      (e) => {
-        e.preventDefault()
-        return false
-      },
-      false
-    )
+    window.addEventListener("keydown", preventKeyboardEvent, false)
   }, [onKeyboardClick])
 
   const onPlayClicked = useCallback(() => {
@@ -191,6 +189,12 @@ const Game = ({
     canvas.height = worldWidth * cellSize
     paint()
   }, [canvas, cellSize, worldWidth, paint])
+
+  useEffect(() => {
+    return () => {
+      window.removeEventListener("keydown", preventKeyboardEvent, false)
+    }
+  }, [])
 
   return (
     <>

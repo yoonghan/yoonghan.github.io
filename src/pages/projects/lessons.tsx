@@ -43,7 +43,8 @@ const Lessons = ({}) => {
                   <Image
                     src={imgBrowserDownloadChunk}
                     alt="Chunk size was big"
-                    fill={true}
+                    fill
+                    sizes="100vw"
                   />
                 </div>
               </li>
@@ -54,7 +55,8 @@ const Lessons = ({}) => {
                   <Image
                     src={imgAnalyzeReportSize}
                     alt="Big file size"
-                    fill={true}
+                    fill
+                    sizes="100vw"
                   />
                 </div>
               </li>
@@ -67,7 +69,8 @@ const Lessons = ({}) => {
                   <Image
                     src={imgTypescriptImport}
                     alt="Imported typescript"
-                    fill={true}
+                    fill
+                    sizes="100vw"
                   />
                 </div>
               </li>
@@ -91,7 +94,8 @@ const Lessons = ({}) => {
                   <Image
                     src={imgFinalResult}
                     alt="Small JS chunks only"
-                    fill={true}
+                    fill
+                    sizes="100vw"
                   />
                 </div>
               </li>
