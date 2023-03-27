@@ -1,4 +1,5 @@
 import Button from "@/components/Button"
+import PopupKeyboard, { KeyboardKeys } from "@/components/PopupKeyboard"
 import { InitOutput, World, GameStatus, Direction } from "pkg/snake"
 import { useCallback, useContext, useEffect, useState } from "react"
 import { GameContext } from "./Context"
@@ -124,21 +125,41 @@ const Game = ({
     }, (snakeSpeed / 100) * 1000)
   }, [canvas.height, canvas.width, ctx, paint, snakeSpeed, world])
 
+  const onKeyboardClick = useCallback(
+    (key: KeyboardKeys) => {
+      switch (key) {
+        case KeyboardKeys.UP:
+          world.update_direction(Direction.UP)
+          break
+        case KeyboardKeys.DOWN:
+          world.update_direction(Direction.DOWN)
+          break
+        case KeyboardKeys.LEFT:
+          world.update_direction(Direction.LEFT)
+          break
+        case KeyboardKeys.RIGHT:
+          world.update_direction(Direction.RIGHT)
+          break
+      }
+    },
+    [world]
+  )
+
   const addMovementMonitor = useCallback(() => {
     window.addEventListener("keydown", (event) => {
       const direction = event.key
       switch (direction) {
         case "ArrowUp":
-          world.update_direction(Direction.UP)
+          onKeyboardClick(KeyboardKeys.UP)
           break
         case "ArrowDown":
-          world.update_direction(Direction.DOWN)
+          onKeyboardClick(KeyboardKeys.DOWN)
           break
         case "ArrowLeft":
-          world.update_direction(Direction.LEFT)
+          onKeyboardClick(KeyboardKeys.LEFT)
           break
         case "ArrowRight":
-          world.update_direction(Direction.RIGHT)
+          onKeyboardClick(KeyboardKeys.RIGHT)
           break
       }
     })
@@ -151,7 +172,7 @@ const Game = ({
       },
       false
     )
-  }, [world])
+  }, [onKeyboardClick])
 
   const onPlayClicked = useCallback(() => {
     if (world.game_status() !== undefined) {
@@ -172,20 +193,32 @@ const Game = ({
   }, [canvas, cellSize, worldWidth, paint])
 
   return (
-    <div className={styles.scoreBoard}>
-      <div>
-        Status: <span>{status}</span>
+    <>
+      <div className={styles.contoller}>
+        <div className={styles.scoreBoard}>
+          <div>
+            <strong>Status:</strong> <span>{status}</span>
+          </div>
+          <div>
+            <strong>Points:</strong> <span>{points}</span>
+          </div>
+        </div>
+        <Button
+          styling={{ small: true, inverted: false }}
+          onClick={onPlayClicked}
+        >
+          {buttonText}
+        </Button>
       </div>
-      <div>
-        Points: <span>{points}</span>
+
+      <div className={styles.keyboard}>
+        <PopupKeyboard
+          keyboardType="Arrows"
+          onClickCallback={onKeyboardClick}
+          buttonText={"Popup Keyboard"}
+        />
       </div>
-      <Button
-        styling={{ small: true, inverted: false }}
-        onClick={onPlayClicked}
-      >
-        {buttonText}
-      </Button>
-    </div>
+    </>
   )
 }
 
