@@ -40,18 +40,18 @@ const pages: PageConfig[] = [
   },
   {
     path: "/projects/checklist",
-    display: "Checklist of links",
+    display: "Checklist",
     filterOptions: [FilterOption.NOT_FOOTER],
     order: 4,
   },
   {
     path: "/projects/messenger",
-    display: "Chat/Messenger",
+    display: "Chat",
     order: 1,
   },
   {
     path: "/projects/snake",
-    display: "Snake Game",
+    display: "Game",
     order: 2,
   },
   {

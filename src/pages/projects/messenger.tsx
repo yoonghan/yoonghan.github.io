@@ -71,8 +71,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
         />
       </Head>
       <Menu />
-      <hr />
-      <section>
+      <div className="page-aligned-container">
         <h1>A Walcron Chat Program</h1>
         <p>
           Used this to test on 3rd party integration and asynchronous replies.
@@ -80,7 +79,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
           integration and capabilites of asynchronous system.
         </p>
         <ChatMessageBox onMessageSend={onMessageSend} ref={chatMessageBoxRef} />
-      </section>
+      </div>
       <Footer />
     </>
   )

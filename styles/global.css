@@ -2,6 +2,7 @@
 @import "react-toggle.css";
 @import "react-chat-bell.css";
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
 html,
 body {
@@ -55,7 +56,6 @@ tr:hover {
 h1 {
   margin-top: 0.5rem;
   color: var(--header-1);
-  margin-left: 0.5rem;
 }
 
 hr {
