@@ -79,12 +79,24 @@ export const siteHistory = [
     id: "2020",
     date: "2020",
     desc: "Release with parallaxing, migrated to Now 2.0",
-    faIcon: "fas fa-tractor",
+    faIcon: "fas fa-spinner",
   },
   {
     id: "2022",
     date: "2022",
     desc: "Migrate to Latest NextJS with a full CI/CD deployment",
+    faIcon: "fas fa-server",
+  },
+  {
+    id: "2023",
+    date: "Jan-2023",
+    desc: "Migrated to NextJS 13",
     faIcon: "fas fa-tractor",
+  },
+  {
+    id: "March-2023",
+    date: "March-2023",
+    desc: "Development focus on Rust",
+    faIcon: "fas fa-cog",
   },
 ]
