@@ -127,5 +127,9 @@ jobs:
           version: "latest"
 
       - name: ⎔ Compile rust code
-        run: wasm-pack build --target web
+        run: wasm-pack build --target web --output pkg_compare
+        shell: bash
+
+      - name: ✅ Validate wasm is compiled
+        run: chmod a+x ./.github/scripts/wasm-check.sh pkg_compare
         shell: bash
