@@ -3,6 +3,7 @@ import dynamic from "next/dynamic"
 import ButtonsBar from "./ButtonsBar"
 import Cards from "./Cards"
 import Tables from "./Tables"
+import PopupKeyboard from "./PopupKeyboard"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -28,5 +29,9 @@ export const storyBookList = [
   {
     title: "Table",
     component: Tables,
+  },
+  {
+    title: "Keyboard",
+    component: PopupKeyboard,
   },
 ]

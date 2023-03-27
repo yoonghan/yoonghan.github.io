@@ -7,7 +7,7 @@
   gap: 0.5rem;
 }
 
-.container .scoreBoard {
+.container .contoller {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -18,7 +18,16 @@
   max-width: 640px;
 }
 
+.container .scoreBoard {
+  display: flex;
+  gap: 1rem;
+}
+
 .container .gameBoard {
   display: flex;
   justify-content: center;
+}
+
+.container .keyboard {
+  padding-bottom: 2rem;
 }

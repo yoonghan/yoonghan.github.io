@@ -90,7 +90,6 @@ const Projects = ({}) => {
             />
           </div>
         </div>
-        <hr />
         <section>
           <h2>Contact</h2>
           <div className="p-padding center">
