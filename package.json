@@ -12,6 +12,7 @@
     "playwright:test": "playwright test",
     "prisma:push": "dotenv -e .env.local prisma db push",
     "prisma:generate": "prisma generate",
+    "rust:generate": "wasm-pack build --target web",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
