@@ -237,7 +237,8 @@ export const generateSections = (
               <Image
                 src={siteDevelopmentSection.img}
                 alt={siteDevelopmentSection.title}
-                fill={true}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
               />
             </div>
           )}
