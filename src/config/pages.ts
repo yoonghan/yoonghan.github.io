@@ -26,12 +26,12 @@ const pages: PageConfig[] = [
   {
     path: "/history",
     display: "History",
-    order: 4,
+    order: 3,
   },
   {
     path: "/projects",
     display: "Projects",
-    order: 3,
+    order: 4,
   },
   {
     path: "/projects/lessons",
@@ -42,23 +42,23 @@ const pages: PageConfig[] = [
     path: "/projects/checklist",
     display: "Checklist of links",
     filterOptions: [FilterOption.NOT_FOOTER],
-    order: 3,
+    order: 4,
   },
   {
     path: "/projects/messenger",
     display: "Chat/Messenger",
-    order: 3,
+    order: 1,
   },
   {
     path: "/projects/snake",
     display: "Snake Game",
-    order: 3,
+    order: 2,
   },
   {
     path: "/experiments",
     display: "Experiments",
     filterOptions: [FilterOption.NOT_FOOTER],
-    order: 4,
+    order: 5,
   },
   {
     path: "/experiments/amp",
@@ -83,7 +83,7 @@ const pages: PageConfig[] = [
       FilterOption.NOT_FOOTER,
       FilterOption.NOT_SITE_MAP,
     ],
-    order: 5,
+    order: 6,
   },
 ]
 
