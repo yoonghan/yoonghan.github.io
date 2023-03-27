@@ -78,6 +78,14 @@ const Projects = ({}) => {
                   href: "/projects/messenger",
                   target: "_self",
                 },
+                {
+                  id: "snake",
+                  title: "Snake Game",
+                  description:
+                    "Webassembly with Rust programming to create a simple Snake Game from tutorial.",
+                  href: "/projects/snake",
+                  target: "_self",
+                },
               ]}
             />
           </div>
