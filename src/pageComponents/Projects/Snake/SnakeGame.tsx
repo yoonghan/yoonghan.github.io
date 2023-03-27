@@ -5,7 +5,7 @@ import Board from "./Board"
 import { GameContext } from "./Context"
 import styles from "./Snake.module.css"
 
-const WORLD_DIMENSION = 20
+const WORLD_DIMENSION = 15
 const SNAKE_POS = rnd(WORLD_DIMENSION * WORLD_DIMENSION)
 const SNAKE_SIZE = 10
 const CELL_SIZE = 20
