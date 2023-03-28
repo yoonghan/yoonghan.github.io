@@ -12,7 +12,7 @@
     "playwright:test": "playwright test",
     "prisma:push": "dotenv -e .env.local prisma db push",
     "prisma:generate": "prisma generate",
-    "rust:generate": "wasm-pack build --target web",
+    "rust:generate": "wasm-pack build --target web && cp ./src/rust/.pkg-gitignore ./pkg/.gitignore",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
@@ -27,7 +27,8 @@
     "pusher": "^5.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-dropzone": "^14.2.3"
+    "react-dropzone": "^14.2.3",
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
