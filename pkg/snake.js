@@ -1,4 +1,4 @@
-import { rnd } from './snippets/snake-32a0c41fa34359f1/src/util/random.ts';
+import { rnd } from './snippets/snake-776ed4eb60c4951a/src/util/random.ts';
 
 let wasm;
 
@@ -236,10 +236,10 @@ async function load(module, imports) {
 function getImports() {
     const imports = {};
     imports.wbg = {};
-    imports.wbg.__wbg_alert_58955ba56504f712 = function(arg0, arg1) {
+    imports.wbg.__wbg_alert_8eb924661f96b64d = function(arg0, arg1) {
         alert(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbg_rnd_27c51c88b581ea2f = function(arg0) {
+    imports.wbg.__wbg_rnd_67ab8adcdd8659fa = function(arg0) {
         const ret = rnd(arg0 >>> 0);
         return ret;
     };
