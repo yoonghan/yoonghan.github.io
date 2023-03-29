@@ -126,10 +126,20 @@ jobs:
         with:
           version: "latest"
 
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+
       - name: ⎔ Compile rust code
-        run: wasm-pack build --target web --out-dir pkg_compare
+        run: cd crate && wasm-pack build --target web --out-dir pkg_compare
         shell: bash
 
-      - name: ✅ Validate wasm is compiled
+      - name: ✅ Validate Wasm binary is latest with BEST effort
         run: chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
+        shell: bash
+
+      - name: ✅ Validate wasm test
+        run: npm run rust:generate && npm run rust:test
         shell: bash

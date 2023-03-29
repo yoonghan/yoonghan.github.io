@@ -2,6 +2,8 @@
 
 # Can't compare *.wasm file as binary compilation are different
 
+cd crate
+
 wasm_dir_compare="./$1/"
 wasm_dir=./pkg/
 

@@ -1,6 +1,6 @@
 import Button from "@/components/Button"
 import PopupKeyboard, { KeyboardKeys } from "@/components/PopupKeyboard"
-import { InitOutput, World, GameStatus, Direction } from "pkg/snake"
+import { InitOutput, World, GameStatus, Direction } from "snake-game"
 import { useCallback, useContext, useEffect, useState } from "react"
 import { GameContext } from "./Context"
 import styles from "./Snake.module.css"

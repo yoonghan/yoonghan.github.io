@@ -115,6 +115,7 @@ npm run prisma:push //push to PlanetScale, main branch
 
 ```
 npm run rust:generate
+npm run rust:test //test rust running on browser
 ```
 
 =======
