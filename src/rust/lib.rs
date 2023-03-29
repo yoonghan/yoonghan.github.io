@@ -1,8 +1,4 @@
 use wasm_bindgen::prelude::*;
-use wee_alloc::WeeAlloc;
-
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub fn greet(name: &str) {

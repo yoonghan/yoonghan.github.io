@@ -112,3 +112,24 @@ jobs:
       - name: ✅ Validate backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
+
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: "latest"
+
+      - name: ⎔ Compile rust code
+        run: wasm-pack build --target web --out-dir pkg_compare
+        shell: bash
+
+      - name: ✅ Validate wasm is compiled
+        run: chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
+        shell: bash
