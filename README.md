@@ -108,6 +108,15 @@ npm run prisma:generate //create ts schema
 npm run prisma:push //push to PlanetScale, main branch
 ```
 
+# Rust Webassembly
+
+1. To regenerate new Wasm from webassembly, run the command below:
+2. The scripts include a custom .gitignore.
+
+```
+npm run rust:generate
+```
+
 =======
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/Walcron/pull-request.yml

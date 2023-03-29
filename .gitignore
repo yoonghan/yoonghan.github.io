@@ -49,6 +49,5 @@ public/workbox*
 #cargo, rust
 /target
 **/*.rs.bk
-Cargo.lock
 bin/
 wasm-pack.log/target
