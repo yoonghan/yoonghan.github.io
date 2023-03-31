@@ -1,10 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {string} name
-*/
-export function greet(name: string): void;
-/**
 */
 export enum Direction {
   UP = 0,
@@ -74,7 +70,6 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly greet: (a: number, b: number) => void;
   readonly __wbg_world_free: (a: number) => void;
   readonly world_new: (a: number, b: number, c: number) => number;
   readonly world_points: (a: number) => number;
@@ -87,8 +82,6 @@ export interface InitOutput {
   readonly world_play: (a: number) => void;
   readonly world_game_status: (a: number) => number;
   readonly world_step: (a: number) => void;
-  readonly __wbindgen_malloc: (a: number) => number;
-  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
 }
 
