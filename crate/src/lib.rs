@@ -1,13 +1,9 @@
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(name); 
-}
-
-#[wasm_bindgen]
-extern {
-    pub fn alert(s: &str);
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    pub fn log(s: &str);
 }
 
 #[wasm_bindgen]
@@ -20,7 +16,7 @@ pub enum Direction {
 }
 
 #[wasm_bindgen]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum GameStatus {
     Play,
     Won,
@@ -40,9 +36,13 @@ impl Snake {
         let mut body = vec!();
 
         for i in 0..size {
-            body.push(SnakeCell(spawn_idx - i));
+            let result = spawn_idx.checked_sub(i).ok_or(0);
+            let value = match result {
+                Ok(subtracted) => subtracted,
+                Err(_) => 0
+            };
+            body.push(SnakeCell(value));
         }
-
 
         Snake {
             body,
@@ -62,7 +62,7 @@ pub struct World {
     game_status: Option<GameStatus>
 }
 
-#[wasm_bindgen(module="/src/util/random.ts")]
+#[wasm_bindgen(module="/src/util/random.js")]
 extern {
     fn rnd(max: usize) -> usize; 
 }
@@ -70,11 +70,15 @@ extern {
 #[wasm_bindgen]
 impl World {
     pub fn new(width: usize, snake_pos: usize, snake_size: usize) -> World {
-        let size = width * width;
+        let controlled_width = match width < snake_size {
+            true => snake_size,
+            false => width,
+        };
+        let size = controlled_width * controlled_width;
         let snake = Snake::new(snake_pos, snake_size);
 
         World {
-            width,
+            width: controlled_width,
             reward_cell: World::generate_reward_cell(size, &snake),
             snake,
             next_cell: None,

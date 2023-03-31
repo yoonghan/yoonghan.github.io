@@ -145,6 +145,15 @@ const Lessons = ({}) => {
               jest.mock(&apos;whole library&apos;).
             </p>
           </article>
+          <article>
+            <h2>GIT commands</h2>
+            <p>
+              https://www.internalpointers.com/post/squash-commits-into-one-git
+            </p>
+            <pre className={"code"}>{`
+            git rebase --interactive HEAD~3
+            `}</pre>
+          </article>
         </div>
         <Footer />
         <ScrollToTop />

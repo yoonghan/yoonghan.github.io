@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,27 +16,13 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/pageComponents/*": [
-        "src/pageComponents/*"
-      ],
-      "@/pages/*": [
-        "src/pages/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ],
-      "@/config/*": [
-        "src/config/*"
-      ],
-      "@/transport/*": [
-        "src/transport/*"
-      ],
-      "@/images/*": [
-        "public/img/*"
-      ]
+      "@/components/*": ["src/components/*"],
+      "@/pageComponents/*": ["src/pageComponents/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/styles/*": ["styles/*"],
+      "@/config/*": ["src/config/*"],
+      "@/transport/*": ["src/transport/*"],
+      "@/images/*": ["public/img/*"]
     },
     "plugins": [
       {
@@ -57,7 +39,5 @@
     "playwright.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

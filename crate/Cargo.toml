@@ -1,6 +1,6 @@
 [package]
 name = "snake"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 description = "A snake game similar to Nokia"
 repository = "https://github.com/yoonghan/Walcron"
@@ -12,5 +12,7 @@ license = "Mozilla Public License Version 2.0"
 wasm-bindgen = "0.2.63"
 
 [lib]
-crate-type = ["cdylib"]
-path = "src/rust/lib.rs"
+crate-type = ["cdylib","rlib"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"

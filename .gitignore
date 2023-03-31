@@ -45,9 +45,3 @@ Walcron.code-workspace
 #pwa files, it's auto regenerate.
 public/sw.js
 public/workbox*
-
-#cargo, rust
-/target
-**/*.rs.bk
-bin/
-wasm-pack.log/target
