@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
-export function greet(a: number, b: number): void;
 export function __wbg_world_free(a: number): void;
 export function world_new(a: number, b: number, c: number): number;
 export function world_points(a: number): number;
@@ -14,6 +13,4 @@ export function world_update_direction(a: number, b: number): void;
 export function world_play(a: number): void;
 export function world_game_status(a: number): number;
 export function world_step(a: number): void;
-export function __wbindgen_malloc(a: number): number;
-export function __wbindgen_realloc(a: number, b: number, c: number): number;
 export function __wbindgen_add_to_stack_pointer(a: number): number;
