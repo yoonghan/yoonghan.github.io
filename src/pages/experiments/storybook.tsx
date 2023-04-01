@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
 import styles from "@/pageComponents/Experiments/Storybook/Storybook.module.css"
