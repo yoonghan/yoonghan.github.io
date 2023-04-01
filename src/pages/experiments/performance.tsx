@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import HtmlHead from "@/components/HtmlHead"
 import Head from "next/head"
 import Menu from "@/components/Menu"
@@ -72,7 +73,7 @@ const Performance = () => {
             }}
             styling={{ small: true, inverted: false }}
           >
-            Toggle Display
+            Toggle Suspense Display
           </Button>
           {showSuspense && <SuspenseNoSSR />}
         </section>
