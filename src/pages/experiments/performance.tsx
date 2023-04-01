@@ -4,12 +4,12 @@ import Menu from "@/components/Menu"
 import dynamic from "next/dynamic"
 import Footer from "@/components/Footer"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "@/pageComponents/Performance/Performance.module.css"
+import styles from "@/pageComponents/Experiments/Performance/Performance.module.css"
 import Button from "@/components/Button"
 import { useState } from "react"
 
 const HeavyLoaderNoSSR = dynamic(
-  () => import("@/pageComponents/Performance/HeavyLoader"),
+  () => import("@/pageComponents/Experiments/Performance/HeavyLoader"),
   {
     ssr: false,
     loading: () => (
@@ -21,7 +21,7 @@ const HeavyLoaderNoSSR = dynamic(
 )
 
 const SuspenseNoSSR = dynamic(
-  () => import("@/pageComponents/Performance/SuspenseLoader"),
+  () => import("@/pageComponents/Experiments/Performance/SuspenseLoader"),
   {
     ssr: false,
     loading: () => (
