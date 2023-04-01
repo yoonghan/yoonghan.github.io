@@ -26,8 +26,7 @@ function wrapPromise<T>(promise: Promise<T>) {
   }
 
   const read = () => {
-    const result = handler[status] ? handler[status]() : handler.success()
-    return result
+    return handler[status]()
   }
 
   return { read }
