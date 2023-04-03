@@ -22,7 +22,8 @@
       "@/styles/*": ["styles/*"],
       "@/config/*": ["src/config/*"],
       "@/transport/*": ["src/transport/*"],
-      "@/images/*": ["public/img/*"]
+      "@/images/*": ["public/img/*"],
+      "@/util/*": ["src/util/*"]
     },
     "plugins": [
       {

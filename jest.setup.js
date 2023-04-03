@@ -5,7 +5,10 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect"
 import { defaultFallbackInView } from "react-intersection-observer"
+import { TextDecoder, TextEncoder } from "util"
 
+global.TextDecoder = TextDecoder
+global.TextEncoder = TextEncoder
 global.IntersectionObserver = jest.fn()
 defaultFallbackInView(false)
 

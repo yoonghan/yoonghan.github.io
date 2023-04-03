@@ -1,5 +1,5 @@
 import styles from "./Snake.module.css"
-import { InitOutput, World } from "snake-game"
+import { InitOutput, World } from "snake-game/snake"
 import { useEffect, useRef, useState } from "react"
 import Game, { GameProps } from "./Game"
 

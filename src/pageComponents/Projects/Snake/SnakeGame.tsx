@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react"
-import init, { InitOutput } from "snake-game"
-import { rnd } from "src/util/random"
+import init, { InitOutput } from "snake-game/snake"
+import { rnd } from "@/util/random"
 import Board from "./Board"
 import { GameContext } from "./Context"
 import styles from "./Snake.module.css"

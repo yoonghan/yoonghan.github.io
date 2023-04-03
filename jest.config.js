@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
+  setupFiles: ["jest-canvas-mock"],
   setupFilesAfterEnv: [
     "<rootDir>/jest.setup.js",
     "react-intersection-observer/test-utils",
@@ -14,8 +15,7 @@ const customJestConfig = {
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__/utils",
     "<rootDir>/src/__e2e__",
-    "<rootDir>/src/rust",
-    "<rootDir>/pkg",
+    "<rootDir>/crate",
   ],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
@@ -25,6 +25,7 @@ const customJestConfig = {
     "^@/config/(.*)$": "<rootDir>/src/config/$1",
     "^@/transport/(.*)$": "<rootDir>/src/transport/$1",
     "^@/images/*": "<rootDir>/public/img/$1",
+    "^@/util/*": "<rootDir>/util/$1",
   },
   testEnvironment: "jest-environment-jsdom",
   coverageReporters: ["text", "cobertura"],
