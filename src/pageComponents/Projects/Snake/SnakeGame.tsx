@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react"
-import init, { InitOutput } from "snake-game/snake"
+import init from "snake-game/snake"
 import { rnd } from "@/util/random"
 import Board from "./Board"
 import { GameContext } from "./Context"
@@ -18,11 +18,11 @@ const SnakeGame = () => {
   const [snakePos, setSnakePos] = useState(SNAKE_POS)
   const [snakeSize, setSnakeSize] = useState(SNAKE_SIZE)
   const [cellSize, setCellSize] = useState(CELL_SIZE)
-  const [wasm, setWasm] = useState<InitOutput>()
+  const [wasmLoaded, setWasmLoaded] = useState(false)
 
   useEffect(() => {
-    init().then((wasm) => {
-      setWasm(wasm)
+    init().then(() => {
+      setWasmLoaded(true)
     })
   }, [])
 
@@ -116,14 +116,13 @@ const SnakeGame = () => {
             </form>
           )}
         </GameContext.Consumer>
-        {wasm && (
+        {wasmLoaded && (
           <Board
             worldDimension={worldDimension}
             snakePos={snakePos}
             snakeSize={snakeSize}
             snakeSpeed={snakeSpeed}
             cellSize={cellSize}
-            wasm={wasm}
           />
         )}
       </div>

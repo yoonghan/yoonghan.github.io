@@ -43,9 +43,9 @@ export class World {
 */
   snake_head_idx(): number;
 /**
-* @returns {number}
+* @returns {any}
 */
-  snake_cells(): number;
+  snake_cells(): any;
 /**
 * @returns {number}
 */
@@ -76,7 +76,7 @@ export interface InitOutput {
   readonly world_reward_cell: (a: number, b: number) => void;
   readonly world_width: (a: number) => number;
   readonly world_snake_head_idx: (a: number) => number;
-  readonly world_snake_cells: (a: number) => number;
+  readonly world_snake_cells: (a: number, b: number) => void;
   readonly world_snake_body_length: (a: number) => number;
   readonly world_update_direction: (a: number, b: number) => void;
   readonly world_play: (a: number) => void;

@@ -13,10 +13,9 @@ export type GameProps = {
   snakeSpeed: number
 }
 
-export type Props = GameProps & { wasm: InitOutput; cellSize: number }
+export type Props = GameProps & { cellSize: number }
 
 const Game = ({
-  wasm,
   world,
   worldWidth,
   canvas,
@@ -72,11 +71,7 @@ const Game = ({
   }, [cellSize, ctx, worldWidth])
 
   const drawSnake = useCallback(() => {
-    const snakeCells = new Uint32Array(
-      wasm.memory.buffer,
-      world.snake_cells(),
-      world.snake_body_length()
-    )
+    const snakeCells = world.snake_cells() as number[]
 
     snakeCells
       .filter((snakeCellIdx, i) => !(i > 0 && snakeCellIdx === snakeCells[0]))
@@ -88,7 +83,7 @@ const Game = ({
         ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
         ctx.stroke()
       })
-  }, [cellSize, ctx, wasm.memory.buffer, world, worldWidth])
+  }, [cellSize, ctx, world, worldWidth])
 
   const drawReward = useCallback(() => {
     const idx = world.reward_cell()

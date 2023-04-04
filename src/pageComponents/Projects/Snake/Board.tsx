@@ -1,10 +1,9 @@
 import styles from "./Snake.module.css"
-import { InitOutput, World } from "snake-game/snake"
+import { World } from "snake-game/snake"
 import { useEffect, useRef, useState } from "react"
 import Game, { GameProps } from "./Game"
 
 type Props = {
-  wasm: InitOutput
   worldDimension: number
   snakePos: number
   snakeSize: number
@@ -13,7 +12,6 @@ type Props = {
 }
 
 const Board = ({
-  wasm,
   worldDimension,
   snakePos,
   snakeSize,
@@ -41,7 +39,7 @@ const Board = ({
 
   return (
     <div className={styles.container}>
-      {game !== null && <Game {...game} cellSize={cellSize} wasm={wasm} />}
+      {game !== null && <Game {...game} cellSize={cellSize} />}
       <div className={styles.gameBoard}>
         <canvas ref={boardRef}></canvas>
       </div>

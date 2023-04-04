@@ -1,4 +1,5 @@
 use wasm_bindgen::prelude::*;
+use serde::{Serialize};
 
 #[wasm_bindgen]
 extern "C" {
@@ -23,7 +24,7 @@ pub enum GameStatus {
     Lost
 }
 
-#[derive(PartialEq, Clone, Copy)]
+#[derive(PartialEq, Clone, Copy, Serialize)]
 pub struct SnakeCell(usize);
 
 struct Snake {
@@ -120,8 +121,8 @@ impl World {
     //     &self.snake.body
     // }
 
-    pub fn snake_cells(&self) -> *const SnakeCell {
-        self.snake.body.as_ptr()
+    pub fn snake_cells(&self) -> Result<JsValue, JsValue> {
+        Ok(serde_wasm_bindgen::to_value(&self.snake.body)?)
     }
 
     pub fn snake_body_length(&self) -> usize {
