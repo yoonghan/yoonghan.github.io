@@ -1,9 +1,10 @@
 import Button from "@/components/Button"
 import PopupKeyboard, { KeyboardKeys } from "@/components/PopupKeyboard"
-import { InitOutput, World, GameStatus, Direction } from "snake-game/snake"
+import { World, GameStatus, Direction } from "snake-game/snake"
 import { useCallback, useContext, useEffect, useState } from "react"
 import { GameContext } from "./Context"
 import styles from "./Snake.module.css"
+import { drawCell, drawSquareBoard } from "./util/drawCanvas"
 
 export type GameProps = {
   world: World
@@ -55,19 +56,7 @@ const Game = ({
   }, [world])
 
   const drawBoard = useCallback(() => {
-    ctx.beginPath()
-
-    for (let x = 0; x <= worldWidth; x++) {
-      ctx.moveTo(x * cellSize, 0)
-      ctx.lineTo(x * cellSize, worldWidth * cellSize)
-    }
-
-    for (let y = 0; y <= worldWidth; y++) {
-      ctx.moveTo(0, y * cellSize)
-      ctx.lineTo(worldWidth * cellSize, y * cellSize)
-    }
-
-    ctx.stroke()
+    drawSquareBoard(ctx, worldWidth, cellSize)
   }, [cellSize, ctx, worldWidth])
 
   const drawSnake = useCallback(() => {
@@ -76,28 +65,20 @@ const Game = ({
     snakeCells
       .filter((snakeCellIdx, i) => !(i > 0 && snakeCellIdx === snakeCells[0]))
       .forEach((snakeCellIdx, i) => {
-        const col = snakeCellIdx % worldWidth
-        const row = Math.floor(snakeCellIdx / worldWidth)
-        ctx.fillStyle = i === 0 ? "#7878db" : "#000000"
-        ctx.beginPath()
-        ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
-        ctx.stroke()
+        drawCell(
+          ctx,
+          snakeCellIdx,
+          worldWidth,
+          cellSize,
+          i === 0 ? "#7878db" : "#000000"
+        )
       })
   }, [cellSize, ctx, world, worldWidth])
 
   const drawReward = useCallback(() => {
     const idx = world.reward_cell()
     if (idx) {
-      const col = idx % worldWidth
-      const row = Math.floor(idx / worldWidth)
-
-      ctx.fillStyle = "#ff0000"
-
-      ctx.beginPath()
-
-      ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
-
-      ctx.stroke()
+      drawCell(ctx, idx, worldWidth, cellSize)
     }
   }, [cellSize, ctx, world, worldWidth])
 
