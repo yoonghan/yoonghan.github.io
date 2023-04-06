@@ -8,7 +8,7 @@ export type Props = {
     snakeSpeed: number
     worldDimension: number
     snakeSize: number
-    cellSize: number
+    cellSize: number | string
   }
 }
 
@@ -17,7 +17,7 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
 
   const hasCheckedException = useCallback(
     (value: number, id: string) => {
-      if (value > 100) {
+      if (value > 100 || value <= 0) {
         setErrorMessage(`${id} should be a number from 0 to 100`)
         return true
       }
@@ -42,7 +42,8 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
     (event: ChangeEvent<HTMLInputElement>) => {
       const { id, value: targetValue } = event.target
       const value = parseInt(targetValue, 10)
-      if (!hasCheckedException(value, id)) {
+
+      if (!isNaN(value) && !hasCheckedException(value, id)) {
         onUpdate({ id, value })
       }
     },

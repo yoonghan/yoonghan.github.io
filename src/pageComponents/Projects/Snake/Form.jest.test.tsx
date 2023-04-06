@@ -19,7 +19,7 @@ describe("Form", () => {
       snakeSpeed: number
       worldDimension: number
       snakeSize: number
-      cellSize: number
+      cellSize: number | string
     }
   }) => {
     render(
@@ -139,5 +139,23 @@ describe("Form", () => {
   it("should disable inputs when form is disabled", () => {
     renderComponent({ disabled: true })
     expect(screen.getByLabelText("World Dimension:")).toBeDisabled()
+  })
+
+  it("should be able to handle exceptional input cases", async () => {
+    const mockUpdate = jest.fn()
+    renderComponent({
+      onUpdate: mockUpdate,
+      formValues: {
+        snakeSpeed: 99,
+        worldDimension: 1,
+        snakeSize: 99,
+        cellSize: "",
+      },
+    })
+    const inputElem = screen.getByLabelText("Cell Size:")
+    await userEvent.type(inputElem, "a")
+    expect(mockUpdate).not.toHaveBeenCalled()
+    await userEvent.type(inputElem, "0")
+    expect(mockUpdate).not.toHaveBeenCalled()
   })
 })
