@@ -2,7 +2,7 @@ import Button from "@/components/Button"
 import PopupKeyboard, { KeyboardKeys } from "@/components/PopupKeyboard"
 import { World, GameStatus, Direction } from "snake-game/snake"
 import { useCallback, useContext, useEffect, useState } from "react"
-import { GameContext } from "./Context"
+import { GameContext } from "./GameContext"
 import styles from "./Snake.module.css"
 import { drawCell, drawSquareBoard } from "./util/drawCanvas"
 

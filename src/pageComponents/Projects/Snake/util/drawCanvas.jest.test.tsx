@@ -22,7 +22,7 @@ describe("drawCanvas", () => {
     renderComponent()
     const canvas = screen.getByTestId(getCanvasTestId) as HTMLCanvasElement
     const ctx = canvas.getContext("2d")!!
-    drawCell(ctx, 0, 10, 5, "green")
+    drawCell(ctx, 0, 10, 5)
     const calls = ctx.__getDrawCalls()
     expect(calls).toMatchSnapshot()
   })

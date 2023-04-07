@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import init from "snake-game/snake"
 import { rnd } from "@/util/random"
 import Board from "./Board"
-import { GameContext } from "./Context"
+import { GameContext } from "./GameContext"
 import styles from "./Snake.module.css"
 import Form from "./Form"
 
@@ -16,7 +16,6 @@ const SnakeGame = () => {
   const [isGameStarted, setGameStarted] = useState(false)
   const [worldDimension, setWorldDimension] = useState(WORLD_DIMENSION)
   const [snakeSpeed, setSnakeSpeed] = useState(SPEED)
-  const [snakePos, setSnakePos] = useState(SNAKE_POS)
   const [snakeSize, setSnakeSize] = useState(SNAKE_SIZE)
   const [cellSize, setCellSize] = useState(CELL_SIZE)
   const [wasmLoaded, setWasmLoaded] = useState(false)
@@ -53,7 +52,7 @@ const SnakeGame = () => {
         <GameContext.Consumer>
           {({ isGameStarted }) => (
             <Form
-              disabled={isGameStarted}
+              disabled={isGameStarted === true}
               onUpdate={updateForm}
               formValues={{ snakeSpeed, snakeSize, cellSize, worldDimension }}
             />
@@ -62,7 +61,7 @@ const SnakeGame = () => {
         {wasmLoaded && (
           <Board
             worldDimension={worldDimension}
-            snakePos={snakePos}
+            snakePos={SNAKE_POS}
             snakeSize={snakeSize}
             snakeSpeed={snakeSpeed}
             cellSize={cellSize}
