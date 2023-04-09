@@ -1,25 +1,34 @@
-import { useCallback, useMemo } from "react"
+import { useCallback, useEffect, useMemo } from "react"
 import Popup from "reactjs-popup"
 import Button from "../Button"
 import styles from "./PopupKeyboard.module.css"
 
 export enum KeyboardKeys {
-  LEFT,
-  RIGHT,
-  UP,
-  DOWN,
+  LEFT = "ArrowLeft",
+  RIGHT = "ArrowRight",
+  UP = "ArrowUp",
+  DOWN = "ArrowDown",
 }
+
+const arrowValues = Object.values(KeyboardKeys)
 
 type PopupKeyboardType = {
   buttonText: string
   keyboardType: "Arrows"
   onClickCallback: (key: KeyboardKeys) => void
+  enableKeyboardListener?: boolean
+}
+
+const preventKeyboardEvent = (e: Event) => {
+  e.preventDefault()
+  return false
 }
 
 const PopupKeyboard = ({
   buttonText,
   keyboardType,
   onClickCallback,
+  enableKeyboardListener = false,
 }: PopupKeyboardType) => {
   const onKeyClick = useCallback(
     (key: KeyboardKeys) => () => {
@@ -27,6 +36,34 @@ const PopupKeyboard = ({
     },
     [onClickCallback]
   )
+
+  const buildKeyboardListener = useCallback(() => {
+    return (event: KeyboardEvent) => {
+      const direction = event.key
+      switch (keyboardType) {
+        case "Arrows":
+          const matchedKey = arrowValues.find(
+            (arrowValue) => arrowValue === direction
+          )
+          if (matchedKey !== undefined) {
+            onKeyClick(matchedKey)()
+          }
+          break
+      }
+    }
+  }, [keyboardType, onKeyClick])
+
+  useEffect(() => {
+    if (enableKeyboardListener) {
+      const keyboardListener = buildKeyboardListener()
+      window.addEventListener("keydown", keyboardListener)
+      window.addEventListener("keydown", preventKeyboardEvent, false)
+      return () => {
+        window.removeEventListener("keydown", keyboardListener, false)
+        window.removeEventListener("keydown", preventKeyboardEvent, false)
+      }
+    }
+  }, [enableKeyboardListener, buildKeyboardListener])
 
   const drawnKeyboard = useMemo(() => {
     switch (keyboardType) {

@@ -29,11 +29,6 @@ const Game = ({
   const [points, setPoints] = useState(0)
   const [buttonText, setButtonText] = useState("Play")
 
-  const preventKeyboardEvent = (e: Event) => {
-    e.preventDefault()
-    return false
-  }
-
   const getStatus = useCallback(() => {
     switch (world.game_status()) {
       case GameStatus.Play:
@@ -126,51 +121,24 @@ const Game = ({
     [world]
   )
 
-  const addMovementMonitor = useCallback(() => {
-    window.addEventListener("keydown", (event) => {
-      const direction = event.key
-      switch (direction) {
-        case "ArrowUp":
-          onKeyboardClick(KeyboardKeys.UP)
-          break
-        case "ArrowDown":
-          onKeyboardClick(KeyboardKeys.DOWN)
-          break
-        case "ArrowLeft":
-          onKeyboardClick(KeyboardKeys.LEFT)
-          break
-        case "ArrowRight":
-          onKeyboardClick(KeyboardKeys.RIGHT)
-          break
-      }
-    })
-
-    window.addEventListener("keydown", preventKeyboardEvent, false)
-  }, [onKeyboardClick])
-
   const onPlayClicked = useCallback(() => {
     if (world.game_status() !== undefined) {
       location.reload()
     } else {
-      gameContext.setGameStarted(true)
-      setButtonText("Playing...")
-      addMovementMonitor()
-      world.play()
-      play()
+      if (gameContext.setGameStarted) {
+        gameContext.setGameStarted(true)
+        setButtonText("Playing...")
+        world.play()
+        play()
+      }
     }
-  }, [addMovementMonitor, gameContext, play, world])
+  }, [gameContext, play, world])
 
   useEffect(() => {
     canvas.width = worldWidth * cellSize
     canvas.height = worldWidth * cellSize
     paint()
   }, [canvas, cellSize, worldWidth, paint])
-
-  useEffect(() => {
-    return () => {
-      window.removeEventListener("keydown", preventKeyboardEvent, false)
-    }
-  }, [])
 
   return (
     <>
@@ -196,6 +164,7 @@ const Game = ({
           keyboardType="Arrows"
           onClickCallback={onKeyboardClick}
           buttonText={"Popup Keyboard"}
+          enableKeyboardListener={gameContext.isGameStarted}
         />
       </div>
     </>

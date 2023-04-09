@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import init from "snake-game/snake"
 import { rnd } from "@/util/random"
 import Board from "./Board"
