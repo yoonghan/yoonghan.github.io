@@ -1,7 +1,8 @@
 import styles from "./Snake.module.css"
-import { World } from "snake-game/snake"
-import { useEffect, useRef, useState } from "react"
+import init, { World } from "snake-game/snake"
+import { Suspense, useEffect, useRef, useState } from "react"
 import Game, { GameProps } from "./Game"
+import wrapPromise from "@/components/utils/common/wrapPromise"
 
 type Props = {
   worldDimension: number
@@ -9,6 +10,19 @@ type Props = {
   snakeSize: number
   snakeSpeed: number
   cellSize: number
+  rewardInformationCallback?: (initialRewardCellPos?: number) => void
+  startRewardCell?: number
+}
+
+const wasmLoader = wrapPromise(init())
+
+const SuspendedBoard = (props: Props) => {
+  wasmLoader.read()
+  return (
+    <Suspense fallback={<div style={{ color: "green" }}>Loading Board</div>}>
+      <Board {...props} />
+    </Suspense>
+  )
 }
 
 const Board = ({
@@ -17,6 +31,8 @@ const Board = ({
   snakeSize,
   snakeSpeed,
   cellSize,
+  rewardInformationCallback,
+  startRewardCell,
 }: Props) => {
   const boardRef = useRef<HTMLCanvasElement>(null)
   const [game, setGame] = useState<GameProps | null>(null)
@@ -24,7 +40,12 @@ const Board = ({
   useEffect(() => {
     const canvas = boardRef.current
     if (canvas !== null) {
-      const world = World.new(worldDimension, snakePos, snakeSize, 0)
+      const world = World.new(
+        worldDimension,
+        snakePos,
+        snakeSize,
+        startRewardCell === undefined ? 0 : startRewardCell
+      )
       const worldWidth = world.width()
       const ctx = canvas.getContext("2d")!!
       setGame({
@@ -35,11 +56,24 @@ const Board = ({
         snakeSpeed,
       })
     }
-  }, [boardRef, snakePos, snakeSize, snakeSpeed, worldDimension])
+  }, [
+    boardRef,
+    snakePos,
+    snakeSize,
+    snakeSpeed,
+    startRewardCell,
+    worldDimension,
+  ])
 
   return (
     <div className={styles.container}>
-      {game !== null && <Game {...game} cellSize={cellSize} />}
+      {game !== null && (
+        <Game
+          {...game}
+          cellSize={cellSize}
+          rewardInformationCallback={rewardInformationCallback}
+        />
+      )}
       <div className={styles.gameBoard}>
         <canvas ref={boardRef}></canvas>
       </div>
@@ -47,4 +81,4 @@ const Board = ({
   )
 }
 
-export default Board
+export default SuspendedBoard

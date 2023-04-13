@@ -59,7 +59,7 @@ const PopupKeyboard = ({
       window.addEventListener("keydown", keyboardListener)
       window.addEventListener("keydown", preventKeyboardEvent, false)
       return () => {
-        window.removeEventListener("keydown", keyboardListener, false)
+        window.removeEventListener("keydown", keyboardListener)
         window.removeEventListener("keydown", preventKeyboardEvent, false)
       }
     }
