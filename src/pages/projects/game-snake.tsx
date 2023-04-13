@@ -3,7 +3,7 @@ import HtmlHead from "@/components/HtmlHead"
 import Menu from "@/components/Menu"
 import SnakeGame from "@/pageComponents/Projects/Snake/SnakeGame"
 
-const Snake = () => {
+const GameSnake = () => {
   return (
     <>
       <HtmlHead title={"Snake Game"} description={"A Nokia snake game"} />
@@ -19,4 +19,4 @@ const Snake = () => {
 
 export const config = { runtime: "nodejs" }
 
-export default Snake
+export default GameSnake

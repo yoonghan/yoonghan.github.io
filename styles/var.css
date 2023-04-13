@@ -32,4 +32,8 @@
   --title-bar: #fff;
   --title-bar-bg: #0053be;
   --menu-bg: #ffffff;
+
+  --alert-color: #721c24;
+  --alert-bg-color: #f8d7da;
+  --alert-border-color: #f5c6cb;
 }
