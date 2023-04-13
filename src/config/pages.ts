@@ -50,7 +50,7 @@ const pages: PageConfig[] = [
     order: 1,
   },
   {
-    path: "/projects/snake",
+    path: "/projects/game-snake",
     display: "Game",
     order: 2,
   },

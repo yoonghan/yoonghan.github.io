@@ -27,4 +27,46 @@ describe("PopupKeyboard", () => {
     await userEvent.click(screen.getByText("→"))
     expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.RIGHT)
   })
+
+  it("should enable keyboard listener", () => {
+    const clickCallback = jest.fn()
+    render(
+      <PopupKeyboard
+        buttonText={"Interactive Keyboard"}
+        keyboardType={"Arrows"}
+        onClickCallback={clickCallback}
+        enableKeyboardListener={true}
+      />
+    )
+    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.UP)
+
+    userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.DOWN)
+
+    userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
+    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.LEFT)
+
+    userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
+    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.RIGHT)
+  })
+
+  it("should restore keyboard enabled listener on component unmount", () => {
+    const clickCallback = jest.fn()
+    const { unmount } = render(
+      <PopupKeyboard
+        buttonText={"Interactive Keyboard"}
+        keyboardType={"Arrows"}
+        onClickCallback={clickCallback}
+        enableKeyboardListener={true}
+      />
+    )
+    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.UP)
+
+    unmount()
+
+    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    expect(clickCallback).toHaveBeenCalledTimes(1)
+  })
 })

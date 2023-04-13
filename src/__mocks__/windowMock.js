@@ -1,9 +1,8 @@
 global.window = Object.create(window)
 const windowLocation = window.location
 Object.defineProperty(window, "location", {
-  value: { ...windowLocation },
+  value: { ...windowLocation, reload: () => {} },
 })
-
 afterEach(() => {
   jest.restoreAllMocks()
 })
@@ -64,6 +63,12 @@ export const spyOnScrollTo = () => {
   const scrollToSpy = jest.fn()
   global.window.scrollTo = scrollToSpy
   return scrollToSpy
+}
+
+export const spyOnReload = () => {
+  const reloadSpy = jest.fn()
+  window.location.reload = reloadSpy
+  return reloadSpy
 }
 
 export const setShareNavigator = () => {

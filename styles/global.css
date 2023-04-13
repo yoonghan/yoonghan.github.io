@@ -138,3 +138,17 @@ pre.code {
   background: var(--code-bg);
   padding: 1rem 1rem;
 }
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert.danger {
+  color: var(--alert-color);
+  background-color: var(--alert-bg-color);
+  border-color: var(--alert-border-color);
+}
