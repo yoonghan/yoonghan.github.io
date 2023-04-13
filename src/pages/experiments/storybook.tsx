@@ -33,4 +33,6 @@ function Storybook() {
   )
 }
 
+export const config = { runtime: "nodejs" }
+
 export default Storybook

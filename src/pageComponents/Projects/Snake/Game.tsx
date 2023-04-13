@@ -1,9 +1,11 @@
 import Button from "@/components/Button"
 import PopupKeyboard, { KeyboardKeys } from "@/components/PopupKeyboard"
-import { InitOutput, World, GameStatus, Direction } from "snake-game"
-import { useCallback, useContext, useEffect, useState } from "react"
-import { GameContext } from "./Context"
+import { World, GameStatus, Direction } from "snake-game/snake"
+import { useCallback, useContext, useEffect, useMemo, useState } from "react"
+import { GameContext } from "./GameContext"
 import styles from "./Snake.module.css"
+import { drawCell, drawSquareBoard } from "./util/drawCanvas"
+import { useInterval } from "usehooks-ts"
 
 export type GameProps = {
   world: World
@@ -11,31 +13,27 @@ export type GameProps = {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
   snakeSpeed: number
+  rewardInformationCallback?: (initialRewardCellPos?: number) => void
 }
 
-export type Props = GameProps & { wasm: InitOutput; cellSize: number }
+export type Props = GameProps & { cellSize: number }
 
 const Game = ({
-  wasm,
   world,
   worldWidth,
   canvas,
   ctx,
   snakeSpeed,
   cellSize,
+  rewardInformationCallback,
 }: Props) => {
   const gameContext = useContext(GameContext)
-  const [status, setStatus] = useState("None")
+  const [status, setStatus] = useState<number | undefined>(undefined)
   const [points, setPoints] = useState(0)
   const [buttonText, setButtonText] = useState("Play")
 
-  const preventKeyboardEvent = (e: Event) => {
-    e.preventDefault()
-    return false
-  }
-
-  const getStatus = useCallback(() => {
-    switch (world.game_status()) {
+  const getStatusAsText = useCallback((status: number | undefined) => {
+    switch (status) {
       case GameStatus.Play:
         return "Playing"
       case GameStatus.Won:
@@ -45,90 +43,52 @@ const Game = ({
       default:
         return "None"
     }
-  }, [world])
+  }, [])
 
-  const updateStatus = useCallback(() => {
-    setStatus(getStatus())
-  }, [getStatus])
+  const updateStatusAndPoints = useCallback(() => {
+    const latestStatus = world.game_status()
+    const latestPoints = world.points()
 
-  const updatePoints = useCallback(() => {
-    setPoints(world.points())
-  }, [world])
+    if (status !== latestStatus) setStatus(latestStatus)
+    if (points !== latestPoints) setPoints(latestPoints)
+  }, [points, status, world])
 
   const drawBoard = useCallback(() => {
-    ctx.beginPath()
-
-    for (let x = 0; x <= worldWidth; x++) {
-      ctx.moveTo(x * cellSize, 0)
-      ctx.lineTo(x * cellSize, worldWidth * cellSize)
-    }
-
-    for (let y = 0; y <= worldWidth; y++) {
-      ctx.moveTo(0, y * cellSize)
-      ctx.lineTo(worldWidth * cellSize, y * cellSize)
-    }
-
-    ctx.stroke()
+    drawSquareBoard(ctx, worldWidth, cellSize)
   }, [cellSize, ctx, worldWidth])
 
   const drawSnake = useCallback(() => {
-    const snakeCells = new Uint32Array(
-      wasm.memory.buffer,
-      world.snake_cells(),
-      world.snake_body_length()
-    )
-
+    const snakeCells = world.snake_cells() as number[]
     snakeCells
       .filter((snakeCellIdx, i) => !(i > 0 && snakeCellIdx === snakeCells[0]))
       .forEach((snakeCellIdx, i) => {
-        const col = snakeCellIdx % worldWidth
-        const row = Math.floor(snakeCellIdx / worldWidth)
-        ctx.fillStyle = i === 0 ? "#7878db" : "#000000"
-        ctx.beginPath()
-        ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
-        ctx.stroke()
+        drawCell(
+          ctx,
+          snakeCellIdx,
+          worldWidth,
+          cellSize,
+          i === 0 ? "#7878db" : "#000000"
+        )
       })
-  }, [cellSize, ctx, wasm.memory.buffer, world, worldWidth])
+  }, [cellSize, ctx, world, worldWidth])
 
   const drawReward = useCallback(() => {
     const idx = world.reward_cell()
     if (idx) {
-      const col = idx % worldWidth
-      const row = Math.floor(idx / worldWidth)
-
-      ctx.fillStyle = "#ff0000"
-
-      ctx.beginPath()
-
-      ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
-
-      ctx.stroke()
+      drawCell(ctx, idx, worldWidth, cellSize)
     }
-  }, [cellSize, ctx, world, worldWidth])
+
+    if (rewardInformationCallback) {
+      rewardInformationCallback(idx)
+    }
+  }, [cellSize, ctx, rewardInformationCallback, world, worldWidth])
 
   const paint = useCallback(() => {
     drawBoard()
     drawSnake()
     drawReward()
-    updateStatus()
-    updatePoints()
-  }, [drawBoard, drawReward, drawSnake, updatePoints, updateStatus])
-
-  const play = useCallback(() => {
-    switch (world.game_status()) {
-      case GameStatus.Won:
-      case GameStatus.Lost:
-        setButtonText("Replay")
-        return
-    }
-
-    setTimeout(() => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      world.step()
-      paint()
-      requestAnimationFrame(play)
-    }, (snakeSpeed / 100) * 1000)
-  }, [canvas.height, canvas.width, ctx, paint, snakeSpeed, world])
+    updateStatusAndPoints()
+  }, [drawBoard, drawReward, drawSnake, updateStatusAndPoints])
 
   const onKeyboardClick = useCallback(
     (key: KeyboardKeys) => {
@@ -150,39 +110,18 @@ const Game = ({
     [world]
   )
 
-  const addMovementMonitor = useCallback(() => {
-    window.addEventListener("keydown", (event) => {
-      const direction = event.key
-      switch (direction) {
-        case "ArrowUp":
-          onKeyboardClick(KeyboardKeys.UP)
-          break
-        case "ArrowDown":
-          onKeyboardClick(KeyboardKeys.DOWN)
-          break
-        case "ArrowLeft":
-          onKeyboardClick(KeyboardKeys.LEFT)
-          break
-        case "ArrowRight":
-          onKeyboardClick(KeyboardKeys.RIGHT)
-          break
-      }
-    })
-
-    window.addEventListener("keydown", preventKeyboardEvent, false)
-  }, [onKeyboardClick])
-
   const onPlayClicked = useCallback(() => {
-    if (world.game_status() !== undefined) {
+    if (gameContext.isGameStarted) {
       location.reload()
     } else {
-      gameContext.setGameStarted(true)
-      setButtonText("Playing...")
-      addMovementMonitor()
-      world.play()
-      play()
+      if (gameContext.setGameStarted) {
+        gameContext.setGameStarted(true)
+        setButtonText("Playing...")
+        world.play()
+        updateStatusAndPoints()
+      }
     }
-  }, [addMovementMonitor, gameContext, play, world])
+  }, [gameContext, updateStatusAndPoints, world])
 
   useEffect(() => {
     canvas.width = worldWidth * cellSize
@@ -190,18 +129,26 @@ const Game = ({
     paint()
   }, [canvas, cellSize, worldWidth, paint])
 
-  useEffect(() => {
-    return () => {
-      window.removeEventListener("keydown", preventKeyboardEvent, false)
+  const intervalDelay = useMemo(() => {
+    if (status === GameStatus.Play) {
+      return (snakeSpeed / 100) * 1000
     }
-  }, [])
+
+    return null
+  }, [status, snakeSpeed])
+
+  useInterval(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    world.step()
+    paint()
+  }, intervalDelay)
 
   return (
     <>
       <div className={styles.contoller}>
         <div className={styles.scoreBoard}>
           <div>
-            <strong>Status:</strong> <span>{status}</span>
+            <strong>Status:</strong> <span>{getStatusAsText(status)}</span>
           </div>
           <div>
             <strong>Points:</strong> <span>{points}</span>
@@ -220,6 +167,7 @@ const Game = ({
           keyboardType="Arrows"
           onClickCallback={onKeyboardClick}
           buttonText={"Popup Keyboard"}
+          enableKeyboardListener={world.game_status() !== undefined}
         />
       </div>
     </>

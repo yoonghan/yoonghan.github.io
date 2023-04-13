@@ -18,8 +18,8 @@ export const siteDevelopmentSections = [
           were written with new testcases for full code coverage.
         </p>
         <p>
-          Only 1 SNAPSHOT test were ever taken for <strong>React</strong>! (yes
-          it&apos;s for html header)
+          Functional test is implemented rather than snapshot for{" "}
+          <strong>React</strong>! (only html header and canvases)
         </p>
         <p>
           It&apos;s an end-to-end <i>100% code coverage</i>.
