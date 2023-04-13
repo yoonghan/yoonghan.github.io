@@ -24,7 +24,7 @@ const Board = ({
   useEffect(() => {
     const canvas = boardRef.current
     if (canvas !== null) {
-      const world = World.new(worldDimension, snakePos, snakeSize)
+      const world = World.new(worldDimension, snakePos, snakeSize, 0)
       const worldWidth = world.width()
       const ctx = canvas.getContext("2d")!!
       setGame({

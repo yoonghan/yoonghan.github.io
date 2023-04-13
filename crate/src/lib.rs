@@ -70,7 +70,7 @@ extern {
 
 #[wasm_bindgen]
 impl World {
-    pub fn new(width: usize, snake_pos: usize, snake_size: usize) -> World {
+    pub fn new(width: usize, snake_pos: usize, snake_size: usize, reward_idx: usize) -> World {
         let controlled_width = match width < snake_size {
             true => snake_size,
             false => width,
@@ -80,7 +80,7 @@ impl World {
 
         World {
             width: controlled_width,
-            reward_cell: World::generate_reward_cell(size, &snake),
+            reward_cell: World::generate_reward_cell(reward_idx, size, &snake),
             snake,
             next_cell: None,
             size,
@@ -93,13 +93,13 @@ impl World {
         self.points
     }
 
-    fn generate_reward_cell(size: usize, snake: &Snake) -> Option<usize> {
-        let mut reward_cell;
+    fn generate_reward_cell(reward_idx:usize, size: usize, snake: &Snake) -> Option<usize> {
+        let mut reward_cell = if reward_idx == 0 { rnd(size) } else { reward_idx };
         loop {
-            reward_cell =  rnd(size);
             if !snake.body.contains(&SnakeCell(reward_cell)) {
                 break;
             }
+            reward_cell =  rnd(size);
         }
         Some(reward_cell)
     }
@@ -175,7 +175,7 @@ impl World {
                 if Some(self.snake_head_idx()) == self.reward_cell {
                     if self.snake_body_length() < self.size {
                         self.points += 1;
-                        self.reward_cell = World::generate_reward_cell(self.size, &self.snake);
+                        self.reward_cell = World::generate_reward_cell(0, self.size, &self.snake);
                     } else {
                         self.reward_cell = None;
                         self.game_status = Some(GameStatus::Won)
