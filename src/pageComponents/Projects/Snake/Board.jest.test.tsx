@@ -113,16 +113,8 @@ describe("Board", () => {
         userEvent.keyboard(`{${KeyboardKeys.UP}}`)
         jest.advanceTimersByTime(1000)
 
-        if (screen.queryByText("Won")) {
-          //wins if reward cell spawn doesn't happen on cell 1
-          expect(await screen.findByText("2")).toBeInTheDocument()
-        } else {
-          //wins if reward cell spawn happens on cell 1
-          userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
-          jest.advanceTimersByTime(1000)
-          expect(await screen.findByText("Won")).toBeInTheDocument()
-          expect(await screen.findByText("2")).toBeInTheDocument()
-        }
+        expect(await screen.findByText("Won")).toBeInTheDocument()
+        expect(screen.getByText("2")).toBeInTheDocument()
       }
     })
   })

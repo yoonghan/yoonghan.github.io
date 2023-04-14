@@ -70,7 +70,7 @@ extern {
 
 #[wasm_bindgen]
 impl World {
-    pub fn new(width: usize, snake_pos: usize, snake_size: usize, reward_idx: usize) -> World {
+    pub fn new(width: usize, snake_pos: usize, snake_size: usize, reward_idx: Option<usize>) -> World {
         let controlled_width = match width < snake_size {
             true => snake_size,
             false => width,
@@ -93,8 +93,16 @@ impl World {
         self.points
     }
 
-    fn generate_reward_cell(reward_idx:usize, size: usize, snake: &Snake) -> Option<usize> {
-        let mut reward_cell = if reward_idx == 0 { rnd(size) } else { reward_idx };
+    fn generate_reward_cell(reward_idx:Option<usize>, size: usize, snake: &Snake) -> Option<usize> {
+        let mut reward_cell = match reward_idx {
+            Some(idx) => { 
+                idx
+            }
+            None => {
+                rnd(size)
+            }
+        };
+        
         loop {
             if !snake.body.contains(&SnakeCell(reward_cell)) {
                 break;
@@ -173,12 +181,12 @@ impl World {
                 }
         
                 if Some(self.snake_head_idx()) == self.reward_cell {
-                    if self.snake_body_length() < self.size {
-                        self.points += 1;
-                        self.reward_cell = World::generate_reward_cell(0, self.size, &self.snake);
-                    } else {
+                    self.points += 1;
+                    if self.snake_body_length() >= self.size - 1 {
                         self.reward_cell = None;
-                        self.game_status = Some(GameStatus::Won)
+                        self.game_status = Some(GameStatus::Won);
+                    } else {
+                        self.reward_cell = World::generate_reward_cell(None, self.size, &self.snake);
                     }
 
                     self.snake.body.push(SnakeCell(self.snake.body[1].0));
