@@ -117,5 +117,31 @@ describe("Board", () => {
         expect(screen.getByText("2")).toBeInTheDocument()
       }
     })
+
+    it("should be able to Win the game play with Right direction", async () => {
+      await renderComponent()
+      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+      expect(
+        await screen.findByRole("button", { name: "Playing..." })
+      ).toBeInTheDocument()
+      expect(await screen.findByText("Playing")).toBeInTheDocument()
+      jest.advanceTimersByTime(1000)
+      userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+      jest.advanceTimersByTime(1000)
+      expect(await screen.findByText("1")).toBeInTheDocument()
+      userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
+      jest.advanceTimersByTime(1000)
+      if (screen.queryByText("2")) {
+        //win if reward spawns on cell = 2
+        expect(await screen.findByText("Won")).toBeInTheDocument()
+      } else {
+        //reward spawns on cell = 0
+        userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+        jest.advanceTimersByTime(1000)
+
+        expect(await screen.findByText("Won")).toBeInTheDocument()
+        expect(screen.getByText("2")).toBeInTheDocument()
+      }
+    })
   })
 })
