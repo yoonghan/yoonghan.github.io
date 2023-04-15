@@ -48,6 +48,10 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
+function isLikeNone(x) {
+    return x === undefined || x === null;
+}
+
 let cachedInt32Memory0 = null;
 
 function getInt32Memory0() {
@@ -88,11 +92,11 @@ export class World {
     * @param {number} width
     * @param {number} snake_pos
     * @param {number} snake_size
-    * @param {number} reward_idx
+    * @param {number | undefined} reward_idx
     * @returns {World}
     */
     static new(width, snake_pos, snake_size, reward_idx) {
-        const ret = wasm.world_new(width, snake_pos, snake_size, reward_idx);
+        const ret = wasm.world_new(width, snake_pos, snake_size, !isLikeNone(reward_idx), isLikeNone(reward_idx) ? 0 : reward_idx);
         return World.__wrap(ret);
     }
     /**

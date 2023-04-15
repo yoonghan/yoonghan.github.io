@@ -2,7 +2,7 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export function __wbg_world_free(a: number): void;
-export function world_new(a: number, b: number, c: number, d: number): number;
+export function world_new(a: number, b: number, c: number, d: number, e: number): number;
 export function world_points(a: number): number;
 export function world_reward_cell(a: number, b: number): void;
 export function world_width(a: number): number;
