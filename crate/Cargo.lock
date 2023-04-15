@@ -107,6 +107,7 @@ dependencies = [
 name = "snake"
 version = "0.3.0"
 dependencies = [
+ "js-sys",
  "serde",
  "serde-wasm-bindgen",
  "wasm-bindgen",

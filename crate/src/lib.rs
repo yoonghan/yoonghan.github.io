@@ -71,12 +71,13 @@ extern {
 #[wasm_bindgen]
 impl World {
     pub fn new(width: usize, snake_pos: usize, snake_size: usize, reward_idx: Option<usize>) -> World {
-        let controlled_width = match width < snake_size {
+        let controlled_snake_size = if snake_size < 2 {2} else {snake_size};
+        let controlled_width = match width < controlled_snake_size {
             true => snake_size,
             false => width,
         };
         let size = controlled_width * controlled_width;
-        let snake = Snake::new(snake_pos, snake_size);
+        let snake = Snake::new(snake_pos, controlled_snake_size);
 
         World {
             width: controlled_width,
