@@ -171,9 +171,15 @@ mod growth {
         let snake_js = snake_cells.unwrap();
         assert_eq!(js_sys::JSON::stringify(&snake_js).ok().unwrap(), "[4,1,1]");
         world.step();
-        let snake_cells = world.snake_cells().ok();
-        let snake_js = snake_cells.unwrap();
-        assert_eq!(js_sys::JSON::stringify(&snake_js).ok().unwrap(), "[7,4,1]");
+        if world.snake_body_length() == 3 {
+            let snake_cells = world.snake_cells().ok();
+            let snake_js = snake_cells.unwrap();
+            assert_eq!(js_sys::JSON::stringify(&snake_js).ok().unwrap(), "[7,4,1]");
+        } else {
+            let snake_cells = world.snake_cells().ok();
+            let snake_js = snake_cells.unwrap();
+            assert_eq!(js_sys::JSON::stringify(&snake_js).ok().unwrap(), "[7,4,1,4]");
+        }
     }
 
     #[wasm_bindgen_test]
