@@ -44,7 +44,7 @@ const Board = ({
         worldDimension,
         snakePos,
         snakeSize,
-        startRewardCell === undefined ? 0 : startRewardCell
+        startRewardCell
       )
       const worldWidth = world.width()
       const ctx = canvas.getContext("2d")!!
