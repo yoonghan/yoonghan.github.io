@@ -143,3 +143,11 @@ jobs:
       - name: ✅ Validate wasm test
         run: npm run rust:generate && npm run rust:test
         shell: bash
+
+      - name: Add rust wasm bindgen
+        run: cd crate && cargo install wasm-bindgen-cli --vers "0.2.84"
+        shell: bash
+
+      - name: ✅ Validate wasm via code
+        run: cd crate && cargo test --target wasm32-unknown-unknown
+        shell: bash
