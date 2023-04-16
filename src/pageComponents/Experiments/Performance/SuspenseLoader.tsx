@@ -59,6 +59,11 @@ const Result = () => {
 
   return (
     <div>
+      <i>
+        <strong>TAKE NOTE:</strong> For suspend to load with lazy loading (i.e.
+        NextJS dynamic), it is required to encapsulate it within
+        &lt;Suspense&gt; tag.
+      </i>
       <div>{readSuccessResponse}</div>
       <div>{readErrorResponse}</div>{" "}
       {/** Final render will take the longest time to complete */}

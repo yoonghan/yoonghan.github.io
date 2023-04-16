@@ -12,6 +12,8 @@ export type Props = {
   }
 }
 
+const SNAKE_MIN_SIZE = 2
+
 const Form = ({ disabled, onUpdate, formValues }: Props) => {
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -19,6 +21,11 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
     (value: number, id: string) => {
       if (value > 100 || value <= 0) {
         setErrorMessage(`${id} should be a number from 0 to 100`)
+        return true
+      }
+
+      if (id === "snakeSize" && value < SNAKE_MIN_SIZE) {
+        setErrorMessage(`${id} must be larger than ${SNAKE_MIN_SIZE}`)
         return true
       }
 
@@ -70,7 +77,7 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
           <input
             type="number"
             max="100"
-            min="1"
+            min="3"
             onChange={updateInput}
             value={formValues.worldDimension}
             id="worldDimension"
@@ -81,7 +88,7 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
           <input
             type="number"
             max="100"
-            min="1"
+            min={SNAKE_MIN_SIZE}
             onChange={updateInput}
             value={formValues.snakeSize}
             id="snakeSize"
@@ -99,7 +106,10 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
           />
         </div>
       </fieldset>
-
+      <i>
+        This form is an annoyance where submit helps; but it serve a good
+        purpose for challenging Test writing.
+      </i>
       {errorMessage !== "" && (
         <div className={"alert danger"}>{errorMessage}</div>
       )}
