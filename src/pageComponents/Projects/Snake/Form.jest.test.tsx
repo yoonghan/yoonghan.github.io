@@ -47,24 +47,34 @@ describe("Form", () => {
     renderComponent({
       onUpdate: mockUpdate,
       formValues: {
-        snakeSpeed: 0,
-        worldDimension: 4,
-        snakeSize: 0,
-        cellSize: 0,
+        snakeSpeed: 1,
+        worldDimension: 9,
+        snakeSize: 9,
+        cellSize: 10,
       },
     })
 
-    await userEvent.type(screen.getByLabelText("Snake Speed (sec/100):"), "1")
-    expect(mockUpdate).toHaveBeenLastCalledWith({ id: "snakeSpeed", value: 1 })
+    await userEvent.type(screen.getByLabelText("Snake Speed (sec/100):"), "2")
+    expect(mockUpdate).toHaveBeenLastCalledWith({
+      id: "snakeSpeed",
+      value: 12,
+    })
     await userEvent.type(screen.getByLabelText("World Dimension:"), "4")
     expect(mockUpdate).toHaveBeenLastCalledWith({
       id: "worldDimension",
-      value: 44,
+      value: 94,
     })
-    await userEvent.type(screen.getByLabelText("Snake Size:"), "2")
-    expect(mockUpdate).toHaveBeenLastCalledWith({ id: "snakeSize", value: 2 })
-    await userEvent.type(screen.getByLabelText("Cell Size:"), "3")
+    await userEvent.type(screen.getByLabelText("Cell Size:"), "3", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: 2,
+    })
     expect(mockUpdate).toHaveBeenLastCalledWith({ id: "cellSize", value: 3 })
+
+    await userEvent.type(screen.getByLabelText("Snake Size:"), "3", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: 1,
+    })
+    expect(mockUpdate).toHaveBeenLastCalledWith({ id: "snakeSize", value: 3 })
   })
 
   it("should show error if the limit is above 100 and Error should disappear when fixed", async () => {
@@ -104,7 +114,7 @@ describe("Form", () => {
       onUpdate: mockUpdate,
       formValues: {
         snakeSpeed: 99,
-        worldDimension: 9,
+        worldDimension: 10,
         snakeSize: 9,
         cellSize: 0,
       },
@@ -123,13 +133,16 @@ describe("Form", () => {
       onUpdate: mockUpdate,
       formValues: {
         snakeSpeed: 99,
-        worldDimension: 1,
-        snakeSize: 99,
+        worldDimension: 10,
+        snakeSize: 9,
         cellSize: 0,
       },
     })
 
-    await userEvent.type(screen.getByLabelText("World Dimension:"), "1")
+    await userEvent.type(screen.getByLabelText("World Dimension:"), "1", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: 2,
+    })
     expect(mockUpdate).not.toHaveBeenCalled()
     expect(
       screen.getByText("worldDimension must be larger than snakeCell")
@@ -147,8 +160,8 @@ describe("Form", () => {
       onUpdate: mockUpdate,
       formValues: {
         snakeSpeed: 99,
-        worldDimension: 1,
-        snakeSize: 99,
+        worldDimension: 10,
+        snakeSize: 9,
         cellSize: "",
       },
     })
@@ -157,5 +170,27 @@ describe("Form", () => {
     expect(mockUpdate).not.toHaveBeenCalled()
     await userEvent.type(inputElem, "0")
     expect(mockUpdate).not.toHaveBeenCalled()
+  })
+
+  it("should not allow snakeSize less than 2", async () => {
+    const mockUpdate = jest.fn()
+    renderComponent({
+      onUpdate: mockUpdate,
+      formValues: {
+        snakeSpeed: 99,
+        worldDimension: 10,
+        snakeSize: 9,
+        cellSize: 10,
+      },
+    })
+
+    await userEvent.type(screen.getByLabelText("Snake Size:"), "1", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: 1,
+    })
+    expect(mockUpdate).not.toHaveBeenCalled()
+    expect(
+      screen.getByText("snakeSize must be larger than 2")
+    ).toBeInTheDocument()
   })
 })

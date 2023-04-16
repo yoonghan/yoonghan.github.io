@@ -154,6 +154,33 @@ const Lessons = ({}) => {
             git rebase --interactive HEAD~3
             `}</pre>
           </article>
+          <article>
+            <h2>React Suspense</h2>
+            <p>
+              A new way to handle asynchronous response. But take notes on this:
+            </p>
+            <ol>
+              <li>
+                For it to work with NextJS, it needs to load via client side.
+                Hence a need to use dynamic/lazy import.
+              </li>
+              <li>
+                due to dynamic import, one will face a problem if directly
+                routed of:
+                <i>
+                  A component suspended while responding to synchronous input.
+                  This will cause the UI to be replaced with a loading
+                  indicator. To fix, updates that suspend should be wrapped with
+                  startTransition.
+                </i>
+                . To overcome it (sample in pageComponents/*/SnakeGame.tsx) it,
+                simply wrap it in another Suspense tag
+                <pre className="code">
+                  &lt;Suspense&gt;&lt;LazyLoadedComponent/&gt;&lt;/Suspense&gt;
+                </pre>
+              </li>
+            </ol>
+          </article>
         </div>
         <Footer />
         <ScrollToTop />
