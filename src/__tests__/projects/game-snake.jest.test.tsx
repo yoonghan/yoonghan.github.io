@@ -5,6 +5,7 @@ import GameSnake, { config } from "@/pages/projects/game-snake"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import userEvent from "@testing-library/user-event"
+import random from "@/util/random"
 
 describe("Snake Game", () => {
   const renderComponent = () => {
@@ -34,6 +35,25 @@ describe("Snake Game", () => {
     ).toBeInTheDocument()
     await userEvent.type(screen.getByLabelText("Snake Size:"), "{backspace}2")
     expect(screen.getByLabelText("Snake Size:")).toHaveValue(12)
+  })
+
+  it("should randomize once board dimension is changed", async () => {
+    const mockRandom = jest.fn()
+    const spyOnRandom = jest.spyOn(random, "rnd")
+    spyOnRandom.mockImplementation(mockRandom)
+    mockRandom.mockReturnValue(1)
+    renderComponent()
+    expect(mockRandom).toHaveBeenCalled()
+    expect(screen.getByText("Snake Game")).toBeInTheDocument()
+    expect(
+      await screen.findByRole("button", { name: "Play" })
+    ).toBeInTheDocument()
+    await userEvent.type(screen.getByLabelText("World Dimension:"), "2", {
+      initialSelectionStart: 1,
+      initialSelectionEnd: 2,
+    })
+    expect(screen.getByLabelText("World Dimension:")).toHaveValue(12)
+    expect(mockRandom).toBeCalledTimes(3)
   })
 
   it("should render the page with footer", () => {

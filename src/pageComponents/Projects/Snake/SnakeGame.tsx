@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, Suspense } from "react"
+import { useCallback, useState, Suspense } from "react"
 import { rnd } from "@/util/random"
 import { GameContext } from "./GameContext"
 import styles from "./Snake.module.css"
@@ -6,7 +6,6 @@ import Form from "./Form"
 import dynamic from "next/dynamic"
 
 const WORLD_DIMENSION = 15
-const SNAKE_POS = rnd(WORLD_DIMENSION * WORLD_DIMENSION)
 const SNAKE_SIZE = 10
 const CELL_SIZE = 20
 const SNAKE_SPEED = 10
@@ -29,14 +28,24 @@ const SnakeGame = () => {
     cellSize: CELL_SIZE,
   })
 
+  const calcSnakePos = useCallback(
+    (dimension: number) => rnd(dimension * dimension),
+    []
+  )
+
+  const [snakePos, setSnakePos] = useState(calcSnakePos(WORLD_DIMENSION))
+
   const updateForm = useCallback(
     ({ id, value }: { id: string; value: number }) => {
       setForm((form) => ({
         ...form,
         [id]: value,
       }))
+      if (id === "worldDimension") {
+        setSnakePos(rnd(form.worldDimension))
+      }
     },
-    []
+    [form.worldDimension]
   )
 
   return (
@@ -54,7 +63,7 @@ const SnakeGame = () => {
         <Suspense>
           <Board
             worldDimension={form.worldDimension}
-            snakePos={SNAKE_POS}
+            snakePos={snakePos}
             snakeSize={form.snakeSize}
             snakeSpeed={form.snakeSpeed}
             cellSize={form.cellSize}
