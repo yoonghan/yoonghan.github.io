@@ -144,10 +144,10 @@ jobs:
         run: npm run rust:generate && npm run rust:test
         shell: bash
 
-      - name: Add rust wasm bindgen
+      - name: Add rust wasm bindgen for code coverage run
         run: cd crate && cargo install wasm-bindgen-cli --vers "0.2.84"
         shell: bash
 
-      - name: ✅ Validate wasm via code
+      - name: ✅ Validate for code coverage, work stopped here apparrently there are no solutions yet
         run: cd crate && cargo test --target wasm32-unknown-unknown
         shell: bash
