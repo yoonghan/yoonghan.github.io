@@ -33,8 +33,11 @@ describe("Snake Game", () => {
     expect(
       await screen.findByRole("button", { name: "Play" })
     ).toBeInTheDocument()
-    await userEvent.type(screen.getByLabelText("Snake Size:"), "{backspace}2")
-    expect(screen.getByLabelText("Snake Size:")).toHaveValue(12)
+    await userEvent.type(screen.getByLabelText("Snake Size:"), "4", {
+      initialSelectionStart: 1,
+      initialSelectionEnd: 2,
+    })
+    expect(screen.getByLabelText("Snake Size:")).toHaveValue(14)
   })
 
   it("should randomize once board dimension is changed", async () => {
