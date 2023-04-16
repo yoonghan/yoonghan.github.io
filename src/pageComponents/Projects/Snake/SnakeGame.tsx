@@ -9,7 +9,7 @@ const WORLD_DIMENSION = 15
 const SNAKE_POS = rnd(WORLD_DIMENSION * WORLD_DIMENSION)
 const SNAKE_SIZE = 10
 const CELL_SIZE = 20
-const SPEED = 10
+const SNAKE_SPEED = 10
 
 const Board = dynamic(() => import("./Board"), {
   ssr: false,
@@ -22,27 +22,19 @@ const Board = dynamic(() => import("./Board"), {
 
 const SnakeGame = () => {
   const [isGameStarted, setGameStarted] = useState(false)
-  const [worldDimension, setWorldDimension] = useState(WORLD_DIMENSION)
-  const [snakeSpeed, setSnakeSpeed] = useState(SPEED)
-  const [snakeSize, setSnakeSize] = useState(SNAKE_SIZE)
-  const [cellSize, setCellSize] = useState(CELL_SIZE)
+  const [form, setForm] = useState({
+    worldDimension: WORLD_DIMENSION,
+    snakeSpeed: SNAKE_SPEED,
+    snakeSize: SNAKE_SIZE,
+    cellSize: CELL_SIZE,
+  })
 
   const updateForm = useCallback(
     ({ id, value }: { id: string; value: number }) => {
-      switch (id) {
-        case "worldDimension":
-          setWorldDimension(value)
-          break
-        case "snakeSpeed":
-          setSnakeSpeed(value)
-          break
-        case "snakeSize":
-          setSnakeSize(value)
-          break
-        case "cellSize":
-          setCellSize(value)
-          break
-      }
+      setForm((form) => ({
+        ...form,
+        [id]: value,
+      }))
     },
     []
   )
@@ -55,17 +47,19 @@ const SnakeGame = () => {
             <Form
               disabled={isGameStarted === true}
               onUpdate={updateForm}
-              formValues={{ snakeSpeed, snakeSize, cellSize, worldDimension }}
+              formValues={form}
             />
           )}
         </GameContext.Consumer>
-        <Board
-          worldDimension={worldDimension}
-          snakePos={SNAKE_POS}
-          snakeSize={snakeSize}
-          snakeSpeed={snakeSpeed}
-          cellSize={cellSize}
-        />
+        <Suspense>
+          <Board
+            worldDimension={form.worldDimension}
+            snakePos={SNAKE_POS}
+            snakeSize={form.snakeSize}
+            snakeSpeed={form.snakeSpeed}
+            cellSize={form.cellSize}
+          />
+        </Suspense>
       </div>
     </GameContext.Provider>
   )
