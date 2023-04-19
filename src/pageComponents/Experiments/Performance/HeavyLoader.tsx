@@ -7,8 +7,9 @@ import {
   useRef,
   useState,
 } from "react"
+import styles from "./HeavyLoader.module.css"
 
-const genCount = 10000
+const genCount = 1000
 const arrayOfRecords = Array.from({ length: genCount }, (i) => i) as number[]
 
 const callProfiling = (id: string, phase: string, actualDuration: number) => {
@@ -95,7 +96,7 @@ const HeavyLoaderNoSSR = ({}) => {
   }, [toggleState])
 
   return (
-    <div>
+    <div className={styles.container}>
       <p>
         This page will only work on &quot;Development&quot; environment where it
         profiles on the page rendering. Memo is the fastest.
