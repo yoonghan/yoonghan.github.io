@@ -17,8 +17,6 @@ interface Props {
 const AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput)
 
 const CommandBarInput = (props: Props) => {
-  const [showPrompt, setShowPrompt] = React.useState(false)
-
   const commandOptions = React.useMemo(
     () =>
       AVAILABLE_COMMAND_KEYS.map((command) => (
@@ -37,12 +35,10 @@ const CommandBarInput = (props: Props) => {
   }
 
   const onFocus = (event: React.FormEvent<HTMLInputElement>) => {
-    setShowPrompt(true)
     props.onFocusCallback(event)
   }
 
   const onBlur = (event: React.FormEvent<HTMLInputElement>) => {
-    setShowPrompt(false)
     props.onBlurCallback(event)
   }
 
@@ -54,7 +50,7 @@ const CommandBarInput = (props: Props) => {
           <span className={`${styles["promptIn"]}`}>
             {props.suggestedInput}
           </span>
-          {showPrompt && <span data-testid="prompter">&#9608;</span>}
+          <span data-testid="prompter">&#9608;</span>
         </div>
         <div>
           <input

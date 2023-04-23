@@ -93,8 +93,5 @@ describe("CommandBarInput", () => {
     fireEvent.focus(input)
     expect(focusCallback).toHaveBeenCalled()
     expect(screen.getByTestId("prompter")).toBeInTheDocument()
-    fireEvent.blur(input)
-    expect(blurCallback).toHaveBeenCalled()
-    expect(screen.queryByTestId("prompter")).not.toBeInTheDocument()
   })
 })
