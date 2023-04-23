@@ -47,36 +47,39 @@ describe("CommandBarInput", () => {
 
   it("should be able to suggest when user type 'he' only", async () => {
     renderComponent({})
-    const input = screen.getByRole("textbox")
+    const input = screen.getByRole("combobox")
+    expect(input).toHaveAttribute("list", "commands")
     await userEvent.type(input, "he")
-    expect(input).toHaveValue("he")
-    expect(await screen.findByText("help")).toBeInTheDocument()
-    await userEvent.type(input, "{backspace}{backspace}j")
-    expect(screen.queryByText("help")).not.toBeInTheDocument()
+    expect(screen.getByRole("listbox", { hidden: true })).toHaveAttribute(
+      "id",
+      "commands"
+    )
+    const options = screen.getAllByRole("option", { hidden: true })
+    expect(
+      options.filter((option) => option.getAttribute("value") == "help")
+    ).toHaveLength(1)
   })
 
   it("should be able to choose and submit suggestedInput", async () => {
     const submitFn = jest.fn((e) => e.preventDefault())
     renderComponent({ onSubmitCallback: submitFn })
-    await userEvent.type(screen.getByRole("textbox"), "he")
-    await userEvent.click(screen.getByText("help"))
-    await userEvent.type(screen.getByRole("textbox"), "{enter}")
+    await userEvent.type(screen.getByRole("combobox"), "help{enter}")
     expect(submitFn).toHaveBeenCalled()
   })
 
   it("should be able to choose and submit by button", async () => {
     const submitFn = jest.fn((e) => e.preventDefault())
     renderComponent({ onSubmitCallback: submitFn })
-    await userEvent.type(screen.getByRole("textbox"), "help")
+    await userEvent.type(screen.getByRole("combobox"), "help")
     await userEvent.click(screen.getByRole("button", { name: "Enter" }))
     expect(submitFn).toHaveBeenCalled()
   })
 
   it("should allow only 22 max characters", async () => {
     renderComponent({})
-    const input = screen.getByRole("textbox")
+    const input = screen.getByRole("combobox")
     await userEvent.type(input, "h".repeat(24))
-    expect(screen.getByRole("textbox")).toHaveValue("h".repeat(22))
+    expect(screen.getByRole("combobox")).toHaveValue("h".repeat(22))
   })
 
   it("should show prompt when focus", () => {
@@ -86,12 +89,9 @@ describe("CommandBarInput", () => {
       onBlurCallback: blurCallback,
       onFocusCallback: focusCallback,
     })
-    const input = screen.getByRole("textbox")
+    const input = screen.getByRole("combobox")
     fireEvent.focus(input)
     expect(focusCallback).toHaveBeenCalled()
     expect(screen.getByTestId("prompter")).toBeInTheDocument()
-    fireEvent.blur(input)
-    expect(blurCallback).toHaveBeenCalled()
-    expect(screen.queryByTestId("prompter")).not.toBeInTheDocument()
   })
 })

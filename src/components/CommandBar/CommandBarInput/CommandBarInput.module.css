@@ -46,7 +46,7 @@
   margin: 1px 0 0 1px;
 }
 
-.command-container :global(.react-autosuggest__input) {
+.command-container .autosuggest__input {
   font-family: Inconsolata;
   background-color: transparent;
   width: 150px;
@@ -64,38 +64,10 @@
   text-shadow: 0 0 0 #ebebeb;
 }
 
-.command-container :global(.react-autosuggest__input:focus) {
+.command-container .autosuggest__input:focus {
   outline: none;
 }
 
-.command-container :global(.react-autosuggest__input--focused) {
-  outline: none;
-}
-
-.command-container :global(.react-autosuggest__suggestions-container--open) {
-  border: 1px solid #aaa;
-  font-family: Inconsolata;
-  color: var(--link);
-  background: var(--link-bg);
-  font-size: 0.7rem;
-  z-index: 2;
-  margin-top: 2px;
-  margin-left: 5rem;
-  text-align: left;
-  padding: 0 4px;
-}
-
-.command-container :global(.react-autosuggest__suggestions-list) {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.command-container :global(.react-autosuggest__suggestion) {
+.command-container .autosuggest__suggestion {
   cursor: pointer;
-}
-
-.command-container :global(.react-autosuggest__suggestion--highlighted) {
-  background-color: #ddd;
-  color: #000;
 }

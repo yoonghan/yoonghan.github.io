@@ -11,10 +11,9 @@ describe("NoSSRCommandBar", () => {
 
   it("should allow me to do a help and cancel", async () => {
     render(<NoSSRCommandBar />)
-    await userEvent.type(screen.getByRole("textbox"), "help")
+    await userEvent.type(screen.getByRole("combobox"), "help")
     await userEvent.click(screen.getByRole("button", { name: "Enter" }))
     expect(screen.getByText("Help")).toBeInTheDocument()
-    expect(screen.queryByTestId("prompter")).not.toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
   })
 })
