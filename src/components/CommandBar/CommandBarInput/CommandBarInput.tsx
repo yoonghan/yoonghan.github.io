@@ -1,5 +1,4 @@
 import * as React from "react"
-import Autosuggest, { InputProps } from "react-autosuggest"
 import { AvailableInput } from "../CommandSearch/CommandSearch"
 import styles from "./CommandBarInput.module.css"
 
