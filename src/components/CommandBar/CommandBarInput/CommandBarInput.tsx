@@ -17,23 +17,19 @@ interface Props {
 const AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput)
 
 const CommandBarInput = (props: Props) => {
-  const [suggestions, setSuggestions] = React.useState<string[]>([])
   const [showPrompt, setShowPrompt] = React.useState(false)
 
-  const getSuggestions = (value: string) => {
-    const inputValue = value.trim().toLowerCase()
-    return AVAILABLE_COMMAND_KEYS.filter(
-      (cmd) => cmd.toLowerCase().slice(0, inputValue.length) === inputValue
-    ).slice(0, 10)
-  }
+  const commandOptions = React.useMemo(
+    () =>
+      AVAILABLE_COMMAND_KEYS.map((command) => (
+        <option value={command} key={command} />
+      )),
+    []
+  )
 
-  const getSuggestionValue = (suggestion: string) => suggestion
-
-  const renderSuggestion = (suggestion: string) => <div>{suggestion}</div>
-
-  const onChange = ({}, _newValue: any) => {
-    const { newValue } = _newValue
-    props.onSuggestedInputCallback(newValue)
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target
+    props.onSuggestedInputCallback(value)
   }
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -50,59 +46,36 @@ const CommandBarInput = (props: Props) => {
     props.onBlurCallback(event)
   }
 
-  const inputProps = {
-    value: props.suggestedInput,
-    onChange: onChange,
-    onFocus: onFocus,
-    onBlur: onBlur,
-    maxLength: 22,
-    "data-testid": "commandBar",
-  } as unknown as InputProps<string>
-
   return (
     <form onSubmit={onSubmit} className={`${styles["command-container"]}`}>
-      <div className={`${styles["command-text-container"]}`}>
+      <div>
         <div className={`${styles["command-text-prompt"]}`}>walcron@tm$</div>
-        <div className="prompt">
+        <div className={"prompt"}>
           <span className={`${styles["promptIn"]}`}>
             {props.suggestedInput}
           </span>
           {showPrompt && <span data-testid="prompter">&#9608;</span>}
         </div>
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={(value: any) => {
-            setSuggestions(getSuggestions(value?.value))
-          }}
-          onSuggestionsClearRequested={() => {
-            setSuggestions([])
-          }}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-        />
+        <div>
+          <input
+            type="text"
+            list="commands"
+            maxLength={22}
+            value={props.suggestedInput}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            className={styles.autosuggest__input}
+          />
+          <datalist id="commands">{commandOptions}</datalist>
+        </div>
       </div>
       <button
         className={`${styles["command-enter"]} style-scope ytd-searchbox`}
         aria-label="Enter"
-        data-testid="commandBar-enter"
       >
         <i>&#x21AA;</i>
       </button>
-      <style jsx>{`
-        .prompt {
-          z-index: -1;
-          color: var(--link);
-          font-family: Inconsolata;
-          position: absolute;
-          left: 5.2rem;
-          top: 0.6rem;
-          animation-name: blink;
-          font-size: 0.8rem;
-          animation-duration: 800ms;
-          animation-iteration-count: infinite;
-        }
-      `}</style>
     </form>
   )
 }
