@@ -12,6 +12,8 @@
   --button-orange-bg: rgb(255, 132, 0);
   --button-grey: #206db9;
   --button-grey-bg: rgb(200, 200, 200);
+  --button-bg-disabled: #999;
+  --button-disabled: rgba(66, 66, 66);
   --border-color: rgba(66, 66, 66);
   --table-header: #fff;
   --table-header-bg: #343a40;
