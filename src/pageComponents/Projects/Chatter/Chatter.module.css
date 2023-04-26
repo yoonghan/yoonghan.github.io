@@ -1,0 +1,8 @@
+.container video {
+  width: 50%;
+}
+
+.container .videoContainer {
+  display: flex;
+  gap: 1rem;
+}

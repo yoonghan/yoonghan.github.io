@@ -3,6 +3,7 @@ const windowLocation = window.location
 Object.defineProperty(window, "location", {
   value: { ...windowLocation, reload: () => {} },
 })
+
 afterEach(() => {
   jest.restoreAllMocks()
 })
@@ -76,4 +77,14 @@ export const setShareNavigator = () => {
     value: () => {},
     writable: true,
   })
+}
+
+export const setVideo = () => {
+  const oldMedia = window.navigator.mediaDevices
+  Object.defineProperty(window.navigator, "mediaDevices", {
+    value: {
+      getUserMedia: () => Promise.resolve(true),
+    },
+  })
+  return oldMedia
 }
