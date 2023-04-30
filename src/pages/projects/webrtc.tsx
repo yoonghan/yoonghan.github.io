@@ -12,17 +12,6 @@ interface Props {
 }
 
 const WebRtc = ({ appKey, cluster }: Props) => {
-  const { connect } = usePresencePusher({
-    appKey,
-    cluster,
-    authEndpoint: "/api/pusherauth/billy",
-    updateConnectionCallback: () => {},
-  })
-
-  useEffect(() => {
-    connect()
-  }, [connect])
-
   return (
     <>
       <HtmlHead
@@ -32,7 +21,7 @@ const WebRtc = ({ appKey, cluster }: Props) => {
       <Menu />
       <div className="page-aligned-container">
         <h1>WebRTC video call, only supports 2 users for now</h1>
-        <Chatter />
+        <Chatter appKey={appKey} cluster={cluster} />
       </div>
       <Footer />
     </>

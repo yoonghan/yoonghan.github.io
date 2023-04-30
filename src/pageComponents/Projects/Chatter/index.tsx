@@ -3,9 +3,15 @@ import { usePresencePusher } from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
 import styles from "./Chatter.module.css"
+import ChatterForm from "./ChatterForm"
 import { useWebRtc } from "./useWebRtc"
 
-const Chatter = () => {
+interface Props {
+  appKey: string
+  cluster: string
+}
+
+const Chatter = ({ appKey, cluster }: Props) => {
   const [videoStarted, setVideoStarted] = useState(false)
   const [remoteStarted, setRemoteStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
@@ -21,6 +27,12 @@ const Chatter = () => {
   )
 
   const { callVideo } = useWebRtc(setRemoteStream)
+  const { connect } = usePresencePusher({
+    appKey,
+    cluster,
+    authEndpoint: "/api/pusherauth",
+    updateConnectionCallback: () => {},
+  })
 
   const localVideoTracksCallback = useCallback(
     (mediaStream: MediaStream | undefined) => {
@@ -31,11 +43,15 @@ const Chatter = () => {
     []
   )
 
-  const startStopVideo = useCallback(() => {
-    setStream(undefined)
-    setVideoStarted(!videoStarted)
-    setRemoteStarted(false)
-  }, [videoStarted])
+  const startStopVideo = useCallback(
+    (username: string) => {
+      connect(username.toLocaleLowerCase())
+      setStream(undefined)
+      setVideoStarted(!videoStarted)
+      setRemoteStarted(false)
+    },
+    [connect, videoStarted]
+  )
 
   const startStopRemoteVideo = useCallback(() => {
     if (stream) {
@@ -68,28 +84,14 @@ const Chatter = () => {
           videoFailedCallback={(exception) => alert(exception)}
         ></VideoChat>
       </div>
-
-      <div>
-        <Button
-          onClick={startStopVideo}
-          additionalProps={{
-            disabled: videoStarted && stream == undefined,
-          }}
-        >
-          {videoStarted ? "Stop" : "Start"}
-        </Button>
-        <Button
-          onClick={startStopRemoteVideo}
-          additionalProps={{
-            disabled:
-              remoteStarted ||
-              !videoStarted ||
-              (videoStarted && stream == undefined),
-          }}
-        >
-          Call
-        </Button>
-      </div>
+      <hr />
+      <ChatterForm
+        startStopSenderVideo={startStopVideo}
+        startStopCallerVideo={startStopRemoteVideo}
+        senderButtonCanStop={videoStarted}
+        senderButtonDisabled={videoStarted && stream == undefined}
+        callerButtonDisabled={remoteStarted}
+      />
     </div>
   )
 }
