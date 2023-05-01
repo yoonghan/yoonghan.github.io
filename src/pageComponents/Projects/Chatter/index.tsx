@@ -17,14 +17,14 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
 
-  const setRemoteStream = useCallback(
-    (e: RTCTrackEvent) => {
-      if (stream && remoteVideoRef.current !== null) {
-        remoteVideoRef.current.stream(stream)
-      }
-    },
-    [stream]
-  )
+  const setRemoteStream = useCallback((e: RTCTrackEvent) => {
+    if (remoteVideoRef.current !== null && e.streams && e.streams?.length > 0) {
+      remoteVideoRef.current.stream(e.streams[0])
+      setRemoteStarted(true)
+    } else {
+      alert("No stream")
+    }
+  }, [])
 
   const { callVideo } = useWebRtc(setRemoteStream)
   const { connect } = usePresencePusher({
@@ -56,7 +56,6 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const startStopRemoteVideo = useCallback(() => {
     if (stream) {
       callVideo(stream)
-      setRemoteStarted(true)
     }
   }, [callVideo, stream])
 
