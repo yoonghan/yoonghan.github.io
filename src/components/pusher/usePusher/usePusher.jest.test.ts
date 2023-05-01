@@ -1,11 +1,11 @@
 import { renderHook } from "@testing-library/react"
 import { usePusher } from "."
-import { EnumConnectionStatus } from "./type/ConnectionStatus"
-import { isEventEmitter, isNoOfUserEmitter } from "./type/Emitter"
+import { EnumConnectionStatus } from "../type/ConnectionStatus"
+import { isEventEmitter, isNoOfUserEmitter } from "../type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
-import { MessageType } from "../config/MessageType"
-import { encodeMessage } from "../config/MessageFormatter"
+import { MessageType } from "../../Chat/config/MessageType"
+import { encodeMessage } from "../../Chat/config/MessageFormatter"
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -13,7 +13,7 @@ describe("usePusher", () => {
     channelName?: string
     printConnectionCallback?: (message: string) => void
     printEventCallback?: (message: string) => void
-    nonprivate?: boolean
+    channelPrefix?: string
     authEndpoint?: string
   }) => {
     return renderHook(usePusher, {
@@ -24,7 +24,7 @@ describe("usePusher", () => {
         printEventCallback: props.printEventCallback || jest.fn(),
         appKey: "TEST_APP_KEY",
         cluster: "TEST_CLUSTER",
-        nonprivate: props.nonprivate,
+        channelPrefix: props.channelPrefix,
         authEndpoint: props.authEndpoint,
       },
     })
@@ -38,6 +38,7 @@ describe("usePusher", () => {
       eventName: "RANDOM_EVENT",
       printConnectionCallback,
       printEventCallback,
+      channelPrefix: "private",
     })
     const client = result.current
     expect(client.getConnectionStatus()).toBe(EnumConnectionStatus.Disconnected)
@@ -56,7 +57,6 @@ describe("usePusher", () => {
       eventName: "RANDOM_EVENT",
       printConnectionCallback,
       printEventCallback,
-      nonprivate: true,
     })
     const client = result.current
     expect(client.channelName).toBe("wal_CHANNEL")
@@ -89,7 +89,9 @@ describe("usePusher", () => {
 
   it("should not be able to send message when it's not connected", () => {
     const printEventCallback = jest.fn()
-    const { result } = createPusher({ printEventCallback })
+    const { result } = createPusher({
+      printEventCallback,
+    })
     expect(result.current.send("A message", MessageType.TEXT)).toBe(false)
 
     const noOfUserEmitter = result.current.emit("NoOfUsers")

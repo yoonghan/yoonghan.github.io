@@ -1,4 +1,4 @@
-import { usePusher } from "@/components/Chat/usePusher"
+import { usePusher } from "@/components/pusher/usePusher"
 import ChatMessageBox from "@/components/Chat/ChatMessageBox"
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
@@ -35,8 +35,8 @@ const Messenger = ({ appKey, cluster }: Props) => {
     printEventCallback: eventPrinter,
     appKey: appKey,
     cluster: cluster,
-    nonprivate: false,
     authEndpoint: "/api/pusherauth",
+    channelPrefix: "private",
   })
 
   /**
