@@ -18,9 +18,10 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
 
   const setRemoteStream = useCallback((e: RTCTrackEvent) => {
-    if (remoteVideoRef.current !== null && e.streams && e.streams?.length > 0) {
-      remoteVideoRef.current.stream(e.streams[0])
-      setRemoteStarted(true)
+    if (remoteVideoRef.current !== null && (e.streams || e.track)) {
+      const inboundStream = new MediaStream()
+      remoteVideoRef.current.stream(inboundStream)
+      inboundStream.addTrack(e.track)
     } else {
       alert("No stream")
     }
@@ -56,6 +57,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const startStopRemoteVideo = useCallback(() => {
     if (stream) {
       callVideo(stream)
+      setRemoteStarted(true)
     }
   }, [callVideo, stream])
 
