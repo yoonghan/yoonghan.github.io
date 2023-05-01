@@ -1,6 +1,16 @@
 import PusherJS, { Channel } from "pusher-js"
-import { useRef, useState } from "react"
+import { useReducer, useRef, useState } from "react"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
+import { onlineUserReducer } from "./onlineReducer"
+
+type MemberInfo = {
+  name: string
+}
+
+type Member = {
+  id: string
+  info: MemberInfo
+}
 
 export type Props = {
   appKey: string
@@ -19,7 +29,8 @@ export const usePresencePusher = ({
 }: Props) => {
   const pusher = useRef<PusherJS>()
   const channel = useRef<Channel>()
-  const [onlineUsers, setOnlineUsers] = useState<string[]>([])
+
+  const [onlineUsers, dispatch] = useReducer(onlineUserReducer, [])
   const [myId, setMyId] = useState("")
   const errorMessage = useRef<string>()
   const connectionStatus = useRef<EnumConnectionStatus>(
@@ -50,23 +61,31 @@ export const usePresencePusher = ({
       updateConnectionStatus(EnumConnectionStatus.Connected)
       const myId = membership?.me?.id
       setMyId(myId)
-      setOnlineUsers(
-        Object.keys(membership.members).filter(
-          (member: string) => myId !== member
-        )
-      )
+      Object.entries(membership.members).forEach((member) => {
+        const id = member[0]
+        if (myId !== id) {
+          dispatch({
+            type: "ADD_USER",
+            payload: {
+              id,
+              name: (member[1] as MemberInfo).name,
+            },
+          })
+        }
+      })
     })
 
-    channel.bind("pusher:member_added", (member: any) => {
-      setOnlineUsers((onlineUsers) => [...onlineUsers, member.id])
+    channel.bind("pusher:member_added", (member: Member) => {
+      dispatch({
+        type: "ADD_USER",
+        payload: { id: member.id, name: member.info.name },
+      })
     })
 
-    channel.bind("pusher:member_removed", (member: any) => {
-      setOnlineUsers((onlineUsers) => {
-        const index = onlineUsers.indexOf(member.id)
-        const newOnlineUser = [...onlineUsers]
-        newOnlineUser.splice(index, 1)
-        return newOnlineUser
+    channel.bind("pusher:member_removed", (member: Member) => {
+      dispatch({
+        type: "REMOVE_USER",
+        payload: { id: member.id },
       })
     })
   }

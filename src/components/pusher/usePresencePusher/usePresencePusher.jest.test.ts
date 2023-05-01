@@ -33,7 +33,7 @@ describe("usePresencePusher", () => {
     ) => {
       await act(async () => {
         partialEmitFn("pusher:subscription_succeeded", {
-          members: { billy: { name: "billy" } },
+          members: { billy: { name: "billy" }, ben: { name: "Ben" } },
           count: 1,
           myID: "billy",
           me: { id: "billy", info: { name: "billy" } },
@@ -73,7 +73,9 @@ describe("usePresencePusher", () => {
       )
 
       expect(result.current.myId).toBe("billy")
-      expect(result.current.onlineUsers).toStrictEqual([])
+      expect(result.current.onlineUsers).toStrictEqual([
+        { id: "ben", name: "Ben" },
+      ])
     })
 
     it("should not be allowed to connect twice", async () => {
@@ -92,7 +94,7 @@ describe("usePresencePusher", () => {
       await emitSubscriptionSuccess(result.current.emit)
 
       await act(async () => {
-        result.current.connect("jilly")
+        result.current.connect("new username, but will never be added")
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
@@ -141,14 +143,23 @@ describe("usePresencePusher", () => {
       await emitAddUser("bob", result.current.emit)
       await emitAddUser("john", result.current.emit)
       await emitAddUser("alice", result.current.emit)
-      expect(result.current.onlineUsers).toStrictEqual(["bob", "john", "alice"])
+      expect(result.current.onlineUsers).toStrictEqual([
+        { id: "ben", name: "Ben" },
+        { id: "bob", name: "bob" },
+        { id: "john", name: "john" },
+        { id: "alice", name: "alice" },
+      ])
 
       await act(async () => {
         result.current.emit("pusher:member_removed", {
           id: "john",
         })
       })
-      expect(result.current.onlineUsers).toStrictEqual(["bob", "alice"])
+      expect(result.current.onlineUsers).toStrictEqual([
+        { id: "ben", name: "Ben" },
+        { id: "bob", name: "bob" },
+        { id: "alice", name: "alice" },
+      ])
     })
   })
 })
