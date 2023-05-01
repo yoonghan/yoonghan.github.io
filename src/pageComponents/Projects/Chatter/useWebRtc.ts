@@ -92,7 +92,8 @@ export const useWebRtc = (setRemoteStream: (e: RTCTrackEvent) => void) => {
 
         pc2.addEventListener("track", setRemoteStream, false)
 
-        pc1.addTrack(stream.getTracks()[0])
+        stream.getTracks().forEach((track) => pc1.addTrack(track))
+
         pc1
           .createOffer(offerOptions)
           .then(onCreateOfferSuccess(pc1, pc2), onCreateSessionDescriptionError)
