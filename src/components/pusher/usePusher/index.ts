@@ -1,11 +1,14 @@
 import { useRef, useDebugValue } from "react"
 import PusherJS, { Channel } from "pusher-js"
-import { PUSHER } from "../config"
+import { PUSHER } from "../../Chat/config"
 import { Transport } from "pusher-js/types/src/core/config"
-import { Emitter } from "./type/Emitter"
-import { EnumConnectionStatus } from "./type/ConnectionStatus"
-import { MessageType } from "../config/MessageType"
-import { decodeMessage, encodeMessage } from "../config/MessageFormatter"
+import { Emitter } from "../type/Emitter"
+import { EnumConnectionStatus } from "../type/ConnectionStatus"
+import { MessageType } from "../../Chat/config/MessageType"
+import {
+  decodeMessage,
+  encodeMessage,
+} from "../../Chat/config/MessageFormatter"
 
 type Props = {
   eventName: string
@@ -18,7 +21,7 @@ type Props = {
   ) => void
   appKey: string
   cluster: string
-  nonprivate?: boolean
+  channelPrefix?: string
   authEndpoint?: string
 }
 
@@ -30,10 +33,9 @@ export function usePusher(props: Props) {
     EnumConnectionStatus.Disconnected
   )
 
-  const prefixChannelName = `${PUSHER.channel_prefix}${props.channelName}`
-  const channelName = props.nonprivate
-    ? prefixChannelName
-    : `private-${prefixChannelName}`
+  const channelName = `${props.channelPrefix ? props.channelPrefix + "-" : ""}${
+    PUSHER.channel_prefix
+  }${props.channelName}`
   const eventName = `client-${props.eventName}`
 
   useDebugValue("connection:" + connectionStatus.current)
@@ -117,7 +119,7 @@ export function usePusher(props: Props) {
           channel.current = undefined
         } else {
           // eslint-disable-next-line no-console
-          console.error(error)
+          console.error("error", error)
           updateConnectionStatus(EnumConnectionStatus.Error)
           printConnectionCallback(
             "Interruption error encountered",
@@ -161,7 +163,6 @@ export function usePusher(props: Props) {
       authEndpoint: props.authEndpoint,
       enabledTransports,
     }
-
     pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration)
 
     if (pusherChannelClient.current) {
