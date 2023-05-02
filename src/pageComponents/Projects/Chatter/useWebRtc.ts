@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import { iceServers } from "./const"
 
 const offerOptions = {
   offerToReceiveAudio: true,
@@ -78,7 +79,7 @@ export const useWebRtc = (setRemoteStream: (e: RTCTrackEvent) => void) => {
   const callVideo = useCallback(
     (stream: MediaStream) => {
       if (stream.getVideoTracks().length > 0) {
-        var servers = undefined
+        var servers = iceServers
         const pc1 = new RTCPeerConnection(servers)
         pc1.onicecandidate = function (e) {
           onIceCandidate(pc1, e, undefined)
