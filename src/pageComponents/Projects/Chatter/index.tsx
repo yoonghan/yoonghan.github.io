@@ -1,4 +1,5 @@
 import { EnumConnectionStatus } from "@/components/pusher/type/ConnectionStatus"
+import { Member } from "@/components/pusher/type/Member"
 import { usePresencePusher } from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
@@ -64,12 +65,20 @@ const Chatter = ({ appKey, cluster }: Props) => {
     [disconnectWebRtc]
   )
 
+  const updateUserOffline = useCallback(
+    (user: Member) => {
+      alertError(`User ${user.id} has left the chat`)
+    },
+    [alertError]
+  )
+
   const { connect, disconnect, onlineUsers, bind, trigger, myId } =
     usePresencePusher({
       appKey,
       cluster,
       authEndpoint: "/api/pusherauth",
       updateConnectionCallback,
+      updateUserOffline,
     })
 
   const localVideoTracksCallback = useCallback(
