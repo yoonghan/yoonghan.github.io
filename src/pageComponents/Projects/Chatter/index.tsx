@@ -1,6 +1,9 @@
 import { EnumConnectionStatus } from "@/components/pusher/type/ConnectionStatus"
 import { Member } from "@/components/pusher/type/Member"
-import { usePresencePusher } from "@/components/pusher/usePresencePusher"
+import {
+  Presence,
+  usePresencePusher,
+} from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
 import styles from "./Chatter.module.css"
@@ -81,6 +84,13 @@ const Chatter = ({ appKey, cluster }: Props) => {
       updateUserOffline,
     })
 
+  type ClientCandidate = { room: string; candidate: RTCIceCandidate } & Presence
+  type ClientReject = { room: string } & Presence
+  type ClientAnswerAndSdp = {
+    room: string
+    sdp: RTCSessionDescriptionInit
+  } & Presence
+
   const localVideoTracksCallback = useCallback(
     (mediaStream: MediaStream | undefined) => {
       if (mediaStream && stream === undefined) {
@@ -92,38 +102,30 @@ const Chatter = ({ appKey, cluster }: Props) => {
           })
         })
 
-        bind<{ room: string; sdp: RTCSessionDescriptionInit }>(
-          "client-answer",
-          (answer) => {
-            if (answer.room === myId) answerCall(answer.sdp)
-          }
-        )
+        bind<ClientAnswerAndSdp>("client-answer", (answer) => {
+          if (answer.room === myId) answerCall(answer.sdp)
+        })
 
-        bind<{ room: string; from: string; sdp: RTCSessionDescriptionInit }>(
-          "client-sdp",
-          (msg) => {
-            if (msg.room === myId) {
-              const answer = confirm(
-                "You have a call from: " +
-                  msg.from +
-                  ". Would you like to answer?"
-              )
-              if (!answer) {
-                return trigger("client-reject", {
-                  room: msg.room,
-                  rejected: myId,
+        bind<ClientAnswerAndSdp>("client-sdp", (msg) => {
+          if (msg.room === myId) {
+            const answer = confirm(
+              `You have a call from (${msg.fromName}). Would you like to answer?`
+            )
+            if (!answer) {
+              return trigger("client-reject", {
+                room: msg.room,
+                rejected: myId,
+              })
+            } else {
+              createAnswer(msg.sdp, (sdp) => {
+                trigger("client-answer", {
+                  sdp: sdp,
+                  room: msg.from,
                 })
-              } else {
-                createAnswer(msg.sdp, (sdp) => {
-                  trigger("client-answer", {
-                    sdp: sdp,
-                    room: msg.from,
-                  })
-                })
-              }
+              })
             }
           }
-        )
+        })
       }
     },
     [answerCall, bind, createAnswer, initializeWebRtc, myId, stream, trigger]
@@ -143,16 +145,13 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const callUser = useCallback(
     (recipient: Recipient) => {
       const room = recipient.id
-      bind<{ room: string; candidate: RTCIceCandidate }>(
-        "client-candidate",
-        (msg) => {
-          if (msg.room === room) addIceCandidate(msg.candidate)
-        }
-      )
+      bind<ClientCandidate>("client-candidate", (msg) => {
+        if (msg.room === room) addIceCandidate(msg.candidate)
+      })
 
-      bind<{ room: string; from: string }>("client-reject", (answer) => {
+      bind<ClientReject>("client-reject", (answer) => {
         if (answer.room === room)
-          alert("call to " + answer.from + " was politely declined")
+          alert(`Call to ${answer.fromName} was politely declined`)
       })
 
       createOffer((desc) => {

@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
-import { Props, usePresencePusher } from "."
+import { Presence, Props, usePresencePusher } from "."
 
 describe("usePresencePusher", () => {
   const defaultProps: Props = {
@@ -227,7 +227,7 @@ describe("usePresencePusher", () => {
       const clientCallback = jest.fn()
       act(() => {
         expect(
-          result.current.bind<{}>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback)
         ).toBeTruthy()
       })
 
@@ -269,12 +269,12 @@ describe("usePresencePusher", () => {
       emitSubscriptionSuccess(result.current.emit, "johnny", "Johnny Depp")
 
       act(() => {
-        result.current.bind<{}>("client-event", clientCallback)
+        result.current.bind<Presence>("client-event", clientCallback)
       })
 
       act(() => {
         expect(
-          result.current.bind<{}>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback)
         ).toBeFalsy()
       })
 
@@ -291,7 +291,7 @@ describe("usePresencePusher", () => {
       const newClientCallback = jest.fn()
       act(() => {
         expect(
-          result.current.bind<{}>("client-event", newClientCallback)
+          result.current.bind<Presence>("client-event", newClientCallback)
         ).toBeTruthy()
       })
       trigger(result.current, "client-event", {

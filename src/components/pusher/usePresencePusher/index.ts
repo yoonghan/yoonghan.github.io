@@ -14,6 +14,8 @@ export type Props = {
   updateUserOffline?: (user: Member) => void
 }
 
+export type Presence = { from: string; fromName: string }
+
 export const usePresencePusher = ({
   appKey,
   cluster,
@@ -134,7 +136,10 @@ export const usePresencePusher = ({
   }
 
   const bind = useCallback(
-    <T extends object>(event: string, callback: (data: T) => void): boolean => {
+    <T extends object & Presence>(
+      event: string,
+      callback: (data: T) => void
+    ): boolean => {
       if (channel.current) {
         if (eventsBinded.includes(event)) {
           return false
