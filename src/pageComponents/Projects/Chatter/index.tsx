@@ -26,8 +26,8 @@ interface Props {
 const Chatter = ({ appKey, cluster }: Props) => {
   const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
-  const [roomConnected, setRoomConnected] = useState("")
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
+  const connectedUser = useRef("")
   const promptMessageDialog = useDialogCreation<AlertProps>(AlertDialog)
   const promptConfirmDialog =
     useDialogCreation<ConfirmationProps>(ConfirmationDialog)
@@ -89,13 +89,15 @@ const Chatter = ({ appKey, cluster }: Props) => {
     [disconnectWebRtc, promptMessage]
   )
 
-  const updateUserOffline = useCallback(
+  const shouldUpdatedOfflineUserEnd = useCallback(
     (user: Member) => {
-      if (user.id === roomConnected) {
-        promptMessage(`User ${user.id} has left the chat`)
+      if (connectedUser.current === user.id) {
+        promptMessage(`User (${user.info.name}) has left the chat`)
+        return true
       }
+      return false
     },
-    [promptMessage, roomConnected]
+    [promptMessage]
   )
 
   const { connect, disconnect, onlineUsers, bind, trigger, myId } =
@@ -104,7 +106,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
       cluster,
       authEndpoint: "/api/pusherauth",
       updateConnectionCallback,
-      updateUserOffline,
+      shouldUpdatedOfflineUserEnd,
     })
 
   type ClientCandidate = { room: string; candidate: RTCIceCandidate } & Presence
@@ -127,8 +129,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
 
         bind<ClientAnswerAndSdp>("client-answer", (answer) => {
           if (answer.room === myId) {
-            setRoomConnected(answer.room)
-            console.log("set", answer.room)
+            connectedUser.current = answer.from
             answerCall(answer.sdp)
           }
         })
@@ -157,9 +158,8 @@ const Chatter = ({ appKey, cluster }: Props) => {
                 rejected: myId,
               })
             } else {
-              console.log("set", msg.room)
-              setRoomConnected(msg.room)
               createAnswer(msg.sdp, (sdp) => {
+                connectedUser.current = msg.from
                 trigger("client-answer", {
                   sdp: sdp,
                   room: msg.from,
@@ -208,7 +208,6 @@ const Chatter = ({ appKey, cluster }: Props) => {
       })
 
       createOffer((desc) => {
-        setRoomConnected(room)
         trigger("client-sdp", {
           sdp: desc,
           room,

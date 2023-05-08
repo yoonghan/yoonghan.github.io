@@ -8,6 +8,7 @@ describe("usePresencePusher", () => {
     cluster: "Cluster",
     authEndpoint: "/auth",
     updateConnectionCallback: jest.fn(),
+    shouldUpdatedOfflineUserEnd: undefined,
   }
 
   const createPusher = (props = defaultProps) => {
@@ -17,6 +18,7 @@ describe("usePresencePusher", () => {
         cluster: props.cluster,
         authEndpoint: props.authEndpoint,
         updateConnectionCallback: props.updateConnectionCallback,
+        shouldUpdatedOfflineUserEnd: props.shouldUpdatedOfflineUserEnd,
       },
     })
   }
@@ -266,7 +268,7 @@ describe("usePresencePusher", () => {
 
       const clientCallback = jest.fn()
 
-      emitSubscriptionSuccess(result.current.emit, "johnny", "Johnny Depp")
+      emitSubscriptionSuccess(result.current.emit)
 
       act(() => {
         result.current.bind<Presence>("client-event", clientCallback)
@@ -283,7 +285,7 @@ describe("usePresencePusher", () => {
       })
 
       act(() => {
-        result.current.connect("billy")
+        result.current.connect("johnny")
       })
 
       emitSubscriptionSuccess(result.current.emit, "johnny", "Johnny Depp")
@@ -302,6 +304,48 @@ describe("usePresencePusher", () => {
         from: "johnny",
         fromName: "Johnny Depp",
       })
+    })
+
+    it("should trigger updateoffline when user logs out", () => {
+      const triggerRemoveUser = (
+        shouldEnd: boolean,
+        expectedStatus: EnumConnectionStatus
+      ) => {
+        shouldUpdatedOfflineUserEndFn.mockReturnValueOnce(shouldEnd)
+        act(() => {
+          result.current.emit("pusher:member_removed", {
+            id: "billy",
+            info: { name: "Billy" },
+          })
+        })
+        expect(shouldUpdatedOfflineUserEndFn).toHaveBeenCalled()
+        expect(updateConnectionCallbackFn).toHaveBeenCalledWith(expectedStatus)
+      }
+
+      const updateConnectionCallbackFn = jest.fn()
+      const shouldUpdatedOfflineUserEndFn = jest.fn()
+      const { result } = createPusher({
+        ...defaultProps,
+        updateConnectionCallback: updateConnectionCallbackFn,
+        shouldUpdatedOfflineUserEnd: shouldUpdatedOfflineUserEndFn,
+      })
+      act(() => {
+        result.current.connect("billy")
+      })
+
+      const clientCallback = jest.fn()
+
+      emitSubscriptionSuccess(result.current.emit)
+      expect(updateConnectionCallbackFn).toHaveBeenCalledWith(
+        EnumConnectionStatus.Connected
+      )
+
+      act(() => {
+        result.current.bind<Presence>("client-event", clientCallback)
+      })
+
+      triggerRemoveUser(false, EnumConnectionStatus.Connected)
+      triggerRemoveUser(true, EnumConnectionStatus.Disconnected)
     })
   })
 })

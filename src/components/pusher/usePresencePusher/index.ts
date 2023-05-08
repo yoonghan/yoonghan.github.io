@@ -11,7 +11,7 @@ export type Props = {
   updateConnectionCallback: (
     latestConnectionStatus: EnumConnectionStatus
   ) => void
-  updateUserOffline?: (user: Member) => void
+  shouldUpdatedOfflineUserEnd?: (user: Member) => boolean
 }
 
 export type Presence = { from: string; fromName: string }
@@ -21,7 +21,7 @@ export const usePresencePusher = ({
   cluster,
   authEndpoint,
   updateConnectionCallback,
-  updateUserOffline,
+  shouldUpdatedOfflineUserEnd,
 }: Props) => {
   const pusher = useRef<PusherJS>()
   const channel = useRef<Channel>()
@@ -80,7 +80,12 @@ export const usePresencePusher = ({
         type: "REMOVE_USER",
         payload: { id: member.id },
       })
-      if (updateUserOffline) updateUserOffline(member)
+      if (shouldUpdatedOfflineUserEnd) {
+        const shouldEnd = shouldUpdatedOfflineUserEnd(member)
+        if (shouldEnd) {
+          disconnect()
+        }
+      }
     })
   }
 
