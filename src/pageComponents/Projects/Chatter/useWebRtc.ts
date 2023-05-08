@@ -117,6 +117,9 @@ export const useWebRtc = (
     remoteStream.current?.getTracks()?.forEach((track) => {
       track.stop()
     })
+    if (callerRef.current) {
+      callerRef.current.restartIce()
+    }
   }, [])
 
   return {
