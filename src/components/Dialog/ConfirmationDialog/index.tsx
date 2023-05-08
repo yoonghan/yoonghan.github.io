@@ -9,7 +9,7 @@ enum Action {
   No,
 }
 
-interface Props {
+export interface Props {
   title: string
   message: string
   onCancel?: () => void
