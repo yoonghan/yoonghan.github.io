@@ -57,6 +57,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
           setRecordingStarted(false)
           setStream(undefined)
           disconnectWebRtc()
+          remoteVideoRef.current?.stopStream()
           break
       }
     },

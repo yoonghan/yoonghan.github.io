@@ -18,6 +18,7 @@ type Props = {
 
 export interface VideoStreamHandler {
   stream: (stream: MediaStream) => void
+  stopStream: () => void
 }
 
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
@@ -34,9 +35,16 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
       }
     }, [])
 
+    const stopStream = useCallback(() => {
+      if (videoRef.current !== null) {
+        videoRef.current.srcObject = null
+      }
+    }, [])
+
     useImperativeHandle(ref, () => {
       return {
         stream,
+        stopStream,
       }
     })
 
