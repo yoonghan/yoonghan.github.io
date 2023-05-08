@@ -149,6 +149,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
                 onCancel: () => {
                   resolve(false)
                 },
+                isNotModal: true,
               })
             })
 

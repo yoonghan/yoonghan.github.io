@@ -10,7 +10,7 @@ export interface Props {
   onOk: () => void
 }
 
-const AlertDialog = ({ title, message, okBtnText, onOk = () => {} }: Props) => {
+const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
   const onAction = useCallback(
