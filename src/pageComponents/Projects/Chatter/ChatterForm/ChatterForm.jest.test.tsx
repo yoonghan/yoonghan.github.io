@@ -6,23 +6,17 @@ describe("ChatterFrom", () => {
   const renderComponent = ({
     senderButtonCanStop = false,
     senderButtonDisabled = false,
-    callerButtonDisabled = false,
     startStopSenderVideo = jest.fn(),
-    startStopCallerVideo = jest.fn(),
   }: {
     senderButtonCanStop?: boolean
     senderButtonDisabled?: boolean
-    callerButtonDisabled?: boolean
     startStopSenderVideo?: () => void
-    startStopCallerVideo?: () => void
   }) => {
     render(
       <ChatterForm
         senderButtonCanStop={senderButtonCanStop}
         senderButtonDisabled={senderButtonDisabled}
-        callerButtonDisabled={callerButtonDisabled}
         startStopSenderVideo={startStopSenderVideo}
-        startStopCallerVideo={startStopCallerVideo}
       />
     )
   }
@@ -31,39 +25,24 @@ describe("ChatterFrom", () => {
     renderComponent({})
     expect(screen.getByLabelText("My user name:")).toBeInTheDocument()
     expect(screen.getByRole("button", { name: "Start" })).toBeEnabled()
-    expect(screen.getByRole("button", { name: "Call" })).toBeDisabled()
   })
 
-  it("should render Call disabled if Sender button is disabled", () => {
+  it("should render Stop disabled if Sender button is disabled", () => {
     renderComponent({
       senderButtonCanStop: true,
       senderButtonDisabled: true,
-      callerButtonDisabled: false,
     })
     expect(screen.getByRole("button", { name: "Stop" })).toBeDisabled()
-    expect(screen.getByRole("button", { name: "Call" })).toBeDisabled()
   })
 
-  it("should render Call is disabled if senderButtonDisabled=false and senderButtonCanStop=true", () => {
+  it("should render Stop button enabled, but disallow input when senderButtonDisabled=false", () => {
     renderComponent({
       senderButtonCanStop: true,
       senderButtonDisabled: false,
-      callerButtonDisabled: true,
     })
+    const input = screen.getByLabelText("My user name:")
+    expect(input).toBeDisabled()
     expect(screen.getByRole("button", { name: "Stop" })).toBeEnabled()
-    expect(screen.getByRole("button", { name: "Call" })).toBeDisabled()
-  })
-
-  it("should trigger startStopCallerVideo when Call button is clickable", async () => {
-    const startStopCallerVideo = jest.fn()
-    renderComponent({
-      senderButtonCanStop: true,
-      senderButtonDisabled: false,
-      callerButtonDisabled: false,
-      startStopCallerVideo,
-    })
-    await userEvent.click(screen.getByRole("button", { name: "Call" }))
-    expect(startStopCallerVideo).toHaveBeenCalled()
   })
 
   it("should allow non-empty valid name submit", async () => {
@@ -90,20 +69,26 @@ describe("ChatterFrom", () => {
     expect(startStopSenderVideo).not.toHaveBeenCalled()
   })
 
+  it("should not allow to submit if name is less than 3 characters", async () => {
+    const startStopSenderVideo = jest.fn()
+    renderComponent({ startStopSenderVideo })
+    const input = screen.getByLabelText("My user name:")
+    await userEvent.type(input, "na")
+    expect(input).toHaveValue("na")
+    await userEvent.click(screen.getByRole("button", { name: "Start" }))
+    expect(startStopSenderVideo).not.toHaveBeenCalled()
+  })
+
   it("should hide error once user retype", async () => {
+    const errorMessage =
+      "Username can only contains alphabets and numbers with 3 min characters."
     renderComponent({})
     const input = screen.getByLabelText("My user name:")
     await userEvent.type(input, "@")
-    expect(
-      screen.queryByText("Username can only contains alphabets and numbers.")
-    ).not.toBeInTheDocument()
+    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: "Start" }))
-    expect(
-      screen.getByText("Username can only contains alphabets and numbers.")
-    ).toBeInTheDocument()
+    expect(screen.getByText(errorMessage)).toBeInTheDocument()
     await userEvent.type(input, "{backspace}A")
-    expect(
-      screen.queryByText("Username can only contains alphabets and numbers.")
-    ).not.toBeInTheDocument()
+    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument()
   })
 })

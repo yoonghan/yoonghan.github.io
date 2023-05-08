@@ -61,9 +61,27 @@ const authorize = (
   presenceData: PresenceChannelData
 ) => client.authorizeChannel(socket_id, channel_name, presenceData)
 
-const postMessage = (req: NextApiRequest, res: NextApiResponse) => {
+const userExists = async (
+  pusherClient: Pusher,
+  channel_name: string,
+  userid: string
+) => {
+  const res = await pusherClient.get({
+    path: `/channels/${channel_name}/users`,
+  })
+  if (res.status === 200) {
+    const body = await res.json()
+    return (
+      body.users.filter((user: { id: string }) => user.id === userid).length > 0
+    )
+  }
+  return false
+}
+
+const postMessage = async (req: NextApiRequest, res: NextApiResponse) => {
   const { socket_id, channel_name } = req.body
   const client = PusherAPIClient.client
+
   const presenceData = extractPresenceData(req)
   if (client === null || client === undefined) {
     res
@@ -71,6 +89,8 @@ const postMessage = (req: NextApiRequest, res: NextApiResponse) => {
       .json({ error: "Pusher initialized values has not been set." })
   } else if (presenceData === null) {
     res.status(400).json({ error: "Username defined is not valid." })
+  } else if (await userExists(client, channel_name, presenceData.user_id)) {
+    res.status(409).json({ error: "User already exist." })
   } else {
     const authToken = authorize(client, socket_id, channel_name, presenceData)
     if (authToken?.auth && authToken.auth !== "") {
@@ -87,7 +107,7 @@ const sendMethodError = (res: NextApiResponse, message: string) => {
   })
 }
 
-const handler = (
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<ResponseMessage>
 ) => {
@@ -95,7 +115,7 @@ const handler = (
 
   switch (req.method) {
     case "POST":
-      postMessage(req, res)
+      await postMessage(req, res)
       break
     default:
       sendMethodError(res, `Method ${req.method} not recognized.`)

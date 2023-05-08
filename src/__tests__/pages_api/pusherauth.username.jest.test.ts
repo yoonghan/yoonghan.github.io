@@ -2,6 +2,7 @@ import pusherAuth, {
   PusherAPIClient,
   config,
 } from "@/pages/api/pusherauth/[username]"
+import { Response } from "pusher"
 import { mockResponse, setEnv } from "../../__mocks__/apiMock"
 
 describe("pusherauth/username", () => {
@@ -14,7 +15,7 @@ describe("pusherauth/username", () => {
       statusFn,
       jsonFn
     )
-    pusherAuth(nextRequest, nextResponse)
+    await pusherAuth(nextRequest, nextResponse)
     expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
     expect(statusFn).toBeCalledWith(405)
     expect(jsonFn).toBeCalledWith({
@@ -36,7 +37,7 @@ describe("pusherauth/username", () => {
       socket_id: "SOCKET_TEST",
       channel_name: "SAMPLE_CHANNEL",
     }
-    pusherAuth(nextRequest, nextResponse)
+    await pusherAuth(nextRequest, nextResponse)
     expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
     expect(statusFn).toBeCalledWith(500)
     expect(jsonFn).toBeCalledWith({
@@ -59,6 +60,15 @@ describe("pusherauth/username", () => {
       PusherAPIClient.reInitialize()
     })
 
+    const createResponse = (users: { id: string }[], status = 200) =>
+      ({
+        status: status,
+        json: () =>
+          new Promise((resolve, reject) => {
+            resolve({ users })
+          }),
+      } as unknown as Response)
+
     it("should authenticate successfully for a POST request", async () => {
       const setHeaderFn = jest.fn()
       const statusFn = jest.fn()
@@ -79,7 +89,11 @@ describe("pusherauth/username", () => {
       jest
         .spyOn(PusherAPIClient.client!, "authorizeChannel")
         .mockReturnValueOnce({ auth: "101010" })
-      pusherAuth(nextRequest, nextResponse)
+
+      const response = createResponse([])
+      jest.spyOn(PusherAPIClient.client!, "get").mockResolvedValue(response)
+
+      await pusherAuth(nextRequest, nextResponse)
       expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
       expect(statusFn).toBeCalledWith(200)
       expect(jsonFn).toBeCalledWith({ auth: "101010" })
@@ -99,7 +113,7 @@ describe("pusherauth/username", () => {
         socket_id: 1,
         channel_name: "SAMPLE_CHANNEL",
       }
-      pusherAuth(nextRequest, nextResponse)
+      await pusherAuth(nextRequest, nextResponse)
       expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
       expect(statusFn).toBeCalledWith(400)
       expect(jsonFn).toBeCalledWith({ error: "Username defined is not valid." })
@@ -122,7 +136,7 @@ describe("pusherauth/username", () => {
       nextRequest.query = {
         username: "bil-ly",
       }
-      pusherAuth(nextRequest, nextResponse)
+      await pusherAuth(nextRequest, nextResponse)
       expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
       expect(statusFn).toBeCalledWith(400)
       expect(jsonFn).toBeCalledWith({ error: "Username defined is not valid." })
@@ -148,9 +162,67 @@ describe("pusherauth/username", () => {
       jest
         .spyOn(PusherAPIClient.client!, "authorizeChannel")
         .mockReturnValueOnce({ auth: "" })
-      pusherAuth(nextRequest, nextResponse)
+
+      const response = createResponse([])
+      jest.spyOn(PusherAPIClient.client!, "get").mockResolvedValue(response)
+      await pusherAuth(nextRequest, nextResponse)
       expect(statusFn).toBeCalledWith(401)
       expect(jsonFn).toBeCalledWith({ error: "Not authorized." })
+    })
+
+    it("should be able to fail if user already exists", async () => {
+      const setHeaderFn = jest.fn()
+      const statusFn = jest.fn()
+      const jsonFn = jest.fn()
+      const { nextRequest, nextResponse } = mockResponse(
+        setHeaderFn,
+        statusFn,
+        jsonFn
+      )
+      nextRequest.method = "POST"
+      nextRequest.body = {
+        socket_id: 1,
+        channel_name: "SAMPLE_CHANNEL",
+      }
+      nextRequest.query = {
+        username: "billy",
+      }
+      jest
+        .spyOn(PusherAPIClient.client!, "authorizeChannel")
+        .mockReturnValueOnce({ auth: "" })
+
+      const response = createResponse([{ id: "billy" }])
+      jest.spyOn(PusherAPIClient.client!, "get").mockResolvedValue(response)
+      await pusherAuth(nextRequest, nextResponse)
+      expect(statusFn).toBeCalledWith(409)
+      expect(jsonFn).toBeCalledWith({ error: "User already exist." })
+    })
+
+    it("should should proceed and cont to authenticate if user checks fail", async () => {
+      const setHeaderFn = jest.fn()
+      const statusFn = jest.fn()
+      const jsonFn = jest.fn()
+      const { nextRequest, nextResponse } = mockResponse(
+        setHeaderFn,
+        statusFn,
+        jsonFn
+      )
+      nextRequest.method = "POST"
+      nextRequest.body = {
+        socket_id: 1,
+        channel_name: "SAMPLE_CHANNEL",
+      }
+      nextRequest.query = {
+        username: "billy",
+      }
+      jest
+        .spyOn(PusherAPIClient.client!, "authorizeChannel")
+        .mockReturnValueOnce({ auth: "" })
+
+      const response = createResponse([], 400)
+      jest.spyOn(PusherAPIClient.client!, "get").mockResolvedValue(response)
+      await pusherAuth(nextRequest, nextResponse)
+      expect(statusFn).toBeCalledWith(401)
     })
   })
 })
