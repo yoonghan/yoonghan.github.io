@@ -8,17 +8,13 @@ import { ChangeEvent, FormEvent, useCallback, useState } from "react"
 type Props = {
   senderButtonCanStop: boolean
   senderButtonDisabled: boolean
-  callerButtonDisabled: boolean
   startStopSenderVideo: (username: string) => void
-  startStopCallerVideo: () => void
 }
 
 const ChatterForm = ({
   senderButtonCanStop,
   senderButtonDisabled,
-  callerButtonDisabled,
   startStopSenderVideo,
-  startStopCallerVideo,
 }: Props) => {
   const [username, setUsername] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
@@ -35,11 +31,14 @@ const ChatterForm = ({
       const nonWhiteSpaceUsername = removeAllWhiteSpaces(username)
       if (
         nonWhiteSpaceUsername !== "" &&
-        isOnlyAlphabetsAndNumberAndSpace(nonWhiteSpaceUsername)
+        isOnlyAlphabetsAndNumberAndSpace(nonWhiteSpaceUsername) &&
+        nonWhiteSpaceUsername.length > 2
       ) {
         startStopSenderVideo(username)
       } else {
-        setErrorMessage("Username can only contains alphabets and numbers.")
+        setErrorMessage(
+          "Username can only contains alphabets and numbers with 3 min characters."
+        )
       }
     },
     [startStopSenderVideo, username]
@@ -47,7 +46,7 @@ const ChatterForm = ({
 
   return (
     <form onSubmit={onSubmitClick}>
-      <fieldset>
+      <fieldset disabled={senderButtonCanStop}>
         {errorMessage !== "" && (
           <div className={"alert danger"}>{errorMessage}</div>
         )}
@@ -61,21 +60,6 @@ const ChatterForm = ({
         }}
       >
         {senderButtonCanStop ? "Stop" : "Start"}
-      </Button>
-      <Button
-        onClick={startStopCallerVideo}
-        styling={{ small: true, inverted: false }}
-        additionalProps={{
-          disabled:
-            callerButtonDisabled ||
-            senderButtonDisabled ||
-            !senderButtonCanStop,
-          // remoteStarted ||
-          // !videoStarted ||
-          // (videoStarted && stream == undefined),
-        }}
-      >
-        Call
       </Button>
     </form>
   )

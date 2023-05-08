@@ -24,7 +24,7 @@ describe("usePresencePusher", () => {
   it("should have correct initial state when pusher is created", () => {
     const { result } = createPusher()
     const client = result.current
-    expect(client.channelName).toBe("presence-wal_videocall")
+    expect(client.channelName).toBe("presence-wal-videocall")
   })
 
   describe("connection", () => {
@@ -78,7 +78,7 @@ describe("usePresencePusher", () => {
       ])
     })
 
-    it("should not be allowed to connect twice", async () => {
+    it("should not be allowed to connect twice by returning to start connecting again", async () => {
       const updateConnectionCallback = jest.fn()
       const { result } = createPusher({
         ...defaultProps,
@@ -93,6 +93,10 @@ describe("usePresencePusher", () => {
       )
       await emitSubscriptionSuccess(result.current.emit)
 
+      expect(updateConnectionCallback).toBeCalledWith(
+        EnumConnectionStatus.Connected
+      )
+
       await act(async () => {
         result.current.connect("new username, but will never be added")
       })
@@ -100,8 +104,47 @@ describe("usePresencePusher", () => {
       expect(updateConnectionCallback).toBeCalledWith(
         EnumConnectionStatus.Connected
       )
+    })
 
-      expect(result.current.myId).toBe("billy")
+    it("should be allowed to connect again after disconnected", async () => {
+      const updateConnectionCallback = jest.fn()
+      const { result } = createPusher({
+        ...defaultProps,
+        updateConnectionCallback,
+      })
+      await act(async () => {
+        result.current.connect("billy")
+      })
+      await emitSubscriptionSuccess(result.current.emit)
+
+      await act(async () => {
+        result.current.disconnect()
+      })
+
+      expect(updateConnectionCallback).toBeCalledWith(
+        EnumConnectionStatus.Disconnected
+      )
+
+      expect(result.current.onlineUsers).toStrictEqual([])
+
+      await act(async () => {
+        result.current.connect("john")
+      })
+
+      await act(async () => {
+        result.current.emit("pusher:subscription_succeeded", {
+          members: { john: { name: "john" } },
+          count: 1,
+          myID: "john",
+          me: { id: "john", info: { name: "john" } },
+        })
+      })
+
+      expect(updateConnectionCallback).toBeCalledWith(
+        EnumConnectionStatus.Connected
+      )
+
+      expect(result.current.myId).toBe("john")
     })
 
     it("should show error if connection fail", async () => {
@@ -160,6 +203,75 @@ describe("usePresencePusher", () => {
         { id: "bob", name: "bob" },
         { id: "alice", name: "alice" },
       ])
+    })
+
+    it("should be able to bind and trigger", async () => {
+      const { result } = createPusher({
+        ...defaultProps,
+      })
+      await act(async () => {
+        result.current.connect("billy")
+      })
+      await emitSubscriptionSuccess(result.current.emit)
+
+      const clientCallback = jest.fn()
+      act(() => {
+        expect(
+          result.current.bind<{}>("client-event", clientCallback)
+        ).toBeTruthy()
+      })
+      result.current.trigger("client-event", { data: "test" })
+      // not able to test callback
+    })
+
+    it("should not be able to bind/trigger if user has not connected", async () => {
+      const { result } = createPusher({
+        ...defaultProps,
+      })
+
+      expect(result.current.bind).toThrow(
+        Error("Channel has not been initialized")
+      )
+
+      expect(result.current.trigger).toThrow(
+        Error("Channel has not been initialized")
+      )
+    })
+
+    it("should not allow binding to occur more than once unless disconnected and reconnect", async () => {
+      const { result } = createPusher({
+        ...defaultProps,
+      })
+      await act(async () => {
+        result.current.connect("billy")
+      })
+
+      const clientCallback = jest.fn()
+      act(() => {
+        expect(
+          result.current.bind<{}>("client-event", clientCallback)
+        ).toBeTruthy()
+      })
+
+      act(() => {
+        expect(
+          result.current.bind<{}>("client-event", clientCallback)
+        ).toBeFalsy()
+      })
+
+      await act(async () => {
+        result.current.disconnect()
+      })
+
+      await act(async () => {
+        result.current.connect("billy")
+      })
+
+      act(() => {
+        expect(
+          result.current.bind<{}>("client-event", clientCallback)
+        ).toBeTruthy()
+      })
     })
   })
 })
