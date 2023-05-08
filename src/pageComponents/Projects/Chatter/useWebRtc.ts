@@ -1,109 +1,130 @@
-import { useCallback } from "react"
-import { iceServers } from "./const"
+import { useCallback, useRef } from "react"
 
 const offerOptions = {
   offerToReceiveAudio: true,
   offerToReceiveVideo: true,
 }
 
-export const useWebRtc = (setRemoteStream: (e: RTCTrackEvent) => void) => {
-  const onAddIceCandidateSuccess = (pc: RTCPeerConnection) => {}
+export const useWebRtc = (
+  setRemoteStream: (stream: MediaStream) => void,
+  errorCallback: (error: string) => void
+) => {
+  const callerRef = useRef<RTCPeerConnection>()
+  const remoteStream = useRef<MediaStream>()
 
-  const onAddIceCandidateError = (pc: RTCPeerConnection, error: unknown) => {}
+  const answerCall = useCallback(
+    (sdp: RTCSessionDescriptionInit) => {
+      if (callerRef.current) {
+        callerRef.current.setRemoteDescription(new RTCSessionDescription(sdp))
+      } else {
+        errorCallback("WebRtc has not been initialized")
+      }
+    },
+    [errorCallback]
+  )
 
-  const onIceCandidate = useCallback(
+  const createOffer = useCallback(
+    (trigger: (_desc: RTCSessionDescriptionInit) => void) => {
+      if (callerRef.current) {
+        const caller = callerRef.current
+        caller.createOffer(offerOptions).then(function (desc) {
+          caller.setLocalDescription(desc)
+          trigger(desc)
+        })
+      } else {
+        errorCallback("WebRtc has not been initialized")
+      }
+    },
+    [errorCallback]
+  )
+
+  const addOnTrack = useCallback(
+    (event: RTCTrackEvent) => {
+      if (remoteStream.current) {
+        const stream = remoteStream.current
+        stream.addTrack(event.track)
+        if (event.streams?.length) {
+          event.streams[0]?.getTracks().forEach((track) => {
+            stream.addTrack(track)
+          })
+        }
+        setRemoteStream(stream)
+      } else {
+        errorCallback("Unable to initialize remote stream.")
+      }
+    },
+    [errorCallback, setRemoteStream]
+  )
+
+  const initialize = useCallback(
     (
-      pc: RTCPeerConnection,
-      event: RTCPeerConnectionIceEvent,
-      otherPc?: RTCPeerConnection
+      stream: MediaStream,
+      triggerCandidate: (eventCandidate: RTCIceCandidate) => void
     ) => {
-      if (otherPc !== undefined && event.candidate !== null) {
-        otherPc.addIceCandidate(event.candidate).then(
-          function () {
-            onAddIceCandidateSuccess(pc)
-          },
-          function (err) {
-            onAddIceCandidateError(pc, err)
-          }
-        )
-      }
-    },
-    []
-  )
-
-  const onSetSessionDescriptionError = (reason: any) => {
-    //dispatchMessage({ type: "ADD ERROR", message: `${reason}` })
-  }
-
-  const onSetSuccess = (reason: any) => {
-    //dispatchMessage({ type: "ADD SUCCESS", message: `${reason}` })
-  }
-
-  const onCreateAnswerSuccess = useCallback(
-    (pc1: RTCPeerConnection, pc2: RTCPeerConnection) =>
-      (desc: RTCSessionDescriptionInit) => {
-        pc2.setLocalDescription(desc).then(function () {
-          onSetSuccess(pc2)
-        }, onSetSessionDescriptionError)
-        pc1.setRemoteDescription(desc).then(function () {
-          onSetSuccess(pc1)
-        }, onSetSessionDescriptionError)
-      },
-    []
-  )
-
-  const onCreateSessionDescriptionError = (error: unknown) => {}
-
-  const onCreateOfferSuccess = useCallback(
-    (pc1: RTCPeerConnection, pc2: RTCPeerConnection) =>
-      (desc: RTCSessionDescriptionInit) => {
-        pc1.setLocalDescription(desc).then(function () {
-          onSetSuccess(pc1)
-        }, onSetSessionDescriptionError)
-        pc2.setRemoteDescription(desc).then(function () {
-          onSetSuccess(pc2)
-        }, onSetSessionDescriptionError)
-        // Since the 'remote' side has no media stream we need
-        // to pass in the right constraints in order for it to
-        // accept the incoming offer of audio and video.
-        pc2
-          .createAnswer()
-          .then(
-            onCreateAnswerSuccess(pc1, pc2),
-            onCreateSessionDescriptionError
-          )
-      },
-    [onCreateAnswerSuccess]
-  )
-
-  const callVideo = useCallback(
-    (stream: MediaStream) => {
       if (stream.getVideoTracks().length > 0) {
-        var servers = iceServers
-        const pc1 = new RTCPeerConnection(servers)
-        pc1.onicecandidate = function (e) {
-          onIceCandidate(pc1, e, undefined)
+        const caller = new RTCPeerConnection()
+        callerRef.current = caller
+        caller.onicecandidate = function (evt) {
+          if (evt.candidate) {
+            triggerCandidate(evt.candidate)
+          }
         }
-        const pc2 = new RTCPeerConnection(servers)
-        pc2.onicecandidate = function (e) {
-          onIceCandidate(pc2, e, pc1)
-        }
-        pc1.oniceconnectionstatechange = function (e: Event) {}
-        pc2.oniceconnectionstatechange = function (e: Event) {}
 
-        pc2.addEventListener("track", setRemoteStream, false)
-
-        stream.getTracks().forEach((track) => pc1.addTrack(track))
-
-        pc1
-          .createOffer(offerOptions)
-          .then(onCreateOfferSuccess(pc1, pc2), onCreateSessionDescriptionError)
+        remoteStream.current = new MediaStream()
+        stream.getTracks().forEach((track) => {
+          caller.addTrack(track, stream)
+        })
+        caller.ontrack = addOnTrack
+      } else {
+        errorCallback("No video")
       }
     },
-    [onCreateOfferSuccess, onIceCandidate, setRemoteStream]
+    [addOnTrack, errorCallback]
   )
+
+  const createAnswer = useCallback(
+    (
+      sdp: RTCSessionDescriptionInit,
+      trigger: (answerSdp: RTCSessionDescriptionInit) => void
+    ) => {
+      if (callerRef.current) {
+        const caller = callerRef.current
+        const sessionDesc = new RTCSessionDescription(sdp)
+        caller.setRemoteDescription(sessionDesc)
+        caller.createAnswer().then(function (answerSdp) {
+          caller.setLocalDescription(new RTCSessionDescription(answerSdp))
+          trigger(answerSdp)
+        })
+      } else {
+        errorCallback("WebRtc has not been initialized")
+      }
+    },
+    [errorCallback]
+  )
+
+  const addIceCandidate = useCallback(
+    (candidate: RTCIceCandidate) => {
+      if (callerRef.current) {
+        callerRef.current.addIceCandidate(new RTCIceCandidate(candidate))
+      } else {
+        errorCallback("WebRtc has not been initialized")
+      }
+    },
+    [errorCallback]
+  )
+
+  const disconnect = useCallback(() => {
+    remoteStream.current?.getTracks()?.forEach((track) => {
+      track.stop()
+    })
+  }, [])
 
   return {
-    callVideo,
+    initialize,
+    createOffer,
+    answerCall,
+    createAnswer,
+    addIceCandidate,
+    disconnect,
   }
 }

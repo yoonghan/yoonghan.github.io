@@ -1,0 +1,10 @@
+.container {
+  border: 1px solid;
+  padding: 1rem;
+}
+
+.container .list {
+  padding-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}

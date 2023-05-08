@@ -1,9 +1,10 @@
-import Button from "@/components/Button"
+import { EnumConnectionStatus } from "@/components/pusher/type/ConnectionStatus"
 import { usePresencePusher } from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
 import styles from "./Chatter.module.css"
 import ChatterForm from "./ChatterForm"
+import RecipientList, { Recipient } from "./RecipientList"
 import { useWebRtc } from "./useWebRtc"
 
 interface Props {
@@ -13,58 +14,146 @@ interface Props {
 
 const Chatter = ({ appKey, cluster }: Props) => {
   const [videoStarted, setVideoStarted] = useState(false)
-  const [remoteStarted, setRemoteStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
 
-  const setRemoteStream = useCallback((e: RTCTrackEvent) => {
-    if (remoteVideoRef.current !== null && (e.streams || e.track)) {
-      const inboundStream = new MediaStream()
-      remoteVideoRef.current.stream(inboundStream)
-      inboundStream.addTrack(e.track)
+  const alertError = useCallback((exception: unknown) => {
+    alert(exception)
+  }, [])
+
+  const setWebRtcRemoteStream = useCallback((mediaStream: MediaStream) => {
+    if (remoteVideoRef.current !== null) {
+      remoteVideoRef.current.stream(mediaStream)
     } else {
       alert("No stream")
     }
   }, [])
 
-  const { callVideo } = useWebRtc(setRemoteStream)
-  const { connect } = usePresencePusher({
-    appKey,
-    cluster,
-    authEndpoint: "/api/pusherauth",
-    updateConnectionCallback: () => {},
-  })
+  const webRtcErrorCallback = useCallback(
+    (errorMessage: string) => {
+      alertError(errorMessage)
+    },
+    [alertError]
+  )
+
+  const {
+    initialize: initializeWebRtc,
+    createOffer,
+    answerCall,
+    createAnswer,
+    addIceCandidate,
+    disconnect: disconnectWebRtc,
+  } = useWebRtc(setWebRtcRemoteStream, webRtcErrorCallback)
+
+  const updateConnectionCallback = useCallback(
+    (connection: EnumConnectionStatus) => {
+      switch (connection) {
+        case EnumConnectionStatus.Connected:
+          setVideoStarted(true)
+          break
+        case EnumConnectionStatus.Error:
+          alert("User unable to connect, try with a new name")
+        case EnumConnectionStatus.Disconnected:
+          setVideoStarted(false)
+          setStream(undefined)
+          disconnectWebRtc()
+          break
+      }
+    },
+    [disconnectWebRtc]
+  )
+
+  const { connect, disconnect, onlineUsers, bind, trigger, myId } =
+    usePresencePusher({
+      appKey,
+      cluster,
+      authEndpoint: "/api/pusherauth",
+      updateConnectionCallback,
+    })
 
   const localVideoTracksCallback = useCallback(
     (mediaStream: MediaStream | undefined) => {
-      if (mediaStream) {
+      if (mediaStream && stream === undefined) {
         setStream(mediaStream)
+        initializeWebRtc(mediaStream, (eventCandidate) => {
+          trigger("client-candidate", {
+            candidate: eventCandidate,
+            room: myId,
+          })
+        })
+
+        bind<{ room: string; sdp: RTCSessionDescriptionInit }>(
+          "client-answer",
+          (answer) => {
+            if (answer.room === myId) answerCall(answer.sdp)
+          }
+        )
+
+        bind<{ room: string; from: string; sdp: RTCSessionDescriptionInit }>(
+          "client-sdp",
+          (msg) => {
+            if (msg.room === myId) {
+              const answer = confirm(
+                "You have a call from: " +
+                  msg.from +
+                  ". Would you like to answer?"
+              )
+              if (!answer) {
+                return trigger("client-reject", {
+                  room: msg.room,
+                  rejected: myId,
+                })
+              } else {
+                createAnswer(msg.sdp, (sdp) => {
+                  trigger("client-answer", {
+                    sdp: sdp,
+                    room: msg.from,
+                  })
+                })
+              }
+            }
+          }
+        )
       }
     },
-    []
+    [answerCall, bind, createAnswer, initializeWebRtc, myId, stream, trigger]
   )
 
   const startStopVideo = useCallback(
     (username: string) => {
-      connect(username.toLocaleLowerCase())
-      setStream(undefined)
-      setVideoStarted(!videoStarted)
-      setRemoteStarted(false)
+      if (!videoStarted) {
+        connect(username.toLocaleLowerCase())
+      } else {
+        disconnect()
+      }
     },
-    [connect, videoStarted]
+    [connect, disconnect, videoStarted]
   )
 
-  const startStopRemoteVideo = useCallback(() => {
-    if (stream) {
-      callVideo(stream)
-      setRemoteStarted(true)
-    }
-  }, [callVideo, stream])
+  const callUser = useCallback(
+    (recipient: Recipient) => {
+      const room = recipient.id
+      bind<{ room: string; candidate: RTCIceCandidate }>(
+        "client-candidate",
+        (msg) => {
+          if (msg.room === room) addIceCandidate(msg.candidate)
+        }
+      )
 
-  const alertError = useCallback((exception: unknown) => {
-    setVideoStarted(false)
-    alert(exception)
-  }, [])
+      bind<{ room: string; from: string }>("client-reject", (answer) => {
+        if (answer.room === room)
+          alert("call to " + answer.from + " was politely declined")
+      })
+
+      createOffer((desc) => {
+        trigger("client-sdp", {
+          sdp: desc,
+          room,
+        })
+      })
+    },
+    [addIceCandidate, bind, createOffer, trigger]
+  )
 
   return (
     <div className={styles.container}>
@@ -85,13 +174,16 @@ const Chatter = ({ appKey, cluster }: Props) => {
           videoFailedCallback={(exception) => alert(exception)}
         ></VideoChat>
       </div>
-      <hr />
+      <h3>Idenfication</h3>
       <ChatterForm
         startStopSenderVideo={startStopVideo}
-        startStopCallerVideo={startStopRemoteVideo}
         senderButtonCanStop={videoStarted}
         senderButtonDisabled={videoStarted && stream == undefined}
-        callerButtonDisabled={remoteStarted}
+      />
+      <h3>List of online callers</h3>
+      <RecipientList
+        recipients={onlineUsers || []}
+        recipientTriggered={callUser}
       />
     </div>
   )

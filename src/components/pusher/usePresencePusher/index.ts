@@ -31,13 +31,14 @@ export const usePresencePusher = ({
   const channel = useRef<Channel>()
 
   const [onlineUsers, dispatch] = useReducer(onlineUserReducer, [])
+  const [eventsBinded, setEventsBinded] = useState<string[]>([])
   const [myId, setMyId] = useState("")
   const errorMessage = useRef<string>()
   const connectionStatus = useRef<EnumConnectionStatus>(
     EnumConnectionStatus.Disconnected
   )
 
-  const channelName = "presence-wal_videocall"
+  const channelName = "presence-wal-videocall"
 
   const updateConnectionStatus = (
     latestConnectionStatus: EnumConnectionStatus
@@ -46,15 +47,11 @@ export const usePresencePusher = ({
     updateConnectionCallback(latestConnectionStatus)
   }
 
-  const subscribeToChannel = (pusher: PusherJS) => {
-    channel.current = pusher.subscribe("presence-videocall")
-    bindChannel(channel.current)
-  }
-
   const bindChannel = (channel: Channel) => {
     channel.bind("pusher:subscription_error", (error: any) => {
       errorMessage.current = JSON.stringify(error)
       updateConnectionStatus(EnumConnectionStatus.Error)
+      disconnect()
     })
 
     channel.bind("pusher:subscription_succeeded", (membership: any) => {
@@ -104,7 +101,21 @@ export const usePresencePusher = ({
     pusher.current = new PusherJS(appKey, pusherConfiguration)
 
     if (pusher.current) {
-      subscribeToChannel(pusher.current)
+      channel.current = pusher.current.subscribe(channelName)
+      bindChannel(channel.current)
+    }
+  }
+
+  const disconnect = () => {
+    if (pusher.current) {
+      pusher.current.unsubscribe(channelName)
+      channel.current = undefined
+      pusher.current = undefined
+      dispatch({
+        type: "CLEAR_USERS",
+      })
+      setEventsBinded([])
+      updateConnectionStatus(EnumConnectionStatus.Disconnected)
     }
   }
 
@@ -114,11 +125,40 @@ export const usePresencePusher = ({
     }
   }
 
+  const trigger = <T extends object>(event: string, data: T) => {
+    if (channel.current) {
+      channel.current.trigger(event, {
+        ...data,
+        from: myId,
+      })
+      return
+    }
+    throw new Error("Channel has not been initialized")
+  }
+
+  const bind = <T extends object>(
+    event: string,
+    callback: (data: T) => void
+  ): boolean => {
+    if (channel.current) {
+      if (eventsBinded.includes(event)) {
+        return false
+      }
+      channel.current.bind(event, callback)
+      setEventsBinded((oldState) => [...oldState, event])
+      return true
+    }
+    throw new Error("Channel has not been initialized")
+  }
+
   const getErrorMessage = () => errorMessage.current
 
   return {
     connect,
+    disconnect,
     emit,
+    bind,
+    trigger,
     channelName,
     onlineUsers,
     myId,
