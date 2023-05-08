@@ -15,7 +15,7 @@ describe("useWebRtc", () => {
     const { result } = renderHook(useWebRtc, {
       initialProps: setRemoteStreamFn,
     })
-    result.current.callVideo({
+    result.current.setupLocalVideo({
       getVideoTracks: () => ["one video"],
       getTracks: () => ["one track"],
     } as unknown as MediaStream)
@@ -32,7 +32,7 @@ describe("useWebRtc", () => {
     const { result } = renderHook(useWebRtc, {
       initialProps: setRemoteStreamFn,
     })
-    result.current.callVideo({
+    result.current.setupLocalVideo({
       getVideoTracks: () => ["one video"],
       getTracks: () => ["one track"],
     } as unknown as MediaStream)
@@ -48,7 +48,7 @@ describe("useWebRtc", () => {
     const { result } = renderHook(useWebRtc, {
       initialProps: setRemoteStreamFn,
     })
-    result.current.callVideo({
+    result.current.setupLocalVideo({
       getVideoTracks: () => ["one video"],
       getTracks: () => ["one track"],
     } as unknown as MediaStream)
@@ -60,7 +60,7 @@ describe("useWebRtc", () => {
     const { result } = renderHook(useWebRtc, {
       initialProps: setRemoteStreamFn,
     })
-    result.current.callVideo({
+    result.current.setupLocalVideo({
       getVideoTracks: () => [],
     } as unknown as MediaStream)
     expect(setRemoteStreamFn).not.toBeCalled()

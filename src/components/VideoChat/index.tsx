@@ -100,4 +100,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
   }
 )
 
-export default VideoChat
+const VideoComparator = (prevProps: Props, nextProps: Props) =>
+  prevProps.play === nextProps.play
+
+export default memo(VideoChat, VideoComparator)
