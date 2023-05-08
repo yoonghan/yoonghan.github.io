@@ -10,11 +10,11 @@ describe("VideoChat", () => {
   })
 
   const renderComponent = ({
-    play = true,
+    record = true,
     videoFailedCallback = jest.fn(),
     videoTracksCallback = jest.fn(),
   }: {
-    play?: boolean
+    record?: boolean
     videoFailedCallback?: (exception: unknown) => void
     videoTracksCallback?: (mediaStream: MediaStream | undefined) => void
   }) => {
@@ -22,7 +22,7 @@ describe("VideoChat", () => {
       <VideoChat
         id="test"
         muted={true}
-        play={play}
+        record={record}
         videoFailedCallback={videoFailedCallback}
         videoTracksCallback={videoTracksCallback}
       />
@@ -77,7 +77,7 @@ describe("VideoChat", () => {
       <VideoChat
         id="test"
         muted={true}
-        play={false}
+        record={false}
         videoFailedCallback={jest.fn()}
         videoTracksCallback={videoTracks}
       />
@@ -119,7 +119,7 @@ describe("VideoChat", () => {
             ref={videoRef}
             id="test"
             muted={true}
-            play={false}
+            record={false}
             videoFailedCallback={jest.fn()}
             videoTracksCallback={videoTracksCallback}
           />

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Chatter = ({ appKey, cluster }: Props) => {
-  const [videoStarted, setVideoStarted] = useState(false)
+  const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
 
@@ -49,12 +49,12 @@ const Chatter = ({ appKey, cluster }: Props) => {
     (connection: EnumConnectionStatus) => {
       switch (connection) {
         case EnumConnectionStatus.Connected:
-          setVideoStarted(true)
+          setRecordingStarted(true)
           break
         case EnumConnectionStatus.Error:
           alert("User unable to connect, try with a new name")
         case EnumConnectionStatus.Disconnected:
-          setVideoStarted(false)
+          setRecordingStarted(false)
           setStream(undefined)
           disconnectWebRtc()
           break
@@ -121,13 +121,13 @@ const Chatter = ({ appKey, cluster }: Props) => {
 
   const startStopVideo = useCallback(
     (username: string) => {
-      if (!videoStarted) {
+      if (!recordingStarted) {
         connect(username.toLocaleLowerCase())
       } else {
         disconnect()
       }
     },
-    [connect, disconnect, videoStarted]
+    [connect, disconnect, recordingStarted]
   )
 
   const callUser = useCallback(
@@ -161,14 +161,14 @@ const Chatter = ({ appKey, cluster }: Props) => {
         <VideoChat
           id="host-video"
           muted={true}
-          play={videoStarted}
+          record={recordingStarted}
           videoTracksCallback={localVideoTracksCallback}
           videoFailedCallback={alertError}
         ></VideoChat>
         <VideoChat
           id="remote-video"
           muted={false}
-          play={false}
+          record={false}
           ref={remoteVideoRef}
           videoTracksCallback={() => {}}
           videoFailedCallback={(exception) => alert(exception)}
@@ -177,8 +177,8 @@ const Chatter = ({ appKey, cluster }: Props) => {
       <h3>Idenfication</h3>
       <ChatterForm
         startStopSenderVideo={startStopVideo}
-        senderButtonCanStop={videoStarted}
-        senderButtonDisabled={videoStarted && stream == undefined}
+        senderButtonCanStop={recordingStarted}
+        senderButtonDisabled={recordingStarted && stream == undefined}
       />
       <h3>List of online callers</h3>
       <RecipientList

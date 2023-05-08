@@ -10,7 +10,7 @@ import styles from "./VideoChat.module.css"
 
 type Props = {
   id: string
-  play: boolean
+  record: boolean
   muted: boolean
   videoFailedCallback: (exception: unknown) => void
   videoTracksCallback: (mediaStream: MediaStream | undefined) => void
@@ -22,7 +22,7 @@ export interface VideoStreamHandler {
 
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
   function VideoWithStreamHandler(
-    { id, play, muted, videoFailedCallback, videoTracksCallback }: Props,
+    { id, record, muted, videoFailedCallback, videoTracksCallback }: Props,
     ref
   ) {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -77,13 +77,13 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     }, [videoTracksCallback])
 
     useEffect(() => {
-      if (play) {
+      if (record) {
         startVideo()
       } else {
         stopVideo()
       }
       return stopVideo
-    }, [startVideo, stopVideo, play])
+    }, [startVideo, stopVideo, record])
 
     return (
       // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -101,6 +101,6 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 )
 
 const VideoComparator = (prevProps: Props, nextProps: Props) =>
-  prevProps.play === nextProps.play
+  prevProps.record === nextProps.record
 
 export default memo(VideoChat, VideoComparator)
