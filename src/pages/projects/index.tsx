@@ -62,6 +62,13 @@ export const cards = [
     href: "/projects/game-snake",
     target: "_self",
   },
+  {
+    id: "video",
+    title: "Video Conference",
+    description: "Web Video over Web RTC using pusher as signalling.",
+    href: "/projects/webrtc",
+    target: "_self",
+  },
 ]
 
 const Projects = ({}) => {
