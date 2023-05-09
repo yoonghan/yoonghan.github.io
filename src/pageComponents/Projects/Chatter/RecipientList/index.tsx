@@ -4,6 +4,7 @@ import style from "./Recipient.module.css"
 type Props = {
   recipients: Recipient[]
   recipientTriggered: (recipient: Recipient) => void
+  disabled: boolean
 }
 
 export type Recipient = {
@@ -11,20 +12,24 @@ export type Recipient = {
   name: string
 }
 
-const RecipientList = ({ recipients, recipientTriggered }: Props) => {
+const RecipientList = ({
+  recipients,
+  recipientTriggered,
+  disabled = false,
+}: Props) => {
   const callUser = (recipient: Recipient) => {
     recipientTriggered(recipient)
   }
 
   return (
     <div className={style.container}>
-      Users online:
       <ul className={`u-list ${style.list}`}>
         {recipients.map((recipient) => (
           <li key={recipient.id}>
             <Button
               onClick={() => callUser(recipient)}
               styling={{ small: true, inverted: false }}
+              additionalProps={{ disabled: disabled }}
             >
               Call {recipient.name}
             </Button>

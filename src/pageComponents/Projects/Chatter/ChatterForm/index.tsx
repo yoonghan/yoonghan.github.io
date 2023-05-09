@@ -4,6 +4,7 @@ import {
   removeAllWhiteSpaces,
 } from "@/util/regex"
 import { ChangeEvent, FormEvent, useCallback, useState } from "react"
+import styles from "./ChatterForm.module.css"
 
 type Props = {
   senderButtonCanStop: boolean
@@ -45,7 +46,7 @@ const ChatterForm = ({
   )
 
   return (
-    <form onSubmit={onSubmitClick}>
+    <form onSubmit={onSubmitClick} className={styles.container}>
       <fieldset disabled={senderButtonCanStop}>
         {errorMessage !== "" && (
           <div className={"alert danger"}>{errorMessage}</div>
@@ -54,7 +55,8 @@ const ChatterForm = ({
         <input type="text" id="username" onChange={onChangeUsername} />
       </fieldset>
       <Button
-        styling={{ small: true, inverted: false }}
+        styling={{ small: false, inverted: true }}
+        color={"blue"}
         additionalProps={{
           disabled: senderButtonDisabled, //videoStarted && stream == undefined,
         }}

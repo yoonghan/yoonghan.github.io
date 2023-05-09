@@ -237,17 +237,26 @@ const Chatter = ({ appKey, cluster }: Props) => {
           videoFailedCallback={promptMessage}
         ></VideoChat>
       </div>
-      <h3>Idenfication</h3>
-      <ChatterForm
-        startStopSenderVideo={startStopVideo}
-        senderButtonCanStop={recordingStarted}
-        senderButtonDisabled={recordingStarted && stream == undefined}
-      />
-      <h3>List of online callers</h3>
-      <RecipientList
-        recipients={onlineUsers || []}
-        recipientTriggered={callUser}
-      />
+
+      <p>The page supports interactions of only 2 users.</p>
+      <section>
+        <h3>Idenfication</h3>
+        <ChatterForm
+          startStopSenderVideo={startStopVideo}
+          senderButtonCanStop={recordingStarted}
+          senderButtonDisabled={recordingStarted && stream == undefined}
+        />
+      </section>
+      <br />
+      <section>
+        <h3>List of online callers</h3>
+        <p>Choose a participant to make a call to, by clicking on it.</p>
+        <RecipientList
+          recipients={onlineUsers || []}
+          recipientTriggered={callUser}
+          disabled={false}
+        />
+      </section>
     </div>
   )
 }
