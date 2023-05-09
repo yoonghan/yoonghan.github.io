@@ -16,7 +16,7 @@ import { useCallback, useRef, useState } from "react"
 import styles from "./Chatter.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
-import { useWebRtc } from "./useWebRtc"
+import { useWebRtc } from "../../../components/webrtc/useWebRtc"
 
 interface Props {
   appKey: string
@@ -64,7 +64,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const {
     initialize: initializeWebRtc,
     createOffer,
-    answerCall,
+    acknowledgeAnswer,
     createAnswer,
     addIceCandidate,
     disconnect: disconnectWebRtc,
@@ -130,7 +130,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
         bind<ClientAnswerAndSdp>("client-answer", (answer) => {
           if (answer.room === myId) {
             connectedUser.current = answer.from
-            answerCall(answer.sdp)
+            acknowledgeAnswer(answer.sdp)
           }
         })
 
@@ -172,7 +172,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
       }
     },
     [
-      answerCall,
+      acknowledgeAnswer,
       bind,
       createAnswer,
       initializeWebRtc,
