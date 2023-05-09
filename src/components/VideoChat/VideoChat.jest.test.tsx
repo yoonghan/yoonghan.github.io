@@ -10,11 +10,11 @@ describe("VideoChat", () => {
   })
 
   const renderComponent = ({
-    play = true,
+    record = true,
     videoFailedCallback = jest.fn(),
     videoTracksCallback = jest.fn(),
   }: {
-    play?: boolean
+    record?: boolean
     videoFailedCallback?: (exception: unknown) => void
     videoTracksCallback?: (mediaStream: MediaStream | undefined) => void
   }) => {
@@ -22,7 +22,7 @@ describe("VideoChat", () => {
       <VideoChat
         id="test"
         muted={true}
-        play={play}
+        record={record}
         videoFailedCallback={videoFailedCallback}
         videoTracksCallback={videoTracksCallback}
       />
@@ -57,7 +57,7 @@ describe("VideoChat", () => {
 
   it("should call getMedia devices failed will trigger videoFailedCallback", async () => {
     const failCallback = jest.fn()
-    const spyGetUserMedia = jest
+    jest
       .spyOn(window.navigator.mediaDevices, "getUserMedia")
       .mockRejectedValueOnce("I failed")
 
@@ -77,7 +77,7 @@ describe("VideoChat", () => {
       <VideoChat
         id="test"
         muted={true}
-        play={false}
+        record={false}
         videoFailedCallback={jest.fn()}
         videoTracksCallback={videoTracks}
       />
@@ -113,22 +113,29 @@ describe("VideoChat", () => {
         }
       }
 
+      const stopStream = () => {
+        if (videoRef.current !== null) {
+          videoRef.current.stopStream()
+        }
+      }
+
       return (
         <>
           <VideoChat
             ref={videoRef}
             id="test"
             muted={true}
-            play={false}
+            record={false}
             videoFailedCallback={jest.fn()}
             videoTracksCallback={videoTracksCallback}
           />
           <button onClick={addStreamToVideoOnClick}>Add</button>
+          <button onClick={stopStream}>Stop Stream</button>
         </>
       )
     }
 
-    it("should be able to assign video with custom stream", async () => {
+    it("should be able to assign video with custom stream and stop it", async () => {
       const streamData = "Stream data" as any
       const { videoTracks } = createUserMedia()
       render(
@@ -141,6 +148,9 @@ describe("VideoChat", () => {
       expect(video.srcObject).toBe(null)
       await userEvent.click(screen.getByRole("button", { name: "Add" }))
       expect(video.srcObject).toBe(streamData)
+
+      await userEvent.click(screen.getByRole("button", { name: "Stop Stream" }))
+      expect(video.srcObject).toBe(null)
     })
   })
 })
