@@ -24,6 +24,7 @@ interface Props {
 }
 
 const Chatter = ({ appKey, cluster }: Props) => {
+  const [enableReceiptList, setEnableReceiptList] = useState(false)
   const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
@@ -74,6 +75,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
     (connection: EnumConnectionStatus) => {
       switch (connection) {
         case EnumConnectionStatus.Connected:
+          setEnableReceiptList(true)
           setRecordingStarted(true)
           break
         case EnumConnectionStatus.Error:
@@ -92,6 +94,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const shouldUpdatedOfflineUserEnd = useCallback(
     (user: Member) => {
       if (connectedUser.current === user.id) {
+        setEnableReceiptList(true)
         promptMessage(`User (${user.info.name}) has left the chat`)
         return true
       }
@@ -160,6 +163,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
               })
             } else {
               createAnswer(msg.sdp, (sdp) => {
+                setEnableReceiptList(false)
                 connectedUser.current = msg.from
                 trigger("client-answer", {
                   sdp: sdp,
@@ -204,11 +208,14 @@ const Chatter = ({ appKey, cluster }: Props) => {
       })
 
       bind<ClientReject>("client-reject", (answer) => {
-        if (answer.room === room)
+        setEnableReceiptList(true)
+        if (answer.room === room) {
           promptMessage(`Call to ${answer.fromName} was politely declined`)
+        }
       })
 
       createOffer((desc) => {
+        setEnableReceiptList(false)
         trigger("client-sdp", {
           sdp: desc,
           room,
@@ -254,7 +261,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
         <RecipientList
           recipients={onlineUsers || []}
           recipientTriggered={callUser}
-          disabled={false}
+          disabled={!enableReceiptList}
         />
       </section>
     </div>
