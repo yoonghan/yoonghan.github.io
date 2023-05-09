@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container fieldset {
+  border: 0;
+}
+
+.container fieldset input {
+  margin-left: 0.75rem;
+}
