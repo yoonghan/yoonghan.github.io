@@ -1,45 +1,78 @@
-export const addIceCandidateMock = jest.fn()
-addIceCandidateMock.mockResolvedValue("ok")
-
 export const setRemoteDescriptionMock = jest.fn()
-setRemoteDescriptionMock.mockResolvedValue("ok")
 
 export const setLocalDescriptionMock = jest.fn()
-setLocalDescriptionMock.mockResolvedValue("ok")
 
 export const createAnswerMock = jest.fn()
-createAnswerMock.mockResolvedValue("ok")
+createAnswerMock.mockReturnValueOnce("answer sdp")
 
 export const createOfferMock = jest.fn()
-createOfferMock.mockResolvedValue("ok")
+createOfferMock.mockResolvedValue("offer sdp")
 
-class RTCPeerConnection {
-  constructor() {}
+export const closeMock = jest.fn()
 
-  addEventListener = (event, listener, option) => {
-    this.onicecandidate({
-      candidate: "",
-    })
-    this.oniceconnectionstatechange()
-    listener("Test")
-  }
+class MediaStream {
+  video = []
+  track = []
+
+  getVideoTracks = () => this.video
+  getTracks = () => this.track
 
   addTrack = () => {
-    this.onicecandidate({
-      candidate: "",
-    })
-    this.oniceconnectionstatechange()
+    this.video = ["one video"]
+    this.track = [{ stop: () => {} }]
+  }
+}
+
+class RTCIceCandidate {}
+
+class RTCSessionDescription {}
+
+class MediaStreamTrack {}
+
+class RTCPeerConnection {
+  stream = null
+  track = []
+  localDescription = undefined
+
+  constructor() {}
+
+  addTrack = (track, stream) => {
+    this.track = [...this.track, track]
+    this.stream = stream
   }
 
-  addIceCandidate = addIceCandidateMock
+  addIceCandidate = () => {
+    this.ontrack({ track: this.track, streams: [this.stream] })
+  }
 
   createOffer = createOfferMock
 
-  setLocalDescription = setLocalDescriptionMock
+  setLocalDescription = (sdp) => {
+    this.localDescription = sdp
+    setLocalDescriptionMock(sdp)
+  }
 
-  setRemoteDescription = setRemoteDescriptionMock
+  setRemoteDescription = (sdp) => {
+    this.onicecandidate({
+      candidate: sdp,
+    })
+    setRemoteDescriptionMock(sdp)
+  }
 
-  createAnswer = createAnswerMock
+  createAnswer = () => {
+    const self = this
+    return new Promise((resolve) => {
+      resolve(createAnswerMock())
+      //when user addonice actually this get executed.
+      self.ontrack({ track: this.track, streams: [this.stream] })
+    })
+  }
+
+  close = closeMock
 }
 
 global.RTCPeerConnection = RTCPeerConnection
+global.MediaStream = MediaStream
+global.MediaStreamTrack = MediaStreamTrack
+global.RTCSessionDescription = RTCSessionDescription
+global.RTCIceCandidate = RTCIceCandidate

@@ -9,7 +9,7 @@ enum Action {
   No,
 }
 
-interface Props {
+export interface Props {
   title: string
   message: string
   onCancel?: () => void
@@ -18,6 +18,7 @@ interface Props {
   yesButtonText?: string
   noButtonText?: string
   nonPortal?: boolean
+  isNotModal?: boolean
 }
 
 const ConfirmationDialog = ({
@@ -29,6 +30,7 @@ const ConfirmationDialog = ({
   yesButtonText,
   noButtonText,
   nonPortal = true,
+  isNotModal = false,
 }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
@@ -64,6 +66,7 @@ const ConfirmationDialog = ({
       onCancel={onAction(Action.Cancel)}
       ref={dialogRef}
       nonPortal={nonPortal}
+      isNotModal={isNotModal}
     >
       <div className={styles.container}>
         <div>

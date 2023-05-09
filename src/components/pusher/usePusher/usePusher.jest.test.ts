@@ -62,14 +62,14 @@ describe("usePusher", () => {
     expect(client.channelName).toBe("wal_CHANNEL")
   })
 
-  it("should be able to connect", async () => {
+  it("should be able to connect", () => {
     const printConnectionCallback = jest.fn()
     const printEventCallback = jest.fn()
     const { result } = createPusher({
       printConnectionCallback,
       printEventCallback,
     })
-    await act(async () => {
+    act(() => {
       result.current.connect()
     })
     expect(printConnectionCallback).toBeCalledWith(
@@ -77,7 +77,7 @@ describe("usePusher", () => {
       MessageType.TEXT
     )
 
-    await act(async () => {
+    act(() => {
       result.current.emitConnection("connected")
     })
 
@@ -106,7 +106,7 @@ describe("usePusher", () => {
   })
 
   describe("Connected behavior", () => {
-    const createConnectedPusher = async () => {
+    const createConnectedPusher = () => {
       const printConnectionCallback = jest.fn()
       const printEventCallback = jest.fn()
       const { result } = createPusher({
@@ -114,7 +114,7 @@ describe("usePusher", () => {
         printEventCallback,
       })
 
-      await act(async () => {
+      act(() => {
         result.current.connect()
         result.current.emitConnection("connected")
       })
@@ -127,13 +127,13 @@ describe("usePusher", () => {
       }
     }
 
-    it("should be able to disconnect", async () => {
+    it("should be able to disconnect", () => {
       const debugEventFn = jest.fn()
       const spy = jest
         .spyOn(React, "useDebugValue")
         .mockImplementation(debugEventFn)
-      const { result } = await createConnectedPusher()
-      await act(() => {
+      const { result } = createConnectedPusher()
+      act(() => {
         result.current.disconnect()
       })
 
@@ -145,9 +145,9 @@ describe("usePusher", () => {
       spy.mockClear()
     })
 
-    it("should be able to disconnect", async () => {
-      const { result, printConnectionCallback } = await createConnectedPusher()
-      await act(async () => {
+    it("should be able to disconnect", () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
+      act(() => {
         result.current.emitConnection("failed")
       })
 
@@ -161,11 +161,11 @@ describe("usePusher", () => {
       expect(result.current.isConnected()).toBe(false)
     })
 
-    it("should be able to handle general error", async () => {
+    it("should be able to handle general error", () => {
       jest.spyOn(console, "error").mockImplementation(() => {})
 
-      const { result, printConnectionCallback } = await createConnectedPusher()
-      await act(async () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
+      act(() => {
         result.current.emitConnection("error")
       })
 
@@ -179,9 +179,9 @@ describe("usePusher", () => {
       expect(result.current.isConnected()).toBe(true)
     })
 
-    it("should be able to handle websocket error", async () => {
-      const { result, printConnectionCallback } = await createConnectedPusher()
-      await act(async () => {
+    it("should be able to handle websocket error", () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
+      act(() => {
         result.current.emitConnection("error", {
           type: "WebSocketError",
           error: { data: { code: 0 } },
@@ -198,8 +198,8 @@ describe("usePusher", () => {
       expect(result.current.isConnected()).toBe(false)
     })
 
-    it("should be able to send message", async () => {
-      const { result, printEventCallback } = await createConnectedPusher()
+    it("should be able to send message", () => {
+      const { result, printEventCallback } = createConnectedPusher()
       act(() => {
         const message = result.current.send("Hello message", MessageType.TEXT)
         expect(message).toBe(false) //will always return false, doesn't matter
@@ -207,8 +207,8 @@ describe("usePusher", () => {
       expect(printEventCallback).not.toBeCalled()
     })
 
-    it("should be able to emit message", async () => {
-      const { result, printEventCallback } = await createConnectedPusher()
+    it("should be able to emit message", () => {
+      const { result, printEventCallback } = createConnectedPusher()
       act(() => {
         const emitter = result.current.emit("Event")
         const message = isEventEmitter(emitter)
@@ -223,8 +223,8 @@ describe("usePusher", () => {
       )
     })
 
-    it("should be able to emit complex message", async () => {
-      const { result, printEventCallback } = await createConnectedPusher()
+    it("should be able to emit complex message", () => {
+      const { result, printEventCallback } = createConnectedPusher()
       act(() => {
         const emitter = result.current.emit("Event")
         const message = isEventEmitter(emitter)
@@ -239,10 +239,10 @@ describe("usePusher", () => {
       )
     })
 
-    it("should not allow, connection that is already connected", async () => {
-      const { result, printConnectionCallback } = await createConnectedPusher()
+    it("should not allow, connection that is already connected", () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
 
-      await act(async () => {
+      act(() => {
         result.current.connect()
       })
 
@@ -252,8 +252,8 @@ describe("usePusher", () => {
       )
     })
 
-    it("should be able to emit no of users", async () => {
-      const { result, printConnectionCallback } = await createConnectedPusher()
+    it("should be able to emit no of users", () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
       act(() => {
         const emitter = result.current.emit("NoOfUsers")
         const message = isNoOfUserEmitter(emitter) ? emitter(2) : false

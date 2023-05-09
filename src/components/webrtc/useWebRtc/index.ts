@@ -12,10 +12,14 @@ export const useWebRtc = (
   const callerRef = useRef<RTCPeerConnection>()
   const remoteStream = useRef<MediaStream>()
 
-  const answerCall = useCallback(
+  const acknowledgeAnswer = useCallback(
     (sdp: RTCSessionDescriptionInit) => {
       if (callerRef.current) {
-        callerRef.current.setRemoteDescription(new RTCSessionDescription(sdp))
+        if (callerRef.current.localDescription) {
+          callerRef.current.setRemoteDescription(sdp)
+        } else {
+          errorCallback("WebRtc offer needs to be provided first")
+        }
       } else {
         errorCallback("WebRtc has not been initialized")
       }
@@ -24,7 +28,7 @@ export const useWebRtc = (
   )
 
   const createOffer = useCallback(
-    (trigger: (_desc: RTCSessionDescriptionInit) => void) => {
+    (trigger: (localDesc: RTCSessionDescriptionInit) => void) => {
       if (callerRef.current) {
         const caller = callerRef.current
         caller.createOffer(offerOptions).then(function (desc) {
@@ -49,11 +53,9 @@ export const useWebRtc = (
           })
         }
         setRemoteStream(stream)
-      } else {
-        errorCallback("Unable to initialize remote stream.")
       }
     },
-    [errorCallback, setRemoteStream]
+    [setRemoteStream]
   )
 
   const initialize = useCallback(
@@ -89,10 +91,9 @@ export const useWebRtc = (
     ) => {
       if (callerRef.current) {
         const caller = callerRef.current
-        const sessionDesc = new RTCSessionDescription(sdp)
-        caller.setRemoteDescription(sessionDesc)
+        caller.setRemoteDescription(sdp)
         caller.createAnswer().then(function (answerSdp) {
-          caller.setLocalDescription(new RTCSessionDescription(answerSdp))
+          caller.setLocalDescription(answerSdp)
           trigger(answerSdp)
         })
       } else {
@@ -105,7 +106,7 @@ export const useWebRtc = (
   const addIceCandidate = useCallback(
     (candidate: RTCIceCandidate) => {
       if (callerRef.current) {
-        callerRef.current.addIceCandidate(new RTCIceCandidate(candidate))
+        callerRef.current.addIceCandidate(candidate)
       } else {
         errorCallback("WebRtc has not been initialized")
       }
@@ -117,12 +118,15 @@ export const useWebRtc = (
     remoteStream.current?.getTracks()?.forEach((track) => {
       track.stop()
     })
+    if (callerRef.current) {
+      callerRef.current.close()
+    }
   }, [])
 
   return {
     initialize,
     createOffer,
-    answerCall,
+    acknowledgeAnswer,
     createAnswer,
     addIceCandidate,
     disconnect,

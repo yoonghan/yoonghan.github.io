@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
-import { Props, usePresencePusher } from "."
+import { Presence, Props, usePresencePusher } from "."
 
 describe("usePresencePusher", () => {
   const defaultProps: Props = {
@@ -8,6 +8,7 @@ describe("usePresencePusher", () => {
     cluster: "Cluster",
     authEndpoint: "/auth",
     updateConnectionCallback: jest.fn(),
+    shouldUpdatedOfflineUserEnd: undefined,
   }
 
   const createPusher = (props = defaultProps) => {
@@ -17,6 +18,7 @@ describe("usePresencePusher", () => {
         cluster: props.cluster,
         authEndpoint: props.authEndpoint,
         updateConnectionCallback: props.updateConnectionCallback,
+        shouldUpdatedOfflineUserEnd: props.shouldUpdatedOfflineUserEnd,
       },
     })
   }
@@ -28,24 +30,34 @@ describe("usePresencePusher", () => {
   })
 
   describe("connection", () => {
-    const emitSubscriptionSuccess = async (
-      partialEmitFn: (eventName: string, message: object) => void
+    const trigger = (
+      { emit, trigger }: any,
+      eventName: string,
+      data: object
     ) => {
-      await act(async () => {
+      emit(eventName, trigger(eventName, data))
+    }
+
+    const emitSubscriptionSuccess = (
+      partialEmitFn: (eventName: string, message: object) => void,
+      id = "billy",
+      name = "Billy Joe"
+    ) => {
+      act(() => {
         partialEmitFn("pusher:subscription_succeeded", {
-          members: { billy: { name: "billy" }, ben: { name: "Ben" } },
+          members: { billy: { name }, ben: { name: "Ben" } },
           count: 1,
-          myID: "billy",
-          me: { id: "billy", info: { name: "billy" } },
+          myID: id,
+          me: { id: id, info: { name } },
         })
       })
     }
 
-    const emitAddUser = async (
+    const emitAddUser = (
       username: string,
       partialEmitFn: (eventName: string, message: object) => void
     ) => {
-      await act(async () => {
+      act(() => {
         partialEmitFn("pusher:member_added", {
           id: username,
           info: { name: username },
@@ -53,20 +65,20 @@ describe("usePresencePusher", () => {
       })
     }
 
-    it("should be able to connect", async () => {
+    it("should be able to connect", () => {
       const updateConnectionCallback = jest.fn()
       const { result } = createPusher({
         ...defaultProps,
         updateConnectionCallback,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
       expect(updateConnectionCallback).toBeCalledWith(
         EnumConnectionStatus.StartConnecting
       )
 
-      await emitSubscriptionSuccess(result.current.emit)
+      emitSubscriptionSuccess(result.current.emit)
 
       expect(updateConnectionCallback).toBeCalledWith(
         EnumConnectionStatus.Connected
@@ -78,26 +90,26 @@ describe("usePresencePusher", () => {
       ])
     })
 
-    it("should not be allowed to connect twice by returning to start connecting again", async () => {
+    it("should not be allowed to connect twice by returning to start connecting again", () => {
       const updateConnectionCallback = jest.fn()
       const { result } = createPusher({
         ...defaultProps,
         updateConnectionCallback,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
         EnumConnectionStatus.StartConnecting
       )
-      await emitSubscriptionSuccess(result.current.emit)
+      emitSubscriptionSuccess(result.current.emit)
 
       expect(updateConnectionCallback).toBeCalledWith(
         EnumConnectionStatus.Connected
       )
 
-      await act(async () => {
+      act(() => {
         result.current.connect("new username, but will never be added")
       })
 
@@ -106,18 +118,18 @@ describe("usePresencePusher", () => {
       )
     })
 
-    it("should be allowed to connect again after disconnected", async () => {
+    it("should be allowed to connect again after disconnected", () => {
       const updateConnectionCallback = jest.fn()
       const { result } = createPusher({
         ...defaultProps,
         updateConnectionCallback,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
-      await emitSubscriptionSuccess(result.current.emit)
+      emitSubscriptionSuccess(result.current.emit)
 
-      await act(async () => {
+      act(() => {
         result.current.disconnect()
       })
 
@@ -127,11 +139,11 @@ describe("usePresencePusher", () => {
 
       expect(result.current.onlineUsers).toStrictEqual([])
 
-      await act(async () => {
+      act(() => {
         result.current.connect("john")
       })
 
-      await act(async () => {
+      act(() => {
         result.current.emit("pusher:subscription_succeeded", {
           members: { john: { name: "john" } },
           count: 1,
@@ -147,7 +159,7 @@ describe("usePresencePusher", () => {
       expect(result.current.myId).toBe("john")
     })
 
-    it("should show error if connection fail", async () => {
+    it("should show error if connection fail", () => {
       const updateConnectionCallback = jest.fn()
       const error = {
         type: "AuthError",
@@ -158,11 +170,11 @@ describe("usePresencePusher", () => {
         updateConnectionCallback,
       })
 
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
 
-      await act(async () => {
+      act(() => {
         result.current.emit("pusher:subscription_error", error)
       })
 
@@ -173,19 +185,19 @@ describe("usePresencePusher", () => {
       expect(result.current.errorMessage()).toBe(JSON.stringify(error))
     })
 
-    it("should be able to add multiple user and remove user", async () => {
+    it("should be able to add multiple user and remove user", () => {
       const updateConnectionCallback = jest.fn()
       const { result } = createPusher({
         ...defaultProps,
         updateConnectionCallback,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
-      await emitSubscriptionSuccess(result.current.emit)
-      await emitAddUser("bob", result.current.emit)
-      await emitAddUser("john", result.current.emit)
-      await emitAddUser("alice", result.current.emit)
+      emitSubscriptionSuccess(result.current.emit)
+      emitAddUser("bob", result.current.emit)
+      emitAddUser("john", result.current.emit)
+      emitAddUser("alice", result.current.emit)
       expect(result.current.onlineUsers).toStrictEqual([
         { id: "ben", name: "Ben" },
         { id: "bob", name: "bob" },
@@ -193,7 +205,7 @@ describe("usePresencePusher", () => {
         { id: "alice", name: "alice" },
       ])
 
-      await act(async () => {
+      act(() => {
         result.current.emit("pusher:member_removed", {
           id: "john",
         })
@@ -205,26 +217,34 @@ describe("usePresencePusher", () => {
       ])
     })
 
-    it("should be able to bind and trigger", async () => {
+    it("should be able to bind and trigger", () => {
       const { result } = createPusher({
         ...defaultProps,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
-      await emitSubscriptionSuccess(result.current.emit)
+      emitSubscriptionSuccess(result.current.emit)
 
       const clientCallback = jest.fn()
       act(() => {
         expect(
-          result.current.bind<{}>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback)
         ).toBeTruthy()
       })
-      result.current.trigger("client-event", { data: "test" })
-      // not able to test callback
+
+      trigger(result.current, "client-event", {
+        data: "test",
+      })
+
+      expect(clientCallback).toBeCalledWith({
+        data: "test",
+        from: "billy",
+        fromName: "Billy Joe",
+      })
     })
 
-    it("should not be able to bind/trigger if user has not connected", async () => {
+    it("should not be able to bind/trigger if user has not connected", () => {
       const { result } = createPusher({
         ...defaultProps,
       })
@@ -238,40 +258,94 @@ describe("usePresencePusher", () => {
       )
     })
 
-    it("should not allow binding to occur more than once unless disconnected and reconnect", async () => {
+    it("should not allow binding to occur more than once unless disconnected and reconnect", () => {
       const { result } = createPusher({
         ...defaultProps,
       })
-      await act(async () => {
+      act(() => {
         result.current.connect("billy")
       })
 
       const clientCallback = jest.fn()
+
+      emitSubscriptionSuccess(result.current.emit)
+
       act(() => {
-        expect(
-          result.current.bind<{}>("client-event", clientCallback)
-        ).toBeTruthy()
+        result.current.bind<Presence>("client-event", clientCallback)
       })
 
       act(() => {
         expect(
-          result.current.bind<{}>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback)
         ).toBeFalsy()
       })
 
-      await act(async () => {
+      act(() => {
         result.current.disconnect()
       })
 
-      await act(async () => {
+      act(() => {
+        result.current.connect("johnny")
+      })
+
+      emitSubscriptionSuccess(result.current.emit, "johnny", "Johnny Depp")
+
+      const newClientCallback = jest.fn()
+      act(() => {
+        expect(
+          result.current.bind<Presence>("client-event", newClientCallback)
+        ).toBeTruthy()
+      })
+      trigger(result.current, "client-event", {
+        data: "test",
+      })
+      expect(newClientCallback).toBeCalledWith({
+        data: "test",
+        from: "johnny",
+        fromName: "Johnny Depp",
+      })
+    })
+
+    it("should trigger updateoffline when user logs out", () => {
+      const triggerRemoveUser = (
+        shouldEnd: boolean,
+        expectedStatus: EnumConnectionStatus
+      ) => {
+        shouldUpdatedOfflineUserEndFn.mockReturnValueOnce(shouldEnd)
+        act(() => {
+          result.current.emit("pusher:member_removed", {
+            id: "billy",
+            info: { name: "Billy" },
+          })
+        })
+        expect(shouldUpdatedOfflineUserEndFn).toHaveBeenCalled()
+        expect(updateConnectionCallbackFn).toHaveBeenCalledWith(expectedStatus)
+      }
+
+      const updateConnectionCallbackFn = jest.fn()
+      const shouldUpdatedOfflineUserEndFn = jest.fn()
+      const { result } = createPusher({
+        ...defaultProps,
+        updateConnectionCallback: updateConnectionCallbackFn,
+        shouldUpdatedOfflineUserEnd: shouldUpdatedOfflineUserEndFn,
+      })
+      act(() => {
         result.current.connect("billy")
       })
 
+      const clientCallback = jest.fn()
+
+      emitSubscriptionSuccess(result.current.emit)
+      expect(updateConnectionCallbackFn).toHaveBeenCalledWith(
+        EnumConnectionStatus.Connected
+      )
+
       act(() => {
-        expect(
-          result.current.bind<{}>("client-event", clientCallback)
-        ).toBeTruthy()
+        result.current.bind<Presence>("client-event", clientCallback)
       })
+
+      triggerRemoveUser(false, EnumConnectionStatus.Connected)
+      triggerRemoveUser(true, EnumConnectionStatus.Disconnected)
     })
   })
 })

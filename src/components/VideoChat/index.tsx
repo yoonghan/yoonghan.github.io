@@ -10,7 +10,7 @@ import styles from "./VideoChat.module.css"
 
 type Props = {
   id: string
-  play: boolean
+  record: boolean
   muted: boolean
   videoFailedCallback: (exception: unknown) => void
   videoTracksCallback: (mediaStream: MediaStream | undefined) => void
@@ -18,11 +18,12 @@ type Props = {
 
 export interface VideoStreamHandler {
   stream: (stream: MediaStream) => void
+  stopStream: () => void
 }
 
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
   function VideoWithStreamHandler(
-    { id, play, muted, videoFailedCallback, videoTracksCallback }: Props,
+    { id, record, muted, videoFailedCallback, videoTracksCallback }: Props,
     ref
   ) {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -34,9 +35,16 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
       }
     }, [])
 
+    const stopStream = useCallback(() => {
+      if (videoRef.current !== null) {
+        videoRef.current.srcObject = null
+      }
+    }, [])
+
     useImperativeHandle(ref, () => {
       return {
         stream,
+        stopStream,
       }
     })
 
@@ -77,13 +85,13 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     }, [videoTracksCallback])
 
     useEffect(() => {
-      if (play) {
+      if (record) {
         startVideo()
       } else {
         stopVideo()
       }
       return stopVideo
-    }, [startVideo, stopVideo, play])
+    }, [startVideo, stopVideo, record])
 
     return (
       // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -101,6 +109,6 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 )
 
 const VideoComparator = (prevProps: Props, nextProps: Props) =>
-  prevProps.play === nextProps.play
+  prevProps.record === nextProps.record
 
 export default memo(VideoChat, VideoComparator)

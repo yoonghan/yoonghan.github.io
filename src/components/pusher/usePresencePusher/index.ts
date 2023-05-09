@@ -1,16 +1,8 @@
 import PusherJS, { Channel } from "pusher-js"
-import { useReducer, useRef, useState } from "react"
+import { useCallback, useReducer, useRef, useState } from "react"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
 import { onlineUserReducer } from "./onlineReducer"
-
-type MemberInfo = {
-  name: string
-}
-
-type Member = {
-  id: string
-  info: MemberInfo
-}
+import { Member, MemberInfo } from "../type/Member"
 
 export type Props = {
   appKey: string
@@ -19,20 +11,24 @@ export type Props = {
   updateConnectionCallback: (
     latestConnectionStatus: EnumConnectionStatus
   ) => void
+  shouldUpdatedOfflineUserEnd?: (user: Member) => boolean
 }
+
+export type Presence = { from: string; fromName: string }
 
 export const usePresencePusher = ({
   appKey,
   cluster,
   authEndpoint,
   updateConnectionCallback,
+  shouldUpdatedOfflineUserEnd,
 }: Props) => {
   const pusher = useRef<PusherJS>()
   const channel = useRef<Channel>()
 
   const [onlineUsers, dispatch] = useReducer(onlineUserReducer, [])
   const [eventsBinded, setEventsBinded] = useState<string[]>([])
-  const [myId, setMyId] = useState("")
+  const [myMembership, setMyMembership] = useState({ id: "", name: "" })
   const errorMessage = useRef<string>()
   const connectionStatus = useRef<EnumConnectionStatus>(
     EnumConnectionStatus.Disconnected
@@ -56,11 +52,11 @@ export const usePresencePusher = ({
 
     channel.bind("pusher:subscription_succeeded", (membership: any) => {
       updateConnectionStatus(EnumConnectionStatus.Connected)
-      const myId = membership?.me?.id
-      setMyId(myId)
+      const myMembership = membership.me
+      setMyMembership({ id: myMembership.id, name: myMembership.info.name })
       Object.entries(membership.members).forEach((member) => {
         const id = member[0]
-        if (myId !== id) {
+        if (myMembership.id !== id) {
           dispatch({
             type: "ADD_USER",
             payload: {
@@ -84,6 +80,12 @@ export const usePresencePusher = ({
         type: "REMOVE_USER",
         payload: { id: member.id },
       })
+      if (shouldUpdatedOfflineUserEnd) {
+        const shouldEnd = shouldUpdatedOfflineUserEnd(member)
+        if (shouldEnd) {
+          disconnect()
+        }
+      }
     })
   }
 
@@ -127,29 +129,34 @@ export const usePresencePusher = ({
 
   const trigger = <T extends object>(event: string, data: T) => {
     if (channel.current) {
-      channel.current.trigger(event, {
+      const triggerData = {
         ...data,
-        from: myId,
-      })
-      return
+        from: myMembership.id,
+        fromName: myMembership.name,
+      }
+      channel.current.trigger(event, triggerData)
+      return triggerData
     }
     throw new Error("Channel has not been initialized")
   }
 
-  const bind = <T extends object>(
-    event: string,
-    callback: (data: T) => void
-  ): boolean => {
-    if (channel.current) {
-      if (eventsBinded.includes(event)) {
-        return false
+  const bind = useCallback(
+    <T extends object & Presence>(
+      event: string,
+      callback: (data: T) => void
+    ): boolean => {
+      if (channel.current) {
+        if (eventsBinded.includes(event)) {
+          return false
+        }
+        channel.current.bind(event, callback)
+        setEventsBinded((oldState) => [...oldState, event])
+        return true
       }
-      channel.current.bind(event, callback)
-      setEventsBinded((oldState) => [...oldState, event])
-      return true
-    }
-    throw new Error("Channel has not been initialized")
-  }
+      throw new Error("Channel has not been initialized")
+    },
+    [eventsBinded]
+  )
 
   const getErrorMessage = () => errorMessage.current
 
@@ -161,7 +168,8 @@ export const usePresencePusher = ({
     trigger,
     channelName,
     onlineUsers,
-    myId,
+    myId: myMembership.id,
     errorMessage: getErrorMessage,
+    eventsBinded,
   }
 }
