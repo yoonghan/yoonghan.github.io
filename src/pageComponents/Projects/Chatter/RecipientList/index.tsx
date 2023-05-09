@@ -12,11 +12,7 @@ export type Recipient = {
   name: string
 }
 
-const RecipientList = ({
-  recipients,
-  recipientTriggered,
-  disabled = false,
-}: Props) => {
+const RecipientList = ({ recipients, recipientTriggered, disabled }: Props) => {
   const callUser = (recipient: Recipient) => {
     recipientTriggered(recipient)
   }
