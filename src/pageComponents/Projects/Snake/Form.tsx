@@ -73,17 +73,6 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
           />
         </div>
         <div>
-          <label htmlFor="worldDimension">World Dimension:</label>
-          <input
-            type="number"
-            max="100"
-            min="3"
-            onChange={updateInput}
-            value={formValues.worldDimension}
-            id="worldDimension"
-          />
-        </div>
-        <div>
           <label htmlFor="snakeSize">Snake Size:</label>
           <input
             type="number"
@@ -92,6 +81,17 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
             onChange={updateInput}
             value={formValues.snakeSize}
             id="snakeSize"
+          />
+        </div>
+        <div>
+          <label htmlFor="worldDimension">World Dimension:</label>
+          <input
+            type="number"
+            max="100"
+            min="3"
+            onChange={updateInput}
+            value={formValues.worldDimension}
+            id="worldDimension"
           />
         </div>
         <div>

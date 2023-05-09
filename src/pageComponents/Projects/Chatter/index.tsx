@@ -24,6 +24,7 @@ interface Props {
 }
 
 const Chatter = ({ appKey, cluster }: Props) => {
+  const [enableReceiptList, setEnableReceiptList] = useState(false)
   const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
@@ -74,6 +75,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
     (connection: EnumConnectionStatus) => {
       switch (connection) {
         case EnumConnectionStatus.Connected:
+          setEnableReceiptList(true)
           setRecordingStarted(true)
           break
         case EnumConnectionStatus.Error:
@@ -92,6 +94,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
   const shouldUpdatedOfflineUserEnd = useCallback(
     (user: Member) => {
       if (connectedUser.current === user.id) {
+        setEnableReceiptList(true)
         promptMessage(`User (${user.info.name}) has left the chat`)
         return true
       }
@@ -160,6 +163,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
               })
             } else {
               createAnswer(msg.sdp, (sdp) => {
+                setEnableReceiptList(false)
                 connectedUser.current = msg.from
                 trigger("client-answer", {
                   sdp: sdp,
@@ -204,11 +208,14 @@ const Chatter = ({ appKey, cluster }: Props) => {
       })
 
       bind<ClientReject>("client-reject", (answer) => {
-        if (answer.room === room)
+        setEnableReceiptList(true)
+        if (answer.room === room) {
           promptMessage(`Call to ${answer.fromName} was politely declined`)
+        }
       })
 
       createOffer((desc) => {
+        setEnableReceiptList(false)
         trigger("client-sdp", {
           sdp: desc,
           room,
@@ -237,17 +244,26 @@ const Chatter = ({ appKey, cluster }: Props) => {
           videoFailedCallback={promptMessage}
         ></VideoChat>
       </div>
-      <h3>Idenfication</h3>
-      <ChatterForm
-        startStopSenderVideo={startStopVideo}
-        senderButtonCanStop={recordingStarted}
-        senderButtonDisabled={recordingStarted && stream == undefined}
-      />
-      <h3>List of online callers</h3>
-      <RecipientList
-        recipients={onlineUsers || []}
-        recipientTriggered={callUser}
-      />
+
+      <p>The page supports interactions of only 2 users.</p>
+      <section>
+        <h3>Idenfication</h3>
+        <ChatterForm
+          startStopSenderVideo={startStopVideo}
+          senderButtonCanStop={recordingStarted}
+          senderButtonDisabled={recordingStarted && stream == undefined}
+        />
+      </section>
+      <br />
+      <section>
+        <h3>List of online callers</h3>
+        <p>Choose a participant to make a call to, by clicking on it.</p>
+        <RecipientList
+          recipients={onlineUsers || []}
+          recipientTriggered={callUser}
+          disabled={!enableReceiptList}
+        />
+      </section>
     </div>
   )
 }
