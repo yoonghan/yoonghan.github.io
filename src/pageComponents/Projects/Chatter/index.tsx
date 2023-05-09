@@ -1,11 +1,22 @@
+import AlertDialog, {
+  Props as AlertProps,
+} from "@/components/Dialog/AlertDialog"
+import ConfirmationDialog, {
+  Props as ConfirmationProps,
+} from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
 import { EnumConnectionStatus } from "@/components/pusher/type/ConnectionStatus"
-import { usePresencePusher } from "@/components/pusher/usePresencePusher"
+import { Member } from "@/components/pusher/type/Member"
+import {
+  Presence,
+  usePresencePusher,
+} from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
 import styles from "./Chatter.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
-import { useWebRtc } from "./useWebRtc"
+import { useWebRtc } from "../../../components/webrtc/useWebRtc"
 
 interface Props {
   appKey: string
@@ -13,33 +24,47 @@ interface Props {
 }
 
 const Chatter = ({ appKey, cluster }: Props) => {
-  const [videoStarted, setVideoStarted] = useState(false)
+  const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
   const remoteVideoRef = useRef<VideoStreamHandler>(null)
+  const connectedUser = useRef("")
+  const promptMessageDialog = useDialogCreation<AlertProps>(AlertDialog)
+  const promptConfirmDialog =
+    useDialogCreation<ConfirmationProps>(ConfirmationDialog)
 
-  const alertError = useCallback((exception: unknown) => {
-    alert(exception)
-  }, [])
+  const promptMessage = useCallback(
+    (exception: unknown | string) => {
+      promptMessageDialog({
+        title: "Alert",
+        message: `${exception}`,
+        onOk: () => {},
+      })
+    },
+    [promptMessageDialog]
+  )
 
-  const setWebRtcRemoteStream = useCallback((mediaStream: MediaStream) => {
-    if (remoteVideoRef.current !== null) {
-      remoteVideoRef.current.stream(mediaStream)
-    } else {
-      alert("No stream")
-    }
-  }, [])
+  const setWebRtcRemoteStream = useCallback(
+    (mediaStream: MediaStream) => {
+      if (remoteVideoRef.current !== null) {
+        remoteVideoRef.current.stream(mediaStream)
+      } else {
+        promptMessage("No stream")
+      }
+    },
+    [promptMessage]
+  )
 
   const webRtcErrorCallback = useCallback(
     (errorMessage: string) => {
-      alertError(errorMessage)
+      promptMessage(errorMessage)
     },
-    [alertError]
+    [promptMessage]
   )
 
   const {
     initialize: initializeWebRtc,
     createOffer,
-    answerCall,
+    acknowledgeAnswer,
     createAnswer,
     addIceCandidate,
     disconnect: disconnectWebRtc,
@@ -49,18 +74,30 @@ const Chatter = ({ appKey, cluster }: Props) => {
     (connection: EnumConnectionStatus) => {
       switch (connection) {
         case EnumConnectionStatus.Connected:
-          setVideoStarted(true)
+          setRecordingStarted(true)
           break
         case EnumConnectionStatus.Error:
-          alert("User unable to connect, try with a new name")
+          promptMessage("User unable to connect, try with a new name")
         case EnumConnectionStatus.Disconnected:
-          setVideoStarted(false)
+          setRecordingStarted(false)
           setStream(undefined)
           disconnectWebRtc()
+          remoteVideoRef.current?.stopStream()
           break
       }
     },
-    [disconnectWebRtc]
+    [disconnectWebRtc, promptMessage]
+  )
+
+  const shouldUpdatedOfflineUserEnd = useCallback(
+    (user: Member) => {
+      if (connectedUser.current === user.id) {
+        promptMessage(`User (${user.info.name}) has left the chat`)
+        return true
+      }
+      return false
+    },
+    [promptMessage]
   )
 
   const { connect, disconnect, onlineUsers, bind, trigger, myId } =
@@ -69,7 +106,15 @@ const Chatter = ({ appKey, cluster }: Props) => {
       cluster,
       authEndpoint: "/api/pusherauth",
       updateConnectionCallback,
+      shouldUpdatedOfflineUserEnd,
     })
+
+  type ClientCandidate = { room: string; candidate: RTCIceCandidate } & Presence
+  type ClientReject = { room: string } & Presence
+  type ClientAnswerAndSdp = {
+    room: string
+    sdp: RTCSessionDescriptionInit
+  } & Presence
 
   const localVideoTracksCallback = useCallback(
     (mediaStream: MediaStream | undefined) => {
@@ -82,67 +127,85 @@ const Chatter = ({ appKey, cluster }: Props) => {
           })
         })
 
-        bind<{ room: string; sdp: RTCSessionDescriptionInit }>(
-          "client-answer",
-          (answer) => {
-            if (answer.room === myId) answerCall(answer.sdp)
+        bind<ClientAnswerAndSdp>("client-answer", (answer) => {
+          if (answer.room === myId) {
+            connectedUser.current = answer.from
+            acknowledgeAnswer(answer.sdp)
           }
-        )
+        })
 
-        bind<{ room: string; from: string; sdp: RTCSessionDescriptionInit }>(
-          "client-sdp",
-          (msg) => {
-            if (msg.room === myId) {
-              const answer = confirm(
-                "You have a call from: " +
-                  msg.from +
-                  ". Would you like to answer?"
-              )
-              if (!answer) {
-                return trigger("client-reject", {
-                  room: msg.room,
-                  rejected: myId,
+        bind<ClientAnswerAndSdp>("client-sdp", async (msg) => {
+          if (msg.room === myId) {
+            let answer = await new Promise((resolve, reject) => {
+              promptConfirmDialog({
+                title: "You got a call",
+                message: `You have a call from (${msg.fromName}). Would you like to answer?`,
+                onYesClick: () => {
+                  resolve(true)
+                },
+                onNoClick: () => {
+                  resolve(false)
+                },
+                onCancel: () => {
+                  resolve(false)
+                },
+                isNotModal: true,
+              })
+            })
+
+            if (!answer) {
+              return trigger("client-reject", {
+                room: msg.room,
+                rejected: myId,
+              })
+            } else {
+              createAnswer(msg.sdp, (sdp) => {
+                connectedUser.current = msg.from
+                trigger("client-answer", {
+                  sdp: sdp,
+                  room: msg.from,
                 })
-              } else {
-                createAnswer(msg.sdp, (sdp) => {
-                  trigger("client-answer", {
-                    sdp: sdp,
-                    room: msg.from,
-                  })
-                })
-              }
+              })
             }
           }
-        )
+        })
       }
     },
-    [answerCall, bind, createAnswer, initializeWebRtc, myId, stream, trigger]
+    [
+      acknowledgeAnswer,
+      bind,
+      createAnswer,
+      initializeWebRtc,
+      myId,
+      promptConfirmDialog,
+      stream,
+      trigger,
+    ]
   )
 
   const startStopVideo = useCallback(
     (username: string) => {
-      if (!videoStarted) {
+      if (!recordingStarted) {
         connect(username.toLocaleLowerCase())
       } else {
         disconnect()
       }
     },
-    [connect, disconnect, videoStarted]
+    [connect, disconnect, recordingStarted]
   )
 
   const callUser = useCallback(
     (recipient: Recipient) => {
       const room = recipient.id
-      bind<{ room: string; candidate: RTCIceCandidate }>(
-        "client-candidate",
-        (msg) => {
-          if (msg.room === room) addIceCandidate(msg.candidate)
+      bind<ClientCandidate>("client-candidate", (msg) => {
+        if (msg.room === room) {
+          addIceCandidate(msg.candidate)
         }
-      )
+      })
 
-      bind<{ room: string; from: string }>("client-reject", (answer) => {
+      bind<ClientReject>("client-reject", (answer) => {
         if (answer.room === room)
-          alert("call to " + answer.from + " was politely declined")
+          promptMessage(`Call to ${answer.fromName} was politely declined`)
       })
 
       createOffer((desc) => {
@@ -152,7 +215,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
         })
       })
     },
-    [addIceCandidate, bind, createOffer, trigger]
+    [addIceCandidate, bind, createOffer, promptMessage, trigger]
   )
 
   return (
@@ -161,24 +224,24 @@ const Chatter = ({ appKey, cluster }: Props) => {
         <VideoChat
           id="host-video"
           muted={true}
-          play={videoStarted}
+          record={recordingStarted}
           videoTracksCallback={localVideoTracksCallback}
-          videoFailedCallback={alertError}
+          videoFailedCallback={promptMessage}
         ></VideoChat>
         <VideoChat
           id="remote-video"
           muted={false}
-          play={false}
+          record={false}
           ref={remoteVideoRef}
           videoTracksCallback={() => {}}
-          videoFailedCallback={(exception) => alert(exception)}
+          videoFailedCallback={promptMessage}
         ></VideoChat>
       </div>
       <h3>Idenfication</h3>
       <ChatterForm
         startStopSenderVideo={startStopVideo}
-        senderButtonCanStop={videoStarted}
-        senderButtonDisabled={videoStarted && stream == undefined}
+        senderButtonCanStop={recordingStarted}
+        senderButtonDisabled={recordingStarted && stream == undefined}
       />
       <h3>List of online callers</h3>
       <RecipientList

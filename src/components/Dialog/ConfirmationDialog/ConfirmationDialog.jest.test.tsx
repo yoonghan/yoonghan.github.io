@@ -40,6 +40,23 @@ describe("ConfirmationDialog", () => {
     screen.getByRole("button", { name: "Oh uh" })
   })
 
+  it("should have a x if it is notModal", async () => {
+    render(
+      <ConfirmationDialog
+        title={"I am Title"}
+        message={"Message one"}
+        onCancel={jest.fn()}
+        onYesClick={jest.fn()}
+        onNoClick={jest.fn()}
+        yesButtonText={"Yupe"}
+        noButtonText={"Oh uh"}
+        isNotModal={true}
+      />
+    )
+
+    screen.getByRole("button", { name: "×" })
+  })
+
   describe("Button clicks", () => {
     const renderComponent = () => {
       const onYesClick = jest.fn()

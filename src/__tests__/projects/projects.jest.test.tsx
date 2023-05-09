@@ -1,9 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import "../../__mocks__/routerMock"
-import Projects from "@/pages/projects"
+import Projects, { cards } from "@/pages/projects"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import { assertScrollToTop } from "../utils/_scrollToTop"
+import { findPageByPath } from "@/config/pages"
 
 describe("Projects", () => {
   const renderComponent = () => {
@@ -31,5 +32,13 @@ describe("Projects", () => {
   it("should render the page with footer", () => {
     renderComponent()
     assertFooter()
+  })
+
+  it("should have cards pointing to right projects", () => {
+    const localCards = cards.filter((card) => card.href.startsWith("/"))
+    localCards.forEach((localCard) => {
+      const localCardHref = localCard.href
+      expect(findPageByPath(localCardHref)?.path).toBe(localCardHref)
+    })
   })
 })
