@@ -16,11 +16,11 @@ const WebRtc = ({ appKey, cluster }: Props) => {
     <>
       <HtmlHead
         title={"Web RTC"}
-        description={"Video/Chat/Data sharing with WebRTC"}
+        description={"Video,Chat,Data sharing with WebRTC"}
       />
       <Menu />
       <div className="page-aligned-container">
-        <h1>WebRTC video call, only supports 2 users for now</h1>
+        <h1>Video call with Web RTC</h1>
         <Chatter appKey={appKey} cluster={cluster} />
       </div>
       <Footer />
