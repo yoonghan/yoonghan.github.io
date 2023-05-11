@@ -23,7 +23,7 @@ interface Props {
   cluster: string
 }
 
-const Chatter = ({ appKey, cluster }: Props) => {
+const WebrtcVideo = ({ appKey, cluster }: Props) => {
   const [enableReceiptList, setEnableReceiptList] = useState(false)
   const [recordingStarted, setRecordingStarted] = useState(false)
   const [stream, setStream] = useState<MediaStream>()
@@ -247,7 +247,7 @@ const Chatter = ({ appKey, cluster }: Props) => {
 
       <p>The page supports interactions of only 2 users.</p>
       <section>
-        <h3>Idenfication</h3>
+        <h3>Identification</h3>
         <ChatterForm
           startStopSenderVideo={startStopVideo}
           senderButtonCanStop={recordingStarted}
@@ -268,4 +268,4 @@ const Chatter = ({ appKey, cluster }: Props) => {
   )
 }
 
-export default Chatter
+export default WebrtcVideo
