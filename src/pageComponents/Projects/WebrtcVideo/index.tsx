@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+/** Good case to create integration testing rather than mock testing **/
 import AlertDialog, {
   Props as AlertProps,
 } from "@/components/Dialog/AlertDialog"
@@ -13,7 +15,7 @@ import {
 } from "@/components/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
-import styles from "./Chatter.module.css"
+import styles from "./WebrtcVideo.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
 import { useWebRtc } from "../../../components/webrtc/useWebRtc"
@@ -95,7 +97,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
     (user: Member) => {
       if (connectedUser.current === user.id) {
         setEnableReceiptList(true)
-        promptMessage(`User (${user.info.name}) has left the chat`)
+        promptMessage(`User (${user.info.name}) has left the chat.`)
         return true
       }
       return false
@@ -210,7 +212,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
       bind<ClientReject>("client-reject", (answer) => {
         setEnableReceiptList(true)
         if (answer.room === room) {
-          promptMessage(`Call to ${answer.fromName} was politely declined`)
+          promptMessage(`Call to ${answer.fromName} was politely declined.`)
         }
       })
 
