@@ -83,8 +83,13 @@ export const setVideo = () => {
   const oldMedia = window.navigator.mediaDevices
   Object.defineProperty(window.navigator, "mediaDevices", {
     value: {
-      getUserMedia: () => Promise.resolve(true),
+      getUserMedia: () =>
+        new Promise((resolve) => {
+          resolve({ one: 1 })
+        }),
     },
   })
-  return oldMedia
+  return () => {
+    Object.defineProperty(window.navigator, "mediaDevices", { ...oldMedia })
+  }
 }
