@@ -33,12 +33,13 @@ const ChatterForm = ({
       if (
         nonWhiteSpaceUsername !== "" &&
         isOnlyAlphabetsAndNumberAndSpace(nonWhiteSpaceUsername) &&
-        nonWhiteSpaceUsername.length > 2
+        nonWhiteSpaceUsername.length > 2 &&
+        nonWhiteSpaceUsername.length < 21
       ) {
         startStopSenderVideo(username)
       } else {
         setErrorMessage(
-          "Username can only contains alphabets and numbers with 3 min characters."
+          "Username can only contains alphabets and numbers with 3 minimum words."
         )
       }
     },

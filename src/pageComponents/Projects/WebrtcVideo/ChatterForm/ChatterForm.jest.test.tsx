@@ -69,7 +69,7 @@ describe("ChatterFrom", () => {
     expect(startStopSenderVideo).not.toHaveBeenCalled()
   })
 
-  it("should not allow to submit if name is less than 3 characters", async () => {
+  it("should not allow to submit if name is 3 to 20 characters", async () => {
     const startStopSenderVideo = jest.fn()
     renderComponent({ startStopSenderVideo })
     const input = screen.getByLabelText("My user name:")
@@ -77,11 +77,16 @@ describe("ChatterFrom", () => {
     expect(input).toHaveValue("na")
     await userEvent.click(screen.getByRole("button", { name: "Start" }))
     expect(startStopSenderVideo).not.toHaveBeenCalled()
+    await userEvent.clear(input)
+    await userEvent.type(input, "n".repeat(21))
+    expect(input).toHaveValue("n".repeat(21))
+    await userEvent.click(screen.getByRole("button", { name: "Start" }))
+    expect(startStopSenderVideo).not.toHaveBeenCalled()
   })
 
   it("should hide error once user retype", async () => {
     const errorMessage =
-      "Username can only contains alphabets and numbers with 3 min characters."
+      "Username can only contains alphabets and numbers with 3 minimum words."
     renderComponent({})
     const input = screen.getByLabelText("My user name:")
     await userEvent.type(input, "@")
