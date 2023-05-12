@@ -212,7 +212,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
       bind<ClientReject>("client-reject", (answer) => {
         setEnableReceiptList(true)
         if (answer.room === room) {
-          promptMessage(`Call to ${answer.fromName} was politely declined.`)
+          promptMessage(`Call to (${answer.fromName}) was politely declined.`)
         }
       })
 

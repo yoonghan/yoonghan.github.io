@@ -60,19 +60,19 @@ test.describe("Webrtc", () => {
     const caller = await startCall("Jessica Alba")
     const receiver = await startCall("Michelle Konikawa")
 
-    await caller.getByRole("button", { name: "Call michelle konikawa" }).click()
+    await caller.getByRole("button", { name: "Call Michelle konikawa" }).click()
 
     await receiver.waitForTimeout(2000)
 
     expect(await receiver.content()).toContain(
-      "You have a call from (jessica alba). Would you like to answer?"
+      "You have a call from (Jessica alba). Would you like to answer?"
     )
 
     await receiver.getByRole("button", { name: "No" }).click()
     await caller.waitForTimeout(1000)
 
     expect(await caller.content()).toContain(
-      "Call to michelle konikawa was politely declined."
+      "Call to (Michelle konikawa) was politely declined."
     )
     await caller.getByRole("button", { name: "Ok" }).click()
     await caller.waitForTimeout(1000)
@@ -90,7 +90,7 @@ test.describe("Webrtc", () => {
     await receiver.waitForTimeout(2000)
 
     expect(await receiver.content()).toContain(
-      "You have a call from (jupiter). Would you like to answer?"
+      "You have a call from (Jupiter). Would you like to answer?"
     )
 
     await receiver.getByRole("button", { name: "Yes" }).click()
@@ -99,7 +99,7 @@ test.describe("Webrtc", () => {
     await receiver.getByRole("button", { name: "Stop" }).click()
     await caller.waitForTimeout(1000)
 
-    expect(await caller.content()).toContain("User (mars) has left the chat.")
+    expect(await caller.content()).toContain("User (Mars) has left the chat.")
 
     await caller.getByRole("button", { name: "Ok" }).click()
     await caller.waitForTimeout(1000)
