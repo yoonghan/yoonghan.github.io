@@ -1,5 +1,4 @@
 import Footer from "@/components/Footer"
-import Head from "next/head"
 import HtmlHead from "@/components/HtmlHead"
 import Card from "@/components/Card"
 import { memo } from "react"
@@ -12,12 +11,6 @@ const Experiments = ({}) => {
   return (
     <>
       <HtmlHead title={"Experiments"} description={"Experimentals."} />
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css"
-        />
-      </Head>
       <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
