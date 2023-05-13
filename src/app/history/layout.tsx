@@ -1,8 +1,9 @@
 import "@/styles/global.css"
 
 export const metadata = {
-  title: "Walcron History",
-  description: "Site history and External knowledge and things I worked on.",
+  title: "Walcron Coorperation",
+  description:
+    "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
 }
 
 export default function RootLayout({
