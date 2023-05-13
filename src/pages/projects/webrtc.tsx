@@ -37,8 +37,6 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export const config = { runtime: "nodejs" }
-
 export default withNonEmptyEnvCheck(
   WebRtc,
   "Pusher initialization failed due to missing environment variable."

@@ -1,5 +1,5 @@
 import "../../__mocks__/routerMock"
-import Amp, { config } from "@/pages/experiments/amp"
+import Amp from "@/pages/experiments/amp"
 import { render, screen } from "@testing-library/react"
 
 describe("Amp", () => {
@@ -8,9 +8,5 @@ describe("Amp", () => {
     expect(
       screen.getByText("Currently we are still in development phase for AMP.")
     ).toBeInTheDocument()
-  })
-
-  it("should expose config as true", () => {
-    expect(config).toStrictEqual({ amp: true, runtime: "nodejs" })
   })
 })

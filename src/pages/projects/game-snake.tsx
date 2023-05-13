@@ -17,6 +17,4 @@ const GameSnake = () => {
   )
 }
 
-export const config = { runtime: "nodejs" }
-
 export default GameSnake
