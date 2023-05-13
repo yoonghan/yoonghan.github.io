@@ -199,7 +199,7 @@ describe("all sites are defined", () => {
 
   it("should be declare in actual page/ directory", async () => {
     const pagesFolder = "./src/pages"
-    const ignoredFiles = ["/_app", "/_document"]
+    const ignoredFiles = ["/_app", "/_document", "/404"]
     const allPages = remapFiles(
       getFiles(pagesFolder),
       pagesFolder,

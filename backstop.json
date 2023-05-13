@@ -16,6 +16,16 @@
   "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
+      "label": "Page not found",
+      "url": "http://localhost:3000/iamnotfound",
+      "delay": 0,
+      "postInteractionWait": 0,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": true
+    },
+    {
       "label": "Homepage",
       "url": "http://localhost:3000",
       "delay": 500,
