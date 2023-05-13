@@ -19,6 +19,7 @@
       "@/components/*": ["src/components/*"],
       "@/pageComponents/*": ["src/pageComponents/*"],
       "@/pages/*": ["src/pages/*"],
+      "@/app/*": ["src/app/*"],
       "@/styles/*": ["styles/*"],
       "@/config/*": ["src/config/*"],
       "@/transport/*": ["src/transport/*"],

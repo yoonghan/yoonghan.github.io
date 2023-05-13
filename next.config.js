@@ -53,8 +53,5 @@ module.exports = withBundleAnalyzer(
         },
       ]
     },
-    experimental: {
-      appDir: true,
-    },
   })
 )
