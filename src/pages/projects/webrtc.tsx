@@ -1,10 +1,9 @@
 import Footer from "@/components/Footer"
 import HtmlHead from "@/components/HtmlHead"
 import Menu from "@/components/Menu"
-import { usePresencePusher } from "@/components/pusher/usePresencePusher"
-import Chatter from "@/pageComponents/Projects/Chatter"
+import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
+import WebrtcVideo from "@/pageComponents/Projects/WebrtcVideo"
 import { GetStaticProps } from "next"
-import { useEffect } from "react"
 
 interface Props {
   appKey: string
@@ -21,7 +20,7 @@ const WebRtc = ({ appKey, cluster }: Props) => {
       <Menu />
       <div className="page-aligned-container">
         <h1>Video call with Web RTC</h1>
-        <Chatter appKey={appKey} cluster={cluster} />
+        <WebrtcVideo appKey={appKey} cluster={cluster} />
       </div>
       <Footer />
     </>
@@ -38,6 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export const config = { runtime: "nodejs" }
-
-export default WebRtc
+export default withNonEmptyEnvCheck(
+  WebRtc,
+  "Pusher initialization failed due to missing environment variable."
+)

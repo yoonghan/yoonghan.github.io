@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import "../../__mocks__/routerMock"
 import "../../__mocks__/snakeWasmMock"
-import GameSnake, { config } from "@/pages/projects/game-snake"
+import GameSnake from "@/pages/projects/game-snake"
 import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import userEvent from "@testing-library/user-event"
@@ -62,9 +62,5 @@ describe("Snake Game", () => {
   it("should render the page with footer", () => {
     renderComponent()
     assertFooter()
-  })
-
-  it("should expose config with runtime set to nodejs as edge will not work", () => {
-    expect(config).toStrictEqual({ runtime: "nodejs" })
   })
 })

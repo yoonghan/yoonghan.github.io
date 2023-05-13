@@ -5,7 +5,7 @@ import { assertFooter } from "../utils/_footer"
 import { assertMenu } from "../utils/_menu"
 import { EmptyStaticPropsContext, setEnv } from "../../__mocks__/apiMock"
 import React from "react"
-import Messenger, { config, getStaticProps } from "@/pages/projects/messenger"
+import Messenger, { getStaticProps } from "@/pages/projects/messenger"
 
 describe("Messenger", () => {
   const renderComponent = () =>
@@ -19,10 +19,6 @@ describe("Messenger", () => {
       await screen.findByText("Status: Start Connecting")
     ).toBeInTheDocument()
     assertFooter()
-  })
-
-  it("should expose config with runtime set to nodejs as edge will not work", () => {
-    expect(config).toStrictEqual({ runtime: "nodejs" })
   })
 
   it("should get env props wrapped in props object", async () => {

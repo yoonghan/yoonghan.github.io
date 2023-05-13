@@ -1,6 +1,7 @@
 import {
   isOnlyAlphabetsAndNumberAndSpace,
   removeAllWhiteSpaces,
+  capitalizeFirstWord,
 } from "@/util/regex"
 import { NextApiRequest, NextApiResponse } from "next"
 import Pusher, { PresenceChannelData } from "pusher"
@@ -38,8 +39,9 @@ export class PusherAPIClient {
   }
 }
 
-const extractPresenceData = (req: NextApiRequest) => {
-  const { username } = req.query
+export const extractPresenceData = (
+  username: string | string[] | undefined
+) => {
   if (
     typeof username !== "string" ||
     username.trim() === "" ||
@@ -48,9 +50,11 @@ const extractPresenceData = (req: NextApiRequest) => {
     return null
   }
 
+  const trimmedUsername = username.trim()
+
   return {
-    user_id: removeAllWhiteSpaces(username),
-    user_info: { name: username },
+    user_id: removeAllWhiteSpaces(trimmedUsername.toLocaleLowerCase()),
+    user_info: { name: capitalizeFirstWord(trimmedUsername) },
   }
 }
 
@@ -82,7 +86,7 @@ const postMessage = async (req: NextApiRequest, res: NextApiResponse) => {
   const { socket_id, channel_name } = req.body
   const client = PusherAPIClient.client
 
-  const presenceData = extractPresenceData(req)
+  const presenceData = extractPresenceData(req.query.username)
   if (client === null || client === undefined) {
     res
       .status(500)

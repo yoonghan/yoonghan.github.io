@@ -1,4 +1,8 @@
-import { isOnlyAlphabetsAndNumberAndSpace, removeAllWhiteSpaces } from "./regex"
+import {
+  isOnlyAlphabetsAndNumberAndSpace,
+  removeAllWhiteSpaces,
+  capitalizeFirstWord,
+} from "./regex"
 
 describe("regex", () => {
   describe("isOnlyAlphabetsAndNumberAndSpace", () => {
@@ -21,6 +25,14 @@ describe("regex", () => {
     it("should remove all white spaces", () => {
       expect(removeAllWhiteSpaces("ABC123")).toBe("ABC123")
       expect(removeAllWhiteSpaces("    ABC   123 ")).toBe("ABC123")
+    })
+  })
+
+  describe("capitalizeFirstWord", () => {
+    it("should capitalize first word", () => {
+      expect(capitalizeFirstWord("ABC123")).toBe("ABC123")
+      expect(capitalizeFirstWord("abc123")).toBe("Abc123")
+      expect(capitalizeFirstWord("johnny depp")).toBe("Johnny depp")
     })
   })
 })
