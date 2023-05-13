@@ -96,8 +96,6 @@ const CheckList = ({ postedCronJob }: Props) => {
   )
 }
 
-export const config = { runtime: "nodejs" }
-
 const cleanupPostResponse = (post: CronJob | null): PostedJob | undefined => {
   if (post && post !== null) {
     return {

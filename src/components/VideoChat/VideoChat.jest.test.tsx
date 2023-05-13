@@ -5,8 +5,14 @@ import { useRef } from "react"
 import userEvent from "@testing-library/user-event"
 
 describe("VideoChat", () => {
+  var oldVideoFn: () => void
+
   beforeAll(() => {
-    setVideo()
+    oldVideoFn = setVideo()
+  })
+
+  afterAll(() => {
+    oldVideoFn()
   })
 
   const renderComponent = ({
@@ -55,7 +61,7 @@ describe("VideoChat", () => {
     expect(video.muted).toBe(true)
   })
 
-  it("should call getMedia devices failed will trigger videoFailedCallback", async () => {
+  it("should getMediaDevices failed/rejected, it will trigger videoFailedCallback", async () => {
     const failCallback = jest.fn()
     jest
       .spyOn(window.navigator.mediaDevices, "getUserMedia")

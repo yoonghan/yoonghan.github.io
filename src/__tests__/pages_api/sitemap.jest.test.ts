@@ -1,4 +1,4 @@
-import sitemapGenerator from "@/pages/api/sitemap"
+import sitemapGenerator, { config } from "@/pages/api/sitemap"
 import { NextRequest } from "next/server"
 import "../../__mocks__/fetchMock"
 
@@ -30,5 +30,9 @@ describe("sitemap", () => {
     expect(responseText).toContain(
       `<url><loc>https://www.walcron.com/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`
     )
+  })
+
+  it("should expose config with runtime set to edge as overrides does not work", () => {
+    expect(config).toStrictEqual({ runtime: "edge" })
   })
 })

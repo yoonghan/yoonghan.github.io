@@ -7,4 +7,14 @@ function removeAllWhiteSpaces(input) {
   return input.replace(/\s/g, "")
 }
 
-module.exports = { isOnlyAlphabetsAndNumberAndSpace, removeAllWhiteSpaces }
+function capitalizeFirstWord(str) {
+  return str.replace(/(?:^\w)/, function (word) {
+    return word.toUpperCase()
+  })
+}
+
+module.exports = {
+  isOnlyAlphabetsAndNumberAndSpace,
+  removeAllWhiteSpaces,
+  capitalizeFirstWord,
+}
