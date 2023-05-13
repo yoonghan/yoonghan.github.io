@@ -38,4 +38,6 @@ const handler = (req: NextRequest): Response =>
     }
   )
 
+export const config = { runtime: "edge" }
+
 export default handler
