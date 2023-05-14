@@ -1,16 +1,18 @@
 import { useMemo } from "react"
 import styles from "./Timeline.module.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconProp } from "@fortawesome/fontawesome-svg-core"
 
-interface Props {
+export interface Props {
   events: Array<IEvent>
 }
 
-interface IEvent {
+export interface IEvent {
   id: string
   date: string
   special?: string
   desc: string
-  faIcon?: string
+  faIcon?: IconProp
 }
 
 const Timeline = ({ events }: Props) => {
@@ -20,7 +22,9 @@ const Timeline = ({ events }: Props) => {
         <span></span>
         <span>
           {faIcon ? (
-            <i className={`${styles.icon} ${faIcon}`}></i>
+            <i className={`${styles.icon}`}>
+              <FontAwesomeIcon icon={faIcon} />
+            </i>
           ) : (
             <i className={styles.dot}></i>
           )}
