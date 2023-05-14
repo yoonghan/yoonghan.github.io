@@ -1,4 +1,13 @@
-import * as FontAwesome from "@fortawesome/free-solid-svg-icons"
+import {
+  faLightbulb,
+  faRocket,
+  faAtom,
+  faSpinner,
+  faServer,
+  faTractor,
+  faCog,
+  faTelevision,
+} from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
 export const nonFictionBooks = [
@@ -39,20 +48,21 @@ export const nonFictionBooks = [
       "Environment makes what you are, without looking out the window everything may had seem better.",
   },
 ]
+
 export const siteHistory: IEvent[] = [
   {
     id: "2014",
     date: "2014",
     special: "Launch of idea",
     desc: "Started off as Jom Jaring and hosted on Wix",
-    faIcon: FontAwesome.faLightbulb,
+    faIcon: faLightbulb,
   },
   {
     id: "2015",
     date: "2015",
     special: "Self-hosting website",
     desc: "Relaunch as Walcron and and host to Openshift",
-    faIcon: FontAwesome.faRocket,
+    faIcon: faRocket,
   },
   {
     id: "2016",
@@ -64,7 +74,7 @@ export const siteHistory: IEvent[] = [
     date: "2017",
     special: "Learned along React Native",
     desc: "Migrated from Vanilla JS to ReactJS",
-    faIcon: FontAwesome.faAtom,
+    faIcon: faAtom,
   },
   {
     id: "2018",
@@ -82,30 +92,30 @@ export const siteHistory: IEvent[] = [
     id: "2020",
     date: "2020",
     desc: "Release with parallaxing, migrated to Now 2.0",
-    faIcon: FontAwesome.faSpinner,
+    faIcon: faSpinner,
   },
   {
     id: "2022",
     date: "2022",
     desc: "Migrate to Latest NextJS with a full CI/CD deployment",
-    faIcon: FontAwesome.faServer,
+    faIcon: faServer,
   },
   {
     id: "2023",
     date: "Jan-2023",
     desc: "Migrated to NextJS 13",
-    faIcon: FontAwesome.faTractor,
+    faIcon: faTractor,
   },
   {
     id: "March-2023",
     date: "March-2023",
     desc: "Development focus on Rust",
-    faIcon: FontAwesome.faCog,
+    faIcon: faCog,
   },
   {
     id: "May-2023",
     date: "May-2023",
     desc: "Checkout on Web RTC technology",
-    faIcon: FontAwesome.faTelevision,
+    faIcon: faTelevision,
   },
 ]
