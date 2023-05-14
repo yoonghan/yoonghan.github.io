@@ -1,9 +1,11 @@
 import "@/styles/global.css"
+import { config } from "@fortawesome/fontawesome-svg-core"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+config.autoAddCss = false
 
 export const metadata = {
-  title: "Walcron Coorperation",
-  description:
-    "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
+  title: "Walcron History",
+  description: "Site history and External knowledge and things I worked on.",
 }
 
 export default function RootLayout({

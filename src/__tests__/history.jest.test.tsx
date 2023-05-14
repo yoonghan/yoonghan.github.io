@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import "../__mocks__/routerMock"
-import History from "@/pages/history"
+import History from "@/app/history/page"
 import { assertFooter } from "./utils/_footer"
 import { assertMenu } from "./utils/_menu"
 import { assertScrollToTop } from "./utils/_scrollToTop"

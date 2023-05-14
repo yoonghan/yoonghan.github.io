@@ -3,7 +3,7 @@ import HeaderOne from "@/components/HeaderOne"
 import HtmlHead from "@/components/HtmlHead"
 import Timeline from "@/components/Timeline"
 import Table from "@/components/Table"
-import { nonFictionBooks, siteHistory } from "@/pageComponents/History/config"
+import { nonFictionBooks, siteHistory } from "@/app/history/config"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import Menu from "@/components/Menu"
@@ -11,12 +11,6 @@ import Menu from "@/components/Menu"
 const History = ({}) => {
   return (
     <>
-      <HtmlHead
-        title={"Walcron History"}
-        description={
-          "Site history and External knowledge and things I worked on."
-        }
-      />
       <Menu />
       <div className={"page-aligned-container"}>
         <HeaderOne title={"Site's history"} isLined={true} />
