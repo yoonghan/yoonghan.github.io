@@ -1,3 +1,15 @@
+import {
+  faLightbulb,
+  faRocket,
+  faAtom,
+  faSpinner,
+  faServer,
+  faTractor,
+  faCog,
+  faTelevision,
+} from "@fortawesome/free-solid-svg-icons"
+import { IEvent } from "@/components/Timeline"
+
 export const nonFictionBooks = [
   {
     title: "The subtle art of not giving a f**k",
@@ -36,20 +48,21 @@ export const nonFictionBooks = [
       "Environment makes what you are, without looking out the window everything may had seem better.",
   },
 ]
-export const siteHistory = [
+
+export const siteHistory: IEvent[] = [
   {
     id: "2014",
     date: "2014",
     special: "Launch of idea",
     desc: "Started off as Jom Jaring and hosted on Wix",
-    faIcon: "fas fa-lightbulb",
+    faIcon: faLightbulb,
   },
   {
     id: "2015",
     date: "2015",
     special: "Self-hosting website",
     desc: "Relaunch as Walcron and and host to Openshift",
-    faIcon: "fas fa-rocket",
+    faIcon: faRocket,
   },
   {
     id: "2016",
@@ -61,7 +74,7 @@ export const siteHistory = [
     date: "2017",
     special: "Learned along React Native",
     desc: "Migrated from Vanilla JS to ReactJS",
-    faIcon: "fab fa-react",
+    faIcon: faAtom,
   },
   {
     id: "2018",
@@ -79,24 +92,30 @@ export const siteHistory = [
     id: "2020",
     date: "2020",
     desc: "Release with parallaxing, migrated to Now 2.0",
-    faIcon: "fas fa-spinner",
+    faIcon: faSpinner,
   },
   {
     id: "2022",
     date: "2022",
     desc: "Migrate to Latest NextJS with a full CI/CD deployment",
-    faIcon: "fas fa-server",
+    faIcon: faServer,
   },
   {
     id: "2023",
     date: "Jan-2023",
     desc: "Migrated to NextJS 13",
-    faIcon: "fas fa-tractor",
+    faIcon: faTractor,
   },
   {
     id: "March-2023",
     date: "March-2023",
     desc: "Development focus on Rust",
-    faIcon: "fas fa-cog",
+    faIcon: faCog,
+  },
+  {
+    id: "May-2023",
+    date: "May-2023",
+    desc: "Checkout on Web RTC technology",
+    faIcon: faTelevision,
   },
 ]

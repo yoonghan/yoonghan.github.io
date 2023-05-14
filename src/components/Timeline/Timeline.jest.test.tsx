@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react"
 import Timeline from "."
+import { faArrows } from "@fortawesome/free-solid-svg-icons"
 
 describe("Timeline", () => {
   const events = [
@@ -13,7 +14,7 @@ describe("Timeline", () => {
       date: "2022-09-11",
       special: "fix issue",
       desc: "issue desc",
-      faIcon: "arrow",
+      faIcon: faArrows,
     },
   ]
 
@@ -52,6 +53,6 @@ describe("Timeline", () => {
     expect(getFaIcon(timeline1)).toHaveClass("dot")
 
     const timeline2 = screen.getAllByRole("listitem")[1]
-    expect(getFaIcon(timeline2)).toHaveClass("icon arrow")
+    expect(getFaIcon(timeline2)).toHaveClass("icon")
   })
 })

@@ -1,4 +1,6 @@
-import * as React from "react"
+"use client"
+
+import { useEffect, useState } from "react"
 import styles from "./ScrollToTop.module.css"
 
 export interface ScrollToTopStates {
@@ -11,13 +13,13 @@ const _isOverTheBar = () => {
 }
 
 const ScrollToTopNoSSR = ({ isLight = false }: { isLight?: boolean }) => {
-  const [visible, setVisible] = React.useState(_isOverTheBar())
+  const [visible, setVisible] = useState(_isOverTheBar())
 
   const _handleScroll = () => {
     setVisible(_isOverTheBar())
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("scroll", _handleScroll, { passive: true })
     return () => {
       window.removeEventListener("scroll", _handleScroll)
