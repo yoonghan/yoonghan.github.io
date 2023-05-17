@@ -1,5 +1,5 @@
 import "../../__mocks__/routerMock"
-import Amp from "@/pages/experiments/amp"
+import Amp from "@/app/experiments/amp/page"
 import { render, screen } from "@testing-library/react"
 
 describe("Amp", () => {

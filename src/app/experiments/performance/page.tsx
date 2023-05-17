@@ -1,10 +1,7 @@
 /* istanbul ignore file */
-import HtmlHead from "@/components/HtmlHead"
-import Head from "next/head"
-import Menu from "@/components/Menu"
+"use client"
+
 import dynamic from "next/dynamic"
-import Footer from "@/components/Footer"
-import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Experiments/Performance/Performance.module.css"
 import Button from "@/components/Button"
 import { useCallback, useState } from "react"
@@ -58,7 +55,7 @@ const LargeForm2NoSSR = dynamic(
 )
 
 const ReactTrackedNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/ReactTracked"),
+  () => import("@/app/experiments/performance/ReactTracked"),
   {
     ssr: false,
     loading: () => (
@@ -107,14 +104,6 @@ const Performance = () => {
 
   return (
     <>
-      <HtmlHead
-        title={"Performance"}
-        description={"Page to test performance of renders."}
-      />
-      <Head>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
-      <Menu />
       <div className={styles.container}>
         <section>
           <h3>
@@ -175,9 +164,6 @@ const Performance = () => {
           )}
         </section>
       </div>
-
-      <Footer />
-      <ScrollToTop />
     </>
   )
 }
