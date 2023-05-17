@@ -1,6 +1,6 @@
 /* istanbul ignore file */
-import styles from "@/pageComponents/Experiments/Storybook/Storybook.module.css"
-import StoryMaker from "@/pageComponents/Experiments/Storybook/StoryMaker"
+import styles from "./Storybook.module.css"
+import StoryMaker from "./StoryMaker"
 import { storyBookList } from "@/app/experiments/storybook/config/componentList"
 
 export const metadata = {
@@ -22,7 +22,5 @@ function Storybook() {
     </div>
   )
 }
-
-export const config = { runtime: "nodejs" }
 
 export default Storybook

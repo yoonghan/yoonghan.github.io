@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer"
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"

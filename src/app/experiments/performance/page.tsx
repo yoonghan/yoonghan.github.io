@@ -2,69 +2,54 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import styles from "@/pageComponents/Experiments/Performance/Performance.module.css"
+import styles from "./Performance.module.css"
 import Button from "@/components/Button"
 import { useCallback, useState } from "react"
 
-const HeavyLoaderNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/HeavyLoader"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Experimental Performance
-      </div>
-    ),
-  }
-)
+const HeavyLoaderNoSSR = dynamic(() => import("./HeavyLoader"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Experimental Performance
+    </div>
+  ),
+})
 
-const SuspenseNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/SuspenseLoader"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Experimental Suspense
-      </div>
-    ),
-  }
-)
+const SuspenseNoSSR = dynamic(() => import("./SuspenseLoader"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Experimental Suspense
+    </div>
+  ),
+})
 
-const LargeFormNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/LargeForm"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Large Form
-      </div>
-    ),
-  }
-)
+const LargeFormNoSSR = dynamic(() => import("./LargeForm"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Large Form
+    </div>
+  ),
+})
 
-const LargeForm2NoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/LargeForm2"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Large Form 2
-      </div>
-    ),
-  }
-)
+const LargeForm2NoSSR = dynamic(() => import("./LargeForm2"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Large Form 2
+    </div>
+  ),
+})
 
-const ReactTrackedNoSSR = dynamic(
-  () => import("@/app/experiments/performance/ReactTracked"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading React Tracked
-      </div>
-    ),
-  }
-)
+const ReactTrackedNoSSR = dynamic(() => import("./ReactTracked"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading React Tracked
+    </div>
+  ),
+})
 
 const Performance = () => {
   const [shown, setShown] = useState<{ [string: string]: boolean }>({
