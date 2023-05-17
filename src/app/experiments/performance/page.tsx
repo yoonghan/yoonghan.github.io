@@ -153,6 +153,4 @@ const Performance = () => {
   )
 }
 
-export const config = { runtime: "nodejs" }
-
 export default Performance
