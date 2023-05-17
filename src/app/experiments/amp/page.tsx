@@ -1,18 +1,15 @@
-import Footer from "@/components/Footer"
+"use client"
+
 import LogoText from "@/components/LogoText"
 import Head from "next/head"
-import HtmlHead from "@/components/HtmlHead"
 import { siteDevelopmentSections } from "@/pageComponents/Homepage/config"
+
+/** Broken, think to exclude amp */
 
 /** Ignore anything that starts with amp. */
 const Amp = () => {
   return (
     <>
-      <HtmlHead
-        isAmp={true}
-        title="Walcron, a testbed for developer's project."
-        description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
-      />
       <Head>
         <script
           async
@@ -82,7 +79,6 @@ const Amp = () => {
           Currently we are still in development phase for AMP.
         </div>
         <hr />
-        <Footer />
       </div>
       <style jsx>{`
         .container {

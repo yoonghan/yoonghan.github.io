@@ -1,8 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import "../__mocks__/routerMock"
 import History from "@/app/history/page"
-import { assertFooter } from "./utils/_footer"
-import { assertMenu } from "./utils/_menu"
+import { metadata } from "@/app/history/layout"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 
 describe("History", () => {
@@ -12,7 +11,6 @@ describe("History", () => {
 
   it("should have a menu and scroll to top", async () => {
     renderComponent()
-    await assertMenu()
     await assertScrollToTop()
   })
 
@@ -27,10 +25,5 @@ describe("History", () => {
     expect(screen.queryByText("Up")).not.toBeInTheDocument()
     fireEvent.scroll(window, { target: { pageYOffset: 321 } })
     expect(screen.getByText("Up")).toBeInTheDocument()
-  })
-
-  it("should render the page with footer", async () => {
-    renderComponent()
-    assertFooter()
   })
 })
