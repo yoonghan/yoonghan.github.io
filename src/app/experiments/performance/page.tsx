@@ -1,73 +1,55 @@
 /* istanbul ignore file */
-import HtmlHead from "@/components/HtmlHead"
-import Head from "next/head"
-import Menu from "@/components/Menu"
+"use client"
+
 import dynamic from "next/dynamic"
-import Footer from "@/components/Footer"
-import ScrollToTop from "@/components/ScrollToTop"
-import styles from "@/pageComponents/Experiments/Performance/Performance.module.css"
+import styles from "./Performance.module.css"
 import Button from "@/components/Button"
 import { useCallback, useState } from "react"
 
-const HeavyLoaderNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/HeavyLoader"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Experimental Performance
-      </div>
-    ),
-  }
-)
+const HeavyLoaderNoSSR = dynamic(() => import("./HeavyLoader"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Experimental Performance
+    </div>
+  ),
+})
 
-const SuspenseNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/SuspenseLoader"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Experimental Suspense
-      </div>
-    ),
-  }
-)
+const SuspenseNoSSR = dynamic(() => import("./SuspenseLoader"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Experimental Suspense
+    </div>
+  ),
+})
 
-const LargeFormNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/LargeForm"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Large Form
-      </div>
-    ),
-  }
-)
+const LargeFormNoSSR = dynamic(() => import("./LargeForm"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Large Form
+    </div>
+  ),
+})
 
-const LargeForm2NoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/LargeForm2"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading Large Form 2
-      </div>
-    ),
-  }
-)
+const LargeForm2NoSSR = dynamic(() => import("./LargeForm2"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading Large Form 2
+    </div>
+  ),
+})
 
-const ReactTrackedNoSSR = dynamic(
-  () => import("@/pageComponents/Experiments/Performance/ReactTracked"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-        Loading React Tracked
-      </div>
-    ),
-  }
-)
+const ReactTrackedNoSSR = dynamic(() => import("./ReactTracked"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
+      Loading React Tracked
+    </div>
+  ),
+})
 
 const Performance = () => {
   const [shown, setShown] = useState<{ [string: string]: boolean }>({
@@ -107,14 +89,6 @@ const Performance = () => {
 
   return (
     <>
-      <HtmlHead
-        title={"Performance"}
-        description={"Page to test performance of renders."}
-      />
-      <Head>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
-      <Menu />
       <div className={styles.container}>
         <section>
           <h3>
@@ -175,13 +149,8 @@ const Performance = () => {
           )}
         </section>
       </div>
-
-      <Footer />
-      <ScrollToTop />
     </>
   )
 }
-
-export const config = { runtime: "nodejs" }
 
 export default Performance

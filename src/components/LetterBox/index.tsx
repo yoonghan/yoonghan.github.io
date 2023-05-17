@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useState } from "react"
 import Button from "../Button"
 import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"

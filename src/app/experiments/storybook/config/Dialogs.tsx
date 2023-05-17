@@ -1,3 +1,5 @@
+"use client"
+
 import Dialog from "@/components/Dialog"
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { useState } from "react"

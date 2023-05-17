@@ -1,17 +1,12 @@
-import Footer from "@/components/Footer"
-import HtmlHead from "@/components/HtmlHead"
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "@/pageComponents/Projects/Projects.module.css"
 import LetterBox from "@/components/LetterBox"
-import Menu from "@/components/Menu"
 
 const Experiments = ({}) => {
   return (
     <>
-      <HtmlHead title={"Experiments"} description={"Experimentals."} />
-      <Menu />
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
           <h1 className="title">Experimental projects</h1>
@@ -54,9 +49,8 @@ const Experiments = ({}) => {
             <LetterBox />
           </div>
         </section>
-        <Footer />
-        <ScrollToTop />
       </div>
+      <ScrollToTop />
     </>
   )
 }
