@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useEffect, useMemo } from "react"
 import Popup from "reactjs-popup"
 import Button from "../Button"

@@ -1,11 +1,11 @@
 import "@/styles/global.css"
 
 export const metadata = {
-  title: "Website History",
-  description: "Timeline and journey of the page.",
+  title: "Experiments",
+  description: "Experimental pages for POC, and UI/UX",
 }
 
-export default function HistoryLayout({
+export default function ExperimentalLayout({
   children,
 }: {
   children: React.ReactNode
