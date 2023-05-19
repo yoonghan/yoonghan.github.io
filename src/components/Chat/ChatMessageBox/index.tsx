@@ -11,10 +11,12 @@ import ChatMessageDialog, { MessageHandler, userId } from "./ChatMessageDialog"
 import styles from "./ChatMessageBox.module.css"
 import Button from "../../Button"
 import TextArea from "../../Input/TextArea"
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons"
 import { useDropzone } from "react-dropzone"
 import { MessageType } from "../config/MessageType"
 import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
@@ -155,7 +157,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
                 inputRef.current?.click()
               }}
             >
-              <i className="fas fa-paperclip"></i>
+              <FontAwesomeIcon icon={faPaperclip} />
             </button>
           </fieldset>
           <Button additionalProps={{ type: "submit" }} color="grey">

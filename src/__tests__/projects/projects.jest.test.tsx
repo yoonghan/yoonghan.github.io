@@ -1,8 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import "../../__mocks__/routerMock"
-import Projects, { cards } from "@/pages/projects"
-import { assertFooter } from "../utils/_footer"
-import { assertMenu } from "../utils/_menu"
+import Projects from "@/app/projects/page"
+import { cards } from "@/app/projects/config"
 import { assertScrollToTop } from "../utils/_scrollToTop"
 import { findPageByPath } from "@/config/pages"
 
@@ -13,7 +12,6 @@ describe("Projects", () => {
 
   it("should have a menu and scroll to top", async () => {
     renderComponent()
-    await assertMenu()
     await assertScrollToTop()
   })
 
@@ -27,11 +25,6 @@ describe("Projects", () => {
     expect(screen.queryByText("Up")).not.toBeInTheDocument()
     fireEvent.scroll(window, { target: { pageYOffset: 321 } })
     expect(screen.getByText("Up")).toBeInTheDocument()
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
   })
 
   it("should have cards pointing to right projects", () => {

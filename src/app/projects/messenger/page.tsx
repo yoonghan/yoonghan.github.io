@@ -1,17 +1,17 @@
+/* istanbul ignore file */
+/** Good case to create integration testing rather than mock testing **/
+"use client"
+
 import { usePusher } from "@/components/pusher/usePusher"
 import ChatMessageBox from "@/components/Chat/ChatMessageBox"
-import Footer from "@/components/Footer"
-import HtmlHead from "@/components/HtmlHead"
 import { useCallback, useEffect, useMemo, useRef } from "react"
-import { GetStaticProps } from "next"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import { MessageType } from "@/components/Chat/config/MessageType"
-import Menu from "@/components/Menu"
 
 interface Props {
-  appKey: string
-  cluster: string
+  appKey?: string
+  cluster?: string
 }
 
 const Messenger = ({ appKey, cluster }: Props) => {
@@ -32,8 +32,8 @@ const Messenger = ({ appKey, cluster }: Props) => {
     channelName: "FunChat",
     printConnectionCallback: connectionPrinter,
     printEventCallback: eventPrinter,
-    appKey: appKey,
-    cluster: cluster,
+    appKey: appKey!,
+    cluster: cluster!,
     authEndpoint: "/api/pusherauth",
     channelPrefix: "private",
   })
@@ -58,37 +58,23 @@ const Messenger = ({ appKey, cluster }: Props) => {
   )
 
   return (
-    <>
-      <HtmlHead
-        title={"Messenger"}
-        description={"Public chat messenger between 2 person."}
-      />
-      <Menu />
-      <div className="page-aligned-container">
-        <h1>A Walcron Chat Program</h1>
-        <p>
-          Used this to test on 3rd party integration and asynchronous replies.
-          The reason this was build was to test authentication, code coverage,
-          integration and capabilites of asynchronous system.
-        </p>
-        <ChatMessageBox onMessageSend={onMessageSend} ref={chatMessageBoxRef} />
-      </div>
-      <Footer />
-    </>
+    <div className="page-aligned-container">
+      <h1>A Walcron Chat Program</h1>
+      <p>
+        Used this to test on 3rd party integration and asynchronous replies. The
+        reason this was build was to test authentication, code coverage,
+        integration and capabilites of asynchronous system.
+      </p>
+      <ChatMessageBox onMessageSend={onMessageSend} ref={chatMessageBoxRef} />
+    </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  //Note: Document states not to destructure process.env.
-  return {
-    props: {
-      appKey: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
-      cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-    },
-  }
 }
 
 export default withNonEmptyEnvCheck(
   Messenger,
-  "Messenger initialization failed due to missing environment variable."
+  () => ({
+    appKey: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
+    cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+  }),
+  "Pusher initialization failed due to missing environment variable."
 )

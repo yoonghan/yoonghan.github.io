@@ -1,3 +1,5 @@
+"use client"
+
 import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"

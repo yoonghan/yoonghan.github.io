@@ -1,18 +1,15 @@
-import Footer from "@/components/Footer"
-import HtmlHead from "@/components/HtmlHead"
-import Head from "next/head"
 import { ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "@/pageComponents/Projects/Projects.module.css"
+import styles from "../Projects.module.css"
 import Table from "@/components/Table"
 import {
   TroubleshootPwaCheckList,
   PostedJob,
   CronJobCheckList,
-} from "@/pageComponents/Projects/Checklist"
-import Menu from "@/components/Menu"
+} from "./Checklist"
 import { CronJob } from "@prisma/client"
 import prismaClient from "@/transport/prismaClient"
+import wrapPromise from "@/components/utils/common/wrapPromise"
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
@@ -56,43 +53,32 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
 ]
 
-type Props = {
-  postedCronJob?: PostedJob
-}
+const checklistLoader = wrapPromise(getPostedCronJob())
 
-const CheckList = ({ postedCronJob }: Props) => {
+const CheckList = () => {
+  const postedCronJob = checklistLoader.read()
+
   return (
-    <>
-      <HtmlHead
-        title={"Checklist"}
-        description={"Important Checklist to ensure website runs well and good"}
-      />
-      <Head>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
-      <Menu />
-      <div className={`${styles.container}`}>
-        <div className={`page-aligned-container`}>
-          <h1 className="title">Important Checklist Links</h1>
-          <span>A checklist of important links to test and for reference.</span>
-          <span>
-            Note: Page is not robot indexed and viewable only by desktop. May
-            change only in future.
-          </span>
-          <br />
-          <br />
-          <TroubleshootPwaCheckList />
-          <br />
-          <br />
-          <CronJobCheckList postedJob={postedCronJob} />
-          <br />
-          <br />
-          <Table headers={["Site", "Description", "Url"]} list={links} />
-        </div>
-        <Footer />
-        <ScrollToTop />
+    <div className={`${styles.container}`}>
+      <div className={`page-aligned-container`}>
+        <h1 className="title">Important Checklist Links</h1>
+        <span>A checklist of important links to test and for reference.</span>
+        <span>
+          Note: Page is not robot indexed and viewable only by desktop. May
+          change only in future.
+        </span>
+        <br />
+        <br />
+        <TroubleshootPwaCheckList />
+        <br />
+        <br />
+        <CronJobCheckList postedJob={postedCronJob} />
+        <br />
+        <br />
+        <Table headers={["Site", "Description", "Url"]} list={links} />
       </div>
-    </>
+      <ScrollToTop />
+    </div>
   )
 }
 
@@ -107,19 +93,13 @@ const cleanupPostResponse = (post: CronJob | null): PostedJob | undefined => {
   return undefined
 }
 
-export async function getServerSideProps(): Promise<{
-  props: Props
-}> {
+export async function getPostedCronJob(): Promise<PostedJob | undefined> {
   const firstCronJob = await prismaClient.cronJob.findFirst({
     orderBy: {
       createdAt: "desc",
     },
   })
-  return {
-    props: {
-      postedCronJob: cleanupPostResponse(firstCronJob),
-    },
-  }
+  return cleanupPostResponse(firstCronJob)
 }
 
 export default CheckList
