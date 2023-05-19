@@ -2,14 +2,9 @@ import { ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "../Projects.module.css"
 import Table from "@/components/Table"
-import {
-  TroubleshootPwaCheckList,
-  PostedJob,
-  CronJobCheckList,
-} from "./Checklist"
-import { CronJob } from "@prisma/client"
-import prismaClient from "@/transport/prismaClient"
+import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
+import { getPostedCronJob } from "./util"
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
@@ -80,26 +75,6 @@ const CheckList = () => {
       <ScrollToTop />
     </div>
   )
-}
-
-const cleanupPostResponse = (post: CronJob | null): PostedJob | undefined => {
-  if (post && post !== null) {
-    return {
-      jobName: post.jobName,
-      createdAt: post.createdAt.toISOString(),
-    }
-  }
-
-  return undefined
-}
-
-export async function getPostedCronJob(): Promise<PostedJob | undefined> {
-  const firstCronJob = await prismaClient.cronJob.findFirst({
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
-  return cleanupPostResponse(firstCronJob)
 }
 
 export default CheckList

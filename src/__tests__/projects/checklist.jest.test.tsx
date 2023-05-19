@@ -1,7 +1,8 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
 import "../../__mocks__/routerMock"
 import { render, screen } from "@testing-library/react"
-import Checklist, { getPostedCronJob } from "@/app/projects/checklist/page"
+import Checklist from "@/app/projects/checklist/page"
+import { getPostedCronJob } from "@/app/projects/checklist/util"
 import { assertScrollToTop } from "../utils/_scrollToTop"
 import { CronJob } from "@prisma/client"
 
