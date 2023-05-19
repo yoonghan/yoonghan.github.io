@@ -1,5 +1,6 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
 import "../../__mocks__/routerMock"
+import { setEnv } from "../../__mocks__/apiMock"
 import { render, screen } from "@testing-library/react"
 import Checklist from "@/app/projects/checklist/page"
 import { getPostedCronJob } from "@/app/projects/checklist/util"
@@ -20,6 +21,12 @@ describe("Checklist", () => {
   })
 
   describe("prisma/db connection", () => {
+    beforeEach(() => {
+      setEnv({
+        DATABASE_URL: "mysql://somevalidurl",
+      })
+    })
+
     const postedCronJob: CronJob = {
       createdAt: new Date(),
       jobName: "Test Cron Job",
