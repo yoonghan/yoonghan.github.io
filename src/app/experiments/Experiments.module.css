@@ -9,3 +9,18 @@
 .container ol > li {
   margin-bottom: 1rem;
 }
+
+.alert {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.container .wrappedText {
+  width: 100vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

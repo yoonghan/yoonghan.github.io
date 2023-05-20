@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useState, Suspense } from "react"
 import { rnd } from "@/util/random"
 import { GameContext } from "./GameContext"

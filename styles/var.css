@@ -38,4 +38,7 @@
   --alert-color: #721c24;
   --alert-bg-color: #f8d7da;
   --alert-border-color: #f5c6cb;
+
+  --page-dark: #343233;
+  --page-light: #ffffff;
 }

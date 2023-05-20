@@ -20,12 +20,12 @@ test.describe("Webrtc", () => {
     await receiver.getByRole("button", { name: "Stop" }).click()
     await caller.getByRole("button", { name: "Stop" }).click()
 
-    await receiver.waitForTimeout(1000)
+    await receiver.waitForTimeout(1200)
 
     await receiver.getByRole("button", { name: "Start" }).click()
     await caller.getByRole("button", { name: "Start" }).click()
 
-    await receiver.waitForTimeout(1000)
+    await receiver.waitForTimeout(1200)
 
     expect(caller.getByRole("button", { name: "Stop" })).toBeEnabled()
     expect(receiver.getByRole("button", { name: "Stop" })).toBeEnabled()

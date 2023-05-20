@@ -1,9 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import "../../__mocks__/routerMock"
 import "../../__mocks__/snakeWasmMock"
-import GameSnake from "@/pages/projects/game-snake"
-import { assertFooter } from "../utils/_footer"
-import { assertMenu } from "../utils/_menu"
+import GameSnake from "@/app/projects/game-snake/page"
 import userEvent from "@testing-library/user-event"
 import random from "@/util/random"
 
@@ -11,11 +9,6 @@ describe("Snake Game", () => {
   const renderComponent = () => {
     render(<GameSnake />)
   }
-
-  it("should have a menu", async () => {
-    renderComponent()
-    await assertMenu()
-  })
 
   it("should render the page and user can play", async () => {
     renderComponent()
@@ -57,10 +50,5 @@ describe("Snake Game", () => {
     })
     expect(screen.getByLabelText("World Dimension:")).toHaveValue(12)
     expect(mockRandom).toBeCalledTimes(3)
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
   })
 })
