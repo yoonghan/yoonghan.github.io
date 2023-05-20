@@ -1,11 +1,10 @@
 import Button from "@/components/Button"
-import Menu from "@/components/Menu"
+import Footer from "@/components/Footer"
 import styles from "./notfound.module.css"
 
 export default function NotFound() {
   return (
     <>
-      <Menu />
       <div className={styles.container}>
         <div className={styles.innerContainer}>
           <div>
@@ -14,6 +13,7 @@ export default function NotFound() {
           <Button href="/">Go back to home</Button>
         </div>
       </div>
+      <Footer className="dark" />
     </>
   )
 }
