@@ -9,18 +9,18 @@ import ConfirmationDialog, {
   Props as ConfirmationProps,
 } from "@/components/Dialog/ConfirmationDialog"
 import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
-import { EnumConnectionStatus } from "@/components/pusher/type/ConnectionStatus"
-import { Member } from "@/components/pusher/type/Member"
+import { EnumConnectionStatus } from "@/components/utils/hooks/pusher/type/ConnectionStatus"
+import { Member } from "@/components/utils/hooks/pusher/type/Member"
 import {
   Presence,
   usePresencePusher,
-} from "@/components/pusher/usePresencePusher"
+} from "@/components/utils/hooks/pusher/usePresencePusher"
 import VideoChat, { VideoStreamHandler } from "@/components/VideoChat"
 import { useCallback, useRef, useState } from "react"
 import styles from "./WebrtcVideo.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
-import { useWebRtc } from "@/components/webrtc/useWebRtc"
+import { useWebRtc } from "@/components/utils/hooks/webrtc/useWebRtc"
 
 interface Props {
   appKey: string

@@ -4,8 +4,8 @@ import { EnumConnectionStatus } from "../type/ConnectionStatus"
 import { isEventEmitter, isNoOfUserEmitter } from "../type/Emitter"
 import { act } from "react-dom/test-utils"
 import React from "react"
-import { MessageType } from "../../Chat/config/MessageType"
-import { encodeMessage } from "../../Chat/config/MessageFormatter"
+import { MessageType } from "../../../../Chat/config/MessageType"
+import { encodeMessage } from "../../../../Chat/config/MessageFormatter"
 
 describe("usePusher", () => {
   const createPusher = (props: {
