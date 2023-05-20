@@ -1,7 +1,7 @@
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "@/pageComponents/Projects/Projects.module.css"
+import styles from "./Experiments.module.css"
 import LetterBox from "@/components/LetterBox"
 
 const Experiments = ({}) => {

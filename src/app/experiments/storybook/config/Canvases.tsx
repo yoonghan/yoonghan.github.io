@@ -4,7 +4,7 @@ import {
   clearBoard,
   drawCell,
   drawSquareBoard,
-} from "@/pageComponents/Projects/Snake/util/drawCanvas"
+} from "@/app/projects/game-snake/Snake/util/drawCanvas"
 import { useRef } from "react"
 
 const cellSize = 10

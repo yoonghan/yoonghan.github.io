@@ -1,44 +1,32 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
 import "../../__mocks__/routerMock"
-import { render, screen, fireEvent } from "@testing-library/react"
-import Checklist from "@/pages/projects/checklist"
-import { assertFooter } from "../utils/_footer"
-import { assertMenu } from "../utils/_menu"
+import { setEnv } from "../../__mocks__/apiMock"
+import { render, screen } from "@testing-library/react"
+import Checklist from "@/app/projects/checklist/page"
+import { getPostedCronJob } from "@/app/projects/checklist/util"
 import { assertScrollToTop } from "../utils/_scrollToTop"
 import { CronJob } from "@prisma/client"
-import { getServerSideProps } from "@/pages/projects/checklist"
 
-describe("Checklist links", () => {
-  const renderComponent = () => {
+describe("Checklist", () => {
+  const renderComponent = async () => {
     render(<Checklist />)
   }
 
-  it("should have a menu and scroll to top", async () => {
+  it("should render the page with the important components", async () => {
     renderComponent()
-    await assertMenu()
     await assertScrollToTop()
-  })
-
-  it("should render the page with the important components", () => {
-    renderComponent()
     expect(screen.getByText("Important Checklist Links"))
     expect(screen.getByText("PWA"))
     expect(screen.getByText("CronJob"))
   })
 
-  it("should be able to scroll up", () => {
-    renderComponent()
-    expect(screen.queryByText("Up")).not.toBeInTheDocument()
-    fireEvent.scroll(window, { target: { pageYOffset: 321 } })
-    expect(screen.getByText("Up")).toBeInTheDocument()
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
-  })
-
   describe("prisma/db connection", () => {
+    beforeEach(() => {
+      setEnv({
+        DATABASE_URL: "mysql://somevalidurl",
+      })
+    })
+
     const postedCronJob: CronJob = {
       createdAt: new Date(),
       jobName: "Test Cron Job",
@@ -48,27 +36,19 @@ describe("Checklist links", () => {
     it("should be able to return post with createAt as descending order", async () => {
       const mockFn = prismaMock.cronJob.findFirst
       mockFn.mockResolvedValue(postedCronJob)
-      const response = await getServerSideProps()
+      const response = await getPostedCronJob()
       const { id, ...resultWithoutId } = postedCronJob
       expect(response).toStrictEqual({
-        props: {
-          postedCronJob: {
-            ...resultWithoutId,
-            createdAt: postedCronJob.createdAt.toISOString(),
-          },
-        },
+        ...resultWithoutId,
+        createdAt: postedCronJob.createdAt.toISOString(),
       })
       expect(mockFn).toBeCalledWith({ orderBy: { createdAt: "desc" } })
     })
 
     it("should be able to handle if post returned are empty", async () => {
       prismaMock.cronJob.findFirst.mockResolvedValue(null)
-      const response = await getServerSideProps()
-      expect(response).toStrictEqual({
-        props: {
-          postedCronJob: undefined,
-        },
-      })
+      const response = await getPostedCronJob()
+      expect(response).toStrictEqual(undefined)
     })
   })
 })

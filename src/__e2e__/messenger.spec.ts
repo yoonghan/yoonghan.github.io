@@ -24,6 +24,7 @@ test.describe("Messenger", () => {
     await page.goto("/projects/messenger")
     expect(await page.content()).toContain("A Walcron Chat Program")
     expect(await page.content()).not.toContain("Hello World")
+    await page.waitForTimeout(2000)
     await page.getByPlaceholder("Your Message").fill("Hello World")
     await page.getByRole("button", { name: "Send" }).click()
     await page.waitForSelector(".react-bell-chat__chat-bubble")
@@ -36,6 +37,7 @@ test.describe("Messenger", () => {
 
   test("should show a pop up to indicate file upload", async ({ page }) => {
     await page.goto("/projects/messenger")
+    await page.waitForTimeout(1000)
     expect(await page.content()).toContain("A Walcron Chat Program")
     await page.setInputFiles(
       'input[type="file"]',
@@ -53,6 +55,7 @@ test.describe("Messenger", () => {
     page,
   }) => {
     await page.goto("/projects/messenger")
+    await page.waitForTimeout(1000)
     expect(await page.content()).toContain("A Walcron Chat Program")
     await page.setInputFiles(
       'input[type="file"]',
