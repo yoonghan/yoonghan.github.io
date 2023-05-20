@@ -37,17 +37,25 @@ export const metadata = {
   manifest: "/manifest.json",
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const footerColor = (pageName: string | undefined) => {
+  switch (pageName) {
+    case "projects":
+    case "experiments":
+      return "dark"
+    default:
+      return undefined
+  }
+}
+
+export default function RootLayout({ children }: { children: any }) {
+  const pageName = children?.props?.childProp?.segment?.toLocaleLowerCase()
+
   return (
     <html lang="en">
       <body>
         <Menu />
         <>{children}</>
-        <Footer />
+        <Footer className={footerColor(pageName)} />
       </body>
     </html>
   )

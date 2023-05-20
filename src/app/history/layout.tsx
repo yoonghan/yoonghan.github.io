@@ -1,5 +1,3 @@
-import "@/styles/global.css"
-
 export const metadata = {
   title: "Website History",
   description: "Timeline and journey of the page.",

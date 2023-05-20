@@ -68,7 +68,7 @@ function Index({ termsRead }: Props) {
             </div>
           </div>
           ,
-          <Footer className={"footer"} />
+          <Footer />
         </div>
         <SocialFab />
       </main>

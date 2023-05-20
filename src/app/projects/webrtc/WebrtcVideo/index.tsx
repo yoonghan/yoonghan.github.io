@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 /** Good case to create integration testing rather than mock testing **/
+"use client"
+
 import AlertDialog, {
   Props as AlertProps,
 } from "@/components/Dialog/AlertDialog"
@@ -18,7 +20,7 @@ import { useCallback, useRef, useState } from "react"
 import styles from "./WebrtcVideo.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
-import { useWebRtc } from "../../../components/webrtc/useWebRtc"
+import { useWebRtc } from "@/components/webrtc/useWebRtc"
 
 interface Props {
   appKey: string
