@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import "../__mocks__/routerMock"
 import History from "@/app/history/page"
-import { metadata } from "@/app/history/layout"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 
 describe("History", () => {

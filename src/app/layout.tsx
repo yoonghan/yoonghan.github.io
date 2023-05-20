@@ -2,6 +2,7 @@ import "@/styles/global.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { Metadata } from "next"
+import Script from "next/script"
 config.autoAddCss = false
 
 export const metadata: Metadata = {
@@ -44,6 +45,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
+        strategy="lazyOnload"
+      />
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9V9VC8N5XT');
+      `}
+      </Script>
+      <Script id="reroute-https" strategy="afterInteractive">
+        {`if(location.hostname === "walcron.com") {
+          location.href="//www.walcron.com";
+        }`}
+      </Script>
       <body>{children}</body>
     </html>
   )
