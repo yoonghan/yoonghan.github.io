@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react"
-import "../../__mocks__/routerMock"
 import "../../__mocks__/snakeWasmMock"
 import GameSnake from "@/app/projects/game-snake/page"
 import userEvent from "@testing-library/user-event"

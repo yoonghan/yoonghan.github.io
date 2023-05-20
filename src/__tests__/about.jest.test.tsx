@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import "../__mocks__/routerMock"
 import About from "@/app/about/page"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 

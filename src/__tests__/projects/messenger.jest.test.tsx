@@ -1,6 +1,4 @@
 import { render, screen } from "@testing-library/react"
-import "../../__mocks__/routerMock"
-import { setEnv } from "../../__mocks__/apiMock"
 import React from "react"
 import Messenger from "@/app/projects/messenger/page"
 

@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react"
-import "../__mocks__/routerMock"
 import SiteMap from "@/app/sitemap/page"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 
