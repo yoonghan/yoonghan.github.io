@@ -2,7 +2,7 @@
 /** Good case to create integration testing rather than mock testing **/
 "use client"
 
-import { usePusher } from "@/components/pusher/usePusher"
+import { usePusher } from "@/components/utils/hooks/pusher/usePusher"
 import ChatMessageBox from "@/components/Chat/ChatMessageBox"
 import { useCallback, useEffect, useMemo, useRef } from "react"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"

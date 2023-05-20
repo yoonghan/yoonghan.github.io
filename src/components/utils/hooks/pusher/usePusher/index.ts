@@ -1,14 +1,14 @@
 import { useRef, useDebugValue } from "react"
 import PusherJS, { Channel } from "pusher-js"
-import { PUSHER } from "../../Chat/config"
+import { PUSHER } from "../../../../Chat/config"
 import { Transport } from "pusher-js/types/src/core/config"
 import { Emitter } from "../type/Emitter"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
-import { MessageType } from "../../Chat/config/MessageType"
+import { MessageType } from "../../../../Chat/config/MessageType"
 import {
   decodeMessage,
   encodeMessage,
-} from "../../Chat/config/MessageFormatter"
+} from "../../../../Chat/config/MessageFormatter"
 
 type Props = {
   eventName: string
