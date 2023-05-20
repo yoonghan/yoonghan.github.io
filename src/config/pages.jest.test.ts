@@ -204,8 +204,10 @@ describe("all sites are defined", () => {
     const appPageFile = "/page"
 
     const removeExtension = (file: string) => file.split(".")[0]
-    const removePage = (file: string) =>
-      file.substring(0, file.length - appPageFile.length)
+    const removePage = (file: string) => {
+      const filePath = file.substring(0, file.length - appPageFile.length)
+      return filePath === "" ? "/" : filePath
+    }
 
     return files
       .filter((file: string) => file.indexOf("/.") === -1) //remove all hidden files, like .DS_Store

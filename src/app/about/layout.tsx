@@ -1,3 +1,6 @@
+import Menu from "@/components/Menu"
+import Footer from "@/components/Footer"
+
 export const metadata = {
   title: "About Walcron",
   description:
@@ -9,5 +12,11 @@ export default function AboutLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <Menu />
+      {children}
+      <Footer />
+    </>
+  )
 }

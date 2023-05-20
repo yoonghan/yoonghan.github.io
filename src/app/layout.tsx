@@ -1,11 +1,11 @@
 import "@/styles/global.css"
-import Menu from "@/components/Menu"
-import Footer from "@/components/Footer"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
+import { Metadata } from "next"
 config.autoAddCss = false
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.walcron.com"),
   title: "Walcron Coorperation",
   description:
     "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
@@ -37,26 +37,14 @@ export const metadata = {
   manifest: "/manifest.json",
 }
 
-const footerColor = (pageName: string | undefined) => {
-  switch (pageName) {
-    case "projects":
-    case "experiments":
-      return "dark"
-    default:
-      return undefined
-  }
-}
-
-export default function RootLayout({ children }: { children: any }) {
-  const pageName = children?.props?.childProp?.segment?.toLocaleLowerCase()
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body>
-        <Menu />
-        <>{children}</>
-        <Footer className={footerColor(pageName)} />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

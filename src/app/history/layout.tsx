@@ -1,3 +1,6 @@
+import Menu from "@/components/Menu"
+import Footer from "@/components/Footer"
+
 export const metadata = {
   title: "Website History",
   description: "Timeline and journey of the page.",
@@ -8,5 +11,11 @@ export default function HistoryLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <Menu />
+      {children}
+      <Footer />
+    </>
+  )
 }

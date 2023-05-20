@@ -1,10 +1,9 @@
+"use client"
+
 import Parallax, { ScrollHandler } from "@/components/Parallax"
-import { getCookie, setCookie } from "cookies-next"
-import type { NextPageContext } from "next"
-import { generateSections } from "@/pageComponents/Homepage/config"
-import styles from "@/pageComponents/Homepage/Homepage.module.css"
+import { generateSections } from "./config"
+import styles from "./Homepage.module.css"
 import { useMemo, useRef } from "react"
-import HtmlHead from "@/components/HtmlHead"
 import PageReaderIndicator from "@/components/PageReaderIndicator"
 import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
@@ -16,7 +15,7 @@ interface Props {
   termsRead: boolean
 }
 
-function Index({ termsRead }: Props) {
+function Homepage({ termsRead }: Props) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const scrollHandlerRef = useRef<ScrollHandler>(null)
 
@@ -27,13 +26,6 @@ function Index({ termsRead }: Props) {
 
   return (
     <div className={styles.container}>
-      <HtmlHead
-        title={"Walcron"}
-        description={
-          "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
-        }
-      />
-
       <main className={styles.homepage}>
         <PageReaderIndicator scrollContainer={scrollContainerRef} />
         <div ref={scrollContainerRef} id="parallax-container">
@@ -68,7 +60,7 @@ function Index({ termsRead }: Props) {
             </div>
           </div>
           ,
-          <Footer />
+          <Footer className="dark" />
         </div>
         <SocialFab />
       </main>
@@ -77,17 +69,4 @@ function Index({ termsRead }: Props) {
   )
 }
 
-export async function getServerSideProps({ req, res }: NextPageContext) {
-  let cookieTermsRead = !!getCookie("termsRead", { req, res })
-  if (!cookieTermsRead) {
-    setCookie("termsRead", "true", { res, req, maxAge: 60 * 60 * 24 * 365 })
-  }
-
-  return {
-    props: {
-      termsRead: cookieTermsRead,
-    },
-  }
-}
-
-export default Index
+export default Homepage

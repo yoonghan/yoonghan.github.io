@@ -2,7 +2,7 @@
 
 import LogoText from "@/components/LogoText"
 import Head from "next/head"
-import { siteDevelopmentSections } from "@/pageComponents/Homepage/config"
+import { siteDevelopmentSections } from "@/app/homepage/config"
 
 /** Broken, think to exclude amp */
 

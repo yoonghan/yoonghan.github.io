@@ -1,3 +1,6 @@
+import Menu from "@/components/Menu"
+import Footer from "@/components/Footer"
+
 export const metadata = {
   title: "Sitemap",
   description: "Website links and site.",
@@ -8,5 +11,11 @@ export default function SitemapLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <Menu />
+      {children}
+      <Footer />
+    </>
+  )
 }
