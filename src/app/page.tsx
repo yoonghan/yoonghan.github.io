@@ -1,6 +1,6 @@
 "use client"
 
-import { getTermsRead } from "./homepage/action.util"
+import { getTermsRead } from "./homepage/cookie-util"
 import Homepage from "./homepage/main"
 
 const Index = () => {
