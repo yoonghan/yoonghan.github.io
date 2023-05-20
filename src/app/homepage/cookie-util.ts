@@ -1,15 +1,11 @@
 "use client"
 
-export const getTermsRead = () => {
-  if (typeof window !== "undefined") {
-    const localStorageTermsRead = localStorage.getItem("termsRead")
-    if (!localStorageTermsRead) {
-      localStorage.setItem("termsRead", "true")
-    }
-    return !!localStorageTermsRead
-  }
+export const KEY = "termsRead"
 
-  //ignore this line, jest can't change window to undefined.
-  /* istanbul ignore next */
-  return false
+export const getTermsRead = () => {
+  const localStorageTermsRead = localStorage.getItem(KEY)
+  if (!localStorageTermsRead) {
+    localStorage.setItem(KEY, "true")
+  }
+  return !!localStorageTermsRead
 }
