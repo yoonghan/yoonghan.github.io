@@ -1,6 +1,5 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
 import "../__mocks__/routerMock"
-import "../__mocks__/localStorageMock"
 import Home from "@/app/homepage/main"
 import UserEvent from "@testing-library/user-event"
 import { assertFooter } from "./utils/_footer"
