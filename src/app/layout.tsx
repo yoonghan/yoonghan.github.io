@@ -55,7 +55,7 @@ export default function RootLayout({
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-9V9VC8N5XT');x
+        gtag('config', 'G-9V9VC8N5XT');
       `}
       </Script>
       <Script id="reroute-https" strategy="afterInteractive">

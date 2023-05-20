@@ -1,11 +1,8 @@
-"use client"
+"use server"
 
-export const KEY = "termsRead"
+import { cookies } from "next/headers"
 
-export const getTermsRead = () => {
-  const localStorageTermsRead = localStorage.getItem(KEY)
-  if (!localStorageTermsRead) {
-    localStorage.setItem(KEY, "true")
-  }
-  return !!localStorageTermsRead
+export const updateCookie = async () => {
+  //@ts-ignore
+  cookies().set("termsRead", true, { secure: true })
 }
