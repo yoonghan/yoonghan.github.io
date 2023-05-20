@@ -48,13 +48,14 @@ export default function RootLayout({
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
         strategy="lazyOnload"
+        id="google-tag"
       />
       <Script id="google-analytics" strategy="lazyOnload">
         {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-9V9VC8N5XT');
+        gtag('config', 'G-9V9VC8N5XT');x
       `}
       </Script>
       <Script id="reroute-https" strategy="afterInteractive">

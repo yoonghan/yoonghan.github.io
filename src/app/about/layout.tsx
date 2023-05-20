@@ -36,7 +36,9 @@ export default function AboutLayout({
 
   return (
     <>
-      <Script type="application/ld+json">{_getSchema()}</Script>
+      <Script type="application/ld+json" id="ld-json">
+        {_getSchema()}
+      </Script>
       <Menu />
       {children}
       <Footer />
