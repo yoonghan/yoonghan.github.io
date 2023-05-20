@@ -24,7 +24,7 @@ const NoSSRCommandBar = () => {
     document.body.appendChild(elem)
 
     return () => {
-      //document.body.removeChild(elem)
+      document.body.removeChild(elem)
     }
   }, [elem])
 
