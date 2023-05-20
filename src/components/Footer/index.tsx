@@ -49,43 +49,45 @@ const Footer = ({ className }: Props) => {
   }, [renderLinks])
 
   return (
-    <footer className={`${styles.container} ${className || ""}`}>
-      <div className="border-b"></div>
-      <div className={styles.flex}>
-        <ul aria-label="Learn">
+    <footer className={`${className || ""}`}>
+      <div className={styles.container}>
+        <div className="border-b"></div>
+        <div className={styles.flex}>
+          <ul aria-label="Learn">
+            <li>
+              <strong>Learn</strong>
+            </li>
+            {renderedLearn}
+          </ul>
+          <ul aria-label="Projects">
+            <li>
+              <strong>Projects</strong>
+            </li>
+            {renderedProjects}
+          </ul>
+          <ul aria-label="Experiments">
+            <li>
+              <strong>Experiments</strong>
+            </li>
+            {renderedExperiments}
+          </ul>
+        </div>
+        <div className="border-b"></div>
+        <small>Walcron 2014-2023 &copy;</small>
+        <ul className={styles.sidelink}>
           <li>
-            <strong>Learn</strong>
+            <Link
+              href="https://policies.google.com/technologies/cookies"
+              target="_blank"
+            >
+              Privacy
+            </Link>
           </li>
-          {renderedLearn}
-        </ul>
-        <ul aria-label="Projects">
           <li>
-            <strong>Projects</strong>
+            <Link href="/sitemap">Site Map</Link>
           </li>
-          {renderedProjects}
-        </ul>
-        <ul aria-label="Experiments">
-          <li>
-            <strong>Experiments</strong>
-          </li>
-          {renderedExperiments}
         </ul>
       </div>
-      <div className="border-b"></div>
-      <small>Walcron 2014-2023 &copy;</small>
-      <ul className={styles.sidelink}>
-        <li>
-          <Link
-            href="https://policies.google.com/technologies/cookies"
-            target="_blank"
-          >
-            Privacy
-          </Link>
-        </li>
-        <li>
-          <Link href="/sitemap">Site Map</Link>
-        </li>
-      </ul>
     </footer>
   )
 }
