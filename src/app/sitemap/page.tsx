@@ -1,16 +1,10 @@
-import Footer from "@/components/Footer"
-import HtmlHead from "@/components/HtmlHead"
 import { Fragment, memo, useMemo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import Link from "next/link"
 import HeaderOne from "@/components/HeaderOne"
-import styles from "@/pageComponents/Sitemap/Sitemap.module.css"
-import {
-  Result,
-  SiteMapConstructor,
-} from "@/pageComponents/Sitemap/sitemapConstructor"
+import styles from "./Sitemap.module.css"
+import { Result, SiteMapConstructor } from "./sitemapConstructor"
 import { sortedSiteMapPages } from "@/config/pages"
-import Menu from "@/components/Menu"
 
 const SiteMap = ({}) => {
   const groupedMenu = useMemo(
@@ -37,13 +31,10 @@ const SiteMap = ({}) => {
 
   return (
     <>
-      <HtmlHead title={"Site Map"} description={"Website links and site."} />
-      <Menu />
       <div className={`${styles.container} page-aligned-container`}>
         <HeaderOne title={"Sitemap"} isLined={false} />
         {draw(groupedMenu)}
       </div>
-      <Footer />
       <ScrollToTop />
     </>
   )
