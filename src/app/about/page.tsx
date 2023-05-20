@@ -4,11 +4,8 @@ import LetterBox from "@/components/LetterBox"
 import HeaderOne from "@/components/HeaderOne"
 import Profiler from "@/components/Profiler"
 import ScrollToTop from "@/components/ScrollToTop"
-import Footer from "@/components/Footer"
-import HtmlHead from "@/components/HtmlHead"
 import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
-import Menu from "@/components/Menu"
 
 const _getSchema = () => {
   const schemas = {
@@ -34,14 +31,9 @@ const _getSchema = () => {
 const About = () => {
   return (
     <React.Fragment>
-      <HtmlHead
-        title="About Walcron"
-        description="Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes."
-      />
       <Head>
         <script type="application/ld+json">{_getSchema()}</script>
       </Head>
-      <Menu />
       <div className={"page-aligned-container"}>
         <HeaderOne title={"About Us"} isLined={true} />
         <p>
@@ -129,7 +121,6 @@ const About = () => {
         </section>
       </div>
       <ScrollToTop isLight={true} />
-      <Footer />
     </React.Fragment>
   )
 }
