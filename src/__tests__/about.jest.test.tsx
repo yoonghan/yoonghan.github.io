@@ -1,8 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import "../__mocks__/routerMock"
-import About from "@/pages/about"
-import { assertFooter } from "./utils/_footer"
-import { assertMenu } from "./utils/_menu"
+import About from "@/app/about/page"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 
 describe("About", () => {
@@ -12,13 +9,12 @@ describe("About", () => {
 
   it("should have a menu and scroll to top", async () => {
     renderComponent()
-    await assertMenu()
     await assertScrollToTop()
   })
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getAllByText("About Us")).toHaveLength(3)
+    expect(screen.getByText("About Us")).toBeInTheDocument()
     expect(screen.getByText("The developers")).toBeInTheDocument()
     expect(
       screen.getByText(
@@ -32,10 +28,5 @@ describe("About", () => {
     expect(screen.queryByText("Up")).not.toBeInTheDocument()
     fireEvent.scroll(window, { target: { pageYOffset: 321 } })
     expect(screen.getByText("Up")).toBeInTheDocument()
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
   })
 })

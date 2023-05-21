@@ -1,8 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import "../__mocks__/routerMock"
-import SiteMap from "@/pages/sitemap"
-import { assertFooter } from "./utils/_footer"
-import { assertMenu } from "./utils/_menu"
+import SiteMap from "@/app/sitemap/page"
 import { assertScrollToTop } from "./utils/_scrollToTop"
 
 describe("SiteMap", () => {
@@ -12,7 +9,6 @@ describe("SiteMap", () => {
 
   it("should have a menu and scroll to top", async () => {
     renderComponent()
-    await assertMenu()
     await assertScrollToTop()
   })
 
@@ -26,10 +22,5 @@ describe("SiteMap", () => {
       "href",
       "/projects/lessons"
     )
-  })
-
-  it("should render the page with footer", () => {
-    renderComponent()
-    assertFooter()
   })
 })

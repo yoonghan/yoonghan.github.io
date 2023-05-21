@@ -1,11 +1,12 @@
 import "@/styles/global.css"
-import Menu from "@/components/Menu"
-import Footer from "@/components/Footer"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
+import { Metadata } from "next"
+import Script from "next/script"
 config.autoAddCss = false
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.walcron.com"),
   title: "Walcron Coorperation",
   description:
     "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
@@ -37,26 +38,32 @@ export const metadata = {
   manifest: "/manifest.json",
 }
 
-const footerColor = (pageName: string | undefined) => {
-  switch (pageName) {
-    case "projects":
-    case "experiments":
-      return "dark"
-    default:
-      return undefined
-  }
-}
-
-export default function RootLayout({ children }: { children: any }) {
-  const pageName = children?.props?.childProp?.segment?.toLocaleLowerCase()
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body>
-        <Menu />
-        <>{children}</>
-        <Footer className={footerColor(pageName)} />
-      </body>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
+        strategy="lazyOnload"
+        id="google-tag"
+      />
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9V9VC8N5XT');
+      `}
+      </Script>
+      <Script id="reroute-https" strategy="afterInteractive">
+        {`if(location.hostname === "walcron.com") {
+          location.href="//www.walcron.com";
+        }`}
+      </Script>
+      <body>{children}</body>
     </html>
   )
 }

@@ -1,6 +1,5 @@
 import Performance from "@/app/experiments/performance/page"
 import { render, screen } from "@testing-library/react"
-import "../../__mocks__/routerMock"
 import userEvent from "@testing-library/user-event"
 
 describe("Performance", () => {
