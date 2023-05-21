@@ -1,5 +1,4 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
-import "../../__mocks__/routerMock"
 import { setEnv } from "../../__mocks__/apiMock"
 import { render, screen } from "@testing-library/react"
 import Checklist from "@/app/projects/checklist/page"

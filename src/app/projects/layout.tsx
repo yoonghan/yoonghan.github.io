@@ -1,3 +1,6 @@
+import Menu from "@/components/Menu"
+import Footer from "@/components/Footer"
+
 export const metadata = {
   title: "Projects",
   description: "Playground projects that we had been working on.",
@@ -8,5 +11,11 @@ export default function ProjectsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <Menu />
+      {children}
+      <Footer className="dark" />
+    </>
+  )
 }

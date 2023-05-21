@@ -33,10 +33,6 @@ const withPWA = require("next-pwa")({
 
 module.exports = withBundleAnalyzer(
   withPWA({
-    i18n: {
-      locales: ["en"],
-      defaultLocale: "en",
-    },
     async headers() {
       return [
         {

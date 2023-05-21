@@ -1,4 +1,3 @@
-import "../../__mocks__/routerMock"
 import Amp from "@/app/experiments/amp/page"
 import { render, screen } from "@testing-library/react"
 
