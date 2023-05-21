@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react"
-import "../../__mocks__/routerMock"
 import React from "react"
 import Webrtc from "@/app/projects/webrtc/page"
 import { setEnv } from "../../__mocks__/apiMock"
