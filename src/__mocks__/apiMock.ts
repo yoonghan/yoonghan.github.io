@@ -6,8 +6,6 @@ import { NextApiRequestQuery } from "next/dist/server/api-utils"
 import { GetStaticPropsContext } from "next/types"
 import { NextParsedUrlQuery } from "next/dist/server/request-meta"
 
-const defaultProcessEnv = { ...process.env }
-
 export type NextApiRequestOptions = Partial<NextApiRequestMock>
 export class NextApiRequestMock
   extends IncomingMessage
@@ -73,16 +71,9 @@ export const mockResponse = (
   return { nextRequest, nextResponse }
 }
 
-export const setEnv = (environments: { [key: string]: string }) => {
-  Object.keys(environments).forEach((key: string) => {
-    process.env[key] = environments[key]
-  })
-}
-
 export const EmptyStaticPropsContext: GetStaticPropsContext<NextParsedUrlQuery> =
   {}
 
 afterEach(() => {
   jest.resetModules()
-  process.env = defaultProcessEnv
 })
