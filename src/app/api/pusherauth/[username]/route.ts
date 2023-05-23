@@ -1,41 +1,18 @@
-import {
-  isOnlyAlphabetsAndNumberAndSpace,
-  removeAllWhiteSpaces,
-  capitalizeFirstWord,
-} from "@/util/regex"
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 import { NextRequest, NextResponse } from "next/server"
 import Pusher, { PresenceChannelData } from "pusher"
 import { PusherAPIClient } from "../PusherAPIClient"
+import { extractPresenceData } from "./extractPresenceData"
 
 export type ResponseMessage = {
   message?: string
   auth?: string
 }
 
-type Member = {
+export type Member = {
   user_id: string
   user_info: {
     name: string
-  }
-}
-
-export const extractPresenceData = (
-  username: string | string[] | undefined
-): Member | null => {
-  if (
-    typeof username !== "string" ||
-    username.trim() === "" ||
-    !isOnlyAlphabetsAndNumberAndSpace(username)
-  ) {
-    return null
-  }
-
-  const trimmedUsername = username.trim()
-
-  return {
-    user_id: removeAllWhiteSpaces(trimmedUsername.toLocaleLowerCase()),
-    user_info: { name: capitalizeFirstWord(trimmedUsername) },
   }
 }
 

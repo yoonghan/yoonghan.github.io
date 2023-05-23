@@ -1,8 +1,5 @@
 import "../../__mocks__/apiMockNext13"
-import {
-  extractPresenceData,
-  POST,
-} from "@/app/api/pusherauth/[username]/route"
+import { POST } from "@/app/api/pusherauth/[username]/route"
 import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
 import { NextRequest } from "next/server"
 import { Response } from "pusher"
@@ -153,24 +150,6 @@ describe("pusherauth/username", () => {
         user_id: "alice",
         user_info: { name: "Alice" },
       })
-    })
-  })
-
-  describe("presence data", () => {
-    it("should test user name capitalized", () => {
-      const response = extractPresenceData("mary Jane  ")
-      expect(response).toStrictEqual({
-        user_id: "maryjane",
-        user_info: { name: "Mary Jane" },
-      })
-    })
-
-    it("should return null if data is not string and non alphanumeric", () => {
-      expect(extractPresenceData("")).toBeNull()
-      expect(extractPresenceData("   ")).toBeNull()
-      expect(extractPresenceData(["han"])).toBeNull()
-      expect(extractPresenceData(undefined)).toBeNull()
-      expect(extractPresenceData("han-")).toBeNull()
     })
   })
 })
