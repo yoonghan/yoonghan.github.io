@@ -2,7 +2,8 @@ import "../../__mocks__/formidableMock"
 import "../../__mocks__/uuidMock"
 import "../../__mocks__/firebaseAdminMock"
 import firebase, { config, getFileExtension } from "@/pages/api/firebase"
-import { mockResponse, setEnv } from "../../__mocks__/apiMock"
+import { mockResponse } from "../../__mocks__/apiMock"
+import { setEnv } from "../../__mocks__/setEnv"
 import {
   setActionWithError,
   setParseMock,

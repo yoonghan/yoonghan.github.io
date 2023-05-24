@@ -1,5 +1,5 @@
 import { prismaMock } from "../../__mocks__/prismaMock"
-import { setEnv } from "../../__mocks__/apiMock"
+import { setEnv } from "../../__mocks__/setEnv"
 import { render, screen } from "@testing-library/react"
 import Checklist from "@/app/projects/checklist/page"
 import { getPostedCronJob } from "@/app/projects/checklist/util"
