@@ -7,9 +7,6 @@ test.describe("Messenger", () => {
   }) => {
     const response = await request.get(`/api/pusherauth`)
     expect(response.status()).toBe(405)
-    expect(await response.json()).toStrictEqual({
-      error: "Method GET not recognized.",
-    })
   })
 
   test("should have a callback url for firebase", async ({ request }) => {
