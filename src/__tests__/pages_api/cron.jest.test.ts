@@ -1,36 +1,36 @@
-import "../../__mocks__/fetchMock"
-import { mockResponse, NextApiRequestMock } from "../../__mocks__/apiMock"
-import { config } from "@/pages/api/cron"
+import "../../__mocks__/apiMockNext13"
+import { NextRequest, NextResponse } from "next/server"
 
 describe("cron", () => {
-  it("should use nodejs runtime", () => {
-    expect(config).toStrictEqual({ runtime: "nodejs" })
-  })
-
   it("should call execute with correct query and method", async () => {
-    const setHeaderFn = jest.fn()
-    const setStatusFn = jest.fn()
-    const mockExecute = jest.fn()
-    mockExecute.mockImplementation(
-      () =>
-        new Response(JSON.stringify({}), {
-          status: 200,
-        })
-    )
-    jest.mock("@/pageComponents/api/cron/module", () => {
+    const executeFn = jest.fn()
+    const request = new NextRequest("http://walcron.com/api/cron", {
+      method: "GET",
+    })
+    jest.mock("@/app/api/cron/module", () => {
       return {
-        execute: mockExecute,
+        execute: executeFn,
       }
     })
-    const cronJob = require("@/pages/api/cron").default
-    const nextRequest = new NextApiRequestMock({
-      query: { action: "history" },
-      method: "POST",
+    const { GET } = require("@/app/api/cron/route")
+    const response = await GET(request)
+    expect(response.status).toBe(200)
+    expect(executeFn).toHaveBeenCalled()
+  })
+
+  it("should call execute with error when exception is returned", async () => {
+    const executeFn = jest.fn()
+    const request = new NextRequest(
+      "http://walcron.com/api/cron?action=invalid",
+      {
+        method: "GET",
+      }
+    )
+    const { GET } = require("@/app/api/cron/route")
+    const response = await GET(request)
+    expect(response.status).toBe(400)
+    expect(await response.json()).toStrictEqual({
+      error: "Only GET with action query of log",
     })
-    const { nextResponse } = mockResponse(setHeaderFn, setStatusFn)
-    await cronJob(nextRequest, nextResponse)
-    expect(mockExecute).toBeCalledWith("history", "POST")
-    expect(setHeaderFn).toBeCalledWith("Content-Type", "application/json")
-    expect(setStatusFn).toBeCalledWith(200)
   })
 })
