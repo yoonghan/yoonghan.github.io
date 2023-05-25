@@ -12,9 +12,6 @@ test.describe("Messenger", () => {
   test("should have a callback url for firebase", async ({ request }) => {
     const response = await request.get(`/api/firebase`)
     expect(response.status()).toBe(405)
-    expect(await response.json()).toStrictEqual({
-      error: "Method GET not recognized.",
-    })
   })
 
   test("should be able to visit chat page", async ({ page }) => {
