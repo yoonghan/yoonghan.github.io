@@ -1,4 +1,13 @@
+import stream from "stream"
 const fileReturnedMock = jest.fn()
+
+const createStream = () => {
+  const streamData = new stream.Writable()
+  streamData._write = function (chunk, encoding, done) {
+    done()
+  }
+  return streamData
+}
 
 jest.mock("firebase-admin", () => ({
   ...jest.mock("firebase-admin"),
@@ -11,7 +20,7 @@ jest.mock("firebase-admin", () => ({
   storage: () => ({
     bucket: () => ({
       file: () => ({
-        createWriteStream: jest.fn(),
+        createWriteStream: createStream,
         get: fileReturnedMock,
       }),
     }),

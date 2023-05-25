@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextRequest, NextResponse } from "next/server"
 import { v4 as uuidv4 } from "uuid"
-import formidable from "formidable"
+import { Blob } from "node:buffer"
 import admin from "firebase-admin"
 import { hasEmptyValueInObject } from "@/components/utils/common/object"
 
@@ -64,20 +64,10 @@ class Firebase {
     Firebase.getFirebaseInitializeApp().storage().bucket()
 }
 
-export const getFileExtension = (filename: string) => {
-  const idxWithDotIncluded = filename.lastIndexOf(".")
-  if (idxWithDotIncluded === -1 || idxWithDotIncluded === filename.length - 1) {
-    return ""
-  } else {
-    return filename.substring(idxWithDotIncluded)
-  }
-}
-
 const uploadIntoSystem = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-  resolve: (value: unknown) => void,
-  reject: (reason?: any) => void
+  req: NextRequest,
+  resolve: (value: string) => void,
+  reject: (reason?: unknown) => void
 ) => {
   const getUploadedFileUrl = async (
     uploadFileName: string,
@@ -86,81 +76,96 @@ const uploadIntoSystem = async (
     const storageBucket = Firebase.getStorageBucket()
     const cloudFileName = storageBucket.file(uploadFileName)
     const cloudFile = (await cloudFileName.get())[0]
-
     const firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/"
     return `${firebaseUrl}${cloudFile.metadata.bucket}/o/${cloudFile.metadata.name}?alt=media&token=${retrieveToken}`
   }
 
-  const uuid = uuidv4()
-  const storageBucket = Firebase.getStorageBucket()
-  const option = {
-    gzip: true,
-    metadata: {
-      contentType: "",
-      cacheControl: "public, max-age=3600",
+  try {
+    const uuid = uuidv4()
+    const storageBucket = Firebase.getStorageBucket()
+    const option = {
+      gzip: true,
       metadata: {
-        firebaseStorageDownloadTokens: uuid,
+        contentType: "",
+        cacheControl: "public, max-age=3600",
+        metadata: {
+          firebaseStorageDownloadTokens: uuid,
+        },
       },
-    },
-  }
-  const form = formidable({})
-  form.onPart = (part) => {
-    if (!part.originalFilename || !part.mimetype) {
-      reject("File provided has issues.")
+    }
+
+    const formData = await req.formData()
+    const file = formData.get("file")
+    if (file === null) {
+      reject("No file to process")
       return
     }
-    const uploadFileName =
-      new Date().getTime() + getFileExtension(part.originalFilename)
-    const cloudFileName = storageBucket.file(uploadFileName)
-    option.metadata.contentType = part.mimetype
+    const filename: string = (file as any).name
+    const uploadFileName = `${new Date().getTime()}${filename}`
 
-    part
-      .pipe(cloudFileName.createWriteStream(option))
-      .on("error", function (err) {
-        reject(`File stream failed. ${err.message}`)
-      })
-      .on("finish", async function () {
+    if (!(file instanceof Blob)) {
+      reject("File uploaded is not a valid")
+      return
+    }
+
+    const fileStream: any = file.stream()
+    const chunks = []
+    for await (const chunk of fileStream) {
+      chunks.push(chunk)
+    }
+    const buffer = Buffer.concat(chunks as any)
+
+    const googleCloud = storageBucket.file(uploadFileName)
+
+    const stream = require("stream")
+    // Create a pass through stream from a string
+    const passthroughStream = new stream.PassThrough()
+    passthroughStream.write(buffer)
+    passthroughStream.end()
+
+    const writeStream = googleCloud.createWriteStream(option)
+
+    const streamFileUpload = async () => {
+      passthroughStream.pipe(writeStream).on("finish", async () => {
         try {
           const uploadedFileUrl = await getUploadedFileUrl(uploadFileName, uuid)
-          res.status(200).json({
-            status: "ok",
-            data: uploadedFileUrl,
-          })
-          resolve("ok")
+          resolve(uploadedFileUrl)
         } catch (e: any) {
           reject(`File not downloadable. ${e.message}`)
         }
       })
-  }
+    }
 
-  form.parse(req)
-}
+    streamFileUpload()
 
-export const config = {
-  runtime: "nodejs",
-  api: {
-    bodyParser: false,
-  },
-}
-
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  res.setHeader("Content-Type", "application/json")
-  switch (req.method) {
-    case "POST":
-      return new Promise((resolve, reject) =>
-        uploadIntoSystem(req, res, resolve, reject).catch((err) => {
-          reject(err)
-        })
-      ).catch((err) => {
-        res.status(500).json({
-          error: err.message ? err.message : err,
-        })
-      })
-    default:
-      res.status(405).json({
-        error: `Method ${req.method} not recognized.`,
-      })
+    // const writeResult = googleCloud
+    //   .createWriteStream(option)
+    //   .write("I AM A SICKO", async () => {
+    //     try {
+    //       const uploadedFileUrl = await getUploadedFileUrl(uploadFileName, uuid)
+    //       resolve(uploadedFileUrl)
+    //     } catch (e: any) {
+    //       reject(`File not downloadable. ${e.message}`)
+    //     }
+    //   })
+    // console.log("writeResult", writeResult)
+  } catch (err: any) {
+    reject(err?.message)
   }
 }
 
-export default handler
+export async function POST(request: NextRequest) {
+  try {
+    const response = await new Promise<string>((resolve, reject) =>
+      uploadIntoSystem(request, resolve, reject)
+    )
+    return NextResponse.json({ data: response, status: "ok" })
+  } catch (err: any) {
+    return NextResponse.json(
+      {
+        error: err,
+      },
+      { status: 405 }
+    )
+  }
+}

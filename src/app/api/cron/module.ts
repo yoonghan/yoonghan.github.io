@@ -24,35 +24,35 @@ const logJob = async (method: string) => {
   }
 }
 
-const executeCron = async (method: string): Promise<Response> => {
+const executeCron = async (
+  method: string
+): Promise<{
+  message: string
+  error?: unknown
+}> => {
   const result = await logJob(method)
-  const hasError = result.error
 
-  return generateResponse(hasError ? 500 : 200, result)
+  return result
 }
 
-const listCronHistory = async (): Promise<Response> => {
+const listCronHistory = async (): Promise<CronJob[]> => {
   const result = await prismaClient.cronJob.findMany()
-  return generateResponse(200, result)
+  return result
 }
-
-const generateResponse = (status: number, body: CronJob[] | CreateResponse) =>
-  new Response(JSON.stringify(body), {
-    status: status,
-  })
 
 export const execute = async (
-  action?: string | string[],
+  action: string | null | undefined,
   method: string = "GET"
-): Promise<Response> => {
+): Promise<{ message?: string; error?: unknown } | CronJob[]> => {
   switch (action) {
+    case null:
     case undefined:
       return await listCronHistory()
     case "log":
       return await executeCron(method)
     default:
-      return generateResponse(400, {
-        message: "Only GET with action query of log",
-      })
+      return {
+        error: "Only GET with action query of log",
+      }
   }
 }

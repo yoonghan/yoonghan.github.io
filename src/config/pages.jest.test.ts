@@ -174,29 +174,6 @@ describe("all sites are defined", () => {
       })
   }
 
-  const remapFiles = (
-    files: string[],
-    rootPath: string,
-    ignoredFiles: string[]
-  ): string[] => {
-    const removeRootPath = (file: string) =>
-      file.substring(rootPath.length, file.length)
-
-    const removeExtension = (file: string) => file.split(".")[0]
-
-    const renameIndex = (file: string) => {
-      const replacedFile = file.replace("/index", "")
-      return replacedFile === "" ? "/" : replacedFile
-    }
-
-    return files
-      .filter((file: string) => file.indexOf("/.") === -1) //remove all hidden files, like .DS_Store
-      .map((file) => renameIndex(removeExtension(removeRootPath(file))))
-      .filter(
-        (file) => !ignoredFiles.includes(file) && !file.startsWith("/api")
-      )
-  }
-
   const remapAppFiles = (files: string[], rootPath: string): string[] => {
     const removeRootPath = (file: string) =>
       file.substring(rootPath.length, file.length)
@@ -217,17 +194,8 @@ describe("all sites are defined", () => {
   }
 
   it("should be declare in actual page/ directory", async () => {
-    const pagesFolder = "./src/pages"
     const appFolder = "./src/app"
-    const ignoredFiles = ["/_app", "/_document", "/404"]
-    const allPages = remapFiles(
-      getFiles(pagesFolder),
-      pagesFolder,
-      ignoredFiles
-    )
     const allApp = remapAppFiles(getFiles(appFolder), appFolder)
-    expect(allPages.concat(allApp).sort()).toEqual(
-      sortedPages.map((page) => page.path).sort()
-    )
+    expect(allApp.sort()).toEqual(sortedPages.map((page) => page.path).sort())
   })
 })
