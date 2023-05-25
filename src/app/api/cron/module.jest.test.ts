@@ -1,6 +1,6 @@
 import "../../../__mocks__/fetchMock"
 import { prismaMock } from "../../../__mocks__/prismaMock"
-import { execute } from "@/pageComponents/api/cron/module"
+import { execute } from "./module"
 
 describe("cron/Module", () => {
   it("should return an OK when data can be tracked", async () => {
@@ -10,8 +10,7 @@ describe("cron/Module", () => {
       createdAt: new Date(),
     })
     const response = await execute("log")
-    expect(response.status).toBe(200)
-    expect(await response.json()).toStrictEqual({
+    expect(await response).toStrictEqual({
       message: "Posted a cron job",
     })
   })
@@ -38,8 +37,7 @@ describe("cron/Module", () => {
   ) => {
     prismaMock.cronJob.create.mockRejectedValue(error)
     const response = await execute("log")
-    expect(response.status).toBe(500)
-    expect(await response.json()).toStrictEqual({
+    expect(response).toStrictEqual({
       message: "Fail to write",
       error: expectedErrorMessage,
     })
@@ -69,21 +67,19 @@ describe("cron/Module", () => {
       },
     ]
     prismaMock.cronJob.findMany.mockResolvedValue(historyResult)
-    const response = await execute()
-    expect(response.status).toBe(200)
-    expect(await response.json()).toStrictEqual(
+    const response = await execute(null)
+    expect(await response).toStrictEqual(
       historyResult.map((it) => ({
         ...it,
-        createdAt: `${it.createdAt.toISOString()}`,
+        createdAt: it.createdAt,
       }))
     )
   })
 
   it("should display error if action has no query", async () => {
     const response = await execute("invalid")
-    expect(response.status).toBe(400)
-    expect(await response.json()).toStrictEqual({
-      message: "Only GET with action query of log",
+    expect(await response).toStrictEqual({
+      error: "Only GET with action query of log",
     })
   })
 })
