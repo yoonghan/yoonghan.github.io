@@ -6,13 +6,15 @@ class NextRequest extends IncomingMessage {
     [key: string]: string
   }> = {}
   public body: any
+  public url: any
 
-  constructor(url: URL, options?: RequestInit) {
+  constructor(url: URL | string, options?: RequestInit) {
     super(new Socket())
 
     if (options) {
       this.method = options.method
       this.body = options.body
+      this.url = url
     }
   }
 
