@@ -40,7 +40,7 @@
       "url": "http://localhost:3000",
       "delay": 500,
       "clickSelector": "text=Close",
-      "postInteractionWait": 50,
+      "postInteractionWait": 60,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,
