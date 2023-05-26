@@ -1,0 +1,15 @@
+.container {
+  box-sizing: border-box;
+  height: 300px;
+  width: 400px;
+  overflow-y: scroll;
+  border: #ddd solid 1px;
+}
+
+.container .list {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 5px;
+  border-bottom: var(--border-color) solid 1px;
+  pointer-events: none;
+}
