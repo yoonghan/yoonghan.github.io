@@ -10,8 +10,8 @@ const Amp = () => {
         Welcome to <LogoText /> Coorperation
       </h1>
       <p>
-        PAGE IS BROKEN, not planning to support it anymore. It's so broken that
-        fixing is not worthwhile!!!
+        PAGE IS BROKEN, not planning to support it anymore. It&quot;s so broken
+        that fixing is not worthwhile!!!
       </p>
     </div>
   )
