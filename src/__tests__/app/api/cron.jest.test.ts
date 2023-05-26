@@ -1,5 +1,5 @@
-import "../../../../__mocks__/apiMockNext13"
-import { prismaMock } from "../../../../__mocks__/prismaMock"
+import "../../../__mocks__/apiMockNext13"
+import { prismaMock } from "../../../__mocks__/prismaMock"
 import { GET } from "@/app/api/cron/route"
 import { NextRequest } from "next/server"
 
