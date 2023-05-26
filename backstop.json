@@ -140,6 +140,7 @@
       "label": "Sitemap Page",
       "url": "http://localhost:3000/sitemap",
       "delay": 200,
+      "postInteractionWait": 60,
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
