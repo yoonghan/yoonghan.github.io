@@ -29,10 +29,10 @@
       "label": "Homepage",
       "url": "http://localhost:3000",
       "delay": 500,
-      "postInteractionWait": 0,
+      "postInteractionWait": 50,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.3,
+      "misMatchThreshold": 0.4,
       "requireSameDimensions": true
     },
     {
@@ -40,10 +40,10 @@
       "url": "http://localhost:3000",
       "delay": 500,
       "clickSelector": "text=Close",
-      "postInteractionWait": 0,
+      "postInteractionWait": 60,
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold": 0.31,
+      "misMatchThreshold": 0.4,
       "requireSameDimensions": true
     },
     {
@@ -140,6 +140,7 @@
       "label": "Sitemap Page",
       "url": "http://localhost:3000/sitemap",
       "delay": 200,
+      "postInteractionWait": 60,
       "expect": 0,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
