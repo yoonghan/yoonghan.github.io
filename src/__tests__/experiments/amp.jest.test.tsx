@@ -5,7 +5,9 @@ describe("Amp", () => {
   it("should render page correctly to inform we are in development phase", () => {
     render(<Amp />)
     expect(
-      screen.getByText("Currently we are still in development phase for AMP.")
+      screen.getByText(
+        "PAGE IS BROKEN, not planning to support it anymore. It is so broken that fixing is not worthwhile!!!"
+      )
     ).toBeInTheDocument()
   })
 })
