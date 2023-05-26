@@ -7,6 +7,6 @@ describe("not-found", () => {
     expect(screen.getByText("This page is not found")).toBeInTheDocument()
     expect(
       screen.getByRole("link", { name: "Go back to home" })
-    ).toHaveAttribute("href", "/")
+    ).toHaveAttribute("href", "https://www.walcron.com")
   })
 })

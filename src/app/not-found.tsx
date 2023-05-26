@@ -10,7 +10,7 @@ export default function NotFound() {
           <div>
             <h1>404</h1>This page is not found
           </div>
-          <Button href="/">Go back to home</Button>
+          <Button href="https://www.walcron.com">Go back to home</Button>
         </div>
       </div>
       <Footer className="dark" />
