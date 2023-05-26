@@ -119,6 +119,7 @@ const PopupKeyboard = ({
         </button>
       }
       position={["right center"]}
+      closeOnDocumentClick={false}
     >
       {drawnKeyboard}
     </Popup>
