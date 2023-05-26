@@ -28,6 +28,28 @@ describe("PopupKeyboard", () => {
     expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.RIGHT)
   })
 
+  it("should hide/show keyboard", async () => {
+    const clickCallback = jest.fn()
+    render(
+      <div data-testid="outside-wrapper">
+        <PopupKeyboard
+          buttonText={"Interactive Keyboard"}
+          keyboardType={"Arrows"}
+          onClickCallback={clickCallback}
+        />
+      </div>
+    )
+
+    const upButton = "↑"
+
+    await userEvent.click(screen.getByText("Interactive Keyboard"))
+    expect(screen.getByText(upButton)).toBeInTheDocument()
+    await userEvent.click(screen.getByTestId("outside-wrapper"))
+    expect(screen.getByText(upButton)).toBeInTheDocument()
+    await userEvent.click(screen.getByText("Interactive Keyboard"))
+    expect(screen.queryByText(upButton)).not.toBeInTheDocument()
+  })
+
   it("should enable keyboard listener", () => {
     const clickCallback = jest.fn()
     render(

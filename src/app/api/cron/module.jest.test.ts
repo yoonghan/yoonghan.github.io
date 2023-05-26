@@ -66,8 +66,17 @@ describe("cron/Module", () => {
         createdAt: new Date(),
       },
     ]
-    prismaMock.cronJob.findMany.mockResolvedValue(historyResult)
+    const mockedHistoryFn = jest.fn()
+    mockedHistoryFn.mockResolvedValue(historyResult) //questionable to mock result...
+    prismaMock.cronJob.findMany.mockImplementationOnce(mockedHistoryFn)
     const response = await execute(null)
+    expect(mockedHistoryFn).toHaveBeenCalledWith({
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+      ],
+    })
     expect(await response).toStrictEqual(
       historyResult.map((it) => ({
         ...it,

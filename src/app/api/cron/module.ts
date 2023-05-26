@@ -36,7 +36,13 @@ const executeCron = async (
 }
 
 const listCronHistory = async (): Promise<CronJob[]> => {
-  const result = await prismaClient.cronJob.findMany()
+  const result = await prismaClient.cronJob.findMany({
+    orderBy: [
+      {
+        createdAt: "desc",
+      },
+    ],
+  })
   return result
 }
 

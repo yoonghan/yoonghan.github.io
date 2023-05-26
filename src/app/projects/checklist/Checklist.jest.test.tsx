@@ -70,8 +70,6 @@ describe("Checklist", () => {
         screen.queryByRole("button", { name: "View More" })
       ).not.toBeInTheDocument()
       expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
-      expect(screen.getByText("Job Created At")).toBeInTheDocument()
-      expect(screen.getByText("Job Name")).toBeInTheDocument()
       expect(screen.getAllByText("Written from cron job")).toHaveLength(2)
     })
   })

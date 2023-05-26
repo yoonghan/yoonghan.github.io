@@ -5,6 +5,7 @@ import Cards from "./Cards"
 import Tables from "./Tables"
 import PopupKeyboard from "./PopupKeyboard"
 import Canvases from "./Canvases"
+import ScrollableListDemo from "./ScrollableList"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -38,5 +39,9 @@ export const storyBookList = [
   {
     title: "Canvases",
     component: <Canvases />,
+  },
+  {
+    title: "ScrollableList",
+    component: <ScrollableListDemo />,
   },
 ]

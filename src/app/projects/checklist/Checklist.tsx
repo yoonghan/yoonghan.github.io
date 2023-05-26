@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
+import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { CronJob } from "@prisma/client"
 import { useCallback, useEffect, useMemo, useState } from "react"
@@ -36,11 +37,16 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const cronHistories = useMemo(() => {
     if (cronHistoryData) {
       return (
-        <Table
-          headers={["Job Created At", "Job Name"]}
-          list={cronHistoryData.map((history) => ({
-            "Job Created At": convertToLocalDate(`${history.createdAt}`),
-            "Job Name": history.jobName,
+        <ScrollableList
+          maxItemsToRender={50}
+          listItems={cronHistoryData.map((history) => ({
+            id: `${history.createdAt}`,
+            content: (
+              <span>
+                <span>{history.jobName}</span> -
+                {convertToLocalDate(`${history.createdAt}`)}
+              </span>
+            ),
           }))}
         />
       )
