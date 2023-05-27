@@ -69,6 +69,5 @@
   color: var(--button-disabled) !important;
 }
 a.container {
-  color: inherit;
   display: inline-block;
 }
