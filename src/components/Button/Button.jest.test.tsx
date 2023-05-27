@@ -41,7 +41,7 @@ describe("Button", () => {
 
   it("should render the button with external href", async () => {
     render(<Button href={"http://www.google.com"}>Link Me</Button>)
-    const linkButton = screen.getByRole("link", { name: "Link Me" })
+    const linkButton = screen.getByRole("button", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
 
     expect(linkButton).toHaveAttribute("target", "_self")
@@ -54,7 +54,7 @@ describe("Button", () => {
         Link Me
       </Button>
     )
-    const linkButton = screen.getByRole("link", { name: "Link Me" })
+    const linkButton = screen.getByRole("button", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
 
     expect(linkButton).toHaveAttribute("target", "_blank")

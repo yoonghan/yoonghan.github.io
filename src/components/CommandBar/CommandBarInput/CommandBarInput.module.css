@@ -3,7 +3,11 @@
   font-size: 0.8rem;
   position: relative;
   top: 1.5rem;
-  width: 260px;
+  align-items: center;
+}
+
+.command-container label {
+  padding-right: 0.5rem;
 }
 
 .promptIn {

@@ -103,8 +103,8 @@ section.introduction {
   padding-bottom: 1rem;
 }
 
-.homepage .section > article a {
-  color: var(--link-light);
+.homepage .section > article a[role="button"] {
+  margin: 0.5rem;
 }
 
 .homepage .section > article button {

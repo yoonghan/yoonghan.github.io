@@ -53,7 +53,15 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     }
 
     if (cronHistoryError) {
-      return <span>Fetch to {cronHistoryUrl} failed, try again later</span>
+      return (
+        <span style={{ color: "red" }}>
+          Fetch to {cronHistoryUrl} failed, try again later
+        </span>
+      )
+    }
+
+    if (cronHistoryUrl) {
+      return <span>Loading History...</span>
     }
     return <></>
   }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])

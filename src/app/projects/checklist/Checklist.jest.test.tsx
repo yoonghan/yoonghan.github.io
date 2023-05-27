@@ -97,6 +97,24 @@ describe("Checklist", () => {
     ).toBeInTheDocument()
   })
 
+  it("should show loading history", async () => {
+    fetchMock.mockResolvedValue(new Promise(() => {}))
+    const date = new Date()
+    render(
+      <CronJobCheckList
+        postedJob={{
+          jobName: "Test Cron Job",
+          createdAt: date.toISOString(),
+        }}
+      />
+    )
+    await userEvent.click(screen.getByRole("button", { name: "View More" }))
+    expect(
+      screen.queryByRole("button", { name: "View More" })
+    ).not.toBeInTheDocument()
+    expect(screen.getByText("Loading History...")).toBeInTheDocument()
+  })
+
   describe("TroubleshootPwaCheckList", () => {
     const assertValue = (component: HTMLElement, value: boolean) => {
       // eslint-disable-next-line testing-library/no-node-access

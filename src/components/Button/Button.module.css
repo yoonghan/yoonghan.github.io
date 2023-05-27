@@ -68,3 +68,6 @@
   background-color: var(--button-bg-disabled) !important;
   color: var(--button-disabled) !important;
 }
+a.container {
+  display: inline-block;
+}
