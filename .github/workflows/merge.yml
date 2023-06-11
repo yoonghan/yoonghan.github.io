@@ -1,13 +1,12 @@
-name: Merge with reports
+name: Report merged result on master
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
+    branches:
+      - master
 
 jobs:
   mergeCodes:
-    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
