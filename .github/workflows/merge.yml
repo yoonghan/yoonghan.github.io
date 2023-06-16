@@ -23,8 +23,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
 
       # as requested by the React team :)
       # https://reactjs.org/blog/2019/10/22/react-release-channels.html#using-the-next-channel-for-integration-testing
