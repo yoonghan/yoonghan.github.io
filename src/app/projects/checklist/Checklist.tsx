@@ -43,7 +43,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
             id: `${history.createdAt}`,
             content: (
               <span>
-                <span>{history.jobName}</span> -
+                <span>{history.jobName}</span>{" "}
                 {convertToLocalDate(`${history.createdAt}`)}
               </span>
             ),
