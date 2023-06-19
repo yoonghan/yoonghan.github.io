@@ -29,13 +29,6 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: "npm"
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }} 
-
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
@@ -81,13 +74,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "npm"
-
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
