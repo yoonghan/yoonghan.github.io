@@ -22,7 +22,9 @@ const ScrollToTopNoSSR = ({ isLight = false }: { isLight?: boolean }) => {
   useEffect(() => {
     window.addEventListener("scroll", _handleScroll, { passive: true })
     return () => {
-      window.removeEventListener("scroll", _handleScroll)
+      queueMicrotask(() => {
+        window.removeEventListener("scroll", _handleScroll)
+      })
     }
   }, [])
 

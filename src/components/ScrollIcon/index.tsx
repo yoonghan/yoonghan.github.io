@@ -22,7 +22,9 @@ const ScrollIcon = ({ scrollContainer, text }: Props) => {
       })
 
       return () => {
-        scrollRef.removeEventListener("scroll", _controlIconDisplay)
+        queueMicrotask(() => {
+          scrollRef.removeEventListener("scroll", _controlIconDisplay)
+        })
       }
     }
   }, [_controlIconDisplay, scrollContainer])

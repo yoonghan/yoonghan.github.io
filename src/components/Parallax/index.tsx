@@ -96,11 +96,13 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
 
     window.addEventListener("resize", refreshContainer)
     return () => {
-      window.removeEventListener("resize", refreshContainer)
-      scrollContainerRef?.removeEventListener(
-        "scroll",
-        parallaxScrollForeground
-      )
+      queueMicrotask(() => {
+        window.removeEventListener("resize", refreshContainer)
+        scrollContainerRef?.removeEventListener(
+          "scroll",
+          parallaxScrollForeground
+        )
+      })
     }
   }, [parallaxScrollForeground, refreshContainer, scrollContainer])
 
