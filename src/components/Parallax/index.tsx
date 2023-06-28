@@ -35,6 +35,7 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
   const parallaxContainerRef = useRef<HTMLDivElement>(null)
 
   const parallaxScrollForeground = useCallback((e: any) => {
+    //queueMicrotask(() => { //do not queue here or animation gets jaggy.
     const currentPos = e.target.scrollTop
     const currentDisplayIdx = activeWindowIndex(
       currentPos,
@@ -45,12 +46,14 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
       currentPos - windowInnerHeight.current * currentDisplayIdx,
       windowInnerHeight.current
     )
-
-    updateElem(
-      parallaxSectionsRef.current,
-      currentDisplayIdx,
-      percentageChanged
-    )
+    queueMicrotask(() => {
+      updateElem(
+        parallaxSectionsRef.current,
+        currentDisplayIdx,
+        percentageChanged
+      )
+    })
+    //})
   }, [])
 
   const refreshContainer = useCallback(() => {
@@ -62,8 +65,10 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
       scroll(index: number) {
         const scrollContainerRef = scrollContainer.current
         if (scrollContainerRef !== null) {
-          const height = scrollContainerRef.offsetHeight
-          scrollContainerRef.scrollTo(0, index * height)
+          queueMicrotask(() => {
+            const height = scrollContainerRef.offsetHeight
+            scrollContainerRef.scrollTo(0, index * height)
+          })
         }
       },
       scrollToTop() {

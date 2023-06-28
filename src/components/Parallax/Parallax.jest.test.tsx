@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import UserEvent from "@testing-library/user-event"
 import React, { RefObject, useRef } from "react"
 import Parallax, { ScrollHandler } from "."
@@ -76,7 +76,7 @@ describe("Parallax", () => {
     })
   })
 
-  it("should dispatch on container scroll", () => {
+  it("should dispatch on container scroll", async () => {
     render(
       <Main>
         {(ref) => (
@@ -93,12 +93,20 @@ describe("Parallax", () => {
     fireEvent.scroll(screen.getByTestId("scrollContainer"), {
       target: { scrollTop: 250 },
     })
-    expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe("1")
-    expect(screen.getByTestId("part-2").parentElement?.style.opacity).toBe("0")
+    await waitFor(() => {
+      expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe(
+        "1"
+      )
+    })
+    await waitFor(() => {
+      expect(screen.getByTestId("part-2").parentElement?.style.opacity).toBe(
+        "0"
+      )
+    })
   })
 
   /* eslint-disable testing-library/no-node-access */
-  it("should dispatch on window resizing", () => {
+  it("should dispatch on window resizing", async () => {
     render(
       <Main>
         {(ref) => (
@@ -115,7 +123,12 @@ describe("Parallax", () => {
     fireEvent.scroll(screen.getByTestId("scrollContainer"), {
       target: { scrollTop: 250 },
     })
-    expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe("1")
+
+    await waitFor(() => {
+      expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe(
+        "1"
+      )
+    })
 
     window.innerHeight = 1000
     window.dispatchEvent(new Event("resize"))

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import PopupKeyboard, { KeyboardKeys } from "."
 
@@ -50,7 +50,14 @@ describe("PopupKeyboard", () => {
     expect(screen.queryByText(upButton)).not.toBeInTheDocument()
   })
 
-  it("should enable keyboard listener", () => {
+  const assertKeyBoardAction =
+    (clickCallback: () => void) => async (action: KeyboardKeys) => {
+      await waitFor(() => {
+        expect(clickCallback).toHaveBeenCalledWith(action)
+      })
+    }
+
+  it("should enable keyboard listener", async () => {
     const clickCallback = jest.fn()
     render(
       <PopupKeyboard
@@ -60,20 +67,22 @@ describe("PopupKeyboard", () => {
         enableKeyboardListener={true}
       />
     )
+    const assertClickAction = assertKeyBoardAction(clickCallback)
+
     userEvent.keyboard(`{${KeyboardKeys.UP}}`)
-    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.UP)
+    await assertClickAction(KeyboardKeys.UP)
 
     userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
-    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.DOWN)
+    await assertClickAction(KeyboardKeys.DOWN)
 
     userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
-    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.LEFT)
+    await assertClickAction(KeyboardKeys.LEFT)
 
     userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
-    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.RIGHT)
+    await assertClickAction(KeyboardKeys.RIGHT)
   })
 
-  it("should restore keyboard enabled listener on component unmount", () => {
+  it("should restore keyboard enabled listener on component unmount", async () => {
     const clickCallback = jest.fn()
     const { unmount } = render(
       <PopupKeyboard
@@ -83,12 +92,19 @@ describe("PopupKeyboard", () => {
         enableKeyboardListener={true}
       />
     )
+
+    const assertClickAction = assertKeyBoardAction(clickCallback)
     userEvent.keyboard(`{${KeyboardKeys.UP}}`)
-    expect(clickCallback).toHaveBeenCalledWith(KeyboardKeys.UP)
+    await assertClickAction(KeyboardKeys.UP)
 
     unmount()
 
     userEvent.keyboard(`{${KeyboardKeys.UP}}`)
-    expect(clickCallback).toHaveBeenCalledTimes(1)
+    await waitFor(
+      () => {
+        expect(clickCallback).toHaveBeenCalledTimes(1)
+      },
+      { interval: 200 } //wait for queue to complete
+    )
   })
 })

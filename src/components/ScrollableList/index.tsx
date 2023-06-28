@@ -53,7 +53,9 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
       const ref = listRef.current
       ref.addEventListener("scroll", updateScrollPosition, false)
       return () => {
-        ref.addEventListener("scroll", updateScrollPosition, false)
+        queueMicrotask(() => {
+          ref.addEventListener("scroll", updateScrollPosition, false)
+        })
       }
     }
   }, [updateScrollPosition])
