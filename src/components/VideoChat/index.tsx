@@ -86,11 +86,13 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 
     useEffect(() => {
       if (record) {
-        startVideo()
+        queueMicrotask(startVideo)
       } else {
-        stopVideo()
+        queueMicrotask(stopVideo)
       }
-      return stopVideo
+      return () => {
+        queueMicrotask(stopVideo)
+      }
     }, [startVideo, stopVideo, record])
 
     return (

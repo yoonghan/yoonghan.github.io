@@ -88,18 +88,24 @@ describe("VideoChat", () => {
         videoTracksCallback={videoTracks}
       />
     )
-    expect(stopFn).toHaveBeenCalledTimes(1)
+
+    await waitFor(() => {
+      expect(stopFn).toHaveBeenCalledTimes(1)
+    })
     spyGetUserMedia.mockClear()
   })
 
-  it("should be able to stop a video on unmount", async () => {
+  it("should stop a video on unmount", async () => {
     const { videoTracks, stopFn, trackFn, spyGetUserMedia } = createUserMedia()
     const { unmount } = renderComponent({ videoTracksCallback: videoTracks })
     await waitFor(() => {
       expect(videoTracks).toHaveBeenCalledWith(trackFn)
     })
     unmount()
-    expect(stopFn).toHaveBeenCalledTimes(1)
+
+    await waitFor(() => {
+      expect(stopFn).toHaveBeenCalledTimes(1)
+    })
     spyGetUserMedia.mockClear()
   })
 

@@ -48,7 +48,7 @@ const PopupKeyboard = ({
             (arrowValue) => arrowValue === direction
           )
           if (matchedKey !== undefined) {
-            onKeyClick(matchedKey)()
+            queueMicrotask(onKeyClick(matchedKey))
           }
           break
       }
@@ -61,8 +61,10 @@ const PopupKeyboard = ({
       window.addEventListener("keydown", keyboardListener)
       window.addEventListener("keydown", preventKeyboardEvent, false)
       return () => {
-        window.removeEventListener("keydown", keyboardListener)
-        window.removeEventListener("keydown", preventKeyboardEvent, false)
+        queueMicrotask(() => {
+          window.removeEventListener("keydown", keyboardListener)
+          window.removeEventListener("keydown", preventKeyboardEvent, false)
+        })
       }
     }
   }, [enableKeyboardListener, buildKeyboardListener])
