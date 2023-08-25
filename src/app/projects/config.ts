@@ -44,13 +44,26 @@ export const cards = [
       "A tutorial to demo Android Bridging. One of my popular github forked project.",
     href: "https://github.com/yoonghan/RN_Android_Native",
   },
-
   {
     id: "rn-crazy",
     title: "React Native Crazy Idea",
     description:
       "Experimenting a POC of Modular Apps. Idea is Mini Apps can be installed separately from a hosted website, what special is that those miniapps can use Native features like camera and written separately.",
     href: "https://github.com/yoonghan/ReactNative-Modular",
+  },
+  {
+    id: "microfront-end-mf",
+    title: "Microfrontend with Module Federation",
+    description:
+      "First experiment with microfrontend after attending courses based on Module Federation.",
+    href: "https://container.walcron.com/",
+  },
+  {
+    id: "microfront-end-spa",
+    title: "Microfrontend with Single Spa",
+    description:
+      "More comprehensive microfrontend with single spa. Way more complex compared to module federation.",
+    href: "https://zelda.walcron.com/",
   },
   {
     id: "lesson",
