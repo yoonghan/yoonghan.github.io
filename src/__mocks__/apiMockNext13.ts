@@ -20,7 +20,14 @@ class NextRequest extends IncomingMessage {
 
   public formData = () => {
     if (this.body instanceof FormData) {
-      return this.body
+      return new Promise((resolve) => resolve(this.body))
+    }
+    return undefined
+  }
+
+  public json = async () => {
+    if (this.body instanceof String || typeof this.body === "string") {
+      return new Promise((resolve) => resolve(JSON.parse(this.body as string)))
     }
     return undefined
   }
