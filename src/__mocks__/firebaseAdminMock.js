@@ -9,6 +9,13 @@ const createStream = () => {
   return streamData
 }
 
+jest.mock("firebase-admin/auth", () => ({
+  ...jest.mock("firebase-admin/auth"),
+  getAuth: () => ({
+    createUser: (credentialOptions) => ({ uid: credentialOptions.uid }),
+  }),
+}))
+
 jest.mock("firebase-admin", () => ({
   ...jest.mock("firebase-admin"),
   apps: [], //to ensure only firebase is initialize once.
