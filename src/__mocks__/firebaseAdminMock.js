@@ -1,6 +1,16 @@
 import stream from "stream"
 const fileReturnedMock = jest.fn()
 
+export const sampleFirebaseConfig = {
+  FIREBASE_BUCKET: "SampleBucket",
+  FIREBASE_PROJECT_ID: "SampleProjectId",
+  FIREBASE_PRIVATE_KEY_ID: "SamplePrivateKeyId",
+  FIREBASE_PRIVATE_KEY: "SamplePrivateKey",
+  FIREBASE_CLIENT_EMAIL: "SampleClientEmail",
+  FIREBASE_CLIENT_ID: "SampleClientId",
+  FIREBASE_CLIENT_X509_CERT_URL: "SampleClientX509Cert",
+}
+
 const createStream = () => {
   const streamData = new stream.Writable()
   streamData._write = function (chunk, encoding, done) {
