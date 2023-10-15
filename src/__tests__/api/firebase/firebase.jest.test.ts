@@ -1,8 +1,11 @@
-import "../../__mocks__/apiMockNext13"
-import "../../__mocks__/uuidMock"
-import "../../__mocks__/firebaseAdminMock"
-import { setEnv } from "../../__mocks__/setEnv"
-import { setMockFileReturn } from "../../__mocks__/firebaseAdminMock"
+import "../../../__mocks__/apiMockNext13"
+import "../../../__mocks__/uuidMock"
+import "../../../__mocks__/firebaseAdminMock"
+import { setEnv } from "../../../__mocks__/setEnv"
+import {
+  sampleFirebaseConfig,
+  setMockFileReturn,
+} from "../../../__mocks__/firebaseAdminMock"
 import { POST } from "@/app/api/firebase/route"
 import { NextRequest } from "next/server"
 import { Blob } from "node:buffer"
@@ -39,15 +42,7 @@ describe("firebase", () => {
     })
 
     beforeEach(() => {
-      setEnv({
-        FIREBASE_BUCKET: "SampleBucket",
-        FIREBASE_PROJECT_ID: "SampleProjectId",
-        FIREBASE_PRIVATE_KEY_ID: "SamplePrivateKeyId",
-        FIREBASE_PRIVATE_KEY: "SamplePrivateKey",
-        FIREBASE_CLIENT_EMAIL: "SampleClientEmail",
-        FIREBASE_CLIENT_ID: "SampleClientId",
-        FIREBASE_CLIENT_X509_CERT_URL: "SampleClientX509Cert",
-      })
+      setEnv(sampleFirebaseConfig)
     })
 
     it("should fail with form submitted is missing file", async () => {
