@@ -3,6 +3,7 @@ import admin from "firebase-admin"
 import { getAuth } from "firebase-admin/auth"
 import { hasEmptyValueInObject } from "@/components/utils/common/object"
 import { validEmail, validInput } from "../../../../util/validator"
+import { type AdditionalInfo } from "./types/AdditionalInfo"
 
 const getFirebaseCredential = (validCredentials: {
   [key: string]: string

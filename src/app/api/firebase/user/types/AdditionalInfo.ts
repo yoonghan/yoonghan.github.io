@@ -1,4 +1,4 @@
-interface AdditionalInfo {
+export interface AdditionalInfo {
   displayName: string
   email: string
 }
