@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getAuth } from "firebase-admin/auth"
-import { validEmail, validInput } from "../../../../util/validator"
+import {
+  emailMatcher,
+  inputMatcher,
+  validEmail,
+  validInput,
+} from "../../../../util/validator"
+import { describe } from "hamjest"
 import { type AdditionalInfo } from "./types/AdditionalInfo"
 import { Firebase } from "../Firebase"
 
@@ -10,11 +16,11 @@ const createUser = (
   additionalInfo: AdditionalInfo
 ) => {
   if (!validEmail(email)) {
-    throw new Error("Invalid email.")
+    throw new Error(`Email must be ${describe(emailMatcher)}.`)
   }
 
   if (!validInput(password)) {
-    throw new Error("Invalid password.")
+    throw new Error(`Password must be ${describe(inputMatcher)}.`)
   }
 
   Firebase.getFirebaseInitializeApp()
