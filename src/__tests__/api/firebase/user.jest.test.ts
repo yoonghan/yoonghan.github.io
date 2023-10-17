@@ -26,7 +26,8 @@ describe("firebase/user", () => {
     const response = await POST(mockRequest({ password: "password123" }))
     expect(response.status).toBe(400)
     expect(await response.json()).toStrictEqual({
-      error: "Invalid email.",
+      error:
+        "Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/.",
     })
   })
 
@@ -34,7 +35,8 @@ describe("firebase/user", () => {
     const response = await POST(mockRequest({ email: "han@gmail.com" }))
     expect(response.status).toBe(400)
     expect(await response.json()).toStrictEqual({
-      error: "Invalid password.",
+      error:
+        "Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>).",
     })
   })
 
