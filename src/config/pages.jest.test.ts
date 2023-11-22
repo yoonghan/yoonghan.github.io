@@ -96,7 +96,7 @@ describe("pages", () => {
 
   it("should filter footer with NON_FOOTER filterOption", () => {
     const footerPageMappedByDisplay = sortedFooterPages.map((page) => page.path)
-    expect(footerPageMappedByDisplay).toContain("/projects/lessons")
+    expect(footerPageMappedByDisplay).toContain("/projects")
     expect(footerPageMappedByDisplay).not.toContain(["/sitemap"])
   })
 
