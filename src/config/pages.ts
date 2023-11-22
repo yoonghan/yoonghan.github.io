@@ -34,30 +34,36 @@ const pages: PageConfig[] = [
     order: 4,
   },
   {
-    path: "/projects/lessons",
-    display: "Lessons",
-    order: 3,
-  },
-  {
-    path: "/projects/checklist",
-    display: "Checklist",
-    filterOptions: [FilterOption.NOT_FOOTER],
-    order: 4,
-  },
-  {
-    path: "/projects/messenger",
-    display: "Chat",
+    path: "/projects/microfrontend",
+    display: "Microfrontend",
     order: 1,
   },
   {
     path: "/projects/webrtc",
     display: "WebRtc",
-    order: 1,
+    order: 2,
+  },
+  {
+    path: "/projects/messenger",
+    display: "Chat",
+    order: 3,
   },
   {
     path: "/projects/game-snake",
     display: "Game",
-    order: 2,
+    order: 4,
+  },
+  {
+    path: "/projects/lessons",
+    display: "Lessons",
+    filterOptions: [FilterOption.NOT_FOOTER],
+    order: 5,
+  },
+  {
+    path: "/projects/checklist",
+    display: "Checklist",
+    filterOptions: [FilterOption.NOT_FOOTER],
+    order: 6,
   },
   {
     path: "/experiments",
