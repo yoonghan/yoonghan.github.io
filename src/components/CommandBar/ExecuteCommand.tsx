@@ -7,7 +7,7 @@ import {
   IAvailableInput,
   EnumAction,
 } from "./CommandSearch/CommandSearch"
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 
 function evaluateMath(mathEval: string): string {
   const evaluatedResult = Function(`"use strict";return ${mathEval}`)()
