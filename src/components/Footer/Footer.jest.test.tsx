@@ -37,7 +37,7 @@ describe("Footer", () => {
     render(<Footer />)
     const projectMenuItem = screen.getByLabelText("Projects")
     expect(within(projectMenuItem).getByText("All")).toBeInTheDocument
-    expect(within(projectMenuItem).getByText("Lessons")).toBeInTheDocument
+    expect(within(projectMenuItem).getByText("Microfrontend")).toBeInTheDocument
     expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument
   })
 
