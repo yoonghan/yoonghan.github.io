@@ -1,11 +1,11 @@
 import { findPageByPath } from "@/config/pages"
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import HelpDialog from "../HelpDialog"
 import PwaEnabler from "../PwaEnabler"
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 
 export enum EnumAction {
   COMMAND,

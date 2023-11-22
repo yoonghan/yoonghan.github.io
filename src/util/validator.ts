@@ -1,22 +1,8 @@
-import {
-  is,
-  greaterThan,
-  matchesPattern,
-  not,
-  equalTo,
-  undefined,
-  allOf,
-  hasSize,
-} from "hamjest"
+const inputRegex = /^[a-z|A-Z|0-9|!|\$|@|?|#|%|\^]{6,50}$/
 
-export const inputMatcher = allOf(
-  is(not(equalTo(undefined()))),
-  matchesPattern(/^[a-z|A-Z|0-9|!|\$|@|?|#|%|\^]+$/),
-  hasSize(greaterThan(5))
-)
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
-export const emailMatcher = matchesPattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+export const validInput = (value?: string) =>
+  value ? inputRegex.test(value) : false
 
-export const validInput = (value?: string) => inputMatcher.matches(value)
-
-export const validEmail = (email: string) => emailMatcher.matches(email)
+export const validEmail = (email: string) => emailRegex.test(email)
