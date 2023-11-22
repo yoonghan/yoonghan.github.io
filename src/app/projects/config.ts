@@ -52,18 +52,18 @@ export const cards = [
     href: "https://github.com/yoonghan/ReactNative-Modular",
   },
   {
-    id: "microfront-end-mf",
-    title: "Microfrontend with Module Federation",
-    description:
-      "First experiment with microfrontend after attending courses based on Module Federation.",
-    href: "https://container.walcron.com/",
-  },
-  {
     id: "microfront-end-spa",
     title: "Microfrontend with Single Spa",
     description:
       "More comprehensive microfrontend with single spa. Way more complex compared to module federation.",
     href: "https://zelda.walcron.com/",
+  },
+  {
+    id: "microfront-end-mf",
+    title: "Microfrontend with Module Federation",
+    description:
+      "First experiment with microfrontend after attending courses based on Module Federation. Will no longer be updated.",
+    href: "https://container.walcron.com/",
   },
   {
     id: "lesson",
