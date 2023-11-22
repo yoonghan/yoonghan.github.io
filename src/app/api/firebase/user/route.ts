@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getAuth } from "firebase-admin/auth"
-import {
-  emailMatcher,
-  inputMatcher,
-  validEmail,
-  validInput,
-} from "../../../../util/validator"
-import { describe } from "hamjest"
+import { validEmail, validInput } from "../../../../util/validator"
 import { type AdditionalInfo } from "./types/AdditionalInfo"
 import { Firebase } from "../Firebase"
 
@@ -16,15 +10,19 @@ const createUser = (
   additionalInfo: AdditionalInfo
 ) => {
   if (!validEmail(email)) {
-    throw new Error(`Email must be ${describe(emailMatcher)}.`)
+    throw new Error(
+      "Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/."
+    )
   }
 
   if (!validInput(password)) {
-    throw new Error(`Password must be ${describe(inputMatcher)}.`)
+    throw new Error(
+      "Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>)."
+    )
   }
 
-  Firebase.getFirebaseInitializeApp()
-  return getAuth().createUser({
+  Firebase?.getFirebaseInitializeApp()
+  return getAuth()?.createUser({
     ...additionalInfo,
     password: password,
     uid: email,
