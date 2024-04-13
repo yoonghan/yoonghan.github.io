@@ -46,6 +46,19 @@ const links: Array<{ [key: string]: ReactNode }> = [
       </a>
     ),
   },
+  {
+    Site: "WebAim Wave",
+    Description: "Similar to lighthouse",
+    Url: (
+      <a
+        href="https://wave.webaim.org/report#/https://www.walcron.com"
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        link
+      </a>
+    ),
+  },
 ]
 
 const checklistLoader = wrapPromise(getPostedCronJob())
