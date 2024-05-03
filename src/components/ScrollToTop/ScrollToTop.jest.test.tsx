@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom"
-import { act, fireEvent, render } from "@testing-library/react"
+import { act, fireEvent, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import ScrollToTopWithNoSSR from "./ScrollToTopNoSSR"
 
@@ -23,9 +23,9 @@ describe("ScrollToTop", () => {
   }
 
   it("should render scroller when the right location is met", async () => {
-    const { getByText } = render(<ScrollToTopWithNoSSR />)
+    render(<ScrollToTopWithNoSSR />)
 
-    const scrollButton = getByText("Top")
+    const scrollButton = screen.getByText("Top")
 
     expect(scrollButton).toHaveClass("hidden")
 

@@ -95,7 +95,7 @@ const About = () => {
           </div>
         </section>
       </div>
-      <ScrollToTop isLight={true} />
+      <ScrollToTop />
     </React.Fragment>
   )
 }
