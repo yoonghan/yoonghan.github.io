@@ -30,14 +30,13 @@ const ScrollToTopNoSSR = () => {
   }
 
   return (
-    <div
+    <button
       onClick={clickScrollUp}
       onKeyUp={clickScrollUp}
       className={style.scroller + `${visible ? "" : ` ${style.hidden}`}`}
-      role="presentation"
     >
       Top
-    </div>
+    </button>
   )
 }
 
