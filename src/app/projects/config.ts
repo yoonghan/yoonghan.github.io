@@ -72,4 +72,11 @@ export const cards = [
     href: "/projects/lessons",
     target: "_self",
   },
+  {
+    id: "noJS",
+    title: "Javascript free",
+    description: "To run components without javascript enabled.",
+    href: "/projects/javascript-free",
+    target: "_self",
+  },
 ]
