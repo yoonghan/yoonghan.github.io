@@ -1,50 +1,42 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import styles from "./ScrollToTop.module.css"
-
-export interface ScrollToTopStates {
-  visible: boolean
-}
+import { memo, useEffect, useState, useRef } from "react";
+import style from "./ScrollToTop.module.css";
+import { debounce } from "lodash";
 
 const _isOverTheBar = () => {
-  const currentScrollPos = window.pageYOffset
-  return currentScrollPos > 320
-}
+  const currentScrollPos = window.scrollY;
+  return currentScrollPos > 500;
+};
 
-const ScrollToTopNoSSR = ({ isLight = false }: { isLight?: boolean }) => {
-  const [visible, setVisible] = useState(_isOverTheBar())
-
-  const _handleScroll = () => {
-    setVisible(_isOverTheBar())
-  }
+const ScrollToTopNoSSR = () => {
+  const [visible, setVisible] = useState(_isOverTheBar());
+  const scrollerRef = useRef(
+    debounce(() => {
+      setVisible(_isOverTheBar());
+    }, 50)
+  );
 
   useEffect(() => {
-    window.addEventListener("scroll", _handleScroll, { passive: true })
+    const scroller = scrollerRef.current;
+    window.addEventListener("scroll", scroller);
     return () => {
-      queueMicrotask(() => {
-        window.removeEventListener("scroll", _handleScroll)
-      })
-    }
-  }, [])
+      window.removeEventListener("scroll", scroller);
+    };
+  }, []);
 
   const clickScrollUp = () => {
-    window.scrollTo(0, 0)
-  }
+    window.scrollTo(0, 0);
+  };
 
-  if (visible) {
-    return (
-      <div
-        onClick={clickScrollUp}
-        className={`${styles.scroller} ${isLight ? styles.light : ""}`}
-        aria-hidden={true}
-      >
-        Up
-      </div>
-    )
-  } else {
-    return <div data-testid="scroll-to-top"></div>
-  }
-}
+  return (
+    <div
+      onClick={clickScrollUp}
+      className={style.scroller + `${visible ? "" : ` ${style.hidden}`}`}
+    >
+      Top
+    </div>
+  );
+};
 
-export default ScrollToTopNoSSR
+export default memo(ScrollToTopNoSSR, () => true);

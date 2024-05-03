@@ -1,40 +1,40 @@
 .scroller {
-  right: 2rem;
+  right: 1rem;
   position: fixed;
-  bottom: 2rem;
+  bottom: 1rem;
   cursor: pointer;
-  color: var(--text);
-  opacity: 0.7;
-  padding: 5px;
+  color: #fff;
+  visibility: visible;
+  opacity: 1;
+  padding: 1.5rem 1rem 1rem 1rem;
   border-radius: 3px;
   z-index: 999;
+  background: var(--button-orange-bg);
+  box-shadow: 2px 2px 3px #000;
+  transition: opacity 0.3s, visibility 0.3s ease-in-out;
+  user-select: none;
 }
 
-.scroller.light {
-  color: var(--link);
+.scroller.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .scroller:before {
   content: "";
   position: absolute;
-  top: -5px;
-  left: 0px;
-  margin-left: 10px;
+  top: 0.5rem;
+  left: 1.5rem;
   width: 0;
   height: 0;
-  border-bottom: solid 5px #fff;
-  border-left: solid 5px transparent;
-  border-right: solid 5px transparent;
+  border-bottom: solid 0.5rem #fff;
+  border-left: solid 0.5rem transparent;
+  border-right: solid 0.5rem transparent;
 }
 
 @media only screen and (max-width: 480px) {
   .scroller {
     bottom: 0;
     right: 0;
-    padding: 5px 20px;
-    border-radius: 0;
-  }
-  .scroller:before {
-    margin-left: 25px;
   }
 }
