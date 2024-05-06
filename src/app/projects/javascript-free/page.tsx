@@ -1,4 +1,4 @@
-import { Accordion } from "@/components/Accordion"
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const JavascriptFree = ({}) => {
   return (
