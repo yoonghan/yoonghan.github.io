@@ -18,6 +18,8 @@ runs:
       uses: bahmutov/npm-install@v1
       with:
         useLockFile: false
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Override Backstop
       uses: ./.github/actions/backstop-override

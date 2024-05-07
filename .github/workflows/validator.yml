@@ -31,6 +31,8 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # as requested by the React team :)
       # https://reactjs.org/blog/2019/10/22/react-release-channels.html#using-the-next-channel-for-integration-testing
@@ -77,6 +79,8 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Verify Vercel deployment and update branch
         run: |
