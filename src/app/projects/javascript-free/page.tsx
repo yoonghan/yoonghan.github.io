@@ -1,4 +1,7 @@
+"use client"
+
 import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 
 const JavascriptFree = ({}) => {
   return (
