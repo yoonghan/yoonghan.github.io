@@ -1,4 +1,3 @@
-import * as React from "react"
 import LetterBox from "@/components/LetterBox"
 import HeaderOne from "@/components/HeaderOne"
 import Profiler from "@/components/Profiler"
@@ -8,7 +7,7 @@ import gladysImg from "@/images/profile/gladys.webp"
 
 const About = () => {
   return (
-    <React.Fragment>
+    <>
       <div className={"page-aligned-container"}>
         <HeaderOne title={"About Us"} isLined={true} />
         <p>
@@ -96,7 +95,7 @@ const About = () => {
         </section>
       </div>
       <ScrollToTop />
-    </React.Fragment>
+    </>
   )
 }
 
