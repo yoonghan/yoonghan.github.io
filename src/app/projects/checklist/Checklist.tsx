@@ -15,8 +15,7 @@ export interface PostedJob {
 export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
-  const { data: cronHistoryData, error: cronHistoryError } =
-    useFetch<string[]>(cronHistoryUrl)
+  const { error: cronHistoryError } = useFetch<string[]>(cronHistoryUrl)
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -34,18 +33,6 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   }, [convertToLocalDate, postedJob?.createdAt])
 
   const cronHistories = useMemo(() => {
-    if (cronHistoryData) {
-      return (
-        <ScrollableList
-          maxItemsToRender={50}
-          listItems={cronHistoryData.map((_) => ({
-            id: "",
-            content: <></>,
-          }))}
-        />
-      )
-    }
-
     if (cronHistoryError) {
       return (
         <span style={{ color: "red" }}>
@@ -58,7 +45,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
       return <span>Loading History...</span>
     }
     return <></>
-  }, [cronHistoryData, cronHistoryError, cronHistoryUrl])
+  }, [cronHistoryError, cronHistoryUrl])
 
   return (
     <section>
