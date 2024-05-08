@@ -20,8 +20,6 @@ describe("History", () => {
 
   it("should be able to scroll up", async () => {
     renderComponent()
-    expect(screen.queryByText("Up")).not.toBeInTheDocument()
-    fireEvent.scroll(window, { target: { pageYOffset: 321 } })
-    expect(screen.getByText("Up")).toBeInTheDocument()
+    assertScrollToTop()
   })
 })

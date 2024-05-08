@@ -31,6 +31,7 @@ const ScrollToTopNoSSR = () => {
 
   return (
     <button
+      data-testid="scroll-to-top"
       onClick={clickScrollUp}
       onKeyUp={clickScrollUp}
       className={style.scroller + `${visible ? "" : ` ${style.hidden}`}`}
