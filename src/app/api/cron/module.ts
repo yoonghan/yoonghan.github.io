@@ -1,5 +1,5 @@
 import prismaClient from "@/transport/prismaClient"
-import { CronJob } from "@prisma/client"
+//import { CronJob } from "@prisma/client"
 
 type CreateResponse = {
   message: string
@@ -7,20 +7,9 @@ type CreateResponse = {
 }
 
 const logJob = async (method: string) => {
-  try {
-    await prismaClient.cronJob.create({
-      data: {
-        jobName: `${method.toUpperCase()} via cron job`,
-      },
-    })
-    return {
-      message: "Posted a cron job",
-    }
-  } catch (error) {
-    return {
-      message: "Fail to write",
-      error: error instanceof Error ? error.message : error,
-    }
+  return {
+    message: "Fail to write",
+    error: "I no longer work",
   }
 }
 
@@ -35,21 +24,14 @@ const executeCron = async (
   return result
 }
 
-const listCronHistory = async (): Promise<CronJob[]> => {
-  const result = await prismaClient.cronJob.findMany({
-    orderBy: [
-      {
-        createdAt: "desc",
-      },
-    ],
-  })
-  return result
+const listCronHistory = async (): Promise<string[]> => {
+  return []
 }
 
 export const execute = async (
   action: string | null | undefined,
   method: string = "GET"
-): Promise<{ message?: string; error?: unknown } | CronJob[]> => {
+): Promise<{ message?: string; error?: unknown } | string[]> => {
   switch (action) {
     case null:
     case undefined:
