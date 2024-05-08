@@ -21,9 +21,7 @@ describe("Projects", () => {
 
   it("should be able to scroll up", () => {
     renderComponent()
-    expect(screen.queryByText("Up")).not.toBeInTheDocument()
-    fireEvent.scroll(window, { target: { pageYOffset: 321 } })
-    expect(screen.getByText("Up")).toBeInTheDocument()
+    assertScrollToTop()
   })
 
   it("should have cards pointing to right projects", () => {
