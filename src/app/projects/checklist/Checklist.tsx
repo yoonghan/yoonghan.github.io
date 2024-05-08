@@ -4,7 +4,6 @@ import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
-import { CronJob } from "@prisma/client"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
 
@@ -17,7 +16,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
   const { data: cronHistoryData, error: cronHistoryError } =
-    useFetch<CronJob[]>(cronHistoryUrl)
+    useFetch<string[]>(cronHistoryUrl)
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -39,14 +38,9 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
       return (
         <ScrollableList
           maxItemsToRender={50}
-          listItems={cronHistoryData.map((history) => ({
-            id: `${history.createdAt}`,
-            content: (
-              <span>
-                <span>{history.jobName}</span>{" "}
-                {convertToLocalDate(`${history.createdAt}`)}
-              </span>
-            ),
+          listItems={cronHistoryData.map((_) => ({
+            id: "",
+            content: <></>,
           }))}
         />
       )
@@ -64,7 +58,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
       return <span>Loading History...</span>
     }
     return <></>
-  }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
+  }, [cronHistoryData, cronHistoryError, cronHistoryUrl])
 
   return (
     <section>

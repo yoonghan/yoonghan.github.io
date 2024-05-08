@@ -1,11 +1,3 @@
-import prismaClient from "@/transport/prismaClient"
-//import { CronJob } from "@prisma/client"
-
-type CreateResponse = {
-  message: string
-  error?: unknown
-}
-
 const logJob = async (method: string) => {
   return {
     message: "Fail to write",
