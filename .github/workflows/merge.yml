@@ -20,14 +20,20 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "npm"
+          registry-url: https://npm.pkg.github.com/
 
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+          key: modules-node-${{ hashFiles('package-lock.json') }}
+  
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-
-      # as requested by the React team :)
-      # https://reactjs.org/blog/2019/10/22/react-release-channels.html#using-the-next-channel-for-integration-testing
-      - name: ⚛️ Setup react
-        run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
+        run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Validate test script
         run: npm run test:ci

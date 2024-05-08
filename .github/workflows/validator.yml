@@ -28,14 +28,21 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+          key: modules-node-${{ hashFiles('package-lock.json') }}
 
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-
-      # as requested by the React team :)
-      # https://reactjs.org/blog/2019/10/22/react-release-channels.html#using-the-next-channel-for-integration-testing
-      - name: ⚛️ Setup react
-        run: npm install react@${{ matrix.react }} react-dom@${{ matrix.react }}
+        run: |
+          npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Validate lint, prettier and build
         run: npm run build
@@ -74,9 +81,21 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+            ~/.cache/ms-playwright
+          key: modules-node-playwright-${{ hashFiles('package-lock.json') }}
 
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+        run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Verify Vercel deployment and update branch
         run: |
@@ -92,6 +111,7 @@ jobs:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: 📥 Install playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check

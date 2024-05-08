@@ -13,11 +13,20 @@ runs:
       with:
         node-version: ${{ matrix.node }}
         cache: "npm"
+        registry-url: https://npm.pkg.github.com/
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          ./node_modules
+        key: modules-node-${{ hashFiles('package-lock.json') }}
 
     - name: 📥 Download deps
-      uses: bahmutov/npm-install@v1
-      with:
-        useLockFile: false
+      run: npm ci --ignore-scripts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Override Backstop
       uses: ./.github/actions/backstop-override
