@@ -66,6 +66,11 @@ const pages: PageConfig[] = [
     order: 6,
   },
   {
+    path: "/projects/javascript-free",
+    display: "No Javascript",
+    order: 7,
+  },
+  {
     path: "/experiments",
     display: "Experiments",
     filterOptions: [FilterOption.NOT_FOOTER],

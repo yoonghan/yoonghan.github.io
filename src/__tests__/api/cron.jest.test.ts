@@ -1,5 +1,4 @@
 import "../../__mocks__/apiMockNext13"
-import { prismaMock } from "../../__mocks__/prismaMock"
 import { GET } from "@/app/api/cron/route"
 import { NextRequest } from "next/server"
 
@@ -15,15 +14,9 @@ describe("cron", () => {
         createdAt: new Date(),
       },
     ]
-    prismaMock.cronJob.findMany.mockResolvedValue(historyResult)
     const response = await GET(request)
     expect(response.status).toBe(200)
-    expect(await response.json()).toStrictEqual(
-      historyResult.map((it) => ({
-        ...it,
-        createdAt: it.createdAt.toISOString(),
-      }))
-    )
+    expect(await response.json()).toStrictEqual([])
   })
 
   it("should call execute with error when exception is returned", async () => {

@@ -4,7 +4,6 @@ import styles from "../Projects.module.css"
 import Table from "@/components/Table"
 import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
-import { getPostedCronJob } from "./util"
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
@@ -61,7 +60,9 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
 ]
 
-const checklistLoader = wrapPromise(getPostedCronJob())
+const checklistLoader = wrapPromise<undefined>(
+  new Promise((resolve) => resolve(undefined))
+)
 
 const CheckList = () => {
   const postedCronJob = checklistLoader.read()

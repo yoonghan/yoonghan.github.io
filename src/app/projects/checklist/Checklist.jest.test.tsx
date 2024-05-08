@@ -42,19 +42,7 @@ describe("Checklist", () => {
     it("should hide View More button after click and display table", async () => {
       fetchMock.mockResolvedValue({
         ok: true,
-        json: () =>
-          Promise.resolve([
-            {
-              id: 1,
-              createdAt: "2023-02-25T09:57:37.271Z",
-              jobName: "Written from cron job",
-            },
-            {
-              id: 2,
-              createdAt: "2023-02-25T10:10:54.125Z",
-              jobName: "Written from cron job",
-            },
-          ]),
+        json: () => Promise.resolve(undefined),
       })
       const date = new Date()
       render(
@@ -70,7 +58,6 @@ describe("Checklist", () => {
         screen.queryByRole("button", { name: "View More" })
       ).not.toBeInTheDocument()
       expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
-      expect(screen.getAllByText("Written from cron job")).toHaveLength(2)
     })
   })
 

@@ -44,6 +44,7 @@ jobs:
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
     uses: ./.github/workflows/validator.yml
+    secrets: inherit
     with:
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
 
