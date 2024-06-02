@@ -23,6 +23,7 @@
 
 .divider {
   text-align: left;
+  border-bottom: 1px dotted;
 }
 
 @media only screen and (min-width: 641px) {

@@ -1,50 +1,68 @@
+"use client"
+
 import LetterBox from "@/components/LetterBox"
-import HeaderOne from "@/components/HeaderOne"
 import Profiler from "@/components/Profiler"
 import ScrollToTop from "@/components/ScrollToTop"
 import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
+import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
+import "./about.css"
+
+const authorModel = [
+  {
+    hashId: "about",
+    title: "About Us",
+  },
+  {
+    hashId: "consultation",
+    title: "What do we do?",
+  },
+  {
+    hashId: "founders",
+    title: "Founders",
+  },
+]
 
 const About = () => {
   return (
     <>
+      <MiniMenu model={authorModel} />
       <div className={"page-aligned-container"}>
-        <HeaderOne title={"About Us"} isLined={true} />
-        <p>
-          Walcron is a by-product of a couple&apos;s journey in IT industry. The
-          Walcron website was created for experimentation in optimizing and
-          prototyping new Web technologies. Ocassionally this is being
-          re-contributed back into the open-source community. Han and Gladys
-          started the Walcron website to log their development journey. As well
-          as to experiment real-time working websites.
-        </p>
-        <hr />
-        <section>
-          <h2>What do we do?</h2>
+        <article id={authorModel[0].hashId}>
+          <h1>{authorModel[0].title}</h1>
           <p>
-            We are coders who likes to crank our brains in creating visual
-            components. May it be websites or on a piece of paper, our expertise
-            are on:
+            Walcron is a by-product of a couple&apos;s journey in IT industry.
+            The Walcron website was created for experimentation in optimizing
+            and prototyping new Web technologies. Ocassionally this is being
+            re-contributed back into the open-source community. Han and Gladys
+            started the Walcron website to log their development journey. As
+            well as to experiment real-time working websites.
           </p>
+        </article>
+        <article id={authorModel[1].hashId}>
+          <h2>{authorModel[1].title}</h2>
+          <p>
+            We provide consultation on software development. Provide us your
+            contact information and we will reach out to you.
+          </p>
+          <p>Things we had done in the past:</p>
           <ul>
-            <li>SEO optimized websites</li>
-            <li>Mobile and PWA enabled sites</li>
-            <li>Lego Mindstorm</li>
-            <li>Asynchronous/Multi-threaded programs</li>
+            <li>
+              Maintain and improve high volume (35 million records) data
+              transactions and synchronization.
+            </li>
+            <li>E-Commerce and Non-government organization websites.</li>
+            <li>Quick mock-ups and builds for clients.</li>
+            <li>Code coverage and system stability.</li>
+            <li>
+              Integration of Business-to-Business and Business-to-Consumer.
+            </li>
+            <li>DevOps from development, integration to deployment.</li>
           </ul>
-        </section>
-        <hr />
-        <section>
-          <h2>Are we freelance for hire ?</h2>
-          <p>
-            Well...<i>if the price is right, and we have time to allocate</i>,
-            <strong> yes</strong>. Provide us your contact information and we
-            will reach out to you.
-          </p>
-        </section>
-        <hr />
-        <section>
-          <h2>The developers</h2>
+        </article>
+        <article id={authorModel[2].hashId}>
+          <h3>{authorModel[2].title}</h3>
           <Profiler
             profiles={[
               {
@@ -85,7 +103,7 @@ const About = () => {
               },
             ]}
           />
-        </section>
+        </article>
         <hr />
         <section>
           <h2>Contact</h2>
@@ -93,8 +111,8 @@ const About = () => {
             <LetterBox />
           </div>
         </section>
+        <ScrollToTop />
       </div>
-      <ScrollToTop />
     </>
   )
 }

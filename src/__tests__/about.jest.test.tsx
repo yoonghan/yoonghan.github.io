@@ -14,13 +14,9 @@ describe("About", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("About Us")).toBeInTheDocument()
-    expect(screen.getByText("The developers")).toBeInTheDocument()
-    expect(
-      screen.getByText(
-        "If you are interested to talk to us, leave us your contact. Let us reach you instead."
-      )
-    ).toBeInTheDocument()
+    expect(screen.getAllByText("About Us")).toHaveLength(2)
+    expect(screen.getAllByText("What do we do?")).toHaveLength(2)
+    expect(screen.getAllByText("Founders")).toHaveLength(2)
   })
 
   it("should be able to scroll up", () => {
