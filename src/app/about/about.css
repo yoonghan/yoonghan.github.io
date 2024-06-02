@@ -1,0 +1,18 @@
+:root {
+  --secondary-color: var(--link-light);
+  --secondary-text-color: black;
+}
+
+nav > :is(a:visited, a:active, a:hover, a:link) {
+  color: var(--secondary-text-color);
+}
+
+article {
+  padding: 5rem 0;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
