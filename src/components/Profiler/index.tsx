@@ -24,7 +24,7 @@ const _getUser = (
   <div className={styles["user"]} key={"user_" + idx}>
     <Image src={imgSrc} alt={name} width={width} height={height} />
     <p className={styles.name}>{name}</p>
-    <div className={styles["divider"]}>------</div>
+    <div className={styles["divider"]}></div>
     {description}
   </div>
 )
