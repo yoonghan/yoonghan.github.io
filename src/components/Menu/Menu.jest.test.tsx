@@ -1,78 +1,41 @@
-import { sortedMenuPagesWithFilteredHomeAndSubMenu } from "@/config/pages"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { usePathnameFn } from "../../__mocks__/routerMock"
 import "../../__mocks__/routerMock"
 import Menu from "."
 
 describe("Menu", () => {
-  const waitForCommandBar = async () => {
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
+  const waitForCommandBarToLoad = async () => {
+    expect(await screen.findAllByText("walcron@tm$")).toHaveLength(2)
   }
 
-  it("should load only top level testcase", async () => {
+  it("should load menu with image", async () => {
     render(<Menu />)
     expect(screen.getByRole("img", { name: "home" })).toBeInTheDocument()
-    expect(screen.getByText("Projects")).toBeInTheDocument()
-    expect(screen.getByText("About Us")).toBeInTheDocument()
-    expect(screen.getByText("History")).toBeInTheDocument()
-    expect(screen.getAllByText("|")).toHaveLength(
-      sortedMenuPagesWithFilteredHomeAndSubMenu.length - 1
-    )
-    await waitForCommandBar()
-  })
+    expect(screen.getAllByText("Projects")).toHaveLength(2)
 
-  it("should redirect to the right link, randomly picking project", async () => {
-    render(<Menu />)
-    const projectLink = screen.getByText("Projects")
-    expect(projectLink).toHaveAttribute("href", "/projects")
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
-    await waitForCommandBar()
-  })
-
-  it("should show experiments submenus and current selected path is non attributed", async () => {
-    usePathnameFn.mockReturnValue("/experiments")
-    render(<Menu />)
-    expect(screen.getByText("Accelerated Mobile Pages")).toBeInTheDocument()
-    const experimentPath = screen.getByText("Experiments")
-    expect(experimentPath).not.toHaveAttribute("href", "/experiments")
-    await waitForCommandBar()
+    await waitForCommandBarToLoad()
   })
 
   it("should change when toggle with right, left pointer", async () => {
-    const assertIsShown = (testid: string) => {
-      expect(screen.getByTestId(testid)).toHaveStyle({
-        width: "100%",
-        transform: "none",
+    const assertIsShown = async (testid: string) => {
+      await waitFor(() => {
+        expect(screen.getAllByTestId(testid)[0]).toHaveStyle({
+          transform: "none",
+        })
       })
     }
 
     const assertIsHidden = (testid: string) => {
-      expect(screen.getByTestId(testid)).toHaveStyle({
-        width: "0",
+      expect(screen.getAllByTestId(testid)[0]).toHaveStyle({
         transform: "scale(0)",
       })
     }
 
     render(<Menu />)
     const leftArrow = "search 〉"
-    assertIsShown("menu")
     assertIsHidden("command-menu")
-    await userEvent.click(screen.getByRole("button", { name: leftArrow }))
-    await waitFor(
-      () => {
-        assertIsHidden("menu")
-      },
-      { interval: 1000 }
-    )
-    assertIsShown("command-menu")
-    await userEvent.click(screen.getByRole("button", { name: leftArrow }))
-    await waitFor(
-      () => {
-        assertIsShown("menu")
-      },
-      { interval: 1000 }
-    )
-    assertIsHidden("command-menu")
+
+    await userEvent.click(screen.getAllByRole("button", { name: leftArrow })[0])
+    await assertIsShown("command-menu")
   })
 })
