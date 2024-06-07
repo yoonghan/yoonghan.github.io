@@ -43,7 +43,6 @@ const CommandBarInput = (props: Props) => {
 
   return (
     <form onSubmit={onSubmit} className={`${styles["command-container"]}`}>
-      <label htmlFor="terminal">Terminal</label>
       <div>
         <div className={`${styles["command-text-prompt"]}`}>walcron@tm$</div>
         <div className={"prompt"}>
@@ -54,7 +53,6 @@ const CommandBarInput = (props: Props) => {
         </div>
         <div>
           <input
-            id="terminal"
             type="text"
             list="commands"
             maxLength={22}

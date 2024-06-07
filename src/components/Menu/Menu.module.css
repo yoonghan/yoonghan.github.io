@@ -1,32 +1,5 @@
 .container {
-  background-color: var(--menu-bg);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.subContainer {
   display: flex;
-  padding-right: 1rem;
-  max-width: 1024px;
-  margin: auto;
-}
-
-.container .wrapper {
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 0;
-  align-items: center;
-}
-
-.container .menu img {
-  padding-right: 1rem;
-}
-
-.container .menu a {
-  white-space: nowrap;
-}
-
-.container .divider {
-  padding: 0 1rem;
 }
 
 .container .switchButton {
@@ -47,21 +20,6 @@
 .container .switchButton:focus-visible {
   -webkit-tap-highlight-color: transparent;
   outline: none;
-}
-
-@media only screen and (max-width: 480px) {
-  .container .menu {
-    padding: 0.5rem 0rem;
-    font-size: 0.75rem;
-  }
-
-  .container .menu img {
-    width: 15px;
-  }
-
-  .container .divider {
-    padding: 0 0.5rem;
-  }
 }
 
 @media only screen and (max-width: 640px) {
