@@ -47,7 +47,7 @@
     "@types/react-confirm": "^0.2.0",
     "@types/react-toggle": "^4.0.3",
     "@types/uuid": "^9.0.0",
-    "@yoonghan/walcron-microfrontend-shared": "^3.7.0",
+    "@yoonghan/walcron-microfrontend-shared": "^4.0.0",
     "dotenv-cli": "^7.0.0",
     "encoding": "^0.1.13",
     "eslint": "^8.23.1",
