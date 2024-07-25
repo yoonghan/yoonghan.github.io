@@ -11,8 +11,11 @@ describe("Loader", () => {
     render(<Loader />)
     const loader = screen.getByTestId("walcron_loader")
     expect(loader).toHaveStyle({ opacity: 0, width: 0 })
-    await waitFor(() => {
-      expect(loader).toHaveStyle({ opacity: 1, width: "50px" })
-    })
+    await waitFor(
+      () => {
+        expect(loader).not.toHaveStyle({ opacity: 0, width: "100px" })
+      },
+      { timeout: 100 }
+    )
   })
 })

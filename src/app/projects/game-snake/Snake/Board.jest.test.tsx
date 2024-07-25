@@ -1,5 +1,5 @@
 import { KeyboardKeys } from "@/components/PopupKeyboard"
-import { render, screen } from "@testing-library/react"
+import { act, render, screen } from "@testing-library/react"
 import testLibUserEvent from "@testing-library/user-event"
 import { spyOnReload } from "../../../../__mocks__/windowMock"
 import "../../../../__mocks__/snakeWasmMock"
@@ -85,10 +85,14 @@ describe("Board", () => {
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
-      userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
-      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       expect(await screen.findByText("1")).toBeInTheDocument()
-      jest.advanceTimersByTime(1000)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       expect(await screen.findByText("Lost")).toBeInTheDocument()
     })
 
@@ -100,18 +104,24 @@ describe("Board", () => {
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
-      userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
-      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       expect(await screen.findByText("1")).toBeInTheDocument()
-      userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
-      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       if (screen.queryByText("2")) {
         //win if reward spawns on cell = 2
         expect(await screen.findByText("Won")).toBeInTheDocument()
       } else {
         //reward spawns on cell = 0
-        userEvent.keyboard(`{${KeyboardKeys.UP}}`)
-        jest.advanceTimersByTime(1000)
+        await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+        act(() => {
+          jest.advanceTimersByTime(1000)
+        })
 
         expect(await screen.findByText("Won")).toBeInTheDocument()
         expect(screen.getByText("2")).toBeInTheDocument()
@@ -126,18 +136,24 @@ describe("Board", () => {
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
-      userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
-      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       expect(await screen.findByText("1")).toBeInTheDocument()
-      userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
-      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
       if (screen.queryByText("2")) {
         //win if reward spawns on cell = 2
         expect(await screen.findByText("Won")).toBeInTheDocument()
       } else {
         //reward spawns on cell = 0
-        userEvent.keyboard(`{${KeyboardKeys.UP}}`)
-        jest.advanceTimersByTime(1000)
+        await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+        act(() => {
+          jest.advanceTimersByTime(1000)
+        })
 
         expect(await screen.findByText("Won")).toBeInTheDocument()
         expect(screen.getByText("2")).toBeInTheDocument()
