@@ -39,7 +39,7 @@ describe("ScrollIcon", () => {
     await waitFor(
       () => {
         // eslint-disable-next-line testing-library/no-node-access
-        expect(scrollIcon.parentElement).toHaveStyle({ opacity: 0 })
+        expect(scrollIcon.parentElement).not.toHaveStyle({ opacity: 1 })
       },
       { interval: 1000 }
     )

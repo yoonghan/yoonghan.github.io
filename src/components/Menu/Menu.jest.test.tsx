@@ -37,5 +37,10 @@ describe("Menu", () => {
 
     await userEvent.click(screen.getAllByRole("button", { name: leftArrow })[0])
     await assertIsShown("command-menu")
+
+    await userEvent.click(screen.getAllByRole("button", { name: leftArrow })[0])
+    await waitFor(() => {
+      assertIsHidden("command-menu")
+    })
   })
 })
