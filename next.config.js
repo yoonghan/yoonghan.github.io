@@ -41,8 +41,5 @@ module.exports = withBundleAnalyzer(
         },
       ]
     },
-    experimental: {
-      serverActions: true,
-    },
   })
 )
