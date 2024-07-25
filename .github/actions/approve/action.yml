@@ -24,6 +24,7 @@ runs:
         key: modules-node-${{ hashFiles('package-lock.json') }}
 
     - name: 📥 Download deps
+      shell: bash
       run: npm ci --ignore-scripts
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -34,10 +35,10 @@ runs:
         deployed_url: ${{ inputs.deployed_url }}
 
     - name: ✅ Verify deployment and update branch
+      shell: bash
       run: |
         URL=${{ inputs.deployed_url }}
         chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
-      shell: bash
 
     - name: 📸 Run a test to generate snapshot
       shell: bash
