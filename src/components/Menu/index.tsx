@@ -24,10 +24,12 @@ const MegaMenu = () => {
     ref: commandRef,
     from: { scale: 0, height: "0" },
   }))
+
   useChain([menuRef, commandRef])
   const [springButton, apiButton] = useSpring(() => ({
     from: { transform: "rotate(0deg)" },
   }))
+
   const [springButtonSpan, apiButtonSpan] = useSpring(() => ({
     from: { opacity: 1 },
   }))
