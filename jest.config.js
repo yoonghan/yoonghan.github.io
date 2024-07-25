@@ -28,7 +28,7 @@ const customJestConfig = {
     "^@/images/*": "<rootDir>/public/img/$1",
     "^@/util/*": "<rootDir>/util/$1",
   },
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: "jsdom",
   coverageReporters: ["text", "cobertura"],
   coverageThreshold: {
     global: {
