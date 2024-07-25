@@ -2,7 +2,7 @@
 
 import { Menu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import menuItems from "./config/menuitems"
+import menuItems from "./config/menuItems"
 import Link from "next/link"
 import Image from "next/image"
 import { memo, useCallback, useState } from "react"
