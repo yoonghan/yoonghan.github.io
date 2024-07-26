@@ -3,6 +3,9 @@ inputs:
   deployed_url:
     required: true
     type: string
+  npm_auth_token:
+    required: true
+    type: string
 
 runs:
   using: "composite"
@@ -21,13 +24,18 @@ runs:
       with:
         path: |
           ./node_modules
-        key: modules-node-${{ hashFiles('package-lock.json') }}
+          ~/.cache/ms-playwright
+        key: modules-node-playwright-${{ hashFiles('package-lock.json') }}
+
+    - name: 📥 Install playwright browsers
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps
 
     - name: 📥 Download deps
       shell: bash
       run: npm ci --ignore-scripts
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ inputs.npm_auth_token }}
 
     - name: Override Backstop
       uses: ./.github/actions/backstop-override
