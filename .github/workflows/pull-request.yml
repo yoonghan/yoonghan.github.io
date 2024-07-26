@@ -31,6 +31,8 @@ jobs:
           fi
 
   Approve:
+    permissions:
+      pull-requests: write
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'true'
     uses: ./.github/workflows/e2e-auto-approve.yml
@@ -40,6 +42,8 @@ jobs:
     secrets: inherit
 
   E2E:
+    permissions:
+      pull-requests: write
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
     uses: ./.github/workflows/e2e-test.yml
