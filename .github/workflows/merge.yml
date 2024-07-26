@@ -5,6 +5,12 @@ on:
     branches:
       - master
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   # Re-run push
   merge:
@@ -13,3 +19,107 @@ jobs:
     uses: ./.github/workflows/push.yml
     with:
       push_code_coverage: true
+
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    needs: merge
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Automatically inject basePath in your Next.js configuration file and disable
+          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+          #
+          # You may remove this line if you want to manage the configuration yourself.
+          static_site_generator: next
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+          key: modules-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Build with Next.js
+        run: |
+          export RELEASE_VERSION="${{ github.run_id }}-walcron"
+          ${{ steps.detect-package-manager.outputs.runner }} next build
+
+      - name: Upload artifact for GH pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: merge
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate release
+        id: generate-release
+        run: |
+          VERSION_PREFIX="v"
+          VERSION_MAJOR="1"
+          VERSION_MAJOR_MINOR=$(git tag --list "${VERSION_PREFIX}${VERSION_MAJOR}.*" --sort=-version:refname | head -n 1 | grep -oE '[0-9]+\.[0-9]+')
+          VERSION_MINOR=${VERSION_MAJOR_MINOR//$VERSION_MAJOR./}
+          if [ -z "$VERSION_MINOR" ]; then
+            VERSION_MINOR=0
+          else
+            VERSION_MINOR=$((VERSION_MINOR + 1))
+          fi
+          NEW_TAG="${VERSION_PREFIX}${VERSION_MAJOR}.${VERSION_MINOR}"
+          echo "Generated new tag: $NEW_TAG"
+          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Push Tag
+        run: |
+          echo '${{ steps.generate-release.outputs.tag }}'
+          git config user.name "Github Actions"
+          git config user.email "walcoorperation@gmail.com"
+          git tag ${{ steps.generate-release.outputs.tag }}
+          git push origin ${{ steps.generate-release.outputs.tag }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.generate-release.outputs.tag }}
+          release_name: Release ${{ github.ref }} - ${{ steps.generate-release.outputs.tag }}
+          body: |
+            ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
