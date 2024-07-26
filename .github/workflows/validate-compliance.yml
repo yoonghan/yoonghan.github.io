@@ -47,8 +47,7 @@ jobs:
           path: "./package-lock.json"
           format: "HTML"
           out: "reports" # this is the default, no need to specify unless you wish to override it
-          args: >
-            --failOnCVSS 7
+          args: --failOnCVSS 7
             --enableRetired
 
       - name: Upload Dependency Check results # only uploads if it's on master
