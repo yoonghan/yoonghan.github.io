@@ -10,7 +10,7 @@ const JavascriptFree = ({}) => {
       <div>
         <p>
           A goal oriented page to make the page working in both{" "}
-          <quote>No Javascript</quote>
+          <strong>No Javascript</strong>
           and javascript environment.
         </p>
         <p>
