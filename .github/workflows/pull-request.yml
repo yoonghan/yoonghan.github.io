@@ -33,16 +33,16 @@ jobs:
   Approve:
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'true'
-    uses: ./.github/workflows/auto-approve.yml
+    uses: ./.github/workflows/e2e-auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
     secrets: inherit
 
-  Validate:
+  E2E:
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
-    uses: ./.github/workflows/validator.yml
+    uses: ./.github/workflows/e2e-test.yml
     secrets: inherit
     with:
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
@@ -62,7 +62,7 @@ jobs:
         shell: bash
 
   build:
-    needs: Validate
+    needs: E2E
     runs-on: ubuntu-latest
     steps:
       - name: ✅ Just to say i am ok
