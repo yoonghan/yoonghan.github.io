@@ -58,7 +58,7 @@ jobs:
       - name: Build with Next.js
         run: |
           export RELEASE_VERSION="${{ github.run_id }}-walcron"
-          ${{ steps.detect-package-manager.outputs.runner }} next build
+          npx next build
 
       - name: Upload artifact for GH pages
         uses: actions/upload-pages-artifact@v3
