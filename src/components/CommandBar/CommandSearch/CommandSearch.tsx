@@ -12,7 +12,7 @@ export enum EnumAction {
   LINK,
 }
 
-export interface ICommand {
+interface ICommand {
   [s: string]: IAvailableInput
 }
 

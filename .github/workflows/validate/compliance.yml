@@ -1,0 +1,56 @@
+name: Validate libraries used are compliant
+
+on:
+  # allow as dispatch call
+  workflow_dispatch:
+
+  workflow_call:
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: ✅ Validate lint, prettier and build
+        run: npm run build
+
+      - name: Dependency checks
+        run: npm run dependency:check
+
+      - name: Owasp Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: "Walcron Project"
+          path: "./package-lock.json"
+          format: "HTML"
+          out: "reports" # this is the default, no need to specify unless you wish to override it
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+      - name: Upload Dependency Check results # only uploads if it's on master
+        uses: actions/upload-artifact@master
+        if: github.ref == 'refs/heads/master'
+        with:
+          name: Compliance report
+          path: ${{github.workspace}}/reports

@@ -2,12 +2,12 @@ import * as React from "react"
 import Link from "next/link"
 import styles from "./ButtonsBar.module.css"
 
-export interface ILink {
+interface ILink {
   title: string
   link: string
 }
 
-export interface ButtonsBarProps {
+interface ButtonsBarProps {
   menuTexts: Array<ILink>
   activeIndex?: number
 }

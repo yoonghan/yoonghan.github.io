@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from "next/image"
 import styles from "./Profiler.module.css"
 
-export interface IProfiler {
+interface IProfiler {
   name: string
   description: JSX.Element
   imgSrc: string | StaticImageData
@@ -9,7 +9,7 @@ export interface IProfiler {
   height?: number
 }
 
-export interface Props {
+interface Props {
   profiles: Array<IProfiler>
 }
 

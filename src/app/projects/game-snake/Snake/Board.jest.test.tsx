@@ -77,6 +77,21 @@ describe("Board", () => {
       expect(reloadFn).toHaveBeenCalled()
     })
 
+    it("should be able to press UP", async () => {
+      await renderComponent()
+      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+      expect(
+        await screen.findByRole("button", { name: "Playing..." })
+      ).toBeInTheDocument()
+      expect(await screen.findByText("Playing")).toBeInTheDocument()
+      jest.advanceTimersByTime(1000)
+      await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
+      expect(await screen.findByText("1")).toBeInTheDocument()
+    })
+
     it("should be able to play the game and move to Lost after play", async () => {
       await renderComponent()
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
