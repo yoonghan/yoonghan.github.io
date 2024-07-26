@@ -121,18 +121,6 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.
 2. To build without previous build cache; click redeploy button from Vercel dashboard (a menu from the 3 vertical dots) and uncheck "Build with previous build cache".
 
-# Prisma
-
-(Deprecated, due to no free meal)
-
-1. Add new schema into prisma/schema.prisma file.
-2. Any new tables created, run prisma generate.
-
-```
-npm run prisma:generate //create ts schema
-npm run prisma:push //push to PlanetScale, main branch
-```
-
 # Rust Webassembly
 
 1. To regenerate new Wasm from webassembly, run the command below:
@@ -142,8 +130,6 @@ npm run prisma:push //push to PlanetScale, main branch
 npm run rust:generate
 npm run rust:test //test rust running on browser
 ```
-
-=======
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/Walcron/pull-request.yml
 [build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
