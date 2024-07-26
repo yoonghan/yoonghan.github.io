@@ -17,6 +17,7 @@ jobs:
     permissions:
       pull-requests: write
     uses: ./.github/workflows/push.yml
+    secrets: inherit
     with:
       push_code_coverage: true
 
