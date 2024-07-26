@@ -6,37 +6,10 @@ on:
       - master
 
 jobs:
-  mergeCodes:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
-
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: "npm"
-          registry-url: https://npm.pkg.github.com/
-
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./node_modules
-          key: modules-node-${{ hashFiles('package-lock.json') }}
-  
-      - name: 📥 Download deps
-        run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: ✅ Validate test script
-        run: npm run test:ci
-
-      - name: ⬆️ Upload coverage report
-        uses: codecov/codecov-action@v3
+  # Re-run push
+  merge:
+    permissions:
+      pull-requests: write
+    uses: ./.github/workflows/push.yml
+    with:
+      push_code_coverage: true

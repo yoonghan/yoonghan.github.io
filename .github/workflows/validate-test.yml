@@ -1,20 +1,22 @@
-name: Validate project codes
+name: Test project
 
 on:
+  # allow as dispatch call
   workflow_dispatch:
     inputs:
-      deployed_url:
-        description: Deployed url to approve
-        type: string
+      push_code_coverage:
+        description: If code coverage is needed
+        type: boolean
         required: true
+
   workflow_call:
     inputs:
-      deployed_url:
-        description: Vercel deployed url, no http://
-        type: string
+      push_code_coverage:
+        description: If code coverage is needed
+        type: boolean
 
 jobs:
-  test:
+  nextjs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel previous runs
@@ -44,9 +46,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: ✅ Validate lint, prettier and build
-        run: npm run build
-
       - name: ✅ Validate test script
         run: npm run test:ci
 
@@ -65,72 +64,9 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
-  e2e:
-    runs-on: ubuntu-latest
-    if: |
-      !startsWith(github.head_ref , 'dependabot/')
-    steps:
-      - name: 🛑 Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.11.0
-
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: "npm"
-          registry-url: https://npm.pkg.github.com/
-
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./node_modules
-            ~/.cache/ms-playwright
-          key: modules-node-playwright-${{ hashFiles('package-lock.json') }}
-
-      - name: 📥 Download deps
-        run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: ✅ Verify Vercel deployment and update branch
-        run: |
-          URL=${{ inputs.deployed_url }}
-          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL//\//\\/}/g" playwright.config.ts
-          cat playwright.config.ts
-        shell: bash
-
-      - name: Override Backstop
-        uses: ./.github/actions/backstop-override
-        with:
-          deployed_url: ${{ inputs.deployed_url }}
-
-      - name: 📥 Install playwright browsers
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
-      - name: ▶️ Run page functional check
-        run: CI=true && npm run playwright:test
-
-      - name: ▶️ Run page rendering check
-        shell: bash
-        continue-on-error: true
-        run: npm run backstop:test
-
-      - name: ⬆️ Upload snapshot artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: backstop-artifact
-          path: backstop_data/
-
-      - name: ✅ Validate backstopjs snapshot is valid
-        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
-        shell: bash
+      - name: ⬆️ Upload coverage report
+        uses: codecov/codecov-action@v3
+        if: inputs.push_code_coverage == true
 
   rust:
     runs-on: ubuntu-latest
