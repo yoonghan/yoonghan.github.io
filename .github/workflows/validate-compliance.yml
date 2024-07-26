@@ -36,8 +36,8 @@ jobs:
       - name: Dependency checks
         run: npm run dependency:check
 
-      - name: Remove package.json with local builds
-        run: npm uninstall --save-dev snake-game
+      - name: Remove package.json with dev or local builds
+        run: npm uninstall snake-game @next/bundle-analyzer jest-environment-jsdom
 
       - name: Owasp Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
