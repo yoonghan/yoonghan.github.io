@@ -19,9 +19,6 @@ on:
       deployed_url:
         description: Vercel deployed url, no http://
         type: string
-    secrets:
-      PAT:
-        description: Checkout secret.
     outputs:
       HAVE_APPROVAL:
         description: "Inform there are changes from auto commit"
@@ -46,6 +43,7 @@ jobs:
         uses: ./.github/actions/approve
         with:
           deployed_url: ${{ inputs.deployed_url }}
+          npm_auth_token: ${{ secrets.NPM_TOKEN }}
 
       - name: 💼 Auto commit on approved backstop
         uses: stefanzweifel/git-auto-commit-action@v4
