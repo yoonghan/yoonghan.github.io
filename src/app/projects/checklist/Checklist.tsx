@@ -2,12 +2,11 @@
 
 import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
-import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
 
-export interface PostedJob {
+interface PostedJob {
   createdAt: string
   jobName: string
 }

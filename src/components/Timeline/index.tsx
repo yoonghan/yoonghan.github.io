@@ -3,7 +3,7 @@ import styles from "./Timeline.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
 
-export interface Props {
+interface Props {
   events: Array<IEvent>
 }
 

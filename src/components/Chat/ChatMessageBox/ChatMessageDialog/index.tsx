@@ -27,7 +27,7 @@ export type MessageHandler = {
   ) => void
 }
 
-export interface Props {
+interface Props {
   initialMessage?: Message[]
 }
 

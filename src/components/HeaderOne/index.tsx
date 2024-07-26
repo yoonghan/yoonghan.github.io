@@ -1,4 +1,4 @@
-export interface Props {
+interface Props {
   title: string
   isLined?: boolean
 }

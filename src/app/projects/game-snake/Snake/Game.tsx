@@ -16,7 +16,7 @@ export type GameProps = {
   rewardInformationCallback?: (initialRewardCellPos?: number) => void
 }
 
-export type Props = GameProps & { cellSize: number }
+type Props = GameProps & { cellSize: number }
 
 const Game = ({
   world,

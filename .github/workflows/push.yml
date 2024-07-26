@@ -1,0 +1,28 @@
+name: Validate each branch changes of project
+
+on:
+  # run on any push except merge
+  push:
+    branches-ignore:
+      - master
+  # for retriggering
+  workflow_call:
+    inputs:
+      push_code_coverage:
+        description: If code coverage is needed
+        type: boolean
+
+jobs:
+  test:
+    permissions:
+      pull-requests: write
+    uses: ./.github/workflows/validate/test.yml
+    secrets: inherit
+    with:
+      push_code_coverage: ${{ inputs.push_code_coverage }}
+
+  check:
+    permissions:
+      pull-requests: write
+    uses: ./.github/workflows/validate/compliance.yml
+    secrets: inherit

@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useState } from "react"
 import styles from "./Snake.module.css"
 
-export type Props = {
+type Props = {
   disabled: boolean
   onUpdate: (info: { id: string; value: number }) => void
   formValues: {
