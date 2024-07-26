@@ -37,7 +37,6 @@
     "**/*.ts",
     "**/*.tsx",
     "types.d.ts",
-    "amp.d.ts",
     "playwright.config.js",
     ".next/types/**/*.ts"
   ],
