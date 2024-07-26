@@ -3,7 +3,7 @@ import styles from "./CommandBar.module.css"
 import dynamic from "next/dynamic"
 import NavMenu from "./NavMenu"
 
-export interface CommandBarNoSSRProps {
+interface CommandBarNoSSRProps {
   commandPromptOnly?: boolean
 }
 

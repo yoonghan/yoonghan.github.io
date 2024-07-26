@@ -1,5 +1,5 @@
-export type EventEmitter = (message: string, senderId: number) => boolean
-export type NoOfUserEmitter = (subscription_count: number) => boolean
+type EventEmitter = (message: string, senderId: number) => boolean
+type NoOfUserEmitter = (subscription_count: number) => boolean
 export type Emitter = EventEmitter | NoOfUserEmitter
 
 export const isEventEmitter = (

@@ -1,0 +1,55 @@
+name: Create Approved Snapshot By File
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branchname to execute
+        type: string
+        required: true
+      deployed_url:
+        description: Deployed url to approve
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      branch:
+        description: Branchname to execute
+        type: string
+      deployed_url:
+        description: Vercel deployed url, no http://
+        type: string
+    outputs:
+      HAVE_APPROVAL:
+        description: "Inform there are changes from auto commit"
+        value: ${{ jobs.auto_approve.outputs.changes_detected }}
+
+jobs:
+  auto_approve:
+    runs-on: ubuntu-latest
+    outputs:
+      changes_detected: ${{ steps.auto-commit-action.outputs.changes_detected }}
+    permissions:
+      pull-requests: write
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          ref: ${{ inputs.branch }}
+
+      - name: ✅ Approve Backstop
+        uses: ./.github/actions/approve
+        with:
+          deployed_url: ${{ inputs.deployed_url }}
+          npm_auth_token: ${{ secrets.NPM_TOKEN }}
+
+      - name: 💼 Auto commit on approved backstop
+        uses: stefanzweifel/git-auto-commit-action@v4
+        id: auto-commit-action
+        with:
+          commit_message: Update backstop with auto approval
+          file_pattern: "backstop_data/bitmaps_reference/*.png"
