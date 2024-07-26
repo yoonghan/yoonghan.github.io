@@ -1,0 +1,16 @@
+{
+  "ignore": [
+    "backstop_data/**",
+    "src/__mocks__/**",
+    "crate/pkg/**"
+  ],
+  "ignoreDependencies": [
+    "sharp",
+    "snake-game",
+    "dotenv-cli",
+    "@types/jest"
+  ],
+  "ignoreBinaries": [
+    "wasm-pack"
+  ]
+}

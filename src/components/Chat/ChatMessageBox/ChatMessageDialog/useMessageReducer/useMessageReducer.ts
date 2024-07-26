@@ -6,7 +6,7 @@ export enum MessageActionType {
   Add,
 }
 
-export type MessageAction = {
+type MessageAction = {
   type: MessageActionType
   payload: {
     type: MessageType

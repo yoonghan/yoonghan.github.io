@@ -1,13 +1,12 @@
-import * as React from "react"
 import Image from "next/image"
 
-export interface LogoProps {
+interface LogoProps {
   withText?: boolean
 }
 
 const Logo = ({ withText = false }: LogoProps) => {
   return (
-    <React.Fragment>
+    <>
       <Image
         className={"logo-img"}
         src="/img/logo/logo-color.svg"
@@ -32,7 +31,7 @@ const Logo = ({ withText = false }: LogoProps) => {
           }
         }
       `}</style>
-    </React.Fragment>
+    </>
   )
 }
 
