@@ -1,4 +1,4 @@
-import menuItems from "./menuitems"
+import menuItems from "./menuItems"
 
 describe("menu items", () => {
   it("should contain list of menus", () => {
