@@ -1,12 +1,13 @@
 import { test, expect } from "@playwright/test"
 
 test.describe("important! PWA urls", () => {
-  test("should be able to brose a generated service-worker", async ({
-    page,
-  }) => {
-    await page.goto("/sw.js")
-    expect(await page.content()).toContain("workbox")
-  })
+  // no longer generates
+  // test("should be able to brose a generated service-worker", async ({
+  //   page,
+  // }) => {
+  //   await page.goto("/sw.js")
+  //   expect(await page.content()).toContain("workbox")
+  // })
 
   test("should be able to manifest.json for PWA download", async ({ page }) => {
     await page.goto("/manifest.json")
