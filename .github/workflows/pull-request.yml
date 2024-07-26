@@ -37,8 +37,7 @@ jobs:
     with:
       branch: ${{ github.head_ref }}
       deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
-    secrets:
-      PAT: ${{ secrets.PAT }}
+    secrets: inherit
 
   Validate:
     needs: TaskDecider
