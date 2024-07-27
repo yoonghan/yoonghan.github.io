@@ -1,8 +1,5 @@
-"use server"
-
-import { cookies } from "next/headers"
+"use client"
 
 export const updateCookie = async () => {
-  //@ts-ignore
-  cookies().set("termsRead", true, { secure: true })
+  document.cookie = "termsRead=true;secure;path=/"
 }

@@ -6,7 +6,6 @@
 
 import * as React from "react"
 import styles from "./Cookie.module.css"
-import { getCookie, setCookie } from "cookies-next"
 
 interface CookieProps {
   isClosed: boolean
@@ -22,7 +21,7 @@ const Cookie = (props: CookieProps) => {
     setClosed(true)
   }
 
-  if (isClosed) {
+  if (isClosed || props.isClosed) {
     return <React.Fragment />
   } else {
     return (
