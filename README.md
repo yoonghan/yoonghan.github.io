@@ -131,7 +131,7 @@ npm run rust:generate
 npm run rust:test //test rust running on browser
 ```
 
-[build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/Walcron/pull-request.yml
-[build]: https://github.com/yoonghan/Walcron/actions?query=workflow%3Avalidator
-[coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan/Walcron.svg?style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml
+[build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+master"
+[coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan.github.io/Walcron.svg?style=flat-square
 [coverage]: https://codecov.io/gh/yoonghan/Walcron
