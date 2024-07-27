@@ -3,6 +3,7 @@ import { useCallback, useReducer, useRef, useState } from "react"
 import { EnumConnectionStatus } from "../type/ConnectionStatus"
 import { onlineUserReducer } from "./onlineReducer"
 import { Member, MemberInfo } from "../type/Member"
+import { site } from "@/config/site"
 
 export type Props = {
   appKey: string
@@ -97,7 +98,7 @@ export const usePresencePusher = ({
 
     const pusherConfiguration = {
       cluster,
-      authEndpoint: `${authEndpoint}/${userId}`,
+      authEndpoint: `${site.url}${authEndpoint}/${userId}`,
     }
 
     pusher.current = new PusherJS(appKey, pusherConfiguration)
