@@ -57,7 +57,7 @@ jobs:
 
       - name: Remove Api actions
         run: |
-          rm -rf src/api
+          rm -rf src/app/api
 
       - name: Build with Next.js
         run: |
