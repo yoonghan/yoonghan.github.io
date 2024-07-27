@@ -3,6 +3,7 @@
 import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import Table from "@/components/Table"
+import { site } from "@/config/site"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
 
@@ -11,7 +12,9 @@ interface PostedJob {
   jobName: string
 }
 
-export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
+const apiUrl = `${site.url}/api/cron`
+
+const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
   const { error: cronHistoryError } = useFetch<string[]>(cronHistoryUrl)
@@ -24,7 +27,7 @@ export const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   }, [])
 
   const onClickViewMore = useCallback(async () => {
-    setCronHistoryUrl("/api/cron")
+    setCronHistoryUrl(apiUrl)
   }, [])
 
   useEffect(() => {
@@ -116,3 +119,5 @@ export const TroubleshootPwaCheckList = () => {
     </section>
   )
 }
+
+export { CronJobCheckList }
