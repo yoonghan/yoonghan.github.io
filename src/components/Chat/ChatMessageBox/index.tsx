@@ -17,10 +17,13 @@ import { MessageType } from "../config/MessageType"
 import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { site } from "@/config/site"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
 }
+
+const apiUrl = `${site.url}/api/firebase`
 
 const dropFile =
   (callback: (message: string, notifyReceipient?: boolean) => void) =>
@@ -30,7 +33,7 @@ const dropFile =
 
     callback(`Uploading file ${acceptedFiles[0].name}...`)
 
-    fetch("/api/firebase", {
+    fetch(apiUrl, {
       method: "POST",
       body: formData,
     })
