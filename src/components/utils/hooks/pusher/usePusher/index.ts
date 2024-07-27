@@ -9,6 +9,7 @@ import {
   decodeMessage,
   encodeMessage,
 } from "../../../../Chat/config/MessageFormatter"
+import { site } from "@/config/site"
 
 type Props = {
   eventName: string
@@ -160,7 +161,7 @@ export function usePusher(props: Props) {
 
     const pusherConfiguration = {
       cluster,
-      authEndpoint: props.authEndpoint,
+      authEndpoint: `${site.url}/props.authEndpoint`,
       enabledTransports,
     }
     pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration)
