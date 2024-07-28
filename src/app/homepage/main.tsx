@@ -9,7 +9,7 @@ import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import LetterBox from "@/components/LetterBox"
-import Menu from "@/components/Menu"
+import Menu from "@/components/MegaMenu"
 
 interface Props {
   termsRead: boolean

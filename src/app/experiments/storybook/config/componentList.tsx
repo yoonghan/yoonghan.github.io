@@ -1,4 +1,4 @@
-import Menu from "@/components/Menu"
+import Menu from "@/components/MegaMenu"
 import dynamic from "next/dynamic"
 import ButtonsBar from "./ButtonsBar"
 import Cards from "./Cards"

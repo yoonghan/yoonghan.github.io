@@ -1,4 +1,4 @@
-import Menu from "@/components/Menu"
+import Menu from "@/components/MegaMenu"
 import Footer from "@/components/Footer"
 
 export const metadata = {
