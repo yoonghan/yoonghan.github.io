@@ -90,6 +90,10 @@ describe("Board", () => {
         jest.advanceTimersByTime(1000)
       })
       expect(await screen.findByText("1")).toBeInTheDocument()
+
+      act(() => {
+        jest.advanceTimersByTime(1000)
+      })
     })
 
     it("should be able to play the game and move to Lost after play", async () => {
