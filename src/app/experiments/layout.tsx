@@ -1,4 +1,3 @@
-import Menu from "@/components/MegaMenu"
 import Footer from "@/components/Footer"
 
 export const metadata = {
@@ -13,7 +12,6 @@ export default function ExperimentalLayout({
 }) {
   return (
     <>
-      <Menu />
       {children}
       <Footer className="dark" />
     </>

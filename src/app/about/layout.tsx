@@ -1,4 +1,3 @@
-import Menu from "@/components/MegaMenu"
 import Footer from "@/components/Footer"
 import Script from "next/script"
 
@@ -39,7 +38,6 @@ export default function AboutLayout({
       <Script type="application/ld+json" id="ld-json">
         {_getSchema()}
       </Script>
-      <Menu />
       {children}
       <Footer />
     </>
