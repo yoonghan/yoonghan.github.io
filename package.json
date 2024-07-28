@@ -12,7 +12,6 @@
     "playwright:test": "playwright test",
     "rust:generate": "cp -R src/util crate/src && cd crate && wasm-pack build --target web && cp .pkg-gitignore ./pkg/.gitignore",
     "rust:test": "cd crate && wasm-pack test --node",
-    "analyze": "ANALYZE=true next build",
     "dependency:check": "knip"
   },
   "dependencies": {
@@ -30,7 +29,6 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^12.3.1",
     "@playwright/test": "^1.28.1",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
