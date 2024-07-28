@@ -133,7 +133,7 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 ## NextJS Static Site Generation
 
-NextJS for static generation `ouput: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
+NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
 
 ## Rust Webassembly
 
