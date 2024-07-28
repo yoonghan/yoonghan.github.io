@@ -35,6 +35,14 @@ For linting and prettifier check
 npm run lint
 ```
 
+For package analysing, do not check-in as it contains alot of security issues.
+
+```bash
+npm install @next/bundle-analyzer
+# Wrap next.config.js with withBundleAnalyzer({...})
+npx next build
+```
+
 For BackstopJS - regression for view and approve website design UI
 **Note**: that browser executes differently in OS, especially font's. In this case use the approved generated backstopJS snapshots directly from the OS/Docker container.
 
