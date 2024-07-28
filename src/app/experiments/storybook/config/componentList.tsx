@@ -1,4 +1,4 @@
-import Menu from "@/components/MegaMenu"
+import MegaMenu from "@/components/MegaMenu"
 import dynamic from "next/dynamic"
 import ButtonsBar from "./ButtonsBar"
 import Cards from "./Cards"
@@ -22,7 +22,7 @@ export const storyBookList = [
   },
   {
     title: "Menu",
-    component: <Menu />,
+    component: <MegaMenu />,
   },
   {
     title: "Cards",

@@ -1,11 +1,15 @@
+import MegaMenu from "@/components/MegaMenu"
 import "@/styles/global.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { Metadata } from "next"
 import Script from "next/script"
+
+export { Body, metadata }
+
 config.autoAddCss = false
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL("https://www.walcron.com"),
   title: "Walcron Coorperation",
   description:
@@ -38,6 +42,17 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 }
 
+function Body({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <header>
+        <MegaMenu />
+      </header>
+      {children}
+    </>
+  )
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -63,7 +78,9 @@ export default function RootLayout({
           location.href="//www.walcron.com";
         }`}
       </Script>
-      <body>{children}</body>
+      <body>
+        <Body>{children}</Body>
+      </body>
     </html>
   )
 }

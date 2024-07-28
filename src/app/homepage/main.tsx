@@ -9,7 +9,6 @@ import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
 import Footer from "@/components/Footer"
 import LetterBox from "@/components/LetterBox"
-import Menu from "@/components/MegaMenu"
 
 interface Props {
   termsRead: boolean
@@ -29,7 +28,6 @@ function Homepage({ termsRead }: Props) {
       <main className={styles.homepage}>
         <PageReaderIndicator scrollContainer={scrollContainerRef} />
         <div ref={scrollContainerRef} id="parallax-container">
-          <Menu />
           <Parallax scrollContainer={scrollContainerRef} ref={scrollHandlerRef}>
             {sections}
           </Parallax>
