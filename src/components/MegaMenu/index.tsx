@@ -8,7 +8,7 @@ import Image from "next/image"
 import { memo, useCallback, useState } from "react"
 import CommandBar from "../CommandBar"
 import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web"
-import styles from "./Menu.module.css"
+import styles from "./MegaMenu.module.css"
 
 enum Display {
   Menu,

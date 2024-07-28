@@ -1,15 +1,15 @@
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import "../../__mocks__/routerMock"
-import Menu from "."
+import MegaMenu from "."
 
-describe("Menu", () => {
+describe("MegaMenu", () => {
   const waitForCommandBarToLoad = async () => {
     expect(await screen.findAllByText("walcron@tm$")).toHaveLength(2)
   }
 
   it("should load menu with image", async () => {
-    render(<Menu />)
+    render(<MegaMenu />)
     expect(screen.getByRole("img", { name: "home" })).toBeInTheDocument()
     expect(screen.getAllByText("Projects")).toHaveLength(2)
 
@@ -31,7 +31,7 @@ describe("Menu", () => {
       })
     }
 
-    render(<Menu />)
+    render(<MegaMenu />)
     const leftArrow = "search 〉"
     assertIsHidden("command-menu")
 
