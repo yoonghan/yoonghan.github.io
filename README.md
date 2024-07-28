@@ -5,7 +5,7 @@ A personal website for self-learning interest.
 ---
 
 [![Build Status][build-badge]][build]
-[![Code Coverage][coverage-badge]][coverage]
+[![codecov][coverage-badge]][coverage]
 
 ## How to Use
 
@@ -147,5 +147,5 @@ npm run rust:test //test rust running on browser
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml
 [build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+master"
-[coverage-badge]: https://img.shields.io/codecov/c/github/yoonghan.github.io/Walcron.svg?style=flat-square
+[coverage-badge]: https://codecov.io/gh/yoonghan/yoonghan.github.io/graph/badge.svg?token=HPWQMQPPS1
 [coverage]: https://codecov.io/gh/yoonghan/yoonghan.github.io
