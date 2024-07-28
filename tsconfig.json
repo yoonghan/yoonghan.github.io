@@ -16,15 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/pageComponents/*": ["src/pageComponents/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/app/*": ["src/app/*"],
-      "@/styles/*": ["styles/*"],
-      "@/config/*": ["src/config/*"],
-      "@/transport/*": ["src/transport/*"],
+      "@/*": ["src/*"],
       "@/images/*": ["public/img/*"],
-      "@/util/*": ["src/util/*"]
+      "@/styles/*": ["styles/*"]
     },
     "plugins": [
       {
