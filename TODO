@@ -1,3 +1,4 @@
 1. Move menu to main
-2. Make sure mega menu is server execution
-2. Migrate to use tailwind
+2. Move footer
+3. Make sure mega menu/footer is server execution
+4. Migrate to use tailwind
