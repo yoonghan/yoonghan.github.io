@@ -52,7 +52,7 @@ npm run backstop:approve // Approve the new website ok
 
 Project is tied closely with github.
 
-To create a new change, do a pull request. (_Master_ is still not locked)
+To create a new change, do a pull request.
 
 1. Create a branch for changes in lowercase with no space.
 2. Commit the changes in the branch.
@@ -114,14 +114,20 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 ## Deployment for Github PAT permission
 
 1. For accessing private repo, please allow Profile -> Settings -> Personal Access Token (classic), open read:packages (basically th esame as vercel deployment). For more info refer: https://docs.github.com/en/packages/working-with-a-github-packages-registry. Add as Github secret in Settings->Secrets And variable and add NPM_TOKEN key. NOTE: In merge NODE_AUTH_TOKEN is used instead.
-2. Workflow requires 1) registry-url in checkout action, 2) NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
+2. Workflow requires
+3. registry-url in checkout action,
+4. NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
 
-# Vercel/NextJS
+## Vercel/NextJS
 
 1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.
 2. To build without previous build cache; click redeploy button from Vercel dashboard (a menu from the 3 vertical dots) and uncheck "Build with previous build cache".
 
-# Rust Webassembly
+## NextJS Static Site Generation
+
+NextJS for static generation `ouput: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
+
+## Rust Webassembly
 
 1. To regenerate new Wasm from webassembly, run the command below:
 2. The scripts include a custom .gitignore.
