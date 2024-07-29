@@ -33,7 +33,7 @@ const customJestConfig = {
       statements: 100,
     },
   },
-  coveragePathIgnorePatterns: ["<rootDir>/crate"],
+  coveragePathIgnorePatterns: ["<rootDir>/crate", "layout.tsx", "page.tsx"],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
