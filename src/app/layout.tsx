@@ -50,7 +50,7 @@ function Body({ children }: { children: React.ReactNode }) {
         <MegaMenu />
       </header>
       {children}
-      <Footer className="dark" />
+      <Footer />
     </>
   )
 }
