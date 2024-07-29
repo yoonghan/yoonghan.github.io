@@ -4,5 +4,5 @@ export const metadata = {
 }
 
 export default function JsFreedom({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return children
 }

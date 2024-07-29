@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import MegaMenu from "@/components/MegaMenu"
 import "@/styles/global.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
@@ -49,6 +50,7 @@ function Body({ children }: { children: React.ReactNode }) {
         <MegaMenu />
       </header>
       {children}
+      <Footer className="dark" />
     </>
   )
 }

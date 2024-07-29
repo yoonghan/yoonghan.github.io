@@ -1,5 +1,10 @@
 import SnakeGame from "./Snake/SnakeGame"
 
+export const metadata = {
+  title: "Snake Game",
+  description: "A nokia like snake game.",
+}
+
 const GameSnake = () => {
   return (
     <>
