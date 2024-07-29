@@ -3,6 +3,11 @@
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import WebrtcVideo from "./WebrtcVideo"
 
+export const metadata = {
+  title: "Video Conferencing",
+  description: "Peer to peer Web RTC video conferencing.",
+}
+
 interface Props {
   appKey?: string
   cluster?: string
