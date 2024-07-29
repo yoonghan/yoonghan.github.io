@@ -10,6 +10,11 @@ import imgAnalyzeReportSize from "@/images/lesson/1/analyze-report-size.jpg"
 import imgTypescriptImport from "@/images/lesson/1/typescript-import.jpg"
 import imgFinalResult from "@/images/lesson/1/final-result.jpg"
 
+export const metadata = {
+  title: "Lessons",
+  description: "Lesson learned on CI/CD and web developments.",
+}
+
 const Lessons = ({}) => {
   return (
     <div className={`${styles.container}`}>

@@ -4,6 +4,10 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;

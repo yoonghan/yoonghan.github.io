@@ -1,5 +1,4 @@
 import Button from "@/components/Button"
-import Footer from "@/components/Footer"
 import styles from "./notfound.module.css"
 
 export default function NotFound() {
@@ -13,7 +12,6 @@ export default function NotFound() {
           <Button href="https://www.walcron.com">Go back to home</Button>
         </div>
       </div>
-      <Footer className="dark" />
     </>
   )
 }
