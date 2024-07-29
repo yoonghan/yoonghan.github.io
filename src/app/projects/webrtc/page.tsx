@@ -1,7 +1,10 @@
-/* istanbul ignore file */
-/** Good case to create integration testing rather than mock testing **/
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import WebrtcVideo from "./WebrtcVideo"
+
+export const metadata = {
+  title: "Video Conferencing",
+  description: "Peer to peer Web RTC video conferencing.",
+}
 
 interface Props {
   appKey?: string

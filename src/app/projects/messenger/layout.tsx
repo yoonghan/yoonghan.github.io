@@ -8,5 +8,5 @@ export default function MessengerLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }
