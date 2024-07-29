@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-/** Good case to create integration testing rather than mock testing **/
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import WebrtcVideo from "./WebrtcVideo"
 
