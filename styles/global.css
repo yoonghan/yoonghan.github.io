@@ -66,10 +66,6 @@ h1 {
   color: var(--header-1);
 }
 
-hr {
-  width: 50%;
-}
-
 @keyframes blink {
   from {
     opacity: 1;
