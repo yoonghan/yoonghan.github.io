@@ -2,8 +2,6 @@ import { render, screen, waitFor, within } from "@testing-library/react"
 import "../__mocks__/routerMock"
 import Home from "@/app/homepage/main"
 import UserEvent from "@testing-library/user-event"
-import { assertFooter } from "./utils/_footer"
-import { assertMenu } from "./utils/_menu"
 import { assertSocialFab } from "./utils/_socialFab"
 
 describe("Home", () => {
@@ -11,11 +9,9 @@ describe("Home", () => {
     render(<Home termsRead={false} />)
   }
 
-  it("should have a menu and social fab loaded and footer", async () => {
+  it("should have a social fab loaded", async () => {
     renderComponent()
-    await assertMenu()
     await assertSocialFab()
-    assertFooter()
   })
 
   it("should be able to click on the cookie button", async () => {

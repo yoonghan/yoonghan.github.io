@@ -5,6 +5,11 @@ import styles from "./Projects.module.css"
 import LetterBox from "@/components/LetterBox"
 import { cards } from "./config"
 
+export const metadata = {
+  title: "Projects",
+  description: "Playground projects that we had been working on.",
+}
+
 const Projects = ({}) => {
   return (
     <div className={`${styles.container}`}>

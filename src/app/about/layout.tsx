@@ -1,5 +1,3 @@
-import Menu from "@/components/Menu"
-import Footer from "@/components/Footer"
 import Script from "next/script"
 
 export const metadata = {
@@ -39,9 +37,7 @@ export default function AboutLayout({
       <Script type="application/ld+json" id="ld-json">
         {_getSchema()}
       </Script>
-      <Menu />
       {children}
-      <Footer />
     </>
   )
 }

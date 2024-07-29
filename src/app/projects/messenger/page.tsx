@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-/** Good case to create integration testing rather than mock testing **/
 "use client"
 
 import { usePusher } from "@/components/utils/hooks/pusher/usePusher"

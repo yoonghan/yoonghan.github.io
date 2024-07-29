@@ -5,6 +5,11 @@ import { nonFictionBooks, siteHistory } from "@/app/history/config"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 
+export const metadata = {
+  title: "Website History",
+  description: "Timeline and journey of the page.",
+}
+
 const History = ({}) => {
   return (
     <>

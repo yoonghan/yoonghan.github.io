@@ -4,6 +4,11 @@ import ScrollToTop from "@/components/ScrollToTop"
 import styles from "./Experiments.module.css"
 import LetterBox from "@/components/LetterBox"
 
+export const metadata = {
+  title: "Experiments",
+  description: "Experimental pages for POC, and UI/UX",
+}
+
 const Experiments = ({}) => {
   return (
     <>

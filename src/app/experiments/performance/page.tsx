@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 "use client"
 
 import dynamic from "next/dynamic"

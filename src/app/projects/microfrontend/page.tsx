@@ -2,6 +2,11 @@ import Card from "@/components/Card"
 import { memo } from "react"
 import styles from "../Projects.module.css"
 
+export const metadata = {
+  title: "Microfrontend",
+  description: "Microfrontend architecture.",
+}
+
 const Projects = ({}) => {
   const cards = [
     {

@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import styles from "./Storybook.module.css"
 import StoryMaker from "./StoryMaker"
 import { storyBookList } from "@/app/experiments/storybook/config/componentList"
