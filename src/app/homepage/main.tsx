@@ -7,7 +7,6 @@ import { useMemo, useRef } from "react"
 import PageReaderIndicator from "@/components/PageReaderIndicator"
 import SocialFab from "@/components/SocialFab"
 import Cookie from "@/components/Cookie"
-import Footer from "@/components/Footer"
 import LetterBox from "@/components/LetterBox"
 
 interface Props {
@@ -57,8 +56,6 @@ function Homepage({ termsRead }: Props) {
               </div>
             </div>
           </div>
-          ,
-          <Footer className="dark" />
         </div>
         <SocialFab />
       </main>

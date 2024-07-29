@@ -6,6 +6,11 @@ import styles from "./Sitemap.module.css"
 import { Result, SiteMapConstructor } from "./sitemapConstructor"
 import { sortedSiteMapPages } from "@/config/pages"
 
+export const metadata = {
+  title: "Sitemap",
+  description: "Website links and site.",
+}
+
 const SiteMap = ({}) => {
   const groupedMenu = useMemo(
     () => new SiteMapConstructor().getGroups(sortedSiteMapPages),

@@ -5,6 +5,16 @@ import Table from "@/components/Table"
 import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
 
+export const metadata = {
+  title: "Checklist",
+  description: "Important Checklist to ensure website runs well and good",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+}
+
 const links: Array<{ [key: string]: ReactNode }> = [
   {
     Site: "Google Search Console",

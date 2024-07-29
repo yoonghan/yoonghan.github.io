@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer"
 import Script from "next/script"
 
 export const metadata = {
@@ -39,7 +38,6 @@ export default function AboutLayout({
         {_getSchema()}
       </Script>
       {children}
-      <Footer />
     </>
   )
 }
