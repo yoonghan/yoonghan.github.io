@@ -65,12 +65,6 @@ const CommandBarInput = (props: Props) => {
           <datalist id="commands">{commandOptions}</datalist>
         </div>
       </div>
-      <button
-        className={`${styles["command-enter"]} style-scope ytd-searchbox`}
-        aria-label="Enter"
-      >
-        <i>&#x21AA;</i>
-      </button>
     </form>
   )
 }
