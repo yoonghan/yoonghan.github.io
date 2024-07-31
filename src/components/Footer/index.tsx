@@ -2,11 +2,7 @@ import { useMemo, memo, useCallback } from "react"
 import Link from "next/link"
 import { sortedFooterPages, PageConfig } from "../../config/pages"
 
-interface Props {
-  className?: string
-}
-
-const Footer = ({ className }: Props) => {
+const Footer = () => {
   const renameDisplays = (display: string) => {
     switch (display) {
       case "Projects":
