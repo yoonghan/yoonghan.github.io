@@ -157,8 +157,8 @@ pre.code {
   color: var(--link);
   font-family: Inconsolata;
   position: absolute;
-  left: 8.2rem;
-  top: 0.6rem;
+  left: 5rem;
+  top: 0.5rem;
   animation-name: blink;
   font-size: 0.8rem;
   animation-duration: 800ms;
