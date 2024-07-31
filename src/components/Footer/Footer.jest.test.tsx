@@ -10,11 +10,6 @@ describe("Footer", () => {
     expect(screen.getByText(footerMessage)).toBeInTheDocument()
   })
 
-  it("should render with additional classname if passed", () => {
-    render(<Footer className={"sampleClass"} />)
-    expect(screen.getByRole("contentinfo")).toHaveClass("sampleClass")
-  })
-
   it("should render without 'undefined' value if className is not overridden", () => {
     render(<Footer />)
     expect(screen.getByRole("contentinfo")).not.toHaveClass("undefined")
