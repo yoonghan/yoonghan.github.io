@@ -1,5 +1,6 @@
 import Button from "@/components/Button"
 import styles from "./notfound.module.css"
+import { site } from "@/config/site"
 
 export default function NotFound() {
   return (
@@ -9,7 +10,7 @@ export default function NotFound() {
           <div>
             <h1>404</h1>This page is not found
           </div>
-          <Button href="https://www.walcron.com">Go back to home</Button>
+          <Button href={site.url}>Go back to home</Button>
         </div>
       </div>
     </>
