@@ -94,6 +94,11 @@ span.strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+header {
+  z-index: 999;
+}
+
 footer {
   background-color: var(--primary-700);
   color: var(--primary-text-color);
