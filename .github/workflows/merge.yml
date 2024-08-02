@@ -59,16 +59,23 @@ jobs:
         run: |
           rm -rf src/app/api
 
+      - name: Set site env
+        id: env-set
+        run: |
+          SITE_URL="https://yoonghan.github.io"
+          echo "Change site: $SITE_URL"
+          echo "siteUrl=$SITE_URL" >> $GITHUB_OUTPUT
+
       - name: Url replace
         shell: bash
         run: |
           sed -i '/Sitemap/d' ./public/robots.txt
-          echo "Sitemap: https://yoonghan.github.io/sitemap.xml" >> ./public/robots.txt
+          echo "Sitemap: ${{ steps.env-set.outputs.siteUrl }}/sitemap.xml" >> ./public/robots.txt
 
       - name: Build with Next.js
         run: |
           export RELEASE_VERSION="${{ github.run_id }}-walcron"
-          npm run build
+          export SITE_URL="${{ steps.env-set.outputs.siteUrl }}" && npm run build
 
       - name: Upload artifact for GH pages
         uses: actions/upload-pages-artifact@v3
