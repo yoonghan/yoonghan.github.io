@@ -57,7 +57,10 @@ describe("Checklist", () => {
       expect(
         screen.queryByRole("button", { name: "View More" })
       ).not.toBeInTheDocument()
-      expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
+      expect(fetchMock).toHaveBeenCalledWith(
+        "https://www.walcron.com/api/cron",
+        undefined
+      )
     })
   })
 
@@ -80,7 +83,9 @@ describe("Checklist", () => {
       screen.queryByRole("button", { name: "View More" })
     ).not.toBeInTheDocument()
     expect(
-      screen.getByText("Fetch to /api/cron failed, try again later")
+      screen.getByText(
+        "Fetch to https://www.walcron.com/api/cron failed, try again later"
+      )
     ).toBeInTheDocument()
   })
 

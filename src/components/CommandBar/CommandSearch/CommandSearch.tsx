@@ -6,6 +6,7 @@ import PwaEnabler from "../PwaEnabler"
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import { site } from "@/config/site"
 
 export enum EnumAction {
   COMMAND,
@@ -106,7 +107,7 @@ export const AvailableInput: ICommand = {
         navigator.share({
           title: "Walcron",
           text: "An awesome website.",
-          url: "https://www.walcron.com",
+          url: site.url,
         })
         return <React.Fragment />
       } else {

@@ -1,6 +1,7 @@
 import { useMemo, memo, useCallback } from "react"
 import Link from "next/link"
 import { sortedFooterPages, PageConfig } from "../../config/pages"
+import styles from "./Footer.module.css"
 
 const Footer = () => {
   const renameDisplays = (display: string) => {
@@ -44,25 +45,21 @@ const Footer = () => {
   }, [renderLinks])
 
   return (
-    <footer className="pt-16">
+    <footer className={`pt-16 ${styles.container} text-sm`}>
       <hr className="w-full"></hr>
-      <div className="text-center flex-col flex justify-center gap-5 py-4 md:flex-row md:gap-14">
+      <div
+        className={`flex-col flex justify-center gap-5 p-4 md:flex-row md:gap-14 ${styles.links}`}
+      >
         <ul aria-label="Learn">
-          <li>
-            <strong>Learn</strong>
-          </li>
+          <li>Learn</li>
           {renderedLearn}
         </ul>
         <ul aria-label="Projects">
-          <li>
-            <strong>Projects</strong>
-          </li>
+          <li>Projects</li>
           {renderedProjects}
         </ul>
         <ul aria-label="Experiments">
-          <li>
-            <strong>Experiments</strong>
-          </li>
+          <li>Experiments</li>
           {renderedExperiments}
         </ul>
       </div>
