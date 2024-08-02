@@ -1,3 +1,4 @@
+import { PageConfig } from "@/config/pages"
 import { SiteMapConstructor } from "./sitemapConstructor"
 
 describe("sitemap constructor", () => {
@@ -13,7 +14,7 @@ describe("sitemap constructor", () => {
         path: "/",
         display: "Home",
       },
-    ]
+    ] as PageConfig[]
     const sectionObject = siteMapConstructor.getGroups(pageConfig)
     expect(sectionObject).toHaveLength(1)
     expect(sectionObject[0].name).toBe("")
@@ -22,7 +23,7 @@ describe("sitemap constructor", () => {
   })
 
   it("should be grouping pages with 2 level", () => {
-    const pageConfig = [
+    const pageConfig: PageConfig[] = [
       {
         path: "/",
         display: "Home",
@@ -35,7 +36,7 @@ describe("sitemap constructor", () => {
         path: "/history",
         display: "History",
       },
-    ]
+    ] as PageConfig[]
     const sectionObject = siteMapConstructor.getGroups(pageConfig)
     expect(sectionObject).toHaveLength(1)
     expect(sectionObject[0].children).toHaveLength(2)
@@ -67,7 +68,7 @@ describe("sitemap constructor", () => {
         path: "/project/lesson",
         display: "Lesson",
       },
-    ]
+    ] as PageConfig[]
     const sectionObject = siteMapConstructor.getGroups(pageConfig)
     expect(sectionObject).toHaveLength(1)
     expect(sectionObject[0].children).toHaveLength(2)
