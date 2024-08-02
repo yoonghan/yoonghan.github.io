@@ -59,6 +59,12 @@ jobs:
         run: |
           rm -rf src/app/api
 
+      - name: Url replace
+        shell: bash
+        run: |
+          sed -i '/Sitemap/d' ./public/robots.txt
+          echo "Sitemap: https://yoonghan.github.io/sitemap.xml" >> ./public/robots.txt
+
       - name: Build with Next.js
         run: |
           export RELEASE_VERSION="${{ github.run_id }}-walcron"

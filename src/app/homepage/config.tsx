@@ -6,6 +6,7 @@ import Image from "next/image"
 import Navigator from "@/components/Navigator"
 import { RefObject } from "react"
 import { ScrollHandler } from "@/components/Parallax"
+import { site } from "@/config/site"
 
 export const siteDevelopmentSections = [
   {
@@ -121,7 +122,7 @@ export const siteDevelopmentSections = [
         <p>Only commits that passes all checks can be approved and merged!</p>
         <p>
           Once merged, it&apos;s automatically pushed into master and publishes
-          to https://www.walcron.com
+          to ${site.url}
         </p>
       </>
     ),

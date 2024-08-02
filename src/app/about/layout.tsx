@@ -1,3 +1,4 @@
+import { site } from "@/config/site"
 import Script from "next/script"
 
 export const metadata = {
@@ -16,9 +17,9 @@ export default function AboutLayout({
       "@context": "http://schema.org",
       "@type": "LocalBusiness",
       name: "Walcron",
-      image: "https://walcron.com/img/logo/logo-color.svg",
+      image: `${site.url}/img/logo/logo-color.svg`,
       email: "walcoorperation@gmail.com",
-      url: "https://www.walcron.com/",
+      url: `${site.url}/`,
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: {

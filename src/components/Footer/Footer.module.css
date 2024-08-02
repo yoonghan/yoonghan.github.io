@@ -1,0 +1,13 @@
+.container {
+  background-color: var(--footer-color);
+  color: var(--footer-color-text);
+}
+
+.container .links ul > li {
+  margin: 0.5rem 0;
+}
+
+.container .links ul > li:first-child {
+  font-weight: bold;
+  font-size: 1.25rem;
+}

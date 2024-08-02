@@ -80,7 +80,7 @@ const MegaMenu = () => {
     onClick: () => void,
     tabIndex: number
   ) => (
-    <Link href={href} tabIndex={tabIndex} onClick={onClick}>
+    <Link href={href} tabIndex={tabIndex} onClick={onClick} className="flex-1">
       {text}
     </Link>
   )
