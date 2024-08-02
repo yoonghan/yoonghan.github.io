@@ -46,6 +46,9 @@
   --primary-color: #3993dd;
   --primary-700: #fff;
 
+  --menu-color: #fff;
+  --menu-color-text: #343233;
+
   --footer-color: #343233;
   --footer-color-text: #fff;
 }
