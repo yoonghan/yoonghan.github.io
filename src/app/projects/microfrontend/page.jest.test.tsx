@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import React from "react"
-import MicrofrontEnd from "@/app/projects/microfrontend/page"
+import MicrofrontEnd from "./page"
 
 describe("Microfrontend", () => {
   it("should show warning if none of the environment is set", () => {

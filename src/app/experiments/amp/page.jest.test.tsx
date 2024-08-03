@@ -1,4 +1,4 @@
-import Amp from "@/app/experiments/amp/page"
+import Amp from "./page"
 import { render, screen } from "@testing-library/react"
 
 describe("Amp", () => {

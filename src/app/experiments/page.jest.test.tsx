@@ -1,6 +1,6 @@
-import Experiment from "@/app/experiments/page"
+import Experiment from "./page"
 import { render, screen } from "@testing-library/react"
-import { assertScrollToTop } from "../utils/_scrollToTop"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("Experiments", () => {
   const renderComponent = () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import SiteMap from "@/app/sitemap/page"
-import { assertScrollToTop } from "./utils/_scrollToTop"
+import SiteMap from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("SiteMap", () => {
   const renderComponent = () => {

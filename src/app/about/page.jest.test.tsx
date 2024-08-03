@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react"
-import About from "@/app/about/page"
-import { assertScrollToTop } from "./utils/_scrollToTop"
+import { render, screen } from "@testing-library/react"
+import About from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("About", () => {
   const renderComponent = () => {

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import Projects from "@/app/projects/page"
-import { cards } from "@/app/projects/config"
-import { assertScrollToTop } from "../utils/_scrollToTop"
+import Projects from "./page"
+import { cards } from "./config"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 import { findPageByPath } from "@/config/pages"
 
 describe("Projects", () => {
