@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import Checklist from "@/app/projects/checklist/page"
-import { assertScrollToTop } from "../utils/_scrollToTop"
+import Checklist from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("Checklist", () => {
   const renderComponent = async () => {

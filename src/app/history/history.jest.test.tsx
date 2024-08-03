@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import History from "@/app/history/page"
-import { assertScrollToTop } from "./utils/_scrollToTop"
+import History from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("History", () => {
   const renderComponent = () => {
