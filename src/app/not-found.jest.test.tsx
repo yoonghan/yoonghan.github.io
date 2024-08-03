@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import NotFound from "@/app/not-found"
+import NotFound from "./not-found"
 
 describe("not-found", () => {
   it("should render correctly", () => {

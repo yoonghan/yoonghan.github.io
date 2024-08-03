@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import React from "react"
-import Messenger from "@/app/projects/messenger/page"
+import Messenger from "./page"
 
 describe("Messenger", () => {
   const renderComponent = () => render(<Messenger />)

@@ -1,8 +1,8 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import "../__mocks__/routerMock"
-import Home from "@/app/homepage/main"
+import "@/__mocks__/routerMock"
+import Home from "./main"
 import UserEvent from "@testing-library/user-event"
-import { assertSocialFab } from "./utils/_socialFab"
+import { assertSocialFab } from "@/__tests__/utils/_socialFab"
 
 describe("Home", () => {
   const renderComponent = () => {
