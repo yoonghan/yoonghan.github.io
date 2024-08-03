@@ -1,5 +1,5 @@
 import { register, unregister } from "./register"
-import { setServiceNavigator } from "../../../../__mocks__/windowMock"
+import { setServiceNavigator } from "@/__tests__/mocks/windowMock"
 import { waitFor } from "@testing-library/react"
 
 /* 

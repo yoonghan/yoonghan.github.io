@@ -1,4 +1,4 @@
-import { setEnv } from "src/__mocks__/setEnv"
+import { setEnv } from "@/__tests__/mocks/setEnv"
 
 describe("root-url", () => {
   it("should be default as blank", async () => {

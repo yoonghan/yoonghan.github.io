@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import { usePathnameFn } from "../../../__mocks__/routerMock"
-import "../../../__mocks__/routerMock"
+import { usePathnameFn } from "@/__tests__/mocks/routerMock"
+import "@/__tests__/mocks/routerMock"
 import NavMenu from "."
 
 describe("NavMenu", () => {

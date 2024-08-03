@@ -14,13 +14,13 @@ const customJestConfig = {
   ],
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__/utils",
+    "<rootDir>/src/__tests__/mocks",
     "<rootDir>/src/__e2e__",
     "<rootDir>/crate",
   ],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^@/__mocks__/*": "<rootDir>/__mocks__/$1",
     "^@/images/*": "<rootDir>/public/img/$1",
     "^@/util/*": "<rootDir>/util/$1",
   },

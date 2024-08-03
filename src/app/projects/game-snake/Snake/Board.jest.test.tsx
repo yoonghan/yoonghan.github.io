@@ -1,8 +1,8 @@
 import { KeyboardKeys } from "@/components/PopupKeyboard"
 import { act, render, screen } from "@testing-library/react"
 import testLibUserEvent from "@testing-library/user-event"
-import { spyOnReload } from "../../../../__mocks__/windowMock"
-import "../../../../__mocks__/snakeWasmMock"
+import { spyOnReload } from "@/__tests__/mocks/windowMock"
+import "@/__tests__/mocks/snakeWasmMock"
 import Board from "./Board"
 import { GameContext } from "./GameContext"
 
