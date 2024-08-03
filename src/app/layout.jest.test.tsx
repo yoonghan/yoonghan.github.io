@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react"
-import "../__mocks__/routerMock"
+import "@/__tests__/mocks/routerMock"
 import { Body } from "./layout"
 
 describe("Main Layout", () => {

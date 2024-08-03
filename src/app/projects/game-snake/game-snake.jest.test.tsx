@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import "@/__mocks__/snakeWasmMock"
+import "@/__tests__/mocks/snakeWasmMock"
 import GameSnake from "./page"
 import userEvent from "@testing-library/user-event"
 import random from "@/util/random"

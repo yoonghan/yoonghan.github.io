@@ -1,10 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react"
-import "../../../../../__mocks__/webRtcMock"
+import "@/__tests__/mocks/webRtcMock"
 import {
   setRemoteDescriptionMock,
   setLocalDescriptionMock,
   closeMock,
-} from "../../../../../__mocks__/webRtcMock"
+} from "@/__tests__/mocks/webRtcMock"
 import { useWebRtc } from "."
 
 describe("useWebRtc", () => {

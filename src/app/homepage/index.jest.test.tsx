@@ -1,5 +1,5 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import "@/__mocks__/routerMock"
+import "@/__tests__/mocks/routerMock"
 import Home from "./main"
 import UserEvent from "@testing-library/user-event"
 

@@ -1,5 +1,5 @@
 import sitemapGenerator from "./sitemap"
-import "@/__mocks__/fetchMock"
+import "@/__tests__/mocks/fetchMock"
 
 describe("sitemap", () => {
   it("should generate there right body", () => {

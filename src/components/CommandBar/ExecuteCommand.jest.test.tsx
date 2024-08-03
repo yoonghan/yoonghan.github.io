@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { exec } from "./ExecuteCommand"
-import "../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 describe("CommandBar", () => {

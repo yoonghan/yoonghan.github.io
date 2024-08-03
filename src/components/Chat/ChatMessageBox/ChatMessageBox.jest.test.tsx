@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { MessageHandler } from "./ChatMessageDialog"
 import UserEvent from "@testing-library/user-event"
 import { useRef } from "react"
-import "../../../__mocks__/fetchMock"
+import "@/__tests__/mocks/fetchMock"
 import ChatMessageBox from "."
 import { MessageType } from "../config/MessageType"
 
