@@ -72,7 +72,7 @@ jobs:
         run: npm run backstop:test
 
       - name: ⬆️ Upload snapshot artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@master
         with:
           name: backstop-artifact
           path: backstop_data/
