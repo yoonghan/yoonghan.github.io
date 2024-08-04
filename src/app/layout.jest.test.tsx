@@ -1,8 +1,6 @@
-import { render, screen } from "@testing-library/react"
-import "../__mocks__/routerMock"
+import { render, screen, within } from "@testing-library/react"
+import "@/__tests__/mocks/routerMock"
 import { Body } from "./layout"
-import { assertMenu } from "@/__tests__/utils/_menu"
-import { assertFooter } from "@/__tests__/utils/_footer"
 
 describe("Main Layout", () => {
   const renderComponent = () => {
@@ -11,6 +9,16 @@ describe("Main Layout", () => {
         <>Sample</>
       </Body>
     )
+  }
+
+  const assertFooter = () => {
+    const footer = screen.getByRole("contentinfo")
+    expect(within(footer).getByText("Walcron 2014-2024 ©")).toBeInTheDocument()
+  }
+
+  const assertMenu = async () => {
+    expect(screen.getByRole("img", { name: "home" })).toBeInTheDocument()
+    expect(await screen.findAllByText("walcron@tm$")).toHaveLength(2)
   }
 
   it("should have a Mega Menu", async () => {

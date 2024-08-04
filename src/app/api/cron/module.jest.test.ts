@@ -1,4 +1,4 @@
-import "../../../__mocks__/fetchMock"
+import "@/__tests__/mocks/fetchMock"
 import { execute } from "./module"
 
 describe("cron/Module", () => {

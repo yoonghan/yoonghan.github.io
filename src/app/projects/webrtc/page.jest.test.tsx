@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import React from "react"
-import Webrtc from "@/app/projects/webrtc/page"
-import { setEnv } from "../../__mocks__/setEnv"
+import Webrtc from "./page"
+import { setEnv } from "@/__tests__/mocks/setEnv"
 
 describe("Webrtc", () => {
   const renderComponent = () => render(<Webrtc />)

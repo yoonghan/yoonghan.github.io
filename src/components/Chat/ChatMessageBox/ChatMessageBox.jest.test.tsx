@@ -2,8 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { MessageHandler } from "./ChatMessageDialog"
 import UserEvent from "@testing-library/user-event"
 import { useRef } from "react"
-import "../../../__mocks__/fetchMock"
-import ChatMessageBox from "."
+import "@/__tests__/mocks/fetchMock"
+import ChatMessageBox, { apiUrl } from "."
 import { MessageType } from "../config/MessageType"
 
 describe("ChatMessageBox", () => {
@@ -19,6 +19,10 @@ describe("ChatMessageBox", () => {
     const yesBtn = await screen.findByRole("button", { name: "Yes" })
     await UserEvent.click(yesBtn)
   }
+
+  it("should post to the right api url", () => {
+    expect(apiUrl).toBe("https://www.walcron.com/api/firebase")
+  })
 
   it("should render component correctly", async () => {
     renderComponent()

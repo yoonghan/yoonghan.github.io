@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import SiteMap from "@/app/sitemap/page"
-import { assertScrollToTop } from "./utils/_scrollToTop"
+import SiteMap, { metadata } from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("SiteMap", () => {
   const renderComponent = () => {
@@ -22,5 +22,12 @@ describe("SiteMap", () => {
       "href",
       "/projects/lessons"
     )
+  })
+
+  it("should have the right metadata defined", () => {
+    expect(metadata).toStrictEqual({
+      title: "Sitemap",
+      description: "Website links and site.",
+    })
   })
 })

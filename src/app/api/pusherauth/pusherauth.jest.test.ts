@@ -1,8 +1,8 @@
-import "../../__mocks__/apiMockNext13"
+import "@/__tests__/mocks/apiMockNext13"
 import { POST } from "@/app/api/pusherauth/route"
 import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
 import { NextRequest } from "next/server"
-import { setEnv } from "../../__mocks__/setEnv"
+import { setEnv } from "@/__tests__/mocks/setEnv"
 
 describe("pusherauth", () => {
   const mockRequest = (channel_name: string = "sample_channel") => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import EmailSender from "./EmailSender"
-import "../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
 import userEvent from "@testing-library/user-event"
 
 describe("EmailSender", () => {

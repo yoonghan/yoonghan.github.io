@@ -1,4 +1,4 @@
-import Performance from "@/app/experiments/performance/page"
+import Performance from "./page"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
