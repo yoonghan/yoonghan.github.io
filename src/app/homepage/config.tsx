@@ -122,7 +122,7 @@ export const siteDevelopmentSections = [
         <p>Only commits that passes all checks can be approved and merged!</p>
         <p>
           Once merged, it&apos;s automatically pushed into master and publishes
-          to ${site.url}
+          to <span>{site.url}</span>
         </p>
       </>
     ),

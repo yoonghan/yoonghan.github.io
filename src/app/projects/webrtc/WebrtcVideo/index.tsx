@@ -21,11 +21,14 @@ import styles from "./WebrtcVideo.module.css"
 import ChatterForm from "./ChatterForm"
 import RecipientList, { Recipient } from "./RecipientList"
 import { useWebRtc } from "@/components/utils/hooks/webrtc/useWebRtc"
+import { site } from "@/config/site"
 
 interface Props {
   appKey: string
   cluster: string
 }
+
+export const presencePusherApiUrl = `${site.apiUrl}/pusherauth`
 
 const WebrtcVideo = ({ appKey, cluster }: Props) => {
   const [enableReceiptList, setEnableReceiptList] = useState(false)
@@ -111,7 +114,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
     usePresencePusher({
       appKey,
       cluster,
-      authEndpoint: "/api/pusherauth",
+      authEndpoint: presencePusherApiUrl,
       updateConnectionCallback,
       shouldUpdatedOfflineUserEnd,
     })

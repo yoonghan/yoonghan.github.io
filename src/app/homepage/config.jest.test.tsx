@@ -1,11 +1,12 @@
 /** Need to validate that the links are equivalent to number of sections */
-
+import "@/__tests__/mocks/site"
 import {
   generateSections,
   generatedLinks,
   siteDevelopmentSections,
   reverseDisplayForEvenSection,
 } from "./config"
+import { render, screen } from "@testing-library/react"
 
 describe("config", () => {
   it("should have the right format for the first link", () => {
@@ -32,5 +33,12 @@ describe("config", () => {
 
   it("should have right length for siteDevelopmentSections", () => {
     expect(siteDevelopmentSections).toHaveLength(8)
+  })
+
+  it("should contain mocked url for id=6", () => {
+    const six = siteDevelopmentSections.filter((site) => site.id === "6")
+    expect(six).toHaveLength(1)
+    render(six[0].desc)
+    expect(screen.getByText("https://mockedUrl.com")).toBeInTheDocument()
   })
 })

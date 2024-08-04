@@ -12,7 +12,7 @@ interface PostedJob {
   jobName: string
 }
 
-const apiUrl = `${site.url}/api/cron`
+const apiUrl = `${site.apiUrl}/cron`
 
 const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
   const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
