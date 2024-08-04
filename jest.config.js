@@ -13,8 +13,7 @@ const customJestConfig = {
     "react-intersection-observer/test-utils",
   ],
   modulePathIgnorePatterns: [
-    "<rootDir>/src/__tests__/utils",
-    "<rootDir>/src/__tests__/mocks",
+    "<rootDir>/src/__tests__",
     "<rootDir>/src/__e2e__",
     "<rootDir>/crate",
   ],
@@ -34,7 +33,12 @@ const customJestConfig = {
       statements: 100,
     },
   },
-  coveragePathIgnorePatterns: ["<rootDir>/crate", "layout.tsx", "page.tsx"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/crate",
+    "layout.tsx",
+    "<rootDir>/src/app/experiments/*",
+    "<rootDir>/src/app/projects/*",
+  ],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

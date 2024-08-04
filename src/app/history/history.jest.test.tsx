@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import History from "./page"
+import History, { metadata } from "./page"
 import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("History", () => {
@@ -21,5 +21,12 @@ describe("History", () => {
   it("should be able to scroll up", async () => {
     renderComponent()
     assertScrollToTop()
+  })
+
+  it("should have the right metadata", () => {
+    expect(metadata).toStrictEqual({
+      title: "Website History",
+      description: "Timeline and journey of the page.",
+    })
   })
 })
