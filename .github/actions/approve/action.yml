@@ -25,12 +25,12 @@ runs:
         path: |
           ./node_modules
           ~/.cache/ms-playwright
-        key: modules-node-playwright-${{ hashFiles('package-lock.json') }}
+        key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
 
     - name: 📥 Install playwright browsers
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npx playwright install --with-deps
+      run: npx playwright install chromium
 
     - name: 📥 Download deps
       shell: bash
