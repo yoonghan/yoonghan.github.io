@@ -6,11 +6,14 @@ import { useCallback, useEffect, useMemo, useRef } from "react"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import { MessageType } from "@/components/Chat/config/MessageType"
+import { site } from "@/config/site"
 
 interface Props {
   appKey?: string
   cluster?: string
 }
+
+export const pusherAuthEndpoint = `${site.apiUrl}/pusherauth`
 
 const Messenger = ({ appKey, cluster }: Props) => {
   const chatMessageBoxRef = useRef<MessageHandler>(null)
@@ -32,7 +35,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
     printEventCallback: eventPrinter,
     appKey: appKey!,
     cluster: cluster!,
-    authEndpoint: "/api/pusherauth",
+    authEndpoint: pusherAuthEndpoint,
     channelPrefix: "private",
   })
 
