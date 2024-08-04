@@ -1,7 +1,14 @@
-function getSiteUrl() {
+function getUrl() {
   return process.env.SITE_URL || "https://www.walcron.com"
 }
 
-const site = { url: getSiteUrl() }
+function getApiUrl() {
+  return `${getUrl()}/api`
+}
 
-export { site, getSiteUrl }
+const site = {
+  url: getUrl(),
+  apiUrl: getApiUrl(),
+}
+
+export { site, getUrl, getApiUrl }
