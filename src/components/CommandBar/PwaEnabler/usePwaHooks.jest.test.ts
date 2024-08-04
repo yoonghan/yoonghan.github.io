@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react"
 import {
   setServiceNavigator,
   spyOnReferrer,
-} from "../../../__mocks__/windowMock"
+} from "@/__tests__/mocks/windowMock"
 
 describe("usePwaHooks", () => {
   it("should be false when autoregister set to FALSE", () => {

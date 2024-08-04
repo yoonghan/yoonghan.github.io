@@ -1,11 +1,11 @@
-import "../../../__mocks__/apiMockNext13"
-import "../../../__mocks__/uuidMock"
-import "../../../__mocks__/firebaseAdminMock"
-import { setEnv } from "../../../__mocks__/setEnv"
+import "@/__tests__/mocks/apiMockNext13"
+import "@/__tests__/mocks/uuidMock"
+import "@/__tests__/mocks/firebaseAdminMock"
+import { setEnv } from "@/__tests__/mocks/setEnv"
 import {
   sampleFirebaseConfig,
   setMockFileReturn,
-} from "../../../__mocks__/firebaseAdminMock"
+} from "@/__tests__/mocks/firebaseAdminMock"
 import { POST } from "@/app/api/firebase/route"
 import { NextRequest } from "next/server"
 import { Blob } from "node:buffer"
