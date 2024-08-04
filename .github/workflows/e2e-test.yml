@@ -43,7 +43,7 @@ jobs:
 
       - name: 📥 Install playwright browsers
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npx playwright install chromium
+        run: npx playwright install --with-deps chromium
 
       - name: 📥 Download deps
         run: npm ci --ignore-scripts
