@@ -119,12 +119,13 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 @yoonghan:registry=https://npm.pkg.github.com/
 ```
 
-## Deployment for Github PAT permission
+## Deployment for Github NPM_TOKEN for private repo
 
-1. For accessing private repo, please allow Profile -> Settings -> Personal Access Token (classic), open read:packages (basically th esame as vercel deployment). For more info refer: https://docs.github.com/en/packages/working-with-a-github-packages-registry. Add as Github secret in Settings->Secrets And variable and add NPM_TOKEN key. NOTE: In merge NODE_AUTH_TOKEN is used instead.
+1. For accessing private repo, please allow Profile -> Settings -> Personal Access Token (classic), open read:packages (basically the same as vercel deployment). For more info refer: https://docs.github.com/en/packages/working-with-a-github-packages-registry. Add as Github secret in Settings->Secrets And variable and add NPM_TOKEN key. NOTE: During npm install NODE_AUTH_TOKEN variable is read instead.
 2. Workflow requires
 3. registry-url in checkout action,
 4. NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
+5. Same/extra NPM_TOKEN needs to be created for dependabot under Profile -> Security -> Dependabot.
 
 ## Vercel/NextJS
 
@@ -134,6 +135,11 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 ## NextJS Static Site Generation
 
 NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
+
+Process.env variable for client side access are required to be defined in .env file (written in merge.yml)
+
+- NEXT_PUBLIC_PUSHER_APP_KEY
+- NEXT_PUBLIC_PUSHER_CLUSTER'
 
 ## Rust Webassembly
 
