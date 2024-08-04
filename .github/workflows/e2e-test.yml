@@ -39,7 +39,11 @@ jobs:
           path: |
             ./node_modules
             ~/.cache/ms-playwright
-          key: modules-node-playwright-${{ hashFiles('package-lock.json') }}
+          key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Install playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
 
       - name: 📥 Download deps
         run: npm ci --ignore-scripts
@@ -58,10 +62,6 @@ jobs:
         uses: ./.github/actions/backstop-override
         with:
           deployed_url: ${{ inputs.deployed_url }}
-
-      - name: 📥 Install playwright browsers
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
 
       - name: ▶️ Run page functional check
         run: CI=true && npm run playwright:test
