@@ -135,6 +135,8 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
 
+Required to declare secrets for 'NEXT_PUBLIC_PUSHER_APP_KEY, NEXT_PUBLIC_PUSHER_CLUSTER' in .env file (written in merge.yml). These variables are used for process.env.
+
 ## Rust Webassembly
 
 1. To regenerate new Wasm from webassembly, run the command below:
