@@ -6,14 +6,12 @@ import { useCallback, useEffect, useMemo, useRef } from "react"
 import { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import { MessageType } from "@/components/Chat/config/MessageType"
-import { site } from "@/config/site"
+import { pusherAuthEndpoint } from "./config"
 
 interface Props {
   appKey?: string
   cluster?: string
 }
-
-export const pusherAuthEndpoint = `${site.apiUrl}/pusherauth`
 
 const Messenger = ({ appKey, cluster }: Props) => {
   const chatMessageBoxRef = useRef<MessageHandler>(null)
