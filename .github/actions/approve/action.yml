@@ -30,7 +30,7 @@ runs:
     - name: 📥 Install playwright browsers
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npx playwright install chromium
+      run: npx playwright install --with-deps chromium
 
     - name: 📥 Download deps
       shell: bash
