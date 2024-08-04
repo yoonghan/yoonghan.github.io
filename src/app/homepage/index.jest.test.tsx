@@ -1,12 +1,15 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
-import "../__mocks__/routerMock"
-import Home from "@/app/homepage/main"
+import "@/__tests__/mocks/routerMock"
+import Home from "./main"
 import UserEvent from "@testing-library/user-event"
-import { assertSocialFab } from "./utils/_socialFab"
 
 describe("Home", () => {
   const renderComponent = () => {
     render(<Home termsRead={false} />)
+  }
+
+  const assertSocialFab = async () => {
+    expect(await screen.findByRole("link", { name: "git" })).toBeInTheDocument()
   }
 
   it("should have a social fab loaded", async () => {

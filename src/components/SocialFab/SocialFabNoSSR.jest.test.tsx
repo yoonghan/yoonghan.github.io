@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import UserEvent from "@testing-library/user-event"
 import SocialFabNoSSR from "./SocialFabNoSSR"
-import "../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
 
 describe("SocialFabNoSSR", () => {
   const assertLinkIsCorrect = (selector: HTMLElement, link: string) => {

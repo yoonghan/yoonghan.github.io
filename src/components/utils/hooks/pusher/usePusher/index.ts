@@ -161,7 +161,7 @@ export function usePusher(props: Props) {
 
     const pusherConfiguration = {
       cluster,
-      authEndpoint: `${site.url}${props.authEndpoint}`,
+      authEndpoint: props.authEndpoint,
       enabledTransports,
     }
     pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration)

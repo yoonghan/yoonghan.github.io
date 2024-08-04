@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import LetterBox from "."
-import "../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
 
 describe("LetterBox", () => {
   it("should provide a letterbox render", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { exec } from "./ExecuteCommand"
-import "../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 describe("CommandBar", () => {
@@ -178,7 +178,7 @@ describe("CommandBar", () => {
       const sharedCallback = jest.fn()
       window.navigator.share = sharedCallback
       render(<div>{createCommandBar()("share")}</div>)
-      expect(sharedCallback).toBeCalledWith({
+      expect(sharedCallback).toHaveBeenCalledWith({
         title: "Walcron",
         text: "An awesome website.",
         url: "https://www.walcron.com",

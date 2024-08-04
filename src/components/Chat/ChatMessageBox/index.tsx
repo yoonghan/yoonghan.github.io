@@ -23,7 +23,7 @@ interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
 }
 
-const apiUrl = `${site.url}/api/firebase`
+export const apiUrl = `${site.apiUrl}/firebase`
 
 const dropFile =
   (callback: (message: string, notifyReceipient?: boolean) => void) =>

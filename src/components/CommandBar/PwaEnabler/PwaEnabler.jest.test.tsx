@@ -6,7 +6,7 @@ import {
   spyAsIPad,
   spyAsAndroid,
   spyOnReferrer,
-} from "../../../__mocks__/windowMock"
+} from "@/__tests__/mocks/windowMock"
 
 describe("PwaEnabler", () => {
   const renderComponent = (onCancel = jest.fn()) =>

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import "../../__mocks__/routerMock"
+import "@/__tests__/mocks/routerMock"
 import NoSSRCommandBar from "./NoSSRCommandBar"
 
 describe("NoSSRCommandBar", () => {

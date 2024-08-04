@@ -1,4 +1,4 @@
-import { setVideo } from "../../__mocks__/windowMock"
+import { setVideo } from "@/__tests__/mocks/windowMock"
 import { screen, render, waitFor } from "@testing-library/react"
 import VideoChat, { VideoStreamHandler } from "."
 import { useRef } from "react"

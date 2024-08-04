@@ -1,6 +1,6 @@
 import { isIOS, isSafariBrowser, isMacOrIOS, isAndroid } from "./browserCheck"
-import "../../../../__mocks__/windowMock"
-import { spyAsIPad, spyAsAndroid } from "../../../../__mocks__/windowMock"
+import "@/__tests__/mocks/windowMock"
+import { spyAsIPad, spyAsAndroid } from "@/__tests__/mocks/windowMock"
 
 describe("BrowserCheck", () => {
   const originalWindowHtmlElem = window["HTMLElement"]

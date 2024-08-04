@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react"
-import Lessons from "@/app/projects/lessons/page"
-import { assertScrollToTop } from "../utils/_scrollToTop"
+import Lessons from "./page"
+import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("Lessons", () => {
   const renderComponent = () => {

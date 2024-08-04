@@ -1,4 +1,4 @@
-import "../../../__mocks__/fetchMock"
+import "@/__tests__/mocks/fetchMock"
 import {
   render,
   within,
@@ -6,9 +6,9 @@ import {
   getDefaultNormalizer,
 } from "@testing-library/react"
 import { CronJobCheckList, TroubleshootPwaCheckList } from "./Checklist"
-import { setServiceNavigator } from "../../../__mocks__/windowMock"
+import { setServiceNavigator } from "@/__tests__/mocks/windowMock"
 import userEvent from "@testing-library/user-event"
-import { fetchMock } from "../../../__mocks__/fetchMock"
+import { fetchMock } from "@/__tests__/mocks/fetchMock"
 
 describe("Checklist", () => {
   describe("CronJobCheckList", () => {

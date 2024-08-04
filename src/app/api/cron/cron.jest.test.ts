@@ -1,4 +1,4 @@
-import "../../__mocks__/apiMockNext13"
+import "@/__tests__/mocks/apiMockNext13"
 import { GET } from "@/app/api/cron/route"
 import { NextRequest } from "next/server"
 
