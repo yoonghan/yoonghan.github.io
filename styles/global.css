@@ -8,39 +8,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto, Arial;
-  min-width: 320px;
-  scroll-behavior: smooth;
-  font-size: 12pt;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
-p {
-  text-align: justify;
+input {
+  appearance: none;
+  border: 1px solid #6b7280;
 }
 
 .text-align-left {
   text-align: left;
-}
-
-.pb-5 {
-  padding-bottom: 5rem;
-}
-
-.px-3 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 table {
@@ -128,20 +102,6 @@ video::-webkit-media-controls {
 
 .page-container {
   width: 100%;
-}
-
-ul.u-list {
-  list-style: none;
-  margin: 0;
-  padding-left: 1rem;
-}
-
-pre.code {
-  overflow: scroll;
-  max-width: 100%;
-  color: var(--code);
-  background: var(--code-bg);
-  padding: 1rem 1rem;
 }
 
 .alert {
