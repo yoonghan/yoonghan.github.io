@@ -178,7 +178,7 @@ describe("CommandBar", () => {
       const sharedCallback = jest.fn()
       window.navigator.share = sharedCallback
       render(<div>{createCommandBar()("share")}</div>)
-      expect(sharedCallback).toBeCalledWith({
+      expect(sharedCallback).toHaveBeenCalledWith({
         title: "Walcron",
         text: "An awesome website.",
         url: "https://www.walcron.com",

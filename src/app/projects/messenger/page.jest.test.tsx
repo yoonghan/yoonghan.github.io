@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react"
-import Messenger from "./page"
+import Messenger, { pusherAuthEndpoint } from "./page"
 
 describe("Messenger", () => {
-  const renderComponent = () => render(<Messenger />)
+  it("should have the correct pusher endpoint", () => {
+    expect(pusherAuthEndpoint).toBe("https://www.walcron.com/api/pusherauth")
+  })
 
   it("should show warning if none of the environment is set", () => {
     render(<Messenger />)
