@@ -89,6 +89,21 @@ describe("Button", () => {
       expect(screen.getByRole("button")).toHaveClass("container invert")
     })
 
+    it("should support additional className", () => {
+      const view = render(
+        <Button
+          styling={{
+            small: false,
+            inverted: true,
+            className: "additional-color",
+          }}
+        >
+          Button Text
+        </Button>
+      )
+      expect(screen.getByRole("button")).toHaveClass("additional-color")
+    })
+
     it("should support color change", () => {
       const view = render(<Button color={"orange"}>Button Text</Button>)
       expect(screen.getByRole("button")).toHaveClass("container orange")
