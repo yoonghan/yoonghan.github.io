@@ -78,11 +78,12 @@ jobs:
           touch .env
           echo "NEXT_PUBLIC_PUSHER_APP_KEY=${{ secrets.NEXT_PUBLIC_PUSHER_APP_KEY }}" >> .env
           echo "NEXT_PUBLIC_PUSHER_CLUSTER=${{ secrets.NEXT_PUBLIC_PUSHER_CLUSTER }}" >> .env
+          echo "NEXT_PUBLIC_SITE_URL=${{ steps.env-set.outputs.siteUrl }}" >> .env
+          echo "NEXT_PUBLIC_IS_LOCAL_API_SITE_URL=false" >> .env
 
       - name: Build with Next.js
         run: |
-          export RELEASE_VERSION="${{ github.run_id }}-walcron"
-          export SITE_URL="${{ steps.env-set.outputs.siteUrl }}" && npm run build
+          npm run build
 
       - name: Upload artifact for GH pages
         uses: actions/upload-pages-artifact@v3
