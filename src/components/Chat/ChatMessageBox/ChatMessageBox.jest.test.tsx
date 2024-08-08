@@ -21,7 +21,7 @@ describe("ChatMessageBox", () => {
   }
 
   it("should post to the right api url", () => {
-    expect(apiUrl).toBe("https://www.walcron.com/api/firebase")
+    expect(apiUrl).toBe("/api/firebase")
   })
 
   it("should render component correctly", async () => {
