@@ -3,7 +3,8 @@ function getUrl() {
 }
 
 function getApiUrl() {
-  return `${getUrl()}/api`
+  const apiUrl = process.env.IS_LOCAL_API_SITE_URL === "true" ? "" : getUrl()
+  return `${apiUrl}/api`
 }
 
 const site = {
