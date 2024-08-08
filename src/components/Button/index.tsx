@@ -11,6 +11,7 @@ interface ButtonProps {
   styling?: {
     small: boolean
     inverted: boolean
+    className?: string
   }
   children: ReactNode
   additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
@@ -80,6 +81,9 @@ const Button = ({
 }: ButtonProps) => {
   const definedClass = useMemo(() => {
     let style = styles.container
+    if (styling?.className) {
+      style += ` ${styling.className}`
+    }
     if (styling?.small) {
       style += " " + styles.small
     }
