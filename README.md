@@ -56,6 +56,12 @@ npm run backstop:approve // Approve the new website ok
 1. Install Vercel Cli, with `npm i -g vercel`
 2. Pull all the environment into local with `vercel env pull .env.local`. This wil create an environment straight for testing. Incase, there are reset of environment to setup in Vercel, refer to .env file.
 
+## Additional site url
+
+1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
+2. NEXT_PUBLIC_SITE_URL - configure for static site to call api.
+3. NEXT_PUBLIC_IS_LOCAL_API_SITE_URL - Indicate local api is used. Used for variable domain name.
+
 ## Run Github workflows
 
 Project is tied closely with github.
@@ -139,7 +145,7 @@ NextJS for static generation `output: "export"` in `next.config.js`, requires al
 Process.env variable for client side access are required to be defined in .env file (written in merge.yml)
 
 - NEXT_PUBLIC_PUSHER_APP_KEY
-- NEXT_PUBLIC_PUSHER_CLUSTER'
+- NEXT_PUBLIC_PUSHER_CLUSTER
 
 ## Rust Webassembly
 
