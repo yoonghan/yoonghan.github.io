@@ -59,8 +59,8 @@ npm run backstop:approve // Approve the new website ok
 ## Additional site url
 
 1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
-2. SITE_URL - configure for static site to call api.
-3. IS_LOCAL_API_SITE_URL - Indicate local api is used. Used for variable domain name.
+2. NEXT_PUBLIC_SITE_URL - configure for static site to call api.
+3. NEXT_PUBLIC_IS_LOCAL_API_SITE_URL - Indicate local api is used. Used for variable domain name.
 
 ## Run Github workflows
 
