@@ -78,8 +78,8 @@ jobs:
           touch .env
           echo "NEXT_PUBLIC_PUSHER_APP_KEY=${{ secrets.NEXT_PUBLIC_PUSHER_APP_KEY }}" >> .env
           echo "NEXT_PUBLIC_PUSHER_CLUSTER=${{ secrets.NEXT_PUBLIC_PUSHER_CLUSTER }}" >> .env
-          echo "SITE_URL=${{ steps.env-set.outputs.siteUrl }}" >> .env
-          echo "IS_LOCAL_API_SITE_URL=false" >> .env
+          echo "NEXT_PUBLIC_SITE_URL=${{ steps.env-set.outputs.siteUrl }}" >> .env
+          echo "NEXT_PUBLIC_IS_LOCAL_API_SITE_URL=false" >> .env
 
       - name: Build with Next.js
         run: |
