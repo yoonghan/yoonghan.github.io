@@ -5,7 +5,8 @@
  **/
 
 import { useCallback, useEffect, useState } from "react"
-import Button from "../Button"
+import Button from "@/components/Button"
+import Link from "@/components/Link"
 
 const cookiePrivacy = "https://policies.google.com/technologies/cookies"
 const cookieName = "termsRead"
@@ -51,14 +52,9 @@ function ClientCookie() {
         <p className="mb-4">
           This site uses cookie to monitor visits and usage traffics through
           google analytics, please to{" "}
-          <a
-            href={cookiePrivacy}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: "inherit" }}
-          >
+          <Link href={cookiePrivacy} target="_blank">
             Google Analytic site
-          </a>
+          </Link>
           .
         </p>
         <Button onClick={onCookieReadClicked}>Accept</Button>
