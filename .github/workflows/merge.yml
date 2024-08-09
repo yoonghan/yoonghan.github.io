@@ -63,8 +63,10 @@ jobs:
         id: env-set
         run: |
           SITE_URL="https://yoonghan.github.io"
-          echo "Change site: $SITE_URL"
+          API_SITE_URL="https://www.walcron.com"
+          echo "Change site: $SITE_URL;$API_SITE_URL"
           echo "siteUrl=$SITE_URL" >> $GITHUB_OUTPUT
+          echo "apiSiteUrl=$API_SITE_URL" >> $GITHUB_OUTPUT
 
       - name: Url replace
         shell: bash
@@ -79,7 +81,7 @@ jobs:
           echo "NEXT_PUBLIC_PUSHER_APP_KEY=${{ secrets.NEXT_PUBLIC_PUSHER_APP_KEY }}" >> .env
           echo "NEXT_PUBLIC_PUSHER_CLUSTER=${{ secrets.NEXT_PUBLIC_PUSHER_CLUSTER }}" >> .env
           echo "NEXT_PUBLIC_SITE_URL=${{ steps.env-set.outputs.siteUrl }}" >> .env
-          echo "NEXT_PUBLIC_IS_LOCAL_API_SITE_URL=false" >> .env
+          echo "NEXT_PUBLIC_API_SITE_URL=${{ steps.env-set.outputs.apiSiteUrl }}" >> .env
 
       - name: Build with Next.js
         run: |
