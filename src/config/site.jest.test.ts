@@ -4,11 +4,10 @@ describe("root-url", () => {
   it("should be default with local website", async () => {
     setEnv({
       NEXT_PUBLIC_SITE_URL: "",
-      NEXT_PUBLIC_IS_LOCAL_API_SITE_URL: "false",
     })
     const { site } = await import("./site")
     expect(site.url).toBe("https://www.walcron.com")
-    expect(site.apiUrl).toBe("https://www.walcron.com/api")
+    expect(site.apiUrl).toBe("/api")
   })
 
   it("should getUrl from env", async () => {
@@ -18,18 +17,14 @@ describe("root-url", () => {
     expect(getUrl()).toBe(url)
   })
 
-  it("should getUrl + getApiUrl from env", async () => {
-    const url = "https://yoonghan.github.io"
-    setEnv({
-      NEXT_PUBLIC_SITE_URL: url,
-      NEXT_PUBLIC_IS_LOCAL_API_SITE_URL: "false",
-    })
+  it("should override local API url from env", async () => {
+    setEnv({ NEXT_PUBLIC_API_SITE_URL: "https://yoonghan.github.io" })
     const { getApiUrl } = await import("./site")
-    expect(getApiUrl()).toBe(url + "/api")
+    expect(getApiUrl()).toBe("https://yoonghan.github.io/api")
   })
 
-  it("should overridde API URL from env", async () => {
-    setEnv({ NEXT_PUBLIC_IS_LOCAL_API_SITE_URL: "true" })
+  it("should use blank API url if undefined", async () => {
+    setEnv({ NEXT_PUBLIC_API_SITE_URL: undefined })
     const { getApiUrl } = await import("./site")
     expect(getApiUrl()).toBe("/api")
   })
