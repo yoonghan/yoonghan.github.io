@@ -5,12 +5,13 @@
  **/
 
 import { useCallback, useEffect, useState } from "react"
+import Button from "../Button"
 
 const cookiePrivacy = "https://policies.google.com/technologies/cookies"
 const cookieName = "termsRead"
 
 function ClientCookie() {
-  const [isCookieRead, setCookieRead] = useState(false)
+  const [isCookieRead, setCookieRead] = useState(true)
 
   const onCookieReadClicked = useCallback(() => {
     document.cookie = `${cookieName}=true;secure;path=/`
@@ -41,31 +42,26 @@ function ClientCookie() {
     return <></>
   } else {
     return (
-      <div data-testid="cookie-dialog">
-        <div>
-          <div>This site uses cookies.</div>
-          <p>
-            This site uses cookie to monitor visits and usage traffics. We use
-            google analytics, please{" "}
-            <a
-              href={cookiePrivacy}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "inherit" }}
-            >
-              refer here
-            </a>
-            .
-          </p>
-          <hr />
-          <p>
-            By proceeding on this website, you are accepting and agreed to the
-            cookie usage.
-          </p>
-        </div>
-        <div>
-          <button onClick={onCookieReadClicked}>Accept</button>
-        </div>
+      <div
+        data-testid="cookie-dialog"
+        className="fixed bottom-0 p-4 bg-white text-black w-full"
+      >
+        <strong>This site uses cookies.</strong>
+        <hr className="my-2" />
+        <p className="mb-4">
+          This site uses cookie to monitor visits and usage traffics through
+          google analytics, please to{" "}
+          <a
+            href={cookiePrivacy}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "inherit" }}
+          >
+            Google Analytic site
+          </a>
+          .
+        </p>
+        <Button onClick={onCookieReadClicked}>Accept</Button>
       </div>
     )
   }
