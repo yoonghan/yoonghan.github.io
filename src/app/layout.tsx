@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer"
 import MegaMenu from "@/components/MegaMenu"
+import { site } from "@/config/site"
 import "@/styles/global.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -23,7 +24,7 @@ const metadata: Metadata = {
     title: "Walcron Coorperation",
     description:
       "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
-    url: "https://www.walcron.com/",
+    url: site.url,
     siteName: "Walcron",
     images: [
       {
