@@ -41,6 +41,7 @@ span.strikethrough {
 
 header {
   z-index: 999;
+  position: sticky;
 }
 
 footer {
