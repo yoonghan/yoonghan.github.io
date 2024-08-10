@@ -2,21 +2,18 @@ import Image from "next/image"
 import React from "react"
 import style from "./Link.module.css"
 
-type RequiresBothLogo =
-  | {
-      text: string
-      href?: string
-      logoUrl?: never
-      logoAltText?: never
-    }
-  | {
-      text: string
-      href?: string
-      logoUrl: string
-      logoAltText: string
-    }
+interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  logoUrl?: string
+  logoAltText?: string
+}
 
-const Link = ({ text, href, logoUrl, logoAltText }: RequiresBothLogo) => {
+const Link: React.FC<LinkProps> = ({
+  href,
+  logoUrl,
+  logoAltText,
+  children,
+  ...props
+}) => {
   const logo = (() => {
     if (logoUrl && logoAltText) {
       return <Image src={logoUrl} alt={logoAltText} width={15} height={15} />
@@ -26,26 +23,28 @@ const Link = ({ text, href, logoUrl, logoAltText }: RequiresBothLogo) => {
 
   return (
     <span className={style.link}>
-      <LinkWrapper href={href}>
+      <LinkWrapper href={href} {...props}>
         {logo && logo}
         {logo && " "}
-        {text}
+        {children}
       </LinkWrapper>
     </span>
   )
 }
 
-const LinkWrapper = ({
+const LinkWrapper: React.FC<Omit<LinkProps, "text">> = ({
   href,
   children,
-}: {
-  children: React.ReactNode
-  href?: string
+  ...props
 }) => {
   if (!href) {
     return <span>{children}</span>
   } else {
-    return <a href={href}>{children}</a>
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    )
   }
 }
 
