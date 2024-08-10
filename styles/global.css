@@ -1,4 +1,5 @@
 @import "var.css";
+@import "animation.css";
 @import "react-toggle.css";
 @import "react-chat-bell.css";
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
@@ -31,15 +32,6 @@ tr:nth-child(even) {
 }
 tr:hover {
   background-color: var(--table-even-bg);
-}
-
-@keyframes blink {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
 
 span.strikethrough {
