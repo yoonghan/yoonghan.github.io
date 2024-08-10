@@ -15,9 +15,6 @@
   transform: scaleY(1) scaleX(1) translateY(-16px) translateX(0px);
 }
 
-.container:hover .fabButtons div.link {
-}
-
 .fabActionButton:hover + .fabButtons > .link:before {
   visibility: visible;
   opacity: 1;
