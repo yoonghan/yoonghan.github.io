@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.container p {
+  padding: 10px 30px;
+}
+
 .sitemap {
   padding-left: 20px;
 }
