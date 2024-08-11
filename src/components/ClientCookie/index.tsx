@@ -45,7 +45,7 @@ function ClientCookie() {
     return (
       <div
         data-testid="cookie-dialog"
-        className="fixed bottom-0 p-4 bg-white text-black w-full"
+        className="animate-[grow_1s_ease-in] z-[101] fixed p-4 bg-white text-black w-full top-0 md:top-auto md:bottom-0"
       >
         <strong>This site uses cookies.</strong>
         <hr className="my-2" />
