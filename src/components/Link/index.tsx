@@ -1,6 +1,7 @@
 import Image from "next/image"
 import React from "react"
 import style from "./Link.module.css"
+import NextLink from "next/link"
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   logoUrl?: string
@@ -41,9 +42,9 @@ const LinkWrapper: React.FC<Omit<LinkProps, "text">> = ({
     return <span>{children}</span>
   } else {
     return (
-      <a href={href} {...props}>
+      <NextLink href={href} {...props}>
         {children}
-      </a>
+      </NextLink>
     )
   }
 }
