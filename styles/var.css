@@ -46,7 +46,10 @@
   --primary-700: #fff;
 
   --menu-color: #fff;
-  --menu-color-text: #343233;
+  --menu-color-text: var(--link);
+
+  --minimenu-color: #fff;
+  --minimenu-color-text: var(--link);
 
   --footer-color: #343233;
   --footer-color-text: #fff;
