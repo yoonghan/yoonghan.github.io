@@ -3,7 +3,7 @@
 import { Menu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import menuItems from "./config/menuItems"
-import Link from "next/link"
+import Link from "@/components/Link"
 import Image from "next/image"
 import { memo, useCallback, useState } from "react"
 import CommandBar from "../CommandBar"
@@ -69,7 +69,7 @@ const MegaMenu = () => {
     role: "menuitem",
     onClick?: () => void
   ) => (
-    <Link href={href} role={role} onClick={onClick}>
+    <Link href={href} role={role} onClick={onClick} className="pb-4">
       {text}
     </Link>
   )

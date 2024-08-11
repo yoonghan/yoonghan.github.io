@@ -4,9 +4,8 @@
 
 .container .switchButton {
   white-space: nowrap;
-  color: var(--button);
+  color: var(--button-bg);
   background: transparent;
-  font-weight: bold;
   cursor: pointer;
   border: 0;
   user-select: none;
