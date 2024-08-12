@@ -32,12 +32,14 @@ const About = () => {
         <article id={authorModel[0].hashId}>
           <h1>{authorModel[0].title}</h1>
           <p>
-            Walcron is a by-product of a couple&apos;s journey in IT industry.
-            The Walcron website was created for experimentation in optimizing
-            and prototyping new Web technologies. Ocassionally this is being
-            re-contributed back into the open-source community. Han and Gladys
-            started the Walcron website to log their development journey. As
-            well as to experiment real-time working websites.
+            <strong>Walcron</strong> is a by-product of a couple&apos;s journey
+            in IT industry. The <strong>Walcron</strong> website was created for
+            experimentation in optimizing and prototyping new Web technologies.
+            Ocassionally this is being re-contributed back into the{" "}
+            <em>open-source</em>
+            community. Han and Gladys started the Walcron website to log their
+            development journey, as well as, to experiment real-time working
+            website integration with search-analytics and api integrations.
           </p>
         </article>
         <article id={authorModel[1].hashId}>
@@ -46,8 +48,8 @@ const About = () => {
             We provide consultation on software development. Provide us your
             contact information and we will reach out to you.
           </p>
-          <p>Things we had done in the past:</p>
-          <ul>
+          <p className="pb-4">Things we had done in the past:</p>
+          <ul className="list-disc">
             <li>
               Maintain and improve high volume (35 million records) data
               transactions and synchronization.

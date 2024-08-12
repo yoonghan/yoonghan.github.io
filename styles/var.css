@@ -3,8 +3,9 @@
   --logo: rgb(255, 132, 0);
   --link: #206db9;
   --dialog-text: #fff;
-  --button: #206db9;
-  --button-bg: #fff;
+
+  --button: #fff;
+  --button-bg: #206db9;
   --button-blue: #fff;
   --button-blue-bg: #206db9;
   --button-orange: #222;
@@ -13,6 +14,7 @@
   --button-grey-bg: rgb(200, 200, 200);
   --button-bg-disabled: #999;
   --button-disabled: rgba(66, 66, 66);
+
   --border-color: rgba(66, 66, 66);
   --table-header: #fff;
   --table-header-bg: #343a40;
@@ -46,7 +48,10 @@
   --primary-700: #fff;
 
   --menu-color: #fff;
-  --menu-color-text: #343233;
+  --menu-color-text: var(--link);
+
+  --minimenu-color: #fff;
+  --minimenu-color-text: #034192;
 
   --footer-color: #343233;
   --footer-color-text: #fff;
