@@ -27,16 +27,16 @@ runs:
           ~/.cache/ms-playwright
         key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
 
+    - name: 📥 Download deps
+      shell: bash
+      run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.npm_auth_token }}
+
     - name: 📥 Install playwright browsers
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npx playwright install --with-deps chromium
-
-    - name: 📥 Download deps
-      shell: bash
-      run: npm ci --ignore-scripts
-      env:
-        NODE_AUTH_TOKEN: ${{ inputs.npm_auth_token }}
+      run: npx playwright install --with-deps
 
     - name: Override Backstop
       uses: ./.github/actions/backstop-override
