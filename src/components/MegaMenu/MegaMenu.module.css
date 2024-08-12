@@ -21,8 +21,7 @@
   outline: none;
 }
 
-@media only screen and (max-width: 640px) {
-  .container .searchText {
-    display: none;
-  }
+.desktop_container div > a:first-child {
+  padding: 2rem 0;
+  display: block;
 }
