@@ -1,15 +1,13 @@
 .container {
-  padding: 1rem;
+  padding: 0.5rem;
   position: relative;
   color: var(--button);
   background: var(--button-bg);
   transition-property: color, background;
   transition-duration: 0.15s;
   transition-timing-function: ease-in-out;
-  font-size: 1rem;
   text-align: center;
   border-radius: 0.5rem;
-  font-weight: bold;
   cursor: pointer;
   border: 1px solid;
   margin: 0 1px 1px 0;
@@ -30,12 +28,12 @@
   font-size: 0.7rem;
 }
 .container.invert {
-  background: rgba(25, 25, 25, 1);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button);
 }
 .container.invert:hover {
-  color: rgba(25, 25, 25, 1);
-  background: #fff;
+  color: var(--button-bg);
+  background: var(--button);
 }
 .container.orange {
   background: var(--button-orange-bg);

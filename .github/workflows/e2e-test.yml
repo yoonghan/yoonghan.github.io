@@ -41,14 +41,14 @@ jobs:
             ~/.cache/ms-playwright
           key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
 
+      - name: 📥 Download deps
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
       - name: 📥 Install playwright browsers
         if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
-
-      - name: 📥 Download deps
-        run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: ✅ Verify Vercel deployment and update branch
         run: |

@@ -1,6 +1,5 @@
 .link > a,
 .link > span,
 .link > a:hover {
-  color: var(--anchor-text-color, #00f);
-  text-decoration: underline;
+  color: var(--link);
 }
