@@ -9,6 +9,8 @@ import { memo, useCallback, useState } from "react"
 import CommandBar from "../CommandBar"
 import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web"
 import styles from "./MegaMenu.module.css"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 enum Display {
   Menu,
@@ -30,9 +32,6 @@ const MegaMenu = () => {
     from: { transform: "rotate(0deg)" },
   }))
 
-  const [springButtonSpan, apiButtonSpan] = useSpring(() => ({
-    from: { opacity: 1 },
-  }))
   useChain([menuRef, commandRef])
 
   const onSwitchClick = useCallback(() => {
@@ -40,9 +39,6 @@ const MegaMenu = () => {
       if (currentDisplay === Display.Menu) {
         apiButton.start({
           to: { transform: "rotate(180deg)" },
-        })
-        apiButtonSpan.start({
-          to: { opacity: 0 },
         })
         apiCommand.start({
           to: { scale: 1, height: "5rem" },
@@ -55,13 +51,10 @@ const MegaMenu = () => {
         apiButton.start({
           to: { transform: "rotate(0deg)" },
         })
-        apiButtonSpan.start({
-          to: { opacity: 1 },
-        })
         return Display.Menu
       }
     })
-  }, [apiButton, apiButtonSpan, apiCommand])
+  }, [apiButton, apiCommand])
 
   const MenuLink = (
     text: string,
@@ -108,16 +101,12 @@ const MegaMenu = () => {
             className={styles.switchButton}
             style={{ ...springButton }}
           >
-            <animated.span
-              style={{ ...springButtonSpan }}
-              className={styles.searchText}
-            >
-              search
-            </animated.span>{" "}
-            〉
+            {" "}
+            <FontAwesomeIcon icon={faSearch} className="px-2" />
           </animated.button>
         </div>
       }
+      desktopClassName={styles.desktop_container}
     />
   )
 }
