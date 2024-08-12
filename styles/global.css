@@ -1,12 +1,10 @@
 @import "var.css";
+@import "animation.css";
 @import "react-toggle.css";
 @import "react-chat-bell.css";
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Roboto:50&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwind.css";
 
 input,
 textarea {
@@ -36,31 +34,14 @@ tr:hover {
   background-color: var(--table-even-bg);
 }
 
-h1 {
-  margin-top: 0.5rem;
-  color: var(--header-1);
-}
-
-@keyframes blink {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-h2 {
-  text-align: center;
-}
-
 span.strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
 }
 
 header {
-  z-index: 999;
+  z-index: 100;
+  position: sticky;
 }
 
 footer {

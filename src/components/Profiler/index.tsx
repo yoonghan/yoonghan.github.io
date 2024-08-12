@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from "next/image"
-import styles from "./Profiler.module.css"
 
 interface IProfiler {
   name: string
@@ -21,17 +20,24 @@ const _getUser = (
   width = 285,
   height = 385
 ) => (
-  <div className={styles["user"]} key={"user_" + idx}>
-    <Image src={imgSrc} alt={name} width={width} height={height} />
-    <p className={styles.name}>{name}</p>
-    <div className={styles["divider"]}></div>
+  <div key={"user_" + idx}>
+    <Image
+      src={imgSrc}
+      alt={name}
+      width={width}
+      height={height}
+      className="mx-auto"
+    />
+    <div className="py-4 text-center border-b-2 mb-4">
+      <strong>{name}</strong>
+    </div>
     {description}
   </div>
 )
 
 const Profiler = ({ profiles }: Props) => {
   return (
-    <div className={styles["profiler"]}>
+    <div className="flex flex-col gap-16 md:flex-row md:gap-8">
       {profiles.map((profile, idx) =>
         _getUser(
           idx,
