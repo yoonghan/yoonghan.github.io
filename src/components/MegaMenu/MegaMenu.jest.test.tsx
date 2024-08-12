@@ -35,13 +35,15 @@ describe("MegaMenu", () => {
     }
 
     render(<MegaMenu />)
-    const leftArrow = "search 〉"
+    const searchButton = screen.getAllByRole("button", {
+      name: "search",
+    })[0]
     assertIsHidden("command-menu")
 
-    await userEvent.click(screen.getAllByRole("button", { name: leftArrow })[0])
+    await userEvent.click(searchButton)
     await assertIsShown("command-menu")
 
-    await userEvent.click(screen.getAllByRole("button", { name: leftArrow })[0])
+    await userEvent.click(searchButton)
     await waitFor(
       () => {
         assertIsHidden("command-menu")
