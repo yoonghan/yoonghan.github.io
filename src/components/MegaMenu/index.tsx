@@ -100,6 +100,7 @@ const MegaMenu = () => {
             onClick={onSwitchClick}
             className={styles.switchButton}
             style={{ ...springButton }}
+            aria-label="search"
           >
             {" "}
             <FontAwesomeIcon icon={faSearch} className="px-2" />
