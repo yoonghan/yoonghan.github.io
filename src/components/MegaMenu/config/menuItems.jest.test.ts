@@ -20,7 +20,6 @@ describe("menu items", () => {
       },
       {
         items: [
-          { label: "Accelerated Mobile Pages", url: "/experiments/amp" },
           { label: "Performance", url: "/experiments/performance" },
           { label: "Storybook", url: "/experiments/storybook" },
         ],
