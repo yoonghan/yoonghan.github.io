@@ -131,12 +131,18 @@ describe("pages", () => {
         path: "/experiments/storybook",
         display: "Storybook",
       },
+      {
+        path: "/experiments/homepage-v1",
+        display: "Parallax Homepage",
+      },
     ])
     expect(
-      findAllChildByPath("/experiments/amp").map(({ path, display }) => ({
-        path,
-        display,
-      }))
+      findAllChildByPath("/experiments/performance").map(
+        ({ path, display }) => ({
+          path,
+          display,
+        })
+      )
     ).toStrictEqual([
       {
         path: "/experiments/performance",
@@ -145,6 +151,10 @@ describe("pages", () => {
       {
         path: "/experiments/storybook",
         display: "Storybook",
+      },
+      {
+        path: "/experiments/homepage-v1",
+        display: "Parallax Homepage",
       },
     ])
   })
