@@ -22,6 +22,7 @@ describe("menu items", () => {
         items: [
           { label: "Performance", url: "/experiments/performance" },
           { label: "Storybook", url: "/experiments/storybook" },
+          { label: "Parallax Homepage", url: "/experiments/homepage-v1" },
         ],
         label: "Experiments",
         url: "/experiments",
