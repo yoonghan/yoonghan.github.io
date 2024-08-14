@@ -124,10 +124,6 @@ describe("pages", () => {
       }))
     ).toStrictEqual([
       {
-        path: "/experiments/amp",
-        display: "Accelerated Mobile Pages",
-      },
-      {
         path: "/experiments/performance",
         display: "Performance",
       },
@@ -142,10 +138,6 @@ describe("pages", () => {
         display,
       }))
     ).toStrictEqual([
-      {
-        path: "/experiments/amp",
-        display: "Accelerated Mobile Pages",
-      },
       {
         path: "/experiments/performance",
         display: "Performance",

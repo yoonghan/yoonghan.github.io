@@ -77,11 +77,6 @@ const pages: PageConfig[] = [
     order: 5,
   },
   {
-    path: "/experiments/amp",
-    display: "Accelerated Mobile Pages",
-    order: 4,
-  },
-  {
     path: "/experiments/storybook",
     display: "Storybook",
     order: 4,
