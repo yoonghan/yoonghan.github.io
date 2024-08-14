@@ -1,5 +1,5 @@
-.link > a,
+.link,
 .link > span,
-.link > a:hover {
+.link:hover {
   color: var(--link);
 }
