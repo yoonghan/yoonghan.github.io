@@ -25,7 +25,7 @@ describe("ScrollToTop", () => {
   it("should render scroller when the right location is met", async () => {
     render(<ScrollToTopWithNoSSR />)
 
-    const scrollButton = screen.getByText("Top")
+    const scrollButton = screen.getByText("TOP")
 
     expect(scrollButton).toHaveClass("hidden")
 
