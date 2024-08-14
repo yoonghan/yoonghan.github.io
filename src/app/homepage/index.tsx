@@ -62,6 +62,7 @@ function Homepage() {
           </nav>
         </article>
         <hr />
+        {/* Reliability */}
         <section>
           <h6 className="text-3xl text-center" id="reliability">
             Reliability
@@ -181,6 +182,44 @@ function Homepage() {
                 </Figure>
               </section>
             </section>
+          </section>
+        </section>
+        <hr />
+        {/* Accessibility */}
+        <section className="max-w-screen-md mx-auto">
+          <h6 className="text-3xl text-center" id="reliability">
+            Accessibility and Readability
+          </h6>
+          <section>
+            <div className="text-xl italic text-center">
+              &quot;Our Homepage can now be browsed{" "}
+              <strong className="text-2xl">WITHOUT JAVASCRIPT</strong>!!&quot;
+            </div>
+            <p className="pt-8">
+              We did it by relying on both PureCSS, Server Side Generation and
+              ensuring non-critical usage for Javascript. The old home was{" "}
+              <Link href="/experiments/homepage-v1">Parallax heavy</Link> and we
+              encountered performance + accessibility issues.
+            </p>
+          </section>
+
+          <section className="pt-8">
+            <div className="text-xl italic text-center">
+              This site can also be browse with keyboard and text-readers.
+            </div>
+            <p className="pt-8">
+              We are going now commited with this Web Accessibility; eventhough
+              we are still in the learning phase. The best reliance is to run
+              periodically test with{" "}
+              <Link
+                href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
+                rel="external"
+                target="audit"
+              >
+                Accessibility Checker
+              </Link>{" "}
+              and Chrome built-in Lighthouse.
+            </p>
           </section>
         </section>
       </main>
