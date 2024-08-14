@@ -6,6 +6,7 @@ import Tables from "./Tables"
 import PopupKeyboard from "./PopupKeyboard"
 import Canvases from "./Canvases"
 import ScrollableListDemo from "./ScrollableList"
+import { OrderedFigure, ReversedFigure } from "./Figure"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -31,6 +32,14 @@ export const storyBookList = [
   {
     title: "Table",
     component: Tables,
+  },
+  {
+    title: "Figure",
+    component: <OrderedFigure />,
+  },
+  {
+    title: "Reversed Figure",
+    component: <ReversedFigure />,
   },
   {
     title: "Keyboard",
