@@ -36,7 +36,7 @@ const ScrollToTopNoSSR = () => {
       onKeyUp={clickScrollUp}
       className={style.scroller + `${visible ? "" : ` ${style.hidden}`}`}
     >
-      Top
+      TOP
     </button>
   )
 }

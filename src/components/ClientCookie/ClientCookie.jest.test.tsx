@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import ClientCookie from "."
+import ClientCookie from "./ClientCookieNoSSR"
 import userEvent from "@testing-library/user-event"
 
 describe("Client Cookie", () => {
