@@ -18,6 +18,7 @@ import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDial
 import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { site } from "@/config/site"
+import "../react-chat-bell.css"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
