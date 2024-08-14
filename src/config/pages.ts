@@ -87,6 +87,11 @@ const pages: PageConfig[] = [
     order: 4,
   },
   {
+    path: "/experiments/homepage-v1",
+    display: "Parallax Homepage",
+    order: 5,
+  },
+  {
     path: "/sitemap",
     display: "Site Map",
     filterOptions: [
