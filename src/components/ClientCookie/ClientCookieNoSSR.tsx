@@ -7,6 +7,7 @@
 import { useCallback, useEffect, useState } from "react"
 import Button from "@/components/Button"
 import Link from "@/components/Link"
+import Image from "next/image"
 
 const cookiePrivacy = "https://policies.google.com/technologies/cookies"
 const cookieName = "termsRead"
@@ -45,18 +46,27 @@ function ClientCookie() {
     return (
       <div
         data-testid="cookie-dialog"
-        className="animate-[grow_1s_ease-in] z-[101] fixed p-4 bg-white text-black w-full top-0 md:top-auto md:bottom-0"
+        className="animate-[grow_1s_ease-in] z-[101] fixed p-4 bg-white text-black w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex md:justify-evenly"
       >
-        <strong>This site uses cookies.</strong>
-        <hr className="my-2" />
-        <p className="mb-4">
-          This site uses cookie to monitor visits and usage traffics through
-          google analytics, please to{" "}
-          <Link href={cookiePrivacy} target="_blank">
-            Google Analytic site
-          </Link>
-          .
-        </p>
+        <Image
+          src="/img/logo/logo-color.svg"
+          height={100}
+          width={100}
+          alt="Walcron"
+          className="hidden md:block"
+        />
+        <div>
+          <strong>This site uses cookies.</strong>
+          <hr className="my-2" />
+          <p className="mb-4">
+            This site uses cookie to monitor visits and usage traffics through
+            google analytics, please to{" "}
+            <Link href={cookiePrivacy} target="_blank">
+              Google Analytic site
+            </Link>
+            .
+          </p>
+        </div>
         <Button onClick={onCookieReadClicked}>Accept</Button>
       </div>
     )
