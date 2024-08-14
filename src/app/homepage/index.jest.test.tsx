@@ -26,4 +26,20 @@ describe("HomePage", () => {
     renderComponent()
     expect(await screen.findByRole("link", { name: "git" })).toBeInTheDocument()
   })
+
+  describe("reliability section", () => {
+    it("can navigate for reliability", () => {
+      const title = "Reliability"
+      const link = "reliability"
+      renderComponent()
+      expect(screen.getByRole("link", { name: title })).toHaveAttribute(
+        "href",
+        `#${link}`
+      )
+      expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
+        "id",
+        link
+      )
+    })
+  })
 })
