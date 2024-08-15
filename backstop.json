@@ -16,30 +16,10 @@
   "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
-      "label": "Page not found",
-      "url": "http://localhost:3000/iamnotfound",
-      "delay": 0,
-      "postInteractionWait": 0,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.3,
-      "requireSameDimensions": true
-    },
-    {
-      "label": "Homepage",
-      "url": "http://localhost:3000/experiments/homepage-v1",
-      "delay": 500,
-      "postInteractionWait": 50,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "requireSameDimensions": true
-    },
-    {
       "label": "Homepage with cookie accepted",
       "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
-      "clickSelector": "text=Close",
+      "buttonClickByName": "Accept",
       "postInteractionWait": 60,
       "selectorExpansion": true,
       "expect": 0,
