@@ -23,11 +23,15 @@ function Figure({
       } !items-start`}
     >
       <figure className={reversed ? "md:order-1" : ""}>
-        <Image {...img} alt={alt} src={src} />
-        <img
+        <Image {...img} alt={alt} src={src} className="mx-auto" />
+        <Image
           src="/img/arrow.svg"
           className="hidden md:block w-12 -my-8 relative z-10 mx-auto ml-[55%]"
-        ></img>
+          aria-hidden={true}
+          alt="Arrow to describe figure image"
+          width={50}
+          height={100}
+        />
         <figcaption className="hidden md:block bg-gradient-to-br font-medium from-orange-500 via-orange-300 to-yellow-200 p-8 py-12 text-center items-center flex justify-center skew-y-2 skew-x-3">
           <div className="w-full -skew-y-2 -skew-x-3">{imageCaption}</div>
         </figcaption>
