@@ -52,7 +52,7 @@ function Homepage() {
                 </Link>
               </li>
               <li>
-                <Link href="#monitor">Monitoring</Link>
+                <Link href="#monitoring">Monitoring</Link>
               </li>
               <li>
                 <Link href="#performance">Performance</Link>
@@ -62,7 +62,7 @@ function Homepage() {
         </article>
         <hr />
         {/* Reliability */}
-        <section>
+        <article>
           <h6 className="text-3xl text-center" id="reliability">
             Reliability
           </h6>
@@ -178,12 +178,12 @@ function Homepage() {
               </section>
             </section>
           </section>
-        </section>
+        </article>
         <hr />
         {/* Accessibility */}
-        <section className="max-w-screen-md mx-auto" id="accessibility">
-          <h6 className="text-3xl text-center" id="reliability">
-            Accessibility and Readability
+        <article className="max-w-screen-md mx-auto">
+          <h6 className="text-3xl text-center" id="accessibility">
+            Accessibility and Readability (WCAG)
           </h6>
           <section>
             <div className="text-xl italic text-center">
@@ -219,11 +219,11 @@ function Homepage() {
               and Chrome built-in Lighthouse.
             </p>
           </section>
-        </section>
+        </article>
         <hr />
         {/* Monitoring */}
-        <section className="max-w-screen-md mx-auto" id="monitoring">
-          <h6 className="text-3xl text-center" id="reliability">
+        <article className="max-w-screen-md mx-auto">
+          <h6 className="text-3xl text-center" id="monitoring">
             Monitoring
           </h6>
           <div className="text-xl italic text-center pt-8">
@@ -243,20 +243,21 @@ function Homepage() {
               </Button>
             </div>
           </section>
-        </section>
+        </article>
         <hr />
         {/* Performance */}
-        <section className="max-w-screen-md mx-auto" id="performance">
-          <h6 className="text-3xl text-center" id="reliability">
+        <article className="max-w-screen-md mx-auto">
+          <h6 className="text-3xl text-center" id="performance">
             Performance
           </h6>
           <section>
             <p>
               We use Lighthouse and Google Page Speed to check on our webpage
-              performance. Have yet to include Core Web Vitals.
+              performance. The site have yet to include Core Web Vitals.
             </p>
           </section>
-        </section>
+        </article>
+        <div className="pb-16"></div>
       </main>
       <SocialFab />
       <ClientCookie />
