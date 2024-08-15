@@ -44,3 +44,8 @@ Walcron.code-workspace
 
 #bun
 bunfig.toml
+
+# playwright
+/test-results
+/playwright-report/
+/playwright/.cache/
