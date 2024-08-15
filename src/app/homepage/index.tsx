@@ -3,6 +3,9 @@ import SocialFab from "@/components/SocialFab"
 import ClientCookie from "@/components/ClientCookie"
 import Link from "@/components/Link"
 import Figure from "@/components/Figure"
+import Button from "@/components/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -215,6 +218,30 @@ function Homepage() {
               </Link>{" "}
               and Chrome built-in Lighthouse.
             </p>
+          </section>
+        </section>
+        <hr />
+        {/* Monitoring */}
+        <section className="max-w-screen-md mx-auto">
+          <h6 className="text-3xl text-center" id="reliability">
+            Monitoring
+          </h6>
+          <div className="text-xl italic text-center pt-8">
+            {quoteText("Ensure what we develop are standard.")}
+          </div>
+          <section>
+            <p>
+              As a self-maintained website, it is hard to know what is right. So
+              we start to use tools, such as <strong>Google Analytics</strong>{" "}
+              and <strong>Google Search Console</strong> to check on general
+              usage to up-keep the standards.
+            </p>
+            <div className="flex justify-center">
+              <Button href="/projects/checklist">
+                View Checklists
+                <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
+              </Button>
+            </div>
           </section>
         </section>
       </main>
