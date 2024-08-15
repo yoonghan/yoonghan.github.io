@@ -48,8 +48,7 @@ module.exports = async (page, scenario, viewport) => {
   }
 
   if (buttonClickByName) {
-    await page.getByRole("button", { name: buttonClickByName })
-    await page.click(clickSelectorIndex)
+    await page.getByRole("button", { name: buttonClickByName }).click()
   }
 
   if (postInteractionWait) {
