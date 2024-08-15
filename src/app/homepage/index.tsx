@@ -181,7 +181,7 @@ function Homepage() {
         </section>
         <hr />
         {/* Accessibility */}
-        <section className="max-w-screen-md mx-auto">
+        <section className="max-w-screen-md mx-auto" id="accessibility">
           <h6 className="text-3xl text-center" id="reliability">
             Accessibility and Readability
           </h6>
@@ -222,7 +222,7 @@ function Homepage() {
         </section>
         <hr />
         {/* Monitoring */}
-        <section className="max-w-screen-md mx-auto">
+        <section className="max-w-screen-md mx-auto" id="monitoring">
           <h6 className="text-3xl text-center" id="reliability">
             Monitoring
           </h6>
@@ -234,7 +234,7 @@ function Homepage() {
               As a self-maintained website, it is hard to know what is right. So
               we start to use tools, such as <strong>Google Analytics</strong>{" "}
               and <strong>Google Search Console</strong> to check on general
-              usage to up-keep the standards.
+              usage to up-keep the standard guidelines.
             </p>
             <div className="flex justify-center">
               <Button href="/projects/checklist">
@@ -242,6 +242,19 @@ function Homepage() {
                 <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
               </Button>
             </div>
+          </section>
+        </section>
+        <hr />
+        {/* Performance */}
+        <section className="max-w-screen-md mx-auto" id="performance">
+          <h6 className="text-3xl text-center" id="reliability">
+            Performance
+          </h6>
+          <section>
+            <p>
+              We use Lighthouse and Google Page Speed to check on our webpage
+              performance. Have yet to include Core Web Vitals.
+            </p>
           </section>
         </section>
       </main>
