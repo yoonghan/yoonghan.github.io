@@ -3,7 +3,7 @@ import ClientCookie from "./ClientCookieNoSSR"
 import userEvent from "@testing-library/user-event"
 
 describe("Client Cookie", () => {
-  const expectedCookieValue = "termsRead=true;secure;path=/"
+  const expectedCookieValue = "termsRead=true;secure;path=/;SameSite=Lax"
 
   beforeAll(() => {
     //allow cookie to be re-written
