@@ -100,6 +100,19 @@
       ]
     },
     {
+      "label": "Homepage Commandbar search",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:3000/experiments/homepage-v1",
+      "delay": 500,
+      "buttonClickByName": "search",
+      "postInteractionWait": 4000,
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
       "label": "About Page",
       "url": "http://localhost:3000/about",
       "delay": 100,
