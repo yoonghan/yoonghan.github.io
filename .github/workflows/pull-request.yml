@@ -38,7 +38,7 @@ jobs:
     uses: ./.github/workflows/e2e-auto-approve.yml
     with:
       branch: ${{ github.head_ref }}
-      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
+      deployed_url: walcron-git-${{ github.head_ref }}-walcron-coorperations-projects.vercel.app
     secrets: inherit
 
   E2E:
@@ -49,7 +49,7 @@ jobs:
     uses: ./.github/workflows/e2e-test.yml
     secrets: inherit
     with:
-      deployed_url: walcron-git-${{ github.head_ref }}-walcoorperation.vercel.app
+      deployed_url: walcron-git-${{ github.head_ref }}-walcron-coorperations-projects.vercel.app
 
   PostApprove:
     needs: Approve
