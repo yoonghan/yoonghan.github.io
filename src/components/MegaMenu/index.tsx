@@ -98,7 +98,7 @@ const MegaMenu = () => {
           </animated.div>
           <animated.button
             onClick={onSwitchClick}
-            className={styles.switchButton}
+            className={`${styles.switchButton} hidden sm:block`}
             style={{ ...springButton }}
             aria-label="search"
           >
