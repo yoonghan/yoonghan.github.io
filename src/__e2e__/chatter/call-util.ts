@@ -30,6 +30,7 @@ export const callAnotherPerson = async (
   if ((await caller.$(`button:text("Call ${receiverName}")`)) === null) {
     //Fix bug that sometimes pusher don't add into the list
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
+    await receiver.waitForTimeout(1000)
     await receiver.getByRole("button", { name: "Start" }).click({ force: true })
     await receiver.waitForTimeout(1000)
   }
