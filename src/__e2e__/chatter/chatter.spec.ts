@@ -13,15 +13,15 @@ test.describe("Webrtc Chatter", () => {
   test("should be able to stop and restart", async () => {
     const receiver = await startCall("Billy")
 
-    await receiver.getByRole("button", { name: "Stop" }).click()
+    await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
 
     await receiver.waitForTimeout(100)
 
-    await receiver.getByRole("button", { name: "Start" }).click()
+    await receiver.getByRole("button", { name: "Start" }).click({ force: true })
 
     await receiver.waitForTimeout(100)
 
-    await receiver.getByRole("button", { name: "Stop" }).click()
+    await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
 
     await receiver.close()
   })

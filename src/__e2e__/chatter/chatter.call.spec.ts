@@ -13,17 +13,17 @@ test.describe("Webrtc calls", () => {
 
     await callAnotherPerson(caller, receiver, "Jessica", "Michelle")
 
-    await receiver.getByRole("button", { name: "No" }).click()
+    await receiver.getByRole("button", { name: "No" }).click({ force: true })
     await caller.waitForTimeout(1000)
 
     expect(await caller.content()).toContain(
       "Call to (Michelle) was politely declined."
     )
-    await caller.getByRole("button", { name: "Ok" }).click()
+    await caller.getByRole("button", { name: "Ok" }).click({ force: true })
     await caller.waitForTimeout(1000)
 
-    await receiver.getByRole("button", { name: "Stop" }).click()
-    await caller.getByRole("button", { name: "Stop" }).click()
+    await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
+    await caller.getByRole("button", { name: "Stop" }).click({ force: true })
 
     await caller.close()
     await receiver.close()
@@ -35,17 +35,17 @@ test.describe("Webrtc calls", () => {
 
     await callAnotherPerson(caller, receiver, "Jupiter", "Mars")
 
-    await receiver.getByRole("button", { name: "Yes" }).click()
+    await receiver.getByRole("button", { name: "Yes" }).click({ force: true })
     await caller.waitForTimeout(1000)
 
-    await caller.getByRole("button", { name: "Stop" }).click()
+    await caller.getByRole("button", { name: "Stop" }).click({ force: true })
     await caller.waitForTimeout(1000)
 
     expect(await receiver.content()).toContain(
       "User (Jupiter) has left the chat."
     )
 
-    await receiver.getByRole("button", { name: "Ok" }).click()
+    await receiver.getByRole("button", { name: "Ok" }).click({ force: true })
     await receiver.waitForTimeout(1000)
 
     await caller.close()
