@@ -12,13 +12,15 @@ test.describe("Webrtc answer", () => {
     await receiver.getByRole("button", { name: "Yes" }).click()
     await caller.waitForTimeout(1000)
 
-    await receiver.getByRole("button", { name: "Stop" }).click()
+    await caller.getByRole("button", { name: "Stop" }).click()
     await caller.waitForTimeout(1000)
 
-    expect(await caller.content()).toContain("User (Mars) has left the chat.")
+    expect(await receiver.content()).toContain(
+      "User (Jupiter) has left the chat."
+    )
 
-    await caller.getByRole("button", { name: "Ok" }).click()
-    await caller.waitForTimeout(1000)
+    await receiver.getByRole("button", { name: "Ok" }).click()
+    await receiver.waitForTimeout(1000)
 
     expect(caller.getByRole("button", { name: "Start" })).toBeEnabled()
     expect(receiver.getByRole("button", { name: "Start" })).toBeEnabled()
