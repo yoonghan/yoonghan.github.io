@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { chromium, expect, Page } from "@playwright/test"
 
 export const startCall = async (userName: string) => {
@@ -27,13 +28,20 @@ export const callAnotherPerson = async (
   callerName: string,
   receiverName: string
 ) => {
-  if ((await caller.$(`button:text("Call ${receiverName}")`)) === null) {
+  for (
+    let count = 0;
+    count < 2 &&
+    (await caller.$(`button:text("Call ${receiverName}")`)) === null;
+    count++
+  ) {
+    console.log("bump a restart as call button is not found")
     //Fix bug that sometimes pusher don't add into the list
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
     await receiver.waitForTimeout(1000)
     await receiver.getByRole("button", { name: "Start" }).click({ force: true })
-    await receiver.waitForTimeout(1000)
+    await receiver.waitForTimeout(2000)
   }
+  console.log("making a call")
   await caller
     .getByRole("button", { name: `Call ${receiverName}` })
     .click({ force: true })
