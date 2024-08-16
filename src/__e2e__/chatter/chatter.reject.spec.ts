@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/prefer-screen-queries */
-import { test, expect, Page, chromium } from "@playwright/test"
+import { test, expect } from "@playwright/test"
 import { callAnotherPerson, startCall } from "./call-util"
 
 test.describe("Webrtc", () => {

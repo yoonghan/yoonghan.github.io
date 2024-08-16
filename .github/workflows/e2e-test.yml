@@ -64,7 +64,7 @@ jobs:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: ▶️ Run page functional check
-        run: CI=true && npm run e2e:test
+        run: npm run e2e:test
 
       - name: ▶️ Run page rendering check
         shell: bash
