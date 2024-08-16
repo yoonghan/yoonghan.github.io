@@ -19,16 +19,18 @@ test.describe("Webrtc config", () => {
 
   test("should be able to stop and restart", async () => {
     const receiver = await startCall("Billy")
-
+    console.log("Restart startup")
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
-
     await receiver.waitForTimeout(100)
+    console.log("Restart stop")
 
     await receiver.getByRole("button", { name: "Start" }).click({ force: true })
-
     await receiver.waitForTimeout(100)
+    console.log("Restart start")
 
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
+    await receiver.waitForTimeout(100)
+    console.log("Restart done")
 
     await receiver.close()
   })
