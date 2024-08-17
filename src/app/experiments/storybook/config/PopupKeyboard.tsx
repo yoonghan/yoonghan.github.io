@@ -4,12 +4,10 @@ import PopupKeyboard from "@/components/PopupKeyboard"
 
 const emptyFn = () => {}
 
-const ArrowKeyboard = (
+export const ArrowKeyboard = () => (
   <PopupKeyboard
     keyboardType="Arrows"
     onClickCallback={emptyFn}
     buttonText={"Show Me"}
   />
 )
-
-export default ArrowKeyboard

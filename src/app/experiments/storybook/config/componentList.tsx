@@ -1,9 +1,8 @@
-import MegaMenu from "@/components/MegaMenu"
 import dynamic from "next/dynamic"
 import ButtonsBar from "./ButtonsBar"
 import Cards from "./Cards"
 import Tables from "./Tables"
-import PopupKeyboard from "./PopupKeyboard"
+import { ArrowKeyboard } from "./PopupKeyboard"
 import Canvases from "./Canvases"
 import ScrollableListDemo from "./ScrollableList"
 import { OrderedFigure, ReversedFigure } from "./Figure"
@@ -20,10 +19,6 @@ export const storyBookList = [
   {
     title: "Dialogs",
     component: <NoSSRDialog />,
-  },
-  {
-    title: "Menu",
-    component: <MegaMenu />,
   },
   {
     title: "Cards",
@@ -43,7 +38,7 @@ export const storyBookList = [
   },
   {
     title: "Keyboard",
-    component: PopupKeyboard,
+    component: <ArrowKeyboard />,
   },
   {
     title: "Canvases",
