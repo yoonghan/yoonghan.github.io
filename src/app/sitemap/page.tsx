@@ -1,8 +1,6 @@
 import { Fragment, memo, useMemo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import Link from "next/link"
-import HeaderOne from "@/components/HeaderOne"
-import styles from "./Sitemap.module.css"
+import Link from "@/components/Link"
 import { Result, SiteMapConstructor } from "./sitemapConstructor"
 import { sortedSiteMapPages } from "@/config/pages"
 
@@ -19,15 +17,15 @@ const SiteMap = ({}) => {
 
   const draw = (results: Result[]) => {
     return (
-      <ul className={"u-list"}>
+      <ul className="pl-4">
         {results.map((result, index) => (
           <Fragment key={index}>
-            <li>
-              <Link href={result.pageInfo.path}>
-                {result.pageInfo.display.toLocaleUpperCase()}
-              </Link>
+            <li className="pb-2">
+              <Link href={result.pageInfo.path}>{result.pageInfo.display}</Link>
             </li>
-            {result.children.length > 0 && <li>{draw(result.children)}</li>}
+            {result.children.length > 0 && (
+              <li className="pb-4">{draw(result.children)}</li>
+            )}
           </Fragment>
         ))}
       </ul>
@@ -36,8 +34,8 @@ const SiteMap = ({}) => {
 
   return (
     <>
-      <div className={`${styles.container} page-aligned-container`}>
-        <HeaderOne title={"Sitemap"} isLined={false} />
+      <div className="max-w-screen-md mx-auto p-8">
+        <h1 className={"text-2xl pb-16"}>SiteMap</h1>
         {draw(groupedMenu)}
       </div>
       <ScrollToTop />

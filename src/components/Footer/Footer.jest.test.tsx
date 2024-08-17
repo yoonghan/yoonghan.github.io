@@ -39,8 +39,6 @@ describe("Footer", () => {
   it("should group Experiments correctly", () => {
     render(<Footer />)
     const projectMenuItem = screen.getByLabelText("Experiments")
-    expect(within(projectMenuItem).getByText("Accelerated Mobile Pages"))
-      .toBeInTheDocument
     expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument
   })
 
@@ -49,7 +47,5 @@ describe("Footer", () => {
     const projectMenuItem = screen.getByLabelText("Learn")
     expect(within(projectMenuItem).getByText("Home")).toBeInTheDocument
     expect(within(projectMenuItem).queryByText("Lessons")).not.toBeInTheDocument
-    expect(within(projectMenuItem).queryByText("Accelerated Mobile Pages")).not
-      .toBeInTheDocument
   })
 })

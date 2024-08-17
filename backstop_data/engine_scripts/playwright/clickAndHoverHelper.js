@@ -1,6 +1,7 @@
 module.exports = async (page, scenario, viewport) => {
   const hoverSelector = scenario.hoverSelectors || scenario.hoverSelector
   const clickSelector = scenario.clickSelectors || scenario.clickSelector
+  const buttonClickByName = scenario.buttonClickByName
   const keyPressSelector =
     scenario.keyPressSelectors || scenario.keyPressSelector
   const scrollToSelector = scenario.scrollToSelector
@@ -44,6 +45,10 @@ module.exports = async (page, scenario, viewport) => {
       await page.waitForSelector(clickSelectorIndex)
       await page.click(clickSelectorIndex)
     }
+  }
+
+  if (buttonClickByName) {
+    await page.getByRole("button", { name: buttonClickByName }).click()
   }
 
   if (postInteractionWait) {

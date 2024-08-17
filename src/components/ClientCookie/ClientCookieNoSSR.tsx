@@ -16,7 +16,7 @@ function ClientCookie() {
   const [isCookieRead, setCookieRead] = useState(true)
 
   const onCookieReadClicked = useCallback(() => {
-    document.cookie = `${cookieName}=true;secure;path=/`
+    document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax`
     setCookieRead(true)
   }, [])
 

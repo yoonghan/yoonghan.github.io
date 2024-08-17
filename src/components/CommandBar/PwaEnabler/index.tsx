@@ -15,6 +15,7 @@ import { register, unregister } from "./utils/register"
 import styles from "./PwaEnabler.module.css"
 import Button from "../../Button"
 import { ANDROID_PACKAGE_NAME } from "./utils/const"
+import "../react-toggle.css"
 
 interface Props {
   onCancel: () => void

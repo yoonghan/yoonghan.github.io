@@ -9,8 +9,8 @@ interface ButtonProps {
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
   color?: "orange" | "white" | "grey" | "blue"
   styling?: {
-    small: boolean
-    inverted: boolean
+    small?: boolean
+    inverted?: boolean
     className?: string
   }
   children: ReactNode
@@ -63,8 +63,8 @@ const LinkButton = ({
     )
   } else {
     return (
-      <Link href={href}>
-        <span className={definedClass}>{children}</span>
+      <Link href={href} className={definedClass}>
+        <span>{children}</span>
       </Link>
     )
   }

@@ -14,11 +14,11 @@ describe("SiteMap", () => {
 
   it("should render the page with right links", async () => {
     renderComponent()
-    expect(screen.getByText("HOME")).toHaveAttribute("href", "/")
-    expect(screen.getByText("ABOUT US")).toHaveAttribute("href", "/about")
-    expect(screen.getByText("HISTORY")).toHaveAttribute("href", "/history")
-    expect(screen.getByText("PROJECTS")).toHaveAttribute("href", "/projects")
-    expect(screen.getByText("LESSONS")).toHaveAttribute(
+    expect(screen.getByText("Home")).toHaveAttribute("href", "/")
+    expect(screen.getByText("About Us")).toHaveAttribute("href", "/about")
+    expect(screen.getByText("History")).toHaveAttribute("href", "/history")
+    expect(screen.getByText("Projects")).toHaveAttribute("href", "/projects")
+    expect(screen.getByText("Lessons")).toHaveAttribute(
       "href",
       "/projects/lessons"
     )
