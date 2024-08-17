@@ -64,7 +64,7 @@
       ]
     },
     {
-      "label": "Homepage Commandbar search",
+      "label": "Homepage Commandbar search on table",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000/experiments/homepage-v1",
@@ -74,7 +74,14 @@
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.3,
-      "requireSameDimensions": false
+      "requireSameDimensions": false,
+      "viewports": [
+        {
+          "label": "tablet",
+          "width": 1024,
+          "height": 768
+        }
+      ]
     },
     {
       "label": "About Page",
