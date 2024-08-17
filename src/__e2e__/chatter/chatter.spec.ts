@@ -44,7 +44,6 @@ test.describe("Webrtc calls", () => {
   test("should be able to start 2 persons call, and receiver rejects it", async () => {
     const caller = await startCall("Jessica")
     const receiver = await startCall("Michelle")
-    console.log("Reject startup")
 
     await callAnotherPerson(caller, receiver, "Jessica", "Michelle")
     console.log("Reject call")

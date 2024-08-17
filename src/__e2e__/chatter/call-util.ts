@@ -17,8 +17,8 @@ export const startCall = async (userName: string) => {
   await page.goto("/projects/webrtc")
   expect(await page.content()).toContain("Web RTC")
   await page.getByLabel("My user name:").fill(userName)
-  await page.getByRole("button", { name: "Start" }).click({ force: true })
-  await page.waitForTimeout(1000)
+  await page.getByRole("button", { name: "Start" }).click()
+  expect(await page.getByRole("button", { name: "Stop" })).toBeInViewport()
   return page
 }
 
@@ -37,12 +37,10 @@ export const callAnotherPerson = async (
     console.log("bump a restart as call button is not found")
     //Fix bug that sometimes pusher don't add into the list
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
-    await receiver
-      .getByRole("button", { name: "Start" })
-      .click({ force: true, delay: 1000 })
+    await receiver.waitForTimeout(1000)
+    await receiver.getByRole("button", { name: "Start" }).click({ force: true })
     await receiver.waitForTimeout(2000)
   }
-  console.log("making a call")
   await caller
     .getByRole("button", { name: `Call ${receiverName}` })
     .click({ force: true })
