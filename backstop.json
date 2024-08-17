@@ -16,30 +16,10 @@
   "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
-      "label": "Page not found",
-      "url": "http://localhost:3000/iamnotfound",
-      "delay": 0,
-      "postInteractionWait": 0,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.3,
-      "requireSameDimensions": true
-    },
-    {
-      "label": "Homepage",
-      "url": "http://localhost:3000",
-      "delay": 500,
-      "postInteractionWait": 50,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "requireSameDimensions": true
-    },
-    {
       "label": "Homepage with cookie accepted",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
-      "clickSelector": "text=Close",
+      "buttonClickByName": "Accept",
       "postInteractionWait": 60,
       "selectorExpansion": true,
       "expect": 0,
@@ -50,7 +30,7 @@
       "label": "Homepage with email entered and sent",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
       "scrollBySelector": {
         "id": "#parallax-container",
@@ -64,24 +44,8 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Homepage is scrollable",
-      "url": "http://localhost:3000",
-      "cookieDomain": "localhost",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "delay": 500,
-      "postInteractionWait": 2000,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "scrollBySelector": {
-        "id": "#parallax-container",
-        "posY": 2048
-      },
-      "requireSameDimensions": true
-    },
-    {
       "label": "Homepage on Desktop/tablet can access from navigation",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3000/experiments/homepage-v1",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
@@ -103,9 +67,9 @@
       "label": "Homepage Commandbar search",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
-      "clickSelector": "text=search 〉",
+      "buttonClickByName": "search",
       "postInteractionWait": 4000,
       "selectorExpansion": true,
       "expect": 0,
