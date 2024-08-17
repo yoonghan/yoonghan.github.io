@@ -21,7 +21,6 @@ function Homepage() {
   return (
     <div className={styles.container}>
       <main className={styles.homepage}>
-        <PageReaderIndicator scrollContainer={scrollContainerRef} />
         <div ref={scrollContainerRef} id="parallax-container">
           <Parallax scrollContainer={scrollContainerRef} ref={scrollHandlerRef}>
             {sections}
