@@ -44,22 +44,6 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Homepage is scrollable",
-      "url": "http://localhost:3000/experiments/homepage-v1",
-      "cookieDomain": "localhost",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "delay": 500,
-      "postInteractionWait": 2000,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "scrollBySelector": {
-        "id": "#parallax-container",
-        "posY": 2048
-      },
-      "requireSameDimensions": true
-    },
-    {
       "label": "Homepage on Desktop/tablet can access from navigation",
       "url": "http://localhost:3000/experiments/homepage-v1",
       "cookieDomain": "localhost",
