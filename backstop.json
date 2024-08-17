@@ -32,10 +32,6 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
-      "scrollBySelector": {
-        "id": "#parallax-container",
-        "posY": 10000
-      },
       "clickSelector": "text=Write To Us",
       "postInteractionWait": 1000,
       "selectorExpansion": true,
