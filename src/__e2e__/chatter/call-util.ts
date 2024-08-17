@@ -37,8 +37,9 @@ export const callAnotherPerson = async (
     console.log("bump a restart as call button is not found")
     //Fix bug that sometimes pusher don't add into the list
     await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
-    await receiver.waitForTimeout(1000)
-    await receiver.getByRole("button", { name: "Start" }).click({ force: true })
+    await receiver
+      .getByRole("button", { name: "Start" })
+      .click({ force: true, delay: 1000 })
     await receiver.waitForTimeout(2000)
   }
   console.log("making a call")
