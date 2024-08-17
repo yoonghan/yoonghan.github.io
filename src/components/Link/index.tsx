@@ -25,8 +25,7 @@ const Link: React.FC<LinkProps> = ({
 
   return (
     <LinkWrapper className={style.link} href={href} {...props}>
-      {logo && logo}
-      {logo && " "}
+      {logo && <>{logo} </>}
       {children}
     </LinkWrapper>
   )

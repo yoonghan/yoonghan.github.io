@@ -1,0 +1,170 @@
+.container {
+  height: 100vh;
+  position: relative;
+  background-color: #343233;
+}
+
+.container .section.reverse {
+  flex-direction: row-reverse;
+}
+
+.homepage section,
+.homepage .section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 2rem;
+}
+
+@media only screen and (max-width: 640px) {
+  .homepage section,
+  .homepage .section {
+    flex-direction: column;
+  }
+
+  .homepage .section.reverse {
+    flex-direction: column-reverse;
+  }
+
+  .homepage section .snapshots,
+  .homepage .section .snapshots {
+    margin: 0 1rem;
+  }
+}
+
+section.introduction {
+  display: block;
+  color: var(--text);
+  filter: saturate(80%);
+}
+
+.introduction h1 {
+  margin-top: 0;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.introduction h3 {
+  max-width: 640px;
+  text-align: justify;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.introduction .info {
+  display: flex;
+  gap: 2rem;
+}
+
+.introduction .info > div {
+  max-width: 640px;
+  flex: auto;
+  margin: 0 auto;
+}
+
+.introduction .show {
+  margin-top: 3rem;
+  position: relative;
+  max-width: 640px;
+  height: 240px;
+  background-image: url("/img/welcome/fg-left.webp");
+  background-size: contain;
+}
+.introduction .show > div:first-child {
+  position: absolute;
+  top: 2rem;
+  font-size: 5vh;
+  transform: rotate(-5deg);
+  color: rgb(143, 130, 188);
+}
+.introduction .show > div:last-child {
+  position: absolute;
+  top: 7rem;
+  left: 0.5rem;
+  font-size: 7vh;
+  transform: rotate(2deg);
+  color: rgb(243, 152, 0);
+}
+
+.homepage .section > article {
+  max-width: 420px;
+  background-color: rgba(66, 66, 66, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  margin: 0 0.5rem;
+  color: var(--text);
+}
+
+.homepage .section > article li {
+  padding-bottom: 1rem;
+}
+
+.homepage .section > article a[role="button"] {
+  margin: 0.5rem;
+}
+
+.homepage .section > article button {
+  margin: 0.5rem;
+}
+
+.homepage .section .snapshots {
+  border-radius: 0.5rem;
+  max-width: 100%;
+  position: relative;
+  height: 400px;
+  width: 640px;
+}
+
+.homepage .section .snapshots > img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.homepage .section .snapshots:hover {
+  animation: sepia 1s forwards;
+}
+
+.homepage .miscellaneous {
+  color: var(--text);
+}
+
+.homepage .miscellaneous > div {
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  padding-top: 1rem;
+  cursor: pointer;
+  color: var(--button-orange-bg);
+}
+
+@keyframes sepia {
+  from {
+    filter: sepia(0%);
+  }
+  to {
+    filter: sepia(100%);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .introduction aside {
+    display: none;
+  }
+
+  .introduction .info {
+    justify-content: center;
+  }
+
+  .introduction .info article {
+    flex: unset;
+  }
+}

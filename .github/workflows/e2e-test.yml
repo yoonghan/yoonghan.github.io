@@ -45,7 +45,7 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
+
       - name: 📥 Install playwright browsers
         if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
@@ -64,7 +64,7 @@ jobs:
           deployed_url: ${{ inputs.deployed_url }}
 
       - name: ▶️ Run page functional check
-        run: CI=true && npm run playwright:test
+        run: npm run e2e:test
 
       - name: ▶️ Run page rendering check
         shell: bash

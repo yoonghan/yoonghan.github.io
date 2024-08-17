@@ -15,16 +15,18 @@ const NoSSRCommandBar = () => {
   const [renderExecutedCommand, setRenderExecutedCommand] = React.useState(
     <React.Fragment />
   )
-  let elem: HTMLDivElement = React.useMemo(
-    () => document.createElement("div"),
-    []
-  )
+
+  const elem = document.createElement("div")
 
   React.useEffect(() => {
     document.body.appendChild(elem)
 
     return () => {
-      queueMicrotask(() => document.body.removeChild(elem))
+      queueMicrotask(() => {
+        if (elem !== null && document.body.contains(elem)) {
+          document.body.removeChild(elem)
+        }
+      })
     }
   }, [elem])
 
