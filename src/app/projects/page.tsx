@@ -14,7 +14,7 @@ const Projects = ({}) => {
   return (
     <div className={`${styles.container}`}>
       <div className={`page-aligned-container`}>
-        <h1 className="title">Playground projects</h1>
+        <h1>Playground projects</h1>
         <div>
           <p>
             Projects that we are working on{" "}

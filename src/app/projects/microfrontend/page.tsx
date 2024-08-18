@@ -28,7 +28,7 @@ const Projects = ({}) => {
   return (
     <div className={`${styles.container}`}>
       <div className={`page-aligned-container`}>
-        <h1 className="title">Microfrontend</h1>
+        <h1 className="text-2xl">Microfrontend</h1>
         <div>
           <p>
             Partially experimental but going forward, all written javascript
