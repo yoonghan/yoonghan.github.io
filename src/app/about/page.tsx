@@ -7,7 +7,7 @@ import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import "./about.css"
+import styles from "./about.module.css"
 
 const authorModel = [
   {
@@ -26,7 +26,7 @@ const authorModel = [
 
 const About = () => {
   return (
-    <>
+    <div className={styles.container}>
       <MiniMenu model={authorModel} />
       <div className={"page-aligned-container"}>
         <article id={authorModel[0].hashId}>
@@ -115,7 +115,7 @@ const About = () => {
         </section>
         <ScrollToTop />
       </div>
-    </>
+    </div>
   )
 }
 
