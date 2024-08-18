@@ -46,18 +46,18 @@ function ClientCookie() {
     return (
       <div
         data-testid="cookie-dialog"
-        className="animate-[grow_1s_ease-in] z-[101] fixed p-4 bg-white text-black w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex md:justify-evenly"
+        className={`bg-slate-300 border-y border-slate-600 drop-shadow-xl animate-[grow_1s_ease-in] z-[101] fixed p-4 w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex`}
       >
         <Image
           src="/img/logo/logo-color.svg"
-          height={100}
-          width={100}
+          height={50}
+          width={50}
           alt="Walcron"
           className="hidden md:block"
         />
-        <div>
+        <div className="md:flex-1">
           <strong>This site uses cookies.</strong>
-          <hr className="my-2" />
+          <hr className="my-2 border-slate-600" />
           <p className="mb-4">
             This site uses cookie to monitor visits and usage traffics through
             google analytics, please to{" "}
