@@ -175,7 +175,7 @@ export const generateSections = (
 ) =>
   [
     <section key="introduction" className={styles.introduction}>
-      <h1 className="title">
+      <h1>
         Welcome to <LogoText /> Coorperation
       </h1>
       <div className={styles.info}>
@@ -221,7 +221,7 @@ export const generateSections = (
           )}`}
         >
           <article>
-            <h2 className="title">{siteDevelopmentSection.title}</h2>
+            <h2 className="text-2xl">{siteDevelopmentSection.title}</h2>
             {siteDevelopmentSection.desc}
             {siteDevelopmentSection.link && (
               <Button
