@@ -80,7 +80,7 @@ const CheckList = () => {
   return (
     <div className={`${styles.container}`}>
       <div className={`page-aligned-container`}>
-        <h1 className="title">Important Checklist Links</h1>
+        <h1>Important Checklist Links</h1>
         <span>A checklist of important links to test and for reference.</span>
         <span>
           Note: Page is not robot indexed and viewable only by desktop. May

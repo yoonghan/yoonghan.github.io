@@ -1,4 +1,3 @@
-import HeaderOne from "@/components/HeaderOne"
 import Timeline from "@/components/Timeline"
 import Table from "@/components/Table"
 import { nonFictionBooks, siteHistory } from "@/app/history/config"
@@ -14,7 +13,7 @@ const History = ({}) => {
   return (
     <>
       <div className={"page-aligned-container"}>
-        <HeaderOne title={"Site's history"} isLined={true} />
+        <h1 className="py-8">Site&apos;s history</h1>
         <section>
           <h2 className="text-align-left">Improvement Timeline</h2>
           <Timeline events={siteHistory} />

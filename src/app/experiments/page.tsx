@@ -14,7 +14,7 @@ const Experiments = ({}) => {
     <>
       <div className={`${styles.container}`}>
         <div className={`page-aligned-container`}>
-          <h1 className="title">Experimental projects</h1>
+          <h1>Experimental projects</h1>
           <div>
             <p>
               Incomplete or projects that are used for test-beds
