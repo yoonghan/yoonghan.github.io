@@ -33,7 +33,6 @@
       "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
       "clickSelector": "text=Write To Us",
-      "postInteractionWait": 1000,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
