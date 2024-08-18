@@ -42,11 +42,6 @@ header {
   position: sticky;
 }
 
-footer {
-  background-color: var(--primary-700);
-  color: var(--primary-text-color);
-}
-
 .title {
   color: var(--header-title);
 }
