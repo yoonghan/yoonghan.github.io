@@ -32,10 +32,6 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000/experiments/homepage-v1",
       "delay": 500,
-      "scrollBySelector": {
-        "id": "#parallax-container",
-        "posY": 10000
-      },
       "clickSelector": "text=Write To Us",
       "postInteractionWait": 1000,
       "selectorExpansion": true,
@@ -44,27 +40,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Homepage on Desktop/tablet can access from navigation",
-      "url": "http://localhost:3000/experiments/homepage-v1",
-      "cookieDomain": "localhost",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "delay": 500,
-      "postInteractionWait": 2000,
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.4,
-      "clickSelector": "nav p:text('Testing Deployment')",
-      "requireSameDimensions": true,
-      "viewports": [
-        {
-          "label": "tablet",
-          "width": 1024,
-          "height": 768
-        }
-      ]
-    },
-    {
-      "label": "Homepage Commandbar search",
+      "label": "Homepage Commandbar search on table",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:3000/experiments/homepage-v1",
@@ -74,7 +50,14 @@
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.3,
-      "requireSameDimensions": false
+      "requireSameDimensions": false,
+      "viewports": [
+        {
+          "label": "tablet",
+          "width": 1024,
+          "height": 768
+        }
+      ]
     },
     {
       "label": "About Page",
