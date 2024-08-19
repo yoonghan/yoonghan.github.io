@@ -71,6 +71,12 @@ jobs:
         continue-on-error: true
         run: npm run backstop:test
 
+      - name: Remove local reference file
+        shell: bash
+        run: |
+          rm -rf backstop_data/bitmaps_local_reference
+          rm -rf backstop_data/engine_scripts
+
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@master
         with:
