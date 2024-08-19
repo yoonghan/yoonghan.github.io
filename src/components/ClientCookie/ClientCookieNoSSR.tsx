@@ -46,7 +46,7 @@ function ClientCookie() {
     return (
       <div
         data-testid="cookie-dialog"
-        className={`bg-slate-300 border-y border-slate-600 drop-shadow-xl animate-[grow_1s_ease-in] z-[101] fixed p-4 w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex`}
+        className={`bg-yellow-50 border-y border-slate-600 drop-shadow-xl animate-[grow_1s_ease-in] z-[101] fixed p-4 w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex`}
       >
         <Image
           src="/img/logo/logo-color.svg"
