@@ -36,7 +36,6 @@
 
 .container > li section > div {
   padding: 2rem;
-  color: #555;
 }
 
 @media only screen and (max-width: 480px) {
