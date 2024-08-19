@@ -34,8 +34,8 @@ function Homepage() {
           <p>
             This site was up since <strong>2014</strong> and had many iterations
             [<Link href="/history">Learn More of our history</Link>] and have
-            evolved from <strong>Pure Server Render</strong> to{" "}
-            <strong>Non-Javascript Accessible</strong> site.
+            evolved from <strong>Pure Server Render</strong> to
+            <strong> Non-Javascript Accessible</strong> site.
           </p>
           <p>
             As of <strong>2024</strong>, the importance of {walcronText} website
