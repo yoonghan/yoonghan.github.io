@@ -86,4 +86,9 @@ describe("CommandBarInput", () => {
     expect(focusCallback).toHaveBeenCalled()
     expect(screen.getByTestId("prompter")).toBeInTheDocument()
   })
+
+  it("should have a label", () => {
+    renderComponent({})
+    expect(screen.getByLabelText("Command prompt")).toBeInTheDocument()
+  })
 })
