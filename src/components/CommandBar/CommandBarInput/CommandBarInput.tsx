@@ -61,6 +61,7 @@ const CommandBarInput = (props: Props) => {
             onFocus={onFocus}
             onBlur={onBlur}
             className={styles.autosuggest__input}
+            aria-label="Command prompt"
           />
           <datalist id="commands">{commandOptions}</datalist>
         </div>
