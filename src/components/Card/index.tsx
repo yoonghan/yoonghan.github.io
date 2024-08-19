@@ -18,7 +18,10 @@ const Card = ({ cards }: Props) => {
           <a href={href} target={target || "blank"}>
             <section>
               <h3>{title}</h3>
-              <div>{description}</div>
+              <div>
+                <hr className="pb-2" />
+                {description}
+              </div>
             </section>
           </a>
         </li>
