@@ -133,7 +133,7 @@ function Homepage() {
                     </li>
                     <li>
                       <strong>Restriction</strong> - Deploys ONLY{" "}
-                      <em className="text-emerald-500">ONLY successful</em>{" "}
+                      <em className="text-green-700">ONLY successful</em>{" "}
                       pull-request.
                     </li>
                   </ul>
