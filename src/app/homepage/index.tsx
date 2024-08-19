@@ -34,8 +34,8 @@ function Homepage() {
           <p>
             This site was up since <strong>2014</strong> and had many iterations
             [<Link href="/history">Learn More of our history</Link>] and have
-            evolved from <strong>Pure Server Render</strong> to{" "}
-            <strong>Non-Javascript Accessible</strong> site.
+            evolved from <strong>Pure Server Render</strong> to
+            <strong> Non-Javascript Accessible</strong> site.
           </p>
           <p>
             As of <strong>2024</strong>, the importance of {walcronText} website
@@ -63,9 +63,9 @@ function Homepage() {
         <hr />
         {/* Reliability */}
         <article>
-          <h6 className="text-3xl text-center" id="reliability">
+          <h3 className="text-3xl text-center" id="reliability">
             Reliability
-          </h6>
+          </h3>
           <div className="text-center my-8">
             Being a self-maintained site, how do one...
             <ul className="text-lg italic pt-4">
@@ -133,7 +133,7 @@ function Homepage() {
                     </li>
                     <li>
                       <strong>Restriction</strong> - Deploys ONLY{" "}
-                      <em className="text-emerald-500">ONLY successful</em>{" "}
+                      <em className="text-green-700">ONLY successful</em>{" "}
                       pull-request.
                     </li>
                   </ul>
@@ -182,9 +182,9 @@ function Homepage() {
         <hr />
         {/* Accessibility */}
         <article className="max-w-screen-md mx-auto">
-          <h6 className="text-3xl text-center" id="accessibility">
+          <h4 className="text-3xl text-center" id="accessibility">
             Accessibility and Readability (WCAG)
-          </h6>
+          </h4>
           <section>
             <div className="text-xl italic text-center">
               &quot;Our Homepage can now be browsed{" "}
@@ -223,9 +223,9 @@ function Homepage() {
         <hr />
         {/* Monitoring */}
         <article className="max-w-screen-md mx-auto">
-          <h6 className="text-3xl text-center" id="monitoring">
+          <h5 className="text-3xl text-center" id="monitoring">
             Monitoring
-          </h6>
+          </h5>
           <div className="text-xl italic text-center pt-8">
             {quoteText("Ensure what we develop are standard.")}
           </div>
