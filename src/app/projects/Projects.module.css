@@ -34,6 +34,7 @@
 .container .code {
   color: var(--code);
   font-style: italic;
+  overflow: scroll;
 }
 
 .container .wrappedText {
