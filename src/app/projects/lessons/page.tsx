@@ -105,7 +105,7 @@ const Lessons = ({}) => {
             used hence it cannot be erased.
           </p>
           {/* prettier-ignore */}
-          <pre className={"code"}>{`
+          <pre className={styles.code}>{`
  describe( "test", () => {
    it("should one", ()=>{console.log(navigator.share)}) // = undefined 
    it("should two", ()=> {Object.defineProperty(window.navigator, "share"...}) 
@@ -120,7 +120,7 @@ const Lessons = ({}) => {
             the first to override the import of the original 3rd party library.
           </p>
           {/* prettier-ignore */}
-          <pre className={"code"}>{`
+          <pre className={styles.code}>{`
  import "../__mocked__/pusherMock"; //mock library must be the first.
  import X from "someComponentThatUsesPusher"
  --OR--
