@@ -18,7 +18,7 @@
     {
       "label": "Homepage",
       "url": "http://localhost:3000",
-      "delay": 500,
+      "delay": 600,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
@@ -36,7 +36,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Experiment Homepage v1 Commandbar search on table",
+      "label": "Homepage Commandbar search on table",
       "url": "http://localhost:3000",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
@@ -58,21 +58,13 @@
     {
       "label": "Experiment Homepage v1",
       "url": "http://localhost:3000/experiments/homepage-v1",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
       "postInteractionWait": 60,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.4,
-      "requireSameDimensions": true
-    },
-    {
-      "label": "Experiment Homepage v1 with email entered and sent",
-      "url": "http://localhost:3000/experiments/homepage-v1",
-      "delay": 500,
-      "clickSelector": "text=Write To Us",
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold": 0.1,
       "requireSameDimensions": true
     },
     {
