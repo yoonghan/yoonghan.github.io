@@ -6,6 +6,7 @@ import Figure from "@/components/Figure"
 import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import Image from "next/image"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -20,11 +21,24 @@ function Homepage() {
             This is a sandbox website for us to <strong>explore</strong>{" "}
             real-time Web Development.
           </p>
-
-          <p>
-            We&apos;re just a regular coder who are keen in{" "}
-            <strong>Web and Cloud</strong> technologies.
-          </p>
+          <figure>
+            <Image
+              src="/img/welcome/walcron-authors.webp"
+              width={454}
+              height={403}
+              alt="Walcron Web Authors"
+              className="m-auto"
+            />
+            <Image
+              src="/img/arrow.svg"
+              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%]"
+              aria-hidden={true}
+              alt="Arrow to describe figure image"
+              width={50}
+              height={100}
+            />
+            <figcaption className="italic">Us in Portugal</figcaption>
+          </figure>
         </article>
         <hr />
         <article className="max-w-screen-md mx-auto">
