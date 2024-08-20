@@ -194,9 +194,10 @@ function Homepage() {
               We did it by relying on both PureCSS, Server Side Generation and
               ensuring non-critical usage for Javascript. The old homepage was{" "}
               <Link href="/experiments/homepage-v1">Javascript heavy</Link>
-              (Parallax Effect) and we encountered{" "}
-              <span className="underline">performance</span> and{" "}
-              <span className="underline">accessibility</span>
+              (Parallax Effect) and we encountered <strong>
+                performance
+              </strong>{" "}
+              and <strong>accessibility </strong>
               issues.
             </p>
           </section>
