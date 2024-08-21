@@ -28,4 +28,16 @@ describe("root-url", () => {
     const { getApiUrl } = await import("./site")
     expect(getApiUrl()).toBe("/api")
   })
+
+  it("should override ga4id", async () => {
+    setEnv({ NEXT_PUBLIC_GA_4_ID: "G-Test" })
+    const { getGA4Id } = await import("./site")
+    expect(getGA4Id()).toBe("G-Test")
+  })
+
+  it("should use blank ga4id if undefined", async () => {
+    setEnv({ NEXT_PUBLIC_GA_4_ID: undefined })
+    const { getGA4Id } = await import("./site")
+    expect(getGA4Id()).toBe("")
+  })
 })
