@@ -28,6 +28,7 @@ describe("SiteMap", () => {
     expect(metadata).toStrictEqual({
       title: "Sitemap",
       description: "Website links and site.",
+      alternates: {},
     })
   })
 })
