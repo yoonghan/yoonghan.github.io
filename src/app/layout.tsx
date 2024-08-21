@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer"
+import { GoogleAnalytic } from "@/components/GoogleAnalytic"
 import MegaMenu from "@/components/MegaMenu"
 import { site } from "@/config/site"
 import "@/styles/global.css"
@@ -12,7 +13,7 @@ export { Body, metadata }
 config.autoAddCss = false
 
 const metadata: Metadata = {
-  metadataBase: new URL("https://www.walcron.com"),
+  metadataBase: new URL(site.url),
   title: "Walcron Coorperation",
   description:
     "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
@@ -28,7 +29,7 @@ const metadata: Metadata = {
     siteName: "Walcron",
     images: [
       {
-        url: "https://www.walcron.com/og_image.png",
+        url: `${site.defaultUrl}/og_image.png`,
         width: 400,
         height: 400,
       },
@@ -42,6 +43,9 @@ const metadata: Metadata = {
     apple: "/pwa/apple-icon.png",
   },
   manifest: "/manifest.json",
+  alternates: {
+    ...site.generateCanonical(""),
+  },
 }
 
 function Body({ children }: { children: React.ReactNode }) {
@@ -52,6 +56,7 @@ function Body({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       <Footer />
+      <GoogleAnalytic gaId={site.ga4Id} />
     </>
   )
 }
@@ -63,22 +68,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
-        strategy="lazyOnload"
-        id="google-tag"
-      />
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9V9VC8N5XT');
-      `}
-      </Script>
       <Script id="reroute-https" strategy="afterInteractive">
         {`if(location.hostname === "walcron.com") {
-          location.href="//www.walcron.com";
+          location.href="${site.defaultUrl}";
         }`}
       </Script>
       <body>

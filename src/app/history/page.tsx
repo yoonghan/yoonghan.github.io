@@ -3,10 +3,14 @@ import Table from "@/components/Table"
 import { nonFictionBooks, siteHistory } from "@/app/history/config"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Website History",
   description: "Timeline and journey of the page.",
+  alternates: {
+    ...site.generateCanonical("/history"),
+  },
 }
 
 const History = ({}) => {

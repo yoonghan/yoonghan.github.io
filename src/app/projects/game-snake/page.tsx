@@ -1,8 +1,12 @@
+import { site } from "@/config/site"
 import SnakeGame from "./Snake/SnakeGame"
 
 export const metadata = {
   title: "Snake Game",
   description: "A nokia like snake game.",
+  alternates: {
+    ...site.generateCanonical("/projects/game-snake"),
+  },
 }
 
 const GameSnake = () => {

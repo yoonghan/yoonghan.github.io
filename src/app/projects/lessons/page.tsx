@@ -9,10 +9,14 @@ import imgBrowserDownloadChunk from "@/images/lesson/1/browser-download-chunk.jp
 import imgAnalyzeReportSize from "@/images/lesson/1/analyze-report-size.jpg"
 import imgTypescriptImport from "@/images/lesson/1/typescript-import.jpg"
 import imgFinalResult from "@/images/lesson/1/final-result.jpg"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Lessons",
   description: "Lesson learned on CI/CD and web developments.",
+  alternates: {
+    ...site.generateCanonical("/projects/lessons"),
+  },
 }
 
 const Lessons = ({}) => {

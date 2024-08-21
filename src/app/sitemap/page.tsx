@@ -3,10 +3,14 @@ import ScrollToTop from "@/components/ScrollToTop"
 import Link from "@/components/Link"
 import { Result, SiteMapConstructor } from "./sitemapConstructor"
 import { sortedSiteMapPages } from "@/config/pages"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Sitemap",
   description: "Website links and site.",
+  alternates: {
+    ...site.generateCanonical("/sitemap"),
+  },
 }
 
 const SiteMap = ({}) => {

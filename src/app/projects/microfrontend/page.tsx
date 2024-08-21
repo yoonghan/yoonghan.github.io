@@ -1,10 +1,14 @@
 import Card from "@/components/Card"
 import { memo } from "react"
 import styles from "../Projects.module.css"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Microfrontend",
   description: "Microfrontend architecture.",
+  alternates: {
+    ...site.generateCanonical("/projects/microfrontend"),
+  },
 }
 
 const Projects = ({}) => {
