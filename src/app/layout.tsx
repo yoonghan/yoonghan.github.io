@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script id="reroute-https" strategy="afterInteractive">
-        {`if(location.hostname.lastIndexOf("www.", 0) !== 0) {
+        {`if(location.hostname === "walcron.com") {
           location.href="${site.defaultUrl}";
         }`}
       </Script>
