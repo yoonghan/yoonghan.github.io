@@ -15,11 +15,11 @@ function getGA4Id() {
 
 function getCanonical(relativeUrl: string) {
   const url = getUrl()
-  if (url.startsWith(defaultUrl)) return {}
+  if (url === defaultUrl) return {}
   else {
     return {
       canonical: `${defaultUrl}${
-        relativeUrl.startsWith("/") ? "" : "/"
+        relativeUrl.replaceAll(" ", "").startsWith("/") ? "" : "/"
       }${relativeUrl}`,
     }
   }
