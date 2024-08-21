@@ -13,7 +13,7 @@ export { Body, metadata }
 config.autoAddCss = false
 
 const metadata: Metadata = {
-  metadataBase: new URL("https://www.walcron.com"),
+  metadataBase: new URL(site.url),
   title: "Walcron Coorperation",
   description:
     "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
@@ -53,7 +53,7 @@ function Body({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       <Footer />
-      <GoogleAnalytic gaId="G-9V9VC8N5XT" />
+      <GoogleAnalytic gaId={site.ga4Id} />
     </>
   )
 }
