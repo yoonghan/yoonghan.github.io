@@ -18,7 +18,7 @@
     {
       "label": "Homepage",
       "url": "http://localhost:3000",
-      "delay": 700,
+      "delay": 1200,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
