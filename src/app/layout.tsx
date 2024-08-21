@@ -43,6 +43,9 @@ const metadata: Metadata = {
     apple: "/pwa/apple-icon.png",
   },
   manifest: "/manifest.json",
+  alternates: {
+    ...site.generateCanonical(""),
+  },
 }
 
 function Body({ children }: { children: React.ReactNode }) {

@@ -4,10 +4,14 @@ import ScrollToTop from "@/components/ScrollToTop"
 import styles from "./Projects.module.css"
 import LetterBox from "@/components/LetterBox"
 import { cards } from "./config"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Projects",
   description: "Playground projects that we had been working on.",
+  alternates: {
+    ...site.generateCanonical("/projects"),
+  },
 }
 
 const Projects = ({}) => {

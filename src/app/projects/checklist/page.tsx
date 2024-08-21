@@ -4,6 +4,7 @@ import styles from "../Projects.module.css"
 import Table from "@/components/Table"
 import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Checklist",
@@ -12,6 +13,9 @@ export const metadata = {
     index: false,
     follow: false,
     nocache: true,
+  },
+  alternates: {
+    ...site.generateCanonical("/projects/checklist"),
   },
 }
 

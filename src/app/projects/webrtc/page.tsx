@@ -1,9 +1,13 @@
 import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
 import WebrtcVideo from "./WebrtcVideo"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Video Conferencing",
   description: "Peer to peer Web RTC video conferencing.",
+  alternates: {
+    ...site.generateCanonical("/projects/webrtc"),
+  },
 }
 
 interface Props {
