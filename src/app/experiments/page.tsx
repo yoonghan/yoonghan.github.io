@@ -3,10 +3,14 @@ import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import styles from "./Experiments.module.css"
 import LetterBox from "@/components/LetterBox"
+import { site } from "@/config/site"
 
 export const metadata = {
   title: "Experiments",
   description: "Experimental pages for POC, and UI/UX",
+  alternates: {
+    ...site.generateCanonical("/about"),
+  },
 }
 
 const Experiments = ({}) => {
