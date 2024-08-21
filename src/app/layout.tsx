@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer"
+import { GoogleAnalytic } from "@/components/GoogleAnalytic"
 import MegaMenu from "@/components/MegaMenu"
 import { site } from "@/config/site"
 import "@/styles/global.css"
@@ -52,6 +53,7 @@ function Body({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       <Footer />
+      <GoogleAnalytic gaId="G-9V9VC8N5XT" />
     </>
   )
 }
@@ -63,19 +65,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-9V9VC8N5XT"
-        strategy="lazyOnload"
-        id="google-tag"
-      />
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9V9VC8N5XT');
-      `}
-      </Script>
       <Script id="reroute-https" strategy="afterInteractive">
         {`if(location.hostname === "walcron.com") {
           location.href="//www.walcron.com";
