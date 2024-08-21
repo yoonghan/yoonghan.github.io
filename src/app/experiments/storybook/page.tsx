@@ -1,3 +1,4 @@
+import { site } from "@/config/site"
 import styles from "./Storybook.module.css"
 import StoryMaker from "./StoryMaker"
 import { storyBookList } from "@/app/experiments/storybook/config/componentList"
@@ -5,6 +6,9 @@ import { storyBookList } from "@/app/experiments/storybook/config/componentList"
 export const metadata = {
   title: "Storybook",
   description: "Layout sandboxing and testing creation.",
+  alternates: {
+    ...site.generateCanonical("/experiments/storybook"),
+  },
 }
 
 function Storybook() {
