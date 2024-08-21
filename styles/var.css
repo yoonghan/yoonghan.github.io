@@ -1,11 +1,11 @@
 :root {
   --text: #ffffff;
   --logo: rgb(255, 132, 0);
-  --link: #195794;
+  --link: #206db9;
   --dialog-text: #fff;
 
   --button: #fff;
-  --button-bg: #195794; 
+  --button-bg: #195794;
   --button-blue: #fff;
   --button-blue-bg: #206db9;
   --button-orange: #222;
