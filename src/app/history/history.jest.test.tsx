@@ -27,6 +27,7 @@ describe("History", () => {
     expect(metadata).toStrictEqual({
       title: "Website History",
       description: "Timeline and journey of the page.",
+      alternates: {},
     })
   })
 })
