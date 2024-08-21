@@ -29,7 +29,7 @@ const metadata: Metadata = {
     siteName: "Walcron",
     images: [
       {
-        url: "https://www.walcron.com/og_image.png",
+        url: `${site.defaultUrl}/og_image.png`,
         width: 400,
         height: 400,
       },
@@ -66,8 +66,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script id="reroute-https" strategy="afterInteractive">
-        {`if(location.hostname === "walcron.com") {
-          location.href="//www.walcron.com";
+        {`if(location.hostname.lastIndexOf("www.", 0) !== 0) {
+          location.href="${site.defaultUrl}";
         }`}
       </Script>
       <body>
