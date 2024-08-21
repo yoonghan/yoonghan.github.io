@@ -29,7 +29,7 @@
       "url": "http://localhost:3000",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "delay": 100,
+      "delay": 500,
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
