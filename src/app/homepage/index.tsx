@@ -28,6 +28,7 @@ function Homepage() {
               height={403}
               alt="Walcron Web Authors"
               className="m-auto"
+              priority={true}
             />
             <Image
               src="/img/arrow.svg"
