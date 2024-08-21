@@ -40,4 +40,22 @@ describe("root-url", () => {
     const { getGA4Id } = await import("./site")
     expect(getGA4Id()).toBe("")
   })
+
+  it("should generate canonical back to defaultUrl", async () => {
+    const { site } = await import("./site")
+    expect(site.generateCanonical("/about")).toStrictEqual({
+      canonical: `${site.defaultUrl}/about`,
+    })
+    expect(site.generateCanonical("about")).toStrictEqual({
+      canonical: `${site.defaultUrl}/about`,
+    })
+  })
+
+  it("should not generate canonical object if local url", async () => {
+    setEnv({
+      NEXT_PUBLIC_SITE_URL: "",
+    })
+    const { site } = await import("./site")
+    expect(site.generateCanonical("/about")).toStrictEqual({})
+  })
 })
