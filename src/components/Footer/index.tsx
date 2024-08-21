@@ -48,7 +48,7 @@ const Footer = () => {
     <footer className={`pt-16 ${styles.container} text-sm`}>
       <hr className="w-full"></hr>
       <div
-        className={`flex-col flex justify-center gap-5 p-4 md:flex-row md:gap-14 ${styles.links}`}
+        className={`flex-col flex justify-center gap-5 px-12 py-8 md:flex-row md:gap-14 ${styles.links}`}
       >
         <ul aria-label="Learn">
           <li>Learn</li>

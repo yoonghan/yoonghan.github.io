@@ -6,6 +6,7 @@ import Figure from "@/components/Figure"
 import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import Image from "next/image"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -20,11 +21,24 @@ function Homepage() {
             This is a sandbox website for us to <strong>explore</strong>{" "}
             real-time Web Development.
           </p>
-
-          <p>
-            We&apos;re just a regular coder who are keen in{" "}
-            <strong>Web and Cloud</strong> technologies.
-          </p>
+          <figure>
+            <Image
+              src="/img/welcome/walcron-authors.webp"
+              width={454}
+              height={403}
+              alt="Walcron Web Authors"
+              className="m-auto"
+            />
+            <Image
+              src="/img/arrow.svg"
+              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%]"
+              aria-hidden={true}
+              alt="Arrow to describe figure image"
+              width={50}
+              height={100}
+            />
+            <figcaption className="italic">Us in Portugal</figcaption>
+          </figure>
         </article>
         <hr />
         <article className="max-w-screen-md mx-auto">
@@ -103,13 +117,6 @@ function Homepage() {
                       ]
                     </li>
                     <li>
-                      <strong>Coverage</strong> - 99.9% lines of code covered.[
-                      <Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
-                        CodeCov
-                      </Link>
-                      ]
-                    </li>
-                    <li>
                       <strong>Integration</strong> - API doesn&apos;t break. [
                       <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
                         Smoke and E2E
@@ -117,12 +124,71 @@ function Homepage() {
                       ]
                     </li>
                     <li>
-                      <strong>Layout verification</strong> - Workflow on User
-                      Interface changes. [
+                      <strong>Release</strong> - Deploys{" "}
+                      <em className="text-green-700">ONLY successful</em>{" "}
+                      pull-request.
+                    </li>
+                  </ul>
+                </>
+              </Figure>
+            </section>
+            <section className="pt-32">
+              <Figure
+                imageProps={{
+                  src: "/img/homepage/reliability-approval.webp",
+                  width: 1024,
+                  height: 515,
+                  alt: "Comparing latest image",
+                }}
+                imageCaption="Detects before and after User Interface changes"
+                reversed={true}
+              >
+                <>
+                  User Interface verification:
+                  <ul className="mt-4 ml-4 list-disc">
+                    <li>
+                      <strong>Layout verification</strong> - Production layout
+                      are compared with preview. [
                       <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10380878898">
                         Snapshots
                       </Link>
                       ]
+                    </li>
+                    <li>
+                      <strong>Approval workflow</strong> - Integrated approval
+                      process. [
+                      <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10462109042">
+                        Snapshots
+                      </Link>
+                      ]
+                    </li>
+                  </ul>
+                </>
+              </Figure>
+            </section>
+            <section className="pt-32">
+              <Figure
+                imageProps={{
+                  src: "/img/homepage/reliability-compliance.webp",
+                  width: 1024,
+                  height: 515,
+                  alt: "Code coverage",
+                }}
+                imageCaption="Code coverage in CodeCov"
+              >
+                <>
+                  We up-keep coding standards and security compliance:
+                  <ul className="mt-4 ml-4 list-disc">
+                    <li>
+                      <strong>Coverage</strong> - 99.9% lines of code covered.[
+                      <Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
+                        CodeCov
+                      </Link>
+                      ]
+                    </li>
+                    <li>
+                      <strong>Linting</strong> - Coding checks to ensure proper
+                      coding styles.
                     </li>
                     <li>
                       <strong>Compliance</strong> - Security and Lint checks. [
@@ -131,16 +197,11 @@ function Homepage() {
                       </Link>{" "}
                       and Dependabots]
                     </li>
-                    <li>
-                      <strong>Restriction</strong> - Deploys ONLY{" "}
-                      <em className="text-green-700">ONLY successful</em>{" "}
-                      pull-request.
-                    </li>
                   </ul>
                 </>
               </Figure>
             </section>
-            <section className="max-w-screen-md mx-auto pt-8">
+            <section className="max-w-screen-md mx-auto pt-16">
               <div className="text-center text-lg mb-12 italic">
                 {quoteText("So what if something really breaks ?")}
               </div>
@@ -194,9 +255,10 @@ function Homepage() {
               We did it by relying on both PureCSS, Server Side Generation and
               ensuring non-critical usage for Javascript. The old homepage was{" "}
               <Link href="/experiments/homepage-v1">Javascript heavy</Link>
-              (Parallax Effect) and we encountered{" "}
-              <span className="underline">performance</span> and{" "}
-              <span className="underline">accessibility</span>
+              (Parallax Effect) and we encountered <strong>
+                performance
+              </strong>{" "}
+              and <strong>accessibility </strong>
               issues.
             </p>
           </section>

@@ -14,7 +14,7 @@ on:
         type: string
 
 jobs:
-  e2e:
+  layout:
     runs-on: ubuntu-latest
     if: |
       !startsWith(github.head_ref , 'dependabot/')
@@ -54,17 +54,12 @@ jobs:
         run: |
           URL=${{ inputs.deployed_url }}
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
-          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL//\//\\/}/g" playwright.config.ts
-          cat playwright.config.ts
         shell: bash
 
       - name: Override Backstop
         uses: ./.github/actions/backstop-override
         with:
           deployed_url: ${{ inputs.deployed_url }}
-
-      - name: ▶️ Run page functional check
-        run: npm run e2e:test
 
       - name: ▶️ Run page rendering check
         shell: bash
@@ -86,3 +81,53 @@ jobs:
       - name: ✅ Validate backstopjs snapshot is valid
         run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+            ~/.cache/ms-playwright
+          key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download deps
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📥 Install playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: ✅ Verify Vercel deployment and update branch
+        run: |
+          URL=${{ inputs.deployed_url }}
+          chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
+        shell: bash
+
+      - name: Override playwright
+        run: |
+          URL=${{ inputs.deployed_url }}
+          sed -i "s/http:\/\/localhost:3000/https:\/\/${URL//\//\\/}/g" playwright.config.ts
+          cat playwright.config.ts
+        shell: bash
+
+      - name: ▶️ Run page functional check
+        run: npm run e2e:test
