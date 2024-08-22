@@ -152,3 +152,41 @@ jobs:
             ${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
+
+  # Release are still tagged if smoketest fails
+  smoketest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+            ~/.cache/ms-playwright
+          key: modules-node-chrome-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download deps
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📥 Install playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: ▶️ Run page functional check
+        run: npm run smoke:test
