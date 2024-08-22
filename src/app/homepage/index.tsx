@@ -314,10 +314,22 @@ function Homepage() {
             Performance
           </h6>
           <section>
-            <p>
-              We use Lighthouse and Google Page Speed to check on our webpage
-              performance. The site have yet to include Core Web Vitals.
-            </p>
+            <figure>
+              <Image
+                src="/img/homepage/performance.webp"
+                width={1024}
+                height={689}
+                alt="Google Page Speed"
+                className="px-4 md:px-32 py-8 mx-auto"
+              />
+              <figcaption>
+                <p>
+                  We use Lighthouse and Google Page Speed to check on our
+                  webpage performance. The ultimate goal is to test frequently
+                  and keep the page simple.
+                </p>
+              </figcaption>
+            </figure>
           </section>
         </article>
         <div className="pb-16"></div>

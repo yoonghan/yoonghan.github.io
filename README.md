@@ -61,6 +61,7 @@ npm run backstop:approve // Approve the new website ok
 1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
 2. NEXT_PUBLIC_SITE_URL - configure for static site to call api. Overrides blank with https://www.walcron.com.
 3. NEXT_PUBLIC_API_SITE_URL - Indicate local api is url.
+4. NEXT_PUBLIC_GA_4_ID - Google 4 Tag Manager Ids
 
 ## Run Github workflows
 
