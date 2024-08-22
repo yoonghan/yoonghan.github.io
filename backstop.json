@@ -101,6 +101,13 @@
       "requireSameDimensions": true
     },
     {
+      "label": "Page not found",
+      "url": "http://localhost:3000/pagenotfound",
+      "delay": 100,
+      "misMatchThreshold": 0.4,
+      "requireSameDimensions": true
+    },
+    {
       "label": "Storybook",
       "url": "http://localhost:3000/experiments/storybook",
       "delay": 100,
@@ -110,16 +117,7 @@
       "requireSameDimensions": true
     },
     {
-      "label": "Storybook - Dialog",
-      "url": "http://localhost:3000/experiments/storybook",
-      "delay": 100,
-      "misMatchThreshold": 0.4,
-      "requireSameDimensions": true,
-      "postInteractionWait": 500,
-      "clickSelector": "text=Show Dialog"
-    },
-    {
-      "label": "Storybook - Confirmation ",
+      "label": "Storybook - Confirmation",
       "url": "http://localhost:3000/experiments/storybook",
       "delay": 100,
       "misMatchThreshold": 0.4,
