@@ -4,9 +4,8 @@ import {
   faAtom,
   faSpinner,
   faServer,
-  faTractor,
   faCog,
-  faTelevision,
+  faBoltLightning,
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -102,20 +101,24 @@ export const siteHistory: IEvent[] = [
   },
   {
     id: "2023",
-    date: "Jan-2023",
+    date: "January-2023",
     desc: "Migrated to NextJS 13",
-    faIcon: faTractor,
+    faIcon: faCog,
   },
   {
     id: "March-2023",
     date: "March-2023",
     desc: "Development focus on Rust",
-    faIcon: faCog,
   },
   {
     id: "May-2023",
     date: "May-2023",
     desc: "Checkout on Web RTC technology",
-    faIcon: faTelevision,
+  },
+  {
+    id: "Aug-2024",
+    date: "August-2024",
+    desc: "New homepage for performance",
+    faIcon: faBoltLightning,
   },
 ]
