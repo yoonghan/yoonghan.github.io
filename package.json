@@ -11,6 +11,8 @@
     "backstop:test": "backstop test",
     "e2e:test": "playwright test",
     "e2e:ui": "playwright test --ui",
+    "smoke:test": "playwright test --config ./src/__smoke__/playwright.config.ts",
+    "smoke:ui": "playwright test --ui --config ./src/__smoke__/playwright.config.ts",
     "rust:generate": "cp -R src/util crate/src && cd crate && wasm-pack build --target web && cp .pkg-gitignore ./pkg/.gitignore",
     "rust:test": "cd crate && wasm-pack test --node",
     "dependency:check": "knip"
