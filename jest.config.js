@@ -15,6 +15,7 @@ const customJestConfig = {
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__",
     "<rootDir>/src/__e2e__",
+    "<rootDir>/src/__smoke__",
     "<rootDir>/crate",
   ],
   moduleNameMapper: {
