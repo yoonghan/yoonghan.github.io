@@ -36,10 +36,10 @@ const About = () => {
             in IT industry. The <strong>Walcron</strong> website was created for
             experimentation in optimizing and prototyping new Web technologies.
             Ocassionally this is being re-contributed back into the{" "}
-            <em>open-source</em>
-            community. Han and Gladys started the Walcron website to log their
-            development journey, as well as, to experiment real-time working
-            website integration with search-analytics and api integrations.
+            <em>open-source</em> community. Han and Gladys started the Walcron
+            website to log their development journey, as well as, to experiment
+            real-time working website integration with search-analytics and api
+            integrations.
           </p>
         </article>
         <article id={authorModel[1].hashId}>
