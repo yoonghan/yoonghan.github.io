@@ -9,7 +9,7 @@ export const metadata = {
   title: "Experiments",
   description: "Experimental pages for POC, and UI/UX",
   alternates: {
-    ...site.generateCanonical("/about"),
+    ...site.generateCanonical("/experiments"),
   },
 }
 
