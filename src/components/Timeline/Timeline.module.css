@@ -23,15 +23,15 @@
   height: 40px;
   border-radius: 50%;
   font-size: 18px;
-  padding-top: 9px;
+  padding-top: 6px;
   color: #999;
-  margin-left: -13px;
+  margin-left: 4px;
   line-height: 23px;
 }
 .dot {
   position: absolute;
   top: 5px;
-  left: 0;
+  left: 18px;
 }
 .dot::before {
   content: "";
@@ -53,7 +53,6 @@
 }
 .container > li > span:first-child {
   top: 0;
-  left: 4px;
   position: absolute;
   bottom: 0;
   width: 2px;
