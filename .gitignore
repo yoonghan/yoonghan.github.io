@@ -49,3 +49,4 @@ bunfig.toml
 /test-results
 /playwright-report/
 /playwright/.cache/
+/src/__smoke__/smoke-results
