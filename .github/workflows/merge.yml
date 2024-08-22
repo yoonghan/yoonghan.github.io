@@ -78,6 +78,7 @@ jobs:
         shell: bash
         run: |
           touch .env
+          echo "NEXT_PUBLIC_GA_4_ID=G-9V9VC8N5XT" >> .env
           echo "NEXT_PUBLIC_PUSHER_APP_KEY=${{ secrets.NEXT_PUBLIC_PUSHER_APP_KEY }}" >> .env
           echo "NEXT_PUBLIC_PUSHER_CLUSTER=${{ secrets.NEXT_PUBLIC_PUSHER_CLUSTER }}" >> .env
           echo "NEXT_PUBLIC_SITE_URL=${{ steps.env-set.outputs.siteUrl }}" >> .env
