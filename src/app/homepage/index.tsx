@@ -85,9 +85,7 @@ function Homepage() {
             Being a self-maintained site, how do one...
             <ul className="text-lg italic pt-4">
               <li>{quoteText("Validate his own changes ?")}</li>
-              <li>
-                {quoteText("Ensure changes doesn&apos;t break anything ?")}
-              </li>
+              <li>{quoteText("Ensure changes doesn't break anything ?")}</li>
               <li>{quoteText("A hassle to deploy changes ?")}</li>
             </ul>
           </div>
@@ -118,7 +116,7 @@ function Homepage() {
                       ]
                     </li>
                     <li>
-                      <strong>Integration</strong> - API doesn&apos;t break. [
+                      <strong>Integration</strong> - {"API doesn't break"}. [
                       <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
                         Smoke and E2E
                       </Link>
@@ -269,9 +267,9 @@ function Homepage() {
               This site can also be browsed with keyboard and text-readers.
             </div>
             <p className="pt-8">
-              We are going now commited with this Web Accessibility; eventhough
-              we are still in the learning phase. The best reliance is to run
-              periodically test with{" "}
+              We are going now commited with <strong>Web Accessibility</strong>;
+              eventhough we are still in the learning phase. The best reliance
+              is to run periodically test with{" "}
               <Link
                 href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
                 rel="external"
