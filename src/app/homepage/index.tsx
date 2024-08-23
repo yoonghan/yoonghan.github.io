@@ -7,6 +7,7 @@ import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
+import { site } from "@/config/site"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -333,7 +334,7 @@ function Homepage() {
         <div className="pb-16"></div>
       </main>
       <SocialFab />
-      <ClientCookie />
+      <ClientCookie ga4Id={site.ga4Id} />
     </>
   )
 }
