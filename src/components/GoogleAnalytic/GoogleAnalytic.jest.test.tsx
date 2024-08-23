@@ -13,9 +13,10 @@ describe("Google Analytic", () => {
 
     render(<GoogleAnalytic gaId={gaValue} />)
     expect(initializeMock).toHaveBeenCalledWith(gaValue)
-    expect(eventMock).toHaveBeenCalledWith("CLP", {
-      metric_id: "test",
-      value: 1,
+    expect(eventMock).toHaveBeenCalledWith("web_vitals", {
+      cwv_metric: "CLP",
+      cwv_value: 1,
+      cwv_id: "test",
     })
   })
 })
