@@ -11,11 +11,13 @@ interface Props {
 export function GoogleAnalytic({ gaId }: Props) {
   ReactGA.initialize(gaId)
 
+  //https://pilotdigital.com/blog/how-to-monitor-core-web-vitals-in-google-analytics/
   useEffect(() => {
     reportWebVitals(({ name, delta, id }) => {
-      ReactGA.event(name, {
-        value: delta,
-        metric_id: id,
+      ReactGA.event("web_vitals", {
+        cwv_metric: name,
+        cwv_value: delta,
+        cwv_id: id,
       })
     })
   }, [])
