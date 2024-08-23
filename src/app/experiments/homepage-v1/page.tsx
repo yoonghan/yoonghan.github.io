@@ -7,6 +7,7 @@ import { useMemo, useRef } from "react"
 import SocialFab from "@/components/SocialFab"
 import ClientCookie from "@/components/ClientCookie"
 import LetterBox from "@/components/LetterBox"
+import { site } from "@/config/site"
 
 function Homepage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -53,7 +54,7 @@ function Homepage() {
         </div>
         <SocialFab />
       </main>
-      <ClientCookie />
+      <ClientCookie ga4Id={site.ga4Id} />
     </div>
   )
 }
