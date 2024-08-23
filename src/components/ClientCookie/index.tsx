@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * Made for EUROPEAN regulation, but this site do not use cookies.
  * For references, pages/* need to provide the context in getInitialProps and
@@ -8,14 +10,21 @@ import { useCallback, useEffect, useState } from "react"
 import Button from "@/components/Button"
 import Link from "@/components/Link"
 import Image from "next/image"
+import ReactGA from "react-ga4"
 
 const cookiePrivacy = "https://policies.google.com/technologies/cookies"
 const cookieName = "termsRead"
 
-function ClientCookie() {
+type Props = { ga4Id: string }
+
+function ClientCookie({ ga4Id }: Props) {
   const [isCookieRead, setCookieRead] = useState(true)
+  ReactGA.initialize(ga4Id)
 
   const onCookieReadClicked = useCallback(() => {
+    ReactGA.gtag("consent", "update", {
+      analytics_storage: "granted",
+    })
     document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax`
     setCookieRead(true)
   }, [])
@@ -37,7 +46,14 @@ function ClientCookie() {
       return ""
     }
 
-    setCookieRead(!!getCookie(cookieName))
+    const cookieWasRead = !!getCookie(cookieName)
+    ReactGA.gtag("consent", "default", {
+      ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
+      ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
+      ad_personalization: "denied", //Sets consent for personalized advertising.
+      analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
+    })
+    setCookieRead(cookieWasRead)
   }, [])
 
   if (isCookieRead) {
