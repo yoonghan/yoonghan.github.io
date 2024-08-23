@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import ClientCookie from "./ClientCookieNoSSR"
+import ClientCookie from "."
 import userEvent from "@testing-library/user-event"
+import { site } from "@/config/site"
 
 describe("Client Cookie", () => {
   const expectedCookieValue = "termsRead=true;secure;path=/;SameSite=Lax"
@@ -18,7 +19,7 @@ describe("Client Cookie", () => {
     })
   })
 
-  const renderComponent = () => render(<ClientCookie />)
+  const renderComponent = () => render(<ClientCookie ga4Id={site.ga4Id} />)
 
   const assertCookie = () => {
     expect(document.cookie).toBe(expectedCookieValue)
