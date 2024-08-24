@@ -47,13 +47,15 @@ function ClientCookie({ ga4Id }: Props) {
     }
 
     const cookieWasRead = !!getCookie(cookieName)
-    ReactGA.gtag("consent", "default", {
-      ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
-      ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
-      ad_personalization: "denied", //Sets consent for personalized advertising.
-      analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
-    })
     setCookieRead(cookieWasRead)
+    if (!cookieWasRead) {
+      ReactGA.gtag("consent", "default", {
+        ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
+        ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
+        ad_personalization: "denied", //Sets consent for personalized advertising.
+        analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
+      })
+    }
   }, [])
 
   if (isCookieRead) {
