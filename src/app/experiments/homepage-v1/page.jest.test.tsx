@@ -17,22 +17,6 @@ describe("HomePage", () => {
     await assertSocialFab()
   })
 
-  it("should be able to click on the cookie button", async () => {
-    const cookieText = "This site uses cookies."
-
-    renderComponent()
-    const cookieSection = screen.getByTestId("cookie-dialog")
-    expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
-    UserEvent.click(
-      within(cookieSection).getByRole("button", { name: "Accept" })
-    )
-    await waitFor(() => {
-      expect(
-        within(cookieSection).queryByText(cookieText)
-      ).not.toBeInTheDocument()
-    })
-  })
-
   describe("able to navigate", () => {
     it("should have the following links", async () => {
       window.innerHeight = 500

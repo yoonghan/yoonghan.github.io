@@ -1,13 +1,11 @@
 import styles from "./Homepage.module.css"
 import SocialFab from "@/components/SocialFab"
-import ClientCookie from "@/components/ClientCookie"
 import Link from "@/components/Link"
 import Figure from "@/components/Figure"
 import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
-import { site } from "@/config/site"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -334,7 +332,6 @@ function Homepage() {
         <div className="pb-16"></div>
       </main>
       <SocialFab />
-      <ClientCookie ga4Id={site.ga4Id} />
     </>
   )
 }

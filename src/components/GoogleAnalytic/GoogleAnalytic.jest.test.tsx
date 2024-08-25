@@ -11,7 +11,7 @@ describe("Google Analytic", () => {
     jest.spyOn(ReactGA, "initialize").mockImplementation(initializeMock)
     jest.spyOn(ReactGA, "event").mockImplementation(eventMock)
 
-    render(<GoogleAnalytic gaId={gaValue} />)
+    render(<GoogleAnalytic ga4Id={gaValue} />)
     expect(initializeMock).toHaveBeenCalledWith(gaValue)
     expect(eventMock).toHaveBeenCalledWith("web_vitals", {
       cwv_metric: "CLP",
