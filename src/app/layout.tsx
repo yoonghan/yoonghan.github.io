@@ -1,3 +1,4 @@
+import ClientCookie from "@/components/ClientCookie"
 import Footer from "@/components/Footer"
 import { GoogleAnalytic } from "@/components/GoogleAnalytic"
 import MegaMenu from "@/components/MegaMenu"
@@ -56,7 +57,7 @@ function Body({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       <Footer />
-      <GoogleAnalytic gaId={site.ga4Id} />
+      <GoogleAnalytic ga4Id={site.ga4Id} />
     </>
   )
 }
