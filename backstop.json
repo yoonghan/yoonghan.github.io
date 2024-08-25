@@ -70,6 +70,8 @@
     {
       "label": "About Page",
       "url": "http://localhost:3000/about",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.5,
@@ -78,6 +80,8 @@
     {
       "label": "History Page",
       "url": "http://localhost:3000/history",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.4,
@@ -86,6 +90,8 @@
     {
       "label": "Projects Page",
       "url": "http://localhost:3000/projects",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 200,
       "expect": 0,
       "misMatchThreshold": 0.4,
@@ -94,6 +100,8 @@
     {
       "label": "Sitemap Page",
       "url": "http://localhost:3000/sitemap",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 200,
       "postInteractionWait": 60,
       "expect": 0,
@@ -103,6 +111,8 @@
     {
       "label": "Page not found",
       "url": "http://localhost:3000/pagenotfound",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true
@@ -110,6 +120,8 @@
     {
       "label": "Storybook",
       "url": "http://localhost:3000/experiments/storybook",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
       "expect": 0,
       "misMatchThreshold": 0.4,
@@ -119,6 +131,8 @@
     {
       "label": "Storybook - Confirmation",
       "url": "http://localhost:3000/experiments/storybook",
+      "cookieDomain": "localhost",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
       "misMatchThreshold": 0.4,
       "requireSameDimensions": true,

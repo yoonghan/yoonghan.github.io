@@ -3,13 +3,14 @@
 import ReactGA from "react-ga4"
 import { reportWebVitals } from "@yoonghan/walcron-microfrontend-shared"
 import { useEffect } from "react"
+import ClientCookie from "./ClientCookie"
 
 interface Props {
-  gaId: string
+  ga4Id: string
 }
 
-export function GoogleAnalytic({ gaId }: Props) {
-  ReactGA.initialize(gaId)
+export function GoogleAnalytic({ ga4Id }: Props) {
+  ReactGA.initialize(ga4Id)
 
   //https://pilotdigital.com/blog/how-to-monitor-core-web-vitals-in-google-analytics/
   useEffect(() => {
@@ -22,5 +23,5 @@ export function GoogleAnalytic({ gaId }: Props) {
     })
   }, [])
 
-  return null
+  return <ClientCookie ga4Id={ga4Id} />
 }
