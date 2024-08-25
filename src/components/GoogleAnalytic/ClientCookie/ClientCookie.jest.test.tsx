@@ -55,7 +55,7 @@ describe("Client Cookie", () => {
     })
   })
 
-  it("should not show message if cookie is already set", async () => {
+  it("should not show message if cookie is already set and cookie is called twice", async () => {
     const gtagFn = jest.fn()
     jest.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
     Object.defineProperty(window.document, "cookie", {
@@ -66,7 +66,16 @@ describe("Client Cookie", () => {
     expect(
       screen.queryByText("This site uses cookies.")
     ).not.toBeInTheDocument()
-    expect(gtagFn).not.toHaveBeenCalled()
+    expect(gtagFn).toHaveBeenCalledTimes(2)
+    expect(gtagFn).toHaveBeenCalledWith("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+    })
+    expect(gtagFn).toHaveBeenCalledWith("consent", "update", {
+      analytics_storage: "granted",
+    })
   })
 
   it("should not show message if cookie read cookie has extra attribute", async () => {

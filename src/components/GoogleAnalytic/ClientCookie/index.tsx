@@ -21,12 +21,16 @@ function ClientCookie({ ga4Id }: Props) {
   const [isCookieRead, setCookieRead] = useState(true)
   ReactGA.initialize(ga4Id)
 
-  const onCookieReadClicked = useCallback(() => {
+  const acceptGAConsent = useCallback(() => {
     ReactGA.gtag("consent", "update", {
       analytics_storage: "granted",
     })
+  }, [])
+
+  const onCookieReadClicked = useCallback(() => {
     document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax`
     setCookieRead(true)
+    acceptGAConsent()
   }, [])
 
   useEffect(() => {
@@ -48,15 +52,17 @@ function ClientCookie({ ga4Id }: Props) {
 
     const cookieWasRead = !!getCookie(cookieName)
     setCookieRead(cookieWasRead)
-    if (!cookieWasRead) {
-      ReactGA.gtag("consent", "default", {
-        ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
-        ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
-        ad_personalization: "denied", //Sets consent for personalized advertising.
-        analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
-      })
+
+    ReactGA.gtag("consent", "default", {
+      ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
+      ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
+      ad_personalization: "denied", //Sets consent for personalized advertising.
+      analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
+    })
+    if (cookieWasRead) {
+      acceptGAConsent()
     }
-  }, [])
+  }, [acceptGAConsent])
 
   if (isCookieRead) {
     return <></>
