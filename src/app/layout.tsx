@@ -1,4 +1,3 @@
-import ClientCookie from "@/components/ClientCookie"
 import Footer from "@/components/Footer"
 import { GoogleAnalytic } from "@/components/GoogleAnalytic"
 import MegaMenu from "@/components/MegaMenu"
