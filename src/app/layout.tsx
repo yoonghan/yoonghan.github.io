@@ -56,7 +56,7 @@ function Body({ children }: { children: React.ReactNode }) {
       </header>
       {children}
       <Footer />
-      <GoogleAnalytic gaId={site.ga4Id} />
+      <GoogleAnalytic ga4Id={site.ga4Id} />
     </>
   )
 }
