@@ -1,7 +1,7 @@
 [
   {
     "path": "/",
-    "name": "termsRead",
+    "name": "termsGranted",
     "value": "true",
     "expirationDate": 1798790400,
     "hostOnly": false,

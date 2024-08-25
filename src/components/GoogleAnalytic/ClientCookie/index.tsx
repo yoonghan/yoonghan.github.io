@@ -13,7 +13,7 @@ import Image from "next/image"
 import ReactGA from "react-ga4"
 
 const cookiePrivacy = "https://policies.google.com/technologies/cookies"
-const cookieName = "termsRead"
+const cookieName = "termsGranted"
 
 type Props = { ga4Id: string }
 
@@ -31,7 +31,7 @@ function ClientCookie({ ga4Id }: Props) {
     document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax`
     setCookieRead(true)
     acceptGAConsent()
-  }, [])
+  }, [acceptGAConsent])
 
   useEffect(() => {
     function getCookie(cname: string) {
