@@ -180,6 +180,19 @@ const Lessons = ({}) => {
             </li>
           </ol>
         </article>
+        <article>
+          <h3>Google Analytics</h3>
+          <ul className="list-decimal">
+            <li>
+              <strong>Preview for Live Debug is old</strong> - Admin -&gt;
+              Environments(Container) -&gt; Click 3 dots and select Reset
+            </li>
+            <li>
+              <strong>Preview is updating</strong> Find a button{" "}
+              {'"Select Version"'}, some bug debugging live/latest.
+            </li>
+          </ul>
+        </article>
       </div>
       <ScrollToTop />
     </div>
