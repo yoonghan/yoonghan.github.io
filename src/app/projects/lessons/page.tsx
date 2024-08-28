@@ -181,15 +181,123 @@ const Lessons = ({}) => {
           </ol>
         </article>
         <article>
-          <h3>Google Analytics</h3>
+          <h3>Google Tag</h3>
           <ul className="list-decimal">
             <li>
-              <strong>Preview for Live Debug is old</strong> - Admin -&gt;
-              Environments(Container) -&gt; Click 3 dots and select Reset
+              Click on a container and select <strong>Preview</strong>, find a
+              button {'"Select Version"'} and do debugging. Do not use
+              latest/live.
             </li>
             <li>
-              <strong>Preview is updating</strong> Find a button{" "}
-              {'"Select Version"'}, some bug debugging live/latest.
+              <strong>Trigger some custom events sent to google tag</strong>.
+              All google custom events sent with {"'gtag(event)'"} requires
+              manual configuration. To do so:
+              <ul className="list-decimal pl-4">
+                <li>
+                  Make sure codes sent a gtag event, e.g.
+                  <pre className="code">{`
+ gtag("event", "CLS", {...metrics_id: 1})
+ //OR
+ gaLibrary.event("CLS", {...metrics_id: 1})
+                  `}</pre>
+                </li>
+                <li>
+                  Do a preview on the current page and to debug the event sent.
+                </li>
+                <li>
+                  Take note if {'"Tag Fired"'}; if it {"doesn't"}, meant
+                  something needs to be setup in google tag Trigger. Image below
+                  has INP configured to fire to GTM&apos;s GA.
+                  <Image
+                    src="/img/lesson/gtag/fired-event.png"
+                    alt="Fired gtag event"
+                    width={500}
+                    height={200}
+                  ></Image>
+                </li>
+                <li>
+                  Take note of the event model and this needs to be setup as
+                  well. In this example for INP event name model is:
+                  <pre className={styles.code}>{`
+  eventModel { //take note this is using custom library, in pure gtag it is flat unless defined.
+    ...
+    metric_delta: 72
+    sent_to: 'GTM...'
+  }
+                  `}</pre>
+                  <Image
+                    src="/img/lesson/gtag/fired-event-data-layer.png"
+                    alt="Fired gtag event"
+                    width={500}
+                    height={200}
+                  ></Image>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Setup Google Tag
+              <ul className="list-decimal pl-4">
+                <li>
+                  Setup data variables matching the event model with{" "}
+                  <strong>Variables</strong> by selecting Select New in User
+                  Defined
+                </li>
+                <li>
+                  Create Data Layer Variable, and write the name similar to the
+                  model. As in this case {'"eventModel.metric.delta"'}. Set as
+                  Version 2.
+                  <Image
+                    src="/img/lesson/gtag/create-data-layer-variable.png"
+                    alt="Create data layer variable"
+                    width={500}
+                    height={200}
+                  ></Image>
+                </li>
+                <li>
+                  Create a Trigger, name the Event name with a regex (without /)
+                  and make sure it triggers All Custom Events. Sample means
+                  matching all INP or CLS or LCP event name.
+                  <Image
+                    src="/img/lesson/gtag/create-event.png"
+                    alt="Create event"
+                    width={500}
+                    height={200}
+                  ></Image>
+                </li>
+                <li>
+                  Create a Tag. For the first step Tag the configuration as
+                  {'"Google Analytics: GA4 Event"'}. Then:
+                  <ul className="list-disc pl-4">
+                    <li>
+                      Get you measurement ID from google analytics -&gt; Admin
+                      -&gt; Data Collection and Modification -&gt; Data Stream{" "}
+                    </li>
+                    <li>
+                      Use <em>{`{{ Event }}`}</em> as variable name instead of
+                      hardcoding. If hardcoded, all you custom event name will
+                      be the new name.
+                    </li>
+                    <li>
+                      Expand Event Parameters and map a new name to the data
+                      layer variable created. (Old version have a prefix of DLV)
+                    </li>
+                    <li>
+                      Add in consent with {'"No Additional Consent Required"'}
+                    </li>
+                    <li>Tie a trigger created with this Event</li>
+                  </ul>
+                  <Image
+                    src="/img/lesson/gtag/create-tag.png"
+                    alt="Create Tag"
+                    width={500}
+                    height={200}
+                  ></Image>
+                </li>
+                <li>
+                  Publish it then click Preview. During preview make sure debug
+                  is on and select {'"Version"'} of the newly published version.
+                </li>
+              </ul>
             </li>
           </ul>
         </article>
