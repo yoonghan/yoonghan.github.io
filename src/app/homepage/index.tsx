@@ -22,7 +22,7 @@ function Homepage() {
           </p>
           <figure>
             <Image
-              src="/img/welcome/walcron-authors.webp"
+              src="/img/welcome/walcron-2-authors.webp"
               width={454}
               height={403}
               alt="Walcron Web Authors"
