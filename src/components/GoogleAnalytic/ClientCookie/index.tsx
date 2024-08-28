@@ -28,7 +28,7 @@ function ClientCookie({ ga4Id }: Props) {
   }, [])
 
   const onCookieReadClicked = useCallback(() => {
-    document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax`
+    document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`
     setCookieRead(true)
     acceptGAConsent()
   }, [acceptGAConsent])
