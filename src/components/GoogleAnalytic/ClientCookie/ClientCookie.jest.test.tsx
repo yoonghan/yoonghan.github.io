@@ -5,7 +5,8 @@ import { site } from "@/config/site"
 import ReactGA from "react-ga4"
 
 describe("Client Cookie", () => {
-  const expectedCookieValue = "termsGranted=true;secure;path=/;SameSite=Lax"
+  const expectedCookieValue =
+    "termsGranted=true;secure;path=/;SameSite=Lax;max-age=2592000"
 
   beforeAll(() => {
     //allow cookie to be re-written
