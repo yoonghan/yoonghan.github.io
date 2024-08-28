@@ -15,7 +15,7 @@ jobs:
       - name: 🛑 Cancel previous runs
         uses: styfle/cancel-workflow-action@0.12.1
 
-      - name: Checkout
+      - name: ⬇️ Checkout
         uses: actions/checkout@v4
 
       - name: ⎔ Setup node
@@ -25,7 +25,7 @@ jobs:
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
-      - name: Fresh install dependencies
+      - name: 📥 Fresh install dependencies
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -33,13 +33,15 @@ jobs:
       - name: ✅ Validate lint, prettier and build
         run: npm run build
 
-      - name: Dependency checks
+      - name: ✅ Dependency checks
         run: npm run dependency:check
 
       - name: Remove package.json with dev or local builds
-        run: npm uninstall snake-game
+        run: |
+          npm uninstall snake-game
+          npm uninstall backstopjs
 
-      - name: Owasp Dependency Check
+      - name: ✅ Owasp Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck
         with:
@@ -50,9 +52,64 @@ jobs:
           args: --failOnCVSS 7
             --enableRetired
 
-      - name: Upload Dependency Check results # only uploads if it's on master
+      - name: ⬆️ Upload Dependency Check results # only uploads if it's on master
         uses: actions/upload-artifact@master
         if: github.ref == 'refs/heads/master'
         with:
           name: Compliance report
-          path: ${{github.workspace}}/reports
+          path: reports
+
+  accessibilities:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: 📥 Fresh install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: ▶️ Start website in background
+        run: |
+          npm run build 
+          npm run start &
+
+      - name: ▶️ Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        continue-on-error: true
+        with:
+          urls: |
+            http://localhost:3000
+            http://localhost:3000/about
+            http://localhost:3000/history
+          configPath: "./lighthouserc.json"
+
+      - name: ✅ Verify status
+        run: |
+          file=assertion-results.json
+          if grep "error" .lighthouseci/$file 1> /dev/null 2>&1; then
+            echo "Required HTML syntax fixes"
+            echo "---"
+            cat .lighthouseci/$file
+            exit 1
+          fi
+
+      - name: ⬆️ Upload Lighthouse results
+        uses: actions/upload-artifact@master
+        if: github.ref == 'refs/heads/master'
+        with:
+          name: Lighthouse report
+          path: .lighthouseci
