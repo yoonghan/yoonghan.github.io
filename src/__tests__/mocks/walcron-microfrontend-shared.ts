@@ -4,7 +4,7 @@ jest.mock("@yoonghan/walcron-microfrontend-shared", () => {
     reportWebVitals: (callback: any) => {
       callback({
         name: "CLS",
-        delta: 1,
+        delta: 1.1,
         id: "test",
         value: 2,
       })
