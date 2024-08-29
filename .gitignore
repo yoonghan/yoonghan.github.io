@@ -50,3 +50,7 @@ bunfig.toml
 /playwright-report/
 /playwright/.cache/
 /src/__smoke__/smoke-results
+
+# ignore service workers
+/public/sw*
+/public/workbox*
