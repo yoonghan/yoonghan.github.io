@@ -42,7 +42,13 @@ const apiSecurityHeaders = [
 //   enabled: true,
 // })
 
-module.exports = {
+const withPWA = require("@ducanh2912/next-pwa").default({
+  disable: process.env.NODE_ENV === "development",
+  register: false,
+  dest: "public",
+})
+
+module.exports = withPWA({
   async headers() {
     return [
       {
@@ -55,4 +61,4 @@ module.exports = {
       },
     ]
   },
-}
+})
