@@ -4,14 +4,14 @@ import { GoogleAnalytic } from "."
 import ReactGA from "react-ga4"
 
 describe("Google Analytic", () => {
-  it("should send event on load", () => {
+  it("should send event for every reload", () => {
     const gaValue = "123"
     const initializeMock = jest.fn()
     const eventMock = jest.fn()
     jest.spyOn(ReactGA, "initialize").mockImplementation(initializeMock)
     jest.spyOn(ReactGA, "event").mockImplementation(eventMock)
 
-    render(<GoogleAnalytic ga4Id={gaValue} />)
+    const { rerender } = render(<GoogleAnalytic ga4Id={gaValue} />)
     expect(initializeMock).toHaveBeenCalledWith(gaValue)
     //first needs to be consent
     expect(eventMock).toHaveBeenCalledWith("CLS", {
@@ -20,5 +20,9 @@ describe("Google Analytic", () => {
       metric_value: 2,
       value: 1,
     })
+
+    rerender(<GoogleAnalytic ga4Id={gaValue} />)
+    //first needs to be consent
+    expect(eventMock).toHaveBeenCalledTimes(2)
   })
 })
