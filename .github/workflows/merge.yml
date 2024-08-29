@@ -42,14 +42,12 @@ jobs:
         run: |
           echo "module.exports = {}" > extended.next.config.js
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
+      - name: Setup Pages for static generation
+        run: |
+          sed -i -e 's/\/\/placeholder_for_static_generation/images: {unoptimized: true},basePath: "",output: "export",/' next.config.js
+          echo "New config"
+          echo "---"
+          cat next.config.js
 
       - name: Cache dependencies
         id: cache
