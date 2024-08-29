@@ -65,7 +65,7 @@ function ClientCookie({ ga4Id }: Props) {
     if (cookieWasRead) {
       acceptGAConsent()
     }
-  }, [acceptGAConsent])
+  }, [acceptGAConsent, ga4Id])
 
   if (isCookieRead) {
     return <></>
