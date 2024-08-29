@@ -12,16 +12,21 @@ interface Props {
 export function GoogleAnalytic({ ga4Id }: Props) {
   useEffect(() => {
     ReactGA.initialize(ga4Id)
-  }, [ga4Id])
 
-  reportWebVitals(({ name, delta, id, value }) => {
-    ReactGA.event(name, {
-      value: Math.floor(delta),
-      metric_id: id,
-      metric_value: value,
-      metric_delta: delta,
+    /* 
+    // Do not move outside of useEffect
+    // Generate PWA will have issue as document is missing.
+    // Moving out doesn't make difference as CLS and LCP are sent only on reload and INP is sent regularly.
+    */
+    reportWebVitals(({ name, delta, id, value }) => {
+      ReactGA.event(name, {
+        value: Math.floor(delta),
+        metric_id: id,
+        metric_value: value,
+        metric_delta: delta,
+      })
     })
-  })
+  }, [ga4Id])
 
   return <ClientCookie ga4Id={ga4Id} />
 }

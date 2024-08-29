@@ -25,6 +25,6 @@ describe("Google Analytic", () => {
     rerender(<GoogleAnalytic ga4Id={gaValue} />)
     //first needs to be consent
     expect(initializeMock).toHaveBeenCalledTimes(2)
-    expect(eventMock).toHaveBeenCalledTimes(2)
+    expect(eventMock).toHaveBeenCalledTimes(1)
   })
 })
