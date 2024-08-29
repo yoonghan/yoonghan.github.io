@@ -12,6 +12,7 @@ describe("Google Analytic", () => {
     jest.spyOn(ReactGA, "event").mockImplementation(eventMock)
 
     const { rerender } = render(<GoogleAnalytic ga4Id={gaValue} />)
+    expect(initializeMock).toHaveBeenCalledTimes(2)
     expect(initializeMock).toHaveBeenCalledWith(gaValue)
     //first needs to be consent
     expect(eventMock).toHaveBeenCalledWith("CLS", {
@@ -23,6 +24,7 @@ describe("Google Analytic", () => {
 
     rerender(<GoogleAnalytic ga4Id={gaValue} />)
     //first needs to be consent
+    expect(initializeMock).toHaveBeenCalledTimes(2)
     expect(eventMock).toHaveBeenCalledTimes(2)
   })
 })
