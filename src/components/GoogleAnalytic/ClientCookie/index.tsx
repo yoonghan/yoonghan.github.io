@@ -19,7 +19,6 @@ type Props = { ga4Id: string }
 
 function ClientCookie({ ga4Id }: Props) {
   const [isCookieRead, setCookieRead] = useState(true)
-  ReactGA.initialize(ga4Id)
 
   const acceptGAConsent = useCallback(() => {
     ReactGA.gtag("consent", "update", {
@@ -52,6 +51,10 @@ function ClientCookie({ ga4Id }: Props) {
 
     const cookieWasRead = !!getCookie(cookieName)
     setCookieRead(cookieWasRead)
+
+    if (!ReactGA.isInitialized) {
+      ReactGA.initialize(ga4Id)
+    }
 
     ReactGA.gtag("consent", "default", {
       ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
