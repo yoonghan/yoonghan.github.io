@@ -14,11 +14,16 @@ function Homepage() {
   return (
     <>
       <main className={`${styles.container} container mx-auto px-4`}>
-        <article className="text-center">
+        <article className="text-center max-w-md mx-auto">
           <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
           <p>
             This is a sandbox website for us to <strong>explore</strong>{" "}
             real-time Web Development.
+          </p>
+          <p>
+            This sandbox is for real-time testing for web environment and
+            ofcourse to sometimes by-pass coorporate networks for private
+            communication.
           </p>
           <figure>
             <Image
