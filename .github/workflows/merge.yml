@@ -38,6 +38,10 @@ jobs:
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
+      - name: Override extended nextjs
+        run: |
+          echo "module.exports = {}" > extended.next.config.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
