@@ -15,7 +15,7 @@ export function GoogleAnalytic({ ga4Id }: Props) {
   useEffect(() => {
     reportWebVitals(({ name, delta, id, value }) => {
       ReactGA.event(name, {
-        value: delta,
+        value: Math.floor(delta),
         metric_id: id,
         metric_value: value,
         metric_delta: delta,
