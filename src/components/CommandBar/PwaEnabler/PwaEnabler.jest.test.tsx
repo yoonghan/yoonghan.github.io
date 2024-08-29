@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 import PwaEnabler from "."
 import {
   setServiceNavigator,
@@ -21,7 +21,7 @@ describe("PwaEnabler", () => {
   it("should render correctly with PWA disabled", async () => {
     const closeFn = jest.fn()
     renderComponent(closeFn)
-    await UserEvent.click(screen.getByText("[ESC]"))
+    await userEvent.click(screen.getByText("[ESC]"))
     expect(closeFn).toHaveBeenCalled()
   })
 
@@ -51,7 +51,7 @@ describe("PwaEnabler", () => {
     it("should be able to toggle PWA to disabled when service is installed", async () => {
       renderComponent()
       expect(await screen.findByText("Installed")).toBeInTheDocument()
-      await UserEvent.click(screen.getByText("Installed"))
+      await userEvent.click(screen.getByRole("checkbox", { name: "Installed" }))
       expect(await screen.findByText("Processing")).toBeInTheDocument()
       expect(
         await screen.findByText("Disabled", undefined, {
@@ -59,7 +59,7 @@ describe("PwaEnabler", () => {
           interval: 500,
         })
       ).toBeInTheDocument()
-      await UserEvent.click(screen.getByText("Disabled"))
+      await userEvent.click(screen.getByRole("checkbox", { name: "Disabled" }))
       expect(await screen.findByText("Processing")).toBeInTheDocument()
       expect(
         await screen.findByText("Installed", undefined, {
