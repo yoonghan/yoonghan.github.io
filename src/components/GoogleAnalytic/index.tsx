@@ -20,10 +20,10 @@ export function GoogleAnalytic({ ga4Id }: Props) {
     */
     reportWebVitals(({ name, delta, id, value }) => {
       ReactGA.event(name, {
-        value: Math.floor(delta),
+        value: delta,
         metric_id: id,
         metric_value: value,
-        metric_delta: delta,
+        metric_delta: Math.floor(delta),
       })
     })
   }, [ga4Id])

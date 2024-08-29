@@ -19,7 +19,7 @@ describe("Google Analytic", () => {
       metric_delta: 1,
       metric_id: "test",
       metric_value: 2,
-      value: 1,
+      value: 1.1,
     })
 
     rerender(<GoogleAnalytic ga4Id={gaValue} />)
