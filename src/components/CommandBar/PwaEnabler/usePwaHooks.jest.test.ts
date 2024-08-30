@@ -58,7 +58,7 @@ describe("usePwaHooks", () => {
         },
         { interval: 50 }
       )
-      const { isLatestInstalled, hasLatestUpdate, isOffline } = result.current
+      const { isLatestInstalled, hasLatestUpdate } = result.current
       expect(hasLatestUpdate).toBe(true)
       expect(isLatestInstalled).toBe(true)
     })

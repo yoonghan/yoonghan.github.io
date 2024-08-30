@@ -7,6 +7,11 @@ Do.
 1) Delete the service worker from console's application
 2) Browse another website before returning to the domain, this is to clear Service worker
 3) Return back to the domain and register service worker again before running navigator.serviceWorker.getRegistration(domain)
+If reinstalling is fast as download are from cache
+1) Unregister service worker
+2) Go to Application tab in Chrome debug
+3) Look into Storage and right-click to delete those that the domain is running in.
+4) Look into Storage -> Cache Storage and delete all workbox
 **/
 
 export function usePwaHooks(autoRegisterForApp: boolean) {
@@ -19,13 +24,19 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
   useEffect(() => {
     if (navigator && navigator.serviceWorker && navigator.serviceWorker.ready) {
       setIsOffline(!navigator.onLine)
-      navigator.serviceWorker.ready.then((registration) => {
-        if (registration) {
-          registration.addEventListener("updatefound", (event) => {
+      navigator.serviceWorker.ready.then((swRegistry) => {
+        if (swRegistry) {
+          if (swRegistry.active) {
+            const activeRegistry = swRegistry.active
+            activeRegistry.addEventListener("statechange", () => {
+              setIsRegistered(activeRegistry.state === "activated")
+            })
+          }
+          swRegistry.addEventListener("updatefound", () => {
             setHasLatestUpdate(true)
-            const newSW = registration.installing
+            const newSW = swRegistry.installing
             if (newSW !== null) {
-              newSW.addEventListener("statechange", (event) => {
+              newSW.addEventListener("statechange", () => {
                 if (newSW.state === "installed") {
                   setIsLatestInstalled(true)
                 }
@@ -43,8 +54,13 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
       const swRegistry = await navigator.serviceWorker.getRegistration(domain)
 
       if (swRegistry) {
-        const isSwRegistered = swRegistry.scope !== ""
-        setIsRegistered(isSwRegistered)
+        if (swRegistry.active) {
+          const activeRegistry = swRegistry.active
+          activeRegistry.addEventListener("statechange", () => {
+            setIsRegistered(activeRegistry.state === "activated")
+          })
+        }
+
         return
       }
     }

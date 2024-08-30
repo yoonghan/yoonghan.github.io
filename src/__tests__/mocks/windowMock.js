@@ -22,6 +22,15 @@ export const setServiceNavigator = () => {
       getRegistration: () => Promise.resolve(true),
       ready: new Promise((registration) => {
         registration({
+          active: {
+            addEventListener: (event, callback) => {
+              switch (event) {
+                case "statechange":
+                  return callback()
+              }
+            },
+            state: "activated",
+          },
           unregister: () => {
             jest
               .spyOn(window.navigator.serviceWorker, "getRegistration")
@@ -49,8 +58,18 @@ export const setServiceNavigator = () => {
         new Promise((resolve, _reject) => {
           jest
             .spyOn(window.navigator.serviceWorker, "getRegistration")
-            .mockResolvedValue(true)
-          resolve("registered")
+            .mockResolvedValue({
+              active: {
+                addEventListener: (event, callback) => {
+                  switch (event) {
+                    case "statechange":
+                      return callback()
+                  }
+                },
+                state: "activated",
+              },
+            })
+          resolve()
         }),
     },
   })
