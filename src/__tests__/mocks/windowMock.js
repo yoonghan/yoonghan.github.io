@@ -19,13 +19,38 @@ export const spyAsIPad = () => {
 export const setServiceNavigator = () => {
   Object.defineProperty(window.navigator, "serviceWorker", {
     value: {
-      getRegistration: () => Promise.resolve(true),
+      getRegistration: () =>
+        Promise.resolve({
+          active: {
+            addEventListener: (event, callback) => {
+              switch (event) {
+                case "statechange":
+                  return callback()
+              }
+            },
+            state: "activated",
+          },
+        }),
       ready: new Promise((registration) => {
         registration({
+          active: {
+            addEventListener: (event, callback) => {
+              switch (event) {
+                case "statechange":
+                  return callback()
+              }
+            },
+            state: "activated",
+          },
           unregister: () => {
             jest
               .spyOn(window.navigator.serviceWorker, "getRegistration")
-              .mockResolvedValue(false)
+              .mockResolvedValue({
+                active: {
+                  state: undefined,
+                  addEventListener: () => {},
+                },
+              })
           },
           addEventListener: (event, callback) => {
             switch (event) {
@@ -49,8 +74,18 @@ export const setServiceNavigator = () => {
         new Promise((resolve, _reject) => {
           jest
             .spyOn(window.navigator.serviceWorker, "getRegistration")
-            .mockResolvedValue(true)
-          resolve("registered")
+            .mockResolvedValue({
+              active: {
+                addEventListener: (event, callback) => {
+                  switch (event) {
+                    case "statechange":
+                      return callback()
+                  }
+                },
+                state: "activated",
+              },
+            })
+          resolve()
         }),
     },
   })

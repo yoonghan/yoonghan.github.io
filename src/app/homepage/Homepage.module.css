@@ -6,3 +6,11 @@
 .container p {
   margin-bottom: 2rem;
 }
+
+.container img {
+  border: 1px solid #999;
+}
+
+.container :global(img.border-0) {
+  border-width: 0;
+}

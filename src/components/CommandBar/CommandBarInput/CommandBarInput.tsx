@@ -44,8 +44,8 @@ const CommandBarInput = (props: Props) => {
   return (
     <form onSubmit={onSubmit} className={`${styles["command-container"]}`}>
       <div>
-        <div className={`${styles["command-text-prompt"]}`}>walcron@tm$</div>
-        <div className={"prompt"}>
+        <div className={`${styles["command-text-prompt"]}`}>walcron$</div>
+        <div className={styles.prompt}>
           <span className={`${styles["promptIn"]}`}>
             {props.suggestedInput}
           </span>
