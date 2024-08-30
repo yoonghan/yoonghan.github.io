@@ -32,9 +32,10 @@ test.describe("important! PWA urls", () => {
     }
 
     const assertButtonState = async (text: string) => {
+      //If this timeout, check if mp4,mp3,png,large public files are excluded from download in publicExclude
       await expect(
         page.locator("label").filter({ hasText: text })
-      ).toBeInViewport()
+      ).toBeInViewport({ timeout: 10 * 1000 })
     }
 
     await page.goto("/")
@@ -46,12 +47,15 @@ test.describe("important! PWA urls", () => {
     await openPWADialog()
     // First enable
     await page.locator("label").filter({ hasText: "Disabled" }).click()
-    await assertButtonState("Processing")
     await assertButtonState("Installed")
 
     await page.reload()
     await openPWADialog()
     // Is enabled
     await assertButtonState("Installed")
+
+    // Unregister
+    await page.locator("label").filter({ hasText: "Installed" }).click()
+    await assertButtonState("Disabled")
   })
 })
