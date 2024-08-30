@@ -36,9 +36,9 @@ function Homepage() {
             />
             <Image
               src="/img/arrow.svg"
-              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%]"
+              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%] border-0"
               aria-hidden={true}
-              alt="Arrow to describe figure image"
+              alt="Description arrow"
               width={50}
               height={100}
             />
@@ -284,21 +284,32 @@ function Homepage() {
             </p>
           </section>
           <section className="pt-8">
-            <div className="text-xl italic text-center">
+            <div className="text-xl italic text-center pb-8">
               The site is Trusted Web Activity(TWA) and Progressive(PWA)
               compatible.
             </div>
-            <Image
-              src="/img/homepage/app-compatible.webp"
-              width={1024}
-              height={689}
-              alt="Trusted Web Activity"
-              className="px-4 md:px-32 py-8 mx-auto"
-            />
-            <p className="pt-8">
-              Access from the search panel and type {'"pwa"'}, once installed
-              you can view our site anytime, anywhere with or without network.
-            </p>
+            <figure>
+              <Image
+                src="/img/homepage/app-compatible.webp"
+                width={800}
+                height={388}
+                alt="Trusted Web Activity"
+                className="mx-auto"
+              />
+              <Image
+                src="/img/arrow.svg"
+                className="hidden md:block w-4 -my-1 relative z-10 mx-auto ml-[55%] border-0"
+                aria-hidden={true}
+                alt="Description arrow"
+                width={50}
+                height={100}
+              />
+              <figcaption>
+                Access from the search panel and type <em>{'"pwa"'}</em>, once
+                installed you can view our site anytime, anywhere with or
+                without network.
+              </figcaption>
+            </figure>
           </section>
         </article>
         <hr />
@@ -338,7 +349,7 @@ function Homepage() {
                 width={1024}
                 height={689}
                 alt="Google Page Speed"
-                className="px-4 md:px-32 py-8 mx-auto"
+                className="mx-auto mb-8"
               />
               <figcaption>
                 <p>
