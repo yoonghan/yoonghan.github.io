@@ -6,13 +6,13 @@ describe("CommandBar", () => {
   it("should render normally", async () => {
     render(<CommandBar />)
     expect(screen.getByText("Loading Shell command...")).toBeInTheDocument()
-    expect(await screen.findByText("walcron@tm$")).toBeInTheDocument()
+    expect(await screen.findByText("walcron$")).toBeInTheDocument()
     expect(screen.getByText("Site Map:")).toBeInTheDocument()
   })
 
   it("should render without command prompt", () => {
     render(<CommandBar commandPromptOnly={true} />)
-    expect(screen.getByText("walcron@tm$")).toBeInTheDocument()
+    expect(screen.getByText("walcron$")).toBeInTheDocument()
     expect(screen.queryByText("Site Map:")).not.toBeInTheDocument()
   })
 })

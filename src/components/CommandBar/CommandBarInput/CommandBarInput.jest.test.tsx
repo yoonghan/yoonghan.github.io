@@ -42,7 +42,7 @@ describe("CommandBarInput", () => {
 
   it("should be able to render correctly", () => {
     renderComponent({})
-    expect(screen.getByText("walcron@tm$")).toBeInTheDocument()
+    expect(screen.getByText("walcron$")).toBeInTheDocument()
   })
 
   it("should be able to suggest when user type 'he' only", async () => {

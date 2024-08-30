@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.container .switchButton {
+.switchButton {
   white-space: nowrap;
   color: var(--button-bg);
   background: transparent;
@@ -12,11 +12,8 @@
   padding: 0;
 }
 
-.container .switchButton:focus {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.container .switchButton:focus-visible {
+.switchButton:focus-visible,
+.switchButton:focus {
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
@@ -24,4 +21,10 @@
 .desktop_container div > a:first-child {
   padding: 2rem 0;
   display: block;
+}
+
+@media only screen and (max-width: 400px) {
+  .switchButton {
+    display: none;
+  }
 }

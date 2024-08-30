@@ -79,15 +79,3 @@ video::-webkit-media-controls {
   background-color: var(--alert-bg-color);
   border-color: var(--alert-border-color);
 }
-
-.prompt {
-  color: var(--link);
-  font-family: Inconsolata;
-  position: absolute;
-  left: 5rem;
-  top: 0.5rem;
-  animation-name: blink;
-  font-size: 0.8rem;
-  animation-duration: 800ms;
-  animation-iteration-count: infinite;
-}
