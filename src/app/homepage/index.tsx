@@ -265,7 +265,6 @@ function Homepage() {
               issues.
             </p>
           </section>
-
           <section className="pt-8">
             <div className="text-xl italic text-center">
               This site can also be browsed with keyboard and text-readers.
@@ -282,6 +281,23 @@ function Homepage() {
                 Accessibility Checker
               </Link>{" "}
               and Chrome built-in Lighthouse.
+            </p>
+          </section>
+          <section className="pt-8">
+            <div className="text-xl italic text-center">
+              The site is Trusted Web Activity(TWA) and Progressive(PWA)
+              compatible.
+            </div>
+            <Image
+              src="/img/homepage/app-compatible.webp"
+              width={1024}
+              height={689}
+              alt="Trusted Web Activity"
+              className="px-4 md:px-32 py-8 mx-auto"
+            />
+            <p className="pt-8">
+              Access from the search panel and type {'"pwa"'}, once installed
+              you can view our site anytime, anywhere with or without network.
             </p>
           </section>
         </article>
