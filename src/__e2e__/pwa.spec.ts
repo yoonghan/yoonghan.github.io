@@ -32,6 +32,7 @@ test.describe("important! PWA urls", () => {
     }
 
     const assertButtonState = async (text: string) => {
+      //If this timeout, check if mp4,mp3,png,large public files are excluded from download in publicExclude
       await expect(
         page.locator("label").filter({ hasText: text })
       ).toBeInViewport()
