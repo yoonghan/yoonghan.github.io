@@ -46,12 +46,15 @@ test.describe("important! PWA urls", () => {
     await openPWADialog()
     // First enable
     await page.locator("label").filter({ hasText: "Disabled" }).click()
-    await assertButtonState("Processing")
     await assertButtonState("Installed")
 
     await page.reload()
     await openPWADialog()
     // Is enabled
     await assertButtonState("Installed")
+
+    // Unregister
+    await page.locator("label").filter({ hasText: "Installed" }).click()
+    await assertButtonState("Disabled")
   })
 })
