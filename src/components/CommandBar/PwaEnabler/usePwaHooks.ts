@@ -21,16 +21,24 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
   const [hasLatestUpdate, setHasLatestUpdate] = useState<boolean>(false)
   const [isLatestInstalled, setIsLatestInstalled] = useState<boolean>(false)
 
+  const updateRegistration = useCallback(
+    (activeServiceWorker: ServiceWorker) => {
+      setIsRegistered(activeServiceWorker.state === "activated")
+
+      activeServiceWorker.addEventListener("statechange", () => {
+        setIsRegistered(activeServiceWorker.state === "activated")
+      })
+    },
+    []
+  )
+
   useEffect(() => {
     if (navigator && navigator.serviceWorker && navigator.serviceWorker.ready) {
       setIsOffline(!navigator.onLine)
       navigator.serviceWorker.ready.then((swRegistry) => {
         if (swRegistry) {
           if (swRegistry.active) {
-            const activeRegistry = swRegistry.active
-            activeRegistry.addEventListener("statechange", () => {
-              setIsRegistered(activeRegistry.state === "activated")
-            })
+            updateRegistration(swRegistry.active)
           }
           swRegistry.addEventListener("updatefound", () => {
             setHasLatestUpdate(true)
@@ -46,26 +54,22 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
         }
       })
     }
-  }, [])
+  }, [updateRegistration])
 
-  async function getRegistration() {
+  const getRegistration = useCallback(async () => {
     const domain = window.location.hostname
     if (navigator && navigator.serviceWorker) {
       const swRegistry = await navigator.serviceWorker.getRegistration(domain)
-
       if (swRegistry) {
         if (swRegistry.active) {
-          const activeRegistry = swRegistry.active
-          activeRegistry.addEventListener("statechange", () => {
-            setIsRegistered(activeRegistry.state === "activated")
-          })
-        }
+          updateRegistration(swRegistry.active)
 
-        return
+          return
+        }
       }
     }
     setIsRegistered(false)
-  }
+  }, [updateRegistration])
 
   useEffect(() => {
     //utm_source is based on start_url defined in manifest.json
@@ -80,7 +84,7 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
     }
 
     getRegistration()
-  }, [autoRegisterForApp])
+  }, [autoRegisterForApp, getRegistration])
 
   return {
     isRegistered,
