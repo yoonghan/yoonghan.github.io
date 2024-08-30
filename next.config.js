@@ -46,7 +46,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   disable: process.env.NODE_ENV === "development",
   register: false,
   dest: "public",
-  publicExcludes: ["**/*.mp4", "**/*.mp3", "**/*.jpg", "**/*.png"],
+  publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
 })
 
 module.exports = withPWA({

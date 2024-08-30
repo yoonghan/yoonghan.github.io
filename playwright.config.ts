@@ -2,7 +2,7 @@ import { PlaywrightTestConfig, devices } from "@playwright/test"
 import path from "path"
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://localhost:3000`
+const baseURL = `https://walcron-git-develop-walcron-coorperations-projects.vercel.app`
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
