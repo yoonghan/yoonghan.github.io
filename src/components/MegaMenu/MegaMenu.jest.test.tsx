@@ -5,7 +5,7 @@ import MegaMenu from "."
 
 describe("MegaMenu", () => {
   const waitForCommandBarToLoad = async () => {
-    expect(await screen.findAllByText("walcron@tm$")).toHaveLength(2)
+    expect(await screen.findAllByText("walcron$")).toHaveLength(2)
   }
 
   it("should load menu with image", async () => {

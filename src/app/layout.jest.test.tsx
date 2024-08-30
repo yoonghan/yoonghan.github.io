@@ -19,7 +19,7 @@ describe("Main Layout", () => {
 
   const assertMenu = async () => {
     expect(screen.getByRole("img", { name: "home" })).toBeInTheDocument()
-    expect(await screen.findAllByText("walcron@tm$")).toHaveLength(2)
+    expect(await screen.findAllByText("walcron$")).toHaveLength(2)
   }
 
   it("should have a Mega Menu", async () => {
