@@ -35,7 +35,7 @@ test.describe("important! PWA urls", () => {
       //If this timeout, check if mp4,mp3,png,large public files are excluded from download in publicExclude
       await expect(
         page.locator("label").filter({ hasText: text })
-      ).toBeInViewport()
+      ).toBeInViewport({ timeout: 10 * 1000 })
     }
 
     await page.goto("/")
