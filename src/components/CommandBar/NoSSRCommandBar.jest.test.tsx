@@ -6,7 +6,7 @@ import NoSSRCommandBar from "./NoSSRCommandBar"
 describe("NoSSRCommandBar", () => {
   it("should render command input", () => {
     render(<NoSSRCommandBar />)
-    expect(screen.getByText("walcron@tm$")).toBeInTheDocument()
+    expect(screen.getByText("walcron$")).toBeInTheDocument()
   })
 
   it("should allow me to do a help and cancel", async () => {
