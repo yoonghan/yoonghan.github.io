@@ -37,7 +37,9 @@ describe("register", () => {
     })
     const registered = register()
     expect(registered).toBeTruthy()
-    expect(await window.navigator.serviceWorker.getRegistration()).toBe(true)
+    expect(
+      (await window.navigator.serviceWorker.getRegistration())?.active?.state
+    ).toBe("activated")
   })
 
   it("should be able to reject registration", async () => {
