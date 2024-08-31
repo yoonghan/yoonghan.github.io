@@ -67,14 +67,19 @@ const MegaMenu = () => {
     </Link>
   )
 
-  const HomeLink = (
-    text: string,
-    href: string,
-    onClick: () => void,
-    tabIndex: number
-  ) => (
-    <Link href={href} tabIndex={tabIndex} onClick={onClick} className="flex-1">
-      {text}
+  const HomeLink = (href: string, onClick: () => void, tabIndex: number) => (
+    <Link
+      href={href}
+      tabIndex={tabIndex}
+      onClick={onClick}
+      style={{ height: 36, width: 36 }}
+    >
+      <Image
+        src="/img/logo/logo-color.svg"
+        alt="walcron logo"
+        width={36}
+        height={36}
+      />
     </Link>
   )
 
@@ -87,7 +92,6 @@ const MegaMenu = () => {
   return (
     <Menu
       model={menuItems}
-      mobileHomeText="Walcron"
       menuLink={MenuLink}
       homeLink={HomeLink}
       homeLogoLink={HomeLogoLink}
