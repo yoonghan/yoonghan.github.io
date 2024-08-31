@@ -16,24 +16,6 @@ textarea {
   text-align: left;
 }
 
-table {
-  border-spacing: 0;
-}
-
-tbody td,
-tbody th {
-  border-top: var(--table-border);
-}
-td:first-child {
-  padding-right: 10px;
-}
-tr:nth-child(even) {
-  background-color: var(--table-even-bg);
-}
-tr:hover {
-  background-color: var(--table-even-bg);
-}
-
 span.strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
