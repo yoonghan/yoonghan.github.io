@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  margin-left: auto;
 }
 
 .switchButton {
@@ -21,10 +22,4 @@
 .desktop_container div > a:first-child {
   padding: 2rem 0;
   display: block;
-}
-
-@media only screen and (max-width: 400px) {
-  .switchButton {
-    display: none;
-  }
 }
