@@ -2,6 +2,10 @@
 @import "animation.css";
 @import "tailwind.css";
 
+body {
+  min-width: 320px;
+}
+
 input,
 textarea {
   appearance: none;
@@ -38,10 +42,6 @@ span.strikethrough {
 header {
   z-index: 100;
   position: sticky;
-}
-
-.title {
-  color: var(--header-title);
 }
 
 .center {
