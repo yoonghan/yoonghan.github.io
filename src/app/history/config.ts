@@ -116,6 +116,11 @@ export const siteHistory: IEvent[] = [
     desc: "Checkout on Web RTC technology",
   },
   {
+    id: "Jan-2024",
+    date: "January-2024",
+    desc: "Learning PureCSS component",
+  },
+  {
     id: "Aug-2024",
     date: "August-2024",
     desc: "New homepage for performance",
