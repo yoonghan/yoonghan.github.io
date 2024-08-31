@@ -364,8 +364,8 @@ function Homepage() {
                   and keep the page simple.
                 </p>
                 <p>
-                  To keep on the site's progress, we are analyzing incoming data
-                  via google analytics.
+                  To keep on the website progress, we are analyzing incoming
+                  data via google analytics.
                 </p>
               </figcaption>
             </figure>
