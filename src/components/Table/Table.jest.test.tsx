@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
 import Table from "."
+import userEvent from "@testing-library/user-event"
 
 describe("Table", () => {
   it("should render table correctly", () => {
@@ -20,5 +21,23 @@ describe("Table", () => {
     expect(
       screen.getByRole("row", { name: "value1 value2" })
     ).toBeInTheDocument()
+  })
+
+  it("should allow row click", async () => {
+    const clickFn = jest.fn()
+    const firstRecord = {
+      headerOne: "value1",
+      headerTwo: <span>value2</span>,
+    }
+
+    render(
+      <Table
+        headers={["headerOne", "headerTwo"]}
+        list={[firstRecord]}
+        onClick={clickFn}
+      />
+    )
+    await userEvent.click(screen.getByRole("row", { name: "value1 value2" }))
+    expect(clickFn).toHaveBeenCalledWith(firstRecord)
   })
 })
