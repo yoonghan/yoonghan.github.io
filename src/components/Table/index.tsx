@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import styles from "./Table.module.css"
 
 interface Props {
   list: Array<{ [key: string]: ReactNode }>
@@ -10,22 +9,32 @@ const Table = ({ list, headers }: Props) => {
   const renderInfo = (info: { [key: string]: ReactNode }, idx: number) => {
     const arr: Array<JSX.Element> = []
     for (const [key, value] of Object.entries(info)) {
-      arr.push(<td key={`${key}_${idx}`}>{value}</td>)
+      arr.push(
+        <td key={`${key}_${idx}`} className="px-4 py-8">
+          {value}
+        </td>
+      )
     }
     return arr
   }
 
   const listOfObjects = list.map((info, idx) => {
-    return <tr key={`table_${idx}`}>{renderInfo(info, idx)}</tr>
+    return (
+      <tr key={`table_${idx}`} className="hover:bg-slate-200">
+        {renderInfo(info, idx)}
+      </tr>
+    )
   })
 
   return (
-    <div className={styles.container}>
-      <table>
-        <thead>
+    <div className="overflow-x-auto">
+      <table className="table-auto bg-white">
+        <thead className="text-white bg-slate-800">
           <tr>
             {headers.map((header, idx) => (
-              <th key={`table_header_${idx}`}>{header}</th>
+              <th key={`table_header_${idx}`} className="px-4 py-8">
+                {header}
+              </th>
             ))}
           </tr>
         </thead>
