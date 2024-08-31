@@ -35,11 +35,15 @@ const About = () => {
             <strong>Walcron</strong> is a by-product of a couple&apos;s journey
             in IT industry. The <strong>Walcron</strong> website was created for
             experimentation in optimizing and prototyping new Web technologies.
-            Ocassionally this is being re-contributed back into the{" "}
-            <em>open-source</em> community. Han and Gladys started the Walcron
-            website to log their development journey, as well as, to experiment
-            real-time working website integration with search-analytics and api
-            integrations.
+            Ocassionally this is being re-contributed back into our{" "}
+            <em>9-to-5 office facing jobs</em> and <em>open-source</em>{" "}
+            community.
+          </p>
+          <p className="pt-8">
+            The development journey to Walcron has so far lead us to learn and
+            was able to consult on search-analytics, api integrations and
+            develop user-experience that was so far out-of-scope in internal
+            websites.
           </p>
         </article>
         <article id={authorModel[1].hashId}>
