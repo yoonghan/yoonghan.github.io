@@ -22,7 +22,7 @@ export const metadata = {
 const Lessons = ({}) => {
   return (
     <div className={`${styles.container}`}>
-      <div className={`page-aligned-container`}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1>Lessons learned from projects</h1>
         <span>What was learned over time for the projects.</span>
         <br />
