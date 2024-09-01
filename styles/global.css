@@ -12,15 +12,6 @@ textarea {
   border: 1px solid #6b7280;
 }
 
-.text-align-left {
-  text-align: left;
-}
-
-span.strikethrough {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 header {
   z-index: 100;
   position: sticky;

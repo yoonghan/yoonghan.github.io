@@ -41,7 +41,7 @@ export const siteDevelopmentSections = [
         <p>
           All new commits{" "}
           <strong>
-            <span className="strikethrough">MUST</span> HAVE
+            <span className="line-through">MUST</span> HAVE
           </strong>{" "}
           to go thru a &quot;pull request&quot; -&gt; &quot;100% validated&quot;
         </p>
