@@ -7,6 +7,7 @@ import Navigator from "@/components/Navigator"
 import { RefObject } from "react"
 import { ScrollHandler } from "@/components/Parallax"
 import { site } from "@/config/site"
+import styles from "./Homepage.module.css"
 
 export const siteDevelopmentSections = [
   {
@@ -248,7 +249,7 @@ export const generateSections = (
     }),
     <div key="short-clip-about-us" className={styles.miscellaneous}>
       <h2>{siteDevelopmentSections[6].title}</h2>
-      <div className={"center"}>
+      <div className={styles.center}>
         <Video
           src="/movie/about-walcron.mp4"
           imgJpgSrc="/img/welcome/girl-in-glass.jpg"

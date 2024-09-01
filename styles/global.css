@@ -17,18 +17,6 @@ header {
   position: sticky;
 }
 
-.center {
-  flex-direction: column;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-}
-
-video::-webkit-media-controls {
-  display: none !important;
-}
-
 .page-aligned-container {
   margin: auto;
   max-width: 1024px;
