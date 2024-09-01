@@ -28,7 +28,7 @@ const About = () => {
   return (
     <div className={styles.container}>
       <MiniMenu model={authorModel} />
-      <div className={"page-aligned-container"}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <article id={authorModel[0].hashId}>
           <h1>{authorModel[0].title}</h1>
           <p>

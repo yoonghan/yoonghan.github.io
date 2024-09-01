@@ -16,7 +16,7 @@ export const metadata = {
 const History = ({}) => {
   return (
     <>
-      <div className={"page-aligned-container"}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1 className="py-8">Site&apos;s history</h1>
         <section>
           <h2 className="text-left">Improvement Timeline</h2>
