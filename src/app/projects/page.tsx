@@ -17,7 +17,7 @@ export const metadata = {
 const Projects = ({}) => {
   return (
     <div className={`${styles.container}`}>
-      <div className={`page-aligned-container`}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1>Playground projects</h1>
         <div>
           <p>
