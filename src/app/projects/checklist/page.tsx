@@ -83,7 +83,7 @@ const CheckList = () => {
 
   return (
     <div className={`${styles.container}`}>
-      <div className={`page-aligned-container`}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1>Important Checklist Links</h1>
         <span>A checklist of important links to test and for reference.</span>
         <span>

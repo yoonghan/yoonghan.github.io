@@ -9,7 +9,6 @@ import Image from "next/image"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
-  const quoteText = (text: string) => <>&quot;{text}&quot;</>
 
   return (
     <>
@@ -17,13 +16,12 @@ function Homepage() {
         <article className="text-center max-w-md mx-auto">
           <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
           <p>
-            This is a sandbox website for us to <strong>explore</strong>{" "}
-            real-time Web Development.
+            This is a sandbox website for the two of us to{" "}
+            <strong>explore</strong> real-time Web Development.
           </p>
           <p>
-            This sandbox is for real-time testing for web environment and
-            ofcourse to sometimes by-pass coorporate networks for private
-            communication.
+            We do sometimes use the site to by-pass coorporate networks for
+            private communication.
           </p>
           <figure>
             <Image
@@ -51,9 +49,10 @@ function Homepage() {
             What is truely important for {walcronText} development?
           </h2>
           <p>
-            This site was up since <strong>2014</strong> and had many iterations
-            [<Link href="/history">Learn More of our history</Link>] and have
-            evolved from <strong>Pure Server Render</strong> to
+            This site was up since <strong>2014</strong> and had went thru many
+            iterations [<Link href="/history">Learn More of our history</Link>];
+            evolved from <strong>AJAX/SPA</strong> to{" "}
+            <strong>Pure Server Render</strong> to
             <strong> Non-Javascript Accessible</strong> site.
           </p>
           <p>
@@ -88,9 +87,9 @@ function Homepage() {
           <div className="text-center my-8">
             Being a self-maintained site, how do one...
             <ul className="text-lg italic pt-4">
-              <li>{quoteText("Validate his own changes ?")}</li>
-              <li>{quoteText("Ensure changes doesn't break anything ?")}</li>
-              <li>{quoteText("A hassle to deploy changes ?")}</li>
+              <li>{`"Validate his own changes ?"`}</li>
+              <li>{`"Ensure changes doesn't break anything ?"`}</li>
+              <li>{`"A hassle to deploy changes ?"`}</li>
             </ul>
           </div>
           <section className="max-w-screen-md mx-auto">
@@ -200,13 +199,17 @@ function Homepage() {
                       </Link>{" "}
                       and Dependabots]
                     </li>
+                    <li>
+                      <strong>Accessibility</strong> - Integrated lighthouse to
+                      keep best-practises and accessibility at 100%.
+                    </li>
                   </ul>
                 </>
               </Figure>
             </section>
             <section className="max-w-screen-md mx-auto pt-16">
               <div className="text-center text-lg mb-12 italic">
-                {quoteText("So what if something really breaks ?")}
+                {`"So what if something really breaks ?"`}
               </div>
               <section>
                 <Figure
@@ -220,21 +223,24 @@ function Homepage() {
                   reversed={true}
                 >
                   <>
-                    In reality this will happen, and there are fallbacks options
-                    :
+                    Face it, this happens with new experimentations. The
+                    workflow is built to handles fallback options:
                     <ul className="list-decimal ml-4 mt-4">
                       <li>
                         Every pull-request is tracked via Release [
                         <Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
                           list of releases
                         </Link>
-                        ] . Checkout the release tag and create a new
+                        ] . Checkout the stable release tag and create a new
                         pull-request.
                       </li>
                       <li>
                         Revert via <Link href="https://vercel.com">Vercel</Link>
                         , but not applicable to GitHub Pages. Useful for API
                         break changes.
+                      </li>
+                      <li>
+                        A guaranteed revert process is less than 10minutes.
                       </li>
                     </ul>
                   </>
@@ -319,7 +325,7 @@ function Homepage() {
             Monitoring
           </h5>
           <div className="text-xl italic text-center pt-8">
-            {quoteText("Ensure what we develop are standard.")}
+            {`"Ensure what we develop are according to standards."`}
           </div>
           <section>
             <p>
@@ -356,6 +362,10 @@ function Homepage() {
                   We use Lighthouse and Google Page Speed to check on our
                   webpage performance. The ultimate goal is to test frequently
                   and keep the page simple.
+                </p>
+                <p>
+                  To keep on the website progress, we are analyzing incoming
+                  data via google analytics.
                 </p>
               </figcaption>
             </figure>

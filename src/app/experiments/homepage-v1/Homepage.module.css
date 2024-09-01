@@ -147,7 +147,16 @@ section.introduction {
   color: var(--button-orange-bg);
 }
 
-.homepage {
+.center {
+  flex-direction: column;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.container video::-webkit-media-controls {
+  display: none !important;
 }
 
 @keyframes sepia {

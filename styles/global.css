@@ -12,58 +12,9 @@ textarea {
   border: 1px solid #6b7280;
 }
 
-.text-align-left {
-  text-align: left;
-}
-
-table {
-  border-spacing: 0;
-}
-
-tbody td,
-tbody th {
-  border-top: var(--table-border);
-}
-td:first-child {
-  padding-right: 10px;
-}
-tr:nth-child(even) {
-  background-color: var(--table-even-bg);
-}
-tr:hover {
-  background-color: var(--table-even-bg);
-}
-
-span.strikethrough {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 header {
   z-index: 100;
   position: sticky;
-}
-
-.center {
-  flex-direction: column;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-}
-
-video::-webkit-media-controls {
-  display: none !important;
-}
-
-.page-aligned-container {
-  margin: auto;
-  max-width: 1024px;
-  padding: 0 1rem 2rem 1rem;
-}
-
-.page-container {
-  width: 100%;
 }
 
 .alert {
