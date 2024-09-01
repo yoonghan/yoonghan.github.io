@@ -17,7 +17,7 @@ interface Props {
 
 const WebRtc = ({ appKey, cluster }: Props) => {
   return (
-    <div className="page-aligned-container">
+    <div className="mx-auto max-w-screen-lg px-4 pb-8">
       <h1>Video call with Web RTC</h1>
       <WebrtcVideo appKey={appKey!} cluster={cluster!} />
     </div>

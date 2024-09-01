@@ -16,14 +16,14 @@ export const metadata = {
 const History = ({}) => {
   return (
     <>
-      <div className={"page-aligned-container"}>
+      <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1 className="py-8">Site&apos;s history</h1>
         <section>
-          <h2 className="text-align-left">Improvement Timeline</h2>
+          <h2 className="text-left">Improvement Timeline</h2>
           <Timeline events={siteHistory} />
         </section>
         <section>
-          <h2 className="text-align-left">Motivational books</h2>
+          <h2 className="text-left">Motivational books</h2>
           <Table list={nonFictionBooks} headers={["Book title", "Learnt"]} />
         </section>
         <div className={"pb-5"}></div>

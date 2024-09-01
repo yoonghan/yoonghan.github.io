@@ -17,7 +17,7 @@ const Experiments = ({}) => {
   return (
     <>
       <div className={`${styles.container}`}>
-        <div className={`page-aligned-container`}>
+        <div className="mx-auto max-w-screen-lg px-4 pb-8">
           <h1>Experimental projects</h1>
           <div>
             <p>

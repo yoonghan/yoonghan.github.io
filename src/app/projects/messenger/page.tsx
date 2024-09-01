@@ -57,7 +57,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
   )
 
   return (
-    <div className="page-aligned-container">
+    <div className="mx-auto max-w-screen-lg px-4 pb-8">
       <h1>A Walcron Chat Program</h1>
       <p>
         Used this to test on 3rd party integration and asynchronous replies. The

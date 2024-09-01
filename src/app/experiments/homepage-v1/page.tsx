@@ -27,7 +27,7 @@ function Homepage() {
             key="contact us"
             className={`${styles.section} ${styles.miscellaneous}`}
           >
-            <div className={"center"}>
+            <div className={styles.center}>
               <h2>Contact Us</h2>
               <div className="p-padding">
                 <LetterBox />

@@ -1,35 +1,29 @@
+import Table from "@/components/Table"
 import { AvailableInput } from "../CommandSearch/CommandSearch"
-import styles from "./HelpDialog.module.css"
+import { ReactNode } from "react"
 
 interface Props {
   updateSelectedInput: (input: string) => void
 }
 
 const HelpContent = ({ updateSelectedInput }: Props) => {
+  const onClick = (input: Record<string, ReactNode>) => {
+    updateSelectedInput(input["Command"] as string)
+  }
+
+  const listsOfCommands = Object.keys(AvailableInput).map((input) => ({
+    Command: input,
+    Description: AvailableInput[input].description,
+  }))
+
   return (
-    <div className={styles.container}>
+    <div className="p-8 bg-white drop-shadow-md">
       <h4>Help</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Command</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(AvailableInput).map((input, idx) => (
-            <tr
-              key={`helpdialog_${idx}`}
-              onClick={() => {
-                updateSelectedInput(input)
-              }}
-            >
-              <td>{input}</td>
-              <td>{AvailableInput[input].description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table
+        headers={["Command", "Description"]}
+        list={listsOfCommands}
+        onClick={onClick}
+      />
     </div>
   )
 }
