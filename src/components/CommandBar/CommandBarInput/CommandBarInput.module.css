@@ -20,7 +20,6 @@
     animation-name: blink;
   }
   font-size: 0.8rem;
-  width: 1px;
   animation-duration: 1s;
   animation-iteration-count: infinite;
 }
@@ -57,9 +56,18 @@
   text-shadow: 0 0 0 #ebebeb;
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 340px) {
   .command-container .autosuggest__input {
     width: 4rem;
+  }
+  .command-container .prompt {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 390px) and (min-width: 341px) {
+  .command-container .autosuggest__input {
+    width: 6rem;
   }
 }
 
