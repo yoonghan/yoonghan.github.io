@@ -328,18 +328,30 @@ function Homepage() {
             {`"Ensure what we develop are according to standards."`}
           </div>
           <section>
-            <p>
-              As a self-maintained website, it is hard to know what is right. So
-              we start to use tools, such as <strong>Google Analytics</strong>{" "}
-              and <strong>Google Search Console</strong> to check on general
-              usage to up-keep the standard guidelines.
-            </p>
-            <div className="flex justify-center">
-              <Button href="/projects/checklist">
-                View Checklists
-                <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
-              </Button>
-            </div>
+            <figure>
+              <Image
+                src="/img/homepage/monitoring.webp"
+                width={1024}
+                height={689}
+                alt="Lighthouse"
+                className="mx-auto mb-8"
+              />
+              <figcaption>
+                <p>
+                  As a self-maintained website, it is hard to know what is right
+                  and so we start to use tools; such as{" "}
+                  <strong>Lighthouse</strong>, <strong>Google Analytics</strong>{" "}
+                  and <strong>Google Search Console</strong> to check on general
+                  usage to up-keep the standard guidelines.
+                </p>
+                <div className="flex justify-center">
+                  <Button href="/projects/checklist">
+                    View Checklists
+                    <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
+                  </Button>
+                </div>
+              </figcaption>
+            </figure>
           </section>
         </article>
         <hr />
@@ -353,15 +365,16 @@ function Homepage() {
               <Image
                 src="/img/homepage/performance.webp"
                 width={1024}
-                height={689}
-                alt="Google Page Speed"
+                height={722}
+                alt="Google Big Query"
                 className="mx-auto mb-8"
               />
               <figcaption>
                 <p>
-                  We use Lighthouse and Google Page Speed to check on our
-                  webpage performance. The ultimate goal is to test frequently
-                  and keep the page simple.
+                  We use <strong>Lighthouse</strong> and{" "}
+                  <strong>WebVitals via Google Analytics</strong> to check on
+                  our webpage performance. The ultimate goal is to test
+                  frequently and keep the page simple.
                 </p>
                 <p>
                   To keep on the website progress, we are analyzing incoming
