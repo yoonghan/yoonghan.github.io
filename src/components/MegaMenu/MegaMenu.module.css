@@ -15,11 +15,18 @@
 
 .switchButton:focus-visible,
 .switchButton:focus {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
+  outline: solid;
 }
 
 .desktop_container div > a:first-child {
-  padding: 2rem 0;
-  display: block;
+  padding: 1.5rem 0;
+  display: inline-block;
+}
+
+.desktop_container ul > li ul > li {
+  padding: 0.5rem 0;
+}
+
+.mobile_container ul > li {
+  padding: 0.5rem 2px;
 }

@@ -99,7 +99,9 @@ describe("Checklist", () => {
     expect(
       screen.queryByRole("button", { name: "View More" })
     ).not.toBeInTheDocument()
-    expect(screen.getByText("Loading History...")).toBeInTheDocument()
+    expect(
+      screen.getByText("Should Load History but it no longer works.")
+    ).toBeInTheDocument()
   })
 
   describe("TroubleshootPwaCheckList", () => {
