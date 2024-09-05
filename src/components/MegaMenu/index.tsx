@@ -24,7 +24,7 @@ const MegaMenu = () => {
   const commandRef = useSpringRef()
   const [springCommand, apiCommand] = useSpring(() => ({
     ref: commandRef,
-    from: { scale: 0, height: "0" },
+    from: { display: "none", scale: 0, height: "0" },
   }))
 
   useChain([menuRef, commandRef])
@@ -41,12 +41,12 @@ const MegaMenu = () => {
           to: { transform: "rotate(180deg)" },
         })
         apiCommand.start({
-          to: { scale: 1, height: "4rem" },
+          to: { scale: 1, height: "4rem", display: "block" },
         })
         return Display.Command
       } else {
         apiCommand.start({
-          to: { scale: 0, height: "0" },
+          to: { scale: 0, height: "0", display: "none" },
         })
         apiButton.start({
           to: { transform: "rotate(0deg)" },
