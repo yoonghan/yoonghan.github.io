@@ -98,7 +98,11 @@ const CheckList = () => {
         <CronJobCheckList postedJob={postedCronJob} />
         <br />
         <br />
-        <Table headers={["Site", "Description", "Url"]} list={links} />
+        <Table
+          headers={["Site", "Description", "Url"]}
+          list={links}
+          className="text-black"
+        />
       </div>
       <ScrollToTop />
     </div>

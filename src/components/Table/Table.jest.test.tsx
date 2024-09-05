@@ -40,4 +40,16 @@ describe("Table", () => {
     await userEvent.click(screen.getByRole("row", { name: "value1 value2" }))
     expect(clickFn).toHaveBeenCalledWith(firstRecord)
   })
+
+  it("should allow classname override", () => {
+    render(
+      <Table
+        headers={["headerOne", "headerTwo"]}
+        list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
+        className="sampleClass"
+      />
+    )
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(screen.getByRole("table").parentElement).toHaveClass("sampleClass")
+  })
 })
