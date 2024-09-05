@@ -41,7 +41,7 @@ const MegaMenu = () => {
           to: { transform: "rotate(180deg)" },
         })
         apiCommand.start({
-          to: { scale: 1, height: "5rem" },
+          to: { scale: 1, height: "4rem" },
         })
         return Display.Command
       } else {
@@ -56,24 +56,14 @@ const MegaMenu = () => {
     })
   }, [apiButton, apiCommand])
 
-  const MenuLink = (
-    text: string,
-    href: string,
-    role: "menuitem",
-    onClick?: () => void
-  ) => (
-    <Link href={href} role={role} onClick={onClick} className="pb-4">
+  const MenuLink = (text: string, href: string, onClick?: () => void) => (
+    <Link href={href} onClick={onClick}>
       {text}
     </Link>
   )
 
-  const HomeLink = (href: string, onClick: () => void, tabIndex: number) => (
-    <Link
-      href={href}
-      tabIndex={tabIndex}
-      onClick={onClick}
-      style={{ height: 36, width: 36 }}
-    >
+  const HomeLink = (href: string, onClick: () => void) => (
+    <Link href={href} onClick={onClick} style={{ height: 36, width: 36 }}>
       <Image
         src="/img/logo/logo-color.svg"
         alt="walcron logo"
@@ -112,6 +102,7 @@ const MegaMenu = () => {
         </div>
       }
       desktopClassName={styles.desktop_container}
+      mobileClassName={styles.mobile_container}
     />
   )
 }
