@@ -44,7 +44,7 @@ const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     }
 
     if (cronHistoryUrl) {
-      return <span>Loading History...</span>
+      return <span>Should Load History but it no longer works.</span>
     }
     return <></>
   }, [cronHistoryError, cronHistoryUrl])
