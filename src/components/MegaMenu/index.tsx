@@ -24,7 +24,7 @@ const MegaMenu = () => {
   const commandRef = useSpringRef()
   const [springCommand, apiCommand] = useSpring(() => ({
     ref: commandRef,
-    from: { scale: 0, height: "0" },
+    from: { display: "none", scale: 0, height: "0" },
   }))
 
   useChain([menuRef, commandRef])
@@ -41,12 +41,12 @@ const MegaMenu = () => {
           to: { transform: "rotate(180deg)" },
         })
         apiCommand.start({
-          to: { scale: 1, height: "5rem" },
+          to: { scale: 1, height: "4rem", display: "block" },
         })
         return Display.Command
       } else {
         apiCommand.start({
-          to: { scale: 0, height: "0" },
+          to: { scale: 0, height: "0", display: "none" },
         })
         apiButton.start({
           to: { transform: "rotate(0deg)" },
@@ -59,21 +59,16 @@ const MegaMenu = () => {
   const MenuLink = (
     text: string,
     href: string,
-    role: "menuitem",
-    onClick?: () => void
+    onClick?: () => void,
+    isAriaExpanded?: boolean
   ) => (
-    <Link href={href} role={role} onClick={onClick} className="pb-4">
+    <Link href={href} onClick={onClick} aria-expanded={isAriaExpanded}>
       {text}
     </Link>
   )
 
-  const HomeLink = (href: string, onClick: () => void, tabIndex: number) => (
-    <Link
-      href={href}
-      tabIndex={tabIndex}
-      onClick={onClick}
-      style={{ height: 36, width: 36 }}
-    >
+  const HomeLink = (href: string, onClick: () => void) => (
+    <Link href={href} onClick={onClick} style={{ height: 36, width: 36 }}>
       <Image
         src="/img/logo/logo-color.svg"
         alt="walcron logo"
@@ -112,6 +107,7 @@ const MegaMenu = () => {
         </div>
       }
       desktopClassName={styles.desktop_container}
+      mobileClassName={styles.mobile_container}
     />
   )
 }

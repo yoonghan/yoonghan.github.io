@@ -44,7 +44,7 @@ const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     }
 
     if (cronHistoryUrl) {
-      return <span>Loading History...</span>
+      return <span>Should Load History but it no longer works.</span>
     }
     return <></>
   }, [cronHistoryError, cronHistoryUrl])
@@ -62,6 +62,7 @@ const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
             "Job Executed": postedJob?.jobName || "N/A",
           },
         ]}
+        className="text-black"
       />
       {!cronHistoryUrl && (
         <Button onClick={onClickViewMore} color="orange">
@@ -111,7 +112,11 @@ export const TroubleshootPwaCheckList = () => {
     <section>
       <h3>PWA</h3>
       <p>Page is pwa compatible.</p>
-      <Table headers={["Property", "Status"]} list={lists} />
+      <Table
+        headers={["Property", "Status"]}
+        list={lists}
+        className="text-black"
+      />
       <div>
         <small>N/T = Not tested, </small>
         <small>N/R = Not reliable </small>

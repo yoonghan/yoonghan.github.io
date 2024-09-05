@@ -51,4 +51,12 @@ describe("MegaMenu", () => {
       { interval: 200 }
     )
   })
+
+  it("should implement aria-expanded for links", () => {
+    render(<MegaMenu />)
+    const menuitemWithExpanded = screen
+      .getAllByRole("link", { name: "Projects" })
+      .filter((element) => element.getAttribute("aria-expanded") === "false")
+    expect(menuitemWithExpanded.length).toBeGreaterThan(0)
+  })
 })
