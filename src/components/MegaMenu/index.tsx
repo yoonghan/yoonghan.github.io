@@ -56,13 +56,8 @@ const MegaMenu = () => {
     })
   }, [apiButton, apiCommand])
 
-  const MenuLink = (
-    text: string,
-    href: string,
-    onClick?: () => void,
-    isAriaExpanded?: boolean
-  ) => (
-    <Link href={href} onClick={onClick} aria-expanded={isAriaExpanded}>
+  const MenuLink = (text: string, href: string, onClick?: () => void) => (
+    <Link href={href} onClick={onClick}>
       {text}
     </Link>
   )
