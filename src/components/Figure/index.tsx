@@ -28,7 +28,7 @@ function Figure({
           src="/img/arrow.svg"
           className="hidden md:block w-8 -my-4 relative z-10 mx-auto ml-[55%] border-0"
           aria-hidden={true}
-          alt="Arrow to describe figure image"
+          alt={`Arrow to describe figure image of ${alt}`}
           width={50}
           height={100}
         />
