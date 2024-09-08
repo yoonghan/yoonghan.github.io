@@ -174,7 +174,7 @@ function Homepage() {
                   src: "/img/homepage/reliability-compliance.webp",
                   width: 1024,
                   height: 515,
-                  alt: "Code coverage",
+                  alt: "Code coverage screenshot",
                 }}
                 imageCaption="Code coverage in CodeCov"
               >
@@ -227,12 +227,12 @@ function Homepage() {
                     workflow is built to handles fallback options:
                     <ul className="list-decimal ml-4 mt-4">
                       <li>
-                        Every pull-request is tracked via Release [
+                        Re-run the release tag in action workflow. Every
+                        pull-request is tracked via Release [
                         <Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
                           list of releases
                         </Link>
-                        ] . Checkout the stable release tag and create a new
-                        pull-request.
+                        ] during merge workflow.
                       </li>
                       <li>
                         Revert via <Link href="https://vercel.com">Vercel</Link>
