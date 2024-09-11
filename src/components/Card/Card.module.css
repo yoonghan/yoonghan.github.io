@@ -32,7 +32,8 @@
 .container > li section:hover {
   color: var(--button-bg);
   background-color: var(--button);
-  border: 1px solid var(--button-bg);
+  border-color: var(--button-bg);
+  filter: drop-shadow(2px px 2px #aaa);
 }
 
 .container > li section > div {
