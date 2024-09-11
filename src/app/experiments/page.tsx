@@ -14,7 +14,7 @@ export const metadata = {
 
 const Experiments = ({}) => {
   return (
-    <div className="p-8">
+    <div className="p-8 h-screen">
       <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1>Experimental projects</h1>
         <div>
@@ -49,10 +49,9 @@ const Experiments = ({}) => {
           />
         </div>
       </div>
-      <hr />
-      <section>
+      <section className="text-center">
         <h2>Contact</h2>
-        <div className="p-padding center">
+        <div>
           <LetterBox />
         </div>
       </section>

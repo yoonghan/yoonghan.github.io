@@ -26,12 +26,13 @@
   background-color: var(--button-bg);
   border-radius: 0 0 0.25rem 0.25rem;
   height: 100%;
-  border-top: 5px solid var(--button);
+  border: 1px solid var(--button);
 }
 
 .container > li section:hover {
   color: var(--button-bg);
   background-color: var(--button);
+  border: 1px solid var(--button-bg);
 }
 
 .container > li section > div {
