@@ -63,7 +63,7 @@ const MegaMenu = () => {
   )
 
   const HomeLink = (href: string, onClick: () => void) => (
-    <Link href={href} onClick={onClick} style={{ height: 36, width: 36 }}>
+    <Link href={href} onClick={onClick}>
       <Image
         src="/img/logo/logo-color.svg"
         alt="walcron logo"
@@ -75,7 +75,13 @@ const MegaMenu = () => {
 
   const HomeLogoLink = (helperClassName: string) => (
     <Link href={"/"} className={helperClassName}>
-      <Image src="/img/logo/logo-color.svg" alt="home" width={18} height={18} />
+      <Image
+        src="/img/logo/logo-color.svg"
+        alt="home"
+        width={18}
+        height={18}
+        className="mr-4"
+      />
     </Link>
   )
 
