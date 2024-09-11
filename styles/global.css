@@ -30,3 +30,9 @@ header {
   background-color: var(--alert-bg-color);
   border-color: var(--alert-border-color);
 }
+
+.code {
+  color: var(--code);
+  font-style: italic;
+  overflow: scroll;
+}

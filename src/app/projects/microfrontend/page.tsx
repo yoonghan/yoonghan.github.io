@@ -1,6 +1,5 @@
 import Card from "@/components/Card"
 import { memo } from "react"
-import styles from "../Projects.module.css"
 import { site } from "@/config/site"
 
 export const metadata = {
@@ -30,16 +29,14 @@ const Projects = ({}) => {
   ]
 
   return (
-    <div className={`${styles.container}`}>
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <h1 className="text-2xl">Microfrontend</h1>
-        <div>
-          <p>
-            Partially experimental but going forward, all written javascript
-            projects are moved into Zelda.
-          </p>
-          <Card cards={cards} />
-        </div>
+    <div className="mx-auto max-w-screen-lg p-8">
+      <h1 className="text-2xl">Microfrontend</h1>
+      <div>
+        <p>
+          Partially experimental but going forward, all written javascript
+          projects are moved into Zelda.
+        </p>
+        <Card cards={cards} />
       </div>
     </div>
   )

@@ -11,7 +11,7 @@
   margin: 0;
   padding: 2rem 2rem 0 2rem;
   font-size: 1.25rem;
-  height: 3rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   font-weight: bolder;
@@ -26,12 +26,14 @@
   background-color: var(--button-bg);
   border-radius: 0 0 0.25rem 0.25rem;
   height: 100%;
-  border-top: 5px solid var(--button);
+  border: 1px solid var(--button);
 }
 
 .container > li section:hover {
   color: var(--button-bg);
   background-color: var(--button);
+  border-color: var(--button-bg);
+  filter: drop-shadow(2px px 2px #aaa);
 }
 
 .container > li section > div {

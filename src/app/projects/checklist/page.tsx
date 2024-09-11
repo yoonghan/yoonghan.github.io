@@ -1,6 +1,5 @@
 import { ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "../Projects.module.css"
 import Table from "@/components/Table"
 import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
@@ -82,28 +81,22 @@ const CheckList = () => {
   const postedCronJob = checklistLoader.read()
 
   return (
-    <div className={`${styles.container}`}>
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <h1>Important Checklist Links</h1>
-        <span>A checklist of important links to test and for reference.</span>
-        <span>
-          Note: Page is not robot indexed and viewable only by desktop. May
-          change only in future.
-        </span>
-        <br />
-        <br />
-        <TroubleshootPwaCheckList />
-        <br />
-        <br />
-        <CronJobCheckList postedJob={postedCronJob} />
-        <br />
-        <br />
-        <Table
-          headers={["Site", "Description", "Url"]}
-          list={links}
-          className="text-black"
-        />
-      </div>
+    <div className="mx-auto max-w-screen-lg px-4 pb-8">
+      <h1>Important Checklist Links</h1>
+      <span>A checklist of important links to test and for reference.</span>
+      <span>
+        Note: Page is not robot indexed and viewable only by desktop. May change
+        only in future.
+      </span>
+      <br />
+      <br />
+      <TroubleshootPwaCheckList />
+      <br />
+      <br />
+      <CronJobCheckList postedJob={postedCronJob} />
+      <br />
+      <br />
+      <Table headers={["Site", "Description", "Url"]} list={links} />
       <ScrollToTop />
     </div>
   )
