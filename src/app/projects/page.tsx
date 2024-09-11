@@ -1,7 +1,6 @@
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
-import styles from "./Projects.module.css"
 import LetterBox from "@/components/LetterBox"
 import { cards } from "./config"
 import { site } from "@/config/site"
@@ -16,7 +15,7 @@ export const metadata = {
 
 const Projects = ({}) => {
   return (
-    <div className={`${styles.container}`}>
+    <div className="p-8">
       <div className="mx-auto max-w-screen-lg px-4 pb-8">
         <h1>Playground projects</h1>
         <div>
