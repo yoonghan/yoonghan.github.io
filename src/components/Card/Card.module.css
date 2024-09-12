@@ -24,7 +24,7 @@
 .container > li section {
   color: var(--button);
   background-color: var(--button-bg);
-  border-radius: 0 0 0.25rem 0.25rem;
+  border-radius: 0.25rem 0.25rem 0 0;
   height: 100%;
   border: 1px solid var(--button);
 }
@@ -33,7 +33,7 @@
   color: var(--button-bg);
   background-color: var(--button);
   border-color: var(--button-bg);
-  filter: drop-shadow(2px px 2px #aaa);
+  filter: drop-shadow(3px 3px 4px);
 }
 
 .container > li section > div {
