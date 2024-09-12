@@ -58,7 +58,7 @@ const MegaMenu = () => {
 
   const MenuLink = (text: string, href: string, onClick?: () => void) => (
     <Link href={href} onClick={onClick}>
-      {text}
+      <div>{text}</div>
     </Link>
   )
 

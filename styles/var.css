@@ -16,11 +16,13 @@
 
   --border-color: rgba(66, 66, 66);
   --shadow: grey;
+
   --z-index-modal: 200;
   --z-index-modal-content: 201;
   --z-index-page-reader: 100;
+
   --code: #029f02;
-  --code-bg: #000;
+
   --title-bar: #fff;
   --title-bar-bg: #0053be;
 
