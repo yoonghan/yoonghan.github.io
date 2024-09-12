@@ -28,10 +28,7 @@ function Homepage() {
             className={`${styles.section} ${styles.miscellaneous}`}
           >
             <div className={styles.center}>
-              <h2>Contact Us</h2>
-              <div className="p-padding">
-                <LetterBox />
-              </div>
+              <LetterBox />
               <div className="section-end">
                 <small>
                   This website is powered with: Next.JS with Typescript on
