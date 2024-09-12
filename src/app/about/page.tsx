@@ -110,13 +110,7 @@ const About = () => {
             ]}
           />
         </article>
-        <hr />
-        <section>
-          <h2>Contact</h2>
-          <div className="p-padding center">
-            <LetterBox />
-          </div>
-        </section>
+        <LetterBox />
         <ScrollToTop />
       </div>
     </div>

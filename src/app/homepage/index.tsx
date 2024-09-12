@@ -6,6 +6,7 @@ import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
+import LetterBox from "@/components/LetterBox"
 
 function Homepage() {
   const walcronText = <strong>Walcron</strong>
@@ -384,7 +385,9 @@ function Homepage() {
             </figure>
           </section>
         </article>
-        <div className="pb-16"></div>
+        <div className="py-16">
+          <LetterBox />
+        </div>
       </main>
       <SocialFab />
     </>
