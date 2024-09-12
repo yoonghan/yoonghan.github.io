@@ -26,12 +26,7 @@ const Projects = ({}) => {
           <Card cards={cards} />
         </div>
       </div>
-      <section className="text-center">
-        <h2>Contact</h2>
-        <div className="p-padding center">
-          <LetterBox />
-        </div>
-      </section>
+      <LetterBox />
       <ScrollToTop />
     </div>
   )

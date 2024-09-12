@@ -36,7 +36,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
 
   return (
     <div className={`overflow-x-auto ${className}`}>
-      <table className="table-auto bg-white border-collapse">
+      <table className="table-auto border-collapse">
         <thead className="text-white bg-slate-800">
           <tr>
             {headers.map((header, idx) => (

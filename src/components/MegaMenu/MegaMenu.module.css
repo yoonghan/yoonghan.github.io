@@ -23,7 +23,7 @@
   display: inline-block;
 }
 
-.desktop_container ul > li ul > li {
+.desktop_container ul > li ul > li div {
   padding: 0.5rem 0;
 }
 
