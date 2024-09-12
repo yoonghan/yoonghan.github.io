@@ -30,3 +30,7 @@
 .mobile_container ul > li {
   padding: 0.5rem 2px;
 }
+
+.mobile_container ul > li a > div {
+  display: inline-block;
+}
