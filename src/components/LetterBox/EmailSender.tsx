@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import Dialog from "../Dialog"
-import styles from "./EmailSender.module.css"
 
 interface EmailSenderProps {
   writeTo: string
@@ -18,7 +17,7 @@ const EmailSender = ({ writeTo, writeFrom, onCancel }: EmailSenderProps) => {
 
   return (
     <Dialog onCancel={onCancel} nonPortal={true}>
-      <div className={styles.container}>
+      <div className="text-center bg-white p-8">
         Apologies that we do require you to use your own mailbox
       </div>
     </Dialog>
