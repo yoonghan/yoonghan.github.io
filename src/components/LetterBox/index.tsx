@@ -38,7 +38,7 @@ const LetterBox = () => {
         you instead.
         <form
           onSubmit={onSubmitPressed}
-          className="flex gap-2 p-4 w-full max-w-screen-sm mx-auto"
+          className="flex flex-col gap-2 p-4 w-full max-w-screen-sm mx-auto md:flex-row"
         >
           <input
             type="text"

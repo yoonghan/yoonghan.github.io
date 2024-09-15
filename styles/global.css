@@ -11,6 +11,11 @@ textarea {
   border: 1px solid #6b7280;
 }
 
+input[type="text"],
+textarea {
+  padding: 0.5rem;
+}
+
 header {
   z-index: 100;
   position: sticky;
