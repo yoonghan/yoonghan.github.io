@@ -1,28 +1,27 @@
 import { site } from "@/config/site"
-import StoryMaker from "./StoryMaker"
+import styles from "./Storybook.module.css"
 import { storyBookList } from "@/app/experiments/storybook/config/componentList"
 
 export const metadata = {
-  title: "Storybook",
-  description: "Layout sandboxing and testing creation.",
+  title: "Aria",
+  description: "Testing aria",
   alternates: {
-    ...site.generateCanonical("/experiments/storybook"),
+    ...site.generateCanonical("/experiments/aria"),
   },
 }
 
-function Storybook() {
+function Aria() {
   return (
-    <div>
-      <h1>Component Storybook</h1>
+    <div className={styles.container}>
+      <h1>Aria</h1>
       <p>
         Instead of having a dedicated storybook component, we have decided to
         create a simple 1 pager to render whatever we wanted to. In this way, we
         can avoid having to maintain another setup and thing can work straight
         out of the box.
       </p>
-      <StoryMaker items={storyBookList} />
     </div>
   )
 }
 
-export default Storybook
+export default Aria
