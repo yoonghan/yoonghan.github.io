@@ -8,8 +8,12 @@ body {
 
 input,
 textarea {
-  appearance: none;
   border: 1px solid #6b7280;
+}
+
+input[type="text"],
+textarea {
+  padding: 0.5rem;
 }
 
 header {
