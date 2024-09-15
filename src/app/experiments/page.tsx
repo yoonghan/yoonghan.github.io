@@ -3,6 +3,7 @@ import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import LetterBox from "@/components/LetterBox"
 import { site } from "@/config/site"
+import { cards } from "./config"
 
 export const metadata = {
   title: "Experiments",
@@ -22,31 +23,7 @@ const Experiments = ({}) => {
             Incomplete or projects that are used for test-beds
             <small>(due to migration most are not moved over)</small>
           </p>
-          <Card
-            cards={[
-              {
-                id: "old-homepage",
-                title: "Parallax Homepage",
-                description: "Old parallax homepage.",
-                href: "/experiments/homepage-v1",
-                target: "_self",
-              },
-              {
-                id: "storybook",
-                title: "Storybook",
-                description: "Design and styling of UX/UI of Walcron page.",
-                href: "/experiments/storybook",
-                target: "_self",
-              },
-              {
-                id: "performance",
-                title: "Performance",
-                description: "Validate react performance",
-                href: "/experiments/performance",
-                target: "_self",
-              },
-            ]}
-          />
+          <Card cards={cards} />
         </div>
       </div>
       <LetterBox />
