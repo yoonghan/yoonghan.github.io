@@ -25,10 +25,10 @@ const Experiments = ({}) => {
           <Card
             cards={[
               {
-                id: "amp",
-                title: "Accelerated Mobile Pages",
-                description: "Google's approach of fast mobile page.",
-                href: "/experiments/amp",
+                id: "old-homepage",
+                title: "Parallax Homepage",
+                description: "Old parallax homepage.",
+                href: "/experiments/homepage-v1",
                 target: "_self",
               },
               {
