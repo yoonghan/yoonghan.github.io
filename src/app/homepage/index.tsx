@@ -9,7 +9,7 @@ import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 
 function Homepage() {
-  const walcronText = <strong>Walcron</strong>
+  const walcronText = "Walcron"
 
   return (
     <>
