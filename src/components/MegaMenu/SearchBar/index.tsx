@@ -1,7 +1,6 @@
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import { useCallback, useEffect, useState } from "react"
 import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web"
-import styles from "./SearchBar.module.css"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CommandBar from "@/components/CommandBar"
@@ -63,7 +62,6 @@ function SearchBar() {
         </animated.div>
         <animated.button
           onClick={onSwitchClick}
-          className={`${styles.switchButton}`}
           style={{ ...springButton }}
           aria-label="search"
         >
