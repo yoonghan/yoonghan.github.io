@@ -1,5 +1,4 @@
 import { site } from "@/config/site"
-import styles from "./Storybook.module.css"
 import StoryMaker from "./StoryMaker"
 import { storyBookList } from "@/app/experiments/storybook/config/componentList"
 
@@ -13,7 +12,7 @@ export const metadata = {
 
 function Storybook() {
   return (
-    <div className={styles.container}>
+    <div>
       <h1>Component Storybook</h1>
       <p>
         Instead of having a dedicated storybook component, we have decided to
