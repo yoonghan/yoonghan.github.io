@@ -7,7 +7,12 @@ function StoryMaker({ items }: Props) {
     <>
       {items.map((item, index) => (
         <section key={index}>
-          <span title={item.title}>{item.title}</span>
+          <div
+            title={item.title}
+            className={"px-4 py-2 text-white bg-black w-full mt-16"}
+          >
+            {item.title}
+          </div>
           {item.component}
         </section>
       ))}
