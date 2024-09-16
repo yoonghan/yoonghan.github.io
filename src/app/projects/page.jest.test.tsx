@@ -9,18 +9,9 @@ describe("Projects", () => {
     render(<Projects />)
   }
 
-  it("should have a menu and scroll to top", async () => {
-    renderComponent()
-    await assertScrollToTop()
-  })
-
   it("should render the page with the important components", () => {
     renderComponent()
     expect(screen.getByText("Playground projects"))
-  })
-
-  it("should be able to scroll up", () => {
-    renderComponent()
     assertScrollToTop()
   })
 

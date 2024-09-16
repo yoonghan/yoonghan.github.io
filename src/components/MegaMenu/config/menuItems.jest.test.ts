@@ -21,6 +21,10 @@ describe("menu items", () => {
       {
         items: [
           { label: "Performance", url: "/experiments/performance" },
+          {
+            label: "Accessibility (WCAG)",
+            url: "/experiments/aria",
+          },
           { label: "Storybook", url: "/experiments/storybook" },
           { label: "Parallax Homepage", url: "/experiments/homepage-v1" },
         ],

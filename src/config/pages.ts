@@ -77,19 +77,24 @@ const pages: PageConfig[] = [
     order: 5,
   },
   {
-    path: "/experiments/storybook",
-    display: "Storybook",
-    order: 4,
-  },
-  {
     path: "/experiments/performance",
     display: "Performance",
-    order: 4,
+    order: 1,
+  },
+  {
+    path: "/experiments/aria",
+    display: "Accessibility (WCAG)",
+    order: 2,
   },
   {
     path: "/experiments/homepage-v1",
     display: "Parallax Homepage",
-    order: 5,
+    order: 4,
+  },
+  {
+    path: "/experiments/storybook",
+    display: "Storybook",
+    order: 3,
   },
   {
     path: "/sitemap",

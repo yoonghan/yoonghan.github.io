@@ -1,5 +1,3 @@
-import styles from "./Storybook.module.css"
-
 type Props = {
   items: { title: string; component: React.ReactNode }[]
 }
@@ -9,7 +7,12 @@ function StoryMaker({ items }: Props) {
     <>
       {items.map((item, index) => (
         <section key={index}>
-          <h2 title={item.title}>{item.title}</h2>
+          <div
+            title={item.title}
+            className={"px-4 py-2 text-white bg-black w-full mt-16"}
+          >
+            {item.title}
+          </div>
           {item.component}
         </section>
       ))}
