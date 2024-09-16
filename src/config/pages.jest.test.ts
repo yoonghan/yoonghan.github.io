@@ -116,16 +116,14 @@ describe("pages", () => {
   })
 
   it("should be able to list out all the child by path", () => {
-    expect(findAllChildByPath("/about")).toStrictEqual([])
-    expect(
-      findAllChildByPath("/experiments").map(({ path, display }) => ({
-        path,
-        display,
-      }))
-    ).toStrictEqual([
+    const expectedResult = [
       {
         path: "/experiments/performance",
         display: "Performance",
+      },
+      {
+        path: "/experiments/aria",
+        display: "Accessibility (WCAG)",
       },
       {
         path: "/experiments/storybook",
@@ -135,7 +133,15 @@ describe("pages", () => {
         path: "/experiments/homepage-v1",
         display: "Parallax Homepage",
       },
-    ])
+    ]
+
+    expect(findAllChildByPath("/about")).toStrictEqual([])
+    expect(
+      findAllChildByPath("/experiments").map(({ path, display }) => ({
+        path,
+        display,
+      }))
+    ).toStrictEqual(expectedResult)
     expect(
       findAllChildByPath("/experiments/performance").map(
         ({ path, display }) => ({
@@ -143,20 +149,7 @@ describe("pages", () => {
           display,
         })
       )
-    ).toStrictEqual([
-      {
-        path: "/experiments/performance",
-        display: "Performance",
-      },
-      {
-        path: "/experiments/storybook",
-        display: "Storybook",
-      },
-      {
-        path: "/experiments/homepage-v1",
-        display: "Parallax Homepage",
-      },
-    ])
+    ).toStrictEqual(expectedResult)
   })
 })
 
