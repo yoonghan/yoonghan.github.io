@@ -20,4 +20,11 @@ export const cards = [
     href: "/experiments/performance",
     target: "_self",
   },
+  {
+    id: "aria",
+    title: "Accessibility",
+    description: "Accessibility (Aria/WCAG)",
+    href: "/experiments/aria",
+    target: "_self",
+  },
 ]
