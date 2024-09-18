@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { ReactNode, useMemo } from "react"
 import styles from "./Timeline.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
@@ -17,7 +17,7 @@ export interface IEvent {
 
 const Timeline = ({ events }: Props) => {
   const createLinks = useMemo(() => {
-    return events.map(({ id, faIcon, date, special, desc }, idx) => (
+    return events.map(({ id, faIcon, date, special, desc }) => (
       <li key={`timeline_${id}`}>
         <span></span>
         <span>
