@@ -5,8 +5,8 @@ import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 
 const JavascriptFree = ({}) => {
   return (
-    <div className="mx-auto max-w-screen-lg px-4 pb-20">
-      <h1 className="py-8">Cross Browser Friendly</h1>
+    <div className="walcron-container">
+      <h1>Cross Browser Friendly</h1>
       <div>
         <p>
           A goal oriented page to make the page working in both{" "}
