@@ -1,11 +1,8 @@
 .container {
-  list-style: none;
   padding: 0;
-  margin-bottom: 0;
   direction: ltr;
-  margin-left: 20px;
   max-width: 480px;
-  margin: auto;
+  list-style: none;
 }
 
 .container > li {
