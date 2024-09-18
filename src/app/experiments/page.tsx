@@ -15,8 +15,8 @@ export const metadata = {
 
 const Experiments = ({}) => {
   return (
-    <div className="mx-auto max-w-screen-lg px-4 pb-20">
-      <h1 className="py-8">Experimental projects</h1>
+    <div className="walcron-container">
+      <h1>Experimental projects</h1>
       <div>
         <p>
           Incomplete or projects that are used for test-beds
