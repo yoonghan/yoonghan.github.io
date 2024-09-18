@@ -7,7 +7,6 @@ import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import styles from "./about.module.css"
 
 const authorModel = [
   {
@@ -26,11 +25,12 @@ const authorModel = [
 
 const About = () => {
   return (
-    <div className={styles.container}>
+    <div className={`container mx-auto`}>
       <MiniMenu model={authorModel} />
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <article id={authorModel[0].hashId}>
-          <h1>{authorModel[0].title}</h1>
+
+      <div className="max-w-screen-lg px-4 py-8">
+        <article id={authorModel[0].hashId} className="py-20">
+          <h1 className="text-2xl text-center pb-12">{authorModel[0].title}</h1>
           <p>
             <strong>Walcron</strong> is a by-product of a couple&apos;s journey
             in IT industry. The <strong>Walcron</strong> website was created for
@@ -46,8 +46,8 @@ const About = () => {
             websites.
           </p>
         </article>
-        <article id={authorModel[1].hashId}>
-          <h2>{authorModel[1].title}</h2>
+        <article id={authorModel[1].hashId} className="py-20">
+          <h2 className="text-2xl text-center pb-12">{authorModel[1].title}</h2>
           <p>
             We provide consultation on software development. Provide us your
             contact information and we will reach out to you.
@@ -67,8 +67,8 @@ const About = () => {
             <li>DevOps from development, integration to deployment.</li>
           </ul>
         </article>
-        <article id={authorModel[2].hashId}>
-          <h3>{authorModel[2].title}</h3>
+        <article id={authorModel[2].hashId} className="py-20">
+          <h3 className="text-2xl text-center pb-12">{authorModel[2].title}</h3>
           <Profiler
             profiles={[
               {
@@ -110,7 +110,10 @@ const About = () => {
             ]}
           />
         </article>
-        <LetterBox />
+        <hr />
+        <div className="py-8">
+          <LetterBox />
+        </div>
         <ScrollToTop />
       </div>
     </div>
