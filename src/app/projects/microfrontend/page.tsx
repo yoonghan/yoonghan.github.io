@@ -29,8 +29,8 @@ const Projects = ({}) => {
   ]
 
   return (
-    <div className="mx-auto max-w-screen-lg p-8">
-      <h1 className="text-2xl">Microfrontend</h1>
+    <div className="mx-auto max-w-screen-lg px-4 pb-20">
+      <h1 className="py-8">Microfrontend</h1>
       <div>
         <p>
           Partially experimental but going forward, all written javascript
