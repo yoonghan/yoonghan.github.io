@@ -15,8 +15,8 @@ export const metadata = {
 
 const Projects = ({}) => {
   return (
-    <div className="mx-auto max-w-screen-lg px-4 pb-20">
-      <h1 className="py-8">Playground projects</h1>
+    <div className="walcron-container">
+      <h1>Playground projects</h1>
       <div>
         <p>
           Projects that we are working on{" "}

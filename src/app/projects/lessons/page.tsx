@@ -20,8 +20,8 @@ export const metadata = {
 
 const Lessons = ({}) => {
   return (
-    <div className="mx-auto max-w-screen-lg px-4 pb-20">
-      <h1 className="py-8">Lessons learned from projects</h1>
+    <div className="walcron-container">
+      <h1>Lessons learned from projects</h1>
       <span>What was learned over time for the projects.</span>
       <br />
       <br />

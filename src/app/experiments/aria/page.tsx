@@ -11,7 +11,7 @@ export const metadata = {
 
 function Aria() {
   return (
-    <div className="p-16">
+    <div className="walcron-container">
       <h1>{metadata.title}</h1>
       <p> Placeholder to test aria</p>
 
