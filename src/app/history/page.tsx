@@ -18,11 +18,11 @@ const History = ({}) => {
     <div className="walcron-container">
       <h1>Site&apos;s history</h1>
       <section>
-        <h2 className="text-left">Improvement Timeline</h2>
+        <h2 className="text-center pb-4">Improvement Timeline</h2>
         <Timeline events={siteHistory} />
       </section>
       <section>
-        <h2 className="text-left">Motivational books</h2>
+        <h3 className="text-left">Motivational books</h3>
         <Table list={nonFictionBooks} headers={["Book title", "Learnt"]} />
       </section>
       <ScrollToTop />
