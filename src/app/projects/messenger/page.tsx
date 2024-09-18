@@ -57,8 +57,8 @@ const Messenger = ({ appKey, cluster }: Props) => {
   )
 
   return (
-    <div className="mx-auto max-w-screen-lg px-4 pb-8">
-      <h1>A Walcron Chat Program</h1>
+    <div className="mx-auto max-w-screen-lg px-4 pb-20">
+      <h1 className="py-8">A Walcron Chat Program</h1>
       <p>
         Used this to test on 3rd party integration and asynchronous replies. The
         reason this was build was to test authentication, code coverage,

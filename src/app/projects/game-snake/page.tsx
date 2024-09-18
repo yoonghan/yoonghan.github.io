@@ -12,8 +12,8 @@ export const metadata = {
 const GameSnake = () => {
   return (
     <>
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <h1>Snake Game</h1>
+      <div className="mx-auto max-w-screen-lg px-4 pb-20">
+        <h1 className="py-8">Snake Game</h1>
         <SnakeGame />
       </div>
     </>
