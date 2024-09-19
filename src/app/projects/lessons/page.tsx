@@ -304,13 +304,12 @@ const Lessons = ({}) => {
               `}</pre>
             </li>
             <li>
-              {'"needs"'} meant it can skip stages, if there is variable 
-              required from dotenv stage; include that stage into needs. i.e. 
+              {'"needs"'} meant it can skip stages, if there is variable
+              required from dotenv stage; include that stage into needs. i.e.
               needs: [stage_that_creates_dotenv, other_stages]
             </li>
             <li>
-              before_script and script are actually grouped together,
-              after_script is special even if it fails it will not fail the stage.
+              before_script and script are actually grouped together, after_script is special even if it fails it will not fail the stage.
             </li>
           </ul>
         </section>
