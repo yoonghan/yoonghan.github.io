@@ -12,7 +12,7 @@ export const metadata = {
 
 function Storybook() {
   return (
-    <div>
+    <div className="walcron-container">
       <h1>Component Storybook</h1>
       <p>
         Instead of having a dedicated storybook component, we have decided to

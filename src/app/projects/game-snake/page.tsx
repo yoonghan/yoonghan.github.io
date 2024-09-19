@@ -12,7 +12,7 @@ export const metadata = {
 const GameSnake = () => {
   return (
     <>
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
+      <div className="walcron-container">
         <h1>Snake Game</h1>
         <SnakeGame />
       </div>

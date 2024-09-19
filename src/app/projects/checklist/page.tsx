@@ -82,7 +82,7 @@ const CheckList = () => {
 
   return (
     <div className="mx-auto max-w-screen-lg px-4 pb-8">
-      <h1>Important Checklist Links</h1>
+      <h1 className="py-8">Important Checklist Links</h1>
       <span>A checklist of important links to test and for reference.</span>
       <span>
         Note: Page is not robot indexed and viewable only by desktop. May change

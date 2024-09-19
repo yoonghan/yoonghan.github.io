@@ -54,7 +54,7 @@ function Body({ children }: { children: React.ReactNode }) {
       <header>
         <MegaMenu />
       </header>
-      {children}
+      <main className={"min-h-screen"}>{children}</main>
       <Footer />
       <GoogleAnalytic ga4Id={site.ga4Id} />
     </>
