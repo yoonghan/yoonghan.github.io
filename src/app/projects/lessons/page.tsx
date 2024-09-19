@@ -298,15 +298,15 @@ const Lessons = ({}) => {
             <li>
               To share variables from different stages, create a dotenv artifact
               (similar to Github). Variables will be pass only if
-              <pre className="code">
+              <pre className="code">{`
                 1) Following stages with no needs command, 
                 2) Stages that refer to the dotenv stage.
-              </pre>
+              `}</pre>
             </li>
             <li>
-              {'"needs"'} meant it can skip stages, if there is variable required
-              from dotenv stage; include that stage into needs.
-              i.e. needs: [stage_that_creates_dotenv, other_stages]
+              {'"needs"'} meant it can skip stages, if there is variable 
+              required from dotenv stage; include that stage into needs. i.e. 
+              needs: [stage_that_creates_dotenv, other_stages]
             </li>
             <li>
               before_script and script are actually grouped together,
@@ -322,8 +322,8 @@ const Lessons = ({}) => {
               for jobs running scripts.
             </li>
             <li>
-              Remember to use {'"secrets: inherit"'} on parent job to enable secret
-              passing to downstream workflow.
+              Remember to use {'"secrets: inherit"'} on parent job to enable
+              secret passing to downstream workflow.
             </li>
           </ul>
         </section>
