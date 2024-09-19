@@ -15,18 +15,19 @@ export const metadata = {
 
 const Experiments = ({}) => {
   return (
-    <div className="p-8 h-screen">
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <h1>Experimental projects</h1>
-        <div>
-          <p>
-            Incomplete or projects that are used for test-beds
-            <small>(due to migration most are not moved over)</small>
-          </p>
-          <Card cards={cards} />
-        </div>
+    <div className="walcron-container">
+      <h1>Experimental projects</h1>
+      <div>
+        <p>
+          Incomplete or projects that are used for test-beds
+          <small>(due to migration most are not moved over)</small>
+        </p>
+        <Card cards={cards} />
       </div>
-      <LetterBox />
+      <hr />
+      <div className="py-8">
+        <LetterBox />
+      </div>
       <ScrollToTop />
     </div>
   )

@@ -1,6 +1,8 @@
 .container :is(section, article) {
   margin-top: 3rem;
   margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container p {

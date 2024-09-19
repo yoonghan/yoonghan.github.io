@@ -18,7 +18,7 @@ describe("Timeline", () => {
     },
   ]
 
-  it("should have 2 groups", () => {
+  it("should have 2 groups with title", () => {
     render(<Timeline events={events} />)
     expect(screen.getAllByRole("listitem")).toHaveLength(2)
   })
