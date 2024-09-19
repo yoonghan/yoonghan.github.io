@@ -288,17 +288,42 @@ const Lessons = ({}) => {
         <section>
           <title>Gitlab</title>
           <ul>
-            <li>Variables can only be passed to Downstream triggers with <Link href="https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline">Variables/Artifacts and needs</Link>. Do not use Needs, it was so hard to troubleshoot.</li>
-            <li>To share variables from different stages, create a dotenv artifact (similar to Github). Variables will be pass only if 1) Following stages with no needs command, 2) Stages that refer to the dotenv stage. </li>
-            <li>{'"Needs"'} meant it can skip stages, if there is variable required from dotenv stage; include that stage into needs. i.e. needs: [stage_that_creates_dotenv, other_stages] </li>
-            <li>before_script and script are actually grouped together, after_script is special even if it fails it will not fail the stage.</li>
+            <li>
+              Variables can only be passed to Downstream triggers with 
+              <Link href="https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline">
+                Variables/Artifacts and needs
+              </Link>
+              . Do not use Needs, it was so hard to troubleshoot.</li>
+            <li>
+              To share variables from different stages, create a dotenv artifact
+              (similar to Github). Variables will be pass only if 
+              <pre className="code">
+              1) Following stages with no needs command, 
+              2) Stages that refer to the dotenv stage.
+              </pre>
+            </li>
+            <li>
+              {'"needs"'} meant it can skip stages, if there is variable required 
+              from dotenv stage; include that stage into needs. 
+              i.e. needs: [stage_that_creates_dotenv, other_stages]
+            </li>
+            <li>
+              before_script and script are actually grouped together, 
+              after_script is special even if it fails it will not fail the stage.
+            </li>
           </ul>
         </section>
         <section>
           <title>Github</title>
           <ul>
-            <li>If one is creating actions, remember to add {'"shell: bash"'} for jobs running scripts.</li>
-            <li>Remember to use {'"secrets: inherit"'} on parent job to enable secret passing to downstream workflow.</li>
+            <li>
+              If one is creating actions, remember to add {'"shell: bash"'} 
+              for jobs running scripts.
+            </li>
+            <li>
+              Remember to use {'"secrets: inherit"'} on parent job to enable secret 
+              passing to downstream workflow.
+            </li>
           </ul>
         </section>
       </article>
