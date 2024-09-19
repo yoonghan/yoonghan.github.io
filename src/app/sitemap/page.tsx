@@ -38,8 +38,8 @@ const SiteMap = ({}) => {
 
   return (
     <>
-      <div className="max-w-screen-md mx-auto p-8">
-        <h1 className={"text-2xl pb-16"}>SiteMap</h1>
+      <div className="walcron-container">
+        <h1>SiteMap</h1>
         {draw(groupedMenu)}
       </div>
       <ScrollToTop />

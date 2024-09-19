@@ -15,18 +15,20 @@ export const metadata = {
 
 const Projects = ({}) => {
   return (
-    <div className="p-8">
-      <div className="mx-auto max-w-screen-lg px-4 pb-8">
-        <h1>Playground projects</h1>
-        <div>
-          <p>
-            Projects that we are working on{" "}
-            <small>(due to migration most are not moved over)</small>
-          </p>
-          <Card cards={cards} />
-        </div>
+    <div className="walcron-container">
+      <h1>Playground projects</h1>
+      <div>
+        <p>
+          Projects that we are working on{" "}
+          <small>(due to migration most are not moved over)</small>
+        </p>
+        <Card cards={cards} />
       </div>
-      <LetterBox />
+
+      <hr />
+      <div className="py-8">
+        <LetterBox />
+      </div>
       <ScrollToTop />
     </div>
   )

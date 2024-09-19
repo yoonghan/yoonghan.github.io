@@ -13,8 +13,10 @@ function Homepage() {
 
   return (
     <>
-      <main className={`${styles.container} container mx-auto px-4`}>
-        <article className="text-center max-w-md mx-auto">
+      <div
+        className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
+      >
+        <article className="text-center max-w-md">
           <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
           <p>
             This is a sandbox website for the two of us to{" "}
@@ -45,7 +47,7 @@ function Homepage() {
           </figure>
         </article>
         <hr />
-        <article className="max-w-screen-md mx-auto">
+        <article>
           <h2 className="text-2xl text-center pb-12">
             What is truely important for {walcronText} development?
           </h2>
@@ -252,7 +254,7 @@ function Homepage() {
         </article>
         <hr />
         {/* Accessibility */}
-        <article className="max-w-screen-md mx-auto">
+        <article>
           <h4 className="text-3xl text-center" id="accessibility">
             Accessibility and Readability (WCAG)
           </h4>
@@ -321,7 +323,7 @@ function Homepage() {
         </article>
         <hr />
         {/* Monitoring */}
-        <article className="max-w-screen-md mx-auto">
+        <article>
           <h5 className="text-3xl text-center" id="monitoring">
             Monitoring
           </h5>
@@ -357,7 +359,7 @@ function Homepage() {
         </article>
         <hr />
         {/* Performance */}
-        <article className="max-w-screen-md mx-auto">
+        <article>
           <h6 className="text-3xl text-center" id="performance">
             Performance
           </h6>
@@ -385,10 +387,11 @@ function Homepage() {
             </figure>
           </section>
         </article>
-        <div className="py-16">
+        <hr />
+        <div className="py-8">
           <LetterBox />
         </div>
-      </main>
+      </div>
       <SocialFab />
     </>
   )
