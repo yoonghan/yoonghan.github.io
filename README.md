@@ -152,6 +152,7 @@ Process.env variable for client side access are required to be defined in .env f
 
 1. To regenerate new Wasm from webassembly, run the command below:
 2. The scripts include a custom .gitignore.
+3. Incase wanted to run rust:test, remove --headless and browse with https://localhost:8000. Failed to run it in MacOS.
 
 ```
 npm run rust:generate
