@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import "@/__tests__/mocks/snakeWasmMock"
+import { mockRandom } from "@/__tests__/mocks/snakeWasmMock"
 import GameSnake from "./page"
 import userEvent from "@testing-library/user-event"
-import random from "@/util/random"
 
 describe("Snake Game", () => {
   const renderComponent = () => {
@@ -33,10 +32,6 @@ describe("Snake Game", () => {
   })
 
   it("should randomize once board dimension is changed", async () => {
-    const mockRandom = jest.fn()
-    const spyOnRandom = jest.spyOn(random, "rnd")
-    spyOnRandom.mockImplementation(mockRandom)
-    mockRandom.mockReturnValue(1)
     renderComponent()
     expect(mockRandom).toHaveBeenCalled()
     expect(screen.getByText("Snake Game")).toBeInTheDocument()
@@ -48,6 +43,6 @@ describe("Snake Game", () => {
       initialSelectionEnd: 2,
     })
     expect(screen.getByLabelText("World Dimension:")).toHaveValue(12)
-    expect(mockRandom).toBeCalledTimes(3)
+    expect(mockRandom).toBeCalledTimes(7)
   })
 })

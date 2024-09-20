@@ -2,18 +2,18 @@
 /* eslint-disable */
 /**
 */
+export enum GameStatus {
+  Play = 0,
+  Won = 1,
+  Lost = 2,
+}
+/**
+*/
 export enum Direction {
   UP = 0,
   DOWN = 1,
   LEFT = 2,
   RIGHT = 3,
-}
-/**
-*/
-export enum GameStatus {
-  Play = 0,
-  Won = 1,
-  Lost = 2,
 }
 /**
 */
@@ -23,7 +23,7 @@ export class World {
 * @param {number} width
 * @param {number} snake_pos
 * @param {number} snake_size
-* @param {number | undefined} reward_idx
+* @param {number | undefined} [reward_idx]
 * @returns {World}
 */
   static new(width: number, snake_pos: number, snake_size: number, reward_idx?: number): World;
@@ -52,16 +52,16 @@ export class World {
 */
   snake_body_length(): number;
 /**
-* @param {number} direction
+* @param {Direction} direction
 */
-  update_direction(direction: number): void;
+  update_direction(direction: Direction): void;
 /**
 */
   play(): void;
 /**
-* @returns {number | undefined}
+* @returns {GameStatus | undefined}
 */
-  game_status(): number | undefined;
+  game_status(): GameStatus | undefined;
 /**
 */
   step(): void;
@@ -71,7 +71,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly __wbg_world_free: (a: number) => void;
+  readonly __wbg_world_free: (a: number, b: number) => void;
   readonly world_new: (a: number, b: number, c: number, d: number, e: number) => number;
   readonly world_points: (a: number) => number;
   readonly world_reward_cell: (a: number, b: number) => void;
@@ -91,18 +91,18 @@ export type SyncInitInput = BufferSource | WebAssembly.Module;
 * Instantiates the given `module`, which can either be bytes or
 * a precompiled `WebAssembly.Module`.
 *
-* @param {SyncInitInput} module
+* @param {{ module: SyncInitInput }} module - Passing `SyncInitInput` directly is deprecated.
 *
 * @returns {InitOutput}
 */
-export function initSync(module: SyncInitInput): InitOutput;
+export function initSync(module: { module: SyncInitInput } | SyncInitInput): InitOutput;
 
 /**
 * If `module_or_path` is {RequestInfo} or {URL}, makes a request and
 * for everything else, calls `WebAssembly.instantiate` directly.
 *
-* @param {InitInput | Promise<InitInput>} module_or_path
+* @param {{ module_or_path: InitInput | Promise<InitInput> }} module_or_path - Passing `InitInput` directly is deprecated.
 *
 * @returns {Promise<InitOutput>}
 */
-export default function init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
+export default function __wbg_init (module_or_path?: { module_or_path: InitInput | Promise<InitInput> } | InitInput | Promise<InitInput>): Promise<InitOutput>;
