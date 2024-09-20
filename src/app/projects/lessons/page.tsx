@@ -27,7 +27,7 @@ const Lessons = ({}) => {
       <br />
       <br />
       <article className="my-8">
-        <h2>Large JS Chunks in Walcron website</h2>
+        <strong>Large JS Chunks in Walcron website</strong>
         <hr />
         <span className="text-red-500">Issues we faced</span>
         <ul>
@@ -88,7 +88,7 @@ const Lessons = ({}) => {
         </ol>
       </article>
       <article className="my-8">
-        <h2>Testing with Object.defineProperty</h2>
+        <strong>Testing with Object.defineProperty</strong>
         <p>
           Test suite that have Object.definedProperty override on certain
           behaviours cannot be redefined. If test case runs after it&apos;s used
@@ -104,7 +104,7 @@ const Lessons = ({}) => {
             `}</pre>
       </article>
       <article>
-        <h2>Jest Library Mock import must always be the first</h2>
+        <strong>Jest Library Mock import must always be the first</strong>
         <p>
           Jest mocked import for library order is important and must always be
           the first to override the import of the original 3rd party library.
@@ -119,9 +119,9 @@ const Lessons = ({}) => {
             `}</pre>
       </article>
       <article className="my-8">
-        <h2>
+        <strong>
           Jest library with 3rd party library import under NEXT.JS is unsolvable
-        </h2>
+        </strong>
         <p>
           Error of `Cannot use import statement outside a module`, cannot be
           solved at the moment when 3rd party library are executed via mock.
@@ -130,14 +130,14 @@ const Lessons = ({}) => {
         </p>
       </article>
       <article className="my-8">
-        <h2>GIT commands</h2>
+        <strong>GIT commands</strong>
         <p>https://www.internalpointers.com/post/squash-commits-into-one-git</p>
         <pre className={"code"}>{`
             git rebase --interactive HEAD~3
             `}</pre>
       </article>
       <article className="my-8">
-        <h2>React Suspense</h2>
+        <strong>React Suspense</strong>
         <p>
           A new way to handle asynchronous response. But take notes on this:
         </p>
@@ -163,8 +163,8 @@ const Lessons = ({}) => {
         </ol>
       </article>
       <article className="my-8">
-        <h3>Google Tag</h3>
-        <ul className="list-decimal">
+        <strong>Google Tag</strong>
+        <ul className="list-decimal ml-4">
           <li>
             Click on a container and select <strong>Preview</strong>, find a
             button {'"Select Version"'} and do debugging. Do not use
@@ -284,10 +284,10 @@ const Lessons = ({}) => {
         </ul>
       </article>
       <article className="my-8">
-        <h3>CI/CD Caveat</h3>
-        <section>
-          <title>Gitlab</title>
-          <ul>
+        <strong>CI/CD Caveat</strong>
+        <section className="my-4">
+          <em>Gitlab</em>
+          <ul className="list-decimal ml-4">
             <li>
               Variables can only be passed to Downstream triggers with
               <Link href="https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline">
@@ -299,8 +299,8 @@ const Lessons = ({}) => {
               To share variables from different stages, create a dotenv artifact
               (similar to Github). Variables will be pass only if
               <pre className="code">{`
-                1) Following stages with no needs command, 
-                2) Stages that refer to the dotenv stage.
+1) Following stages with no needs command, 
+2) Stages that refer to the dotenv stage.
               `}</pre>
             </li>
             <li>
@@ -314,9 +314,9 @@ const Lessons = ({}) => {
             </li>
           </ul>
         </section>
-        <section>
-          <title>Github</title>
-          <ul>
+        <section className="my-4">
+          <em>Github</em>
+          <ul className="list-decimal ml-4">
             <li>
               If one is creating actions, remember to add {'"shell: bash"'}
               for jobs running scripts.
