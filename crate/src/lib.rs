@@ -63,7 +63,7 @@ pub struct World {
     game_status: Option<GameStatus>
 }
 
-#[wasm_bindgen(module="/src/util/random.js")]
+#[wasm_bindgen(module="/src/util/random.ts")]
 extern {
     fn rnd(max: usize) -> usize; 
 }

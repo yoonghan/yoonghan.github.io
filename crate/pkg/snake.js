@@ -1,4 +1,4 @@
-import { rnd } from './snippets/snake-dabe990688d05d0c/src/util/random.js';
+import { rnd } from './snippets/snake-dabe990688d05d0c/src/util/random.ts';
 
 let wasm;
 
@@ -231,7 +231,7 @@ function __wbg_get_imports() {
         const ret = arg0;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbg_rnd_980494400e562b2a = function(arg0) {
+    imports.wbg.__wbg_rnd_32e828dfa9048c96 = function(arg0) {
         const ret = rnd(arg0 >>> 0);
         return ret;
     };
