@@ -1,6 +1,7 @@
 use snake::{ World, GameStatus }; 
 use wasm_bindgen_test::*;
 
+wasm_bindgen_test::wasm_bindgen_test_configure!(run_in_browser);
 
 mod restrictions {
     use super::*;

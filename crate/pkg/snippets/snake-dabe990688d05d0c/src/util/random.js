@@ -1,4 +1,4 @@
-function rnd(max: number) {
+function rnd(max) {
   return Math.floor(Math.random() * max)
 }
 

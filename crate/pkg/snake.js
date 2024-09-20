@@ -1,4 +1,4 @@
-import { rnd } from './snippets/snake-dabe990688d05d0c/src/util/random.ts';
+import { rnd } from './snippets/snake-dabe990688d05d0c/src/util/random.js';
 
 let wasm;
 
@@ -63,10 +63,10 @@ function getDataViewMemory0() {
 }
 /**
 */
-export const GameStatus = Object.freeze({ Play:0,"0":"Play",Won:1,"1":"Won",Lost:2,"2":"Lost", });
+export const Direction = Object.freeze({ UP:0,"0":"UP",DOWN:1,"1":"DOWN",LEFT:2,"2":"LEFT",RIGHT:3,"3":"RIGHT", });
 /**
 */
-export const Direction = Object.freeze({ UP:0,"0":"UP",DOWN:1,"1":"DOWN",LEFT:2,"2":"LEFT",RIGHT:3,"3":"RIGHT", });
+export const GameStatus = Object.freeze({ Play:0,"0":"Play",Won:1,"1":"Won",Lost:2,"2":"Lost", });
 
 const WorldFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
@@ -231,7 +231,7 @@ function __wbg_get_imports() {
         const ret = arg0;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbg_rnd_32e828dfa9048c96 = function(arg0) {
+    imports.wbg.__wbg_rnd_980494400e562b2a = function(arg0) {
         const ret = rnd(arg0 >>> 0);
         return ret;
     };

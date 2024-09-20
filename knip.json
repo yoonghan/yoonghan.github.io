@@ -3,6 +3,7 @@
     "backstop_data/**",
     "src/__mocks__/**",
     "crate/pkg/**",
+    "crate/target/**",
     "src/__smoke__/playwright.config.ts"
   ],
   "ignoreDependencies": [
