@@ -22,7 +22,7 @@ const customJestConfig = {
     // Handle module aliases (this will be automatically configured for you soon)
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@/images/*": "<rootDir>/public/img/$1",
-    "^@/util/*": "<rootDir>/util/$1",
+    "^@/util/*": "<rootDir>/src/util/$1",
   },
   testEnvironment: "jsdom",
   coverageReporters: ["text", "cobertura"],

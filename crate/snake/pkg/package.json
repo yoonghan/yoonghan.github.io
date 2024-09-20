@@ -1,5 +1,6 @@
 {
   "name": "snake",
+  "type": "module",
   "description": "A snake game similar to Nokia",
   "version": "0.3.0",
   "license": "Mozilla Public License Version 2.0",
@@ -12,7 +13,7 @@
     "snake.js",
     "snake.d.ts"
   ],
-  "module": "snake.js",
+  "main": "snake.js",
   "types": "snake.d.ts",
   "sideEffects": [
     "./snippets/*"
