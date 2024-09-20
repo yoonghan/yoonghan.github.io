@@ -14,7 +14,7 @@ type Props = {
   startRewardCell?: number
 }
 
-const wasmLoader = wrapPromise(init())
+const wasmLoader = wrapPromise(init({}))
 
 const SuspendedBoard = (props: Props) => {
   wasmLoader.read()

@@ -89,8 +89,10 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: "npm"
 
+      - uses: browser-actions/setup-chrome@v1
+
       - name: ⎔ Compile rust code
-        run: cd crate && wasm-pack build --target web --out-dir pkg_compare
+        run: cd crate/snake && wasm-pack build --target web --out-dir pkg_compare
         shell: bash
 
       - name: ✅ Validate Wasm binary is latest with BEST effort
@@ -98,13 +100,15 @@ jobs:
         shell: bash
 
       - name: ✅ Validate wasm test
-        run: npm run rust:generate && npm run rust:test
+        run: |
+          chrome --version
+          npm run rust:generate && npm run rust:test
         shell: bash
 
       - name: Add rust wasm bindgen for code coverage run
         run: |
           echo "commented, core Rust needs to improved"
-          # cd crate && cargo install wasm-bindgen-cli --vers "0.2.84"
+          # cd crate/snake && cargo install wasm-bindgen-cli --vers "0.2.84"
         shell: bash
 
       - name: ✅ Validate for code coverage, work stopped here apparrently there are no solutions yet
