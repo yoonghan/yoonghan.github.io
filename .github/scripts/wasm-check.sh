@@ -3,7 +3,7 @@
 # Can't compare *.wasm file as binary compilation are different
 # Can't compare js., order of generated function is different.
 
-cd crate
+cd crate/snake
 
 wasm_dir_compare="./$1/"
 wasm_dir=./pkg/
