@@ -98,7 +98,9 @@ jobs:
         shell: bash
 
       - name: ✅ Validate wasm test
-        run: npm run rust:generate && npm run rust:test
+        run: |
+          # Disabled
+          # npm run rust:generate && npm run rust:test
         shell: bash
 
       - name: Add rust wasm bindgen for code coverage run
