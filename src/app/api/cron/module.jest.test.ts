@@ -23,7 +23,7 @@ describe("cron/Module", () => {
     setStoreCollectionGetReturn()
     const response = await execute("today")
     expect(response).toStrictEqual({
-      message: "Triggered at 2024-09-01T01:01:01.293Z.",
+      message: "2024-09-01T01:01:01.293Z",
     })
   })
 

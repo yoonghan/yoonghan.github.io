@@ -18,12 +18,19 @@ describe("Checklist", () => {
       expect(screen.getByText("False")).toBeInTheDocument()
     })
 
+    it("should render as inactive if post is not found", () => {
+      render(<CronJobCheckList latestCronMessage="Not Found" />)
+      expect(screen.getByText("CronJob")).toBeInTheDocument()
+      expect(screen.getByText("False")).toBeInTheDocument()
+      expect(screen.getByText("Invalid Date")).toBeInTheDocument()
+    })
+
     it("should render as active if post is there", () => {
-      const result = "Triggered at 2024-09-21T22:28:36.381Z."
+      const result = "2024-09-01T01:01:01.293Z"
       render(<CronJobCheckList latestCronMessage={result} />)
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
-        screen.getByText(result, {
+        screen.getByText("9/1/2024, 9:01:01 AM", {
           normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
         })
       ).toBeInTheDocument()
@@ -35,9 +42,7 @@ describe("Checklist", () => {
         json: () => Promise.resolve(undefined),
       })
       const date = new Date()
-      render(
-        <CronJobCheckList latestCronMessage="Triggered at 2024-09-21T22:28:36.381Z." />
-      )
+      render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
       await userEvent.click(screen.getByRole("button", { name: "View More" }))
       expect(
         screen.queryByRole("button", { name: "View More" })
@@ -51,9 +56,7 @@ describe("Checklist", () => {
       json: () => Promise.resolve([]),
     })
     const date = new Date()
-    render(
-      <CronJobCheckList latestCronMessage="Triggered at 2024-09-21T22:28:36.381Z." />
-    )
+    render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
     await userEvent.click(screen.getByRole("button", { name: "View More" }))
     expect(
       screen.queryByRole("button", { name: "View More" })
@@ -66,9 +69,7 @@ describe("Checklist", () => {
   it("should show loading history", async () => {
     fetchMock.mockResolvedValue(new Promise(() => {}))
     const date = new Date()
-    render(
-      <CronJobCheckList latestCronMessage="Triggered at 2024-09-21T22:28:36.381Z." />
-    )
+    render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
     await userEvent.click(screen.getByRole("button", { name: "View More" }))
     expect(
       screen.queryByRole("button", { name: "View More" })

@@ -63,18 +63,25 @@ const CronJobCheckList = ({
     return <></>
   }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
+  const activeCron = useMemo((): {
+    Active: "True" | "False"
+    Message: string
+  } => {
+    const date = convertToLocalDate(latestCronMessage)
+
+    return {
+      Active: date === "N/A" || date === "Invalid Date" ? "False" : "True",
+      Message: date,
+    }
+  }, [convertToLocalDate, latestCronMessage])
+
   return (
     <section>
       <h3>CronJob</h3>
       <p>Check Cron job has executed.</p>
       <Table
         headers={["Active", "Message"]}
-        list={[
-          {
-            Active: latestCronMessage ? "True" : "False",
-            Message: latestCronMessage,
-          },
-        ]}
+        list={[activeCron]}
         className="text-black"
       />
       {!cronHistoryUrl && (

@@ -67,7 +67,7 @@ const getToday = async (): Promise<Message> => {
   const data = doc.data()
   if (data !== undefined) {
     return {
-      message: `Triggered at ${data[createdAtField]}.`,
+      message: data[createdAtField],
     }
   } else {
     return {
