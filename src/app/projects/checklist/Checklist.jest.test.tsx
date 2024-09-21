@@ -26,11 +26,11 @@ describe("Checklist", () => {
     })
 
     it("should render as active if post is there", () => {
-      const result = "2024-09-01T01:01:01.293Z"
+      const result = "2024-12-12T01:01:01.293Z"
       render(<CronJobCheckList latestCronMessage={result} />)
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
-        screen.getByText("9/1/2024, 9:01:01 AM", {
+        screen.getByText("12/12/2024", {
           normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
         })
       ).toBeInTheDocument()

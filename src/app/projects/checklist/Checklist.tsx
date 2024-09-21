@@ -5,7 +5,7 @@ import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { site } from "@/config/site"
-import { useCallback, useMemo, useState } from "react"
+import { ReactNode, useCallback, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
 import { type CronJob } from "@/app/api/cron/module"
 
@@ -65,13 +65,18 @@ const CronJobCheckList = ({
 
   const activeCron = useMemo((): {
     Active: "True" | "False"
-    Message: string
+    Message: ReactNode
   } => {
     const date = convertToLocalDate(latestCronMessage)
-
+    const str = date.split(",")
     return {
       Active: date === "N/A" || date === "Invalid Date" ? "False" : "True",
-      Message: date,
+      Message: (
+        <>
+          <span>{str[0]}</span>
+          <span>{str[1]}</span>
+        </>
+      ),
     }
   }, [convertToLocalDate, latestCronMessage])
 
