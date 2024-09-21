@@ -2,22 +2,23 @@
 
 import Button from "@/components/Button"
 import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
+import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { site } from "@/config/site"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
-
-interface PostedJob {
-  createdAt: string
-  jobName: string
-}
+import { type CronJob } from "@/app/api/cron/module"
 
 const apiUrl = `${site.apiUrl}/cron`
 
-const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
-  const [jsLocalDate, setJsLocalDate] = useState(postedJob?.createdAt)
+const CronJobCheckList = ({
+  latestCronMessage,
+}: {
+  latestCronMessage?: string
+}) => {
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
-  const { error: cronHistoryError } = useFetch<string[]>(cronHistoryUrl)
+  const { error: cronHistoryError, data: cronHistoryData } =
+    useFetch<CronJob[]>(cronHistoryUrl)
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -30,11 +31,24 @@ const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     setCronHistoryUrl(apiUrl)
   }, [])
 
-  useEffect(() => {
-    setJsLocalDate(convertToLocalDate(postedJob?.createdAt))
-  }, [convertToLocalDate, postedJob?.createdAt])
-
   const cronHistories = useMemo(() => {
+    if (cronHistoryData) {
+      return (
+        <ScrollableList
+          maxItemsToRender={50}
+          listItems={cronHistoryData.map((history) => ({
+            id: `${history.id}`,
+            content: (
+              <span>
+                <span>{history.source}</span>{" "}
+                {convertToLocalDate(`${history.createdAt}`)}
+              </span>
+            ),
+          }))}
+        />
+      )
+    }
+
     if (cronHistoryError) {
       return (
         <span style={{ color: "red" }}>
@@ -44,22 +58,21 @@ const CronJobCheckList = ({ postedJob }: { postedJob?: PostedJob }) => {
     }
 
     if (cronHistoryUrl) {
-      return <span>Should Load History but it no longer works.</span>
+      return <span>Loading data...</span>
     }
     return <></>
-  }, [cronHistoryError, cronHistoryUrl])
+  }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
   return (
     <section>
       <h3>CronJob</h3>
       <p>Check Cron job has executed.</p>
       <Table
-        headers={["Active", "Last Execution", "Job Executed"]}
+        headers={["Active", "Message"]}
         list={[
           {
-            Active: postedJob ? "True" : "False",
-            "Last Execution": jsLocalDate,
-            "Job Executed": postedJob?.jobName || "N/A",
+            Active: latestCronMessage ? "True" : "False",
+            Message: latestCronMessage,
           },
         ]}
         className="text-black"

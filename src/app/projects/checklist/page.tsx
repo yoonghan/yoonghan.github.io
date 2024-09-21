@@ -73,12 +73,18 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
 ]
 
-const checklistLoader = wrapPromise<undefined>(
-  new Promise((resolve) => resolve(undefined))
+const checkCronJob = wrapPromise<string | undefined>(
+  new Promise((resolve) => {
+    fetch(`${site.apiUrl}/cron?action=today`)
+      .then((resp) => resp.json())
+      .then((json) => {
+        resolve(json?.message)
+      })
+  })
 )
 
 const CheckList = () => {
-  const postedCronJob = checklistLoader.read()
+  const latestCronMessage = checkCronJob.read()
 
   return (
     <div className="mx-auto max-w-screen-lg px-4 pb-8">
@@ -93,7 +99,7 @@ const CheckList = () => {
       <TroubleshootPwaCheckList />
       <br />
       <br />
-      <CronJobCheckList postedJob={postedCronJob} />
+      <CronJobCheckList latestCronMessage={latestCronMessage} />
       <br />
       <br />
       <Table headers={["Site", "Description", "Url"]} list={links} />
