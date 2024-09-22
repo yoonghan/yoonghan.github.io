@@ -37,6 +37,7 @@ describe("cron", () => {
     expect(response.status).toBe(400)
     expect(await response.json()).toStrictEqual({
       error: "(invalid) action not supported.",
+      message: "Only GET with action query of log",
     })
   })
 })

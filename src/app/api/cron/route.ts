@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
   if (!(response instanceof Array) && isMessage(response) && response.error) {
     return NextResponse.json(
       {
+        message: response.message,
         error: response.error,
       },
       {
