@@ -63,10 +63,10 @@ function getDataViewMemory0() {
 }
 /**
 */
-export const Direction = Object.freeze({ UP:0,"0":"UP",DOWN:1,"1":"DOWN",LEFT:2,"2":"LEFT",RIGHT:3,"3":"RIGHT", });
+export const GameStatus = Object.freeze({ Play:0,"0":"Play",Won:1,"1":"Won",Lost:2,"2":"Lost", });
 /**
 */
-export const GameStatus = Object.freeze({ Play:0,"0":"Play",Won:1,"1":"Won",Lost:2,"2":"Lost", });
+export const Direction = Object.freeze({ UP:0,"0":"UP",DOWN:1,"1":"DOWN",LEFT:2,"2":"LEFT",RIGHT:3,"3":"RIGHT", });
 
 const WorldFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
