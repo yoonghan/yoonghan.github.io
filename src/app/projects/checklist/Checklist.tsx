@@ -5,9 +5,9 @@ import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { site } from "@/config/site"
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+import { CronJob } from "@/types/cron"
+import { ReactNode, useCallback, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
-import { type CronJob } from "@/app/api/cron/module"
 
 const apiUrl = `${site.apiUrl}/cron`
 
