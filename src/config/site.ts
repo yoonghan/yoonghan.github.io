@@ -25,10 +25,14 @@ function getCanonical(relativeUrl: string) {
   }
 }
 
+//This url is cyclic, as in this api/cron must exists before the site can use it. This url is to check last cron updated when "build" is made
+const cronApiUrl = "https://www.walcron.com/api/cron?action=today"
+
 const site = {
   url: getUrl(),
   apiUrl: getApiUrl(),
   ga4Id: getGA4Id(),
+  cronApiUrl,
   generateCanonical: (relativeUrl: string) => getCanonical(relativeUrl),
   defaultUrl,
 }

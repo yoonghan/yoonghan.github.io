@@ -28,6 +28,7 @@ export class Firebase {
       FIREBASE_CLIENT_EMAIL,
       FIREBASE_CLIENT_ID,
       FIREBASE_CLIENT_X509_CERT_URL,
+      FIREBASE_DATABASE_URL,
     } = process.env
     const keyValue = {
       FIREBASE_BUCKET,
@@ -37,6 +38,7 @@ export class Firebase {
       FIREBASE_CLIENT_EMAIL,
       FIREBASE_CLIENT_ID,
       FIREBASE_CLIENT_X509_CERT_URL,
+      FIREBASE_DATABASE_URL,
     }
     if (hasEmptyValueInObject(keyValue)) {
       throw new Error("One of the Firebase key was not initialized.")
@@ -52,6 +54,7 @@ export class Firebase {
           getFirebaseCredential(validCredentials)
         ),
         storageBucket: validCredentials.FIREBASE_BUCKET,
+        databaseURL: validCredentials.FIREBASE_DATABASE_URL,
       })
     }
     return admin
@@ -59,4 +62,7 @@ export class Firebase {
 
   public static getStorageBucket = () =>
     Firebase.getFirebaseInitializeApp().storage().bucket()
+
+  public static getFirestore = () =>
+    Firebase.getFirebaseInitializeApp().firestore()
 }
