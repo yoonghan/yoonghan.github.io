@@ -99,7 +99,10 @@ const CheckList = () => {
       <TroubleshootPwaCheckList />
       <br />
       <br />
-      <CronJobCheckList latestDeployedCronMessage={latestDeployedCronMessage} />
+      <CronJobCheckList
+        latestDeployedCronMessage={latestDeployedCronMessage}
+        queryTodayCron={true}
+      />
       <br />
       <br />
       <Table headers={["Site", "Description", "Url"]} list={links} />

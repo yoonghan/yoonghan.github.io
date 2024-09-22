@@ -25,17 +25,36 @@ describe("Checklist", () => {
       expect(screen.getByText("Invalid Date")).toBeInTheDocument()
     })
 
-    it("should render as active if post is there", () => {
+    it("should render as active if post is there", async () => {
       const result = "2024-12-12T01:01:01.293Z"
-      render(<CronJobCheckList latestDeployedCronMessage={result} />)
+      fetchMock.mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            message: result,
+          }),
+      })
+      render(
+        <CronJobCheckList
+          latestDeployedCronMessage={result}
+          queryTodayCron={true}
+        />
+      )
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
-        screen.getByText("12/12/2024", {
-          normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
-        })
+        within(screen.getByTestId("result Since Deployment")).getByText("True")
       ).toBeInTheDocument()
-      expect(screen.getByText("True")).toBeInTheDocument()
-      expect(screen.getByText("Since Deployment")).toBeInTheDocument()
+      expect(
+        await within(screen.getByTestId("message Since Deployment")).findByText(
+          "12/12/2024"
+        )
+      ).toBeInTheDocument()
+      expect(
+        await within(screen.getByTestId("message Today's Run")).findByText(
+          "12/12/2024"
+        )
+      ).toBeInTheDocument()
     })
 
     it("should hide View More button after click and display table", async () => {
@@ -52,36 +71,36 @@ describe("Checklist", () => {
       ).not.toBeInTheDocument()
       expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
     })
-  })
 
-  it("should hide View More button and show error", async () => {
-    fetchMock.mockResolvedValue({
-      json: () => Promise.resolve([]),
+    it("should hide View More button and show error", async () => {
+      fetchMock.mockResolvedValue({
+        json: () => Promise.resolve([]),
+      })
+      const date = new Date()
+      render(
+        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+      )
+      await userEvent.click(screen.getByRole("button", { name: "View More" }))
+      expect(
+        screen.queryByRole("button", { name: "View More" })
+      ).not.toBeInTheDocument()
+      expect(
+        screen.getByText("Fetch to /api/cron failed, try again later")
+      ).toBeInTheDocument()
     })
-    const date = new Date()
-    render(
-      <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
-    )
-    await userEvent.click(screen.getByRole("button", { name: "View More" }))
-    expect(
-      screen.queryByRole("button", { name: "View More" })
-    ).not.toBeInTheDocument()
-    expect(
-      screen.getByText("Fetch to /api/cron failed, try again later")
-    ).toBeInTheDocument()
-  })
 
-  it("should show loading history", async () => {
-    fetchMock.mockResolvedValue(new Promise(() => {}))
-    const date = new Date()
-    render(
-      <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
-    )
-    await userEvent.click(screen.getByRole("button", { name: "View More" }))
-    expect(
-      screen.queryByRole("button", { name: "View More" })
-    ).not.toBeInTheDocument()
-    expect(screen.getByText("Loading data...")).toBeInTheDocument()
+    it("should show loading history", async () => {
+      fetchMock.mockResolvedValue(new Promise(() => {}))
+      const date = new Date()
+      render(
+        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+      )
+      await userEvent.click(screen.getByRole("button", { name: "View More" }))
+      expect(
+        screen.queryByRole("button", { name: "View More" })
+      ).not.toBeInTheDocument()
+      expect(screen.getByText("Loading data...")).toBeInTheDocument()
+    })
   })
 
   describe("TroubleshootPwaCheckList", () => {

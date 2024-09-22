@@ -5,7 +5,7 @@ import { usePwaHooks } from "@/components/CommandBar/PwaEnabler/usePwaHooks"
 import ScrollableList from "@/components/ScrollableList"
 import Table from "@/components/Table"
 import { site } from "@/config/site"
-import { ReactNode, useCallback, useMemo, useState } from "react"
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { useFetch } from "usehooks-ts"
 import { type CronJob } from "@/app/api/cron/module"
 
@@ -13,12 +13,17 @@ const apiUrl = `${site.apiUrl}/cron`
 
 const CronJobCheckList = ({
   latestDeployedCronMessage,
+  queryTodayCron,
 }: {
   latestDeployedCronMessage?: string
+  queryTodayCron?: boolean
 }) => {
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
   const { error: cronHistoryError, data: cronHistoryData } =
     useFetch<CronJob[]>(cronHistoryUrl)
+  const { data: latestCron } = useFetch<any>(
+    queryTodayCron ? site.cronApiUrl : undefined
+  )
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
     if (!createdAt) {
@@ -63,24 +68,34 @@ const CronJobCheckList = ({
     return <></>
   }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
-  const activeCron = useMemo((): {
-    Checks: string
-    Active: "True" | "False"
-    Message: ReactNode
-  } => {
-    const date = convertToLocalDate(latestDeployedCronMessage)
-    const str = date.split(",")
-    return {
-      Checks: "Since Deployment",
-      Active: date === "N/A" || date === "Invalid Date" ? "False" : "True",
-      Message: (
-        <>
-          <span>{str[0]}</span>
-          <span>{str[1]}</span>
-        </>
-      ),
-    }
-  }, [convertToLocalDate, latestDeployedCronMessage])
+  const generateCronTable = useCallback(
+    (
+      checksTitle: string,
+      message: string | undefined
+    ): {
+      Checks: string
+      Active: ReactNode
+      Message: ReactNode
+    } => {
+      const date = convertToLocalDate(message)
+      const str = date.split(",")
+      return {
+        Checks: checksTitle,
+        Active: (
+          <span data-testid={`result ${checksTitle}`}>
+            {date === "N/A" || date === "Invalid Date" ? "False" : "True"}
+          </span>
+        ),
+        Message: (
+          <>
+            <span data-testid={`message ${checksTitle}`}>{str[0]}</span>
+            <span>{str[1]}</span>
+          </>
+        ),
+      }
+    },
+    [convertToLocalDate]
+  )
 
   return (
     <section>
@@ -88,7 +103,12 @@ const CronJobCheckList = ({
       <p>Check Cron job has executed.</p>
       <Table
         headers={["Checks", "Active", "Message"]}
-        list={[activeCron]}
+        list={[
+          generateCronTable("Since Deployment", latestDeployedCronMessage),
+          ...(queryTodayCron
+            ? [generateCronTable("Today's Run", latestCron?.message)]
+            : []),
+        ]}
         className="text-black"
       />
       {!cronHistoryUrl && (
