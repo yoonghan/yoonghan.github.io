@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { CronJob, Message, execute } from "@/app/api/cron/module"
+import { execute } from "@/app/api/cron/module"
+import { CronJob, Message } from "@/types/cron"
 
 function isMessage(response: Message | CronJob): response is Message {
   return (<Message>response).error !== undefined
