@@ -58,4 +58,12 @@ describe("root-url", () => {
     const { site } = await import("./site")
     expect(site.generateCanonical("/about")).toStrictEqual({})
   })
+
+  it("should have a cron api to get latest deployment update", async () => {
+    //read site.ts for more details
+    const { site } = await import("./site")
+    expect(site.cronApiUrl).toStrictEqual(
+      "https://www.walcron.com/api/cron?action=today"
+    )
+  })
 })
