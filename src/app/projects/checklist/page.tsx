@@ -75,7 +75,7 @@ const links: Array<{ [key: string]: ReactNode }> = [
 
 const checkCronJob = wrapPromise<string | undefined>(
   new Promise((resolve) => {
-    fetch(`${site.apiUrl}/cron?action=today`)
+    fetch(site.cronApiUrl)
       .then((resp) => resp.json())
       .then((json) => {
         resolve(json?.message)
