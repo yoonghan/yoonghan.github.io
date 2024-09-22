@@ -19,7 +19,7 @@ describe("Checklist", () => {
     })
 
     it("should render as inactive if post is not found", () => {
-      render(<CronJobCheckList latestCronMessage="Not Found" />)
+      render(<CronJobCheckList latestDeployedCronMessage="Not Found" />)
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(screen.getByText("False")).toBeInTheDocument()
       expect(screen.getByText("Invalid Date")).toBeInTheDocument()
@@ -27,7 +27,7 @@ describe("Checklist", () => {
 
     it("should render as active if post is there", () => {
       const result = "2024-12-12T01:01:01.293Z"
-      render(<CronJobCheckList latestCronMessage={result} />)
+      render(<CronJobCheckList latestDeployedCronMessage={result} />)
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
         screen.getByText("12/12/2024", {
@@ -35,6 +35,7 @@ describe("Checklist", () => {
         })
       ).toBeInTheDocument()
       expect(screen.getByText("True")).toBeInTheDocument()
+      expect(screen.getByText("Since Deployment")).toBeInTheDocument()
     })
 
     it("should hide View More button after click and display table", async () => {
@@ -42,7 +43,9 @@ describe("Checklist", () => {
         json: () => Promise.resolve(undefined),
       })
       const date = new Date()
-      render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
+      render(
+        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+      )
       await userEvent.click(screen.getByRole("button", { name: "View More" }))
       expect(
         screen.queryByRole("button", { name: "View More" })
@@ -56,7 +59,9 @@ describe("Checklist", () => {
       json: () => Promise.resolve([]),
     })
     const date = new Date()
-    render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
+    render(
+      <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+    )
     await userEvent.click(screen.getByRole("button", { name: "View More" }))
     expect(
       screen.queryByRole("button", { name: "View More" })
@@ -69,7 +74,9 @@ describe("Checklist", () => {
   it("should show loading history", async () => {
     fetchMock.mockResolvedValue(new Promise(() => {}))
     const date = new Date()
-    render(<CronJobCheckList latestCronMessage="2024-09-01T01:01:01.293Z" />)
+    render(
+      <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+    )
     await userEvent.click(screen.getByRole("button", { name: "View More" }))
     expect(
       screen.queryByRole("button", { name: "View More" })

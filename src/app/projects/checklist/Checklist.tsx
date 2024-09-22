@@ -12,9 +12,9 @@ import { type CronJob } from "@/app/api/cron/module"
 const apiUrl = `${site.apiUrl}/cron`
 
 const CronJobCheckList = ({
-  latestCronMessage,
+  latestDeployedCronMessage,
 }: {
-  latestCronMessage?: string
+  latestDeployedCronMessage?: string
 }) => {
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
   const { error: cronHistoryError, data: cronHistoryData } =
@@ -64,12 +64,14 @@ const CronJobCheckList = ({
   }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
   const activeCron = useMemo((): {
+    Checks: string
     Active: "True" | "False"
     Message: ReactNode
   } => {
-    const date = convertToLocalDate(latestCronMessage)
+    const date = convertToLocalDate(latestDeployedCronMessage)
     const str = date.split(",")
     return {
+      Checks: "Since Deployment",
       Active: date === "N/A" || date === "Invalid Date" ? "False" : "True",
       Message: (
         <>
@@ -78,14 +80,14 @@ const CronJobCheckList = ({
         </>
       ),
     }
-  }, [convertToLocalDate, latestCronMessage])
+  }, [convertToLocalDate, latestDeployedCronMessage])
 
   return (
     <section>
       <h3>CronJob</h3>
       <p>Check Cron job has executed.</p>
       <Table
-        headers={["Active", "Message"]}
+        headers={["Checks", "Active", "Message"]}
         list={[activeCron]}
         className="text-black"
       />

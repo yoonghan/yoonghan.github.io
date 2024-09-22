@@ -84,7 +84,7 @@ const checkCronJob = wrapPromise<string | undefined>(
 )
 
 const CheckList = () => {
-  const latestCronMessage = checkCronJob.read()
+  const latestDeployedCronMessage = checkCronJob.read()
 
   return (
     <div className="mx-auto max-w-screen-lg px-4 pb-8">
@@ -99,7 +99,7 @@ const CheckList = () => {
       <TroubleshootPwaCheckList />
       <br />
       <br />
-      <CronJobCheckList latestCronMessage={latestCronMessage} />
+      <CronJobCheckList latestDeployedCronMessage={latestDeployedCronMessage} />
       <br />
       <br />
       <Table headers={["Site", "Description", "Url"]} list={links} />
