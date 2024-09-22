@@ -91,13 +91,17 @@ jobs:
 
       - uses: browser-actions/setup-chrome@v1
 
-      - name: ⎔ Compile rust code
-        run: cd crate/snake && wasm-pack build --target web --out-dir pkg_compare
-        shell: bash
-
       - name: ✅ Validate Wasm binary is latest with BEST effort
-        run: chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
-        shell: bash
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 30
+          max_attempts: 3
+          shell: bash
+          retry_on: error
+          command: |
+            cd crate/snake && wasm-pack build --target web --out-dir pkg_compare
+            cd -
+            chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
 
       - name: ✅ Validate wasm test
         run: |
