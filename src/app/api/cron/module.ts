@@ -1,21 +1,10 @@
+import { CronJob, Message } from "@/types/cron"
 import { Firebase } from "../firebase/Firebase"
 
 const collectionName = "scheduler"
 const methodField = "method"
 const sourceField = "source"
 const createdAtField = "createdAt"
-
-export type CronJob = {
-  id: string
-  method: string
-  source: string
-  createdAt: string
-}
-
-export type Message = {
-  message: string
-  error?: unknown
-}
 
 const toDate = (isoDate: string) => isoDate.split("T")[0]
 
