@@ -2,7 +2,7 @@
     "crons": [
         {
             "path": "/api/cron?action=log",
-            "schedule": "0 5 * * *"
+            "schedule": "1 8 * * *"
         }
     ],
     "headers": [
