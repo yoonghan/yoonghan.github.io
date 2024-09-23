@@ -28,7 +28,7 @@ const About = () => {
     <div className={`container mx-auto`}>
       <MiniMenu model={authorModel} />
 
-      <div className="max-w-screen-lg px-4 py-8">
+      <div className="max-w-screen-lg px-4 py-8 mx-auto">
         <article id={authorModel[0].hashId} className="py-20">
           <h1 className="text-2xl text-center pb-12">{authorModel[0].title}</h1>
           <p>
