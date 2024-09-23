@@ -1,8 +1,14 @@
 "use client"
 
-import { memo, useEffect, useState, useRef } from "react"
+import {
+  memo,
+  useEffect,
+  useState,
+  useRef,
+  useTransition,
+  useCallback,
+} from "react"
 import style from "./ScrollToTop.module.css"
-import { debounce } from "lodash"
 
 const _isOverTheBar = () => {
   const currentScrollPos = window.scrollY
@@ -11,19 +17,22 @@ const _isOverTheBar = () => {
 
 const ScrollToTopNoSSR = () => {
   const [visible, setVisible] = useState(_isOverTheBar())
-  const scrollerRef = useRef(
-    debounce(() => {
-      setVisible(_isOverTheBar())
-    }, 50)
+  const [_, startTransition] = useTransition()
+
+  const updateScroller = useCallback(
+    () =>
+      startTransition(() => {
+        setVisible(_isOverTheBar())
+      }),
+    []
   )
 
   useEffect(() => {
-    const scroller = scrollerRef.current
-    window.addEventListener("scroll", scroller)
+    window.addEventListener("scroll", updateScroller)
     return () => {
-      window.removeEventListener("scroll", scroller)
+      window.removeEventListener("scroll", updateScroller)
     }
-  }, [])
+  }, [updateScroller])
 
   const clickScrollUp = () => {
     window.scrollTo(0, 0)
