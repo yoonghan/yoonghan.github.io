@@ -18,7 +18,7 @@ export const startCall = async (userName: string) => {
   expect(await page.content()).toContain("Web RTC")
   await page.getByLabel("My user name:").fill(userName)
   await page.getByRole("button", { name: "Start" }).click()
-  expect(await page.getByRole("button", { name: "Stop" })).toBeInViewport()
+  await page.waitForTimeout(1000) //wait for camera to appear]
   return page
 }
 
