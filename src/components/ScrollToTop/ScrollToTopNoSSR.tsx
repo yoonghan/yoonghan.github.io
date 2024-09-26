@@ -7,6 +7,7 @@ import {
   useRef,
   useTransition,
   useCallback,
+  useDeferredValue,
 } from "react"
 import style from "./ScrollToTop.module.css"
 
@@ -17,15 +18,11 @@ const _isOverTheBar = () => {
 
 const ScrollToTopNoSSR = () => {
   const [visible, setVisible] = useState(_isOverTheBar())
-  const [_, startTransition] = useTransition()
+  const isVisible = useDeferredValue(visible)
 
-  const updateScroller = useCallback(
-    () =>
-      startTransition(() => {
-        setVisible(_isOverTheBar())
-      }),
-    []
-  )
+  const updateScroller = useCallback(() => {
+    setVisible(_isOverTheBar())
+  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", updateScroller)
@@ -43,7 +40,7 @@ const ScrollToTopNoSSR = () => {
       data-testid="scroll-to-top"
       onClick={clickScrollUp}
       onKeyUp={clickScrollUp}
-      className={style.scroller + `${visible ? "" : ` ${style.hidden}`}`}
+      className={style.scroller + `${isVisible ? "" : ` ${style.hidden}`}`}
     >
       TOP
     </button>
