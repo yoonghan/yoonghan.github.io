@@ -1,8 +1,14 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import style from "./ScrollableList.module.css"
-import { useDebounce } from "usehooks-ts"
 
 type Props = {
   listItems: { id: string; content: React.ReactNode }[]
@@ -15,7 +21,7 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
   const listRef = useRef<HTMLDivElement>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [scrollToTop, setScrollToTop] = useState(0)
-  const debounceScrollToTop = useDebounce(scrollToTop, 10)
+  const debounceScrollToTop = useDeferredValue(scrollToTop)
 
   const startPosition = useMemo(
     () =>
