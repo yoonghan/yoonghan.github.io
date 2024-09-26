@@ -9,7 +9,7 @@
 import { test, expect } from "@playwright/test"
 import { callAnotherPerson, startCall } from "./call-util"
 
-test.describe("Webrtc config", () => {
+test.describe("Webrtc", () => {
   test("should have a callback url for pusher to authenticate", async ({
     request,
   }) => {
@@ -17,27 +17,25 @@ test.describe("Webrtc config", () => {
     expect(response.status()).toBe(405)
   })
 
-  // test("should be able to stop and restart", async () => {
-  //   const receiver = await startCall("Billy")
+  test("should be able to stop and restart", async () => {
+    const receiver = await startCall("Billy")
 
-  //   await receiver
-  //     .getByRole("button", { name: "Stop" })
-  //     .click({ force: true, delay: 1000 })
+    await receiver
+      .getByRole("button", { name: "Stop" })
+      .click({ force: true, delay: 1000 })
 
-  //   await receiver
-  //     .getByRole("button", { name: "Start" })
-  //     .click({ force: true, delay: 1000 })
-  //   await receiver.waitForTimeout(1000) //wait for camera to appear
+    await receiver
+      .getByRole("button", { name: "Start" })
+      .click({ force: true, delay: 1000 })
+    await receiver.waitForTimeout(1000) //wait for camera to appear
 
-  //   await receiver
-  //     .getByRole("button", { name: "Stop" })
-  //     .click({ force: true, delay: 1000 })
+    await receiver
+      .getByRole("button", { name: "Stop" })
+      .click({ force: true, delay: 1000 })
 
-  //   await receiver.close()
-  // })
-})
+    await receiver.close()
+  })
 
-test.describe("Webrtc calls", () => {
   test("should be able to start 2 persons call, and receiver rejects it", async () => {
     const caller = await startCall("Jessica")
     const receiver = await startCall("Michelle")
