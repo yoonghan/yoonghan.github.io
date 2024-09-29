@@ -8,6 +8,7 @@
 
 import { test, expect } from "@playwright/test"
 import { callAnotherPerson, startCall } from "./call-util"
+import page from "@/app/experiments/page"
 
 test.describe("Webrtc config", () => {
   test("should have a callback url for pusher to authenticate", async ({
@@ -19,18 +20,28 @@ test.describe("Webrtc config", () => {
 
   test("should be able to stop and restart", async () => {
     const receiver = await startCall("Billy")
+    console.log("STARTED")
 
     await receiver
       .getByRole("button", { name: "Stop" })
-      .click({ force: true, delay: 2000 })
+      .click({ force: true, delay: 3000 })
+
+    await receiver.waitForTimeout(1000)
+    console.log("STOPPED")
 
     await receiver
       .getByRole("button", { name: "Start" })
-      .click({ force: true, delay: 2000 })
+      .click({ force: true, delay: 3000 })
+
+    await receiver.waitForTimeout(1000)
+    console.log("AGAIN START")
 
     await receiver
       .getByRole("button", { name: "Stop" })
-      .click({ force: true, delay: 2000 })
+      .click({ force: true, delay: 3000 })
+
+    await receiver.waitForTimeout(1000)
+    console.log("AGAIN STOP")
 
     await receiver.close()
   })
