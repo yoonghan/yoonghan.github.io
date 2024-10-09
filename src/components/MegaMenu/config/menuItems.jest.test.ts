@@ -12,6 +12,7 @@ describe("menu items", () => {
           { label: "Chat", url: "/projects/messenger" },
           { label: "Game", url: "/projects/game-snake" },
           { label: "Lessons", url: "/projects/lessons" },
+          { label: "Learning", url: "/projects/learning" },
           { label: "Checklist", url: "/projects/checklist" },
           { label: "No Javascript", url: "/projects/javascript-free" },
         ],
