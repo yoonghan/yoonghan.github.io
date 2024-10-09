@@ -6,7 +6,16 @@ import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 const model = [
   {
     label: "Instances",
-    content: "Spot Instances, On Demand, Dedicated Hosts, Capacity Reserved",
+    content: (
+      <ul>
+        <li>Spot Instances</li>
+        <li>On Demand</li>
+        <li>Reserved Instances (1 yr / 3yr)</li>
+        <li>Convertible Reserved Instances (Only 1 Available Zone)</li>
+        <li>Savings Plan (min usage of RI)</li>
+        <li>Dedicated Hosts (License)</li>
+      </ul>
+    ),
   },
   {
     label: "Shared Responsibility",
@@ -15,23 +24,45 @@ const model = [
   },
   {
     label: "Cloud Adoption Framework (CAF)",
-    content:
-      "Business, People, Governence, Platform, Security and Operation Perspective",
+    content: (
+      <ul>
+        <li>Business Perspective</li>
+        <li>People Perspective</li>
+        <li>Governence Perspective</li>
+        <li>Platform Perspective</li>
+        <li>Security and Operation Perspective</li>
+      </ul>
+    ),
   },
   {
     label: "Migration Strategy",
-    content:
-      "Rehosting, Replatforming, Retire, Repurchase, Refactoring and Retaining",
+    content: (
+      <ul>
+        <li>Rehosting</li>
+        <li>Replatforming</li>
+        <li>Retire</li>
+        <li>Repurchase</li>
+        <li>Refactoring and Retaining / Rearchitecture</li>
+      </ul>
+    ),
   },
   {
     label: "Well Architecture",
     content:
-      "Operation Excellence -> Security -> Reliability -> Performance Efficiency -> Cost Optimisation -> Sustainability",
+      "Operation Excellence → Security → Reliability → Performance Efficiency → Cost Optimisation → Sustainability",
   },
   {
     label: "Advantages",
-    content:
-      "Trade Fixed Expenses for Variable Expenses, Benefit from Massive scale of Economics, Stop Guessing Capacity, Increase Speed & Agiity, Stop Spending money running & maintaining data cener, Go global in minutes",
+    content: (
+      <ul>
+        <li>Trade Fixed Expenses for Variable Expenses</li>
+        <li>Benefit from Massive scale of Economics</li>
+        <li>Stop Guessing Capacity</li>
+        <li>Increase Speed & Agiity</li>
+        <li>{"Stop Spending money running & maintaining data center"}</li>
+        <li>Go global in minutes</li>
+      </ul>
+    ),
   },
 ]
 
