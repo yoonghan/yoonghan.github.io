@@ -60,15 +60,21 @@ const pages: PageConfig[] = [
     order: 5,
   },
   {
-    path: "/projects/checklist",
-    display: "Checklist",
+    path: "/projects/learning",
+    display: "Learning",
     filterOptions: [FilterOption.NOT_FOOTER],
     order: 6,
   },
   {
+    path: "/projects/checklist",
+    display: "Checklist",
+    filterOptions: [FilterOption.NOT_FOOTER],
+    order: 7,
+  },
+  {
     path: "/projects/javascript-free",
     display: "No Javascript",
-    order: 7,
+    order: 8,
   },
   {
     path: "/experiments",
