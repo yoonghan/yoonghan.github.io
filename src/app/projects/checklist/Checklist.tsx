@@ -68,6 +68,11 @@ const CronJobCheckList = ({
     return <></>
   }, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
 
+  const isDateValid = useCallback(
+    (date: string) => date === "N/A" || date === "Invalid Date",
+    []
+  )
+
   const generateCronTable = useCallback(
     (
       checksTitle: string,
@@ -83,12 +88,14 @@ const CronJobCheckList = ({
         Checks: checksTitle,
         Active: (
           <span data-testid={`result ${checksTitle}`}>
-            {date === "N/A" || date === "Invalid Date" ? "False" : "True"}
+            {isDateValid(date) ? "False" : "True"}
           </span>
         ),
         Message: (
           <>
-            <span data-testid={`message ${checksTitle}`}>{str[0]}</span>
+            <span data-testid={`message ${checksTitle}`}>
+              {isDateValid(date) ? "Cron execution pending" : str[0]}
+            </span>
             <span>{str[1]}</span>
           </>
         ),

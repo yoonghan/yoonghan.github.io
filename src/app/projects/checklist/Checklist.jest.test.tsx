@@ -22,7 +22,7 @@ describe("Checklist", () => {
       render(<CronJobCheckList latestDeployedCronMessage="Not Found" />)
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(screen.getByText("False")).toBeInTheDocument()
-      expect(screen.getByText("Invalid Date")).toBeInTheDocument()
+      expect(screen.getByText("Cron execution pending")).toBeInTheDocument()
     })
 
     it("should render as active if post is there", async () => {
