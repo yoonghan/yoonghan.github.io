@@ -41,15 +41,21 @@ const JavascriptFree = ({}) => {
         <title>Sticky Cards</title>
         <StickyCards
           contents={[
-            <div className=" bg-amber-100 " key={0}>
-              My first card
-            </div>,
-            <div className=" bg-teal-100 " key={1}>
-              Another card
-            </div>,
-            <div className=" bg-green-100 " key={2}>
-              Last card
-            </div>,
+            {
+              className: "bg-amber-400",
+              title: "My first card",
+              description: <span>Empty</span>,
+            },
+            {
+              className: "bg-teal-400",
+              title: "Second card",
+              description: <span>Empty</span>,
+            },
+            {
+              className: "bg-green-400",
+              title: "Third card",
+              description: <span>Empty</span>,
+            },
           ]}
         ></StickyCards>
       </article>
