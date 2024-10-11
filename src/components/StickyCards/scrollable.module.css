@@ -1,0 +1,26 @@
+.container > li > div {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+}
+
+.container > li:not(:first-child) > div {
+  box-shadow: 0px -4px 3px var(--shadow);
+}
+
+.container > li:nth-child(2) {
+  --index: 1;
+}
+
+.container > li:nth-child(3) {
+  --index: 2;
+}
+
+.container > li:nth-child(4) {
+  --index: 3;
+}
+
+.container > li:nth-child(5) {
+  --index: 4;
+}
