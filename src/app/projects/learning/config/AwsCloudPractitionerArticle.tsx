@@ -69,13 +69,7 @@ const model = [
 export function AwsCloudPractitionerArticle() {
   return (
     <article>
-      <p className="text-2xl">
-        AWS Certified Cloud Practitioner [
-        <Link href="https://www.credly.com/go/5n0LMkUAb2PkOxXN3HzbvA">
-          Certified
-        </Link>
-        ]
-      </p>
+      <p className="text-2xl">AWS Certified Cloud Practitioner</p>
       <Accordion model={model} groupName={"aws-cloud-practitioner"} />
     </article>
   )

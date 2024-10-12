@@ -7,6 +7,8 @@ import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
+import StickyCards from "@/components/StickyCards"
+import Link from "@/components/Link"
 
 const authorModel = [
   {
@@ -20,6 +22,10 @@ const authorModel = [
   {
     hashId: "founders",
     title: "Founders",
+  },
+  {
+    hashId: "certification",
+    title: "Certification",
   },
 ]
 
@@ -53,7 +59,7 @@ const About = () => {
             contact information and we will reach out to you.
           </p>
           <p className="pb-4">Things we had done in the past:</p>
-          <ul className="list-disc">
+          <ul className="list-disc ml-4">
             <li>
               Maintain and improve high volume (35 million records) data
               transactions and synchronization.
@@ -109,6 +115,57 @@ const About = () => {
               },
             ]}
           />
+        </article>
+        <article id={authorModel[3].hashId} className="py-20">
+          <h3 className="text-2xl text-center pb-12">{authorModel[3].title}</h3>
+          <div className="relative">
+            <StickyCards
+              contents={[
+                {
+                  imageUrl:
+                    "https://d1.awsstatic.com/certification/badges/AWS-Certified-Cloud-Practitioner_badge_150x150.17da917fbddc5383838d9f8209d2030c8d99f31e.png",
+                  className: "bg-yellow-400",
+                  title: "AWS Certified Practitioner",
+                  href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
+                },
+                {
+                  className: "bg-teal-400",
+                  title: "Functional Programming Principal In Scala",
+                  description: (
+                    <span>
+                      Functional programming with compose, synthentic sugar and
+                      immutability.
+                    </span>
+                  ),
+                  href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
+                },
+                {
+                  className: "bg-white",
+                  title: "SUN Java Certified 1.2",
+                  description: <span>Certification on java programming.</span>,
+                },
+                {
+                  className: "bg-red-200",
+                  title: "RUST programming",
+                  description: (
+                    <span>
+                      Rusty but worky on RUST programming with javascript.
+                    </span>
+                  ),
+                },
+                {
+                  className: "bg-green-200",
+                  title: "Kota Kinabalu Mountain Explorer",
+                  description: (
+                    <span>
+                      Completed 2 trails course to hike highest mountain in{" "}
+                      {"Malaysia"}, Mount Kota Kinabalu.
+                    </span>
+                  ),
+                },
+              ]}
+            />
+          </div>
         </article>
         <hr />
         <div className="py-8">

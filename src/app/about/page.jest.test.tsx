@@ -17,6 +17,7 @@ describe("About", () => {
     expect(screen.getAllByText("About Us")).toHaveLength(2)
     expect(screen.getAllByText("What do we do?")).toHaveLength(2)
     expect(screen.getAllByText("Founders")).toHaveLength(2)
+    expect(screen.getAllByText("Certification")).toHaveLength(2)
   })
 
   it("should be able to scroll up", () => {

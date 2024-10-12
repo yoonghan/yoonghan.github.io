@@ -1,5 +1,6 @@
 "use client"
 
+import StickyCards from "@/components/StickyCards"
 import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 
@@ -34,6 +35,29 @@ const JavascriptFree = ({}) => {
           ]}
           groupName="faq"
         ></Accordion>
+      </article>
+
+      <article className="pt-8">
+        <title>Sticky Cards</title>
+        <StickyCards
+          contents={[
+            {
+              className: "bg-amber-400",
+              title: "My first card",
+              description: <span>Empty</span>,
+            },
+            {
+              className: "bg-teal-400",
+              title: "Second card",
+              description: <span>Empty</span>,
+            },
+            {
+              className: "bg-green-400",
+              title: "Third card",
+              description: <span>Empty</span>,
+            },
+          ]}
+        ></StickyCards>
       </article>
     </div>
   )
