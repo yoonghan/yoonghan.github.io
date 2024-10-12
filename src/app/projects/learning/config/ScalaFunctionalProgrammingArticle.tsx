@@ -33,13 +33,7 @@ const model = [
 export function ScalaFunctionalProgrammingArticle() {
   return (
     <article>
-      <p className="text-2xl">
-        Functional Programming Principal In Scala [
-        <Link href="https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6">
-          Certified
-        </Link>
-        ]
-      </p>
+      <p className="text-2xl">Functional Programming Principal In Scala</p>
 
       <Accordion model={model} groupName={"functional-programming-in-scala"} />
     </article>
