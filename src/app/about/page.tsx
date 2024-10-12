@@ -125,7 +125,7 @@ const About = () => {
                   imageUrl:
                     "https://d1.awsstatic.com/certification/badges/AWS-Certified-Cloud-Practitioner_badge_150x150.17da917fbddc5383838d9f8209d2030c8d99f31e.png",
                   className: "bg-yellow-400",
-                  title: "AWS Certified Practitioner",
+                  title: "AWS Cloud Practitioner",
                   href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
                 },
                 {
@@ -141,12 +141,12 @@ const About = () => {
                 },
                 {
                   className: "bg-white",
-                  title: "SUN Java Certified 1.2",
-                  description: <span>Certification on java programming.</span>,
+                  title: "Sun Java Certified",
+                  description: <span>Certification on Java programmer.</span>,
                 },
                 {
                   className: "bg-red-200",
-                  title: "RUST programming",
+                  title: "Webassembly with RUST programming",
                   description: (
                     <span>
                       Rusty but worky on RUST programming with javascript.
@@ -155,7 +155,7 @@ const About = () => {
                 },
                 {
                   className: "bg-green-200",
-                  title: "Kota Kinabalu Mountain Explorer",
+                  title: "Kinabalu Park Explorer",
                   description: (
                     <span>
                       Completed 2 trails course to hike highest mountain in{" "}
