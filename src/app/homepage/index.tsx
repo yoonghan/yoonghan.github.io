@@ -95,8 +95,8 @@ function Homepage() {
               <li>{`"A hassle to deploy changes ?"`}</li>
             </ul>
           </div>
-          <section className="max-w-screen-md mx-auto">
-            <section className="pt-8">
+          <div className="max-w-screen-md mx-auto">
+            <div className="pt-8">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-workflow.webp",
@@ -136,8 +136,8 @@ function Homepage() {
                   </ul>
                 </>
               </Figure>
-            </section>
-            <section className="pt-32">
+            </div>
+            <div className="pt-32">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-approval.webp",
@@ -170,8 +170,8 @@ function Homepage() {
                   </ul>
                 </>
               </Figure>
-            </section>
-            <section className="pt-32">
+            </div>
+            <div className="pt-32">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-compliance.webp",
@@ -209,48 +209,44 @@ function Homepage() {
                   </ul>
                 </>
               </Figure>
-            </section>
-            <section className="max-w-screen-md mx-auto pt-16">
+            </div>
+            <div className="max-w-screen-md mx-auto pt-32">
               <div className="text-center text-lg mb-12 italic">
                 {`"So what if something really breaks ?"`}
               </div>
-              <section>
-                <Figure
-                  imageProps={{
-                    src: "/img/homepage/reliability-revert.webp",
-                    height: 500,
-                    width: 345,
-                    alt: "Github workflows",
-                  }}
-                  imageCaption="Checkout Tag and Redeploy"
-                  reversed={true}
-                >
-                  <>
-                    Face it, this happens with new experimentations. The
-                    workflow is built to handles fallback options:
-                    <ul className="list-decimal ml-4 mt-4">
-                      <li>
-                        Re-run the release tag in action workflow. Every
-                        pull-request is tracked via Release [
-                        <Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
-                          list of releases
-                        </Link>
-                        ] during merge workflow.
-                      </li>
-                      <li>
-                        Revert via <Link href="https://vercel.com">Vercel</Link>
-                        , but not applicable to GitHub Pages. Useful for API
-                        break changes.
-                      </li>
-                      <li>
-                        A guaranteed revert process is less than 10minutes.
-                      </li>
-                    </ul>
-                  </>
-                </Figure>
-              </section>
-            </section>
-          </section>
+              <Figure
+                imageProps={{
+                  src: "/img/homepage/reliability-revert.webp",
+                  height: 500,
+                  width: 345,
+                  alt: "Github workflows",
+                }}
+                imageCaption="Checkout Tag and Redeploy"
+                reversed={true}
+              >
+                <>
+                  Face it, this happens with new experimentations. The workflow
+                  is built to handles fallback options:
+                  <ul className="list-decimal ml-4 mt-4">
+                    <li>
+                      Re-run the release tag in action workflow. Every
+                      pull-request is tracked via Release [
+                      <Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
+                        list of releases
+                      </Link>
+                      ] during merge workflow.
+                    </li>
+                    <li>
+                      Revert via <Link href="https://vercel.com">Vercel</Link>,
+                      but not applicable to GitHub Pages. Useful for API break
+                      changes.
+                    </li>
+                    <li>A guaranteed revert process is less than 10minutes.</li>
+                  </ul>
+                </>
+              </Figure>
+            </div>
+          </div>
         </article>
         <hr />
         {/* Accessibility */}
@@ -258,7 +254,7 @@ function Homepage() {
           <h4 className="text-3xl text-center" id="accessibility">
             Accessibility and Readability (WCAG)
           </h4>
-          <section>
+          <div>
             <div className="text-xl italic text-center">
               &quot;Our Homepage can now be browsed{" "}
               <strong className="text-2xl">WITHOUT JAVASCRIPT</strong>!!&quot;
@@ -273,8 +269,8 @@ function Homepage() {
               and <strong>accessibility </strong>
               issues.
             </p>
-          </section>
-          <section className="pt-8">
+          </div>
+          <div className="pt-8">
             <div className="text-xl italic text-center">
               This site can also be browsed with keyboard and text-readers.
             </div>
@@ -291,8 +287,8 @@ function Homepage() {
               </Link>{" "}
               and Chrome built-in Lighthouse.
             </p>
-          </section>
-          <section className="pt-8">
+          </div>
+          <div className="pt-8">
             <div className="text-xl italic text-center pb-8">
               The site is Trusted Web Activity(TWA) and Progressive(PWA)
               compatible.
@@ -319,7 +315,7 @@ function Homepage() {
                 without network.
               </figcaption>
             </figure>
-          </section>
+          </div>
         </article>
         <hr />
         {/* Monitoring */}
@@ -330,7 +326,7 @@ function Homepage() {
           <div className="text-xl italic text-center pt-8">
             {`"Ensure what we develop are according to standards."`}
           </div>
-          <section>
+          <div>
             <figure>
               <Image
                 src="/img/homepage/monitoring.webp"
@@ -355,7 +351,7 @@ function Homepage() {
                 </div>
               </figcaption>
             </figure>
-          </section>
+          </div>
         </article>
         <hr />
         {/* Performance */}
@@ -363,7 +359,7 @@ function Homepage() {
           <h6 className="text-3xl text-center" id="performance">
             Performance
           </h6>
-          <section>
+          <div>
             <figure>
               <Image
                 src="/img/homepage/performance.webp"
@@ -385,7 +381,7 @@ function Homepage() {
                 </p>
               </figcaption>
             </figure>
-          </section>
+          </div>
         </article>
         <hr />
         <div className="py-8">
