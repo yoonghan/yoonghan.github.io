@@ -29,7 +29,7 @@ const LetterBox = () => {
   }, [confirm, name])
 
   return (
-    <section className="text-center max-w-screen-sm mx-auto">
+    <aside className="text-center max-w-screen-sm mx-auto">
       <div className="text-2xl pb-4 font-bold">
         Contact Us <FontAwesomeIcon icon={faEnvelope} className="pr-2" />
       </div>
@@ -55,7 +55,7 @@ const LetterBox = () => {
           </Button>
         </form>
       </div>
-    </section>
+    </aside>
   )
 }
 

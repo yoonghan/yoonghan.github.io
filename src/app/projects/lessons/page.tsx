@@ -302,9 +302,9 @@ const Lessons = ({}) => {
         </p>
       </article>
       <article className="my-8">
-        <strong>CI/CD Caveat</strong>
+        <h3 className="font-bold">CI/CD Caveat</h3>
         <section className="my-4">
-          <em>Gitlab</em>
+          <h4>Gitlab</h4>
           <ul className="list-decimal ml-4">
             <li>
               Variables can only be passed to Downstream triggers with
@@ -333,7 +333,7 @@ const Lessons = ({}) => {
           </ul>
         </section>
         <section className="my-4">
-          <em>Github</em>
+          <h4>Github</h4>
           <ul className="list-decimal ml-4">
             <li>
               If one is creating actions, remember to add {'"shell: bash"'}

@@ -6,7 +6,7 @@ function StoryMaker({ items }: Props) {
   return (
     <>
       {items.map((item, index) => (
-        <section key={index}>
+        <div key={index}>
           <div
             title={item.title}
             className={"px-4 py-2 text-white bg-black w-full mt-16"}
@@ -14,7 +14,7 @@ function StoryMaker({ items }: Props) {
             {item.title}
           </div>
           {item.component}
-        </section>
+        </div>
       ))}
     </>
   )
