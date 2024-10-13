@@ -284,6 +284,24 @@ const Lessons = ({}) => {
         </ul>
       </article>
       <article className="my-8">
+        <strong>Flex Justify Center</strong>
+        <p>
+          Justify center {"doesn't"} support overflow. Meaning if overflow is
+          auto, the content gets snipped off.
+        </p>
+        <p>
+          To solve this, use margin auto with pseudo ::before and ::after. Refer
+          to{" "}
+          <Link
+            href="https://github.com/yoonghan/walcron-microfrontend-shared/blob/master/src/components/MiniMenu/mini-menu.module.css"
+            target="_blank"
+          >
+            minimenu
+          </Link>
+          .
+        </p>
+      </article>
+      <article className="my-8">
         <strong>CI/CD Caveat</strong>
         <section className="my-4">
           <em>Gitlab</em>
