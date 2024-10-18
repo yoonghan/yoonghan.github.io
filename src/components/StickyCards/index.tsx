@@ -15,6 +15,7 @@ interface Content {
 function StickyCards({ contents }: { contents: Content[] }) {
   return (
     <ScrollableCard
+      isReversed={true}
       model={contents.map(
         ({ imageUrl, className, title, description, href }) => ({
           content: (
