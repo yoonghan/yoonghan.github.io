@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "@/components/Link"
 import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const model = [
