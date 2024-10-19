@@ -94,7 +94,7 @@ const model = [
         </li>
         <li>
           Placement group:
-          <ul>
+          <ul className="pl-4">
             <li>Cluster - same Az</li>
             <li>Spread - Different region or Az, 1 Az max 7</li>
             <li>
@@ -121,26 +121,45 @@ const model = [
         <li>Root volume type are default deleted on terminate.</li>
         <li>{"It's"} a network drive.</li>
         <li>To move to new Az use snapshot</li>
-        <li>can use for Hibernate needs to use encrypt</li>
+        <li>
+          To <em>Hibernate</em> at instance stop, needs to use encrypt. It
+          stores all RAM into EBS.
+        </li>
         <li>Snapshot archive are cheaper (72%) but takes 24-72 restore</li>
         <li>Recycle bin 1 to 1 year retention</li>
         <li>Fast snapshot restore - $$$$</li>
         <li>
           Types:{" "}
-          <ul>
-            <li>
-              (General SSD) gp3 - can increate IOP to 16k, throughput 1000MBis
-            </li>
+          <div>
+            only gp(General SSD) &amp; io(Provisioned IPs) can be use as Root
+            Volume
+          </div>
+          <ul className="pl-4">
+            <li>gp3 - can increate IOP to 16k, throughput 1000MBis</li>
             <li>gp2 - max 16k with 3 IOP per GB, 5334 max IOPs</li>
-            <li>(Provisioned IPs) io1 - 4-16GB, max PIOP 64k</li>
+            <li>io1 - 4-16GB, max PIOP 64k</li>
             <li>io2 - max 256k with 1000:1, Support EBS multi-attached</li>
-            <li>(HDD) st1 - 125GB-16TB</li>
-            <li>(Cold HDD) sc1 - infrequent access 250 IOP</li>
+            <li>st1 - 125GB-16TB of HDD</li>
+            <li>sc1 - infrequent access 250 IOP of Cold HDD</li>
           </ul>
         </li>
         <li>
           Multi-attached is only for Same Az, max 16 EC, and for filesystem that
           is cluster aware (linux)
+        </li>
+        <li>
+          Encryption:
+          <ul className="pl-4">
+            <li>
+              Data is encrypted when 1) at rest, 2) snapshot and 3) in-flight
+              between instance and volume
+            </li>
+            <li>
+              To encrypt un-encrypted data -&gt; snapshot -&gt; copy -&gt;
+              create new EBS
+            </li>
+            <li></li>
+          </ul>
         </li>
       </ul>
     ),
@@ -151,6 +170,160 @@ const model = [
       <ul>
         <li>Snapshot templates and even EBS storage.</li>
         <li>Region specific but can be copied over via console/commandline.</li>
+      </ul>
+    ),
+  },
+  {
+    label: "EFS",
+    content: (
+      <ul>
+        <li>$$$ than 3 gp price</li>
+        <li>Encryption at rest using KMS.</li>
+        <li>Use NSF v4.1 and Linux based AMI.</li>
+        <li>Can be Multi-Az of One Zone. One Zone is only for IA</li>
+        <li>Can be access by Lambda, EC2 and Sagemaker</li>
+        <li>
+          Through Put:
+          <ul className="pl-4">
+            <li>Provisioned</li>
+            <li>Elastic</li>
+            <li>Bursting</li>
+          </ul>
+        </li>
+        <li>
+          Storage Tier:
+          <ul className="pl-4">
+            <li>Standard</li>
+            <li>Infrequent Access(IA)</li>
+            <li>Archive</li>
+            <li>Lifecycle Policy - Standard to IA</li>
+          </ul>
+        </li>
+      </ul>
+    ),
+  },
+  {
+    label: "Load Balancer",
+    contents: (
+      <ul>
+        <li>Enable to EC by security group not ip</li>
+        <li>
+          Types:
+          <ul>
+            <li>
+              Application Load Balancer - routing table based on hostname, path,
+              header or querystring. X-Forwarded-For/Port/Proto. Target group
+              can be by ip, instance or lambda.
+            </li>
+            <li>
+              Network Load Balancer - 1 EIP, TCP/UDP, NLB can have sub ALB
+            </li>
+            <li>
+              Gateway Load Balancer - target group is 3rd-party. GENEVA protocol
+              6081.
+            </li>
+          </ul>
+        </li>
+        <li>Multi Az but spread across Region</li>
+        <li>Access via DNS except for Network that has ip</li>
+        <li>Can have healthcheck</li>
+        <li>
+          Sticky Session
+          <ul className="pl-4">
+            <li>Only GLB no sticky</li>
+            <li>AWSALB and AWSALBAPP is for application based cookie</li>
+            <li>AWSALB and AWSALBTG is for duration based cookie</li>
+          </ul>
+        </li>
+        <li>
+          Cross Zone Balancing - enabled and not by instance, but sub-sub zone.
+        </li>
+        <li>
+          Server Name Indication(SNI) - solve multiple TLS certificate onto one
+          webserver/ALB.
+        </li>
+        <li>
+          Connection Draining - allow EC2 to finish all request before shutdown.
+          Time based, 0 is disabled.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    label: "Auto Scaling",
+    contents: (
+      <ul>
+        <li>
+          Launch Template to define AMI, Instance Type, EBS Volume, Security
+          Group, SSH key pair, IAM Role, VPC, LB
+        </li>
+        <li>Specify Min, Max and Initial</li>
+        <li>Can use Cloudwatch as alarm</li>
+        <li>
+          Health check can be for both EC2 / ELB, health check terminates the
+          EC2.
+        </li>
+        <li>
+          Scaling strategy <em>Scheduled, Predictive(AI), Dynamic(resource)</em>
+          , default is 30second cooldown.
+        </li>
+        <li>
+          Able to integrate with CloudWatch(with custom metric) to trigger
+          alarm, and configure scaling to run based on alarm.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    label: "RDS",
+    contents: (
+      <ul>
+        <li>Auto scale, if free storage *lt; 10% and for 5minutes</li>
+        <li>6 hours past last configuration.</li>
+        <li>1 master multiple Replica</li>
+        <li>
+          Supported Postgres, MySql, MariaDB, Oracle, SqlServer, DB2, Aurora
+        </li>
+        <li>
+          Multi Az support does not require connection string change. (Only read
+          replica required)
+        </li>
+        <li>
+          Replica{" "}
+          <ul className="pl-4">
+            <li>Up to 15 read replica</li>
+            <li>Free if same Az</li>
+            <li>Sync for multi Az</li>
+            <li>Ansync (Eventually Consistent) for same Az</li>
+          </ul>
+        </li>
+        <li>
+          Aurora{" "}
+          <ul className="pl-4">
+            <li>Auto Multi Az &amp; Multi Region</li>
+            <li>Regional cluster with 1 writer endpoint and reader endpoint</li>
+            <li>
+              Only 4 replica up only can write, 3 replica up only can read.
+            </li>
+          </ul>
+        </li>
+        <li>RDS Proxy - db connection pool and must be private!</li>
+        <li>
+          ElasticCache{" "}
+          <ul className="pl-4">
+            <li>Redis Auth - IAM, use password token or SSL</li>
+            <li>Memcache - supports SASL based authentication</li>
+            <li>Redis supported sorted set guaranteed.</li>
+            <li>
+              Pattern{" "}
+              <ul className="pl-8">
+                <li>Lazy Loading</li>
+                <li>Write through(add/update db)</li>
+                <li>Session Store(ttl)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     ),
   },
