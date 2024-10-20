@@ -358,6 +358,56 @@ const model = [
       </ul>
     ),
   },
+  {
+    label: "Route 53",
+    content: (
+      <ul>
+        <li>
+          Record Types:
+          <ul className="pl-4">
+            <li>A - map hostname to ipv4</li>
+            <li>
+              A (alias) - like CNAME but have native healthcheck, can set APEX
+              but not TTL
+            </li>
+            <li>AAAA - map hostname to ipv6</li>
+            <li>CNAME - map hostname to hostname</li>
+            <li>NS - name server for hosted zone</li>
+          </ul>
+        </li>
+        <li>
+          Routing Policy:{" "}
+          <ul>
+            <li>Weighted</li>
+            <li>Simple - multiple A with random</li>
+            <li>Latency - closest, but you need to set region yourself</li>
+            <li>Failover - one primary, one secondary</li>
+            <li>
+              Geolocation - same as latency, but specify country. If default is
+              set means have default.
+            </li>
+            <li>geoproximity - weighted region</li>
+            <li>ip base routing - use CIDR</li>
+            <li>multivalue - like simple but add health check</li>
+          </ul>
+        </li>
+        <li>
+          Health Check
+          <ul>
+            <li>
+              Calculated Health Check - up to 256 &amp; can be OR/AND, 30
+              seconds interval with 18% of 2xx or 3xx
+            </li>
+            <li>Private Hosted Zone - Have to go thru CloudWatch</li>
+          </ul>
+        </li>
+        <li>Cannot route based on path</li>
+        <li>
+          Different than ALB, loadbalanced by region, health check is by TTL
+        </li>
+      </ul>
+    ),
+  },
 ]
 
 export function AwsSolutionArchitectArticle() {
