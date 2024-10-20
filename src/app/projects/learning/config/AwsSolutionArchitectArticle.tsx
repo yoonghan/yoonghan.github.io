@@ -408,6 +408,100 @@ const model = [
       </ul>
     ),
   },
+  {
+    label: "S3",
+    content: (
+      <ul>
+        <li>Bucket name is globally unique and region based</li>
+        <li>
+          Naming is lowercase + number + only allow dash (-) except -s3alias and
+          --
+        </li>
+        <li>Key consist of prefix(path) + object_name</li>
+        <li>Max 5MB and big upload is via multi-part</li>
+        <li>
+          Security{" "}
+          <ul>
+            <li>Userbase (IAM)</li>
+            <li>Resource based - Bucket Policy / Object ACL / Bucket ACL</li>
+            <li>Can be encrypted</li>
+            <li>
+              S3 have a Block public access and highest even from IAM and
+              Resource control. Means this have to be enabled before Bucket
+              policy
+            </li>
+          </ul>
+        </li>
+        <li>Support make S3 as static website</li>
+        <li>
+          Versioning{" "}
+          <ul>
+            <li>
+              When disabled all object have version = null. Important for on and
+              off versioning.
+            </li>
+            <li>Suspend versioning does not delete prev version</li>
+            <li>Delete versioning only add DELETE MARKER</li>
+            <li>
+              If delete a file with version (show version), it is Permanent
+              Delete
+            </li>
+          </ul>
+        </li>
+        <li>
+          Replication{" "}
+          <ul className="pl-4">
+            <li>Same Region Replica</li>
+            <li>Cross Region Replica</li>
+            <li>
+              Only new objects are replicated, but can use S3 Batch Replica to
+              do old
+            </li>
+            <li>
+              Able to replicate DELETE MARKERS but need to be enabled. NOTE:
+              records with version are not replicated.
+            </li>
+            <li>No chain - do not support bucket 1 TO bucket 2 TO bucket 3 </li>
+          </ul>
+        </li>
+        <li>
+          Types:
+          <ul className="pl-4">
+            <li>Standard - have &gt; 3 zones</li>
+            <li>Infrequent Access </li>
+            <li>Intelligent Tiering</li>
+            <li>One Zone IA</li>
+            <li>
+              Glacier Storage{" "}
+              <ul className="pl-8">
+                <li>Instant Retrieval - like I/A min 90days</li>
+                <li>
+                  Flexible Retrieval - take 1 - 5 min, 3 - 5 hours, 5 - 12 hours
+                </li>
+                <li>Deep Retrieval - 12 - 48 hours</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Possible to make requester pays for S3.</li>
+        <li>
+          S3 Lifecycle{" "}
+          <ul>
+            <li>
+              use Storage Class Analysis - a tool for Standard and Standard IA
+              to help analyze a report between 24-48 hours
+            </li>
+            <li>
+              Move non-current version and can set to permanent delete too.
+            </li>
+            <li>Can have delete non-complete multi-part objects</li>
+            <li>Rules can be added to tags.</li>
+            <li>Can add delete on expire.</li>
+          </ul>
+        </li>
+      </ul>
+    ),
+  },
 ]
 
 export function AwsSolutionArchitectArticle() {
