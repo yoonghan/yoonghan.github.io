@@ -204,7 +204,7 @@ const model = [
   },
   {
     label: "Load Balancer",
-    contents: (
+    content: (
       <ul>
         <li>Enable to EC by security group not ip</li>
         <li>
@@ -251,7 +251,7 @@ const model = [
   },
   {
     label: "Auto Scaling",
-    contents: (
+    content: (
       <ul>
         <li>
           Launch Template to define AMI, Instance Type, EBS Volume, Security
@@ -276,7 +276,7 @@ const model = [
   },
   {
     label: "RDS",
-    contents: (
+    content: (
       <ul>
         <li>Auto scale, if free storage *lt; 10% and for 5minutes</li>
         <li>6 hours past last configuration.</li>
@@ -305,6 +305,16 @@ const model = [
             <li>
               Only 4 replica up only can write, 3 replica up only can read.
             </li>
+            <li>Machine Learning by SageMaker and Comprehend</li>
+            <li>
+              Can have custom endpoint(a reader endpoint) to point specific
+              instance.
+            </li>
+            <li>Can use serverless - Aurora Fleet</li>
+            <li>
+              Global Aurora - Cross Region or Global DB (1 primary region,
+              up-to-5 secondary region, up-to 16 read replica per region)
+            </li>
           </ul>
         </li>
         <li>RDS Proxy - db connection pool and must be private!</li>
@@ -324,6 +334,27 @@ const model = [
             </li>
           </ul>
         </li>
+        <li>RDS Custom - only Oracle and SQL Server, can SSH to do patch.</li>
+        <li>
+          Security
+          <ul className="pl-4">
+            <li>
+              Data encrypted at rest, but KMS must be defined on creation.
+            </li>
+            <li>Master not encrypted, replica is not</li>
+            <li>To encrypt an unecrypted, go snapshot route</li>
+            <li>IAM Authentication except Oracle and SqlServer, but can SSH</li>
+            <li>Audit log can be sent to Cloud Watch</li>
+            <li>Security Group to control network.</li>
+          </ul>
+        </li>
+        <li>Backup auto every 5mins. Aurora cannot be disabled)</li>
+        <li>Backup snapshot is 1 to 35 days.</li>
+        <li>
+          Backup Snapshot only restores to new DB and only MySQL/Aurora support
+          from S3. Aurora used percona to do it.
+        </li>
+        <li>Cloning feature only available for Aurora.</li>
       </ul>
     ),
   },
