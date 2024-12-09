@@ -499,6 +499,87 @@ const model = [
             <li>Can add delete on expire.</li>
           </ul>
         </li>
+        <li>
+          Event supported <em>Event Bridge, Lambda Function, SQS, SNS</em>
+        </li>
+        <li>
+          Transfer - Transfer Acceleration via multipart, s3 byte range
+          transfer, batch via s3 select
+        </li>
+        <li>
+          S3 storage lens - analyze object, discover anamolities, cost
+          efficiency. split to:
+          <ul className="pl-4">
+            <li>Organization</li>
+            <li>Account</li>
+            <li>Region</li>
+            <li>Bucket</li>
+          </ul>
+        </li>
+        <li>
+          Encryption: (policy runs before encryption so header can be checked.)
+          <ul className="pl-4">
+            <li>SSE KMS - cheaper for custom with bucket key</li>
+            <li>DSSE KMS - 2 x faster</li>
+            <li>
+              SSE-C - https with a key but still via kms, s3-x-ams-server-side
+              header
+            </li>
+            <li>Client side encryption</li>
+          </ul>
+        </li>
+        <li>
+          Other features include:
+          <ul className="pl-4">
+            <li>CORS</li>
+            <li>MFA Delete</li>
+            <li>Access logs</li>
+            <li>Presigned URL - up-to 12 hours, can even delete or upload</li>
+            <li>
+              Object Lock{" "}
+              <ul className="pl-8">
+                <li>Compliance (fixed)</li>
+                <li>Goverenence (some can change)</li>
+                <li>Retention Period (can extend to indefinitely)</li>
+                <li>
+                  Legal Hold (with s3:PutObjectLegalHold role, one can change
+                  it)
+                </li>
+              </ul>
+            </li>
+            <li>Access Point: Good for s3 Lambda Function</li>
+          </ul>
+        </li>
+      </ul>
+    ),
+  },
+  {
+    label: "CloudFront",
+    content: (
+      <ul>
+        <li>Always us-east-1 server</li>
+        <li>Underlyer of API-Gateway</li>
+        <li>Can use geographic restriction</li>
+        <li>If to allow ec2 need to find all edge locations</li>
+        <li>
+          3 class
+          <ul className="pl-4">
+            <li>All</li>
+            <li>class 200 - except south america and australia</li>
+            <li>only US and Europe</li>
+          </ul>
+        </li>
+      </ul>
+    ),
+  },
+  {
+    label: "Global accelerator",
+    content: (
+      <ul>
+        <li>use anycast to nearest edge</li>
+        <li>Have 1 static ip</li>
+        <li>Can do health checks</li>
+        <li>For Elastic ip, ec2, ALB and NLB</li>
       </ul>
     ),
   },
