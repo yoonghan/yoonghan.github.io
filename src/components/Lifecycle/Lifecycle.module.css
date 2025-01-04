@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 2rem;
+}
+
+.container div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.container div.circle {
+  border: 5px dashed;
+  border-radius: 50%;
+}
