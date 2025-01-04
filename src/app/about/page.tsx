@@ -8,7 +8,6 @@ import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import StickyCards from "@/components/StickyCards"
-import Link from "@/components/Link"
 
 const authorModel = [
   {
@@ -166,6 +165,11 @@ const About = () => {
                       Rusty but worky on RUST programming with javascript.
                     </span>
                   ),
+                },
+                {
+                  className: "bg-red-200",
+                  title: "Samurai Leadership",
+                  description: <span>Samurai Leadership International.</span>,
                 },
                 {
                   className: "bg-green-200",
