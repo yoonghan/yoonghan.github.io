@@ -16,11 +16,11 @@ function Lifecycle({ models }: { models: Model[] }) {
       viewBox="0 0 200 200"
       transform={`rotate(${rotation * 90})`}
     >
-      <g stroke-width="0"></g>
+      <g strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g>
         <path d="M197.007,48.479L139.348,0v28.623C63.505,32.538,3.006,95.472,3.006,172.271v27.741h40.099v-27.741 c0-54.682,42.527-99.614,96.243-103.47v28.156L197.007,48.479z"></path>{" "}

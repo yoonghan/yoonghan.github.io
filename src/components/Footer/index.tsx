@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
       <hr className="w-full"></hr>
       <div className="flex justify-between  p-4">
-        <strong>Walcron 2014-2024 &copy;</strong>
+        <strong>Walcron 2014-2025 &copy;</strong>
         <ul className="flex gap-4">
           <li>
             <Link
