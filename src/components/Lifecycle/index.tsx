@@ -36,17 +36,17 @@ function Lifecycle({ models }: { models: Model[] }) {
 
   return (
     <div className={styles.container}>
-      <div>{drawArrow(0)}</div>
+      <div className={styles.arrow}>{drawArrow(0)}</div>
       <div>{drawLink(models[0])}</div>
-      <div>{drawArrow(1)}</div>
+      <div className={styles.arrow}>{drawArrow(1)}</div>
 
       <div>{drawLink(models[3])}</div>
       <div className={styles.circle}></div>
       <div>{drawLink(models[1])}</div>
 
-      <div>{drawArrow(3)}</div>
+      <div className={styles.arrow}>{drawArrow(3)}</div>
       <div>{drawLink(models[2])}</div>
-      <div>{drawArrow(2)}</div>
+      <div className={styles.arrow}>{drawArrow(2)}</div>
     </div>
   )
 }
