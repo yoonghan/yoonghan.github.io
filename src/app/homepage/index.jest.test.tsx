@@ -30,7 +30,7 @@ describe("HomePage", () => {
 
   describe("accessibility section", () => {
     it("can navigate for accessibility", () => {
-      const title = "Accessibility and Readability (WCAG)"
+      const title = "Accessibility (WCAG)"
       const link = "accessibility"
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
