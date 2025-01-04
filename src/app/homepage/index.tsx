@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
+import Lifecycle from "@/components/Lifecycle"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -58,28 +59,28 @@ function Homepage() {
             <strong>Pure Server Render</strong> to
             <strong> Non-Javascript Accessible</strong> site.
           </p>
-          <p>
-            As of <strong>2024</strong>, the importance of {walcronText} website
-            are:
-          </p>
-          <nav>
-            <ul className="text-left -mt-6 ml-4 list-decimal">
-              <li>
-                <Link href="#reliability">Reliability</Link>
-              </li>
-              <li>
-                <Link href="#accessibility">
-                  Accessibility and Readability (WCAG)
-                </Link>
-              </li>
-              <li>
-                <Link href="#monitoring">Monitoring</Link>
-              </li>
-              <li>
-                <Link href="#performance">Performance</Link>
-              </li>
-            </ul>
-          </nav>
+          <div className="flex justify-center">
+            <Lifecycle
+              models={[
+                {
+                  url: "#reliability",
+                  label: "Reliability",
+                },
+                {
+                  url: "#accessibility",
+                  label: "Accessibility (WCAG)",
+                },
+                {
+                  url: "#monitoring",
+                  label: "Monitoring",
+                },
+                {
+                  url: "#performance",
+                  label: "Performance",
+                },
+              ]}
+            />
+          </div>
         </article>
         <hr />
         {/* Reliability */}
@@ -252,7 +253,7 @@ function Homepage() {
         {/* Accessibility */}
         <article>
           <h4 className="text-3xl text-center" id="accessibility">
-            Accessibility and Readability (WCAG)
+            Accessibility (WCAG)
           </h4>
           <div>
             <div className="text-xl italic text-center">
