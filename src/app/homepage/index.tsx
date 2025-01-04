@@ -57,7 +57,8 @@ function Homepage() {
             iterations [<Link href="/history">Learn More of our history</Link>];
             evolved from <strong>AJAX/SPA</strong> to{" "}
             <strong>Pure Server Render</strong> to
-            <strong> Non-Javascript Accessible</strong> site.
+            <strong> Non-Javascript Accessible</strong> site. Our main goal now
+            are <em>DevOps oriented.</em>
           </p>
           <div className="flex justify-center">
             <Lifecycle
