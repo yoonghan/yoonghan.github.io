@@ -17,21 +17,33 @@ ul.container > li {
 }
 
 .container > li:nth-child(1) {
-  --index: 5;
+  --index: 8;
 }
 
 .container > li:nth-child(2) {
-  --index: 4;
+  --index: 7;
 }
 
 .container > li:nth-child(3) {
-  --index: 3;
+  --index: 6;
 }
 
 .container > li:nth-child(4) {
-  --index: 2;
+  --index: 5;
 }
 
 .container > li:nth-child(5) {
+  --index: 4;
+}
+
+.container > li:nth-child(6) {
+  --index: 3;
+}
+
+.container > li:nth-child(7) {
+  --index: 2;
+}
+
+.container > li:nth-child(8) {
   --index: 1;
 }
