@@ -153,6 +153,12 @@ const About = () => {
                   href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
                 },
                 {
+                  className: "bg-pink-200",
+                  title: "Samurai Leadership",
+                  description: <span>Samurai Leadership - Green Belt.</span>,
+                  href: "/certs/samurai-leadership-yoong-han.pdf",
+                },
+                {
                   className: "bg-white",
                   title: "Sun Java Certified",
                   description: <span>Certification on Java programmer.</span>,
@@ -165,11 +171,6 @@ const About = () => {
                       Rusty but worky on RUST programming with javascript.
                     </span>
                   ),
-                },
-                {
-                  className: "bg-red-200",
-                  title: "Samurai Leadership",
-                  description: <span>Samurai Leadership International.</span>,
                 },
                 {
                   className: "bg-green-200",
