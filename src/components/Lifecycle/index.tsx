@@ -14,7 +14,7 @@ function Lifecycle({ models }: { models: Model[] }) {
       height="50px"
       width="50px"
       viewBox="0 0 200 200"
-      transform={`rotate(${rotation * 90})`}
+      style={{ transform: `rotate(${rotation * 90}deg)` }}
     >
       <g strokeWidth="0"></g>
       <g
