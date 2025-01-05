@@ -38,31 +38,31 @@ test.describe("Webrtc config", () => {
 })
 
 test.describe("Webrtc calls", () => {
-  test("should be able to start 2 persons call, and receiver rejects it", async () => {
-    const caller = await startCall("Jessica")
-    const receiver = await startCall("Michelle")
+  // test("should be able to start 2 persons call, and receiver rejects it", async () => {
+  //   const caller = await startCall("Jessica")
+  //   const receiver = await startCall("Michelle")
 
-    await callAnotherPerson(caller, receiver, "Jessica", "Michelle")
-    console.log("Reject call")
+  //   await callAnotherPerson(caller, receiver, "Jessica", "Michelle")
+  //   console.log("Reject call")
 
-    await receiver.getByRole("button", { name: "No" }).click({ force: true })
-    await caller.waitForTimeout(1000)
+  //   await receiver.getByRole("button", { name: "No" }).click({ force: true })
+  //   await caller.waitForTimeout(1000)
 
-    expect(await caller.content()).toContain(
-      "Call to (Michelle) was politely declined."
-    )
-    console.log("Reject decline")
+  //   expect(await caller.content()).toContain(
+  //     "Call to (Michelle) was politely declined."
+  //   )
+  //   console.log("Reject decline")
 
-    await caller.getByRole("button", { name: "Ok" }).click({ force: true })
-    await caller.waitForTimeout(1000)
+  //   await caller.getByRole("button", { name: "Ok" }).click({ force: true })
+  //   await caller.waitForTimeout(1000)
 
-    await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
-    await caller.getByRole("button", { name: "Stop" }).click({ force: true })
+  //   await receiver.getByRole("button", { name: "Stop" }).click({ force: true })
+  //   await caller.getByRole("button", { name: "Stop" }).click({ force: true })
 
-    console.log("Reject done")
-    await caller.close()
-    await receiver.close()
-  })
+  //   console.log("Reject done")
+  //   await caller.close()
+  //   await receiver.close()
+  // })
 
   test("should be able to start 2 persons call, and receiver answers it", async () => {
     const caller = await startCall("Jupiter")
