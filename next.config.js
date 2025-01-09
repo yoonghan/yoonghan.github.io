@@ -49,7 +49,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
 })
 
-module.exports = withPWA({
+module.exports = {
   //placeholder_for_static_generation
   async headers() {
     return [
@@ -64,4 +64,4 @@ module.exports = withPWA({
     ]
   },
   instrumentationHook: true,
-})
+}
