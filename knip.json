@@ -11,8 +11,9 @@
     "snake-game",
     "dotenv-cli",
     "@types/jest",
-    "@opentelemetry/api",
-    "@opentelemetry/sdk-trace-base"
+    "@opentelemetry/exporter-trace-otlp-http",
+    "@opentelemetry/sdk-trace-base",
+    "@opentelemetry/api"
   ],
   "ignoreBinaries": [
     "wasm-pack"
