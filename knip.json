@@ -10,7 +10,9 @@
     "sharp",
     "snake-game",
     "dotenv-cli",
-    "@types/jest"
+    "@types/jest",
+    "@opentelemetry/api",
+    "@opentelemetry/sdk-trace-base"
   ],
   "ignoreBinaries": [
     "wasm-pack"
