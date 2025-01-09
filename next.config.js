@@ -63,4 +63,5 @@ module.exports = withPWA({
       },
     ]
   },
+  instrumentationHook: true,
 })
