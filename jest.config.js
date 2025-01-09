@@ -39,6 +39,7 @@ const customJestConfig = {
     "layout.tsx",
     "<rootDir>/src/app/experiments/*",
     "<rootDir>/src/app/projects/*",
+    "<rootDir>/src/instrumentation.ts",
   ],
 }
 
