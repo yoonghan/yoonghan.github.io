@@ -63,4 +63,7 @@ module.exports = withPWA({
       },
     ]
   },
+  experimental: { 
+    instrumentationHook: true 
+  }
 })
