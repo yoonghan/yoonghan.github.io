@@ -43,7 +43,7 @@ const apiSecurityHeaders = [
 // })
 
 const withPWA = require("@ducanh2912/next-pwa").default({
-  disable: process.env.NODE_ENV === "development",
+  disable: true,
   register: false,
   dest: "public",
   publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
@@ -63,4 +63,7 @@ module.exports = withPWA({
       },
     ]
   },
+  experimental: { 
+    instrumentationHook: true 
+  }
 })
