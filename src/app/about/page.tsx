@@ -136,6 +136,13 @@ const About = () => {
                 },
                 {
                   imageUrl:
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX1z5XvAwS8G_ojSep2CpJdkYJ7MhpUvJ_8g&s",
+                  className: "bg-white",
+                  title: "Azure Cloud Fundamentals",
+                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
+                },
+                {
+                  imageUrl:
                     "https://d1.awsstatic.com/certification/badges/AWS-Certified-Cloud-Practitioner_badge_150x150.17da917fbddc5383838d9f8209d2030c8d99f31e.png",
                   className: "bg-yellow-400",
                   title: "AWS Cloud Practitioner",
