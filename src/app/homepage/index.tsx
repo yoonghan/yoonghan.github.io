@@ -326,7 +326,7 @@ function Homepage() {
             Monitoring
           </h5>
           <div className="text-xl italic text-center pt-8">
-            {`"Ensure what we develop are according to standards."`}
+            {`"Dogfooding. Eat your own dogfood!"`}
           </div>
           <div>
             <figure>
@@ -339,11 +339,10 @@ function Homepage() {
               />
               <figcaption>
                 <p>
-                  As a self-maintained website, it is hard to know what is right
-                  and so we start to use tools; such as{" "}
-                  <strong>Lighthouse</strong>, <strong>Google Analytics</strong>{" "}
-                  and <strong>Google Search Console</strong> to check on general
-                  usage to up-keep the standard guidelines.
+                  We required alarms and bird-eye view on our system; as such we
+                  implemented <strong>Open telemetry</strong>,{" "}
+                  <strong>Checkly</strong> to check monitor API failures, to
+                  Debug and health check.
                 </p>
                 <div className="flex justify-center">
                   <Button href="/projects/checklist">
@@ -372,7 +371,8 @@ function Homepage() {
               />
               <figcaption>
                 <p>
-                  We use <strong>Lighthouse</strong> and{" "}
+                  As a self-maintained website, it is hard to know what is right
+                  and performant. We use <strong>Lighthouse</strong> and{" "}
                   <strong>WebVitals via Google Analytics</strong> to check on
                   our webpage performance. The ultimate goal is to test
                   frequently and keep the page simple.
