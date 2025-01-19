@@ -66,4 +66,13 @@ module.exports = withPWA({
       },
     ]
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        // Disable the 'tls' module on the client side
+        tls: false,
+      }
+    }
+    return config
+  },
 })
