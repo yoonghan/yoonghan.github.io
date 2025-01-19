@@ -20,8 +20,28 @@ export const metadata = {
 
 const links: Array<{ [key: string]: ReactNode }> = [
   {
+    Site: "Axiom",
+    Description: "Stream open telemetry to monitor and visualize APIs.",
+    Url: (
+      <a href="https://app.axiom.co/" target={"_blank"} rel="noreferrer">
+        link
+      </a>
+    ),
+  },
+
+  {
+    Site: "Checkly",
+    Description:
+      "Monitor Site performance and health (Unfortunately telemetry doesn't work).",
+    Url: (
+      <a href="https://app.checklyhq.com/" target={"_blank"} rel="noreferrer">
+        link
+      </a>
+    ),
+  },
+  {
     Site: "Google Search Console",
-    Description: "Check site usability and update search sitemap",
+    Description: "Check site usability and update search sitemap.",
     Url: (
       <a
         href="https://search.google.com/search-console"
@@ -34,7 +54,7 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
   {
     Site: "Page Speed",
-    Description: "Alternative to lighthouse, check page performance",
+    Description: "Alternative to lighthouse, check page performance.",
     Url: (
       <a
         href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.walcron.com%2F"
@@ -47,7 +67,7 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
   {
     Site: "Page Validator",
-    Description: "Page validator",
+    Description: "Page validator.",
     Url: (
       <a
         href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fwww.walcron.com%2F"
@@ -60,7 +80,7 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
   {
     Site: "WebAim Wave",
-    Description: "Similar to lighthouse",
+    Description: "Similar to lighthouse.",
     Url: (
       <a
         href="https://wave.webaim.org/report#/https://www.walcron.com"
