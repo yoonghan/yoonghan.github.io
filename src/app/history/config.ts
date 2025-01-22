@@ -6,6 +6,7 @@ import {
   faServer,
   faCog,
   faBoltLightning,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -113,7 +114,7 @@ export const siteHistory: IEvent[] = [
   {
     id: "May-2023",
     date: "May-2023",
-    desc: "Checkout on Web RTC technology",
+    desc: "Add Web RTC technology",
   },
   {
     id: "Jan-2024",
@@ -125,5 +126,12 @@ export const siteHistory: IEvent[] = [
     date: "August-2024",
     desc: "New homepage for performance",
     faIcon: faBoltLightning,
+  },
+  {
+    id: "Jan-2025",
+    date: "Jan-2025",
+    special: "AWS Certified",
+    desc: "Add OpenTelemetry and monitoring",
+    faIcon: faMagnifyingGlass,
   },
 ]

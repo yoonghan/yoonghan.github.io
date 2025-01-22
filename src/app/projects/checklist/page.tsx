@@ -80,7 +80,7 @@ const links: Array<{ [key: string]: ReactNode }> = [
   },
   {
     Site: "WebAim Wave",
-    Description: "Similar to lighthouse.",
+    Description: "Broken in scanning Next JS.",
     Url: (
       <a
         href="https://wave.webaim.org/report#/https://www.walcron.com"
