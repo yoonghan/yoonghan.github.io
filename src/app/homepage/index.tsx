@@ -253,13 +253,12 @@ function Homepage() {
         <hr />
         {/* Accessibility */}
         <article>
-          <h4 className="text-3xl text-center" id="accessibility">
+          <h4 className="text-3xl text-center font-bold" id="accessibility">
             Accessibility (WCAG)
           </h4>
           <div>
             <div className="text-xl italic text-center">
-              &quot;Our Homepage can now be browsed{" "}
-              <strong className="text-2xl">WITHOUT JAVASCRIPT</strong>!!&quot;
+              &quot;Our Homepage can now be browsed WITHOUT JAVASCRIPT!!&quot;
             </div>
             <p className="pt-8">
               We did it by relying on both PureCSS, Server Side Generation and
@@ -322,67 +321,93 @@ function Homepage() {
         <hr />
         {/* Monitoring */}
         <article>
-          <h5 className="text-3xl text-center" id="monitoring">
+          <h5 className="text-3xl text-center font-bold" id="monitoring">
             Monitoring
           </h5>
           <div className="text-xl italic text-center pt-8">
-            {`"Dogfooding. Eat your own dogfood!"`}
+            {`"Dogfooding. We eat our own dogfood!"`}
           </div>
-          <div>
-            <figure>
-              <Image
-                src="/img/homepage/monitoring.webp"
-                width={1024}
-                height={689}
-                alt="Lighthouse"
-                className="mx-auto mb-8"
-              />
-              <figcaption>
+          <div className="max-w-screen-md  mx-auto pt-16">
+            <Figure
+              imageProps={{
+                src: "/img/homepage/monitoring-opentelemetry.webp",
+                height: 1024,
+                width: 542,
+                alt: "Axiom Telemetry dashboard",
+              }}
+              imageCaption="Leverage Axiom's Open Telemetry to view API workflow"
+            >
+              <>
+                We use Axiom to stream OpenTelemetry data over. Using this data
+                we can monitor our API&apos;s performance and application
+                integration.
+              </>
+              <div className="flex justify-center pt-10">
+                <Button href="/projects/checklist">
+                  View Checklists
+                  <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
+                </Button>
+              </div>
+            </Figure>
+            <div className="pt-32">
+              <Figure
+                imageProps={{
+                  src: "/img/homepage/monitoring-website.webp",
+                  height: 1024,
+                  width: 664,
+                  alt: "Checkly dashboard",
+                }}
+                imageCaption="Checkly is used to monitor our website up-time."
+                reversed={true}
+              >
                 <p>
-                  We required alarms and bird-eye view on our system; as such we
-                  implemented <strong>Open telemetry</strong>,{" "}
-                  <strong>Checkly</strong> to check monitor API failures, to
-                  Debug and health check.
+                  An alarm system if the website is ever down within 24hours. A
+                  dashboard is created as well to check on performance and
+                  region latency.
                 </p>
-                <div className="flex justify-center">
-                  <Button href="/projects/checklist">
-                    View Checklists
-                    <FontAwesomeIcon icon={faArrowRight} className="pl-2" />
-                  </Button>
-                </div>
-              </figcaption>
-            </figure>
+              </Figure>
+            </div>
           </div>
         </article>
         <hr />
         {/* Performance */}
         <article>
-          <h6 className="text-3xl text-center" id="performance">
+          <h6 className="text-3xl text-center font-bold" id="performance">
             Performance
           </h6>
-          <div>
-            <figure>
-              <Image
-                src="/img/homepage/performance.webp"
-                width={1024}
-                height={722}
-                alt="Google Big Query"
-                className="mx-auto mb-8"
-              />
-              <figcaption>
-                <p>
-                  As a self-maintained website, it is hard to know what is right
-                  and performant. We use <strong>Lighthouse</strong> and{" "}
-                  <strong>WebVitals via Google Analytics</strong> to check on
-                  our webpage performance. The ultimate goal is to test
-                  frequently and keep the page simple.
-                </p>
-                <p>
-                  To keep on the website progress, we are analyzing incoming
-                  data via google analytics.
-                </p>
-              </figcaption>
-            </figure>
+          <div className="text-xl italic text-center pt-8">
+            {`"Keeping standards and low latency."`}
+          </div>
+          <div className="max-w-screen-md  mx-auto pt-16">
+            <Figure
+              imageProps={{
+                src: "/img/homepage/performance.webp",
+                height: 1024,
+                width: 689,
+                alt: "Speed Insight",
+              }}
+              imageCaption="Google Speed Insight"
+            >
+              We maintain a good performance and accessibility. We use
+              Lighthouse to monitored during deployment.
+            </Figure>
+            <div className="pt-32">
+              <Figure
+                imageProps={{
+                  src: "/img/homepage/performance-gcp.webp",
+                  height: 1024,
+                  width: 722,
+                  alt: "Google Big Data Query",
+                }}
+                imageCaption="We page loading data with Google Analytics."
+                reversed={true}
+              >
+                We occasionally monitor our websites loading performances so
+                that we can keep our rating high for SEO. We also collect
+                client&apos; data ONLY if consensus is given; so...please{" "}
+                <strong>accept</strong> the cookie. :)
+              </Figure>
+            </div>
           </div>
         </article>
         <hr />
