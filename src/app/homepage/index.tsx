@@ -258,8 +258,7 @@ function Homepage() {
           </h4>
           <div>
             <div className="text-xl italic text-center">
-              &quot;Our Homepage can now be browsed{" "}
-              <strong className="text-2xl">WITHOUT JAVASCRIPT</strong>!!&quot;
+              &quot;Our Homepage can now be browsed WITHOUT JAVASCRIPT!!&quot;
             </div>
             <p className="pt-8">
               We did it by relying on both PureCSS, Server Side Generation and
