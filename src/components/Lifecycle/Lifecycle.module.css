@@ -32,7 +32,36 @@
   justify-content: flex-start;
 }
 
-.container div.circle {
-  border: 5px dashed;
+.container .circle {
+  width: 150px;
+  height: 150px;
+  border: 6px solid var(--button-orange-bg);
   border-radius: 50%;
+  position: relative;
+  top: -25%;
+  left: -25%;
+}
+.container .circle::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: -10px;
+  margin: auto;
+}
+.container .circle::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid var(--button-orange-bg);
+  position: absolute;
+  bottom: 70px;
+  right: -16px;
+  transform: rotate(356deg);
 }
