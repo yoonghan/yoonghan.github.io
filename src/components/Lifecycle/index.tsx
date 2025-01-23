@@ -41,7 +41,7 @@ function Lifecycle({ models }: { models: Model[] }) {
       <div className={styles.arrow}>{drawArrow(1)}</div>
 
       <div>{drawLink(models[3])}</div>
-      <div className={styles.circle}></div>
+      <div className={`animate-[spin_5s_infinite] ${styles.circle}`}></div>
       <div>{drawLink(models[1])}</div>
 
       <div className={styles.arrow}>{drawArrow(3)}</div>
