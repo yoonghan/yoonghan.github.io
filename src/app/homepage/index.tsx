@@ -64,8 +64,12 @@ function Homepage() {
             <Lifecycle
               models={[
                 {
+                  url: "#performance",
+                  label: "Performance",
+                },
+                {
                   url: "#reliability",
-                  label: "Reliability",
+                  label: "Reliable Deployment",
                 },
                 {
                   url: "#accessibility",
@@ -75,10 +79,6 @@ function Homepage() {
                   url: "#monitoring",
                   label: "Monitoring",
                 },
-                {
-                  url: "#performance",
-                  label: "Performance",
-                },
               ]}
             />
           </div>
@@ -87,7 +87,7 @@ function Homepage() {
         {/* Reliability */}
         <article>
           <h3 className="text-3xl text-center" id="reliability">
-            Reliability
+            Reliable Deployment
           </h3>
           <div className="text-center my-8">
             Being a self-maintained site, how do one...
