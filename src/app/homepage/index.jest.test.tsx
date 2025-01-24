@@ -14,7 +14,7 @@ describe("HomePage", () => {
 
   describe("reliability section", () => {
     it("can navigate for reliability", () => {
-      const title = "Reliability"
+      const title = "Reliable Deployment"
       const link = "reliability"
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
