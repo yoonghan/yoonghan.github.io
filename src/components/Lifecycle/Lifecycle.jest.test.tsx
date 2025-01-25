@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import Lifecycle from "."
 import "@/__tests__/mocks/windowMock"
-import { animeTailwindClass } from "./const"
 
 describe("Lifecyle", () => {
   it("should render error if model is not of 4", () => {
@@ -40,35 +39,8 @@ describe("Lifecyle", () => {
         "href",
         "http://fourth-url"
       )
-    })
 
-    it("should animate lifecycle", () => {
-      renderData()
-      expect(screen.getByTestId("lifecycle-animate")).toHaveClass(
-        animeTailwindClass
-      )
-    })
-
-    it("should be able to disable lifecycle animation", () => {
-      Object.defineProperty(window, "location", {
-        value: { search: "?animate=false" },
-        writable: true,
-      })
-
-      render(
-        <Lifecycle
-          models={[
-            { url: "http://first-url", label: "first" },
-            { url: "http://second-url", label: "second" },
-            { url: "http://third-url", label: "third" },
-            { url: "http://fourth-url", label: "fourth" },
-          ]}
-        />
-      )
-
-      expect(screen.getByTestId("lifecycle-animate")).not.toHaveClass(
-        animeTailwindClass
-      )
+      expect(screen.getByTitle("Deployment Lifecycle")).toBeInTheDocument()
     })
   })
 })

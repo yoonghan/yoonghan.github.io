@@ -1,10 +1,7 @@
-"use client"
-
 import React from "react"
 import Link from "../Link"
 import styles from "./Lifecycle.module.css"
-import { animeTailwindClass } from "./const"
-import { useDisableAnimation } from "../utils/hooks/disableAnimation/useDisableAnimation"
+import AnimatedCircle from "./AnimatedCircle"
 
 type Model = {
   label: string
@@ -12,8 +9,6 @@ type Model = {
 }
 
 function Lifecycle({ models }: { models: Model[] }) {
-  const { isAnimatable } = useDisableAnimation()
-
   const drawArrow = (rotation: number) => (
     <svg
       fill="#000000"
@@ -47,10 +42,7 @@ function Lifecycle({ models }: { models: Model[] }) {
       <div className={styles.arrow}>{drawArrow(1)}</div>
 
       <div>{drawLink(models[3])}</div>
-      <div
-        className={`${styles.circle} ${isAnimatable ? animeTailwindClass : ""}`}
-        data-testid="lifecycle-animate"
-      ></div>
+      <AnimatedCircle />
       <div>{drawLink(models[1])}</div>
 
       <div className={styles.arrow}>{drawArrow(3)}</div>
