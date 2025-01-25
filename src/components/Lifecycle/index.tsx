@@ -1,6 +1,10 @@
+"use client"
+
 import React from "react"
 import Link from "../Link"
 import styles from "./Lifecycle.module.css"
+import { useSearchParams } from "next/navigation"
+import { animeTailwindClass } from "./const"
 
 type Model = {
   label: string
@@ -8,6 +12,9 @@ type Model = {
 }
 
 function Lifecycle({ models }: { models: Model[] }) {
+  const searchParams = useSearchParams()
+  const disableAnimation = searchParams.get("animate") === "0"
+
   const drawArrow = (rotation: number) => (
     <svg
       fill="#000000"
@@ -42,7 +49,10 @@ function Lifecycle({ models }: { models: Model[] }) {
 
       <div>{drawLink(models[3])}</div>
       <div
-        className={`animate-[spin_5s_linear_infinite] ${styles.circle}`}
+        className={`${styles.circle} ${
+          disableAnimation ? "" : animeTailwindClass
+        }`}
+        data-testid="lifecycle-animate"
       ></div>
       <div>{drawLink(models[1])}</div>
 
