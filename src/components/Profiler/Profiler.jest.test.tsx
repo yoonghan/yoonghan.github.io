@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import Profiler from "."
-import img from "@/images/profile/han.webp"
 
 describe("Profiler", () => {
   it("should render correctly", () => {

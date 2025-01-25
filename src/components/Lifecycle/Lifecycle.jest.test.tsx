@@ -10,26 +10,37 @@ describe("Lifecyle", () => {
     ).toBeInTheDocument()
   })
 
-  it("should render all the elements provided", () => {
-    render(
-      <Lifecycle
-        models={[
-          { url: "http://first-url", label: "first" },
-          { url: "http://second-url", label: "second" },
-          { url: "http://third-url", label: "third" },
-          { url: "http://fourth-url", label: "fourth" },
-        ]}
-      />
-    )
-    expect(screen.getByRole("link", { name: "first" })).toHaveAttribute(
-      "href",
-      "http://first-url"
-    )
-    expect(screen.getByRole("link", { name: "second" })).toHaveAttribute("href")
-    expect(screen.getByRole("link", { name: "third" })).toHaveAttribute("href")
-    expect(screen.getByRole("link", { name: "fourth" })).toHaveAttribute(
-      "href",
-      "http://fourth-url"
-    )
+  describe("with data", () => {
+    const renderData = () =>
+      render(
+        <Lifecycle
+          models={[
+            { url: "http://first-url", label: "first" },
+            { url: "http://second-url", label: "second" },
+            { url: "http://third-url", label: "third" },
+            { url: "http://fourth-url", label: "fourth" },
+          ]}
+        />
+      )
+
+    it("should render all the elements provided", () => {
+      renderData()
+      expect(screen.getByRole("link", { name: "first" })).toHaveAttribute(
+        "href",
+        "http://first-url"
+      )
+      expect(screen.getByRole("link", { name: "second" })).toHaveAttribute(
+        "href"
+      )
+      expect(screen.getByRole("link", { name: "third" })).toHaveAttribute(
+        "href"
+      )
+      expect(screen.getByRole("link", { name: "fourth" })).toHaveAttribute(
+        "href",
+        "http://fourth-url"
+      )
+
+      expect(screen.getByTitle("Deployment Lifecycle")).toBeInTheDocument()
+    })
   })
 })
