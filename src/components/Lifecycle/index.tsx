@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "../Link"
 import styles from "./Lifecycle.module.css"
+import AnimatedCircle from "./AnimatedCircle"
 
 type Model = {
   label: string
@@ -41,7 +42,7 @@ function Lifecycle({ models }: { models: Model[] }) {
       <div className={styles.arrow}>{drawArrow(1)}</div>
 
       <div>{drawLink(models[3])}</div>
-      <div className={`animate-[spin_5s_infinite] ${styles.circle}`}></div>
+      <AnimatedCircle />
       <div>{drawLink(models[1])}</div>
 
       <div className={styles.arrow}>{drawArrow(3)}</div>
