@@ -17,7 +17,7 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "url": "http://localhost:3000?animate=0",
+      "url": "http://localhost:3000?animate=false",
       "delay": 1200,
       "selectorExpansion": true,
       "expect": 0,
@@ -26,7 +26,7 @@
     },
     {
       "label": "Homepage with cookie accepted",
-      "url": "http://localhost:3000?animate=0",
+      "url": "http://localhost:3000?animate=false",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 500,
@@ -37,7 +37,7 @@
     },
     {
       "label": "Homepage Commandbar search on table",
-      "url": "http://localhost:3000?animate=0",
+      "url": "http://localhost:3000?animate=false",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
