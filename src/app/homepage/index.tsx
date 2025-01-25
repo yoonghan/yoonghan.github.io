@@ -8,6 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
+import { useEffect } from "react"
 
 function Homepage() {
   const walcronText = "Walcron"

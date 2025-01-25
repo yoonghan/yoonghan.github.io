@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import "@/__tests__/mocks/routerMock"
+import "@/__tests__/mocks/navigationNext"
 import HomePage from "."
 
 describe("HomePage", () => {
