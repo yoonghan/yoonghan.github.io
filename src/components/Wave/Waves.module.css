@@ -1,0 +1,33 @@
+.wave {
+  animation: waves 120s linear infinite;
+  animation-fill-mode: both;
+  background-repeat: repeat-x;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.container.stop > .wave {
+  animation: none !important;
+}
+
+.wave.front {
+  background-image: url("/img/components/wave.svg");
+}
+
+.wave.back {
+  background-image: url("/img/components/wave-overlay.svg");
+  animation-direction: reverse;
+  opacity: 0.2;
+}
+
+@keyframes waves {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 100vw;
+  }
+}

@@ -3,14 +3,14 @@ import AnimatedCircle, { animeTailwindClass } from "./AnimatedCircle"
 import "@/__tests__/mocks/windowMock"
 
 describe("AnimatedCircle", () => {
-  it("should render all the elements provided", () => {
+  it("should render correctly", () => {
     render(<AnimatedCircle />)
     expect(screen.getByTitle("Deployment Lifecycle")).toHaveClass(
       animeTailwindClass
     )
   })
 
-  it("should be able to disable lifecycle animation", () => {
+  it("should be able to disable animation", () => {
     Object.defineProperty(window, "location", {
       value: { search: "?animate=false" },
       writable: true,
