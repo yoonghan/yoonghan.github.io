@@ -10,9 +10,9 @@ describe("useDisableAnimation", () => {
     expect(result.current.isAnimatable).toBe(true)
   })
 
-  it("should not isAnimatable, if query string animatable=false", () => {
+  it("should stop animate when querystring animatable=none", () => {
     Object.defineProperty(window, "location", {
-      value: { search: "?animate=false" },
+      value: { search: "?animate=none" },
       writable: true,
     })
 
@@ -26,9 +26,10 @@ describe("useDisableAnimation", () => {
   })
 
   it("should return correctly define disableAnimation REGEX", () => {
-    expect(disableAnimationRegex.test("?animate=false")).toBe(true)
-    expect(disableAnimationRegex.test("animate=false")).toBe(false)
+    expect(disableAnimationRegex.test("?animate=none")).toBe(true)
+    expect(disableAnimationRegex.test("animate=none")).toBe(false)
+    expect(disableAnimationRegex.test("?animate=false")).toBe(false)
     expect(disableAnimationRegex.test("?animate=true")).toBe(false)
-    expect(disableAnimationRegex.test("?a=1&animate=false&b=2")).toBe(true)
+    expect(disableAnimationRegex.test("?a=1&animate=none&b=2")).toBe(true)
   })
 })

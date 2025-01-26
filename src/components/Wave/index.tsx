@@ -15,14 +15,17 @@ function Wave({
   const { isAnimatable } = useDisableAnimation()
 
   return (
-    <div
-      className={`${className || ""} relative ${styles.container} ${
-        !isAnimatable && styles.stop
-      }`}
-      title={title}
-    >
-      <div className={`${styles.wave} ${styles.front}`}></div>
-      <div className={`${styles.wave} ${styles.back}`}></div>
+    <div className={`${className || ""} relative`} title={title}>
+      <div
+        className={`${styles.wave} ${styles.front} ${
+          !isAnimatable ? "animate-none" : ""
+        }`}
+      ></div>
+      <div
+        className={`${styles.wave} ${styles.back} ${
+          !isAnimatable ? "animate-none" : ""
+        }`}
+      ></div>
       {children}
     </div>
   )
