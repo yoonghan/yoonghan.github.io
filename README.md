@@ -51,6 +51,12 @@ npm run backstop:test  //To test
 npm run backstop:approve // Approve the new website ok
 ```
 
+To stop animation, append query string to use `animate-none` class
+
+```js
+?animate=none
+```
+
 ## Setting environments
 
 1. Install Vercel Cli, with `npm i -g vercel`

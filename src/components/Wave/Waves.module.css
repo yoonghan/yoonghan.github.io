@@ -1,5 +1,5 @@
 .wave {
-  animation: waves 120s linear infinite;
+  animation: waves 70s linear infinite;
   animation-fill-mode: both;
   background-repeat: repeat-x;
   height: 100%;
@@ -9,10 +9,6 @@
   z-index: -1;
 }
 
-.container.stop > .wave {
-  animation: none !important;
-}
-
 .wave.front {
   background-image: url("/img/components/wave.svg");
 }
@@ -20,6 +16,7 @@
 .wave.back {
   background-image: url("/img/components/wave-overlay.svg");
   animation-direction: reverse;
+  animation-duration: 120s;
   opacity: 0.2;
 }
 

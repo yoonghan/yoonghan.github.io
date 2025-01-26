@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const disableAnimationRegex = /.*[\?|\&]animate=false.*/
+export const disableAnimationRegex = /.*[\?|\&]animate=none.*/
 
 export function useDisableAnimation() {
   const [isAnimatable, setIsAnimatable] = useState(false)
