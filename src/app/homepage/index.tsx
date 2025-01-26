@@ -9,6 +9,7 @@ import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
 import { useEffect } from "react"
+import Wave from "@/components/Wave"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -325,9 +326,12 @@ function Homepage() {
           <h5 className="text-3xl text-center font-bold" id="monitoring">
             Monitoring
           </h5>
-          <div className="text-xl italic text-center pt-8">
+          <Wave
+            className="text-xl italic text-center pt-8"
+            title="monitoring wave"
+          >
             {`"Dogfooding. We eat our own dogfood!"`}
-          </div>
+          </Wave>
           <div className="max-w-screen-md  mx-auto pt-16">
             <Figure
               imageProps={{
