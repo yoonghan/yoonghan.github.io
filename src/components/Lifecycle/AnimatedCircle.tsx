@@ -9,7 +9,9 @@ function AnimatedCircle() {
   const { isAnimatable } = useDisableAnimation()
   return (
     <div
-      className={`${styles.circle} ${isAnimatable ? animeTailwindClass : ""}`}
+      className={`${styles.circle} ${animeTailwindClass} ${
+        isAnimatable ? "" : "animate-none"
+      }`}
       title="Deployment Lifecycle"
     ></div>
   )

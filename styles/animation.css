@@ -6,3 +6,8 @@
     opacity: 0;
   }
 }
+
+/* stop animation with animate=false */
+.animate-none {
+  animation: none !important;
+}

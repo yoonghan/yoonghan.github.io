@@ -12,13 +12,13 @@ describe("AnimatedCircle", () => {
 
   it("should be able to disable animation", () => {
     Object.defineProperty(window, "location", {
-      value: { search: "?animate=false" },
+      value: { search: "?animate=none" },
       writable: true,
     })
 
     render(<AnimatedCircle />)
-    expect(screen.getByTitle("Deployment Lifecycle")).not.toHaveClass(
-      animeTailwindClass
+    expect(screen.getByTitle("Deployment Lifecycle")).toHaveClass(
+      "animate-none"
     )
   })
 })
