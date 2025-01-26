@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from "react"
+import { useMemo } from "react"
 import styles from "./Timeline.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
