@@ -5,7 +5,7 @@ describe("Wave", () => {
   const renderComponent = (title: string, className?: string) =>
     render(
       <Wave title={title} className={className}>
-        <div>Wave Component</div>
+        <>Wave Component</>
       </Wave>
     )
 
@@ -13,16 +13,22 @@ describe("Wave", () => {
     renderComponent("waves")
 
     expect(screen.getByText("Wave Component")).toBeInTheDocument()
-    expect(screen.getByTitle("waves")).toHaveClass("container")
+    expect(screen.getByTitle("waves")).toHaveClass("relative")
   })
 
   it("should be able to disable animation", () => {
     Object.defineProperty(window, "location", {
-      value: { search: "?animate=false" },
+      value: { search: "?animate=none" },
       writable: true,
     })
     renderComponent("waves-1")
-    expect(screen.getByTitle("waves-1")).toHaveClass("stop")
+    screen
+      .getByTitle("waves-1")
+      // eslint-disable-next-line testing-library/no-node-access
+      .querySelectorAll("div")
+      .forEach((elem) => {
+        expect(elem.className).toContain("animate-none")
+      })
   })
 
   it("should render with optional className", () => {
