@@ -2,6 +2,7 @@ import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
 import Workflow from "@/components/Animate/Workflow"
 import Wave from "@/components/Animate/Wave"
 import { faUniversalAccess } from "@fortawesome/free-solid-svg-icons"
+import Gauge from "@/components/Animate/Gauge"
 
 function SpinGearDemo() {
   return (
@@ -32,12 +33,21 @@ function WaveDemo() {
   )
 }
 
+function GaugeDemo() {
+  return (
+    <Gauge title={"Gauge Demo"}>
+      <div className="p-2">Gauge Demo</div>
+    </Gauge>
+  )
+}
+
 function Animate() {
   return (
     <>
       <SpinGearDemo />
       <WorkflowDemo />
       <WaveDemo />
+      <GaugeDemo />
     </>
   )
 }
