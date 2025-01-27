@@ -144,4 +144,17 @@ export const AvailableInput: ICommand = {
       )
     },
   },
+  "no-animate": {
+    description: "Disable Animation",
+    synonym: ["no animate", "stop animate"],
+    action: EnumAction.LINK,
+    exec: (_: AppRouterInstance, pathname: string) => {
+      if (pathname.includes("?")) {
+        window.location.href = pathname + "&animate=none"
+      } else {
+        window.location.href = pathname + "?animate=none"
+      }
+      return <React.Fragment />
+    },
+  },
 }
