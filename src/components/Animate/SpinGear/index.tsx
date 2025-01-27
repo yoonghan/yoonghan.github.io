@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode } from "react"
-import { useDisableAnimation } from "../utils/hooks/disableAnimation/useDisableAnimation"
+import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
 import { faCog } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
