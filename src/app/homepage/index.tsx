@@ -16,6 +16,7 @@ import Lifecycle from "@/components/Lifecycle"
 import Wave from "@/components/Animate/Wave"
 import Workflow from "@/components/Animate/Workflow"
 import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
+import Gauge from "@/components/Animate/Gauge"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -149,7 +150,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-approval.webp",
@@ -183,7 +184,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-compliance.webp",
@@ -222,7 +223,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="max-w-screen-md mx-auto pt-32">
+            <div className="max-w-screen-md mx-auto pt-24">
               <div className="text-center text-lg mb-12 italic">
                 {`"So what if something really breaks ?"`}
               </div>
@@ -372,7 +373,7 @@ function Homepage() {
                 </Button>
               </div>
             </Figure>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/monitoring-website.webp",
@@ -398,9 +399,10 @@ function Homepage() {
           <h6 className="text-3xl text-center font-bold" id="performance">
             Performance
           </h6>
-          <div className="text-xl italic text-center pt-8">
-            {`"Keeping standards and low latency."`}
-          </div>
+          <Gauge
+            title="Performance Gauge"
+            className="text-xl italic text-center pt-8 flex flex-col items-center"
+          >{`"Maintaining standards with low latency."`}</Gauge>
           <div className="max-w-screen-md  mx-auto pt-16">
             <Figure
               imageProps={{
@@ -414,7 +416,7 @@ function Homepage() {
               We maintain a good performance and accessibility. We use
               Lighthouse to monitored during deployment.
             </Figure>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/performance-gcp.webp",
