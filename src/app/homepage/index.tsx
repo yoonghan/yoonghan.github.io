@@ -9,7 +9,7 @@ import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
 import Wave from "@/components/Wave"
-import SpinGear from "@/components/SpinGear"
+import Workflow from "@/components/Animate/Workflow"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -91,10 +91,7 @@ function Homepage() {
           <h3 className="text-3xl text-center" id="reliability">
             Reliable Deployment
           </h3>
-          <SpinGear
-            className="flex items-center justify-center gap-8"
-            title="Deployment Cog"
-          >
+          <Workflow className="gap-8" title="Deployment Cog">
             <div className="text-center my-8">
               Being a self-maintained site, how do one...
               <ul className="text-lg italic pt-4">
@@ -103,7 +100,7 @@ function Homepage() {
                 <li>{`"A hassle to deploy changes ?"`}</li>
               </ul>
             </div>
-          </SpinGear>
+          </Workflow>
           <div className="max-w-screen-md mx-auto">
             <div className="pt-8">
               <Figure

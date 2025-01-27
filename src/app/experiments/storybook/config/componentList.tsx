@@ -9,6 +9,7 @@ import { OrderedFigure, ReversedFigure } from "./Figure"
 import Lifecycle from "@/components/Lifecycle"
 import Waves from "./Waves"
 import SpinGear from "./SpinGear"
+import WorkflowDemo from "./Workflow"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -16,7 +17,11 @@ const NoSSRDialog = dynamic(() => import("./Dialogs"), {
 
 export const storyBookList = [
   {
-    title: "ArrowZoom",
+    title: "Animated Workflow",
+    component: <WorkflowDemo />,
+  },
+  {
+    title: "Spin Gear",
     component: <SpinGear />,
   },
   {
