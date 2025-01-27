@@ -149,12 +149,16 @@ export const AvailableInput: ICommand = {
     synonym: ["no animate", "stop animate"],
     action: EnumAction.LINK,
     exec: (_: AppRouterInstance, pathname: string) => {
-      if (pathname.includes("?")) {
-        window.location.href = pathname + "&animate=none"
+      if (pathname.includes("animate=none")) {
+        return <InvalidCommand invalidCommand={"Animation disabled."} />
       } else {
-        window.location.href = pathname + "?animate=none"
+        if (pathname.includes("?")) {
+          window.location.href = pathname + "&animate=none"
+        } else {
+          window.location.href = pathname + "?animate=none"
+        }
+        return <React.Fragment />
       }
-      return <React.Fragment />
     },
   },
 }
