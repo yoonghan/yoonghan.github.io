@@ -43,29 +43,24 @@ const CommandBarInput = (props: Props) => {
 
   return (
     <form onSubmit={onSubmit} className={`${styles["command-container"]}`}>
+      <div className={`${styles.command_text_prompt}`}>walcron$</div>
       <div>
-        <div className={`${styles["command-text-prompt"]}`}>walcron$</div>
-        <div className={styles.prompt}>
-          <span className={`${styles["promptIn"]}`}>
-            {props.suggestedInput}
-          </span>
-          <span data-testid="prompter">&#9608;</span>
-        </div>
-        <div>
-          <input
-            type="text"
-            list="commands"
-            maxLength={22}
-            value={props.suggestedInput}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className={styles.autosuggest__input}
-            aria-label="Command prompt"
-          />
-          <datalist id="commands">{commandOptions}</datalist>
-        </div>
+        <input
+          type="text"
+          list="commands"
+          maxLength={22}
+          value={props.suggestedInput}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          className={styles.autosuggest__input}
+          aria-label="Command prompt"
+        />
+        <datalist id="commands">{commandOptions}</datalist>
       </div>
+      <button type="submit" className="pl-2">
+        GO
+      </button>
     </form>
   )
 }
