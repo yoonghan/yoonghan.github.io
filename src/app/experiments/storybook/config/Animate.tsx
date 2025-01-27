@@ -1,12 +1,17 @@
-import SpinGear from "@/components/Animate/SpinGear"
+import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
 import Workflow from "@/components/Animate/Workflow"
 import Wave from "@/components/Animate/Wave"
+import { faUniversalAccess } from "@fortawesome/free-solid-svg-icons"
 
 function SpinGearDemo() {
   return (
-    <SpinGear title={"Spin Gear Demo"} className="flex items-center">
-      <div className="p-2">Spin Gear Demo</div>
-    </SpinGear>
+    <FontAwesomeAnimate
+      title={"Universal Access Demo"}
+      className="flex items-center"
+      faIcon={faUniversalAccess}
+    >
+      <div className="p-2">Bounce universal Demo</div>
+    </FontAwesomeAnimate>
   )
 }
 
