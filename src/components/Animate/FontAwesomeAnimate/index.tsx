@@ -2,27 +2,29 @@
 
 import { ReactNode } from "react"
 import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
-import { faCog } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons"
 
-function SpinGear({
+function FontAwesomeAnimate({
   children,
   title,
   className,
+  faIcon,
 }: {
   children: ReactNode
   title: string
   className?: string
+  faIcon: IconDefinition
 }) {
   const { isAnimatable } = useDisableAnimation()
 
   return (
     <div className={`${className || ""}`} title={title}>
-      <FontAwesomeIcon icon={faCog} size={"2xl"} spin={!!isAnimatable} />
+      <FontAwesomeIcon icon={faIcon} size={"2xl"} bounce={!!isAnimatable} />
       {children}
       <div></div>
     </div>
   )
 }
 
-export default SpinGear
+export default FontAwesomeAnimate
