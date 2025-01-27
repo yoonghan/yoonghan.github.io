@@ -9,6 +9,7 @@ function SpinGearDemo() {
       title={"Universal Access Demo"}
       className="flex items-center"
       faIcon={faUniversalAccess}
+      animate="bounce"
     >
       <div className="p-2">Bounce universal Demo</div>
     </FontAwesomeAnimate>
