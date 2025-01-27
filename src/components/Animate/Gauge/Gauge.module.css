@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  border-radius: 50% / 100% 100% 0 0;
+  background-color: #5cb85c;
+  overflow: hidden;
+  width: 80px;
+  height: 40px;
+}
+
+.percent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  transform: rotate(150deg);
+  transform-origin: bottom center;
+  animation: gauge 8s ease-in infinite;
+}
+
+.mask {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  top: 45%;
+  background-color: white;
+  border-radius: 50% / 100% 100% 0 0;
+}
+
+@keyframes gauge {
+  0% {
+    transform: rotate(150deg);
+  }
+  50% {
+    transform: rotate(175deg);
+  }
+  100% {
+    transform: rotate(150deg);
+  }
+}

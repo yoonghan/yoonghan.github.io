@@ -4,12 +4,19 @@ import Link from "@/components/Link"
 import Figure from "@/components/Figure"
 import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import {
+  faArrowRight,
+  faCertificate,
+  faKeyboard,
+  faUniversalAccess,
+} from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
-import { useEffect } from "react"
-import Wave from "@/components/Wave"
+import Wave from "@/components/Animate/Wave"
+import Workflow from "@/components/Animate/Workflow"
+import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
+import Gauge from "@/components/Animate/Gauge"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -91,14 +98,16 @@ function Homepage() {
           <h3 className="text-3xl text-center" id="reliability">
             Reliable Deployment
           </h3>
-          <div className="text-center my-8">
-            Being a self-maintained site, how do one...
-            <ul className="text-lg italic pt-4">
-              <li>{`"Validate his own changes ?"`}</li>
-              <li>{`"Ensure changes doesn't break anything ?"`}</li>
-              <li>{`"A hassle to deploy changes ?"`}</li>
-            </ul>
-          </div>
+          <Workflow className="gap-8" title="Deployment Cog">
+            <div className="text-center my-8">
+              Being a self-maintained site, how do one...
+              <ul className="text-lg italic pt-4">
+                <li>{`"Validate his own changes ?"`}</li>
+                <li>{`"Ensure changes doesn't break anything ?"`}</li>
+                <li>{`"A hassle to deploy changes ?"`}</li>
+              </ul>
+            </div>
+          </Workflow>
           <div className="max-w-screen-md mx-auto">
             <div className="pt-8">
               <Figure
@@ -141,7 +150,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-approval.webp",
@@ -175,7 +184,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-compliance.webp",
@@ -214,7 +223,7 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="max-w-screen-md mx-auto pt-32">
+            <div className="max-w-screen-md mx-auto pt-24">
               <div className="text-center text-lg mb-12 italic">
                 {`"So what if something really breaks ?"`}
               </div>
@@ -258,67 +267,77 @@ function Homepage() {
           <h4 className="text-3xl text-center font-bold" id="accessibility">
             Accessibility (WCAG)
           </h4>
-          <div>
-            <div className="text-xl italic text-center">
-              &quot;Our Homepage can now be browsed WITHOUT JAVASCRIPT!!&quot;
-            </div>
-            <p className="pt-8">
-              We did it by relying on both PureCSS, Server Side Generation and
-              ensuring non-critical usage for Javascript. The old homepage was{" "}
-              <Link href="/experiments/homepage-v1">Javascript heavy</Link>
-              (Parallax Effect) and we encountered <strong>
-                performance
-              </strong>{" "}
-              and <strong>accessibility </strong>
-              issues.
-            </p>
-          </div>
-          <div className="pt-8">
-            <div className="text-xl italic text-center">
-              This site can also be browsed with keyboard and text-readers.
-            </div>
-            <p className="pt-8">
-              We are going now commited with <strong>Web Accessibility</strong>;
-              eventhough we are still in the learning phase. The best reliance
-              is to run periodically test with{" "}
-              <Link
-                href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
-                rel="external"
-                target="audit"
-              >
-                Accessibility Checker
-              </Link>{" "}
-              and Chrome built-in Lighthouse.
-            </p>
-          </div>
-          <div className="pt-8">
-            <div className="text-xl italic text-center pb-8">
-              The site is Trusted Web Activity(TWA) and Progressive(PWA)
-              compatible.
-            </div>
-            <figure>
-              <Image
-                src="/img/homepage/app-compatible.webp"
-                width={800}
-                height={388}
-                alt="Trusted Web Activity"
-                className="mx-auto"
-              />
-              <Image
-                src="/img/arrow.svg"
-                className="hidden md:block w-4 -my-1 relative z-10 mx-auto ml-[55%] border-0"
-                aria-hidden={true}
-                alt="Description arrow"
-                width={50}
-                height={100}
-              />
-              <figcaption>
-                Access from the search panel and type <em>{'"pwa"'}</em>, once
-                installed you can view our site anytime, anywhere with or
-                without network.
-              </figcaption>
-            </figure>
-          </div>
+          <FontAwesomeAnimate
+            title={"Universal Accessible"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faUniversalAccess}
+            animate="shake"
+          >
+            Our Homepage be browsed WITHOUT Javascript enabled!
+          </FontAwesomeAnimate>
+          <p>
+            We did it by relying on both PureCSS, Server Side Generation and
+            ensuring non-critical usage for Javascript. The old homepage was{" "}
+            <Link href="/experiments/homepage-v1">Javascript heavy</Link>
+            (Parallax Effect) and we encountered <strong>
+              performance
+            </strong>{" "}
+            and <strong>accessibility </strong>
+            issues.
+          </p>
+          <FontAwesomeAnimate
+            title={"Keyboard Accessible"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faKeyboard}
+            animate="bounce"
+          >
+            This site can also be browsed with keyboard and text-readers.
+          </FontAwesomeAnimate>
+          <p className="pt-8">
+            We are going now commited with <strong>Web Accessibility</strong>;
+            eventhough we are still in the learning phase. The best reliance is
+            to run periodically test with{" "}
+            <Link
+              href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
+              rel="external"
+              target="audit"
+            >
+              Accessibility Checker
+            </Link>{" "}
+            and Chrome built-in Lighthouse.
+          </p>
+          <FontAwesomeAnimate
+            title={"Trusted Web App"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faCertificate}
+            animate="spin"
+            color="red"
+          >
+            The site is Trusted Web Activity(TWA) and Progressive(PWA)
+            compatible.
+          </FontAwesomeAnimate>
+          <figure>
+            <Image
+              src="/img/homepage/app-compatible.webp"
+              width={800}
+              height={388}
+              alt="Trusted Web Activity"
+              className="mx-auto"
+            />
+            <Image
+              src="/img/arrow.svg"
+              className="hidden md:block w-4 -my-1 relative z-10 mx-auto ml-[55%] border-0"
+              aria-hidden={true}
+              alt="Description arrow"
+              width={50}
+              height={100}
+            />
+            <figcaption>
+              Access from the search panel and type <em>{'"pwa"'}</em>, once
+              installed you can view our site anytime, anywhere with or without
+              network.
+            </figcaption>
+          </figure>
         </article>
         <hr />
         {/* Monitoring */}
@@ -354,7 +373,7 @@ function Homepage() {
                 </Button>
               </div>
             </Figure>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/monitoring-website.webp",
@@ -380,9 +399,10 @@ function Homepage() {
           <h6 className="text-3xl text-center font-bold" id="performance">
             Performance
           </h6>
-          <div className="text-xl italic text-center pt-8">
-            {`"Keeping standards and low latency."`}
-          </div>
+          <Gauge
+            title="Performance Gauge"
+            className="text-xl italic text-center pt-8 flex flex-col items-center"
+          >{`"Maintaining standards with low latency."`}</Gauge>
           <div className="max-w-screen-md  mx-auto pt-16">
             <Figure
               imageProps={{
@@ -396,7 +416,7 @@ function Homepage() {
               We maintain a good performance and accessibility. We use
               Lighthouse to monitored during deployment.
             </Figure>
-            <div className="pt-32">
+            <div className="pt-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/performance-gcp.webp",
