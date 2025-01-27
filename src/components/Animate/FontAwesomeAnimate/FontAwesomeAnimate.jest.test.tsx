@@ -1,22 +1,27 @@
 import { render, screen } from "@testing-library/react"
-import FontAwesomeAnimate from "."
+import FontAwesomeAnimate, { SupportedAnimation } from "."
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 describe("Animate FontAwesomeAnimate", () => {
-  const renderComponent = (title: string, className?: string) =>
+  const renderComponent = (
+    title: string,
+    className?: string,
+    animate: SupportedAnimation = "bounce"
+  ) =>
     render(
       <FontAwesomeAnimate
         title={title}
         className={className}
         faIcon={faMagnifyingGlass}
+        animate={animate}
       >
         <div>ArrowZoom Component</div>
       </FontAwesomeAnimate>
     )
 
-  function assertBounce(isBouncing: boolean) {
-    const spinClassName = "fa-bounce"
-    if (isBouncing) {
+  function assertAnimate(isAnimated: boolean, animate: SupportedAnimation) {
+    const spinClassName = "fa-" + animate
+    if (isAnimated) {
       expect(screen.getByRole("img", { hidden: true })).toHaveClass(
         spinClassName
       )
@@ -30,7 +35,7 @@ describe("Animate FontAwesomeAnimate", () => {
   it("should render with optional className", () => {
     renderComponent("arrow-zoom", "class-1")
     expect(screen.getByTitle("arrow-zoom")).toHaveClass("class-1")
-    assertBounce(true)
+    assertAnimate(true, "bounce")
   })
 
   it("should be able to disable animation", () => {
@@ -39,6 +44,6 @@ describe("Animate FontAwesomeAnimate", () => {
       writable: true,
     })
     renderComponent("arrow-zoom-3")
-    assertBounce(false)
+    assertAnimate(false, "bounce")
   })
 })

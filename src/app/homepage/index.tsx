@@ -270,6 +270,7 @@ function Homepage() {
             title={"Universal Accessible"}
             className="flex items-center justify-center py-8 gap-4"
             faIcon={faUniversalAccess}
+            animate="shake"
           >
             Our Homepage be browsed WITHOUT Javascript enabled!
           </FontAwesomeAnimate>
@@ -287,6 +288,7 @@ function Homepage() {
             title={"Keyboard Accessible"}
             className="flex items-center justify-center py-8 gap-4"
             faIcon={faKeyboard}
+            animate="bounce"
           >
             This site can also be browsed with keyboard and text-readers.
           </FontAwesomeAnimate>
@@ -307,6 +309,8 @@ function Homepage() {
             title={"Trusted Web App"}
             className="flex items-center justify-center py-8 gap-4"
             faIcon={faCertificate}
+            animate="spin"
+            color="red"
           >
             The site is Trusted Web Activity(TWA) and Progressive(PWA)
             compatible.
