@@ -10,25 +10,7 @@
   padding-right: 0.5rem;
 }
 
-.command-container .prompt {
-  color: var(--link);
-  font-family: Inconsolata;
-  position: absolute;
-  left: 3.75rem;
-  top: 0.5rem;
-  & :global {
-    animation-name: blink;
-  }
-  font-size: 0.8rem;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-
-.promptIn {
-  visibility: hidden;
-}
-
-.command-text-prompt {
+.command_text_prompt {
   padding-left: 3px;
   height: 2.2rem;
   display: flex;
@@ -36,8 +18,9 @@
   align-items: center;
   pointer-events: none;
   justify-content: center;
-  color: var(--link);
+  color: grey;
   font-family: Inconsolata;
+  font-style: italic;
 }
 
 .command-container .autosuggest__input {

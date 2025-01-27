@@ -84,7 +84,6 @@ describe("CommandBarInput", () => {
     const input = screen.getByRole("combobox")
     fireEvent.focus(input)
     expect(focusCallback).toHaveBeenCalled()
-    expect(screen.getByTestId("prompter")).toBeInTheDocument()
   })
 
   it("should have a label", () => {
