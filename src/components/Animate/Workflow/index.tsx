@@ -19,6 +19,7 @@ function Workflow({
       {children}
       <div
         className={`${styles.container} ${isAnimatable ? "" : "animate-none"}`}
+        data-testid="workflow"
       >
         <div className={styles.box}></div>
         <div className={styles.line}></div>
