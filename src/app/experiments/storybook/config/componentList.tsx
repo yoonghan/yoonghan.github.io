@@ -7,9 +7,7 @@ import Canvases from "./Canvases"
 import ScrollableListDemo from "./ScrollableList"
 import { OrderedFigure, ReversedFigure } from "./Figure"
 import Lifecycle from "@/components/Lifecycle"
-import Waves from "./Waves"
-import SpinGear from "./SpinGear"
-import WorkflowDemo from "./Workflow"
+import Animate from "./Animate"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -17,16 +15,8 @@ const NoSSRDialog = dynamic(() => import("./Dialogs"), {
 
 export const storyBookList = [
   {
-    title: "Animated Workflow",
-    component: <WorkflowDemo />,
-  },
-  {
-    title: "Spin Gear",
-    component: <SpinGear />,
-  },
-  {
-    title: "Waves",
-    component: <Waves />,
+    title: "Animate",
+    component: <Animate />,
   },
   {
     title: "Buttons Bar",
