@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import SpinGear from "."
 
-describe("SpinGear", () => {
+describe("Animation SpinGear", () => {
   const renderComponent = (title: string, className?: string) =>
     render(
       <SpinGear title={title} className={className}>

@@ -8,7 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
-import Wave from "@/components/Wave"
+import Wave from "@/components/Animate/Wave"
 import Workflow from "@/components/Animate/Workflow"
 
 function Homepage() {
