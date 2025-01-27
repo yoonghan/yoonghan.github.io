@@ -214,4 +214,16 @@ describe("CommandBar", () => {
       expect(screen.getByText("Progressive Web App")).toBeInTheDocument()
     })
   })
+
+  describe("no-animate", () => {
+    it("should update location with no-animate", function () {
+      render(<div>{createCommandBar()("no-animate")}</div>)
+      expect(window.location.href).toBe("/samplePage?animate=none")
+    })
+
+    it("should append location with no-animate", function () {
+      render(<div>{createCommandBar("/page?q=1")("no-animate")}</div>)
+      expect(window.location.href).toBe("/page?q=1&animate=none")
+    })
+  })
 })
