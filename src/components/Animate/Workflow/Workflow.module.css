@@ -1,0 +1,45 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  width: 100%;
+}
+
+.container .box {
+  border: 3px solid #00d5ff;
+  height: 100px;
+  width: 20px;
+  border-radius: 5px;
+  animation: chameleon 3s linear infinite;
+  animation-delay: 1s;
+}
+
+.box:first-child {
+  animation-delay: 0s;
+}
+
+.box:last-child {
+  animation-delay: 2s;
+}
+
+.line {
+  border: 1px solid #00d5ff;
+  width: 20px;
+}
+
+:global(.animate-none) .box {
+  animation: none;
+}
+
+@keyframes chameleon {
+  0% {
+    border-color: #00d5ff;
+  }
+  100% {
+    border-color: #1500ff;
+  }
+}
