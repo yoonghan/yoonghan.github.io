@@ -8,12 +8,17 @@ import ScrollableListDemo from "./ScrollableList"
 import { OrderedFigure, ReversedFigure } from "./Figure"
 import Lifecycle from "@/components/Lifecycle"
 import Waves from "./Waves"
+import SpinGear from "./SpinGear"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
 })
 
 export const storyBookList = [
+  {
+    title: "ArrowZoom",
+    component: <SpinGear />,
+  },
   {
     title: "Waves",
     component: <Waves />,
