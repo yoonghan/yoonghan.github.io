@@ -8,8 +8,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
-import { useEffect } from "react"
 import Wave from "@/components/Wave"
+import SpinGear from "@/components/SpinGear"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -91,14 +91,19 @@ function Homepage() {
           <h3 className="text-3xl text-center" id="reliability">
             Reliable Deployment
           </h3>
-          <div className="text-center my-8">
-            Being a self-maintained site, how do one...
-            <ul className="text-lg italic pt-4">
-              <li>{`"Validate his own changes ?"`}</li>
-              <li>{`"Ensure changes doesn't break anything ?"`}</li>
-              <li>{`"A hassle to deploy changes ?"`}</li>
-            </ul>
-          </div>
+          <SpinGear
+            className="flex items-center justify-center gap-8"
+            title="Deployment Cog"
+          >
+            <div className="text-center my-8">
+              Being a self-maintained site, how do one...
+              <ul className="text-lg italic pt-4">
+                <li>{`"Validate his own changes ?"`}</li>
+                <li>{`"Ensure changes doesn't break anything ?"`}</li>
+                <li>{`"A hassle to deploy changes ?"`}</li>
+              </ul>
+            </div>
+          </SpinGear>
           <div className="max-w-screen-md mx-auto">
             <div className="pt-8">
               <Figure
