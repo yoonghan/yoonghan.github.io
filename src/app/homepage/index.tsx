@@ -4,12 +4,18 @@ import Link from "@/components/Link"
 import Figure from "@/components/Figure"
 import Button from "@/components/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import {
+  faArrowRight,
+  faCertificate,
+  faKeyboard,
+  faUniversalAccess,
+} from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
 import Wave from "@/components/Animate/Wave"
 import Workflow from "@/components/Animate/Workflow"
+import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -260,67 +266,73 @@ function Homepage() {
           <h4 className="text-3xl text-center font-bold" id="accessibility">
             Accessibility (WCAG)
           </h4>
-          <div>
-            <div className="text-xl italic text-center">
-              &quot;Our Homepage can now be browsed WITHOUT JAVASCRIPT!!&quot;
-            </div>
-            <p className="pt-8">
-              We did it by relying on both PureCSS, Server Side Generation and
-              ensuring non-critical usage for Javascript. The old homepage was{" "}
-              <Link href="/experiments/homepage-v1">Javascript heavy</Link>
-              (Parallax Effect) and we encountered <strong>
-                performance
-              </strong>{" "}
-              and <strong>accessibility </strong>
-              issues.
-            </p>
-          </div>
-          <div className="pt-8">
-            <div className="text-xl italic text-center">
-              This site can also be browsed with keyboard and text-readers.
-            </div>
-            <p className="pt-8">
-              We are going now commited with <strong>Web Accessibility</strong>;
-              eventhough we are still in the learning phase. The best reliance
-              is to run periodically test with{" "}
-              <Link
-                href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
-                rel="external"
-                target="audit"
-              >
-                Accessibility Checker
-              </Link>{" "}
-              and Chrome built-in Lighthouse.
-            </p>
-          </div>
-          <div className="pt-8">
-            <div className="text-xl italic text-center pb-8">
-              The site is Trusted Web Activity(TWA) and Progressive(PWA)
-              compatible.
-            </div>
-            <figure>
-              <Image
-                src="/img/homepage/app-compatible.webp"
-                width={800}
-                height={388}
-                alt="Trusted Web Activity"
-                className="mx-auto"
-              />
-              <Image
-                src="/img/arrow.svg"
-                className="hidden md:block w-4 -my-1 relative z-10 mx-auto ml-[55%] border-0"
-                aria-hidden={true}
-                alt="Description arrow"
-                width={50}
-                height={100}
-              />
-              <figcaption>
-                Access from the search panel and type <em>{'"pwa"'}</em>, once
-                installed you can view our site anytime, anywhere with or
-                without network.
-              </figcaption>
-            </figure>
-          </div>
+          <FontAwesomeAnimate
+            title={"Universal Accessible"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faUniversalAccess}
+          >
+            Our Homepage be browsed WITHOUT Javascript enabled!
+          </FontAwesomeAnimate>
+          <p>
+            We did it by relying on both PureCSS, Server Side Generation and
+            ensuring non-critical usage for Javascript. The old homepage was{" "}
+            <Link href="/experiments/homepage-v1">Javascript heavy</Link>
+            (Parallax Effect) and we encountered <strong>
+              performance
+            </strong>{" "}
+            and <strong>accessibility </strong>
+            issues.
+          </p>
+          <FontAwesomeAnimate
+            title={"Keyboard Accessible"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faKeyboard}
+          >
+            This site can also be browsed with keyboard and text-readers.
+          </FontAwesomeAnimate>
+          <p className="pt-8">
+            We are going now commited with <strong>Web Accessibility</strong>;
+            eventhough we are still in the learning phase. The best reliance is
+            to run periodically test with{" "}
+            <Link
+              href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
+              rel="external"
+              target="audit"
+            >
+              Accessibility Checker
+            </Link>{" "}
+            and Chrome built-in Lighthouse.
+          </p>
+          <FontAwesomeAnimate
+            title={"Trusted Web App"}
+            className="flex items-center justify-center py-8 gap-4"
+            faIcon={faCertificate}
+          >
+            The site is Trusted Web Activity(TWA) and Progressive(PWA)
+            compatible.
+          </FontAwesomeAnimate>
+          <figure>
+            <Image
+              src="/img/homepage/app-compatible.webp"
+              width={800}
+              height={388}
+              alt="Trusted Web Activity"
+              className="mx-auto"
+            />
+            <Image
+              src="/img/arrow.svg"
+              className="hidden md:block w-4 -my-1 relative z-10 mx-auto ml-[55%] border-0"
+              aria-hidden={true}
+              alt="Description arrow"
+              width={50}
+              height={100}
+            />
+            <figcaption>
+              Access from the search panel and type <em>{'"pwa"'}</em>, once
+              installed you can view our site anytime, anywhere with or without
+              network.
+            </figcaption>
+          </figure>
         </article>
         <hr />
         {/* Monitoring */}

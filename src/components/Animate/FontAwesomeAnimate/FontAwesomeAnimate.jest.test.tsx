@@ -1,17 +1,22 @@
 import { render, screen } from "@testing-library/react"
-import SpinGear from "."
+import FontAwesomeAnimate from "."
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
-describe("Animation SpinGear", () => {
+describe("Animate FontAwesomeAnimate", () => {
   const renderComponent = (title: string, className?: string) =>
     render(
-      <SpinGear title={title} className={className}>
+      <FontAwesomeAnimate
+        title={title}
+        className={className}
+        faIcon={faMagnifyingGlass}
+      >
         <div>ArrowZoom Component</div>
-      </SpinGear>
+      </FontAwesomeAnimate>
     )
 
-  function assertSpin(isSpin: boolean) {
-    const spinClassName = "fa-spin"
-    if (isSpin) {
+  function assertBounce(isBouncing: boolean) {
+    const spinClassName = "fa-bounce"
+    if (isBouncing) {
       expect(screen.getByRole("img", { hidden: true })).toHaveClass(
         spinClassName
       )
@@ -25,7 +30,7 @@ describe("Animation SpinGear", () => {
   it("should render with optional className", () => {
     renderComponent("arrow-zoom", "class-1")
     expect(screen.getByTitle("arrow-zoom")).toHaveClass("class-1")
-    assertSpin(true)
+    assertBounce(true)
   })
 
   it("should be able to disable animation", () => {
@@ -34,6 +39,6 @@ describe("Animation SpinGear", () => {
       writable: true,
     })
     renderComponent("arrow-zoom-3")
-    assertSpin(false)
+    assertBounce(false)
   })
 })
