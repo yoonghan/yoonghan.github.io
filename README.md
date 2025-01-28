@@ -1,4 +1,4 @@
-# Walcron, a personal website
+# Walcron - a personal website
 
 A personal website for self-learning interest.
 
