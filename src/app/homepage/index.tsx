@@ -36,7 +36,7 @@ function Homepage() {
         <div>
           <h1>A PORTFOLIO WEBSITE</h1>
           <div className="py-8 comment">
-            Walcron website is a self-maintained and serverless website.
+            Walcron is a self-maintained serverless website.
           </div>
           <Button href="/about">About us</Button>
         </div>
