@@ -24,52 +24,43 @@ function Homepage() {
   return (
     <>
       <div
+        className={`${styles.header} m-auto flex justify-between gap-12 p-16 flex-col-reverse md:py-0 md:flex-row items-center max-w-screen-xl`}
+      >
+        <Image
+          src="/img/homepage/girl-in-glass.webp"
+          width={378}
+          height={504}
+          alt="Gladys"
+          className={styles.clip}
+        ></Image>
+        <div>
+          <h1>A PORTFOLIO WEBSITE</h1>
+          <div className="py-8 comment">
+            Walcron website is a self-maintained and serverless website.
+          </div>
+          <Button href="/about">About us</Button>
+        </div>
+      </div>
+      <hr />
+      <div
         className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
       >
-        <article className="text-center max-w-md">
-          <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
-          <p>
-            This is a sandbox website for the two of us to{" "}
-            <strong>explore</strong> real-time Web Development.
+        <article className="text-center">
+          <h2 className="text-3xl pb-12">Website Development</h2>
+          <p className="text-justify">
+            This site was up since <strong>2014</strong> and had since went thru
+            many web change iterations [
+            <Link href="/history">Site History</Link>]. We had evolved the site
+            from <strong>AJAX/SPA</strong> to{" "}
+            <strong>Pure Server Render</strong> to a now
+            <strong> Non-Javascript Accessible</strong> site. The objective is
+            to have a site that is <em>DevOps</em> oriented development in{" "}
+            <em>Cloud</em> platform.{" "}
+            {
+              'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored reliable releases".'
+            }
           </p>
-          <p>
-            We do sometimes use the site to by-pass coorporate networks for
-            private communication.
-          </p>
-          <figure>
-            <Image
-              src="/img/welcome/walcron-2-authors.webp"
-              width={454}
-              height={403}
-              alt="Walcron Web Authors"
-              className="m-auto"
-              priority={true}
-            />
-            <Image
-              src="/img/arrow.svg"
-              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%] border-0"
-              aria-hidden={true}
-              alt="Description arrow"
-              width={50}
-              height={100}
-            />
-            <figcaption className="italic">Us in Portugal</figcaption>
-          </figure>
-        </article>
-        <hr />
-        <article>
-          <h2 className="text-2xl text-center pb-12">
-            What is truely important for {walcronText} development?
-          </h2>
-          <p>
-            This site was up since <strong>2014</strong> and had went thru many
-            iterations [<Link href="/history">Learn More of our history</Link>];
-            evolved from <strong>AJAX/SPA</strong> to{" "}
-            <strong>Pure Server Render</strong> to
-            <strong> Non-Javascript Accessible</strong> site. Our main goal now
-            are <em>DevOps oriented.</em>
-          </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col items-center">
             <Lifecycle
               models={[
                 {
@@ -90,6 +81,7 @@ function Homepage() {
                 },
               ]}
             />
+            <span className="italic text-md">Site Development Lifecycle</span>
           </div>
         </article>
         <hr />

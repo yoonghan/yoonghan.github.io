@@ -1,3 +1,12 @@
+.header h1 {
+  font-size: clamp(2.25rem, calc(2rem + 3vw), 4.5rem);
+  line-height: 4rem;
+}
+
+.clip {
+  clip-path: circle();
+}
+
 .container article {
   margin-top: 3rem;
   margin-bottom: 3rem;

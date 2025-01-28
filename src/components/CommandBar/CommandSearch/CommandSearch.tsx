@@ -40,7 +40,7 @@ const generateLink = (url: string) => ({
 export const AvailableInput: ICommand = {
   whoami: {
     synonym: ["cd about", "cd /about"],
-    description: "Get to know this site.",
+    description: "About Walcron.",
     ...generateLink("/about"),
   },
   "su - walcron": {
@@ -49,7 +49,7 @@ export const AvailableInput: ICommand = {
     ...generateLink("/about"),
   },
   pwd: {
-    description: "Lost, and need direction.",
+    description: "Print current path.",
     action: EnumAction.LINK,
     exec: (_router: any, pathname: string | null) => {
       return <Output output={pathname || "/"} />
@@ -63,17 +63,17 @@ export const AvailableInput: ICommand = {
       "cd projects",
       "cd /projects",
     ],
-    description: "What's there ?",
+    description: "List projects.",
     ...generateLink("/projects"),
   },
   history: {
     synonym: ["cd /history", "cd history"],
-    description: "Walcron development history.",
+    description: "Page timeline.",
     ...generateLink("/history"),
   },
   exit: {
     synonym: ["cd", "cd /"],
-    description: "Return to main page.",
+    description: "Goto Home.",
     action: EnumAction.LINK,
     exec: (router: AppRouterInstance, pathname: string) => {
       if (pathname === "/") {
@@ -84,7 +84,7 @@ export const AvailableInput: ICommand = {
     },
   },
   "cd ..": {
-    description: "Return to previous page.",
+    description: "Goto Previous.",
     action: EnumAction.LINK,
     exec: (router: AppRouterInstance, pathname: string) => {
       if (pathname !== "/") {
@@ -94,12 +94,12 @@ export const AvailableInput: ICommand = {
     },
   },
   "=": {
-    description: "Do Math.",
+    description: "Do Maths.",
     action: EnumAction.COMMAND,
     exec: () => <InvalidCommand invalidCommand={"Provide an equation"} />,
   },
   share: {
-    description: "Spread our website!",
+    description: "Spread Love!",
     synonym: ["twitter", "whatsapp", "facebook"],
     action: EnumAction.COMMAND,
     exec: () => {
@@ -116,7 +116,7 @@ export const AvailableInput: ICommand = {
     },
   },
   help: {
-    description: "Lost, confused, need help.",
+    description: "Manual.",
     synonym: ["man", "info"],
     action: EnumAction.COMMAND,
     exec: (
@@ -145,20 +145,12 @@ export const AvailableInput: ICommand = {
     },
   },
   "no-animate": {
-    description: "Disable Animation",
+    description: "Disable animation",
     synonym: ["no animate", "stop animate"],
     action: EnumAction.LINK,
     exec: (_: AppRouterInstance, pathname: string) => {
-      if (pathname.includes("animate=none")) {
-        return <InvalidCommand invalidCommand={"Animation disabled."} />
-      } else {
-        if (pathname.includes("?")) {
-          window.location.href = pathname + "&animate=none"
-        } else {
-          window.location.href = pathname + "?animate=none"
-        }
-        return <React.Fragment />
-      }
+      window.location.href = pathname + "?animate=none"
+      return <React.Fragment />
     },
   },
 }
