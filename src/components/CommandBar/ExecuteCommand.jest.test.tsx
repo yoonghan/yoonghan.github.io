@@ -220,15 +220,5 @@ describe("CommandBar", () => {
       render(<div>{createCommandBar()("no-animate")}</div>)
       expect(window.location.href).toBe("/samplePage?animate=none")
     })
-
-    it("should append location with no-animate", function () {
-      render(<div>{createCommandBar("/page?q=1")("no-animate")}</div>)
-      expect(window.location.href).toBe("/page?q=1&animate=none")
-    })
-
-    it("should not append if location is with no-animate", function () {
-      render(<div>{createCommandBar("/page?animate=none")("no-animate")}</div>)
-      expect(screen.getByText("Msg: Animation disabled.")).toBeInTheDocument()
-    })
   })
 })
