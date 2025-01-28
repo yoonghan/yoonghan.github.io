@@ -26,48 +26,18 @@ function Homepage() {
       <div
         className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
       >
-        <article className="text-center max-w-md">
+        <article className="text-center">
           <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
-          <p>
-            This is a sandbox website for the two of us to{" "}
-            <strong>explore</strong> real-time Web Development.
-          </p>
-          <p>
-            We do sometimes use the site to by-pass coorporate networks for
-            private communication.
-          </p>
-          <figure>
-            <Image
-              src="/img/welcome/walcron-2-authors.webp"
-              width={454}
-              height={403}
-              alt="Walcron Web Authors"
-              className="m-auto"
-              priority={true}
-            />
-            <Image
-              src="/img/arrow.svg"
-              className="hidden md:block w-4 -my-3 relative z-10 mx-auto ml-[55%] border-0"
-              aria-hidden={true}
-              alt="Description arrow"
-              width={50}
-              height={100}
-            />
-            <figcaption className="italic">Us in Portugal</figcaption>
-          </figure>
-        </article>
-        <hr />
-        <article>
-          <h2 className="text-2xl text-center pb-12">
-            What is truely important for {walcronText} development?
-          </h2>
-          <p>
+          <p className="text-justify">
             This site was up since <strong>2014</strong> and had went thru many
-            iterations [<Link href="/history">Learn More of our history</Link>];
-            evolved from <strong>AJAX/SPA</strong> to{" "}
+            iterations [<Link href="/history">Learn More of our history</Link>].
+            It had evolved from <strong>AJAX/SPA</strong> to{" "}
             <strong>Pure Server Render</strong> to
             <strong> Non-Javascript Accessible</strong> site. Our main goal now
-            are <em>DevOps oriented.</em>
+            are <em>DevOps</em> oriented development in <em>Cloud</em> platform.
+            {
+              'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored reliable releases".'
+            }
           </p>
           <div className="flex justify-center">
             <Lifecycle
