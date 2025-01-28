@@ -11,10 +11,12 @@ const HelpContent = ({ updateSelectedInput }: Props) => {
     updateSelectedInput(input["Command"] as string)
   }
 
-  const listsOfCommands = Object.keys(AvailableInput).map((input) => ({
-    Command: input,
-    Description: AvailableInput[input].description,
-  }))
+  const listsOfCommands = Object.keys(AvailableInput)
+    .filter((input) => input !== "help")
+    .map((input) => ({
+      Command: input,
+      Description: AvailableInput[input].description,
+    }))
 
   return (
     <div className="p-8 bg-white drop-shadow-md">
