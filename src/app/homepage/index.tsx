@@ -27,7 +27,7 @@ function Homepage() {
         className={`${styles.header} m-auto flex justify-between gap-12 p-16 flex-col-reverse md:py-0 md:flex-row items-center max-w-screen-xl`}
       >
         <Image
-          src="/img/welcome/girl-in-glass.webp"
+          src="/img/homepage/girl-in-glass.webp"
           width={378}
           height={504}
           alt="Gladys"
@@ -35,7 +35,7 @@ function Homepage() {
         ></Image>
         <div>
           <h1>A PORTFOLIO WEBSITE</h1>
-          <div className="text-md py-8 comment">
+          <div className="py-8 comment">
             Walcron website is a self-maintained and serverless website.
           </div>
           <Button href="/about">About us</Button>
