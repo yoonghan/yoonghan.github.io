@@ -12,7 +12,7 @@ const HelpContent = ({ updateSelectedInput }: Props) => {
   }
 
   const listsOfCommands = Object.keys(AvailableInput)
-    .filter(input => input === "help")
+    .filter(input => input !== "help")
     .map((input) => ({
       Command: input,
       Description: AvailableInput[input].description,
