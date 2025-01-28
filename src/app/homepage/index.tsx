@@ -24,22 +24,43 @@ function Homepage() {
   return (
     <>
       <div
+        className={`${styles.header} m-auto flex justify-between gap-12 p-16 flex-col-reverse md:py-0 md:flex-row items-center max-w-screen-xl`}
+      >
+        <Image
+          src="/img/welcome/girl-in-glass.webp"
+          width={378}
+          height={504}
+          alt="Gladys"
+          className={styles.clip}
+        ></Image>
+        <div>
+          <h1>A PORTFOLIO WEBSITE</h1>
+          <div className="text-md py-8 comment">
+            Walcron website is a self-maintained and serverless website.
+          </div>
+          <Button href="/about">About us</Button>
+        </div>
+      </div>
+      <hr />
+      <div
         className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
       >
         <article className="text-center">
-          <h1 className="text-4xl pb-12">Welcome to {walcronText} website</h1>
+          <h2 className="text-3xl pb-12">Website Development</h2>
           <p className="text-justify">
-            This site was up since <strong>2014</strong> and had went thru many
-            iterations [<Link href="/history">Learn More of our history</Link>].
-            It had evolved from <strong>AJAX/SPA</strong> to{" "}
-            <strong>Pure Server Render</strong> to
-            <strong> Non-Javascript Accessible</strong> site. Our main goal now
-            are <em>DevOps</em> oriented development in <em>Cloud</em> platform.
+            This site was up since <strong>2014</strong> and had since went thru
+            many web change iterations [
+            <Link href="/history">Site History</Link>]. We had evolved the site
+            from <strong>AJAX/SPA</strong> to{" "}
+            <strong>Pure Server Render</strong> to a now
+            <strong> Non-Javascript Accessible</strong> site. The objective is
+            to have a site that is <em>DevOps</em> oriented development in{" "}
+            <em>Cloud</em> platform.{" "}
             {
               'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored reliable releases".'
             }
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col items-center">
             <Lifecycle
               models={[
                 {
@@ -60,6 +81,7 @@ function Homepage() {
                 },
               ]}
             />
+            <span className="italic text-md">Site Development Lifecycle</span>
           </div>
         </article>
         <hr />

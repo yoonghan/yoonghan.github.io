@@ -8,6 +8,7 @@ import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import StickyCards from "@/components/StickyCards"
+import Image from "next/image"
 
 const authorModel = [
   {
@@ -50,6 +51,25 @@ const About = () => {
             develop user-experience that was so far out-of-scope in internal
             websites.
           </p>
+          <figure className="text-center pt-8">
+            <Image
+              src="/img/welcome/walcron-2-authors.webp"
+              width={454}
+              height={403}
+              alt="Walcron Web Authors"
+              className="m-auto"
+              priority={true}
+            />
+            <Image
+              src="/img/arrow.svg"
+              className="md:block w-4 -my-1 relative z-10 mx-auto border-0"
+              aria-hidden={true}
+              alt="Description arrow"
+              width={50}
+              height={100}
+            />
+            <figcaption className="italic">This is us</figcaption>
+          </figure>
         </article>
         <article id={authorModel[1].hashId} className="py-20">
           <h2 className="text-2xl text-center pb-12">{authorModel[1].title}</h2>
