@@ -30,8 +30,9 @@ function Homepage() {
           src="/img/homepage/girl-in-glass.webp"
           width={378}
           height={504}
-          alt="Gladys"
+          alt="Wide view angle"
           className={styles.clip}
+          priority={true}
         ></Image>
         <div>
           <h1>A PORTFOLIO WEBSITE</h1>
