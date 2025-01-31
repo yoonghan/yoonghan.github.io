@@ -3,13 +3,11 @@
   line-height: 4rem;
 }
 
-.intro_image {
+.clip {
   clip-path: circle();
   top: 1.5rem;
   z-index: -1;
 }
-
-
 
 .container article {
   margin-top: 3rem;
