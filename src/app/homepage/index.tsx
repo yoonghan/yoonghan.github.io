@@ -24,14 +24,14 @@ function Homepage() {
   return (
     <>
       <div
-        className={`${styles.header} m-auto flex justify-between gap-12 p-16 flex-col-reverse md:py-0 md:flex-row items-center max-w-screen-xl`}
+        className={`${styles.header} m-auto flex text-center md:text-left justify-between gap-12 p-16 flex-col-reverse md:py-0 md:flex-row items-center max-w-screen-xl`}
       >
         <Image
           src="/img/homepage/girl-in-glass.webp"
           width={378}
           height={504}
           alt="Wide view angle"
-          className={styles.clip}
+          className={`${styles.clip} absolute md:relative opacity-25 md:opacity-100`}
           priority={true}
         ></Image>
         <div>
