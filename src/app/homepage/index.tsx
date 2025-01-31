@@ -119,8 +119,7 @@ function Homepage() {
                 to do our biddings. A full CI/CD:
                 <ul className="mt-4 ml-4 list-disc">
                   <li>
-                    <strong>Testing</strong> - ensure safety in modification.
-                    [
+                    <strong>Testing</strong> - ensure safety in modification.[
                     <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
                       GitHub Actions
                     </Link>
@@ -444,7 +443,7 @@ function Homepage() {
               }}
               imageCaption="Resources are serve with cache"
             >
-              All static resources are cache controlled with Cloudflare and 
+              All static resources are cache controlled with Cloudflare and
               NextJS and are served with Edge servers. It is configured to
               refresh for every deployment even for overrides.
             </Figure>
