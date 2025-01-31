@@ -101,49 +101,46 @@ function Homepage() {
               </ul>
             </div>
           </Workflow>
-          <div className="max-w-screen-md mx-auto">
-            <div className="pt-8">
-              <Figure
-                imageProps={{
-                  src: "/img/homepage/reliability-workflow.webp",
-                  width: 500,
-                  height: 1200,
-                  alt: "Github workflows",
-                }}
-                imageCaption="Github workflow from Testing to Deployment"
-              >
-                <>
-                  In {walcronText} we implement{" "}
-                  <Link href="https://docs.github.com/en/actions/writing-workflows">
-                    GitHub workflow
-                  </Link>{" "}
-                  to do our biddings. A full CI/CD:
-                  <ul className="mt-4 ml-4 list-disc">
-                    <li>
-                      <strong>Testing</strong> - ensure safety in modification.
-                      [
-                      <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
-                        GitHub Actions
-                      </Link>
-                      ]
-                    </li>
-                    <li>
-                      <strong>Integration</strong> - {"API doesn't break"}. [
-                      <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
-                        Smoke and E2E
-                      </Link>
-                      ]
-                    </li>
-                    <li>
-                      <strong>Release</strong> - Deploys{" "}
-                      <em className="text-green-700">ONLY successful</em>{" "}
-                      pull-request.
-                    </li>
-                  </ul>
-                </>
-              </Figure>
-            </div>
-            <div className="pt-24">
+          <div className="max-w-screen-md mx-auto pt-8">
+            <Figure
+              imageProps={{
+                src: "/img/homepage/reliability-workflow.webp",
+                width: 500,
+                height: 1200,
+                alt: "Github workflows",
+              }}
+              imageCaption="Github workflow from Testing to Deployment"
+            >
+              <>
+                In {walcronText} we implement{" "}
+                <Link href="https://docs.github.com/en/actions/writing-workflows">
+                  GitHub workflow
+                </Link>{" "}
+                to do our biddings. A full CI/CD:
+                <ul className="mt-4 ml-4 list-disc">
+                  <li>
+                    <strong>Testing</strong> - ensure safety in modification.[
+                    <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
+                      GitHub Actions
+                    </Link>
+                    ]
+                  </li>
+                  <li>
+                    <strong>Integration</strong> - {"API doesn't break"}. [
+                    <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
+                      Smoke and E2E
+                    </Link>
+                    ]
+                  </li>
+                  <li>
+                    <strong>Release</strong> - Deploys{" "}
+                    <em className="text-green-700">ONLY successful</em>{" "}
+                    pull-request.
+                  </li>
+                </ul>
+              </>
+            </Figure>
+            <div className="py-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/reliability-approval.webp",
@@ -177,45 +174,43 @@ function Homepage() {
                 </>
               </Figure>
             </div>
-            <div className="pt-24">
-              <Figure
-                imageProps={{
-                  src: "/img/homepage/reliability-compliance.webp",
-                  width: 1024,
-                  height: 515,
-                  alt: "Code coverage screenshot",
-                }}
-                imageCaption="Code coverage in CodeCov"
-              >
-                <>
-                  We up-keep coding standards and security compliance:
-                  <ul className="mt-4 ml-4 list-disc">
-                    <li>
-                      <strong>Coverage</strong> - 99.9% lines of code covered.[
-                      <Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
-                        CodeCov
-                      </Link>
-                      ]
-                    </li>
-                    <li>
-                      <strong>Linting</strong> - Coding checks to ensure proper
-                      coding styles.
-                    </li>
-                    <li>
-                      <strong>Compliance</strong> - Security and Lint checks. [
-                      <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
-                        OWASP check
-                      </Link>{" "}
-                      and Dependabots]
-                    </li>
-                    <li>
-                      <strong>Accessibility</strong> - Integrated lighthouse to
-                      keep best-practises and accessibility at 100%.
-                    </li>
-                  </ul>
-                </>
-              </Figure>
-            </div>
+            <Figure
+              imageProps={{
+                src: "/img/homepage/reliability-compliance.webp",
+                width: 1024,
+                height: 515,
+                alt: "Code coverage screenshot",
+              }}
+              imageCaption="Code coverage in CodeCov"
+            >
+              <>
+                We up-keep coding standards and security compliance:
+                <ul className="mt-4 ml-4 list-disc">
+                  <li>
+                    <strong>Coverage</strong> - 99.9% lines of code covered.[
+                    <Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
+                      CodeCov
+                    </Link>
+                    ]
+                  </li>
+                  <li>
+                    <strong>Linting</strong> - Coding checks to ensure proper
+                    coding styles.
+                  </li>
+                  <li>
+                    <strong>Compliance</strong> - Security and Lint checks. [
+                    <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
+                      OWASP check
+                    </Link>{" "}
+                    and Dependabots]
+                  </li>
+                  <li>
+                    <strong>Accessibility</strong> - Integrated lighthouse to
+                    keep best-practises and accessibility at 100%.
+                  </li>
+                </ul>
+              </>
+            </Figure>
             <div className="max-w-screen-md mx-auto pt-24">
               <div className="text-center text-lg mb-12 italic">
                 {`"So what if something really breaks ?"`}
@@ -366,7 +361,7 @@ function Homepage() {
                 </Button>
               </div>
             </Figure>
-            <div className="pt-24">
+            <div className="py-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/monitoring-website.webp",
@@ -394,7 +389,7 @@ function Homepage() {
               imageCaption="Blocks and monitor Attacks with Cloudflare"
             >
               {
-                "Our website and host request are filtered and securely protected with Cloudflare's Web Application Firewall. On average, this website is bombarded 20 times a day."
+                "Our website and host request are filtered and securely protected with Cloudflare's Shield. On average, this website is bombarded 20 times a day."
               }
             </Figure>
           </div>
@@ -422,7 +417,7 @@ function Homepage() {
               We maintain a good performance and accessibility. We use
               Lighthouse to monitored during deployment.
             </Figure>
-            <div className="pt-24">
+            <div className="py-24">
               <Figure
                 imageProps={{
                   src: "/img/homepage/performance-gcp.webp",
@@ -439,6 +434,19 @@ function Homepage() {
                 <strong>accept</strong> the cookie. :)
               </Figure>
             </div>
+            <Figure
+              imageProps={{
+                src: "/img/homepage/performance-cache.webp",
+                height: 1024,
+                width: 689,
+                alt: "Speed Insight",
+              }}
+              imageCaption="Resources are serve with cache"
+            >
+              All static resources are cache controlled with Cloudflare and
+              NextJS and are served with Edge servers. It is configured to
+              refresh for every deployment even for overrides.
+            </Figure>
           </div>
         </article>
         <hr />
