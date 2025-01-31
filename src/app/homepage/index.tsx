@@ -390,7 +390,7 @@ function Homepage() {
               imageCaption="Blocks and monitor Attacks with Cloudflare"
             >
               {
-                "Our website and host request are filtered and securely protected with Cloudflare's Web Application Firewall. On average, this website is bombarded 20 times a day."
+                "Our website and host request are filtered and securely protected with Cloudflare's Shield. On average, this website is bombarded 20 times a day."
               }
             </Figure>
           </div>
