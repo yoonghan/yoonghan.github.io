@@ -384,6 +384,17 @@ function Homepage() {
                 </p>
               </Figure>
             </div>
+            <Figure
+              imageProps={{
+                src: "/img/homepage/monitoring-security.webp",
+                height: 1024,
+                width: 465,
+                alt: "Cloudflare Security",
+              }}
+              imageCaption="Blocks and monitor Attacks with Cloudflare"
+            >
+              {"Our website and host request are filtered and securely protected with Cloudflare's Web Application Firewall. On average, this website is bombarded 20 times a day."}
+            </Figure>
           </div>
         </article>
         <hr />
