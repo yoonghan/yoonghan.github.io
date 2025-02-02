@@ -35,7 +35,7 @@ function Homepage() {
           priority={true}
         ></Image>
         <div>
-          <h1>A PORTFOLIO WEBSITE</h1>
+          <h1>MY PORTFOLIO WEBSITE</h1>
           <div className="py-8 comment">
             Walcron is a self-maintained serverless website.
           </div>
@@ -49,16 +49,16 @@ function Homepage() {
         <article className="text-center">
           <h2 className="text-3xl pb-12">Website Development</h2>
           <p className="text-justify">
-            This site was up since <strong>2014</strong> and had since went thru
+            This site is up since <strong>2014</strong> and had since went thru
             many web change iterations [
             <Link href="/history">Site History</Link>]. We had evolved the site
             from <strong>AJAX/SPA</strong> to{" "}
             <strong>Pure Server Render</strong> to a now
             <strong> Non-Javascript Accessible</strong> site. The objective is
-            to have a site that is <em>DevOps</em> oriented development in{" "}
+            to have a site that is <em>DevOps-oriented</em> development in{" "}
             <em>Cloud</em> platform.{" "}
             {
-              'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored reliable releases".'
+              'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored, reliable releases".'
             }
           </p>
           <div className="flex justify-center flex-col items-center">
@@ -116,7 +116,7 @@ function Homepage() {
                 <Link href="https://docs.github.com/en/actions/writing-workflows">
                   GitHub workflow
                 </Link>{" "}
-                to do our biddings. A full CI/CD:
+                to do our biddings. A full CI/CD consist of:
                 <ul className="mt-4 ml-4 list-disc">
                   <li>
                     <strong>Testing</strong> - ensure safety in modification.[
@@ -261,7 +261,7 @@ function Homepage() {
             faIcon={faUniversalAccess}
             animate="shake"
           >
-            Our Homepage be browsed WITHOUT Javascript enabled!
+            This Homepage can be browsed WITHOUT Javascript enabled!
           </FontAwesomeAnimate>
           <p>
             We did it by relying on both PureCSS, Server Side Generation and
