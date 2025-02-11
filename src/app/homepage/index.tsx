@@ -33,13 +33,15 @@ function Homepage() {
           alt="Wide view angle"
           className={`${styles.clip} absolute md:relative opacity-25 md:opacity-100`}
           priority={true}
+          placeholder="blur"
+          blurDataURL="/img/homepage/girl-in-glass-blur.webp"
         ></Image>
         <div>
-          <h1>MY PORTFOLIO WEBSITE</h1>
+          <h1>PORTFOLIO PORTAL</h1>
           <div className="py-8 comment">
             Walcron is a self-maintained serverless website.
           </div>
-          <Button href="/about">About us</Button>
+          <Button href="/about">Get To Know Us</Button>
         </div>
       </div>
       <hr />
@@ -47,7 +49,7 @@ function Homepage() {
         className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
       >
         <article className="text-center">
-          <h2 className="text-3xl pb-12">Website Development</h2>
+          <h2 className="text-3xl pb-12">How We Develop This Website</h2>
           <p className="text-justify">
             This site is up since <strong>2014</strong> and had since went thru
             many web change iterations [
