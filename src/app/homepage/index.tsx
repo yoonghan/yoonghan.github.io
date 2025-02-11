@@ -33,6 +33,8 @@ function Homepage() {
           alt="Wide view angle"
           className={`${styles.clip} absolute md:relative opacity-25 md:opacity-100`}
           priority={true}
+          placeholder="blur"
+          blurDataURL="/img/homepage/girl-in-glass-blur.webp"
         ></Image>
         <div>
           <h1>PORTFOLIO PORTAL</h1>
