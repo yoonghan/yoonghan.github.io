@@ -8,6 +8,7 @@ import ScrollableListDemo from "./ScrollableList"
 import { OrderedFigure, ReversedFigure } from "./Figure"
 import Lifecycle from "@/components/Lifecycle"
 import Animate from "./Animate"
+import FunkyScroller from "@/components/Animate/FunkyScroller"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"), {
   ssr: false,
@@ -17,6 +18,10 @@ export const storyBookList = [
   {
     title: "Animate",
     component: <Animate />,
+  },
+  {
+    title: "FunkyScroller",
+    component: <FunkyScroller title="FunkyScroller" />,
   },
   {
     title: "Buttons Bar",
