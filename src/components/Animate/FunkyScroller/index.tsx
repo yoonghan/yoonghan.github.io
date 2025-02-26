@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
 import { useTrackReducer } from "@/components/utils/hooks/tracker/useTrackReducer"
 import useScrollTracker from "@/components/utils/hooks/tracker/useScrollTracker"
+import styles from "./FunkyScroller.module.css"
 
 function FunkyScroller({
   title,
@@ -25,13 +26,23 @@ function FunkyScroller({
     if (isAnimatable) append(scrollToTop.y)
   }, [append, isAnimatable, scrollToTop.y])
 
+  const total = data.reduce((sum, i) => sum + i, 0)
+
+  const calculatePos = (pos: number) =>
+    `${total === 0 ? 0 : (pos / total) * 500}px`
+
   return (
-    <div className={`${className || ""} flex`} title={title}>
-      <div>
-        {data.map((y, i) => (
-          <div key={i}>{y}</div>
-        ))}
-      </div>
+    <div
+      className={`${className || ""} ${isAnimatable ? "" : "animate-none"}`}
+      title={title}
+    >
+      {data.map((pos, i) => (
+        <div
+          key={i}
+          className={styles.circle}
+          style={{ width: calculatePos(pos) }}
+        ></div>
+      ))}
     </div>
   )
 }
