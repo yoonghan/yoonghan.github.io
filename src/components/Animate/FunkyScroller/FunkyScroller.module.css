@@ -1,10 +1,10 @@
 .circle {
   border: 1px solid;
-  border-left: none;
-  transition: width 2s;
+  transition: width 0.5s;
   height: 10vh;
   opacity: 0.5;
   margin-top: -1px;
+  margin-left: auto;
 }
 
 .animate-none > .circle {

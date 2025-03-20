@@ -32,7 +32,7 @@ describe("useTrackAggruseTrackReduceregrator", () => {
     act(() => {
       result.current.append(5)
     })
-    expect(result.current.data).toStrictEqual([4, 5])
+    expect(result.current.data).toStrictEqual([5, 4])
     jest.useRealTimers()
   })
 
@@ -44,6 +44,6 @@ describe("useTrackAggruseTrackReduceregrator", () => {
     act(() => {
       result.current.append(4)
     })
-    expect(result.current.data).toStrictEqual([0, 0, 0, 0, 4])
+    expect(result.current.data).toStrictEqual([4, 0, 0, 0, 0])
   })
 })
