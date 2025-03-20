@@ -47,7 +47,7 @@ function Homepage() {
       </div>
       <hr />
       <div className="relative">
-        <div className="sticky top-0 hidden lg:block">
+        <div className="sticky top-0 h-0 hidden lg:block -z-10">
           <FunkyScroller title="scroll-monitor" />
         </div>
         <div
@@ -458,13 +458,13 @@ function Homepage() {
               </Figure>
             </div>
           </article>
-          <hr />
-          <div className="py-8">
-            <LetterBox />
-          </div>
         </div>
-        <SocialFab />
+        <hr />
+        <div className="py-8">
+          <LetterBox />
+        </div>
       </div>
+      <SocialFab />
     </>
   )
 }
