@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import FunkyScroller from "."
 
 describe("Funky Scroller", () => {
@@ -8,6 +8,19 @@ describe("Funky Scroller", () => {
   it("should render with optional className", () => {
     renderComponent("Funky-Scroller", "class-1")
     expect(screen.getByTitle("Funky-Scroller")).toHaveClass("class-1")
+  })
+
+  it("should reposition last element", async () => {
+    jest.useFakeTimers()
+    renderComponent("Funky-Scroller-2")
+    jest.runAllTimers()
+    fireEvent.scroll(window, { target: { scrollX: 100, scrollY: 200 } })
+    jest.runAllTimers()
+
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(screen.getByTitle("Funky-Scroller-2").firstChild).toHaveStyle({
+      width: "180px",
+    })
   })
 
   it("should be able to disable animation", () => {
