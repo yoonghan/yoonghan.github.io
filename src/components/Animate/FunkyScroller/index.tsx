@@ -13,23 +13,26 @@ function FunkyScroller({
   title: string
   className?: string
 }) {
+  const { scrollToTop } = useScrollTracker()
+
+  const { isAnimatable } = useDisableAnimation()
+
   const { append, data } = useTrackReducer({
     initialData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     maxStorage: 10,
     allowStorageAfterMiliseconds: 50,
   })
-  const { scrollToTop } = useScrollTracker()
-
-  const { isAnimatable } = useDisableAnimation()
 
   useEffect(() => {
-    if (isAnimatable) append(scrollToTop.y)
+    if (isAnimatable) {
+      append(scrollToTop.y)
+    }
   }, [append, isAnimatable, scrollToTop.y])
 
-  const total = data.reduce((sum, i) => sum + i, 0)
-
-  const calculatePos = (pos: number) =>
-    `${total === 0 ? 0 : (pos / total) * 500}px`
+  const calculatePos = (pos: number, currentData: number[]) => {
+    const total = currentData.reduce((sum, i) => sum + i, 0)
+    return `${total === 0 ? 0 : (pos / total) * 180}px`
+  }
 
   return (
     <div
@@ -40,7 +43,7 @@ function FunkyScroller({
         <div
           key={i}
           className={styles.circle}
-          style={{ width: calculatePos(pos) }}
+          style={{ width: calculatePos(pos, [...data]) }}
         ></div>
       ))}
     </div>

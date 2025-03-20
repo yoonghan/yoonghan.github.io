@@ -16,7 +16,10 @@ function reducer(state: number[], action: Action) {
 
   switch (type) {
     case Actions.APPEND:
-      return [...(state.length === max ? state.slice(1, max) : state), value]
+      return [
+        value,
+        ...(state.length === max ? state.slice(0, max - 1) : state),
+      ]
   }
 }
 
