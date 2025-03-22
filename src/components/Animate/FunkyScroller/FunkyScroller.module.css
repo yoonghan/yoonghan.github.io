@@ -5,6 +5,7 @@
   opacity: 0.5;
   margin-top: -1px;
   margin-left: auto;
+  background-color: #ff8400;
 }
 
 .animate-none > .circle {
