@@ -157,7 +157,7 @@ const About = () => {
                 {
                   imageUrl:
                     "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
-                  className: "bg-green-200",
+                  className: "bg-blue-200",
                   title: "AWS Developer Associate",
                   href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
                 },
