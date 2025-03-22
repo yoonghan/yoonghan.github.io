@@ -143,33 +143,46 @@ const About = () => {
                 {
                   imageUrl:
                     "https://d1.awsstatic.com/certification/badges/AWS-Certified-Solutions-Architect-Associate_badge_150x150.e359ae4a6d4d82c3e31d4f9104c8d389b56a2423.png",
-                  className: "bg-orange-400",
+                  className: "bg-blue-400",
                   title: "AWS Solution Architect Associate",
                   href: "https://www.credly.com/badges/964f2164-02ab-469c-b964-a01c2210ef24",
                 },
                 {
                   imageUrl:
+                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+                  className: "bg-blue-300",
+                  title: "Azure Administrator Associate (AZ-104)",
+                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B?sharingId=FE2E719D4C5E0EFB",
+                },
+                {
+                  imageUrl:
                     "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
-                  className: "bg-blue-400",
+                  className: "bg-green-200",
                   title: "AWS Developer Associate",
                   href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
                 },
                 {
                   imageUrl:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX1z5XvAwS8G_ojSep2CpJdkYJ7MhpUvJ_8g&s",
-                  className: "bg-white",
-                  title: "Azure Cloud Fundamentals",
+                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+                  className: "bg-teal-400",
+                  title: "Azure Cloud Fundamentals (AZ-900)",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
                 },
                 {
                   imageUrl:
                     "https://d1.awsstatic.com/certification/badges/AWS-Certified-Cloud-Practitioner_badge_150x150.17da917fbddc5383838d9f8209d2030c8d99f31e.png",
-                  className: "bg-yellow-400",
+                  className: "bg-teal-300",
                   title: "AWS Cloud Practitioner",
                   href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
                 },
                 {
-                  className: "bg-teal-400",
+                  className: "bg-pink-200",
+                  title: "Samurai Leadership",
+                  description: <span>Samurai Leadership - Green Belt.</span>,
+                  href: "/certs/samurai-leadership-yoong-han.pdf",
+                },
+                {
+                  className: "bg-green-400",
                   title: "Functional Programming Principal In Scala",
                   description: (
                     <span>
@@ -180,18 +193,12 @@ const About = () => {
                   href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
                 },
                 {
-                  className: "bg-pink-200",
-                  title: "Samurai Leadership",
-                  description: <span>Samurai Leadership - Green Belt.</span>,
-                  href: "/certs/samurai-leadership-yoong-han.pdf",
-                },
-                {
-                  className: "bg-white",
+                  className: "bg-green-300",
                   title: "Sun Java Certified",
                   description: <span>Certification on Java programmer.</span>,
                 },
                 {
-                  className: "bg-red-200",
+                  className: "bg-green-200",
                   title: "Webassembly with RUST programming",
                   description: (
                     <span>
@@ -200,7 +207,7 @@ const About = () => {
                   ),
                 },
                 {
-                  className: "bg-green-200",
+                  className: "bg-yellow-400",
                   title: "Kinabalu Park Explorer",
                   description: (
                     <span>
