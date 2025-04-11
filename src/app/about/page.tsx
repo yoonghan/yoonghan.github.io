@@ -136,7 +136,9 @@ const About = () => {
           />
         </article>
         <article id={authorModel[3].hashId} className="py-20">
-          <h3 className="text-2xl text-center pb-12">{authorModel[3].title}</h3>
+          <h3 className="text-2xl text-center pb-6">{authorModel[3].title}</h3>
+
+          <h4 className="text-xl text-center py-6">Cloud Certifications</h4>
           <div className="relative">
             <StickyCards
               contents={[
@@ -175,14 +177,17 @@ const About = () => {
                   title: "AWS Cloud Practitioner",
                   href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
                 },
+              ]}
+            />
+          </div>
+          <h4 className="text-xl text-center py-12">
+            Programming Certifications
+          </h4>
+          <div className="relative">
+            <StickyCards
+              contents={[
                 {
-                  className: "bg-pink-200",
-                  title: "Samurai Leadership",
-                  description: <span>Samurai Leadership - Green Belt.</span>,
-                  href: "/certs/samurai-leadership-yoong-han.pdf",
-                },
-                {
-                  className: "bg-green-400",
+                  className: "bg-orange-400",
                   title: "Functional Programming Principal In Scala",
                   description: (
                     <span>
@@ -193,12 +198,20 @@ const About = () => {
                   href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
                 },
                 {
-                  className: "bg-green-300",
+                  className: "bg-orange-300",
+                  title: "Introduction to Github Copilot",
+                  description: (
+                    <span>Use Gitlab Co-pilot for Python programming.</span>
+                  ),
+                  href: "https://www.coursera.org/account/accomplishments/verify/ATLFGOBTUICD",
+                },
+                {
+                  className: "bg-blue-400",
                   title: "Sun Java Certified",
                   description: <span>Certification on Java programmer.</span>,
                 },
                 {
-                  className: "bg-green-200",
+                  className: "bg-blue-300",
                   title: "Webassembly with RUST programming",
                   description: (
                     <span>
@@ -207,14 +220,10 @@ const About = () => {
                   ),
                 },
                 {
-                  className: "bg-yellow-400",
-                  title: "Kinabalu Park Explorer",
-                  description: (
-                    <span>
-                      Completed 2 trails course to hike highest mountain in{" "}
-                      {"Malaysia"}, Mount Kota Kinabalu.
-                    </span>
-                  ),
+                  className: "bg-green-400",
+                  title: "Samurai Leadership",
+                  description: <span>Samurai Leadership - Green Belt.</span>,
+                  href: "/certs/samurai-leadership-yoong-han.pdf",
                 },
               ]}
             />
