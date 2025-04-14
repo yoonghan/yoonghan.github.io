@@ -187,7 +187,7 @@ const About = () => {
             <StickyCards
               contents={[
                 {
-                  className: "bg-orange-400",
+                  className: "bg-blue-400",
                   title: "Functional Programming Principal In Scala",
                   description: (
                     <span>
@@ -197,8 +197,23 @@ const About = () => {
                   ),
                   href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
                 },
+
                 {
-                  className: "bg-orange-300",
+                  className: "bg-blue-300",
+                  title: "Sun Java Certified",
+                  description: <span>Certification on Java programmer.</span>,
+                },
+                {
+                  className: "bg-blue-200",
+                  title: "Webassembly with RUST programming",
+                  description: (
+                    <span>
+                      Rusty but worky on RUST programming with javascript.
+                    </span>
+                  ),
+                },
+                {
+                  className: "bg-orange-400",
                   title: "Introduction to Github Copilot",
                   description: (
                     <span>Use Gitlab Co-pilot for Python programming.</span>
@@ -206,18 +221,17 @@ const About = () => {
                   href: "https://www.coursera.org/account/accomplishments/verify/ATLFGOBTUICD",
                 },
                 {
-                  className: "bg-blue-400",
-                  title: "Sun Java Certified",
-                  description: <span>Certification on Java programmer.</span>,
-                },
-                {
-                  className: "bg-blue-300",
-                  title: "Webassembly with RUST programming",
+                  className: "bg-orange-300",
+                  title: "Effective ChatGPT",
                   description: (
                     <span>
-                      Rusty but worky on RUST programming with javascript.
+                      Learning ChatGPT.{" "}
+                      <a href="https://www.credly.com/badges/90c47b88-4325-4611-be46-f6b0ca688251">
+                        [ Foundation ]
+                      </a>
                     </span>
                   ),
+                  href: "https://www.credly.com/badges/395a3138-11d3-4144-94dd-2389c52213aa",
                 },
                 {
                   className: "bg-green-400",
