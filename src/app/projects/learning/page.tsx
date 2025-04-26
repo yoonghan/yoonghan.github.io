@@ -6,7 +6,6 @@ import { AwsCloudPractitionerArticle } from "./config/AwsCloudPractitionerArticl
 import { SunJavaDeveloperArticle } from "./config/SunJavaDeveloperArticle"
 import { ScalaFunctionalProgrammingArticle } from "./config/ScalaFunctionalProgrammingArticle"
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
-import { DomainTransfer } from "./config/DomainTransfer"
 
 export const metadata = {
   title: "Learning",
@@ -21,7 +20,6 @@ const Learning = ({}) => {
     <div className="walcron-container">
       <h1>Certification taken</h1>
       <section className="grid grid-column gap-4">
-        <DomainTransfer />
         <AwsSolutionArchitectArticle />
         <AwsCloudPractitionerArticle />
         <SunJavaDeveloperArticle />
