@@ -144,6 +144,13 @@ const About = () => {
               contents={[
                 {
                   imageUrl:
+                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+                  className: "bg-blue-500",
+                  title: "Azure Solution Architect Expert",
+                  href: "http://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
+                },
+                {
+                  imageUrl:
                     "https://d1.awsstatic.com/certification/badges/AWS-Certified-Solutions-Architect-Associate_badge_150x150.e359ae4a6d4d82c3e31d4f9104c8d389b56a2423.png",
                   className: "bg-blue-400",
                   title: "AWS Solution Architect Associate",
