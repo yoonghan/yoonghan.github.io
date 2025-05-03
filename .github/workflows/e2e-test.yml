@@ -1,5 +1,8 @@
 name: Validate e2e project
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
     inputs:

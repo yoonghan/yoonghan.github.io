@@ -1,5 +1,8 @@
 name: Test project
 
+permissions:
+  contents: read
+
 on:
   # allow as dispatch call
   workflow_dispatch:
