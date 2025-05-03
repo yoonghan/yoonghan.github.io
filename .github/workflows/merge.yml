@@ -1,8 +1,5 @@
 name: Report merged result on master
 
-permissions:
-  contents: read
-
 on:
   push:
     branches:
@@ -19,6 +16,7 @@ jobs:
   merge:
     permissions:
       pull-requests: write
+      contents: read
     uses: ./.github/workflows/push.yml
     secrets: inherit
     with:
@@ -30,6 +28,7 @@ jobs:
     needs: merge
     permissions:
       pull-requests: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
