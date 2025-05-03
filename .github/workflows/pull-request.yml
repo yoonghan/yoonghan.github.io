@@ -7,6 +7,8 @@ jobs:
   TaskDecider:
     name: TaskDecider
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       TO_APPROVE: ${{ steps.autoapproval.outputs.BACKSTOP_APPROVED }}
     steps:
