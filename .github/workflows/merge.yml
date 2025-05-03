@@ -1,5 +1,8 @@
 name: Report merged result on master
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
