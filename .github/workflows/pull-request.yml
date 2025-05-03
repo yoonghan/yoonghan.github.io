@@ -35,6 +35,7 @@ jobs:
   Approve:
     permissions:
       pull-requests: write
+      contents: read
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'true'
     uses: ./.github/workflows/e2e-auto-approve.yml
@@ -46,6 +47,7 @@ jobs:
   E2E:
     permissions:
       pull-requests: write
+      contents: read
     needs: TaskDecider
     if: needs.TaskDecider.outputs.TO_APPROVE == 'false'
     uses: ./.github/workflows/e2e-test.yml

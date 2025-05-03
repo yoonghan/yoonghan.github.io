@@ -1,5 +1,8 @@
 name: Validate each branch changes of project
 
+permissions:
+      contents: read
+
 on:
   # run on any push except merge
   push:
