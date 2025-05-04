@@ -16,6 +16,7 @@ jobs:
   merge:
     permissions:
       pull-requests: write
+      contents: read
     uses: ./.github/workflows/push.yml
     secrets: inherit
     with:
@@ -27,6 +28,7 @@ jobs:
     needs: merge
     permissions:
       pull-requests: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4

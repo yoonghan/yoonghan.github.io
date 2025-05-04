@@ -31,6 +31,7 @@ jobs:
       changes_detected: ${{ steps.auto-commit-action.outputs.changes_detected }}
     permissions:
       pull-requests: write
+      contents: read
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
