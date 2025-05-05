@@ -20,7 +20,7 @@ jobs:
   layout:
     runs-on: ubuntu-latest
     if: |
-      !startsWith(github.head_ref , 'dependabot/')
+      !contains(github.head_ref , 'dependabot/')
     steps:
       - name: 🛑 Cancel previous runs
         uses: styfle/cancel-workflow-action@0.12.1
