@@ -40,7 +40,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch }}
-          persist-credentials: false # otherwise the token used is the GITHUB_TOKEN, not the one provided by the workflow_call
 
       - name: ✅ Approve Backstop
         uses: ./.github/actions/approve

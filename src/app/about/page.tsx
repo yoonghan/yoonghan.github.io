@@ -83,9 +83,6 @@ const About = () => {
               Maintain and improve high volume (35 million records) data
               transactions and synchronization.
             </li>
-            <li>E-Commerce and Non-government organization websites.</li>
-            <li>Quick mock-ups and builds for clients.</li>
-            <li>Code coverage and system stability.</li>
             <li>
               Integration of Business-to-Business and Business-to-Consumer.
             </li>
