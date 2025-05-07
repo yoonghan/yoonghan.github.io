@@ -31,7 +31,7 @@ jobs:
       changes_detected: ${{ steps.auto-commit-action.outputs.changes_detected }}
     permissions:
       pull-requests: write
-      contents: read
+      contents: write
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
@@ -39,7 +39,6 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}
           ref: ${{ inputs.branch }}
 
       - name: ✅ Approve Backstop
