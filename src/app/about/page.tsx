@@ -165,17 +165,17 @@ const About = () => {
                 },
                 {
                   imageUrl:
-                    "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
-                  className: "bg-blue-200",
-                  title: "AWS Developer Associate",
-                  href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
-                },
-                {
-                  imageUrl:
                     "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
                   className: "bg-teal-400",
                   title: "Azure Cloud Fundamentals",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
+                },
+                {
+                  imageUrl:
+                    "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
+                  className: "bg-blue-200",
+                  title: "AWS Developer Associate",
+                  href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
                 },
                 {
                   imageUrl:
