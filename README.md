@@ -118,10 +118,8 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 ## Deployment to Vercel
 
-1. Project deployment works differently as there is _NO_ hosting page. Means navigating to the page e.g. https://zelda-auth-react-walcoorperation.vercel.app/ will deal with NO Page found.
-2. All hosted microservice must be access via the js script, as in https://<host>/walcron-zelda-auth-react.js
-3. Create a Github PAT (classic), with only read:packages access.
-4. Login locally into github NPM repo with the PAT.
+1. Create a Github PAT (classic), with only read:packages access.
+2. Login locally into github NPM repo with the PAT to access local repo.
 
 `npm login --scope=@yoonghan --auth-type=legacy --registry=https://npm.pkg.github.com/`
 
