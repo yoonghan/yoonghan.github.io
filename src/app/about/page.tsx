@@ -160,7 +160,7 @@ const About = () => {
                   imageUrl:
                     "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
                   className: "bg-blue-300",
-                  title: "Azure Administrator Associate (AZ-104)",
+                  title: "Azure Administrator Associate",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B?sharingId=FE2E719D4C5E0EFB",
                 },
                 {
@@ -174,7 +174,7 @@ const About = () => {
                   imageUrl:
                     "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
                   className: "bg-teal-400",
-                  title: "Azure Cloud Fundamentals (AZ-900)",
+                  title: "Azure Cloud Fundamentals",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
                 },
                 {
@@ -208,7 +208,7 @@ const About = () => {
                 {
                   className: "bg-blue-300",
                   title: "Sun Java Certified",
-                  description: <span>Certification on Java programmer.</span>,
+                  description: <span>Java certified programmer.</span>,
                 },
                 {
                   className: "bg-blue-200",
@@ -232,7 +232,7 @@ const About = () => {
                   title: "Effective ChatGPT",
                   description: (
                     <span>
-                      Learning ChatGPT.{" "}
+                      Learnt ChatGPT.{" "}
                       <a href="https://www.credly.com/badges/90c47b88-4325-4611-be46-f6b0ca688251">
                         [ Foundation ]
                       </a>
