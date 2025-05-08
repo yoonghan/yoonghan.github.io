@@ -123,7 +123,7 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 `npm login --scope=@yoonghan --auth-type=legacy --registry=https://npm.pkg.github.com/`
 
-5. Copy in ~/.npmrc into vercel's variable NPM_RC. Basically the varible will contain:
+3. Copy in ~/.npmrc into vercel's variable NPM_RC. Basically the varible will contain:
 
 ```
 //npm.pkg.github.com/:_authToken=...
