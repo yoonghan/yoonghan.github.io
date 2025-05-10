@@ -144,7 +144,7 @@ const About = () => {
               contents={[
                 {
                   imageUrl:
-                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+                    "/img/certifications/microsoft-certified-expert-badge.svg",
                   className: "bg-blue-500",
                   title: "Azure Solution Architect Expert",
                   href: "http://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
@@ -158,7 +158,7 @@ const About = () => {
                 },
                 {
                   imageUrl:
-                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+                    "/img/certifications/microsoft-certified-associate-badge.svg",
                   className: "bg-blue-300",
                   title: "Azure Administrator Associate (AZ-104)",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B?sharingId=FE2E719D4C5E0EFB",
@@ -172,7 +172,7 @@ const About = () => {
                 },
                 {
                   imageUrl:
-                    "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+                    "/img/certifications/microsoft-certified-fundamentals-badge.svg",
                   className: "bg-teal-400",
                   title: "Azure Cloud Fundamentals (AZ-900)",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
