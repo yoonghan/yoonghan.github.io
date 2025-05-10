@@ -39,7 +39,7 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.PAT }} # GITHUB_TOKEN cannot be used here as commit to pr will not recreate a new pull-request
           ref: ${{ inputs.branch }}
 
       - name: ✅ Approve Backstop
