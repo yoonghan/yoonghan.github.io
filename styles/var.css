@@ -16,7 +16,7 @@
   --button-disabled: rgba(66, 66, 66);
 
   --border-color: rgba(66, 66, 66);
-  --shadow: grey;
+  --shadow: #999;
 
   --z-index-modal: 200;
   --z-index-modal-content: 201;
