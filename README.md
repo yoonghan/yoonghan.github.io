@@ -72,7 +72,7 @@ To stop animation, append query string to use `animate-none` class
 1. Install Vercel Cli, with `npm i -g vercel`
 2. Pull all the environment into local with `vercel env pull .env.local`. This wil create an environment straight for testing. Incase, there are reset of environment to setup in Vercel, refer to .env file.
 
-## Additional site url
+## Additional environment id in Next.JS
 
 1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
 2. NEXT_PUBLIC_SITE_URL - configure for static site to call api. Overrides blank with https://www.walcron.com.
@@ -81,16 +81,11 @@ To stop animation, append query string to use `animate-none` class
 
 ## Run Github workflows
 
-Project is tied closely with github.
-
-To create a new change, do a pull request.
-
-1. Create a branch for changes in lowercase with no space.
-2. Commit the changes in the branch.
-3. Push.
-4. In github, create a _pull request_.
-5. Check that the workflow is executed without error.
-6. Merge the commit.
+```mermaid
+flowchart TD;
+   branch["branch w/ (Non-spaced and lowercased)"] --> commit --> push --> pull[pull request] --> workflow["workflow w/ success"] --> merge --> report["Generate Reports"] --> deploy1["To Vercel"];
+   report --> deploy2["Github Pages"];
+```
 
 In case there is a need to generate a new backstopJS approved page.
 
@@ -102,14 +97,9 @@ In case there is a need to generate a new backstopJS approved page.
 
 Updating backstopJS snapshot.
 
---By pull request
+--By pull request / action
 
 1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop*data/bitmaps_test/*/!failed\_.png
-2. replace into bitmaps_reference.
-
---By action
-
-1. Download the artifacts generated in latest requested workflow. Replace generated snapshot in backstop_data/bitmaps_reference/\*
 2. replace into bitmaps_reference.
 
 --Auto approval _(Recommended)_
