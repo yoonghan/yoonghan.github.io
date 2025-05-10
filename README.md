@@ -1,8 +1,11 @@
 # Walcron - a personal website
 
-A personal website for self-learning interest.
+[![Build Status][build-badge]][build]
+[![codecov][coverage-badge]][coverage]
 
-We host our website in 2 locations:
+---
+
+A personal website for self-learning interest. We host our website in 2 locations:
 
 - [Vercel](https://www.walcron.com)
 - [Github Pages](https://yoonghan.github.io)
@@ -11,11 +14,6 @@ We host our website in 2 locations:
 flowchart LR;
     vercel[NextJS in Vercel] --> github[Static in Github pages];
 ```
-
----
-
-[![Build Status][build-badge]][build]
-[![codecov][coverage-badge]][coverage]
 
 ## How to Use
 
