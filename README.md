@@ -2,6 +2,16 @@
 
 A personal website for self-learning interest.
 
+We host our website in 2 locations:
+
+- [Vercel](https://www.walcron.com)
+- [Github Pages](https://yoonghan.github.io)
+
+```mermaid
+flowchart LR;
+    vercel[NextJS in Vercel] --> github[Static in Github pages];
+```
+
 ---
 
 [![Build Status][build-badge]][build]
@@ -167,11 +177,6 @@ npm run rust:test //test rust running on browser
 
 1. Set variables configured in axiom to view telemetry AXIOM_API_TOKEN and AXIOM_DATASET_NAME.
 2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
-
-## Website
-
-[https://www.walcron.com](https://www.walcron.com)
-[https://yoonghan.github.io](https://yoonghan.github.io)
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml
 [build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+master"
