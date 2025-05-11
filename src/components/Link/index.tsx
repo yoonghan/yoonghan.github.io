@@ -4,7 +4,8 @@ import style from "./Link.module.css"
 import NextLink, { type LinkProps as NextLinkProps } from "next/link"
 
 interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement & NextLinkProps> {
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement | NextLinkProps> {
+  prefetch?: boolean
   logoUrl?: string
   logoAltText?: string
 }
@@ -14,6 +15,7 @@ const Link: React.FC<LinkProps> = ({
   logoUrl,
   logoAltText,
   children,
+  prefetch,
   ...props
 }) => {
   const logo = (() => {
