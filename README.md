@@ -81,8 +81,10 @@ To stop animation, append query string to use `animate-none` class
 
 ```mermaid
 flowchart TD;
-   branch["branch w/ (Non-spaced and lowercased)"] --> commit --> push --> pull[pull request] --> workflow["workflow w/ success"] --> merge --> report["Generate Reports"] --> deploy1["To Vercel"];
-   report --> deploy2["Github Pages"];
+   branch["branch w/ (Non-spaced and lowercased)"] --> commit --> push --> pull[pull request] --> workflow["workflow w/ success"] --> merge --> report["Generate Reports"];
+   push --> deploy1["Vercel in Development Environment"]
+   merge --> promote["Promote Vercel"];
+   report --> deploy2["Github Pages"] --> tag --> smoketest["Smoke test"];
 ```
 
 In case there is a need to generate a new backstopJS approved page.
