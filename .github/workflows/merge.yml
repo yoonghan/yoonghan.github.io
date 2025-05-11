@@ -121,14 +121,15 @@ jobs:
         run: |
           VERSION_PREFIX="v"
           VERSION_MAJOR="1"
-          VERSION_MAJOR_MINOR=$(git tag --list "${VERSION_PREFIX}${VERSION_MAJOR}.*" --sort=-version:refname | head -n 1 | grep -oE '[0-9]+\.[0-9]+')
+          VERSION_PATCH="0"
+          VERSION_MAJOR_MINOR=$(git tag --list "${VERSION_PREFIX}${VERSION_MAJOR}.*.${VERSION_PATCH}" --sort=-version:refname | head -n 1 | grep -oE '[0-9]+\.[0-9]+')
           VERSION_MINOR=${VERSION_MAJOR_MINOR//$VERSION_MAJOR./}
           if [ -z "$VERSION_MINOR" ]; then
             VERSION_MINOR=0
           else
             VERSION_MINOR=$((VERSION_MINOR + 1))
           fi
-          NEW_TAG="${VERSION_PREFIX}${VERSION_MAJOR}.${VERSION_MINOR}"
+          NEW_TAG="${VERSION_PREFIX}${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
           echo "Generated new tag: $NEW_TAG"
           echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
