@@ -32,6 +32,7 @@ function StickyCards({ contents }: { contents: Content[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className="text-black"
+                  prefetch={false}
                 >
                   View{" "}
                   <svg

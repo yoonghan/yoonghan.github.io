@@ -8,7 +8,11 @@ describe("Link", () => {
   })
 
   it("renders a link with text and href", () => {
-    render(<Link href="/link">I am a logo link</Link>)
+    render(
+      <Link href="/link" prefetch={true}>
+        I am a logo link
+      </Link>
+    )
     expect(screen.getByText("I am a logo link")).toHaveAttribute(
       "href",
       "/link"
