@@ -145,12 +145,16 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 ## NextJS Static Site Generation
 
-NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well, hence need to figure out how to relink these site directly to walcron.
+NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well.
 
 Process.env variable for client side access are required to be defined in .env file (written in merge.yml)
 
-- NEXT_PUBLIC_PUSHER_APP_KEY
-- NEXT_PUBLIC_PUSHER_CLUSTER
+| Key                        | Description                                             |
+| -------------------------- | ------------------------------------------------------- |
+| NEXT_PUBLIC_PUSHER_APP_KEY | Public key for pusher API to access pusher              |
+| NEXT_PUBLIC_PUSHER_CLUSTER | Public pusher API cluster region                        |
+| NEXT_PUBLIC_SITE_URL       | URL to hosted url for content metadata (i.e. canonical) |
+| NEXT_PUBLIC_API_SITE_URL   | URL to hosted api url, i.e. https://www.walcron.com/api |
 
 ## Rust Webassembly
 
