@@ -67,7 +67,7 @@
     "react-ga4": "^2.1.0",
     "react-intersection-observer": "^9.4.0",
     "react-toggle": "^4.1.3",
-    "react-tracked": "^1.7.11",
+    "react-tracked": "^2.0.1",
     "reactjs-popup": "^2.0.5",
     "snake-game": "file:./crate/snake/pkg",
     "tailwindcss": "^4.1.5",
