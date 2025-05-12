@@ -26,7 +26,7 @@ const reducer = (
   }
 }
 
-const LargeForm = ({}) => {
+const LargeForm = () => {
   const [monitoredUpdate, dispatch] = useReducer(reducer, [])
 
   const printableMonitorData = useMemo(() => {
@@ -110,12 +110,12 @@ const InputForm = ({
       <form onSubmit={callSubmit}>
         {Array(noOfFields)
           .fill(0)
-          .map((_key, index) => (
+          .map((key, index) => (
             <MemoizeInput
-              id={`field${index}`}
+              id={`field-${index}`}
               updateForm={updateForm}
               form={form}
-              key={index}
+              key={`${key}-${index}`}
               updateMonitor={updateMonitor}
               dependantField={`field${index + 1}`}
             />

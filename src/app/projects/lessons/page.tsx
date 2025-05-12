@@ -19,7 +19,7 @@ export const metadata = {
   },
 }
 
-const Lessons = ({}) => {
+const Lessons = () => {
   return (
     <div className="walcron-container">
       <h1>Lessons learned from projects</h1>
