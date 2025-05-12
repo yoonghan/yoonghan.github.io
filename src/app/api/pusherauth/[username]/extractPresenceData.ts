@@ -3,7 +3,13 @@ import {
   removeAllWhiteSpaces,
   capitalizeFirstWord,
 } from "@/util/regex"
-import { Member } from "./route"
+
+export type Member = {
+  user_id: string
+  user_info: {
+    name: string
+  }
+}
 
 export const extractPresenceData = (
   username: string | string[] | undefined

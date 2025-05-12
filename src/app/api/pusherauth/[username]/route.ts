@@ -9,13 +9,6 @@ export type ResponseMessage = {
   auth?: string
 }
 
-export type Member = {
-  user_id: string
-  user_info: {
-    name: string
-  }
-}
-
 const authorize = (
   client: Pusher,
   socket_id: string,
