@@ -13,7 +13,7 @@ export const metadata = {
   },
 }
 
-const Projects = ({}) => {
+const Projects = () => {
   return (
     <div className="walcron-container">
       <h1>Playground projects</h1>
