@@ -6,7 +6,7 @@ const Output = ({ output }: Props) => {
   return (
     <div className="output">
       Output: {output}
-      <style jsx>{`
+      <style>{`
         .output {
           font-family: Inconsolata;
           font-size: 1rem;
