@@ -19,12 +19,12 @@
   pointer-events: none;
   justify-content: center;
   color: grey;
-  font-family: Inconsolata;
+  font-family: Inconsolata, Arial, Helvetica, sans-serif;
   font-style: italic;
 }
 
 .command-container .autosuggest__input {
-  font-family: Inconsolata;
+  font-family: Inconsolata, Arial, Helvetica, sans-serif;
   background-color: transparent;
   border: 1px solid var(--link);
   margin: 0;
