@@ -13,7 +13,7 @@ const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
   return (
     <div className="error">
       {trimInput(invalidInput)} - not found. type HELP.
-      <style jsx>{`
+      <style>{`
         .error {
           white-space: nowrap;
           font-family: Inconsolata;

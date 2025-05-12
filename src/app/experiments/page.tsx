@@ -13,13 +13,13 @@ export const metadata = {
   },
 }
 
-const Experiments = ({}) => {
+const Experiments = () => {
   return (
     <div className="walcron-container">
       <h1>Experimental projects</h1>
       <div>
         <p>
-          Incomplete or projects that are used for test-beds
+          Incomplete or projects that are used for test-beds{" "}
           <small>(due to migration most are not moved over)</small>
         </p>
         <Card cards={cards} />

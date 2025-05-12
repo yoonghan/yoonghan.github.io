@@ -14,8 +14,6 @@
   box-shadow: 2px 2px 3px #000;
   transition: opacity 0.3s, visibility 0.3s ease-in-out;
   user-select: none;
-  bottom: 4rem;
-  opacity: 0.5;
   text-align: left;
 }
 

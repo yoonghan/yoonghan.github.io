@@ -279,8 +279,7 @@ function Homepage() {
               (Parallax Effect) and we encountered <strong>
                 performance
               </strong>{" "}
-              and <strong>accessibility </strong>
-              issues.
+              and <strong>accessibility</strong>&nbsp;issues.
             </p>
             <FontAwesomeAnimate
               title={"Keyboard Accessible"}
@@ -358,11 +357,9 @@ function Homepage() {
                 }}
                 imageCaption="Leverage Axiom's Open Telemetry to view API workflow"
               >
-                <>
-                  We use Axiom to stream OpenTelemetry data over. Using this
-                  data we can monitor our API&apos;s performance and application
-                  integration.
-                </>
+                We use Axiom to stream OpenTelemetry data over. Using this data
+                we can monitor our API&apos;s performance and application
+                integration.
                 <div className="flex justify-center pt-10">
                   <Button href="/projects/checklist">
                     View Checklists
