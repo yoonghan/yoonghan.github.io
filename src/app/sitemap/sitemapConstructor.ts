@@ -8,7 +8,7 @@ export interface Result {
 
 export class SiteMapConstructor {
   readonly results: Result[] = []
-  private level: any = { results: this.results }
+  readonly level: any = { results: this.results }
 
   removeRootSplit = (paths: string[]) => {
     if (paths.length === 2 && paths[0] === paths[1]) {
@@ -22,7 +22,7 @@ export class SiteMapConstructor {
 
       this.removeRootSplit(paths)
 
-      this.level = paths.reduce((acc, name) => {
+      paths.reduce((acc, name) => {
         if (!acc[name]) {
           acc[name] = { results: [] }
           acc.results.push({
