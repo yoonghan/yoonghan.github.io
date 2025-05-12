@@ -13,11 +13,11 @@ const fakeSuccessResponse = async () => {
 }
 
 const fakeFailResponse = async () => {
-  return (await new Promise((_, reject) =>
+  return await new Promise((_, reject) =>
     setTimeout(() => {
-      reject("I failed")
+      reject(new Error("I failed"))
     }, waitTime)
-  )) as string
+  )
 }
 
 const successResponse = wrapPromise(fakeSuccessResponse())
