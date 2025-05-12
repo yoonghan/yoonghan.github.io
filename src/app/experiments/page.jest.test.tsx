@@ -17,6 +17,12 @@ describe("Experiments", () => {
     )
     const cardsPath = cards.map((card) => card.href)
 
-    expect(allExperimentsPath.sort()).toStrictEqual(cardsPath.sort())
+    const sortedAllExperimentsPath = allExperimentsPath.toSorted((a, b) =>
+      a.localeCompare(b)
+    )
+
+    const sortedCardsPath = cardsPath.toSorted((a, b) => a.localeCompare(b))
+
+    expect(sortedAllExperimentsPath).toStrictEqual(sortedCardsPath)
   })
 })
