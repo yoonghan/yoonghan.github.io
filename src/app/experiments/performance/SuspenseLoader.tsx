@@ -12,7 +12,7 @@ const fakeSuccessResponse = async () => {
   return fakePromise
 }
 
-const fakeFailResponse = async () => {
+const fakeFailResponse: () => Promise<Error> = async () => {
   return await new Promise((_, reject) =>
     setTimeout(() => {
       reject(new Error("I failed"))
@@ -37,7 +37,7 @@ const SuspenseLoader = () => {
 }
 
 const Result = () => {
-  const catchAble = (response: { read: () => string }) => {
+  const catchAble = (response: { read: () => string | Error }) => {
     try {
       return response.read()
     } catch (e: any) {
