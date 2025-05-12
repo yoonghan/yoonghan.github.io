@@ -16,7 +16,7 @@ const callProfiling = (id: string, phase: string, actualDuration: number) => {
   console.log(`${id} - ${phase}:${actualDuration}`)
 }
 
-const HeavyLoaderNoSSR = ({}) => {
+const HeavyLoaderNoSSR = () => {
   const [toggleState, setToggleState] = useState(false)
   const initializeRef = useRef(false)
 

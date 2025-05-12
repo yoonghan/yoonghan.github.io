@@ -6,7 +6,7 @@ const InvalidCommand = ({ invalidCommand }: Props) => {
   return (
     <div className="error">
       Msg: {invalidCommand}
-      <style jsx>{`
+      <style>{`
         .error {
           font-family: Inconsolata;
           font-size: #f90101;

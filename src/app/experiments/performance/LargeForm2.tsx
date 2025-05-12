@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { FormEvent, memo, useEffect, useReducer, useState } from "react"
+import React, { FormEvent, useEffect, useReducer, useState } from "react"
 import { ChangeEvent, useCallback, useMemo } from "react"
 import { createContainer } from "react-tracked"
 
@@ -21,12 +21,10 @@ const reducer = (
   state: string[],
   action: { type: "ADD"; fieldIdUpdated: string }
 ) => {
-  switch (action.type) {
-    case "ADD":
-      return [...state, action.fieldIdUpdated]
-    default:
-      return state
+  if (action.type === "ADD") {
+    return [...state, action.fieldIdUpdated]
   }
+  return state
 }
 
 const formValue = () =>
@@ -35,9 +33,10 @@ const formValue = () =>
     field2: "world",
     field3: "test field",
   })
+
 const { Provider, useTracked } = createContainer(formValue)
 
-const LargeForm2 = ({}) => {
+const LargeForm2 = () => {
   const [monitoredUpdate, dispatch] = useReducer(reducer, [])
 
   const printableMonitorData = useMemo(() => {

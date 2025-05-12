@@ -15,7 +15,7 @@ const Logo = ({ withText = false }: LogoProps) => {
         height={100}
       />
       {withText && <div> Walcron</div>}
-      <style jsx>{`
+      <style>{`
         .logo-img {
           width: 50px;
           position: absolute;

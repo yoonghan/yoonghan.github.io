@@ -13,7 +13,7 @@ export const metadata = {
   },
 }
 
-const SiteMap = ({}) => {
+const SiteMap = () => {
   const groupedMenu = useMemo(
     () => new SiteMapConstructor().getGroups(sortedSiteMapPages),
     []
@@ -23,7 +23,7 @@ const SiteMap = ({}) => {
     return (
       <ul className="pl-4">
         {results.map((result, index) => (
-          <Fragment key={index}>
+          <Fragment key={`${index}-${result.pageInfo.path}`}>
             <li className="pb-2">
               <Link href={result.pageInfo.path}>{result.pageInfo.display}</Link>
             </li>

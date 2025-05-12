@@ -264,7 +264,7 @@ const model = [
           EC2.
         </li>
         <li>
-          Scaling strategy <em>Scheduled, Predictive(AI), Dynamic(resource)</em>
+          Scaling strategy <em>Scheduled, Predictive(AI), Dynamic(resource)</em>{" "}
           , default is 30second cooldown.
         </li>
         <li>

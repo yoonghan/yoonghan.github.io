@@ -4,7 +4,7 @@ import StickyCards from "@/components/StickyCards"
 import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 
-const JavascriptFree = ({}) => {
+const JavascriptFree = () => {
   return (
     <div className="walcron-container">
       <h1>Cross Browser Friendly</h1>
@@ -12,6 +12,7 @@ const JavascriptFree = ({}) => {
         <p>
           A goal oriented page to make the page working in both{" "}
           <strong>No Javascript</strong>
+          {""}
           and javascript environment. Reason for no javascript is to support
           terminal typed browsers.
         </p>

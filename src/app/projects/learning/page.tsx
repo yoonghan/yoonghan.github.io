@@ -15,7 +15,7 @@ export const metadata = {
   },
 }
 
-const Learning = ({}) => {
+const Learning = () => {
   return (
     <div className="walcron-container">
       <h1>Certification taken</h1>

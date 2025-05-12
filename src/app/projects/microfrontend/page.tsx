@@ -10,7 +10,7 @@ export const metadata = {
   },
 }
 
-const Projects = ({}) => {
+const Projects = () => {
   const cards = [
     {
       id: "microfront-end-spa",

@@ -113,14 +113,7 @@
   border: 1px solid #4d4d4d;
   border-radius: 50%;
   background-color: #fafafa;
-
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  transition: all 0.25s ease;
 }
 
 .react-toggle--checked .react-toggle-thumb {
