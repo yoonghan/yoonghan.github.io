@@ -87,6 +87,11 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
           break
         case EnumConnectionStatus.Error:
           promptMessage("User unable to connect, try with a new name")
+          setRecordingStarted(false)
+          setStream(undefined)
+          disconnectWebRtc()
+          remoteVideoRef.current?.stopStream()
+          break
         case EnumConnectionStatus.Disconnected:
           setRecordingStarted(false)
           setStream(undefined)
