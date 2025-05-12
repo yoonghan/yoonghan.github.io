@@ -18,6 +18,15 @@ describe("useTrackAggruseTrackReduceregrator", () => {
     expect(result.current.data).toStrictEqual([4])
   })
 
+  it("should be able to doNothing", () => {
+    const { result } = renderHook(useTrackReducer, { initialProps: {} })
+    expect(result.current.data).toStrictEqual([])
+    act(() => {
+      result.current.doNothing()
+    })
+    expect(result.current.data).toStrictEqual([])
+  })
+
   it("should only append every allowStorageAfterMiliseconds time", async () => {
     jest.useFakeTimers()
     const { result } = renderHook(useTrackReducer, { initialProps: {} })
