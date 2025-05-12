@@ -7,7 +7,6 @@ describe("random", () => {
       const randomNumber = rnd(max)
       expect(randomNumber).toBeLessThanOrEqual(max)
       expect(randomNumber).toBeGreaterThanOrEqual(0)
-      loop++
     }
   })
 })
