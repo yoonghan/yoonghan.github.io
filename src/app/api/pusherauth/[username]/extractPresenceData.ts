@@ -4,7 +4,7 @@ import {
   capitalizeFirstWord,
 } from "@/util/regex"
 
-export type Member = {
+type Member = {
   user_id: string
   user_info: {
     name: string
