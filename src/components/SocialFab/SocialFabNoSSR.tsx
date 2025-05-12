@@ -3,9 +3,7 @@ import { email } from "../LetterBox"
 import EmailSender from "../LetterBox/EmailSender"
 import styles from "./SocialFab.module.css"
 
-interface Props {}
-
-const SocialFabNoSSR = ({}: Props) => {
+const SocialFabNoSSR = () => {
   const confirm = useDialogCreation(EmailSender)
 
   const onOpenEmail = () => {

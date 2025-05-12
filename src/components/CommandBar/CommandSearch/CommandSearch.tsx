@@ -33,7 +33,7 @@ const generateLink = (url: string) => ({
       return <InvalidCommand invalidCommand={"This is the page"} />
     }
     router.push(link)
-    return <React.Fragment />
+    return <></>
   },
 })
 
@@ -89,7 +89,7 @@ export const AvailableInput: ICommand = {
     exec: (router: AppRouterInstance, pathname: string) => {
       if (pathname !== "/") {
         router.back()
-        return <React.Fragment />
+        return <></>
       } else return <InvalidCommand invalidCommand={"Already at root"} />
     },
   },
@@ -109,7 +109,7 @@ export const AvailableInput: ICommand = {
           text: "An awesome website.",
           url: site.url,
         })
-        return <React.Fragment />
+        return <></>
       } else {
         return <InvalidCommand invalidCommand={"Couldn't run HTML5 share."} />
       }
@@ -150,7 +150,7 @@ export const AvailableInput: ICommand = {
     action: EnumAction.LINK,
     exec: (_: AppRouterInstance, pathname: string) => {
       window.location.href = pathname + "?animate=none"
-      return <React.Fragment />
+      return <></>
     },
   },
 }

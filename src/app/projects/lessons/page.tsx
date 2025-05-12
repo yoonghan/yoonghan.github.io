@@ -148,14 +148,14 @@ const Lessons = ({}) => {
           </li>
           <li>
             due to dynamic import, one will face a problem if directly routed
-            of:
+            of:{" "}
             <i>
               A component suspended while responding to synchronous input. This
               will cause the UI to be replaced with a loading indicator. To fix,
               updates that suspend should be wrapped with startTransition.
-            </i>
-            . To overcome it (sample in pageComponents/*/SnakeGame.tsx) it,
-            simply wrap it in another Suspense tag
+            </i>{" "}
+            To overcome it (sample in pageComponents/*/SnakeGame.tsx) it, simply
+            wrap it in another Suspense tag
             <pre className="code">
               &lt;Suspense&gt;&lt;LazyLoadedComponent/&gt;&lt;/Suspense&gt;
             </pre>

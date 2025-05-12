@@ -1,4 +1,4 @@
-import { PageConfig, sortedSiteMapPages } from "@/config/pages"
+import { PageConfig } from "@/config/pages"
 
 export interface Result {
   name: string
@@ -7,7 +7,7 @@ export interface Result {
 }
 
 export class SiteMapConstructor {
-  private results: Result[] = []
+  readonly results: Result[] = []
   private level: any = { results: this.results }
 
   removeRootSplit = (paths: string[]) => {
@@ -22,7 +22,7 @@ export class SiteMapConstructor {
 
       this.removeRootSplit(paths)
 
-      paths.reduce((acc, name) => {
+      this.level = paths.reduce((acc, name) => {
         if (!acc[name]) {
           acc[name] = { results: [] }
           acc.results.push({

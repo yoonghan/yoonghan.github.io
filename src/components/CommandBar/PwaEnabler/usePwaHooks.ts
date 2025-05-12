@@ -33,9 +33,9 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
   )
 
   useEffect(() => {
-    if (navigator && navigator.serviceWorker && navigator.serviceWorker.ready) {
-      setIsOffline(!navigator.onLine)
-      navigator.serviceWorker.ready.then((swRegistry) => {
+    if (navigator) {
+      setIsOffline(!navigator?.onLine)
+      navigator?.serviceWorker?.ready.then((swRegistry) => {
         if (swRegistry) {
           if (swRegistry.active) {
             updateRegistration(swRegistry.active)
@@ -58,8 +58,8 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
 
   const getRegistration = useCallback(async () => {
     const domain = window.location.hostname
-    if (navigator && navigator.serviceWorker) {
-      const swRegistry = await navigator.serviceWorker.getRegistration(domain)
+    if (navigator) {
+      const swRegistry = await navigator?.serviceWorker?.getRegistration(domain)
       if (swRegistry) {
         if (swRegistry.active) {
           updateRegistration(swRegistry.active)

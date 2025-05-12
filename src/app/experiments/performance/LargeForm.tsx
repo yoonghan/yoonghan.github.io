@@ -19,11 +19,10 @@ const reducer = (
   state: string[],
   action: { type: "ADD"; fieldIdUpdated: string }
 ) => {
-  switch (action.type) {
-    case "ADD":
-      return [...state, action.fieldIdUpdated]
-    default:
-      return state
+  if (action.type === "ADD") {
+    return [...state, action.fieldIdUpdated]
+  } else {
+    return state
   }
 }
 
