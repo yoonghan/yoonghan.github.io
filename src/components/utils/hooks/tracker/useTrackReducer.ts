@@ -1,8 +1,8 @@
-import { debounce } from "@yoonghan/walcron-microfrontend-shared"
 import { useCallback, useReducer, useRef } from "react"
 
 enum Actions {
   APPEND,
+  NOTHING,
 }
 
 interface Action {
@@ -14,13 +14,10 @@ interface Action {
 function reducer(state: number[], action: Action) {
   const { value, type, max } = action
 
-  switch (type) {
-    case Actions.APPEND:
-      return [
-        value,
-        ...(state.length === max ? state.slice(0, max - 1) : state),
-      ]
+  if (type == Actions.APPEND) {
+    return [value, ...(state.length === max ? state.slice(0, max - 1) : state)]
   }
+  return [...state]
 }
 
 export const useTrackReducer = ({
@@ -32,8 +29,9 @@ export const useTrackReducer = ({
   maxStorage?: number
   allowStorageAfterMiliseconds?: number
 }) => {
-  var canStore = useRef(true)
+  let canStore = useRef(true)
   const [data, dispatch] = useReducer(reducer, initialData)
+
   const append = useCallback(
     (value: number) => {
       if (canStore.current) {
@@ -48,8 +46,13 @@ export const useTrackReducer = ({
     [allowStorageAfterMiliseconds, maxStorage]
   )
 
+  const doNothing = useCallback(() => {
+    dispatch({ type: Actions.NOTHING, value: 0, max: 0 })
+  }, [])
+
   return {
     data,
     append,
+    doNothing,
   }
 }
