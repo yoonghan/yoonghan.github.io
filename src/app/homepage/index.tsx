@@ -60,7 +60,7 @@ function Homepage() {
               thru many web change iterations [
               <Link href="/history">Site History</Link>]. We had evolved the
               site from <strong>AJAX/SPA</strong> to{" "}
-              <strong>Pure Server Render</strong> to a now
+              <strong>Pure Server Render</strong> to a now{""}
               <strong> Non-Javascript Accessible</strong> site. The objective is
               to have a site that is <em>DevOps-oriented</em> development in{" "}
               <em>Cloud</em> platform.{" "}
