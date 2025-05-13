@@ -25,7 +25,7 @@ const customJestConfig = {
     "^@/util/*": "<rootDir>/src/util/$1",
   },
   testEnvironment: "jsdom",
-  coverageReporters: ["text", "cobertura"],
+  coverageReporters: ["text", "cobertura", "lcov"],
   coverageThreshold: {
     global: {
       branches: 100,
