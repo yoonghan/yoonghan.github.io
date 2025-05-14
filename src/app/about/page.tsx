@@ -147,7 +147,7 @@ const About = () => {
                     "/img/certifications/microsoft-certified-expert-badge.svg",
                   className: "bg-blue-500",
                   title: "Azure Solution Architect Expert",
-                  href: "http://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
+                  href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
                 },
                 {
                   imageUrl:
