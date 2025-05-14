@@ -23,7 +23,9 @@ describe("StickyCards", () => {
 
     expect(screen.getByText("One")).toBeInTheDocument()
     expect(screen.getByText("One description")).toBeInTheDocument()
-    expect(screen.getByRole("link", { name: "View" })).toBeInTheDocument()
+    expect(
+      screen.getByRole("link", { name: "View Arrow icon" })
+    ).toBeInTheDocument()
 
     expect(screen.getByText("Two")).toBeInTheDocument()
     // eslint-disable-next-line testing-library/no-node-access
