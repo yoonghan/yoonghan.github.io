@@ -376,7 +376,7 @@ const Lessons = () => {
           <li>
             Check the domain is unlocked in GoDaddy and browse WHOIS for
             walcron.com domain and make sure it is &quot;Domain Status: ok
-            http://icann.org/epp#ok&quot;
+            https://icann.org/epp#ok&quot;
           </li>
           <li>
             Goto Domain Transfer in Cloudflare, and fingers crossed it allows
