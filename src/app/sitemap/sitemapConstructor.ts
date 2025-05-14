@@ -19,10 +19,11 @@ export class SiteMapConstructor {
   getGroups = (pageConfig: PageConfig[]) => {
     pageConfig.forEach((page) => {
       const paths = page.path.split("/")
+      let acc = this.level
 
       this.removeRootSplit(paths)
 
-      paths.reduce((acc, name) => {
+      paths.forEach((name) => {
         if (!acc[name]) {
           acc[name] = { results: [] }
           acc.results.push({
@@ -31,9 +32,8 @@ export class SiteMapConstructor {
             pageInfo: page,
           })
         }
-
-        return acc[name]
-      }, this.level)
+        acc = acc[name]
+      })
     })
     return this.results
   }
