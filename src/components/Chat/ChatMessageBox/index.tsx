@@ -81,13 +81,13 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
       [sendFileMessage]
     )
 
-    const onDrop = async (acceptedFiles: File[]) => {
+    const onDrop = (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
         const filesToUpload = acceptedFiles
         if (inputRef.current) {
           inputRef.current.value = ""
         }
-        await confirm({
+        confirm({
           title: "Upload File",
           onYesClick: () => {
             filesToUpload && dropFileWithMessage(filesToUpload)
