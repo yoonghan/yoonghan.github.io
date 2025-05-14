@@ -1,7 +1,7 @@
 import { site } from "@/config/site"
 
 const schema = {
-  "@context": "http://schema.org",
+  "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Walcron",
   image: `${site.url}/img/logo/logo-color.svg`,
