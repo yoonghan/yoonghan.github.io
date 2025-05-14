@@ -4,7 +4,7 @@ import { schema } from "./schema"
 describe("schemaGenerator", () => {
   it("should contain configurable imaged and url", () => {
     expect(schema).toStrictEqual({
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "LocalBusiness",
       email: "walcoorperation@gmail.com",
       image: "https://mockedUrl.com/img/logo/logo-color.svg",
