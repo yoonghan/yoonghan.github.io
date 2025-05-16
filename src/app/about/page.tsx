@@ -160,7 +160,7 @@ const About = () => {
                   imageUrl:
                     "/img/certifications/microsoft-certified-associate-badge.svg",
                   className: "bg-blue-300",
-                  title: "Azure Administrator Associate (AZ-104)",
+                  title: "Azure Administrator Associate",
                   href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B?sharingId=FE2E719D4C5E0EFB",
                 },
                 {
