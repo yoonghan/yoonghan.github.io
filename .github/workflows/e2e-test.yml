@@ -64,10 +64,19 @@ jobs:
         with:
           deployed_url: ${{ inputs.deployed_url }}
 
+      - name: Make snapshot-check.sh executable
+        shell: bash
+        run: chmod a+x ./.github/scripts/snapshot-check.sh 
+
       - name: ▶️ Run page rendering check
         shell: bash
         continue-on-error: true
         run: npm run backstop:test
+
+      - name: ▶️ Retry page rendering check if fail
+        shell: bash
+        continue-on-error: true
+        run: ./.github/scripts/snapshot-check.sh || npm run backstop:test
 
       - name: Remove local reference file
         shell: bash
@@ -82,8 +91,8 @@ jobs:
           path: backstop_data/
 
       - name: ✅ Validate backstopjs snapshot is valid
-        run: chmod a+x ./.github/scripts/snapshot-check.sh && ./.github/scripts/snapshot-check.sh
         shell: bash
+        run: ./.github/scripts/snapshot-check.sh
 
   integration:
     runs-on: ubuntu-latest
