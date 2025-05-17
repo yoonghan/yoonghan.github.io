@@ -76,7 +76,6 @@ const uploadIntoSystem = async (
     }
 
     streamFileUpload()
-
   } catch (err: any) {
     reject(err?.message)
   }
