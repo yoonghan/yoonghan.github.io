@@ -32,18 +32,19 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
     []
   )
 
-  const monitorStateChange = useCallback((swRegistry: ServiceWorkerRegistration) => {
-    swRegistry.addEventListener("updatefound", () => {
-      setHasLatestUpdate(true)
-      const newSW = swRegistry.installing
-      if (newSW !== null) {
-        newSW.addEventListener("statechange", () => {
-          if (newSW.state === "installed") {
-            setIsLatestInstalled(true)
-          }
-        })
-      }
-    })
+  const monitorStateChange = useCallback(
+    (swRegistry: ServiceWorkerRegistration) => {
+      swRegistry.addEventListener("updatefound", () => {
+        setHasLatestUpdate(true)
+        const newSW = swRegistry.installing
+        if (newSW !== null) {
+          newSW.addEventListener("statechange", () => {
+            if (newSW.state === "installed") {
+              setIsLatestInstalled(true)
+            }
+          })
+        }
+      })
   }, [])
 
   useEffect(() => {
