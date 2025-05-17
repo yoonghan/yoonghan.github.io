@@ -10,13 +10,13 @@ const menuItems = sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu) => {
     url: subMenu.path,
   }))
 
-  return Object.assign(
-    {
+  return {
+    ...{
       label: display,
       url: path,
     },
     items.length === 0 ? undefined : { items }
-  )
+  }
 })
 
 export default menuItems
