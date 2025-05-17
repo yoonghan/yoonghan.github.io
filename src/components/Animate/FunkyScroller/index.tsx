@@ -41,7 +41,7 @@ function FunkyScroller({
     >
       {data.map((pos, i) => (
         <div
-          key={i}
+          key={`${i}-${title}`}
           className={styles.circle}
           style={{ width: calculatePos(pos, [...data]) }}
         ></div>
