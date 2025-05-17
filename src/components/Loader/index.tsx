@@ -1,8 +1,10 @@
 import { useSpring, animated } from "@react-spring/web"
 
+type absoluteStyle = "absolute"
+
 const loaderStyle = (styleprops: any) => {
   return {
-    position: "absolute",
+    position: "absolute" as absoluteStyle,
     border: "5px solid white",
     borderRadius: "100%",
     height: styleprops.diameter,
