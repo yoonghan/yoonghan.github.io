@@ -10,12 +10,17 @@ const menuItems = sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu) => {
     url: subMenu.path,
   }))
 
-  return {
-    ...{
+  if (items.length === 0) {
+    return {
       label: display,
       url: path,
-    },
-    items.length === 0 ? undefined : { items }
+    }
+  } else {
+    return {
+      label: display,
+      url: path,
+      ...items
+    }
   }
 })
 
