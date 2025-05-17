@@ -45,7 +45,9 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
           })
         }
       })
-  }, [])
+    },
+    []
+  )
 
   useEffect(() => {
     if (navigator?.serviceWorker) {

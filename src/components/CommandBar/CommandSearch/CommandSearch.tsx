@@ -7,23 +7,7 @@ import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 import { site } from "@/config/site"
-
-export enum EnumAction {
-  COMMAND,
-  LINK,
-}
-
-interface ICommand {
-  [s: string]: IAvailableInput
-}
-
-export interface IAvailableInput {
-  action: EnumAction
-  description: string
-  url?: string
-  exec: any
-  synonym?: Array<string>
-}
+import { EnumAction, ICommand } from "./type.ts/ICommand"
 
 const generateLink = (url: string) => ({
   action: EnumAction.LINK,
@@ -126,8 +110,9 @@ export const AvailableInput: ICommand = {
     ) => {
       return createPortal(
         <HelpDialog
-          onCancel={cancellationCallback}
-          specialInputCallback={specialInputCallback}
+          onCancel = {cancellationCallback}
+          specialInputCallback = {specialInputCallback}
+          commands = {this}
         />,
         element
       )

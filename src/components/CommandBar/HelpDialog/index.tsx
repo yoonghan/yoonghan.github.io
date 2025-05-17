@@ -1,12 +1,14 @@
 import Dialog from "../../Dialog"
+import { ICommand } from "../CommandSearch/type.ts/ICommand"
 import HelpContent from "./content"
 
 interface Props {
   onCancel: () => void
   specialInputCallback: (input: string) => void
+  commands: ICommand
 }
 
-const HelpDialog = ({ onCancel, specialInputCallback }: Props) => {
+const HelpDialog = ({ onCancel, specialInputCallback, commands }: Props) => {
   const updateSelectedInput = (input: string) => {
     specialInputCallback(input)
     onCancel()
@@ -14,7 +16,7 @@ const HelpDialog = ({ onCancel, specialInputCallback }: Props) => {
 
   return (
     <Dialog onCancel={onCancel} nonPortal={false}>
-      <HelpContent updateSelectedInput={updateSelectedInput} />
+      <HelpContent updateSelectedInput={updateSelectedInput} commands={commands}/>
     </Dialog>
   )
 }
