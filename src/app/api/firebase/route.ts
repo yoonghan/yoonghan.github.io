@@ -76,18 +76,6 @@ const uploadIntoSystem = async (
     }
 
     streamFileUpload()
-
-    // const writeResult = googleCloud
-    //   .createWriteStream(option)
-    //   .write("I AM A SICKO", async () => {
-    //     try {
-    //       const uploadedFileUrl = await getUploadedFileUrl(uploadFileName, uuid)
-    //       resolve(uploadedFileUrl)
-    //     } catch (e: any) {
-    //       reject(`File not downloadable. ${e.message}`)
-    //     }
-    //   })
-    // console.log("writeResult", writeResult)
   } catch (err: any) {
     reject(err?.message)
   }
