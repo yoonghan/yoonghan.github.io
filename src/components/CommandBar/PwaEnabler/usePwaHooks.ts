@@ -32,6 +32,23 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
     []
   )
 
+  const monitorStateChange = useCallback(
+    (swRegistry: ServiceWorkerRegistration) => {
+      swRegistry.addEventListener("updatefound", () => {
+        setHasLatestUpdate(true)
+        const newSW = swRegistry.installing
+        if (newSW !== null) {
+          newSW.addEventListener("statechange", () => {
+            if (newSW.state === "installed") {
+              setIsLatestInstalled(true)
+            }
+          })
+        }
+      })
+    },
+    []
+  )
+
   useEffect(() => {
     if (navigator?.serviceWorker) {
       setIsOffline(!navigator.onLine)
@@ -40,21 +57,11 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
           if (swRegistry.active) {
             updateRegistration(swRegistry.active)
           }
-          swRegistry.addEventListener("updatefound", () => {
-            setHasLatestUpdate(true)
-            const newSW = swRegistry.installing
-            if (newSW !== null) {
-              newSW.addEventListener("statechange", () => {
-                if (newSW.state === "installed") {
-                  setIsLatestInstalled(true)
-                }
-              })
-            }
-          })
+          monitorStateChange(swRegistry)
         }
       })
     }
-  }, [updateRegistration])
+  }, [updateRegistration, monitorStateChange])
 
   const getRegistration = useCallback(async () => {
     const domain = window.location.hostname
