@@ -14,6 +14,6 @@ export const isIOS = () =>
 export const isMacOrIOS = () => isSafariBrowser() || isIOS()
 
 export const isAndroid = () => {
-  var ua = navigator.userAgent.toLowerCase()
+  const ua = navigator.userAgent.toLowerCase()
   return ua.indexOf("android") > -1
 }
