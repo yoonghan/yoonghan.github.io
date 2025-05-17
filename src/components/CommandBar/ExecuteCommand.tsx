@@ -30,7 +30,7 @@ function getMathEvaluation(evaluation: string) {
 }
 
 function isSpecialCommand(inputCommand: string) {
-  return inputCommand.indexOf("=") === 0 && inputCommand.length > 3
+  return inputCommand.startsWith("=") && inputCommand.length > 3
 }
 
 export function exec(
