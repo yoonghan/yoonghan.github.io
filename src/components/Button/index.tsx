@@ -56,7 +56,6 @@ const LinkButton = ({
         target={target || "_self"}
         rel="external"
         className={definedClass}
-        role="button"
       >
         <span>{children}</span>
       </a>
