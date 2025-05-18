@@ -10,13 +10,13 @@ import styles from "./MegaMenu.module.css"
 import SearchBar from "./SearchBar"
 
 const MegaMenu = () => {
-  const MenuLink = (text: string, href: string, onClick?: () => void) => (
+  const renderMenuLink = (text: string, href: string, onClick?: () => void) => (
     <Link href={href} onClick={onClick}>
       <div>{text}</div>
     </Link>
   )
 
-  const HomeLink = (href: string, onClick: () => void) => (
+  const renderHomeLink = (href: string, onClick: () => void) => (
     <Link href={href} onClick={onClick}>
       <Image
         src="/img/logo/logo-color.svg"
@@ -27,7 +27,7 @@ const MegaMenu = () => {
     </Link>
   )
 
-  const HomeLogoLink = (helperClassName: string) => (
+  const renderHomeLogoLink = (helperClassName: string) => (
     <Link href={"/"} className={helperClassName}>
       <Image
         src="/img/logo/logo-color.svg"
@@ -42,9 +42,9 @@ const MegaMenu = () => {
   return (
     <Menu
       model={menuItems}
-      menuLink={MenuLink}
-      homeLink={HomeLink}
-      homeLogoLink={HomeLogoLink}
+      menuLink={renderMenuLink}
+      homeLink={renderHomeLink}
+      homeLogoLink={renderHomeLogoLink}
       shortcutComponent={<SearchBar />}
       desktopClassName={styles.desktop_container}
       mobileClassName={styles.mobile_container}
