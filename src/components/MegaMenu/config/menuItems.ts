@@ -19,7 +19,7 @@ const menuItems = sortedMenuPagesWithFilteredHomeAndSubMenu.map((menu) => {
     ? root
     : {
         ...root,
-        items
+        items,
       }
 })
 
