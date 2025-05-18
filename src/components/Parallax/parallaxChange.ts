@@ -33,7 +33,6 @@ export function updateElem(
       elem.style.opacity = `${increase.toFixed(2)}`
       elem.style.zIndex = `${Math.ceil(increase * 10)}`
     } else if (index === activeWindowIndex + 1) {
-      const descrease = octalChange
       elem.style.opacity = `${octalChange.toFixed(2)}`
       elem.style.zIndex = `${Math.ceil(octalChange * 10)}`
     } else {
