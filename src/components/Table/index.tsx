@@ -40,10 +40,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
         <thead className="text-white bg-slate-800">
           <tr>
             {headers.map((header, idx) => (
-              <th
-                key={`${header}-${idx}`}
-                className="p-2 border border-black"
-              >
+              <th key={`${header}-${idx}`} className="p-2 border border-black">
                 {header}
               </th>
             ))}
