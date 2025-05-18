@@ -1,4 +1,4 @@
-const inputRegex = /^[a-z|A-Z|0-9|!|\$|@|?|#|%|\^]{6,50}$/
+const inputRegex = /^[a-zA-Z0-9!\$@?#%\^]{6,50}$/
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
