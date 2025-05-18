@@ -72,7 +72,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     }, [gotStream, videoFailedCallback])
 
     const stopVideo = useCallback(() => {
-      if (streamRef.current && streamRef.current?.getTracks) {
+      if (streamRef?.current?.getTracks) {
         streamRef.current.getTracks().forEach((track) => {
           track.stop() //Comment - make sure Chrome browsers tab has no red icon/speaker when stopped
         })

@@ -43,7 +43,7 @@ const PopupKeyboard = ({
     return (event: KeyboardEvent) => {
       const direction = event.key
       switch (keyboardType) {
-        case "Arrows":
+        case "Arrows": {
           const matchedKey = arrowValues.find(
             (arrowValue) => arrowValue === direction
           )
@@ -51,6 +51,7 @@ const PopupKeyboard = ({
             queueMicrotask(onKeyClick(matchedKey))
           }
           break
+        }
       }
     }
   }, [keyboardType, onKeyClick])

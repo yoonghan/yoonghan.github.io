@@ -122,7 +122,7 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
         style={{ background: "#0000FF" }}
       >
         {Children.map(arrayChildren, (child, index) => (
-          <div className={styles["section-container"]} key={index}>
+          <div className={styles["section-container"]} key={`wrapper-${index}`}>
             {child}
           </div>
         ))}
