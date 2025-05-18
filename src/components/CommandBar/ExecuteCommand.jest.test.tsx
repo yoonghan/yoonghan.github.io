@@ -50,8 +50,8 @@ describe("CommandBar", () => {
     })
 
     it("can solve complex arithmetic", function () {
-      render(<div>{createCommandBar()("=1+1*2 + 7")}</div>)
-      expect(screen.getByText("Output: 10")).toBeInTheDocument()
+      render(<div>{createCommandBar()("=1+1*2 + 7/2 - 3")}</div>)
+      expect(screen.getByText("Output: 3.5")).toBeInTheDocument()
     })
 
     it("knows it is non-math", function () {

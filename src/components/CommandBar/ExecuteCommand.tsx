@@ -18,7 +18,7 @@ function getMathEvaluation(evaluation: string) {
   const equalsLocation = 1
   const _evaluation = evaluation.replace(/ /g, "").substr(equalsLocation)
 
-  const mathRegex = /^[0-9]+(\.[0-9]*)?([+|-|*|\/][0-9]+(\.[0-9]*)?)+$/
+  const mathRegex = /^[0-9]+(\.[0-9]*)?([+|\-|*|/][0-9]+(\.[0-9]*)?)+$/
   const matches = mathRegex.test(_evaluation)
 
   if (matches) {
@@ -30,7 +30,7 @@ function getMathEvaluation(evaluation: string) {
 }
 
 function isSpecialCommand(inputCommand: string) {
-  return inputCommand.indexOf("=") === 0 && inputCommand.length > 3
+  return inputCommand.startsWith("=") && inputCommand.length > 3
 }
 
 export function exec(
