@@ -85,6 +85,7 @@ flowchart TD;
    push --> deploy1["Vercel in Development Environment"]
    merge --> promote["Promote Vercel"];
    report --> deploy2["Github Pages"] --> tag --> smoketest["Smoke test"];
+   report --> sonar["SonarQube Cloud scan"]
 ```
 
 In case there is a need to generate a new backstopJS approved page.
