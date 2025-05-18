@@ -25,7 +25,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
   const listOfObjects = list.map((info, idx) => {
     return (
       <tr
-        key={`table_${idx}`}
+        key={`${info}-${idx}`}
         className="hover:bg-slate-200"
         onClick={onClick && (() => onClick(info))}
       >
@@ -41,7 +41,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
           <tr>
             {headers.map((header, idx) => (
               <th
-                key={`table_header_${idx}`}
+                key={`${header}-${idx}`}
                 className="p-2 border border-black"
               >
                 {header}
