@@ -38,7 +38,7 @@ const ScrollToTopNoSSR = () => {
     window.scrollTo(0, 0)
   }
 
-  const visibilityStyle = visible ? "" : ` ${style.hidden}` 
+  const visibilityStyle = visible ? "" : ` ${style.hidden}`
 
   return (
     <button
