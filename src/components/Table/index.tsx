@@ -23,7 +23,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
   }
 
   const listOfObjects = list.map((info, idx) => {
-    const key = Object.keys(info).reduce((acc,x) => `${acc}-${x}`, "")
+    const key = Object.keys(info).reduce((acc, x) => `${acc}-${x}`, "")
     return (
       <tr
         key={`${key}-${idx}`}
