@@ -76,6 +76,7 @@ const SocialFabNoSSR = () => {
             aria-label="gmail"
             onKeyPress={onOpenEmail}
             tabIndex={0}
+            className="cursor-pointer"
           >
             <svg className={styles.fabActionButtonIcon}>
               <use xlinkHref="/img/social/social-sprite.svg#gm"></use>
