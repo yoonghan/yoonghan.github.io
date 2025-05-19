@@ -23,7 +23,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
   }
 
   const listOfObjects = list.map((info, idx) => {
-    const key = Object.keys(info).reduce((acc,x)=>`${acc}-${x}`, "")
+    const key = Object.keys(info).reduce((acc,x) => `${acc}-${x}`, "")
     return (
       <tr
         key={`${key}-${idx}`}
@@ -41,10 +41,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
         <thead className="text-white bg-slate-800">
           <tr>
             {headers.map((header) => (
-              <th
-                key={header}
-                className="p-2 border border-black"
-              >
+              <th key={header} className="p-2 border border-black">
                 {header}
               </th>
             ))}
