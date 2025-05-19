@@ -69,16 +69,16 @@ describe("PopupKeyboard", () => {
     )
     const assertClickAction = assertKeyBoardAction(clickCallback)
 
-    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
     await assertClickAction(KeyboardKeys.UP)
 
-    userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`)
     await assertClickAction(KeyboardKeys.DOWN)
 
-    userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.LEFT}}`)
     await assertClickAction(KeyboardKeys.LEFT)
 
-    userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`)
     await assertClickAction(KeyboardKeys.RIGHT)
   })
 
@@ -94,12 +94,12 @@ describe("PopupKeyboard", () => {
     )
 
     const assertClickAction = assertKeyBoardAction(clickCallback)
-    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
     await assertClickAction(KeyboardKeys.UP)
 
     unmount()
 
-    userEvent.keyboard(`{${KeyboardKeys.UP}}`)
+    await userEvent.keyboard(`{${KeyboardKeys.UP}}`)
     await waitFor(
       () => {
         expect(clickCallback).toHaveBeenCalledTimes(1)
