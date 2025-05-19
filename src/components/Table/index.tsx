@@ -14,7 +14,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
     const arr: Array<JSX.Element> = []
     for (const [key, value] of Object.entries(info)) {
       arr.push(
-        <td key={`${key}_${idx}`} className="p-2 border border-black">
+        <td key={`${key}-${idx}`} className="p-2 border border-black">
           {value}
         </td>
       )
@@ -23,9 +23,10 @@ const Table = ({ list, headers, onClick, className }: Props) => {
   }
 
   const listOfObjects = list.map((info, idx) => {
+    const key = Object.keys(info).reduce((acc,x)=>`${acc}-${x}`, "")
     return (
       <tr
-        key={`table_${idx}`}
+        key={`${key}-${idx}`}
         className="hover:bg-slate-200"
         onClick={onClick && (() => onClick(info))}
       >
@@ -39,9 +40,9 @@ const Table = ({ list, headers, onClick, className }: Props) => {
       <table className="table-auto border-collapse">
         <thead className="text-white bg-slate-800">
           <tr>
-            {headers.map((header, idx) => (
+            {headers.map((header) => (
               <th
-                key={`table_header_${idx}`}
+                key={header}
                 className="p-2 border border-black"
               >
                 {header}
