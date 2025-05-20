@@ -8,6 +8,8 @@ import {
   EnumAction,
 } from "./CommandSearch/CommandSearch"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import HelpDialog from "./HelpDialog"
+import { createPortal } from "react-dom"
 
 function evaluateMath(mathEval: string): string {
   const evaluatedResult = Function(`"use strict";return ${mathEval}`)()
@@ -89,11 +91,25 @@ export function exec(
     return inputCommand
   }
 
+  const createHelpPortal = () =>
+    createPortal(
+      <HelpDialog
+        onCancel={cancellationCallback}
+        specialInputCallback={specialInputCallback}
+      />,
+      element
+    )
+
   return function ExecuteCommand(inputCommand: string) {
     const trimmedCommand = inputCommand.trim().toLocaleLowerCase()
     if (trimmedCommand === "") {
       return undefined
     }
+
+    if (trimmedCommand === "help" || trimmedCommand === "man") {
+      return createHelpPortal()
+    }
+
     const _inputCommand = findInputSynonym(trimmedCommand)
     const matchedCommand: IAvailableInput = AvailableInput[_inputCommand]
     if (matchedCommand) {
