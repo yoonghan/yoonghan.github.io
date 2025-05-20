@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  createRef,
-  Fragment,
-  useMemo,
-  useCallback,
-} from "react"
+import { useState, useEffect, createRef, useMemo, useCallback } from "react"
 import Toggle from "react-toggle"
 import Image from "next/image"
 import Dialog from "../../Dialog"
@@ -27,19 +20,19 @@ const ENABLED = "Installed"
 const PROCESS = "Processing"
 
 const PwaEnabler = ({ onCancel }: Props) => {
-  const [isProcessing, setProcessing] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
   const [labelText, setLabelText] = useState(DISABLED)
   const [isEnabled, setIsEnabled] = useState(false)
   const { isRegistered, getRegistration, isTwaApp } = usePwaHooks(false)
 
   const onChangeEnabler = useCallback(() => {
-    setProcessing(true)
+    setIsProcessing(true)
     setIsEnabled(!isEnabled)
     setLabelText(PROCESS)
   }, [isEnabled])
 
   useEffect(() => {
-    setProcessing(false)
+    setIsProcessing(false)
     if (isRegistered) {
       setIsEnabled(true)
     } else {
@@ -97,7 +90,7 @@ const PwaEnabler = ({ onCancel }: Props) => {
         )
       }
     }
-    return <Fragment />
+    return <></>
   }, [isRegistered])
 
   const drawnSelection = useMemo(() => {
