@@ -1,5 +1,5 @@
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useRef } from "react"
 import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -11,8 +11,8 @@ enum Display {
 }
 
 function SearchBar() {
-  const [isJsEnabled, setJsEnabled] = useState(false)
-  const [_display, setDisplay] = useState(Display.Menu)
+  const [isJsEnabled, setIsJsEnabled] = useState(false)
+  const displayRef = useRef(Display.Menu)
 
   const menuRef = useSpringRef()
   const commandRef = useSpringRef()
@@ -29,29 +29,27 @@ function SearchBar() {
   useChain([menuRef, commandRef])
 
   const onSwitchClick = useCallback(() => {
-    setDisplay((currentDisplay) => {
-      if (currentDisplay === Display.Menu) {
-        apiButton.start({
-          to: { transform: "rotate(180deg)" },
-        })
-        apiCommand.start({
-          to: { scale: 1, height: "4rem", display: "block" },
-        })
-        return Display.Command
-      } else {
-        apiCommand.start({
-          to: { scale: 0, height: "0", display: "none" },
-        })
-        apiButton.start({
-          to: { transform: "rotate(0deg)" },
-        })
-        return Display.Menu
-      }
-    })
+    if (displayRef.current === Display.Menu) {
+      apiButton.start({
+        to: { transform: "rotate(180deg)" },
+      })
+      apiCommand.start({
+        to: { scale: 1, height: "4rem", display: "block" },
+      })
+      displayRef.current = Display.Command
+    } else {
+      apiCommand.start({
+        to: { scale: 0, height: "0", display: "none" },
+      })
+      apiButton.start({
+        to: { transform: "rotate(0deg)" },
+      })
+      displayRef.current = Display.Menu
+    }
   }, [apiButton, apiCommand])
 
   useEffect(() => {
-    setJsEnabled(true)
+    setIsJsEnabled(true)
   }, [])
 
   return (

@@ -51,7 +51,7 @@ export const AvailableInput: ICommand = {
     description: "Print current path.",
     action: EnumAction.LINK,
     exec: (_router: any, pathname: string | null) => {
-      return <Output output={pathname || "/"} />
+      return <Output output={pathname ?? "/"} />
     },
   },
   ls: {
@@ -79,7 +79,7 @@ export const AvailableInput: ICommand = {
         return <InvalidCommand invalidCommand={"Already at root"} />
       }
       router.push("/")
-      return <React.Fragment />
+      return <></>
     },
   },
   "cd ..": {

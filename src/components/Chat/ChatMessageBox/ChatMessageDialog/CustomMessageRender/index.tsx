@@ -35,22 +35,21 @@ const CustomMessageRender = ({
 
   const complexMessage = decodeMessage(message.message)
 
-  switch (complexMessage.messageType) {
-    case MessageType.FILE:
-      return (
-        <>
-          {allowDownload ? (
-            <a href={complexMessage.message} target={"_blank"} rel="noreferrer">
-              {renderMessage("[File Received]")}
-            </a>
-          ) : (
-            <Button onClick={downloadCheck}>Open file ?</Button>
-          )}
-        </>
-      )
-    default:
-      return renderMessage(complexMessage.message)
+  if (complexMessage.messageType === MessageType.FILE) {
+    return (
+      <>
+        {allowDownload ? (
+          <a href={complexMessage.message} target={"_blank"} rel="noreferrer">
+            {renderMessage("[File Received]")}
+          </a>
+        ) : (
+          <Button onClick={downloadCheck}>Open file ?</Button>
+        )}
+      </>
+    )
   }
+
+  return renderMessage(complexMessage.message)
 }
 
 export default CustomMessageRender

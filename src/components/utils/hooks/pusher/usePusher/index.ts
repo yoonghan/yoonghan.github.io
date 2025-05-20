@@ -9,7 +9,6 @@ import {
   decodeMessage,
   encodeMessage,
 } from "../../../../Chat/config/MessageFormatter"
-import { site } from "@/config/site"
 
 type Props = {
   eventName: string

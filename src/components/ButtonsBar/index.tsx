@@ -16,7 +16,7 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
   function _generateMenu(iLink: ILink, idx: number) {
     const link = iLink.link
     const title = iLink.title
-    const _activeIdx = activeIndex || 0
+    const _activeIdx = activeIndex ?? 0
     const className =
       styles["btnsbar-item"] +
       " " +
