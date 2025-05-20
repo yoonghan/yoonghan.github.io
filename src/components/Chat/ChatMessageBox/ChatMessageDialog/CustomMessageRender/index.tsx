@@ -35,7 +35,7 @@ const CustomMessageRender = ({
 
   const complexMessage = decodeMessage(message.message)
 
-  if (complexMessage.messageType === MessageType.FILE ) {
+  if (complexMessage.messageType === MessageType.FILE) {
     return (
       <>
         {allowDownload ? (
@@ -48,7 +48,7 @@ const CustomMessageRender = ({
       </>
     )
   }
-  
+
   return renderMessage(complexMessage.message)
 }
 

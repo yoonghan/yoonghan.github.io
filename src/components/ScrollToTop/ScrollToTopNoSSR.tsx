@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  memo,
-  useEffect,
-  useState,
-  useTransition,
-  useCallback,
-} from "react"
+import { memo, useEffect, useState, useTransition, useCallback } from "react"
 import style from "./ScrollToTop.module.css"
 
 const _isOverTheBar = () => {
