@@ -76,7 +76,7 @@ jobs:
       - name: ▶️ Retry page rendering check if fail
         shell: bash
         continue-on-error: true
-        run: ./.github/scripts/snapshot-check.sh || npm run backstop:test
+        run: ./.github/scripts/snapshot-check.sh || rm -rf backstop_data/* && npm run backstop:test
 
       - name: Remove local reference file
         shell: bash
