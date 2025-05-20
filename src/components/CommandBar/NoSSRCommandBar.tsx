@@ -2,7 +2,7 @@
   A command prompt input
   **/
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CommandBarInput from "./CommandBarInput/CommandBarInput"
 import { exec } from "./ExecuteCommand"
 import styles from "./CommandBar.module.css"
