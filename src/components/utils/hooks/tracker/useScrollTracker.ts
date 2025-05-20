@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 const useScrollTracker = () => {
-  const [scrollToTop, setGlobalMouseDistanceFromTarget] = useState({
+  const [globalMouseDistanceFromTarget, setGlobalMouseDistanceFromTarget] = useState({
     x: 0,
     y: 0,
   })
@@ -19,7 +19,7 @@ const useScrollTracker = () => {
   }, [])
 
   return {
-    scrollToTop,
+    scrollToTop: globalMouseDistanceFromTarget,
   }
 }
 
