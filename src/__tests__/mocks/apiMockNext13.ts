@@ -43,17 +43,6 @@ export class NextResponse extends Response {
   static json = (body: any, init?: ResponseInit) => {
     return new NextResponse(JSON.stringify(body), init)
   }
-
-  // Commented, not in used, uncomment if wanted to use
-  // static redirect(
-  //   url: string | NextURL | URL,
-  //   init?: number | ResponseInit
-  // ): NextResponse
-  // static rewrite(
-  //   destination: string | NextURL | URL,
-  //   init?: MiddlewareResponseInit
-  // ): NextResponse
-  // static next(init?: MiddlewareResponseInit): NextResponse
 }
 
 jest.mock("next/server", () => ({
