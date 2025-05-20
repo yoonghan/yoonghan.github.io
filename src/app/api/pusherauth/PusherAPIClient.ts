@@ -13,10 +13,10 @@ export class PusherAPIClient {
 
     if (process && NEXT_PUBLIC_PUSHER_APP_KEY) {
       const pusherClient = new Pusher({
-        appId: PUSHER_APP_ID || "",
+        appId: PUSHER_APP_ID ?? "",
         key: NEXT_PUBLIC_PUSHER_APP_KEY,
-        secret: PUSHER_SECRET || "",
-        cluster: NEXT_PUBLIC_PUSHER_CLUSTER || "",
+        secret: PUSHER_SECRET ?? "",
+        cluster: NEXT_PUBLIC_PUSHER_CLUSTER ?? "",
         useTLS: true,
       })
       return pusherClient

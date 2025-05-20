@@ -9,10 +9,10 @@ import styles from "./FunkyScroller.module.css"
 function FunkyScroller({
   title,
   className,
-}: {
+}: Readonly<{
   title: string
   className?: string
-}) {
+}>) {
   const { scrollToTop } = useScrollTracker()
 
   const { isAnimatable } = useDisableAnimation()
@@ -36,7 +36,7 @@ function FunkyScroller({
 
   return (
     <div
-      className={`${className || ""} ${isAnimatable ? "" : "animate-none"}`}
+      className={`${className ?? ""} ${isAnimatable ? "" : "animate-none"}`}
       title={title}
     >
       {data.map((pos, i) => (
