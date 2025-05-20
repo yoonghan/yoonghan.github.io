@@ -40,7 +40,7 @@ export class NextResponse extends Response {
 
   setHeader(name: string, value: string | number | readonly string[]) {}
 
-  static json = (body: any, init?: ResponseInit) => {
+  static readonly json = (body: any, init?: ResponseInit) => {
     return new NextResponse(JSON.stringify(body), init)
   }
 }
