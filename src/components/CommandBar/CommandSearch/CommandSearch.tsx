@@ -1,7 +1,6 @@
 import { findPageByPath } from "@/config/pages"
 import * as React from "react"
 import { createPortal } from "react-dom"
-import HelpDialog from "../HelpDialog"
 import PwaEnabler from "../PwaEnabler"
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
@@ -113,24 +112,6 @@ export const AvailableInput: ICommand = {
       } else {
         return <InvalidCommand invalidCommand={"Couldn't run HTML5 share."} />
       }
-    },
-  },
-  help: {
-    description: "Manual.",
-    synonym: ["man", "info"],
-    action: EnumAction.COMMAND,
-    exec: (
-      element: HTMLDivElement,
-      cancellationCallback: () => void,
-      specialInputCallback: (input: string) => void
-    ) => {
-      return createPortal(
-        <HelpDialog
-          onCancel={cancellationCallback}
-          specialInputCallback={specialInputCallback}
-        />,
-        element
-      )
     },
   },
   pwa: {
