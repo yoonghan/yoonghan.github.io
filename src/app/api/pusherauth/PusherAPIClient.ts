@@ -1,7 +1,7 @@
 import Pusher from "pusher"
 
 export class PusherAPIClient {
-  public static readonly client: Pusher | undefined = PusherAPIClient.initPusher()
+  public static client: Pusher | undefined = PusherAPIClient.initPusher()
 
   public static initPusher() {
     const {

@@ -19,7 +19,9 @@ const getFirebaseCredential = (validCredentials: {
 }
 
 export class Firebase {
-  public static readonly getValidCredentials = (): { [key: string]: string } => {
+  public static readonly getValidCredentials = (): {
+    [key: string]: string
+  } => {
     const {
       FIREBASE_BUCKET,
       FIREBASE_PROJECT_ID,
