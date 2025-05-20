@@ -91,20 +91,22 @@ export function exec(
     return inputCommand
   }
 
+  const createHelpPortal = () => createPortal(
+    <HelpDialog
+      onCancel={cancellationCallback}
+      specialInputCallback={specialInputCallback}
+    />,
+    element
+  )
+
   return function ExecuteCommand(inputCommand: string) {
     const trimmedCommand = inputCommand.trim().toLocaleLowerCase()
     if (trimmedCommand === "") {
       return undefined
     }
 
-    if(trimmedCommand === "help" || trimmedCommand === "man") {
-      return createPortal(
-        <HelpDialog
-          onCancel={cancellationCallback}
-          specialInputCallback={specialInputCallback}
-        />,
-        element
-      )
+    if (trimmedCommand === "help" || trimmedCommand === "man") {
+      return createHelpPortal()
     }
 
     const _inputCommand = findInputSynonym(trimmedCommand)
