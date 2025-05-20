@@ -1,7 +1,7 @@
 export async function register(swPath?: string, options?: RegistrationOptions) {
   if ("serviceWorker" in navigator) {
     try {
-      await navigator.serviceWorker.register(swPath || "/sw.js", options)
+      await navigator.serviceWorker.register(swPath ?? "/sw.js", options)
       return true
     } catch (error) {
       // eslint-disable-next-line no-console
