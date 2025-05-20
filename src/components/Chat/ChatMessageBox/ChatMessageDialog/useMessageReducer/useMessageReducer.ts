@@ -30,4 +30,6 @@ export const messageReducer = (state: Message[], action: MessageAction) => {
       },
     ]
   }
+
+  return state
 }
