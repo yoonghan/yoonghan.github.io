@@ -9,7 +9,7 @@ interface Props {
   ga4Id: string
 }
 
-export function GoogleAnalytic({ ga4Id }: Props) {
+export function GoogleAnalytic({ ga4Id }: Readonly<Props>) {
   useEffect(() => {
     ReactGA.initialize(ga4Id)
 

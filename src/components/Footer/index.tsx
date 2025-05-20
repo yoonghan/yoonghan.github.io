@@ -5,12 +5,10 @@ import styles from "./Footer.module.css"
 
 const Footer = () => {
   const renameDisplays = (display: string) => {
-    switch (display) {
-      case "Projects":
-        return "All"
-      default:
-        return display
+    if (display === "Projects") {
+      return "All"
     }
+    return display
   }
 
   const renderLinks = useCallback(

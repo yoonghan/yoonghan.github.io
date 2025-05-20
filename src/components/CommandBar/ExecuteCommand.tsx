@@ -18,9 +18,9 @@ function evaluateMath(mathEval: string): string {
 
 function getMathEvaluation(evaluation: string) {
   const equalsLocation = 1
-  const _evaluation = evaluation.replace(/ /g, "").substr(equalsLocation)
+  const _evaluation = evaluation.replace(/ /g, "").substring(equalsLocation)
 
-  const mathRegex = /^[0-9]+(\.[0-9]*)?([+\-*/][0-9]+(\.[0-9]*)?)+$/
+  const mathRegex = /^\d+(\.\d*)?([+\-*/]\d+(\.\d*)?)+$/
   const matches = mathRegex.test(_evaluation)
 
   if (matches) {

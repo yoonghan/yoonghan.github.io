@@ -13,9 +13,9 @@ export const metadata = {
 
 export default function AboutLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <>
       <Script type="application/ld+json" id="ld-json">
