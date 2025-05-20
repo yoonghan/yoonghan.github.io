@@ -7,15 +7,15 @@ import styles from "./Workflow.module.css"
 function Workflow({
   children,
   title,
-  className,
-}: {
+  className = "",
+}: Readonly<{
   children: ReactNode
   title: string
   className?: string
-}) {
+}>) {
   const { isAnimatable } = useDisableAnimation()
   return (
-    <div className={`${className || ""} relative`} title={title}>
+    <div className={`${className} relative`} title={title}>
       {children}
       <div
         className={`${styles.container} ${isAnimatable ? "" : "animate-none"}`}
