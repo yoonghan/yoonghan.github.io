@@ -79,7 +79,7 @@ const Video = ({ src, imgJpgSrc, imgWebpSrc, imgAlt, preload }: Props) => {
         <video
           loop
           muted
-          preload={preload ? preload : "auto"}
+          preload={preload ?? "auto"}
           ref={videoRef}
           data-testid={"video"}
         >

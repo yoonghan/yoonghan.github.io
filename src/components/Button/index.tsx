@@ -53,7 +53,7 @@ const LinkButton = ({
     return (
       <a
         href={href}
-        target={target || "_self"}
+        target={target ?? "_self"}
         rel="external"
         className={definedClass}
       >

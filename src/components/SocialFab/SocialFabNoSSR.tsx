@@ -74,7 +74,6 @@ const SocialFabNoSSR = () => {
           <button
             onClick={onOpenEmail}
             aria-label="gmail"
-            onKeyPress={onOpenEmail}
             tabIndex={0}
             className="cursor-pointer"
           >

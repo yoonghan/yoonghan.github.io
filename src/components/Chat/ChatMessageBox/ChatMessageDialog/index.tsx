@@ -1,5 +1,10 @@
-import { forwardRef, useImperativeHandle, useReducer, useRef } from "react"
-import { useEffect } from "react"
+import {
+  forwardRef,
+  useImperativeHandle,
+  useReducer,
+  useRef,
+  useEffect,
+} from "react"
 import { Message } from "react-bell-chat"
 
 import dynamic from "next/dynamic"
@@ -56,7 +61,7 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
     const [messages, dispatch] = useReducer(
       messageReducer,
-      initialMessage || messageReducerInitialState
+      initialMessage ?? messageReducerInitialState
     )
     const height = useRef<number>(0)
 

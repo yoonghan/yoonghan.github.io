@@ -17,8 +17,8 @@ const cookieName = "termsGranted"
 
 type Props = { ga4Id: string }
 
-function ClientCookie({ ga4Id }: Props) {
-  const [isCookieRead, setCookieRead] = useState(true)
+function ClientCookie({ ga4Id }: Readonly<Props>) {
+  const [isCookieRead, setIsCookieRead] = useState(true)
 
   const acceptGAConsent = useCallback(() => {
     ReactGA.gtag("consent", "update", {
@@ -28,7 +28,7 @@ function ClientCookie({ ga4Id }: Props) {
 
   const onCookieReadClicked = useCallback(() => {
     document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`
-    setCookieRead(true)
+    setIsCookieRead(true)
     acceptGAConsent()
   }, [acceptGAConsent])
 
@@ -37,8 +37,7 @@ function ClientCookie({ ga4Id }: Props) {
       let name = cname + "="
       let decodedCookie = decodeURIComponent(document.cookie)
       let ca = decodedCookie.split(";")
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i]
+      for (let c of ca) {
         while (c.startsWith(" ")) {
           c = c.substring(1)
         }
@@ -50,7 +49,7 @@ function ClientCookie({ ga4Id }: Props) {
     }
 
     const cookieWasRead = !!getCookie(cookieName)
-    setCookieRead(cookieWasRead)
+    setIsCookieRead(cookieWasRead)
 
     if (!ReactGA.isInitialized) {
       ReactGA.initialize(ga4Id)

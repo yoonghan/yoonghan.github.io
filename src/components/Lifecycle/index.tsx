@@ -8,7 +8,7 @@ type Model = {
   url: string
 }
 
-function Lifecycle({ models }: { models: Model[] }) {
+function Lifecycle({ models }: Readonly<{ models: Model[] }>) {
   const drawArrow = (rotation: number) => (
     <svg
       fill="#000000"

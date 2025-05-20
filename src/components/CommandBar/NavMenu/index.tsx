@@ -3,7 +3,7 @@ import styles from "./NavMenu.module.css"
 import { usePathname } from "next/navigation"
 
 const writeLink = (pathname: string | null) => {
-  const paths = (pathname || "/").split("/")
+  const paths = (pathname ?? "/").split("/")
   let accumulatedPath = ""
   const splittedLinks = paths.map((path, index) => {
     if (path === "") {

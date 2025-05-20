@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 
 const useScrollTracker = () => {
-  const [scrollToTop, setGlobalMouseDistanceFromTarget] = useState({
+  const [scrollToTop, setScrollToTop] = useState({
     x: 0,
     y: 0,
   })
 
   useEffect(() => {
     const handleScroll = (_event: Event) => {
-      setGlobalMouseDistanceFromTarget({ x: window.scrollX, y: window.scrollY })
+      setScrollToTop({ x: window.scrollX, y: window.scrollY })
     }
 
     window.addEventListener("scroll", handleScroll)

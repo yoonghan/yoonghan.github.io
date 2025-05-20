@@ -13,7 +13,7 @@ interface Content {
   href?: string
 }
 
-function StickyCards({ contents }: { contents: Content[] }) {
+function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
   return (
     <ScrollableCard
       isReversed={true}

@@ -15,7 +15,7 @@ const Card = ({ cards }: Props) => {
     <ul className={styles.container}>
       {cards.map(({ id, title, description, target, href }) => (
         <li key={id}>
-          <a href={href} target={target || "blank"}>
+          <a href={href} target={target ?? "blank"}>
             <section>
               <h3>{title}</h3>
               <div>

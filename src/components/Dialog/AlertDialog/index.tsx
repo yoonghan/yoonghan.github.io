@@ -40,7 +40,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
         <hr />
         <div className={styles.buttonContainer}>
           <Button color="blue" onClick={onAction()}>
-            {okBtnText || "Ok"}
+            {okBtnText ?? "Ok"}
           </Button>
         </div>
       </div>
