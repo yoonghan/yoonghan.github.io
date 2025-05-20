@@ -3,7 +3,9 @@ import Index from "./page"
 
 describe("main page", () => {
   it("should render main page", () => {
-    render(<Index/>)
-    expect(screen.getByRole("heading", { name: "PORTFOLIO PORTAL" })).toBeInTheDocument()
+    render(<Index />)
+    expect(
+      screen.getByRole("heading", { name: "PORTFOLIO PORTAL" })
+    ).toBeInTheDocument()
   })
 })
