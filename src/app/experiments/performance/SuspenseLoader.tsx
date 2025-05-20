@@ -1,13 +1,13 @@
 import wrapPromise from "@/components/utils/common/wrapPromise"
 import { Suspense } from "react"
 
-const waitTime = 2000
+const waitTime = 1000
 
 const fakeSuccessResponse = async () => {
   const fakePromise: string = await new Promise((resolve, _) =>
     setTimeout(() => {
       resolve("I am done")
-    }, waitTime - 1000)
+    }, waitTime - 500)
   )
   return fakePromise
 }
@@ -65,7 +65,7 @@ const Result = () => {
         &lt;Suspense&gt; tag.
       </i>
       <div>{readSuccessResponse}</div>
-      <div>{readErrorResponse}</div>{" "}
+      <div>{`${readErrorResponse}`}</div>{" "}
       {/** Final render will take the longest time to complete */}
     </div>
   )
