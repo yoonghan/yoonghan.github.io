@@ -4,6 +4,7 @@ import { MessageType } from "../../../config/MessageType"
 
 export enum MessageActionType {
   Add,
+  Default,
 }
 
 type MessageAction = {
