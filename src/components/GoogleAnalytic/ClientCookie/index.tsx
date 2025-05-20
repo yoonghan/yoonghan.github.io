@@ -37,9 +37,10 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
       let name = cname + "="
       let decodedCookie = decodeURIComponent(document.cookie)
       let ca = decodedCookie.split(";")
-      for (let c of ca) {
+      for (let cookie of ca) {
+        let c = cookie
         while (c.startsWith(" ")) {
-          c = c.substring(1)
+          c = c.slice(1)
         }
         if (c.startsWith(name)) {
           return c.substring(name.length, c.length)
