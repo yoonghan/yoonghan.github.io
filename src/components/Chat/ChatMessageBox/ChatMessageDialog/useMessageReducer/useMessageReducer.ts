@@ -18,17 +18,16 @@ type MessageAction = {
 export const messageReducerInitialState: Message[] = []
 
 export const messageReducer = (state: Message[], action: MessageAction) => {
-  switch (action.type) {
-    case MessageActionType.Add:
-      return [
-        ...state,
-        {
-          id: state.length,
-          createdOn: new Date(),
-          isSend: true,
-          authorId: action.payload.authorId,
-          message: encodeMessage(action.payload.message, action.payload.type),
-        },
-      ]
+  if (action.type === MessageActionType.Add) {
+    return [
+      ...state,
+      {
+        id: state.length,
+        createdOn: new Date(),
+        isSend: true,
+        authorId: action.payload.authorId,
+        message: encodeMessage(action.payload.message, action.payload.type),
+      },
+    ]
   }
 }

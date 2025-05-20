@@ -2,7 +2,7 @@
   A command prompt input
   **/
 
-import * as React from "react"
+import { useState } from "react"
 import CommandBarInput from "./CommandBarInput/CommandBarInput"
 import { exec } from "./ExecuteCommand"
 import styles from "./CommandBar.module.css"
@@ -11,14 +11,12 @@ import { usePathname, useRouter } from "next/navigation"
 const NoSSRCommandBar = () => {
   const router = useRouter()
   const currentPath = usePathname()
-  const [suggestedInput, setSuggestedInput] = React.useState("")
-  const [renderExecutedCommand, setRenderExecutedCommand] = React.useState(
-    <React.Fragment />
-  )
+  const [suggestedInput, setSuggestedInput] = useState("")
+  const [renderExecutedCommand, setRenderExecutedCommand] = useState(<></>)
 
   const elem = document.createElement("div")
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.appendChild(elem)
 
     return () => {
@@ -31,7 +29,7 @@ const NoSSRCommandBar = () => {
   }, [elem])
 
   const cancelExecutedCommand = () => {
-    setRenderExecutedCommand(<React.Fragment />)
+    setRenderExecutedCommand(<></>)
   }
 
   const inputCallback = (suggestedInput: string) => {
