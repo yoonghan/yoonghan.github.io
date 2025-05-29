@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  createRef,
-  Fragment,
-  useMemo,
-  useCallback,
-} from "react"
+import { useState, useEffect, createRef, useMemo, useCallback } from "react"
 import Toggle from "react-toggle"
 import Image from "next/image"
 import Dialog from "../../Dialog"
@@ -27,23 +20,23 @@ const ENABLED = "Installed"
 const PROCESS = "Processing"
 
 const PwaEnabler = ({ onCancel }: Props) => {
-  const [isProcessing, setProcessing] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
   const [labelText, setLabelText] = useState(DISABLED)
-  const [isEnabled, setEnabled] = useState(false)
+  const [isEnabled, setIsEnabled] = useState(false)
   const { isRegistered, getRegistration, isTwaApp } = usePwaHooks(false)
 
   const onChangeEnabler = useCallback(() => {
-    setProcessing(true)
-    setEnabled(!isEnabled)
+    setIsProcessing(true)
+    setIsEnabled(!isEnabled)
     setLabelText(PROCESS)
   }, [isEnabled])
 
   useEffect(() => {
-    setProcessing(false)
+    setIsProcessing(false)
     if (isRegistered) {
-      setEnabled(true)
+      setIsEnabled(true)
     } else {
-      setEnabled(false)
+      setIsEnabled(false)
     }
     setLabelText(isRegistered ? ENABLED : DISABLED)
   }, [isRegistered])
@@ -97,23 +90,21 @@ const PwaEnabler = ({ onCancel }: Props) => {
         )
       }
     }
-    return <Fragment />
+    return <></>
   }, [isRegistered])
 
   const drawnSelection = useMemo(() => {
     if (!isTwaApp) {
       return (
-        <>
-          <label>
-            <Toggle
-              id="toggle-pwa"
-              disabled={isProcessing}
-              checked={isEnabled}
-              onChange={onChangeEnabler}
-            />
-            <span className={styles.labelText}>{labelText}</span>
-          </label>
-        </>
+        <label>
+          <Toggle
+            id="toggle-pwa"
+            disabled={isProcessing}
+            checked={isEnabled}
+            onChange={onChangeEnabler}
+          />
+          <span className={styles.labelText}>{labelText}</span>
+        </label>
       )
     } else {
       return <span>Trusted Web Application is detected, pwa is ENABLED.</span>

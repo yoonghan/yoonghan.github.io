@@ -6,12 +6,12 @@ function Figure({
   imageCaption,
   children,
   reversed,
-}: {
+}: Readonly<{
   imageProps: ImageProps
   imageCaption: string
   children: ReactNode
   reversed?: boolean
-}) {
+}>) {
   const { alt, src, className, ...img } = imageProps
 
   return (

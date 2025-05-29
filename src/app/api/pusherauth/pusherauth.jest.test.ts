@@ -29,9 +29,9 @@ describe("pusherauth", () => {
     beforeEach(() => {
       setEnv({
         NEXT_PUBLIC_PUSHER_APP_KEY: APP_KEY,
-        APP_ID: "",
-        PUSHER_SECRET: "",
-        NEXT_PUBLIC_PUSHER_CLUSTER: "",
+        PUSHER_APP_ID: undefined,
+        PUSHER_SECRET: undefined,
+        NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
       })
       PusherAPIClient.reInitialize()
     })

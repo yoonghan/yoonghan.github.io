@@ -22,18 +22,18 @@ function FontAwesomeAnimate({
   faIcon,
   animate,
   color,
-}: {
+}: Readonly<{
   children: ReactNode
   title: string
   className?: string
   faIcon: IconDefinition
   animate: SupportedAnimation
   color?: string
-}) {
+}>) {
   const { isAnimatable } = useDisableAnimation()
 
   return (
-    <div className={`${className || ""}`} title={title}>
+    <div className={`${className ?? ""}`} title={title}>
       <FontAwesomeIcon
         icon={faIcon}
         size={"2xl"}

@@ -35,8 +35,8 @@ const userExists = async (
 
 const postMessage = async (req: NextRequest, userName: string) => {
   const formData = await req.formData()
-  const socket_id = formData.get("socket_id")?.toString() || ""
-  const channel_name = formData.get("channel_name")?.toString() || ""
+  const socket_id = formData.get("socket_id")?.toString() ?? ""
+  const channel_name = formData.get("channel_name")?.toString() ?? ""
 
   const client = PusherAPIClient.client
 
@@ -69,7 +69,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
     )
   }
 
-  const authToken = authorize(client, socket_id, channel_name, presenceData!)
+  const authToken = authorize(client, socket_id, channel_name, presenceData)
   if (authToken?.auth && authToken.auth !== "") {
     return NextResponse.json(authToken)
   } else {

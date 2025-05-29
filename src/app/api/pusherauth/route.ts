@@ -8,8 +8,8 @@ export type ResponseMessage = {
 
 const postMessage = async (req: NextRequest) => {
   const formData = await req.formData()
-  const socket_id = formData.get("socket_id")?.toString() || ""
-  const channel_name = formData.get("channel_name")?.toString() || ""
+  const socket_id = formData.get("socket_id")?.toString() ?? ""
+  const channel_name = formData.get("channel_name")?.toString() ?? ""
 
   const client = PusherAPIClient.client
   if (client) {

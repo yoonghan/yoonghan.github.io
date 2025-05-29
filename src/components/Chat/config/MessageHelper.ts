@@ -1,3 +1,3 @@
-const linkRegex = new RegExp("^https?://\\S+$")
+const linkRegex = /^https?:\/\/\S+$/
 
 export const isALink = (message: string) => linkRegex.test(message)

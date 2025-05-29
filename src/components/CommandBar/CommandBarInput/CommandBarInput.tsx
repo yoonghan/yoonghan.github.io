@@ -14,11 +14,16 @@ interface Props {
 }
 
 const AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput)
+const AVAILABLE_COMMAND_KEYS_WITH_HELP = [
+  ...AVAILABLE_COMMAND_KEYS,
+  "help",
+  "man",
+]
 
 const CommandBarInput = (props: Props) => {
   const commandOptions = React.useMemo(
     () =>
-      AVAILABLE_COMMAND_KEYS.map((command) => (
+      AVAILABLE_COMMAND_KEYS_WITH_HELP.map((command) => (
         <option value={command} key={command} />
       )),
     []

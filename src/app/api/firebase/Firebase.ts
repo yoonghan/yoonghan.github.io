@@ -19,7 +19,9 @@ const getFirebaseCredential = (validCredentials: {
 }
 
 export class Firebase {
-  public static getValidCredentials = (): { [key: string]: string } => {
+  public static readonly getValidCredentials = (): {
+    [key: string]: string
+  } => {
     const {
       FIREBASE_BUCKET,
       FIREBASE_PROJECT_ID,
@@ -46,7 +48,7 @@ export class Firebase {
     return keyValue as { [key: string]: string }
   }
 
-  public static getFirebaseInitializeApp = () => {
+  public static readonly getFirebaseInitializeApp = () => {
     const validCredentials = this.getValidCredentials()
     if (admin.apps.length === 0) {
       admin.initializeApp({
@@ -60,9 +62,9 @@ export class Firebase {
     return admin
   }
 
-  public static getStorageBucket = () =>
+  public static readonly getStorageBucket = () =>
     Firebase.getFirebaseInitializeApp().storage().bucket()
 
-  public static getFirestore = () =>
+  public static readonly getFirestore = () =>
     Firebase.getFirebaseInitializeApp().firestore()
 }
