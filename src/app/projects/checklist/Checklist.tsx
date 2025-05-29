@@ -20,7 +20,7 @@ const CronJobCheckList = ({
   queryTodayCron?: boolean
 }) => {
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
-  const { error: cronHistoryError, data: cronHistoryData } = useSWR(
+  const { error: cronHistoryError, data: cronHistoryData } = useSWR<CronJob[]>(
     cronHistoryUrl,
     fetcher
   )
