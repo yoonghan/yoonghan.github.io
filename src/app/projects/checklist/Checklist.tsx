@@ -7,9 +7,10 @@ import Table from "@/components/Table"
 import { site } from "@/config/site"
 import { CronJob } from "@/types/cron"
 import { ReactNode, useCallback, useMemo, useState } from "react"
-import { useFetch } from "usehooks-ts"
+import useSWR from "swr"
 
 const apiUrl = `${site.apiUrl}/cron`
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const CronJobCheckList = ({
   latestDeployedCronMessage,
@@ -19,10 +20,13 @@ const CronJobCheckList = ({
   queryTodayCron?: boolean
 }) => {
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
-  const { error: cronHistoryError, data: cronHistoryData } =
-    useFetch<CronJob[]>(cronHistoryUrl)
-  const { data: latestCron } = useFetch<any>(
-    queryTodayCron ? site.cronApiUrl : undefined
+  const { error: cronHistoryError, data: cronHistoryData } = useSWR(
+    cronHistoryUrl,
+    fetcher
+  )
+  const { data: latestCron } = useSWR(
+    queryTodayCron ? site.cronApiUrl : undefined,
+    fetcher
   )
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
