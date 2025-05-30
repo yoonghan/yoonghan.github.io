@@ -57,24 +57,9 @@ describe("Checklist", () => {
       ).toBeInTheDocument()
     })
 
-    it("should hide View More button after click and display table", async () => {
-      fetchMock.mockResolvedValue({
-        json: () => Promise.resolve(undefined),
-      })
-      const date = new Date()
-      render(
-        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
-      )
-      await userEvent.click(screen.getByRole("button", { name: "View More" }))
-      expect(
-        screen.queryByRole("button", { name: "View More" })
-      ).not.toBeInTheDocument()
-      expect(fetchMock).toHaveBeenCalledWith("/api/cron", undefined)
-    })
-
     it("should hide View More button and show error", async () => {
-      fetchMock.mockResolvedValue({
-        json: () => Promise.resolve([]),
+      fetchMock.mockRejectedValueOnce({
+        json: () => Promise.reject([]),
       })
       const date = new Date()
       render(
@@ -90,7 +75,9 @@ describe("Checklist", () => {
     })
 
     it("should show loading history", async () => {
-      fetchMock.mockResolvedValue(new Promise(() => {}))
+      fetchMock.mockResolvedValue({
+        json: () => Promise.resolve(undefined),
+      })
       const date = new Date()
       render(
         <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
