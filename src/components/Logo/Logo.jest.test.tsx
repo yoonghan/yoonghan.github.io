@@ -11,7 +11,7 @@ describe("Logo", () => {
   it("should render without text correctly", () => {
     render(<Logo />)
     expect(
-      screen.getByRole("img", { name: "walcron-logo" })
+      screen.getByRole("img", { name: "walcron-logo" }),
     ).toBeInTheDocument()
     expect(screen.queryByText("Walcron")).not.toBeInTheDocument()
   })

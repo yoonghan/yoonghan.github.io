@@ -17,7 +17,7 @@ const getPriorityAndFrequency = (path: string) => {
 
 const generatedSiteMap = sortedSiteMapPages.map((sortedSiteMapPages) => {
   const { priority, frequency } = getPriorityAndFrequency(
-    sortedSiteMapPages.path
+    sortedSiteMapPages.path,
   )
   return {
     url: `${defaultDomain}${sortedSiteMapPages.path}`,

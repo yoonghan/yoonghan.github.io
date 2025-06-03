@@ -20,7 +20,7 @@ describe("CommandBarInput", () => {
   }: {
     onSubmitCallback?: (
       event: React.FormEvent<HTMLFormElement>,
-      typedInput: string
+      typedInput: string,
     ) => {}
     onBlurCallback?: () => void
     onFocusCallback?: () => void
@@ -36,7 +36,7 @@ describe("CommandBarInput", () => {
             onSubmitCallback={onSubmitCallback}
           />
         )}
-      </Wrapper>
+      </Wrapper>,
     )
   }
 
@@ -52,11 +52,11 @@ describe("CommandBarInput", () => {
     await userEvent.type(input, "he")
     expect(screen.getByRole("listbox", { hidden: true })).toHaveAttribute(
       "id",
-      "commands"
+      "commands",
     )
     const options = screen.getAllByRole("option", { hidden: true })
     expect(
-      options.filter((option) => option.getAttribute("value") == "help")
+      options.filter((option) => option.getAttribute("value") == "help"),
     ).toHaveLength(1)
   })
 

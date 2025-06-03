@@ -9,17 +9,17 @@ describe("Table", () => {
       <Table
         headers={["headerOne", "headerTwo"]}
         list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
-      />
+      />,
     )
     expect(
-      screen.getByRole("columnheader", { name: "headerOne" })
+      screen.getByRole("columnheader", { name: "headerOne" }),
     ).toBeInTheDocument()
     expect(screen.getByRole("cell", { name: "value2" })).toBeInTheDocument()
     expect(
-      screen.getByRole("row", { name: "headerOne headerTwo" })
+      screen.getByRole("row", { name: "headerOne headerTwo" }),
     ).toBeInTheDocument()
     expect(
-      screen.getByRole("row", { name: "value1 value2" })
+      screen.getByRole("row", { name: "value1 value2" }),
     ).toBeInTheDocument()
   })
 
@@ -35,7 +35,7 @@ describe("Table", () => {
         headers={["headerOne", "headerTwo"]}
         list={[firstRecord]}
         onClick={clickFn}
-      />
+      />,
     )
     await userEvent.click(screen.getByRole("row", { name: "value1 value2" }))
     expect(clickFn).toHaveBeenCalledWith(firstRecord)
@@ -47,7 +47,7 @@ describe("Table", () => {
         headers={["headerOne", "headerTwo"]}
         list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
         className="sampleClass"
-      />
+      />,
     )
     // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByRole("table").parentElement).toHaveClass("sampleClass")

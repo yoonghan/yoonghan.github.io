@@ -8,7 +8,7 @@ describe("CustomSystemChatBubble", () => {
       <CustomSystemChatBubble
         message={{ message: "T|Hello World" }}
         yourAuthorId={0}
-      />
+      />,
     )
     expect(screen.getByText("Hello World")).toBeInTheDocument()
   })
@@ -18,7 +18,7 @@ describe("CustomSystemChatBubble", () => {
       <CustomSystemChatBubble
         message={{ message: "F|Filed Text" }}
         yourAuthorId={0}
-      />
+      />,
     )
     expect(screen.getByText("Filed Text")).toBeInTheDocument()
   })
@@ -30,7 +30,7 @@ describe("CustomSystemChatBubble", () => {
           message: `${MessageType.CONNECTION}|Connection OK`,
         }}
         yourAuthorId={0}
-      />
+      />,
     )
     expect(screen.getByText("Connection OK")).toBeInTheDocument()
     expect(screen.getByText("Connection OK")).toHaveStyle({
@@ -45,7 +45,7 @@ describe("CustomSystemChatBubble", () => {
           message: `${MessageType.CONNECTION_ERROR}|Connection Error`,
         }}
         yourAuthorId={0}
-      />
+      />,
     )
     expect(screen.getByText("Connection Error")).toBeInTheDocument()
     expect(screen.getByText("Connection Error")).toHaveStyle({

@@ -21,7 +21,7 @@ describe("HelpDialog", () => {
     const cancelFn = jest.fn()
     const specialInputFn = jest.fn()
     render(
-      <HelpDialog onCancel={cancelFn} specialInputCallback={specialInputFn} />
+      <HelpDialog onCancel={cancelFn} specialInputCallback={specialInputFn} />,
     )
 
     const oneOfTheInput = AvailableInput.pwd.description

@@ -18,10 +18,10 @@ describe("Navigator", () => {
 
   it("should have 2 groups", () => {
     render(
-      <Navigator links={links} onLinkClick={jest.fn()} label="Site Name" />
+      <Navigator links={links} onLinkClick={jest.fn()} label="Site Name" />,
     )
     expect(
-      screen.getByRole("navigation", { name: "Site Name" })
+      screen.getByRole("navigation", { name: "Site Name" }),
     ).toBeInTheDocument()
     expect(screen.getAllByRole("menuitem")).toHaveLength(2)
   })

@@ -12,14 +12,14 @@ describe("Dialog", () => {
     onCancel?: (
       event?:
         | React.MouseEvent<HTMLElement, MouseEvent>
-        | React.KeyboardEvent<HTMLElement>
+        | React.KeyboardEvent<HTMLElement>,
     ) => void
     nonPortal?: boolean
   }) => {
     render(
       <Dialog isNotModal={isNotModal} onCancel={onCancel} nonPortal={nonPortal}>
         <div data-testid="child-in-dialog">Nothing</div>
-      </Dialog>
+      </Dialog>,
     )
   }
 

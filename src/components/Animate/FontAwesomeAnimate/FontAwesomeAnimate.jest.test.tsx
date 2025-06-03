@@ -6,7 +6,7 @@ describe("Animate FontAwesomeAnimate", () => {
   const renderComponent = (
     title: string,
     className?: string,
-    animate: SupportedAnimation = "bounce"
+    animate: SupportedAnimation = "bounce",
   ) =>
     render(
       <FontAwesomeAnimate
@@ -16,18 +16,18 @@ describe("Animate FontAwesomeAnimate", () => {
         animate={animate}
       >
         <div>ArrowZoom Component</div>
-      </FontAwesomeAnimate>
+      </FontAwesomeAnimate>,
     )
 
   function assertAnimate(isAnimated: boolean, animate: SupportedAnimation) {
     const spinClassName = "fa-" + animate
     if (isAnimated) {
       expect(screen.getByRole("img", { hidden: true })).toHaveClass(
-        spinClassName
+        spinClassName,
       )
     } else {
       expect(screen.getByRole("img", { hidden: true })).not.toHaveClass(
-        spinClassName
+        spinClassName,
       )
     }
   }

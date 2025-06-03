@@ -1,6 +1,6 @@
 export function calculatePercentageChange(
   currentPos: number,
-  windowHeight: number
+  windowHeight: number,
 ) {
   const reachPointPercentage = currentPos / windowHeight
 
@@ -20,7 +20,7 @@ export function activeWindowIndex(currentPos: number, windowHeight: number) {
 export function updateElem(
   elems: HTMLDivElement[] | undefined,
   activeWindowIndex: number,
-  percentageChanged: number
+  percentageChanged: number,
 ) {
   if (!elems) {
     return

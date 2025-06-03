@@ -29,7 +29,7 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
         setIsRegistered(activeServiceWorker.state === "activated")
       })
     },
-    []
+    [],
   )
 
   const monitorStateChange = useCallback(
@@ -46,7 +46,7 @@ export function usePwaHooks(autoRegisterForApp: boolean) {
         }
       })
     },
-    []
+    [],
   )
 
   useEffect(() => {

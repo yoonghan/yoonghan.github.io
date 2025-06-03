@@ -10,7 +10,7 @@ describe("Parallax", () => {
   }: {
     children: (
       ref: RefObject<HTMLDivElement>,
-      childRef: RefObject<ScrollHandler>
+      childRef: RefObject<ScrollHandler>,
     ) => React.ReactNode
     scrollTo?: (x: number, y: number) => void
   }) => {
@@ -35,7 +35,7 @@ describe("Parallax", () => {
             <div>two</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
     expect(screen.getByText("one")).toBeInTheDocument()
     expect(screen.getByText("two")).toBeInTheDocument()
@@ -50,7 +50,7 @@ describe("Parallax", () => {
             <div>one</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
     expect(screen.getByTestId("scrollContainer")).toHaveStyle({
       overflowY: "scroll",
@@ -69,7 +69,7 @@ describe("Parallax", () => {
             <div>four</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
     expect(screen.getByTestId("parallax-container")).toHaveStyle({
       height: "400vh",
@@ -85,7 +85,7 @@ describe("Parallax", () => {
             <div data-testid="part-2">two</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
 
     window.innerHeight = 500
@@ -95,12 +95,12 @@ describe("Parallax", () => {
     })
     await waitFor(() => {
       expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe(
-        "1"
+        "1",
       )
     })
     await waitFor(() => {
       expect(screen.getByTestId("part-2").parentElement?.style.opacity).toBe(
-        "0"
+        "0",
       )
     })
   })
@@ -115,7 +115,7 @@ describe("Parallax", () => {
             <div data-testid="part-2">two</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
 
     window.innerHeight = 500
@@ -126,7 +126,7 @@ describe("Parallax", () => {
 
     await waitFor(() => {
       expect(screen.getByTestId("part-1").parentElement?.style.opacity).toBe(
-        "1"
+        "1",
       )
     })
 
@@ -149,7 +149,7 @@ describe("Parallax", () => {
             <div data-testid="part-2">two</div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
 
     unmount()
@@ -181,7 +181,7 @@ describe("Parallax", () => {
             </div>
           </Parallax>
         )}
-      </Main>
+      </Main>,
     )
 
     const parentElem = screen.getByTestId("scrollContainer")

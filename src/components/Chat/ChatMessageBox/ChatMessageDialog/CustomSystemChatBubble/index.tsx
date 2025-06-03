@@ -14,7 +14,7 @@ const CustomSystemChatBubble = ({
 }: ChatBubbleProps<any, Message<string>, Author>) => {
   const renderMessage = (
     formattedMessage: string,
-    textStyle?: CSSProperties
+    textStyle?: CSSProperties,
   ) => (
     <SystemChatBubble
       {...remainingProps}

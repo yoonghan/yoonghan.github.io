@@ -10,7 +10,9 @@ describe("regex", () => {
       expect(isOnlyAlphabetsAndNumberAndSpace("hi")).toBeTruthy()
       expect(isOnlyAlphabetsAndNumberAndSpace("01")).toBeTruthy()
       expect(
-        isOnlyAlphabetsAndNumberAndSpace("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+        isOnlyAlphabetsAndNumberAndSpace(
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        ),
       ).toBeTruthy()
       expect(isOnlyAlphabetsAndNumberAndSpace("hi 01    02")).toBeTruthy()
 

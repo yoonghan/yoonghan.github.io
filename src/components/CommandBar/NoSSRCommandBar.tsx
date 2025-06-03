@@ -38,7 +38,7 @@ const NoSSRCommandBar = () => {
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>,
-    typedInput: string
+    typedInput: string,
   ) => {
     event.preventDefault()
 
@@ -48,8 +48,8 @@ const NoSSRCommandBar = () => {
         cancelExecutedCommand,
         router,
         currentPath,
-        inputCallback
-      )(typedInput)
+        inputCallback,
+      )(typedInput),
     )
   }
 
