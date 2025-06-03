@@ -26,7 +26,7 @@ describe("withEnvCheck", () => {
       }))
       render(<WrappedComponent />)
       expect(
-        screen.getByText("One of the enviroment variable is missing")
+        screen.getByText("One of the enviroment variable is missing"),
       ).toBeInTheDocument()
     })
 
@@ -37,7 +37,7 @@ describe("withEnvCheck", () => {
           prop1: "",
           prop2: "value",
         }),
-        "Custom Error"
+        "Custom Error",
       )
       render(<WrappedComponent />)
       expect(screen.getByText("Custom Error")).toBeInTheDocument()

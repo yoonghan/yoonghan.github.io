@@ -22,11 +22,11 @@ const CronJobCheckList = ({
   const [cronHistoryUrl, setCronHistoryUrl] = useState<string | undefined>()
   const { error: cronHistoryError, data: cronHistoryData } = useSWR<CronJob[]>(
     cronHistoryUrl,
-    fetcher
+    fetcher,
   )
   const { data: latestCron } = useSWR(
     queryTodayCron ? site.cronApiUrl : undefined,
-    fetcher
+    fetcher,
   )
 
   const convertToLocalDate = useCallback((createdAt?: string) => {
@@ -74,13 +74,13 @@ const CronJobCheckList = ({
 
   const isDateValid = useCallback(
     (date: string) => date === "N/A" || date === "Invalid Date",
-    []
+    [],
   )
 
   const generateCronTable = useCallback(
     (
       checksTitle: string,
-      message: string | undefined
+      message: string | undefined,
     ): {
       Checks: string
       Active: ReactNode
@@ -105,7 +105,7 @@ const CronJobCheckList = ({
         ),
       }
     },
-    [convertToLocalDate, isDateValid]
+    [convertToLocalDate, isDateValid],
   )
 
   return (

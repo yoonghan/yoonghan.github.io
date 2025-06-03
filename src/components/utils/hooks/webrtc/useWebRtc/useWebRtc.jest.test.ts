@@ -16,7 +16,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     result.current.initialize(new MediaStream(), () => {})
     expect(errorCallbackFn).toBeCalledWith("No video")
@@ -31,7 +31,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     const mediaStream = new MediaStream()
     mediaStream.addTrack(new MediaStreamTrack())
@@ -59,7 +59,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     const mediaStream = new MediaStream()
     mediaStream.addTrack(new MediaStreamTrack())
@@ -89,7 +89,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     const { current } = result
 
@@ -98,19 +98,19 @@ describe("useWebRtc", () => {
 
     current.addIceCandidate(iceCandidate)
     expect(errorCallbackFn).toHaveBeenLastCalledWith(
-      "WebRtc has not been initialized"
+      "WebRtc has not been initialized",
     )
     current.createAnswer(sdp, () => {})
     expect(errorCallbackFn).toHaveBeenLastCalledWith(
-      "WebRtc has not been initialized"
+      "WebRtc has not been initialized",
     )
     current.createOffer(() => {})
     expect(errorCallbackFn).toHaveBeenLastCalledWith(
-      "WebRtc has not been initialized"
+      "WebRtc has not been initialized",
     )
     current.acknowledgeAnswer(sdp)
     expect(errorCallbackFn).toHaveBeenLastCalledWith(
-      "WebRtc has not been initialized"
+      "WebRtc has not been initialized",
     )
   })
 
@@ -122,7 +122,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     const { current } = result
 
@@ -133,7 +133,7 @@ describe("useWebRtc", () => {
     result.current.initialize(mediaStream, () => {})
     current.acknowledgeAnswer(sdp)
     expect(errorCallbackFn).toHaveBeenLastCalledWith(
-      "WebRtc offer needs to be provided first"
+      "WebRtc offer needs to be provided first",
     )
   })
 
@@ -145,7 +145,7 @@ describe("useWebRtc", () => {
         useWebRtc(setRemoteStreamFn, errorCallbackFn),
       {
         initialProps: { setRemoteStreamFn, errorCallbackFn },
-      }
+      },
     )
     const mediaStream = new MediaStream()
     mediaStream.addTrack(new MediaStreamTrack())

@@ -17,7 +17,7 @@ const ScrollToTopNoSSR = () => {
       startTransition(() => {
         setVisible(_isOverTheBar())
       }),
-    []
+    [],
   )
 
   useEffect(() => {

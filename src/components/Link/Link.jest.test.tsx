@@ -11,11 +11,11 @@ describe("Link", () => {
     render(
       <Link href="/link" prefetch={true}>
         I am a logo link
-      </Link>
+      </Link>,
     )
     expect(screen.getByText("I am a logo link")).toHaveAttribute(
       "href",
-      "/link"
+      "/link",
     )
   })
 
@@ -23,11 +23,11 @@ describe("Link", () => {
     render(
       <Link logoUrl="http://external.png" logoAltText="Link Icon">
         I am a logo link
-      </Link>
+      </Link>,
     )
     expect(screen.getByText("I am a logo link")).toBeInTheDocument()
     expect(screen.getByRole("img", { name: "Link Icon" })).toHaveAttribute(
-      "src"
+      "src",
     )
   })
 })

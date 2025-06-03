@@ -40,11 +40,11 @@ export function exec(
   cancellationCallback: () => void,
   router?: AppRouterInstance,
   currentPath?: string | null,
-  specialInputCallback?: (input: string) => void
+  specialInputCallback?: (input: string) => void,
 ) {
   const executeBasedOnType = (
     inputCommand: string,
-    inputSelected: IAvailableInput
+    inputSelected: IAvailableInput,
   ) => {
     switch (inputSelected.action) {
       case EnumAction.COMMAND:
@@ -58,7 +58,7 @@ export function exec(
     return AvailableInput[inputCommand].exec(
       element,
       cancellationCallback,
-      specialInputCallback
+      specialInputCallback,
     )
   }
 
@@ -97,7 +97,7 @@ export function exec(
         onCancel={cancellationCallback}
         specialInputCallback={specialInputCallback}
       />,
-      element
+      element,
     )
 
   return function ExecuteCommand(inputCommand: string) {

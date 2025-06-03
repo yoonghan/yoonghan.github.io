@@ -252,7 +252,8 @@ const Lessons = () => {
                 <ul className="list-disc pl-4">
                   <li>
                     Get you measurement ID from google analytics -&gt; Admin
-                    -&gt; Data Collection and Modification -&gt; Data Stream{" "}
+                    -&gt; Data Collection and Modification -&gt; Data
+                    Stream{" "}
                   </li>
                   <li>
                     Use <em>{`{{ Event }}`}</em> as variable name instead of

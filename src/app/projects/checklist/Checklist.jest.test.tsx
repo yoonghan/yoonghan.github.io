@@ -39,21 +39,21 @@ describe("Checklist", () => {
         <CronJobCheckList
           latestDeployedCronMessage={result}
           queryTodayCron={true}
-        />
+        />,
       )
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
-        within(screen.getByTestId("result Since Deployment")).getByText("True")
+        within(screen.getByTestId("result Since Deployment")).getByText("True"),
       ).toBeInTheDocument()
       expect(
         await within(screen.getByTestId("message Since Deployment")).findByText(
-          "12/12/2024"
-        )
+          "12/12/2024",
+        ),
       ).toBeInTheDocument()
       expect(
         await within(screen.getByTestId("message Today's Run")).findByText(
-          "12/12/2024"
-        )
+          "12/12/2024",
+        ),
       ).toBeInTheDocument()
     })
 
@@ -63,14 +63,14 @@ describe("Checklist", () => {
       })
       const date = new Date()
       render(
-        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />,
       )
       await userEvent.click(screen.getByRole("button", { name: "View More" }))
       expect(
-        screen.queryByRole("button", { name: "View More" })
+        screen.queryByRole("button", { name: "View More" }),
       ).not.toBeInTheDocument()
       expect(
-        screen.getByText("Fetch to /api/cron failed, try again later")
+        screen.getByText("Fetch to /api/cron failed, try again later"),
       ).toBeInTheDocument()
     })
 
@@ -80,11 +80,11 @@ describe("Checklist", () => {
       })
       const date = new Date()
       render(
-        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />
+        <CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />,
       )
       await userEvent.click(screen.getByRole("button", { name: "View More" }))
       expect(
-        screen.queryByRole("button", { name: "View More" })
+        screen.queryByRole("button", { name: "View More" }),
       ).not.toBeInTheDocument()
       expect(screen.getByText("Loading data...")).toBeInTheDocument()
     })
@@ -103,7 +103,7 @@ describe("Checklist", () => {
       render(<TroubleshootPwaCheckList />)
       expect(screen.getByText("PWA Registered")).toBeInTheDocument()
       expect(
-        screen.getByText("Trusted Site App (N/R, query string issue)")
+        screen.getByText("Trusted Site App (N/R, query string issue)"),
       ).toBeInTheDocument()
       expect(screen.getByText("Detected New Update (N/T)")).toBeInTheDocument()
       expect(screen.getByText("Update Installed (N/T)")).toBeInTheDocument()
@@ -125,7 +125,7 @@ describe("Checklist", () => {
       expect(await screen.findAllByText("true")).toHaveLength(1)
       assertValue(
         screen.getByText("Trusted Site App (N/R, query string issue)"),
-        true
+        true,
       )
     })
   })

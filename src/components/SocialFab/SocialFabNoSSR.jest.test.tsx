@@ -13,22 +13,22 @@ describe("SocialFabNoSSR", () => {
     render(<SocialFabNoSSR />)
     assertLinkIsCorrect(
       screen.getByRole("link", { name: "linkedIn" }),
-      "//www.linkedin.com/in/han-yoong-33755361/"
+      "//www.linkedin.com/in/han-yoong-33755361/",
     )
 
     assertLinkIsCorrect(
       screen.getByRole("link", { name: "git" }),
-      "//github.com/yoonghan/Walcron"
+      "//github.com/yoonghan/Walcron",
     )
 
     assertLinkIsCorrect(
       screen.getByRole("link", { name: "stackoverflow" }),
-      "//stackoverflow.com/users/3893990/han"
+      "//stackoverflow.com/users/3893990/han",
     )
 
     assertLinkIsCorrect(
       screen.getByRole("link", { name: "facebook" }),
-      "//www.facebook.com/walcron"
+      "//www.facebook.com/walcron",
     )
 
     expect(screen.getByRole("button", { name: "gmail" })).toBeInTheDocument()

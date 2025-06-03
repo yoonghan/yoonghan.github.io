@@ -22,7 +22,7 @@ const Canvases = () => {
         Math.floor(dimensionWidth * 3.5),
         dimensionWidth,
         cellSize,
-        "#FF0000"
+        "#FF0000",
       )
       drawSquareBoard(ctx, dimensionWidth, cellSize)
     }

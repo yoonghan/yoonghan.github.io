@@ -12,7 +12,7 @@ describe("SearchBar", () => {
             transform: "none",
           })
         },
-        { interval: 200 }
+        { interval: 200 },
       )
     }
 
@@ -36,7 +36,7 @@ describe("SearchBar", () => {
       () => {
         assertIsHidden("command-menu")
       },
-      { interval: 200 }
+      { interval: 200 },
     )
   })
 })

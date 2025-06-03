@@ -3,14 +3,14 @@ import { test, expect, BrowserContext } from "@playwright/test"
 test.describe("canonical setup", () => {
   const validateCanonicalRel = async (
     context: BrowserContext,
-    site: string
+    site: string,
   ) => {
     const page = await context.newPage()
     await page.goto(site === "" ? "/" : site)
     const metaDescription = page.locator('link[rel="canonical"]')
     await expect(metaDescription).toHaveAttribute(
       "href",
-      `https://www.walcron.com${site}`
+      `https://www.walcron.com${site}`,
     )
   }
 

@@ -25,7 +25,7 @@ describe("HomePage", () => {
       const navigation = within(
         screen.getByRole("navigation", {
           name: "Site Navigation",
-        })
+        }),
       )
 
       const scrollToFn = jest.fn()

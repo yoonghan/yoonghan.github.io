@@ -11,13 +11,13 @@ describe("AlertDialog", () => {
           "Can you React from a shooting bullet travelling at lightspeed?"
         }
         onOk={jest.fn()}
-      />
+      />,
     )
     expect(screen.getByText("I am Title")).toBeInTheDocument()
     expect(
       screen.getByText(
-        "Can you React from a shooting bullet travelling at lightspeed?"
-      )
+        "Can you React from a shooting bullet travelling at lightspeed?",
+      ),
     ).toBeInTheDocument()
   })
 
@@ -28,7 +28,7 @@ describe("AlertDialog", () => {
         message={"Message one"}
         onOk={jest.fn()}
         okBtnText={"I am fine"}
-      />
+      />,
     )
 
     screen.getByRole("button", { name: "I am fine" })
@@ -44,7 +44,7 @@ describe("AlertDialog", () => {
             "Can you React from a shooting bullet travelling at lightspeed?"
           }
           onOk={onOk}
-        />
+        />,
       )
       return { onOk }
     }

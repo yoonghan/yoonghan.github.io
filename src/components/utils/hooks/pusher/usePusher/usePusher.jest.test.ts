@@ -74,7 +74,7 @@ describe("usePusher", () => {
     })
     expect(printConnectionCallback).toBeCalledWith(
       "Establishing Connection, please wait.",
-      MessageType.TEXT
+      MessageType.TEXT,
     )
 
     act(() => {
@@ -82,7 +82,7 @@ describe("usePusher", () => {
     })
 
     expect(result.current.getConnectionStatus()).toBe(
-      EnumConnectionStatus.Connected
+      EnumConnectionStatus.Connected,
     )
     expect(result.current.isConnected()).toBe(true)
   })
@@ -97,11 +97,11 @@ describe("usePusher", () => {
     const noOfUserEmitter = result.current.emit("NoOfUsers")
     const eventEmitter = result.current.emit("Event")
     expect(
-      isEventEmitter(eventEmitter) ? eventEmitter("A message", 0) : true
+      isEventEmitter(eventEmitter) ? eventEmitter("A message", 0) : true,
     ).toBe(false)
 
     expect(isNoOfUserEmitter(noOfUserEmitter) ? noOfUserEmitter(2) : true).toBe(
-      false
+      false,
     )
   })
 
@@ -138,7 +138,7 @@ describe("usePusher", () => {
       })
 
       expect(result.current.getConnectionStatus()).toBe(
-        EnumConnectionStatus.Disconnected
+        EnumConnectionStatus.Disconnected,
       )
       expect(result.current.isConnected()).toBe(false)
       expect(debugEventFn).toBeCalledWith("connection:Disconnected")
@@ -153,10 +153,10 @@ describe("usePusher", () => {
 
       expect(printConnectionCallback).toBeCalledWith(
         "Connection failed as websocket is not supported by browser",
-        MessageType.CONNECTION_ERROR
+        MessageType.CONNECTION_ERROR,
       )
       expect(result.current.getConnectionStatus()).toBe(
-        EnumConnectionStatus.Disconnected
+        EnumConnectionStatus.Disconnected,
       )
       expect(result.current.isConnected()).toBe(false)
     })
@@ -171,10 +171,10 @@ describe("usePusher", () => {
 
       expect(printConnectionCallback).toBeCalledWith(
         "Interruption error encountered",
-        MessageType.CONNECTION_ERROR
+        MessageType.CONNECTION_ERROR,
       )
       expect(result.current.getConnectionStatus()).toBe(
-        EnumConnectionStatus.Error
+        EnumConnectionStatus.Error,
       )
       expect(result.current.isConnected()).toBe(true)
     })
@@ -190,10 +190,10 @@ describe("usePusher", () => {
 
       expect(printConnectionCallback).toBeCalledWith(
         "A different Id was requested, please refresh the page.",
-        MessageType.CONNECTION_ERROR
+        MessageType.CONNECTION_ERROR,
       )
       expect(result.current.getConnectionStatus()).toBe(
-        EnumConnectionStatus.Disconnected
+        EnumConnectionStatus.Disconnected,
       )
       expect(result.current.isConnected()).toBe(false)
     })
@@ -219,7 +219,7 @@ describe("usePusher", () => {
       expect(printEventCallback).toBeCalledWith(
         "Hello message",
         MessageType.TEXT,
-        2
+        2,
       )
     })
 
@@ -235,7 +235,7 @@ describe("usePusher", () => {
       expect(printEventCallback).toBeCalledWith(
         "Hello message",
         MessageType.CONNECTION,
-        2
+        2,
       )
     })
 
@@ -248,7 +248,7 @@ describe("usePusher", () => {
 
       expect(printConnectionCallback).toBeCalledWith(
         "Connection is already established",
-        MessageType.TEXT
+        MessageType.TEXT,
       )
     })
 
@@ -261,7 +261,7 @@ describe("usePusher", () => {
       })
       expect(printConnectionCallback).toBeCalledWith(
         "Active user count: 2",
-        MessageType.USERCOUNT
+        MessageType.USERCOUNT,
       )
     })
   })

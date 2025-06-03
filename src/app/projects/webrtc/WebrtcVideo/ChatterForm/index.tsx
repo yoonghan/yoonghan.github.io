@@ -39,11 +39,11 @@ const ChatterForm = ({
         startStopSenderVideo(username)
       } else {
         setErrorMessage(
-          "Username can only contains alphabets and numbers with 3 minimum words."
+          "Username can only contains alphabets and numbers with 3 minimum words.",
         )
       }
     },
-    [startStopSenderVideo, username]
+    [startStopSenderVideo, username],
   )
 
   return (

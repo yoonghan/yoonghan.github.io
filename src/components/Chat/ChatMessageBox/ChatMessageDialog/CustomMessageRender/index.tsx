@@ -20,7 +20,7 @@ const CustomMessageRender = ({
         {message}
       </span>
     ),
-    [className, style]
+    [className, style],
   )
 
   const downloadCheck = useCallback(async () => {

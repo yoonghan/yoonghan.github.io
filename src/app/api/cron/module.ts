@@ -68,7 +68,7 @@ const getToday = async (): Promise<Message> => {
 
 export const execute = async (
   action: string | null | undefined,
-  method: string = "GET"
+  method: string = "GET",
 ): Promise<Message | CronJob[] | CronJob> => {
   switch (action) {
     case null:

@@ -5,7 +5,7 @@ describe("MessageHelper", () => {
     it("should return TRUE if the message is a link", () => {
       expect(isALink("http://www.walcron.com")).toBeTruthy()
       expect(
-        isALink("http://www.walcron.com/about%20us?param1=Hello%20x")
+        isALink("http://www.walcron.com/about%20us?param1=Hello%20x"),
       ).toBeTruthy()
     })
 

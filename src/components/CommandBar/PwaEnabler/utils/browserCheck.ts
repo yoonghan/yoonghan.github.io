@@ -3,7 +3,7 @@ export const isSafariBrowser = () => {
     /constructor/i.test(window["HTMLElement" as any] as any) ||
     ((p): boolean => p?.toString() === "[object SafariRemoteNotification]")(
       !window["safari" as any] ||
-        (window["safari" as any] as any).pushNotification
+        (window["safari" as any] as any).pushNotification,
     )
   )
 }

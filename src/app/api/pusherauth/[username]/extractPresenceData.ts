@@ -12,7 +12,7 @@ type Member = {
 }
 
 export const extractPresenceData = (
-  username: string | string[] | undefined
+  username: string | string[] | undefined,
 ): Member | null => {
   if (
     typeof username !== "string" ||
