@@ -5,7 +5,7 @@ describe("main page", () => {
   it("should render main page", async () => {
     render(<Index />)
     expect(
-      screen.getByRole("heading", { name: "PORTFOLIO PORTAL" })
+      screen.getByRole("heading", { name: "PORTFOLIO PORTAL" }),
     ).toBeInTheDocument()
     expect(await screen.findByRole("link", { name: "git" })).toBeInTheDocument()
   })

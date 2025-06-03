@@ -11,7 +11,7 @@ describe("CustomMessageRender", () => {
 
   it("should render complex message correctly", () => {
     render(
-      <CustomMessageRender message={{ message: "T|I am a complex message" }} />
+      <CustomMessageRender message={{ message: "T|I am a complex message" }} />,
     )
     expect(screen.getByText("I am a complex message")).toBeInTheDocument()
   })
@@ -22,25 +22,25 @@ describe("CustomMessageRender", () => {
     await userEvent.click(
       screen.getByRole("button", {
         name: "Open file ?",
-      })
+      }),
     )
     expect(
-      await screen.findByText("Download Unverified File")
+      await screen.findByText("Download Unverified File"),
     ).toBeInTheDocument()
 
     await userEvent.click(
       screen.getByRole("button", {
         name: "No",
-      })
+      }),
     )
     expect(
-      screen.queryByText("Download Unverified File")
+      screen.queryByText("Download Unverified File"),
     ).not.toBeInTheDocument()
 
     expect(
       screen.getByRole("button", {
         name: "Open file ?",
-      })
+      }),
     ).toBeInTheDocument()
   })
 
@@ -50,25 +50,25 @@ describe("CustomMessageRender", () => {
     await userEvent.click(
       screen.getByRole("button", {
         name: "Open file ?",
-      })
+      }),
     )
     expect(
-      await screen.findByText("Download Unverified File")
+      await screen.findByText("Download Unverified File"),
     ).toBeInTheDocument()
 
     await userEvent.click(
       screen.getByRole("button", {
         name: "Yes",
-      })
+      }),
     )
     expect(
-      screen.queryByText("Download Unverified File")
+      screen.queryByText("Download Unverified File"),
     ).not.toBeInTheDocument()
 
     expect(
       screen.queryByRole("button", {
         name: "Open file ?",
-      })
+      }),
     ).not.toBeInTheDocument()
 
     const downloadAnchor = screen.getByRole("link", { name: "[File Received]" })

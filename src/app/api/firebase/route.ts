@@ -6,11 +6,11 @@ import { Firebase } from "./Firebase"
 const uploadIntoSystem = async (
   req: NextRequest,
   resolve: (value: string) => void,
-  reject: (reason?: unknown) => void
+  reject: (reason?: unknown) => void,
 ) => {
   const getUploadedFileUrl = async (
     uploadFileName: string,
-    retrieveToken: string
+    retrieveToken: string,
   ) => {
     const storageBucket = Firebase.getStorageBucket()
     const cloudFileName = storageBucket.file(uploadFileName)
@@ -84,7 +84,7 @@ const uploadIntoSystem = async (
 export async function POST(request: NextRequest) {
   try {
     const response = await new Promise<string>((resolve, reject) =>
-      uploadIntoSystem(request, resolve, reject)
+      uploadIntoSystem(request, resolve, reject),
     )
     return NextResponse.json({ data: response, status: "ok" })
   } catch (err: any) {
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
       {
         error: err,
       },
-      { status: 405 }
+      { status: 405 },
     )
   }
 }

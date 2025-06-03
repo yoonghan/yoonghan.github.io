@@ -1,7 +1,7 @@
 const drawSquareBoard = (
   ctx: CanvasRenderingContext2D,
   dimensionWidth: number,
-  cellSize: number
+  cellSize: number,
 ) => {
   ctx.beginPath()
 
@@ -23,7 +23,7 @@ const drawCell = (
   idx: number,
   dimensionWidth: number,
   cellSize: number,
-  fillColor = "#ff0000"
+  fillColor = "#ff0000",
 ) => {
   const col = idx % dimensionWidth
   const row = Math.floor(idx / dimensionWidth)
@@ -39,7 +39,7 @@ const drawCell = (
 
 const clearBoard = (
   ctx: CanvasRenderingContext2D,
-  canvas: HTMLCanvasElement
+  canvas: HTMLCanvasElement,
 ) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 }

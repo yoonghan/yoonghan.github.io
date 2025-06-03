@@ -33,7 +33,7 @@ describe("usePresencePusher", () => {
     const trigger = (
       { emit, trigger }: any,
       eventName: string,
-      data: object
+      data: object,
     ) => {
       emit(eventName, trigger(eventName, data))
     }
@@ -41,7 +41,7 @@ describe("usePresencePusher", () => {
     const emitSubscriptionSuccess = (
       partialEmitFn: (eventName: string, message: object) => void,
       id = "billy",
-      name = "Billy Joe"
+      name = "Billy Joe",
     ) => {
       act(() => {
         partialEmitFn("pusher:subscription_succeeded", {
@@ -55,7 +55,7 @@ describe("usePresencePusher", () => {
 
     const emitAddUser = (
       username: string,
-      partialEmitFn: (eventName: string, message: object) => void
+      partialEmitFn: (eventName: string, message: object) => void,
     ) => {
       act(() => {
         partialEmitFn("pusher:member_added", {
@@ -75,13 +75,13 @@ describe("usePresencePusher", () => {
         result.current.connect("billy")
       })
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.StartConnecting
+        EnumConnectionStatus.StartConnecting,
       )
 
       emitSubscriptionSuccess(result.current.emit)
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Connected
+        EnumConnectionStatus.Connected,
       )
 
       expect(result.current.myId).toBe("billy")
@@ -101,12 +101,12 @@ describe("usePresencePusher", () => {
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.StartConnecting
+        EnumConnectionStatus.StartConnecting,
       )
       emitSubscriptionSuccess(result.current.emit)
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Connected
+        EnumConnectionStatus.Connected,
       )
 
       act(() => {
@@ -114,7 +114,7 @@ describe("usePresencePusher", () => {
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Connected
+        EnumConnectionStatus.Connected,
       )
     })
 
@@ -134,7 +134,7 @@ describe("usePresencePusher", () => {
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Disconnected
+        EnumConnectionStatus.Disconnected,
       )
 
       expect(result.current.onlineUsers).toStrictEqual([])
@@ -153,7 +153,7 @@ describe("usePresencePusher", () => {
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Connected
+        EnumConnectionStatus.Connected,
       )
 
       expect(result.current.myId).toBe("john")
@@ -179,7 +179,7 @@ describe("usePresencePusher", () => {
       })
 
       expect(updateConnectionCallback).toBeCalledWith(
-        EnumConnectionStatus.Error
+        EnumConnectionStatus.Error,
       )
 
       expect(result.current.errorMessage()).toBe(JSON.stringify(error))
@@ -229,7 +229,7 @@ describe("usePresencePusher", () => {
       const clientCallback = jest.fn()
       act(() => {
         expect(
-          result.current.bind<Presence>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback),
         ).toBeTruthy()
       })
 
@@ -250,11 +250,11 @@ describe("usePresencePusher", () => {
       })
 
       expect(result.current.bind).toThrow(
-        Error("Channel has not been initialized")
+        Error("Channel has not been initialized"),
       )
 
       expect(result.current.trigger).toThrow(
-        Error("Channel has not been initialized")
+        Error("Channel has not been initialized"),
       )
     })
 
@@ -276,7 +276,7 @@ describe("usePresencePusher", () => {
 
       act(() => {
         expect(
-          result.current.bind<Presence>("client-event", clientCallback)
+          result.current.bind<Presence>("client-event", clientCallback),
         ).toBeFalsy()
       })
 
@@ -293,7 +293,7 @@ describe("usePresencePusher", () => {
       const newClientCallback = jest.fn()
       act(() => {
         expect(
-          result.current.bind<Presence>("client-event", newClientCallback)
+          result.current.bind<Presence>("client-event", newClientCallback),
         ).toBeTruthy()
       })
       trigger(result.current, "client-event", {
@@ -309,7 +309,7 @@ describe("usePresencePusher", () => {
     it("should trigger updateoffline when user logs out", () => {
       const triggerRemoveUser = (
         shouldEnd: boolean,
-        expectedStatus: EnumConnectionStatus
+        expectedStatus: EnumConnectionStatus,
       ) => {
         shouldUpdatedOfflineUserEndFn.mockReturnValueOnce(shouldEnd)
         act(() => {
@@ -337,7 +337,7 @@ describe("usePresencePusher", () => {
 
       emitSubscriptionSuccess(result.current.emit)
       expect(updateConnectionCallbackFn).toHaveBeenCalledWith(
-        EnumConnectionStatus.Connected
+        EnumConnectionStatus.Connected,
       )
 
       act(() => {

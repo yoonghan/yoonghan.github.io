@@ -17,7 +17,7 @@ const isEmpty = (value: null | undefined | string | number) => {
 
 const reducer = (
   state: string[],
-  action: { type: "ADD"; fieldIdUpdated: string }
+  action: { type: "ADD"; fieldIdUpdated: string },
 ) => {
   if (action.type === "ADD") {
     return [...state, action.fieldIdUpdated]
@@ -74,7 +74,7 @@ const InputForm = ({
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const nonEmptyObjects = Object.entries(form).filter(
-        ([_, value]) => !isEmpty(value)
+        ([_, value]) => !isEmpty(value),
       )
       if (nonEmptyObjects.length !== 0) {
         setFormFilled(nonEmptyObjects.map(([key, value]) => key).join(", "))
@@ -83,11 +83,11 @@ const InputForm = ({
       }
       return false
     },
-    [form]
+    [form],
   )
 
   const updateForm = (
-    input: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    input: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { id, value } = input.target
     setForm((form) => ({
@@ -164,7 +164,7 @@ const InputField = ({
           onChange={updateForm}
         ></input>
       ),
-    [form, id, updateForm]
+    [form, id, updateForm],
   )
 
   return (

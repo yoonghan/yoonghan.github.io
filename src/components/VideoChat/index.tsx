@@ -24,7 +24,7 @@ export interface VideoStreamHandler {
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
   function VideoWithStreamHandler(
     { id, record, muted, videoFailedCallback, videoTracksCallback }: Props,
-    ref
+    ref,
   ) {
     const videoRef = useRef<HTMLVideoElement>(null)
     const streamRef = useRef<MediaStream>()
@@ -56,7 +56,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
           videoTracksCallback(stream)
         }
       },
-      [videoTracksCallback]
+      [videoTracksCallback],
     )
 
     const startVideo = useCallback(async () => {
@@ -107,7 +107,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
         className={styles.container}
       ></video>
     )
-  }
+  },
 )
 
 const VideoComparator = (prevProps: Props, nextProps: Props) =>

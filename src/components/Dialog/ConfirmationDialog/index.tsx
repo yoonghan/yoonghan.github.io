@@ -39,7 +39,7 @@ const ConfirmationDialog = ({
       (
         e?:
           | React.FormEvent<HTMLFormElement>
-          | React.MouseEvent<HTMLButtonElement>
+          | React.MouseEvent<HTMLButtonElement>,
       ) => {
         e?.preventDefault()
 
@@ -58,7 +58,7 @@ const ConfirmationDialog = ({
             break
         }
       },
-    [onYesClick, onCancel, onNoClick]
+    [onYesClick, onCancel, onNoClick],
   )
 
   return (

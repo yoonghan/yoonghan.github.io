@@ -13,7 +13,7 @@ describe("Webrtc", () => {
     renderComponent()
     expect(screen.getByText("Video call with Web RTC")).toBeInTheDocument()
     expect(
-      await screen.findByText("Video call with Web RTC")
+      await screen.findByText("Video call with Web RTC"),
     ).toBeInTheDocument()
     expect(screen.getByText("Identification")).toBeInTheDocument()
     expect(screen.getByText("List of online callers")).toBeInTheDocument()
@@ -23,8 +23,8 @@ describe("Webrtc", () => {
     renderComponent()
     expect(
       screen.getByText(
-        "Pusher initialization failed due to missing environment variable."
-      )
+        "Pusher initialization failed due to missing environment variable.",
+      ),
     ).toBeInTheDocument()
   })
 })

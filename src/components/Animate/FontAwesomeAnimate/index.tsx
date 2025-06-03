@@ -10,7 +10,7 @@ export type SupportedAnimation = "bounce" | "shake" | "spin"
 function canAnimate(
   isAnimatable: boolean,
   animationType: SupportedAnimation,
-  expectedAnimationType: SupportedAnimation
+  expectedAnimationType: SupportedAnimation,
 ) {
   return !!isAnimatable && animationType === expectedAnimationType
 }

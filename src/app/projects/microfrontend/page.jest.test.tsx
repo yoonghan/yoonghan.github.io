@@ -6,8 +6,8 @@ describe("Microfrontend", () => {
     render(<MicrofrontEnd />)
     expect(
       screen.getByText(
-        "Partially experimental but going forward, all written javascript projects are moved into Zelda."
-      )
+        "Partially experimental but going forward, all written javascript projects are moved into Zelda.",
+      ),
     ).toBeInTheDocument()
   })
 })

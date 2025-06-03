@@ -10,7 +10,7 @@ describe("InvalidInput", () => {
   it("should trim long input values", () => {
     render(<InvalidInput invalidInput={"noqweqw"} />)
     expect(
-      screen.getByText("noqw... - not found. type HELP.")
+      screen.getByText("noqw... - not found. type HELP."),
     ).toBeInTheDocument()
   })
 })

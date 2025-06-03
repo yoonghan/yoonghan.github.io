@@ -6,7 +6,7 @@ describe("Lifecyle", () => {
   it("should render error if model is not of 4", () => {
     render(<Lifecycle models={[]} />)
     expect(
-      screen.getByText("Not Supported, must be EXACTLY 4 elements.")
+      screen.getByText("Not Supported, must be EXACTLY 4 elements."),
     ).toBeInTheDocument()
   })
 
@@ -20,24 +20,24 @@ describe("Lifecyle", () => {
             { url: "http://third-url", label: "third" },
             { url: "http://fourth-url", label: "fourth" },
           ]}
-        />
+        />,
       )
 
     it("should render all the elements provided", () => {
       renderData()
       expect(screen.getByRole("link", { name: "first" })).toHaveAttribute(
         "href",
-        "http://first-url"
+        "http://first-url",
       )
       expect(screen.getByRole("link", { name: "second" })).toHaveAttribute(
-        "href"
+        "href",
       )
       expect(screen.getByRole("link", { name: "third" })).toHaveAttribute(
-        "href"
+        "href",
       )
       expect(screen.getByRole("link", { name: "fourth" })).toHaveAttribute(
         "href",
-        "http://fourth-url"
+        "http://fourth-url",
       )
 
       expect(screen.getByTitle("Deployment Lifecycle")).toBeInTheDocument()

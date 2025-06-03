@@ -44,7 +44,7 @@ describe("pages", () => {
       },
     ]
     expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-      ["/", "/about", "/projects", "/history", "/projects/experiment"]
+      ["/", "/about", "/projects", "/history", "/projects/experiment"],
     )
   })
 
@@ -76,7 +76,7 @@ describe("pages", () => {
       },
     ]
     expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-      ["/projects", "/projects/experiment", "/projects/amp", "/projects/camp"]
+      ["/projects", "/projects/experiment", "/projects/amp", "/projects/camp"],
     )
   })
 
@@ -102,7 +102,7 @@ describe("pages", () => {
 
   it("should filter sitemap with NON_SITE_MAP filterOption", () => {
     const footerPageMappedByDisplay = sortedSiteMapPages.map(
-      (page) => page.path
+      (page) => page.path,
     )
     expect(footerPageMappedByDisplay).not.toContain(["/sitemap"])
   })
@@ -140,15 +140,15 @@ describe("pages", () => {
       findAllChildByPath("/experiments").map(({ path, display }) => ({
         path,
         display,
-      }))
+      })),
     ).toStrictEqual(expectedResult)
     expect(
       findAllChildByPath("/experiments/performance").map(
         ({ path, display }) => ({
           path,
           display,
-        })
-      )
+        }),
+      ),
     ).toStrictEqual(expectedResult)
   })
 })
@@ -185,7 +185,7 @@ describe("all sites are defined", () => {
     return files
       .filter(
         (file: string) =>
-          file.indexOf("/.") === -1 && file.indexOf(".test.") === -1
+          file.indexOf("/.") === -1 && file.indexOf(".test.") === -1,
       ) //remove all hidden files, like .DS_Store and .test.
       .map((file) => removeExtension(removeRootPath(file)))
       .filter((file) => file.endsWith(appPageFile))
