@@ -32,7 +32,7 @@ describe("NavMenu", () => {
   it("should contain a navigation with Site Map named", () => {
     render(<NavMenu />)
     expect(
-      screen.getByRole("navigation", { name: "Site Map" })
+      screen.getByRole("navigation", { name: "Site Map" }),
     ).toBeInTheDocument()
   })
 })

@@ -6,7 +6,7 @@ describe("Animate Workflow", () => {
     render(
       <Workflow title={title} className={className}>
         <div>Workflow Component</div>
-      </Workflow>
+      </Workflow>,
     )
 
   it("should render with optional className", () => {
@@ -21,7 +21,7 @@ describe("Animate Workflow", () => {
     })
     renderComponent("workflow-1")
     expect(
-      within(screen.getByTitle("workflow-1")).getByTestId("workflow")
+      within(screen.getByTitle("workflow-1")).getByTestId("workflow"),
     ).toHaveClass("animate-none")
   })
 })

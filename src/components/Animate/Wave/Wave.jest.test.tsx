@@ -6,7 +6,7 @@ describe("Wave", () => {
     render(
       <Wave title={title} className={className}>
         <>Wave Component</>
-      </Wave>
+      </Wave>,
     )
 
   it("should be able to disable animation", () => {

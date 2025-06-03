@@ -28,7 +28,7 @@ describe("onlineReduer", () => {
       ],
       {
         type: "CLEAR_USERS",
-      }
+      },
     )
     expect(latestState).toStrictEqual([])
   })

@@ -18,7 +18,7 @@ const _getUser = (
   description: JSX.Element,
   imgSrc: string | StaticImageData,
   width = 285,
-  height = 385
+  height = 385,
 ) => (
   <div key={"user_" + idx}>
     <Image
@@ -45,8 +45,8 @@ const Profiler = ({ profiles }: Props) => {
           profile.description,
           profile.imgSrc,
           profile.width,
-          profile.height
-        )
+          profile.height,
+        ),
       )}
     </div>
   )

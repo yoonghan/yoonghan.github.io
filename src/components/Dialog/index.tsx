@@ -28,7 +28,7 @@ export interface DialogHandler {
 const Dialog = forwardRef<DialogHandler, DialogProps>(
   function DialogWithHandler(
     { isNotModal = false, onCancel, children, nonPortal },
-    ref
+    ref,
   ) {
     dialogRootCreator.create()
     const dialogElem = createRef<HTMLDialogElement>()
@@ -77,7 +77,7 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
       (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation()
       },
-      []
+      [],
     )
 
     const dialog = useMemo(
@@ -107,11 +107,11 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
         onContentClick,
         onDialogClick,
         showDialog,
-      ]
+      ],
     )
 
     return nonPortal ? dialog : createPortal(dialog, documentDialog)
-  }
+  },
 )
 
 export default Dialog

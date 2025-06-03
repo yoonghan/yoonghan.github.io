@@ -7,7 +7,7 @@ const offerOptions = {
 
 export const useWebRtc = (
   setRemoteStream: (stream: MediaStream) => void,
-  errorCallback: (error: string) => void
+  errorCallback: (error: string) => void,
 ) => {
   const callerRef = useRef<RTCPeerConnection>()
   const remoteStream = useRef<MediaStream>()
@@ -24,7 +24,7 @@ export const useWebRtc = (
         errorCallback("WebRtc has not been initialized")
       }
     },
-    [errorCallback]
+    [errorCallback],
   )
 
   const createOffer = useCallback(
@@ -39,7 +39,7 @@ export const useWebRtc = (
         errorCallback("WebRtc has not been initialized")
       }
     },
-    [errorCallback]
+    [errorCallback],
   )
 
   const addOnTrack = useCallback(
@@ -55,13 +55,13 @@ export const useWebRtc = (
         setRemoteStream(stream)
       }
     },
-    [setRemoteStream]
+    [setRemoteStream],
   )
 
   const initialize = useCallback(
     (
       stream: MediaStream,
-      triggerCandidate: (eventCandidate: RTCIceCandidate) => void
+      triggerCandidate: (eventCandidate: RTCIceCandidate) => void,
     ) => {
       if (stream.getVideoTracks().length > 0) {
         const caller = new RTCPeerConnection()
@@ -81,13 +81,13 @@ export const useWebRtc = (
         errorCallback("No video")
       }
     },
-    [addOnTrack, errorCallback]
+    [addOnTrack, errorCallback],
   )
 
   const createAnswer = useCallback(
     (
       sdp: RTCSessionDescriptionInit,
-      trigger: (answerSdp: RTCSessionDescriptionInit) => void
+      trigger: (answerSdp: RTCSessionDescriptionInit) => void,
     ) => {
       if (callerRef.current) {
         const caller = callerRef.current
@@ -100,7 +100,7 @@ export const useWebRtc = (
         errorCallback("WebRtc has not been initialized")
       }
     },
-    [errorCallback]
+    [errorCallback],
   )
 
   const addIceCandidate = useCallback(
@@ -111,7 +111,7 @@ export const useWebRtc = (
         errorCallback("WebRtc has not been initialized")
       }
     },
-    [errorCallback]
+    [errorCallback],
   )
 
   const disconnect = useCallback(() => {

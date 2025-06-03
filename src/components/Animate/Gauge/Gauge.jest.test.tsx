@@ -6,7 +6,7 @@ describe("Animate Gauge", () => {
     render(
       <Gauge title={title} className={className}>
         <div>Gauge Component</div>
-      </Gauge>
+      </Gauge>,
     )
 
   it("should render with optional className", () => {
@@ -21,7 +21,7 @@ describe("Animate Gauge", () => {
     })
     renderComponent("workflow-1")
     expect(
-      within(screen.getByTitle("workflow-1")).getByTestId("gauge")
+      within(screen.getByTitle("workflow-1")).getByTestId("gauge"),
     ).toHaveClass("animate-none")
   })
 })

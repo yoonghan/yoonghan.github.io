@@ -16,7 +16,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
       arr.push(
         <td key={`${key}-${idx}`} className="p-2 border border-black">
           {value}
-        </td>
+        </td>,
       )
     }
     return arr

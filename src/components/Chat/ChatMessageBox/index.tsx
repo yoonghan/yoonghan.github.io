@@ -73,12 +73,12 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
           if (notifyReceipient) onMessageSend(message, MessageType.FILE)
         }
       },
-      [onMessageSend]
+      [onMessageSend],
     )
 
     const dropFileWithMessage = useMemo(
       () => dropFile(sendFileMessage),
-      [sendFileMessage]
+      [sendFileMessage],
     )
 
     const onDrop = (acceptedFiles: File[]) => {
@@ -107,13 +107,13 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
         addMessage(
           senderId: number | undefined,
           message: string,
-          messageType?: MessageType
+          messageType?: MessageType,
         ) {
           if (chatMessageDialogRef.current !== null) {
             chatMessageDialogRef.current.addMessage(
               senderId,
               message,
-              messageType
+              messageType,
             )
           }
         },
@@ -170,7 +170,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
         </form>
       </div>
     )
-  }
+  },
 )
 
 export default ChatMessageBox

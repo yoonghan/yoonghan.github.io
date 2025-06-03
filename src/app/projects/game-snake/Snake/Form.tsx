@@ -42,7 +42,7 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
       setErrorMessage("")
       return false
     },
-    [formValues.snakeSize, formValues.worldDimension]
+    [formValues.snakeSize, formValues.worldDimension],
   )
 
   const updateInput = useCallback(
@@ -54,7 +54,7 @@ const Form = ({ disabled, onUpdate, formValues }: Props) => {
         onUpdate({ id, value })
       }
     },
-    [hasCheckedException, onUpdate]
+    [hasCheckedException, onUpdate],
   )
 
   return (

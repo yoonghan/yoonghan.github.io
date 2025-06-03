@@ -6,7 +6,7 @@ describe("MessageFormatter", () => {
     expect(encodeMessage("hi", MessageType.FILE)).toBe("F|hi")
     expect(encodeMessage("|HIsdf", MessageType.FILE)).toBe("F||HIsdf")
     expect(encodeMessage("this is a long message", MessageType.TEXT)).toBe(
-      "T|this is a long message"
+      "T|this is a long message",
     )
   })
 

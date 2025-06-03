@@ -21,7 +21,7 @@ const postMessage = async (req: NextRequest) => {
         { error: "Not authorized." },
         {
           status: 401,
-        }
+        },
       )
     }
   } else {
@@ -29,7 +29,7 @@ const postMessage = async (req: NextRequest) => {
       { error: "Pusher initialized values has not been set." },
       {
         status: 500,
-      }
+      },
     )
   }
 }
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       {
         error: err?.message,
       },
-      { status: 405 }
+      { status: 405 },
     )
   }
 }

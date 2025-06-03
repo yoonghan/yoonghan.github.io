@@ -20,7 +20,7 @@ describe("SiteMap", () => {
     expect(screen.getByText("Projects")).toHaveAttribute("href", "/projects")
     expect(screen.getByText("Lessons")).toHaveAttribute(
       "href",
-      "/projects/lessons"
+      "/projects/lessons",
     )
   })
 

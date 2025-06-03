@@ -53,7 +53,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
     (message: string, messageType: MessageType) => {
       send(message, messageType)
     },
-    [send]
+    [send],
   )
 
   return (
@@ -75,5 +75,5 @@ export default withNonEmptyEnvCheck(
     appKey: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
     cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
   }),
-  "Pusher initialization failed due to missing environment variable."
+  "Pusher initialization failed due to missing environment variable.",
 )
