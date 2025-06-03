@@ -19,11 +19,11 @@ describe("HomePage", () => {
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
         "href",
-        `#${link}`
+        `#${link}`,
       )
       expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
         "id",
-        link
+        link,
       )
     })
   })
@@ -35,11 +35,11 @@ describe("HomePage", () => {
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
         "href",
-        `#${link}`
+        `#${link}`,
       )
       expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
         "id",
-        link
+        link,
       )
     })
   })
@@ -51,11 +51,11 @@ describe("HomePage", () => {
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
         "href",
-        `#${link}`
+        `#${link}`,
       )
       expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
         "id",
-        link
+        link,
       )
     })
   })
@@ -67,11 +67,11 @@ describe("HomePage", () => {
       renderComponent()
       expect(screen.getByRole("link", { name: title })).toHaveAttribute(
         "href",
-        `#${link}`
+        `#${link}`,
       )
       expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
         "id",
-        link
+        link,
       )
     })
   })

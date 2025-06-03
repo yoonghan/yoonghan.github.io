@@ -15,7 +15,7 @@ describe("Loader", () => {
       () => {
         expect(loader).not.toHaveStyle({ opacity: 0, width: "100px" })
       },
-      { timeout: 100 }
+      { timeout: 100 },
     )
   })
 })

@@ -17,10 +17,10 @@ describe("Board", () => {
         snakeSize={2}
         snakeSpeed={100}
         cellSize={10}
-      />
+      />,
     )
     expect(
-      await screen.findByRole("button", { name: "Play" })
+      await screen.findByRole("button", { name: "Play" }),
     ).toBeInTheDocument()
   })
 
@@ -60,10 +60,10 @@ describe("Board", () => {
             rewardInformationCallback={rewardInformationCallback}
             startRewardCell={3}
           />
-        </GameContext.Provider>
+        </GameContext.Provider>,
       )
       expect(
-        await screen.findByRole("button", { name: "Play" })
+        await screen.findByRole("button", { name: "Play" }),
       ).toBeInTheDocument()
       return { rewardInfo }
     }
@@ -81,7 +81,7 @@ describe("Board", () => {
       await renderComponent()
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
       expect(
-        await screen.findByRole("button", { name: "Playing..." })
+        await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
@@ -100,7 +100,7 @@ describe("Board", () => {
       await renderComponent()
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
       expect(
-        await screen.findByRole("button", { name: "Playing..." })
+        await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
@@ -119,7 +119,7 @@ describe("Board", () => {
       await renderComponent()
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
       expect(
-        await screen.findByRole("button", { name: "Playing..." })
+        await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)
@@ -151,7 +151,7 @@ describe("Board", () => {
       await renderComponent()
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
       expect(
-        await screen.findByRole("button", { name: "Playing..." })
+        await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
       expect(await screen.findByText("Playing")).toBeInTheDocument()
       jest.advanceTimersByTime(1000)

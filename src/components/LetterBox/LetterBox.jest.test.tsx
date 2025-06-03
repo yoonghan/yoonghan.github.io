@@ -8,8 +8,8 @@ describe("LetterBox", () => {
     render(<LetterBox />)
     expect(
       screen.getByText(
-        "If you are interested to talk to us, leave us your contact. Let us reach you instead."
-      )
+        "If you are interested to talk to us, leave us your contact. Let us reach you instead.",
+      ),
     ).toBeInTheDocument()
   })
 
@@ -17,7 +17,7 @@ describe("LetterBox", () => {
     render(<LetterBox />)
     await userEvent.type(
       screen.getByPlaceholderText("Honorific and name"),
-      "test@email.com"
+      "test@email.com",
     )
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
@@ -25,7 +25,7 @@ describe("LetterBox", () => {
     expect(screen.getByRole("dialog")).toBeInTheDocument()
 
     expect(window.location.href).toContain(
-      "mailto:walcoorperation@gmail.com?subject=Contact%20from%20test%40email.com%20website&body="
+      "mailto:walcoorperation@gmail.com?subject=Contact%20from%20test%40email.com%20website&body=",
     )
 
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
@@ -37,7 +37,7 @@ describe("LetterBox", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
     await userEvent.type(
       screen.getByPlaceholderText("Honorific and name"),
-      "test@email.com{enter}"
+      "test@email.com{enter}",
     )
     expect(screen.getByRole("dialog")).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))

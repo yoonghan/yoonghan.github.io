@@ -26,7 +26,7 @@ export const callAnotherPerson = async (
   caller: Page,
   receiver: Page,
   callerName: string,
-  receiverName: string
+  receiverName: string,
 ) => {
   for (
     let count = 0;
@@ -46,6 +46,6 @@ export const callAnotherPerson = async (
     .click({ force: true })
   await receiver.waitForTimeout(3000)
   expect(await receiver.content()).toContain(
-    `You have a call from (${callerName}). Would you like to answer?`
+    `You have a call from (${callerName}). Would you like to answer?`,
   )
 }

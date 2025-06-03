@@ -10,12 +10,12 @@ describe("EmailSender", () => {
         writeFrom="Recipient"
         writeTo="Sender"
         onCancel={jest.fn()}
-      />
+      />,
     )
     expect(
       screen.getByText(
-        "Apologies that we do require you to use your own mailbox"
-      )
+        "Apologies that we do require you to use your own mailbox",
+      ),
     ).toBeInTheDocument()
 
     await userEvent.click(screen.getByRole("dialog"))
@@ -30,10 +30,10 @@ describe("EmailSender", () => {
         writeFrom="Enc0&dRecX"
         writeTo={sender}
         onCancel={jest.fn()}
-      />
+      />,
     )
     expect(window.location.href).toBe(
-      `mailto:${sender}?subject=Contact%20from%20Enc0%26dRecX%20website&body=${expectedBody}`
+      `mailto:${sender}?subject=Contact%20from%20Enc0%26dRecX%20website&body=${expectedBody}`,
     )
   })
 })

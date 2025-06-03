@@ -23,7 +23,7 @@ describe("Video", () => {
         imgWebpSrc={imgWebpSrc}
         imgAlt={imgAlt}
         preload={preload}
-      />
+      />,
     )
     const video = screen.getByTestId("video") as HTMLVideoElement
     // eslint-disable-next-line testing-library/no-node-access
@@ -35,7 +35,7 @@ describe("Video", () => {
     const { video } = renderComponent({})
     expect(screen.getByTestId("video")).toBeInTheDocument()
     expect(
-      screen.getByText("Your browser does not support MP4 videos")
+      screen.getByText("Your browser does not support MP4 videos"),
     ).toBeInTheDocument()
   })
 
@@ -43,7 +43,7 @@ describe("Video", () => {
     it("should render video sound off / video muted to apply to standard HTML rule for autoplay", () => {
       const { video } = renderComponent({})
       expect(
-        screen.getByRole("button", { name: "with sound ( off )" })
+        screen.getByRole("button", { name: "with sound ( off )" }),
       ).toBeInTheDocument()
       expect(video.muted).toBe(true)
     })
@@ -51,13 +51,13 @@ describe("Video", () => {
     it("should render sound can be toggled", async () => {
       renderComponent({})
       await UserEvent.click(
-        screen.getByRole("button", { name: "with sound ( off )" })
+        screen.getByRole("button", { name: "with sound ( off )" }),
       )
       await UserEvent.click(
-        screen.getByRole("button", { name: "with sound ( on )" })
+        screen.getByRole("button", { name: "with sound ( on )" }),
       )
       await UserEvent.click(
-        screen.getByRole("button", { name: "with sound ( off )" })
+        screen.getByRole("button", { name: "with sound ( off )" }),
       )
     })
   })
@@ -69,13 +69,13 @@ describe("Video", () => {
     video.play = videoPlayFn
 
     expect(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
     await UserEvent.hover(videoDivWrapper)
     expect(videoPlayFn).toBeCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
   })
 
@@ -86,13 +86,13 @@ describe("Video", () => {
     video.play = videoPlayFn
 
     expect(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
     await UserEvent.click(videoDivWrapper)
     expect(videoPlayFn).toBeCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
-      screen.getByRole("button", { name: "with sound ( on )" })
+      screen.getByRole("button", { name: "with sound ( on )" }),
     ).toBeInTheDocument()
   })
 
@@ -120,10 +120,10 @@ describe("Video", () => {
     video.play = videoPlayFn
 
     await UserEvent.click(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
-      screen.getByRole("button", { name: "with sound ( on )" })
+      screen.getByRole("button", { name: "with sound ( on )" }),
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
@@ -139,10 +139,10 @@ describe("Video", () => {
     video.play = videoPlayFn
 
     await UserEvent.click(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
-      screen.getByRole("button", { name: "with sound ( on )" })
+      screen.getByRole("button", { name: "with sound ( on )" }),
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
@@ -161,10 +161,10 @@ describe("Video", () => {
     video.play = videoPlayFn
 
     await UserEvent.click(
-      screen.getByRole("button", { name: "with sound ( off )" })
+      screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
-      screen.getByRole("button", { name: "with sound ( on )" })
+      screen.getByRole("button", { name: "with sound ( on )" }),
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)

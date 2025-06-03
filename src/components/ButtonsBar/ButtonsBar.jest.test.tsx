@@ -19,7 +19,7 @@ describe("ButtonsBar", () => {
             link: "/three",
           },
         ]}
-      />
+      />,
     )
     expect(screen.getByText("sample")).toHaveAttribute("href", "/")
     expect(screen.getByText("two")).toHaveAttribute("href", "/two")
@@ -44,7 +44,7 @@ describe("ButtonsBar", () => {
           },
         ]}
         activeIndex={1}
-      />
+      />,
     )
     const activeText = screen.getByText("two")
     expect(activeText).toHaveAttribute("href", "/two")
@@ -62,7 +62,7 @@ describe("ButtonsBar", () => {
             link: "/",
           },
         ]}
-      />
+      />,
     )
     expect(screen.getByText("only 1")).toBeInTheDocument()
   })

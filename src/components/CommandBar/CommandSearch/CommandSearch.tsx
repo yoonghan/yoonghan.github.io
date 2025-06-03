@@ -121,7 +121,7 @@ export const AvailableInput: ICommand = {
     exec: (element: HTMLDivElement, cancellationCallback: () => void) => {
       return createPortal(
         <PwaEnabler onCancel={cancellationCallback} />,
-        element
+        element,
       )
     },
   },

@@ -69,7 +69,7 @@ const Performance = () => {
   const renderShownComponent = (
     id: string,
     buttonText: string,
-    component: any
+    component: any,
   ) => {
     return (
       <>
@@ -102,7 +102,7 @@ const Performance = () => {
         {renderShownComponent(
           "heavyLoader",
           "Toggle Display",
-          <HeavyLoaderNoSSR />
+          <HeavyLoaderNoSSR />,
         )}
       </section>
       <section>
@@ -110,7 +110,7 @@ const Performance = () => {
         {renderShownComponent(
           "suspense",
           "Toggle Suspense Display",
-          <SuspenseNoSSR />
+          <SuspenseNoSSR />,
         )}
       </section>
       <section>
@@ -119,7 +119,7 @@ const Performance = () => {
         {renderShownComponent(
           "reactTracked",
           "Toggle React Tracked",
-          <ReactTrackedNoSSR />
+          <ReactTrackedNoSSR />,
         )}
       </section>
       <section>
@@ -128,7 +128,7 @@ const Performance = () => {
         {renderShownComponent(
           "largeForm",
           "Toggle Large Form",
-          <LargeFormNoSSR />
+          <LargeFormNoSSR />,
         )}
       </section>
       <section>
@@ -137,7 +137,7 @@ const Performance = () => {
         {renderShownComponent(
           "largeForm2",
           "Toggle Large Form 2",
-          <LargeForm2NoSSR />
+          <LargeForm2NoSSR />,
         )}
       </section>
     </div>

@@ -38,7 +38,7 @@ const PageReaderIndicator = ({ scrollContainer }: Props) => {
       scrollContainer.current.addEventListener(
         "scroll",
         updateScrollPercentage,
-        { passive: true }
+        { passive: true },
       )
     }
   }, [scrollContainer])

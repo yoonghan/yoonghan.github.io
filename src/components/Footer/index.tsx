@@ -17,7 +17,7 @@ const Footer = () => {
         <Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
       </li>
     ),
-    []
+    [],
   )
 
   const renderedLearn = useMemo(() => {
@@ -25,7 +25,7 @@ const Footer = () => {
       .filter(
         (footerPage) =>
           !footerPage.path.startsWith("/projects") &&
-          !footerPage.path.startsWith("/experiments")
+          !footerPage.path.startsWith("/experiments"),
       )
       .map((footerPage) => renderLinks(footerPage))
   }, [renderLinks])

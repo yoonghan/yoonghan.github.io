@@ -6,7 +6,7 @@ describe("StoryMaker", () => {
     render(
       <StoryMaker
         items={[{ title: "Sample Title", component: <div>Sample Body</div> }]}
-      />
+      />,
     )
     expect(screen.getByTitle("Sample Title")).toBeInTheDocument()
     expect(screen.getByText("Sample Body")).toBeInTheDocument()

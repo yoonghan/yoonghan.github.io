@@ -47,7 +47,7 @@ describe("Client Cookie", () => {
     renderComponent()
     await userEvent.click(screen.getByRole("button", { name: "Accept" }))
     expect(
-      screen.queryByText("This site uses cookies.")
+      screen.queryByText("This site uses cookies."),
     ).not.toBeInTheDocument()
     assertCookie()
     expect(gtagFn).toHaveBeenCalledTimes(2)
@@ -65,7 +65,7 @@ describe("Client Cookie", () => {
     })
     renderComponent()
     expect(
-      screen.queryByText("This site uses cookies.")
+      screen.queryByText("This site uses cookies."),
     ).not.toBeInTheDocument()
     expect(gtagFn).toHaveBeenCalledTimes(2)
     expect(gtagFn).toHaveBeenCalledWith("consent", "default", {
@@ -86,7 +86,7 @@ describe("Client Cookie", () => {
     })
     renderComponent()
     expect(
-      screen.queryByText("This site uses cookies.")
+      screen.queryByText("This site uses cookies."),
     ).not.toBeInTheDocument()
   })
 })

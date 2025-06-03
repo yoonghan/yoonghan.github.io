@@ -63,7 +63,7 @@ describe("root-url", () => {
     //read site.ts for more details
     const { site } = await import("./site")
     expect(site.cronApiUrl).toStrictEqual(
-      "https://www.walcron.com/api/cron?action=today"
+      "https://www.walcron.com/api/cron?action=today",
     )
   })
 })

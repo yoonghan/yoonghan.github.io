@@ -45,7 +45,7 @@ describe("usePwaHooks", () => {
           const { isRegistered } = result.current
           return expect(isRegistered).toBeTruthy()
         },
-        { interval: 50 }
+        { interval: 50 },
       )
     })
 
@@ -56,7 +56,7 @@ describe("usePwaHooks", () => {
           const { isRegistered } = result.current
           return expect(isRegistered).toBeTruthy()
         },
-        { interval: 50 }
+        { interval: 50 },
       )
       const { isLatestInstalled, hasLatestUpdate } = result.current
       expect(hasLatestUpdate).toBe(true)

@@ -25,7 +25,7 @@ test.describe("Messenger", () => {
     expect(
       page
         .locator(".react-bell-chat__chat-scroll-area")
-        .getByText("Hello World")
+        .getByText("Hello World"),
     ).toBeDefined()
   })
 
@@ -35,10 +35,10 @@ test.describe("Messenger", () => {
     expect(await page.content()).toContain("A Walcron Chat Program")
     await page.setInputFiles(
       'input[type="file"]',
-      "src/__e2e__/upload/sample.txt"
+      "src/__e2e__/upload/sample.txt",
     )
     expect(await page.content()).toContain(
-      "This file will be shared publicly. Are you sure?"
+      "This file will be shared publicly. Are you sure?",
     )
     await page.getByRole("button", { name: "No" }).click()
     //no possible way to test this unfortunately.
@@ -53,20 +53,20 @@ test.describe("Messenger", () => {
     expect(await page.content()).toContain("A Walcron Chat Program")
     await page.setInputFiles(
       'input[type="file"]',
-      "src/__e2e__/upload/sample.txt"
+      "src/__e2e__/upload/sample.txt",
     )
 
     expect(await page.content()).toContain(
-      "This file will be shared publicly. Are you sure?"
+      "This file will be shared publicly. Are you sure?",
     )
     await page.getByRole("button", { name: "No" }).click()
     await page.setInputFiles(
       'input[type="file"]',
-      "src/__e2e__/upload/sample.txt"
+      "src/__e2e__/upload/sample.txt",
     )
 
     expect(await page.content()).toContain(
-      "This file will be shared publicly. Are you sure?"
+      "This file will be shared publicly. Are you sure?",
     )
   })
 })
