@@ -45,7 +45,7 @@
     "@types/react": "^18.3.3",
     "@types/react-confirm": "^0.2.0",
     "@types/react-toggle": "^4.0.5",
-    "@types/uuid": "^9.0.0",
+    "@types/uuid": "^10.0.0",
     "@yoonghan/walcron-microfrontend-shared": "^10.10.0",
     "autoprefixer": "^10.4.19",
     "backstopjs": "^6.3.25",
