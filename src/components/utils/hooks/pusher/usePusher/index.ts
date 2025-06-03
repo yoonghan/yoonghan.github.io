@@ -17,7 +17,7 @@ type Props = {
   printEventCallback: (
     message: string,
     messageType: MessageType,
-    senderId?: number
+    senderId?: number,
   ) => void
   appKey: string
   cluster: string
@@ -30,7 +30,7 @@ export function usePusher(props: Props) {
   const pusherChannelClient = useRef<PusherJS>()
   const channel = useRef<Channel>()
   const connectionStatus = useRef<EnumConnectionStatus>(
-    EnumConnectionStatus.Disconnected
+    EnumConnectionStatus.Disconnected,
   )
 
   const channelName = `${props.channelPrefix ? props.channelPrefix + "-" : ""}${
@@ -41,12 +41,12 @@ export function usePusher(props: Props) {
   useDebugValue("connection:" + connectionStatus.current)
 
   const updateConnectionStatus = (
-    latestConnectionStatus: EnumConnectionStatus
+    latestConnectionStatus: EnumConnectionStatus,
   ) => {
     connectionStatus.current = latestConnectionStatus
     printConnectionCallback(
       `Status: ${latestConnectionStatus}`,
-      MessageType.CONNECTION
+      MessageType.CONNECTION,
     )
   }
 
@@ -60,9 +60,9 @@ export function usePusher(props: Props) {
           printEventCallback(
             complexMessage.message,
             complexMessage.messageType,
-            data.senderId
+            data.senderId,
           )
-        }
+        },
       )
     }
   }
@@ -74,9 +74,9 @@ export function usePusher(props: Props) {
         (data: { subscription_count: string }) => {
           printConnectionCallback(
             `Active user count: ${data.subscription_count}`,
-            MessageType.USERCOUNT
+            MessageType.USERCOUNT,
           )
-        }
+        },
       )
     }
   }
@@ -95,7 +95,7 @@ export function usePusher(props: Props) {
         updateConnectionStatus(EnumConnectionStatus.Disconnected)
         printConnectionCallback(
           "Connection failed as websocket is not supported by browser",
-          MessageType.CONNECTION_ERROR
+          MessageType.CONNECTION_ERROR,
         )
         pusherChannelClient.current = undefined
         channel.current = undefined
@@ -112,7 +112,7 @@ export function usePusher(props: Props) {
         ) {
           printConnectionCallback(
             "A different Id was requested, please refresh the page.",
-            MessageType.CONNECTION_ERROR
+            MessageType.CONNECTION_ERROR,
           )
           updateConnectionStatus(EnumConnectionStatus.Disconnected)
           pusherChannelClient.current = undefined
@@ -123,7 +123,7 @@ export function usePusher(props: Props) {
           updateConnectionStatus(EnumConnectionStatus.Error)
           printConnectionCallback(
             "Interruption error encountered",
-            MessageType.CONNECTION_ERROR
+            MessageType.CONNECTION_ERROR,
           )
         }
       })
@@ -145,7 +145,7 @@ export function usePusher(props: Props) {
     if (pusherChannelClient.current) {
       printConnectionCallback(
         "Connection is already established",
-        MessageType.TEXT
+        MessageType.TEXT,
       )
       return
     }
@@ -153,7 +153,7 @@ export function usePusher(props: Props) {
     updateConnectionStatus(EnumConnectionStatus.StartConnecting)
     printConnectionCallback(
       "Establishing Connection, please wait.",
-      MessageType.TEXT
+      MessageType.TEXT,
     )
 
     const enabledTransports: Transport[] = ["sockjs", "ws"]

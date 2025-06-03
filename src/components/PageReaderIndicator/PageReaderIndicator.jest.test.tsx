@@ -5,11 +5,11 @@ import PageReaderIndicator from "."
 describe("PageReaderIndicator", () => {
   const originalOffsetHeight = Object.getOwnPropertyDescriptor(
     HTMLDivElement.prototype,
-    "offsetHeight"
+    "offsetHeight",
   )
   const originalScrollHeight = Object.getOwnPropertyDescriptor(
     HTMLDivElement.prototype,
-    "scrollHeight"
+    "scrollHeight",
   )
 
   beforeAll(() => {
@@ -31,12 +31,12 @@ describe("PageReaderIndicator", () => {
       Object.defineProperty(
         HTMLDivElement.prototype,
         "offsetHeight",
-        originalOffsetHeight
+        originalOffsetHeight,
       )
       Object.defineProperty(
         HTMLDivElement.prototype,
         "scrollHeight",
-        originalScrollHeight
+        originalScrollHeight,
       )
     }
   })
@@ -58,7 +58,7 @@ describe("PageReaderIndicator", () => {
   const assertScrollStatus = (
     scrollTop: number,
     expectedTextContent: string,
-    expectedWidthPercentage: number
+    expectedWidthPercentage: number,
   ) => {
     const container = screen.getByTestId("test-container")
     const scrollContainer = screen.getByTestId("scroll-container")

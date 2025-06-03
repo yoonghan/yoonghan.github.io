@@ -9,7 +9,7 @@ interface Props {
   onFocusCallback: (event: React.FormEvent<HTMLInputElement>) => void
   onSubmitCallback: (
     event: React.FormEvent<HTMLFormElement>,
-    typedInput: string
+    typedInput: string,
   ) => void
 }
 
@@ -26,7 +26,7 @@ const CommandBarInput = (props: Props) => {
       AVAILABLE_COMMAND_KEYS_WITH_HELP.map((command) => (
         <option value={command} key={command} />
       )),
-    []
+    [],
   )
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

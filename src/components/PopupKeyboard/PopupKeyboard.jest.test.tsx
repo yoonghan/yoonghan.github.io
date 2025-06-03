@@ -10,7 +10,7 @@ describe("PopupKeyboard", () => {
         buttonText={"Interactive Keyboard"}
         keyboardType={"Arrows"}
         onClickCallback={clickCallback}
-      />
+      />,
     )
 
     await userEvent.click(screen.getByText("Interactive Keyboard"))
@@ -37,7 +37,7 @@ describe("PopupKeyboard", () => {
           keyboardType={"Arrows"}
           onClickCallback={clickCallback}
         />
-      </div>
+      </div>,
     )
 
     const upButton = "↑"
@@ -65,7 +65,7 @@ describe("PopupKeyboard", () => {
         keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
-      />
+      />,
     )
     const assertClickAction = assertKeyBoardAction(clickCallback)
 
@@ -90,7 +90,7 @@ describe("PopupKeyboard", () => {
         keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
-      />
+      />,
     )
 
     const assertClickAction = assertKeyBoardAction(clickCallback)
@@ -104,7 +104,7 @@ describe("PopupKeyboard", () => {
       () => {
         expect(clickCallback).toHaveBeenCalledTimes(1)
       },
-      { interval: 200 } //wait for queue to complete
+      { interval: 200 }, //wait for queue to complete
     )
   })
 })

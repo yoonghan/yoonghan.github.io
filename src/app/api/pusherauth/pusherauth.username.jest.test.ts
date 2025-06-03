@@ -45,7 +45,7 @@ describe("pusherauth/username", () => {
           new Promise((resolve, reject) => {
             resolve({ users })
           }),
-      } as unknown as Response)
+      }) as unknown as Response
 
     const mockUserResponse = (users: { id: string }[]) => {
       const userResponse = createResponse(users)
@@ -81,7 +81,7 @@ describe("pusherauth/username", () => {
           method: "POST",
           body: new FormData(),
         }),
-        usernameParam
+        usernameParam,
       )
       expect(response.status).toBe(405)
       expect(await response.json()).toStrictEqual({
@@ -98,7 +98,7 @@ describe("pusherauth/username", () => {
           method: "POST",
           body: form,
         }),
-        usernameParam
+        usernameParam,
       )
       expect(response.status).toBe(405)
       expect(await response.json()).toStrictEqual({

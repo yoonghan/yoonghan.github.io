@@ -159,12 +159,12 @@ export const generatedLinks = siteDevelopmentSections.map(
     id: siteDevelopmentSection.id,
     desc: siteDevelopmentSection.title,
     link: index + 1,
-  })
+  }),
 )
 
 export const reverseDisplayForEvenSection = (
   index: number,
-  styles: { readonly [key: string]: string }
+  styles: { readonly [key: string]: string },
 ) => (index % 2 === 0 ? "" : styles.reverse)
 
 export const generateSections = (
@@ -172,7 +172,7 @@ export const generateSections = (
     readonly [key: string]: string
   },
   scrollContainerRef: RefObject<HTMLDivElement>,
-  scrollHandlerRef: RefObject<ScrollHandler>
+  scrollHandlerRef: RefObject<ScrollHandler>,
 ) =>
   [
     <section key="introduction" className={styles.introduction}>
@@ -218,7 +218,7 @@ export const generateSections = (
           key={siteDevelopmentSection.id}
           className={`${styles.section} ${reverseDisplayForEvenSection(
             index,
-            styles
+            styles,
           )}`}
         >
           <article>

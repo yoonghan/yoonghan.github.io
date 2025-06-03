@@ -14,7 +14,7 @@ describe("SuspenseLoader", () => {
       await screen.findByText("I am done", undefined, {
         timeout: 3000,
         interval: 200,
-      })
+      }),
     ).toBeInTheDocument()
     expect(await screen.findByText("Error: I failed")).toBeInTheDocument()
   })

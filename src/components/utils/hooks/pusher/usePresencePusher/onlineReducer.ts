@@ -18,7 +18,7 @@ interface ClearUserAction extends ActionType {
 
 export const onlineUserReducer = (
   state: { id: string; name: string }[],
-  action: RemoveUserAction | ClearUserAction | AddUserAction
+  action: RemoveUserAction | ClearUserAction | AddUserAction,
 ) => {
   switch (action.type) {
     case "ADD_USER": {

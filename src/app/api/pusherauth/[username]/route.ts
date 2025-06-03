@@ -13,13 +13,13 @@ const authorize = (
   client: Pusher,
   socket_id: string,
   channel_name: string,
-  presenceData: PresenceChannelData
+  presenceData: PresenceChannelData,
 ) => client.authorizeChannel(socket_id, channel_name, presenceData)
 
 const userExists = async (
   pusherClient: Pusher,
   channel_name: string,
-  userid: string
+  userid: string,
 ) => {
   const res = await pusherClient.get({
     path: `/channels/${channel_name}/users`,
@@ -47,7 +47,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
       { error: "Pusher initialized values has not been set." },
       {
         status: 500,
-      }
+      },
     )
   }
 
@@ -56,7 +56,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
       { error: "Username defined is not valid." },
       {
         status: 400,
-      }
+      },
     )
   }
 
@@ -65,7 +65,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
       { error: "User already exist." },
       {
         status: 409,
-      }
+      },
     )
   }
 
@@ -77,7 +77,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
       { error: "Not authorized." },
       {
         status: 401,
-      }
+      },
     )
   }
 }
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest, { params }: Params) {
       {
         error: err?.message,
       },
-      { status: 405 }
+      { status: 405 },
     )
   }
 }

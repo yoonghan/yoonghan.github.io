@@ -100,7 +100,7 @@ const checkCronJob = wrapPromise<string | undefined>(
       .then((json) => {
         resolve(json?.message)
       })
-  })
+  }),
 )
 
 const CheckList = () => {

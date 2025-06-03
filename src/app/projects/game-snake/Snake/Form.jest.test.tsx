@@ -23,7 +23,7 @@ describe("Form", () => {
     }
   }) => {
     render(
-      <Form disabled={disabled} onUpdate={onUpdate} formValues={formValues} />
+      <Form disabled={disabled} onUpdate={onUpdate} formValues={formValues} />,
     )
   }
 
@@ -93,7 +93,7 @@ describe("Form", () => {
       await userEvent.type(screen.getByLabelText(label), "1")
       expect(mockUpdate).not.toHaveBeenCalled()
       expect(
-        await screen.findByText(field + " should be a number from 0 to 100")
+        await screen.findByText(field + " should be a number from 0 to 100"),
       ).toBeInTheDocument()
     }
 
@@ -104,7 +104,7 @@ describe("Form", () => {
 
     await userEvent.type(screen.getByLabelText("Cell Size:"), "{backspace}")
     expect(
-      screen.queryByText("cellSize should be a number from 0 to 100")
+      screen.queryByText("cellSize should be a number from 0 to 100"),
     ).not.toBeInTheDocument()
   })
 
@@ -123,7 +123,7 @@ describe("Form", () => {
     await userEvent.type(screen.getByLabelText("Snake Size:"), "1")
     expect(mockUpdate).not.toHaveBeenCalled()
     expect(
-      screen.getByText("snakeSize must be smaller than worldDimension")
+      screen.getByText("snakeSize must be smaller than worldDimension"),
     ).toBeInTheDocument()
   })
 
@@ -145,7 +145,7 @@ describe("Form", () => {
     })
     expect(mockUpdate).not.toHaveBeenCalled()
     expect(
-      screen.getByText("worldDimension must be larger than snakeCell")
+      screen.getByText("worldDimension must be larger than snakeCell"),
     ).toBeInTheDocument()
   })
 
@@ -190,7 +190,7 @@ describe("Form", () => {
     })
     expect(mockUpdate).not.toHaveBeenCalled()
     expect(
-      screen.getByText("snakeSize must be larger than 2")
+      screen.getByText("snakeSize must be larger than 2"),
     ).toBeInTheDocument()
   })
 })
