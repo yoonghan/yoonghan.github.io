@@ -36,7 +36,7 @@ const PopupKeyboard = ({
     (key: KeyboardKeys) => () => {
       onClickCallback(key)
     },
-    [onClickCallback]
+    [onClickCallback],
   )
 
   const buildKeyboardListener = useCallback(() => {
@@ -44,7 +44,7 @@ const PopupKeyboard = ({
       const direction = event.key
       if (keyboardType === "Arrows") {
         const matchedKey = arrowValues.find(
-          (arrowValue) => arrowValue === direction
+          (arrowValue) => arrowValue === direction,
         )
         if (matchedKey !== undefined) {
           queueMicrotask(onKeyClick(matchedKey))

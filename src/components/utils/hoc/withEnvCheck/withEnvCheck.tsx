@@ -3,7 +3,7 @@ import { hasEmptyValueInObject } from "../../common/object"
 export const withNonEmptyEnvCheck = <T extends { [key: string]: any }>(
   Component: (props: T) => JSX.Element,
   propsFn: () => T,
-  errorMessage = "One of the enviroment variable is missing"
+  errorMessage = "One of the enviroment variable is missing",
 ) =>
   function render() {
     const props = propsFn()

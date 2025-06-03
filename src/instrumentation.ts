@@ -13,7 +13,7 @@ export function register() {
             Authorization: `Bearer ${process.env.AXIOM_API_TOKEN}`,
             "X-Axiom-Dataset": `${process.env.AXIOM_DATASET_NAME}`,
           },
-        })
+        }),
       ),
     ],
   })

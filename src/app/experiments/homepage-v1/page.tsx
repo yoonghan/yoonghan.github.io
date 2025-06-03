@@ -13,7 +13,7 @@ function Homepage() {
 
   const sections = useMemo(
     () => generateSections(styles, scrollContainerRef, scrollHandlerRef),
-    []
+    [],
   )
 
   return (

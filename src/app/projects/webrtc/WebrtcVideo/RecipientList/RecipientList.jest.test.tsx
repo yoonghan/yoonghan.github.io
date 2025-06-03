@@ -21,7 +21,7 @@ describe("RecipientList", () => {
         recipients={users}
         recipientTriggered={callbackFn}
         disabled={false}
-      />
+      />,
     )
 
     expect(screen.getByRole("button", { name: "Call number1" })).toBeEnabled()
@@ -49,7 +49,7 @@ describe("RecipientList", () => {
         recipients={users}
         recipientTriggered={callbackFn}
         disabled={true}
-      />
+      />,
     )
 
     expect(screen.getByRole("button", { name: "Call number1" })).toBeDisabled()

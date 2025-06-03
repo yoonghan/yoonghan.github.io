@@ -53,7 +53,7 @@ export class Firebase {
     if (admin.apps.length === 0) {
       admin.initializeApp({
         credential: admin.credential.cert(
-          getFirebaseCredential(validCredentials)
+          getFirebaseCredential(validCredentials),
         ),
         storageBucket: validCredentials.FIREBASE_BUCKET,
         databaseURL: validCredentials.FIREBASE_DATABASE_URL,

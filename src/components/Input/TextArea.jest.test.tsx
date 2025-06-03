@@ -7,7 +7,7 @@ describe("TextArea", () => {
   const renderComponent = (
     value = "",
     onChange = jest.fn(),
-    onSubmit = jest.fn()
+    onSubmit = jest.fn(),
   ) =>
     render(<TextArea onSubmit={onSubmit} value={value} onChange={onChange} />)
 
@@ -43,7 +43,7 @@ describe("TextArea", () => {
     renderComponent("", onChangeFn, onSubmitFn)
     await UserEvent.type(
       screen.getByRole("textbox"),
-      "Hello{Shift>}{enter}{/Shift}World"
+      "Hello{Shift>}{enter}{/Shift}World",
     )
     expect(onChangeFn).toHaveBeenCalled()
     expect(onSubmitFn).not.toHaveBeenCalled()

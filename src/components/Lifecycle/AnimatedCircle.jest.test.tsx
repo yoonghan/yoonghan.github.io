@@ -6,7 +6,7 @@ describe("AnimatedCircle", () => {
   it("should render correctly", () => {
     render(<AnimatedCircle />)
     expect(screen.getByTitle("Deployment Lifecycle")).toHaveClass(
-      animeTailwindClass
+      animeTailwindClass,
     )
   })
 
@@ -18,7 +18,7 @@ describe("AnimatedCircle", () => {
 
     render(<AnimatedCircle />)
     expect(screen.getByTitle("Deployment Lifecycle")).toHaveClass(
-      "animate-none"
+      "animate-none",
     )
   })
 })

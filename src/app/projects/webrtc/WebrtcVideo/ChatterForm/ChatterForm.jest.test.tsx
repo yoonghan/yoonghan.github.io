@@ -17,7 +17,7 @@ describe("ChatterFrom", () => {
         senderButtonCanStop={senderButtonCanStop}
         senderButtonDisabled={senderButtonDisabled}
         startStopSenderVideo={startStopSenderVideo}
-      />
+      />,
     )
   }
 

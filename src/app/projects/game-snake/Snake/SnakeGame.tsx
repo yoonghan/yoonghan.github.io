@@ -32,7 +32,7 @@ const SnakeGame = () => {
 
   const calcSnakePos = useCallback(
     (dimension: number) => rnd(dimension * dimension),
-    []
+    [],
   )
 
   const [snakePos, setSnakePos] = useState(calcSnakePos(WORLD_DIMENSION))
@@ -47,7 +47,7 @@ const SnakeGame = () => {
         setSnakePos(rnd(form.worldDimension))
       }
     },
-    [form.worldDimension]
+    [form.worldDimension],
   )
 
   return (

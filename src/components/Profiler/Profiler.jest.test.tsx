@@ -26,7 +26,7 @@ describe("Profiler", () => {
             height: 13,
           },
         ]}
-      />
+      />,
     )
     expect(screen.getByText("name1")).toBeInTheDocument()
     expect(screen.getByText("name2")).toBeInTheDocument()
