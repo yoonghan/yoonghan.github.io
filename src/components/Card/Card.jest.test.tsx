@@ -20,7 +20,7 @@ describe("Card", () => {
             target: "_self",
           },
         ]}
-      />
+      />,
     )
     const linkOne = screen.getByRole("link", {
       name: "Title one Description one",

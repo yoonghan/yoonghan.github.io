@@ -13,13 +13,13 @@ describe("ConfirmationDialog", () => {
         onCancel={jest.fn()}
         onYesClick={jest.fn()}
         onNoClick={jest.fn()}
-      />
+      />,
     )
     expect(screen.getByText("I am Title")).toBeInTheDocument()
     expect(
       screen.getByText(
-        "Can you React from a shooting bullet travelling at lightspeed?"
-      )
+        "Can you React from a shooting bullet travelling at lightspeed?",
+      ),
     ).toBeInTheDocument()
   })
 
@@ -33,7 +33,7 @@ describe("ConfirmationDialog", () => {
         onNoClick={jest.fn()}
         yesButtonText={"Yupe"}
         noButtonText={"Oh uh"}
-      />
+      />,
     )
 
     screen.getByRole("button", { name: "Yupe" })
@@ -51,7 +51,7 @@ describe("ConfirmationDialog", () => {
         yesButtonText={"Yupe"}
         noButtonText={"Oh uh"}
         isNotModal={true}
-      />
+      />,
     )
 
     screen.getByRole("button", { name: "×" })
@@ -71,7 +71,7 @@ describe("ConfirmationDialog", () => {
           onCancel={onCancel}
           onYesClick={onYesClick}
           onNoClick={onNoClick}
-        />
+        />,
       )
       return { onYesClick, onNoClick, onCancel }
     }
@@ -116,7 +116,7 @@ describe("ConfirmationDialog", () => {
             "Can you React from a shooting bullet travelling at lightspeed?"
           }
           onYesClick={jest.fn()}
-        />
+        />,
       )
       assertDialog(true)
       await UserEvent.type(screen.getByRole("dialog"), "{escape}")
@@ -131,7 +131,7 @@ describe("ConfirmationDialog", () => {
             "Can you React from a shooting bullet travelling at lightspeed?"
           }
           onYesClick={jest.fn()}
-        />
+        />,
       )
       assertDialog(true)
       await UserEvent.click(screen.getByRole("button", { name: "No" }))

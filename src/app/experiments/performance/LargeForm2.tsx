@@ -19,7 +19,7 @@ const isEmpty = (value: null | undefined | string | number) => {
 
 const reducer = (
   state: string[],
-  action: { type: "ADD"; fieldIdUpdated: string }
+  action: { type: "ADD"; fieldIdUpdated: string },
 ) => {
   if (action.type === "ADD") {
     return [...state, action.fieldIdUpdated]
@@ -85,7 +85,7 @@ const InputForm = ({
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const nonEmptyObjects = Object.entries(form).filter(
-        ([_, value]) => !isEmpty(value)
+        ([_, value]) => !isEmpty(value),
       )
       if (nonEmptyObjects.length !== 0) {
         setFormFilled(nonEmptyObjects.map(([key, value]) => key).join(", "))
@@ -94,7 +94,7 @@ const InputForm = ({
       }
       return false
     },
-    [form]
+    [form],
   )
 
   const printableFormData = useMemo(() => JSON.stringify(form), [form])
@@ -112,7 +112,7 @@ const InputForm = ({
             dependantField={`field${index + 1}`}
           />
         )),
-    [updateMonitor]
+    [updateMonitor],
   )
 
   return (
@@ -150,7 +150,7 @@ const InputField = ({ id, updateMonitor, dependantField }: InputProps) => {
         [id]: value,
       }))
     },
-    [setForm]
+    [setForm],
   )
 
   useEffect(() => {
@@ -175,7 +175,7 @@ const InputField = ({ id, updateMonitor, dependantField }: InputProps) => {
           onChange={updateForm}
         ></input>
       ),
-    [form, id, updateForm]
+    [form, id, updateForm],
   )
 
   return (

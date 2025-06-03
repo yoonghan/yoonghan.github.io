@@ -6,8 +6,8 @@ describe("Messenger", () => {
     render(<Messenger />)
     expect(
       screen.getByText(
-        "Pusher initialization failed due to missing environment variable."
-      )
+        "Pusher initialization failed due to missing environment variable.",
+      ),
     ).toBeInTheDocument()
   })
 })

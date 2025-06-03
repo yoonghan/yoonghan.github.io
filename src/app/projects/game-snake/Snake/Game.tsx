@@ -67,7 +67,7 @@ const Game = ({
           snakeCellIdx,
           worldWidth,
           cellSize,
-          i === 0 ? "#7878db" : "#000000"
+          i === 0 ? "#7878db" : "#000000",
         )
       })
   }, [cellSize, ctx, world, worldWidth])
@@ -107,7 +107,7 @@ const Game = ({
           break
       }
     },
-    [world]
+    [world],
   )
 
   const onPlayClicked = useCallback(() => {

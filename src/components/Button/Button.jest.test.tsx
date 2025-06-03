@@ -31,7 +31,7 @@ describe("Button", () => {
     render(
       <Button onClick={clickFn} additionalProps={{ type: "submit" }}>
         Click Me
-      </Button>
+      </Button>,
     )
     const button = screen.getByRole("button", { name: "Click Me" })
     await userEvent.click(button)
@@ -52,7 +52,7 @@ describe("Button", () => {
     render(
       <Button href={"http://www.google.com"} target={"_blank"}>
         Link Me
-      </Button>
+      </Button>,
     )
     const linkButton = screen.getByRole("link", { name: "Link Me" })
     expect(linkButton).toHaveAttribute("href", "http://www.google.com")
@@ -70,21 +70,21 @@ describe("Button", () => {
   describe("styling", () => {
     it("should support all", () => {
       render(
-        <Button styling={{ small: true, inverted: true }}>Button Text</Button>
+        <Button styling={{ small: true, inverted: true }}>Button Text</Button>,
       )
       expect(screen.getByRole("button")).toHaveClass("container small invert")
     })
 
     it("should support only small", () => {
       render(
-        <Button styling={{ small: true, inverted: false }}>Button Text</Button>
+        <Button styling={{ small: true, inverted: false }}>Button Text</Button>,
       )
       expect(screen.getByRole("button")).toHaveClass("container small")
     })
 
     it("should support only inverted", () => {
       render(
-        <Button styling={{ small: false, inverted: true }}>Button Text</Button>
+        <Button styling={{ small: false, inverted: true }}>Button Text</Button>,
       )
       expect(screen.getByRole("button")).toHaveClass("container invert")
     })
@@ -99,7 +99,7 @@ describe("Button", () => {
           }}
         >
           Button Text
-        </Button>
+        </Button>,
       )
       expect(screen.getByRole("button")).toHaveClass("additional-color")
     })

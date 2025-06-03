@@ -41,7 +41,7 @@ describe("pusherauth", () => {
         new NextRequest("http://walcron.com", {
           method: "POST",
           body: new FormData(),
-        })
+        }),
       )
       expect(response.status).toBe(405)
       expect(await response.json()).toStrictEqual({
@@ -56,7 +56,7 @@ describe("pusherauth", () => {
         new NextRequest("http://walcron.com", {
           method: "POST",
           body: form,
-        })
+        }),
       )
       expect(response.status).toBe(405)
       expect(await response.json()).toStrictEqual({

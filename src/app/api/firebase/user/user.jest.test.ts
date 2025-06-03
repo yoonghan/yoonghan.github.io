@@ -42,7 +42,7 @@ describe("firebase/user", () => {
 
   it("should fail without environment set", async () => {
     const response = await POST(
-      mockRequest({ email: "han@test.com", password: "test123" })
+      mockRequest({ email: "han@test.com", password: "test123" }),
     )
     expect(response.status).toBe(400)
     expect(await response.json()).toStrictEqual({
@@ -61,7 +61,7 @@ describe("firebase/user", () => {
 
     it("should create user", async () => {
       const response = await POST(
-        mockRequest({ email: "han@test.com", password: "password123" })
+        mockRequest({ email: "han@test.com", password: "password123" }),
       )
       expect(response.status).toBe(200)
       expect(await response.json()).toStrictEqual({

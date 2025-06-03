@@ -32,5 +32,5 @@ const getProcess = () => ({
 export default withNonEmptyEnvCheck(
   WebRtc,
   getProcess,
-  "Pusher initialization failed due to missing environment variable."
+  "Pusher initialization failed due to missing environment variable.",
 )

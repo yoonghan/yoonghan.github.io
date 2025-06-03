@@ -13,12 +13,12 @@ describe("Experiments", () => {
 
   it("should contain all Experiments submenus", () => {
     const allExperimentsPath = findAllChildByPath("/experiments").map(
-      (child) => child.path
+      (child) => child.path,
     )
     const cardsPath = cards.map((card) => card.href)
 
     const sortedAllExperimentsPath = allExperimentsPath.toSorted((a, b) =>
-      a.localeCompare(b)
+      a.localeCompare(b),
     )
 
     const sortedCardsPath = cardsPath.toSorted((a, b) => a.localeCompare(b))

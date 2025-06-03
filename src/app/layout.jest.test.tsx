@@ -8,7 +8,7 @@ describe("Main Layout", () => {
     render(
       <Body>
         <>Sample</>
-      </Body>
+      </Body>,
     )
   }
 
@@ -36,10 +36,10 @@ describe("Main Layout", () => {
     const cookieSection = await screen.findByTestId("cookie-dialog")
     expect(within(cookieSection).getByText(cookieText)).toBeInTheDocument()
     await userEvent.click(
-      within(cookieSection).getByRole("button", { name: "Accept" })
+      within(cookieSection).getByRole("button", { name: "Accept" }),
     )
     expect(
-      within(cookieSection).queryByText(cookieText)
+      within(cookieSection).queryByText(cookieText),
     ).not.toBeInTheDocument()
   })
 })

@@ -48,7 +48,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
         onOk: () => {},
       })
     },
-    [promptMessageDialog]
+    [promptMessageDialog],
   )
 
   const setWebRtcRemoteStream = useCallback(
@@ -59,14 +59,14 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
         promptMessage("No stream")
       }
     },
-    [promptMessage]
+    [promptMessage],
   )
 
   const webRtcErrorCallback = useCallback(
     (errorMessage: string) => {
       promptMessage(errorMessage)
     },
-    [promptMessage]
+    [promptMessage],
   )
 
   const {
@@ -100,7 +100,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
           break
       }
     },
-    [disconnectWebRtc, promptMessage]
+    [disconnectWebRtc, promptMessage],
   )
 
   const shouldUpdatedOfflineUserEnd = useCallback(
@@ -112,7 +112,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
       }
       return false
     },
-    [promptMessage]
+    [promptMessage],
   )
 
   const { connect, disconnect, onlineUsers, bind, trigger, myId } =
@@ -196,7 +196,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
       promptConfirmDialog,
       stream,
       trigger,
-    ]
+    ],
   )
 
   const startStopVideo = useCallback(
@@ -207,7 +207,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
         disconnect()
       }
     },
-    [connect, disconnect, recordingStarted]
+    [connect, disconnect, recordingStarted],
   )
 
   const callUser = useCallback(
@@ -234,7 +234,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
         })
       })
     },
-    [addIceCandidate, bind, createOffer, promptMessage, trigger]
+    [addIceCandidate, bind, createOffer, promptMessage, trigger],
   )
 
   return (

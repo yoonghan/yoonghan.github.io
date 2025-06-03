@@ -141,13 +141,13 @@ const isSubMenu = (path: string) => path.split("/").length !== 2
 export const sortedMenuPagesWithFilteredHomeAndSubMenu = sortedPages.filter(
   (page) =>
     !page.filterOptions?.includes(FilterOption.NOT_MENU) &&
-    !isSubMenu(page.path)
+    !isSubMenu(page.path),
 )
 
 export const sortedSiteMapPages = sortedPages.filter(
-  (page) => !page.filterOptions?.includes(FilterOption.NOT_SITE_MAP)
+  (page) => !page.filterOptions?.includes(FilterOption.NOT_SITE_MAP),
 )
 
 export const sortedFooterPages = sortedPages.filter(
-  (page) => !page.filterOptions?.includes(FilterOption.NOT_FOOTER)
+  (page) => !page.filterOptions?.includes(FilterOption.NOT_FOOTER),
 )
