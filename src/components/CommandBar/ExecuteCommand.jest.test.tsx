@@ -9,7 +9,7 @@ describe("CommandBar", () => {
   let specialInputCallback: jest.Mock<any, any>
 
   const createCommandBar = (
-    routeLocation: string | undefined | null = "/samplePage"
+    routeLocation: string | undefined | null = "/samplePage",
   ) => {
     routeCallback = jest.fn()
     routeBackCallback = jest.fn()
@@ -26,7 +26,7 @@ describe("CommandBar", () => {
       cancelCallback,
       route,
       routeLocation,
-      specialInputCallback
+      specialInputCallback,
     )
   }
 
@@ -38,7 +38,7 @@ describe("CommandBar", () => {
     it("should inform me of invalid input and direct to help", function () {
       render(<div>{createCommandBar()("I am not a valid input")}</div>)
       expect(
-        screen.getByText("I am... - not found. type HELP.")
+        screen.getByText("I am... - not found. type HELP."),
       ).toBeInTheDocument()
     })
   })
@@ -170,7 +170,7 @@ describe("CommandBar", () => {
     it("should attach share", function () {
       render(<div>{createCommandBar()("share")}</div>)
       expect(
-        screen.getByText("Msg: Couldn't run HTML5 share.")
+        screen.getByText("Msg: Couldn't run HTML5 share."),
       ).toBeInTheDocument()
     })
 

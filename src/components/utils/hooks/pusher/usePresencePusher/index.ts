@@ -9,7 +9,7 @@ export type Props = {
   cluster: string
   authEndpoint: string
   updateConnectionCallback: (
-    latestConnectionStatus: EnumConnectionStatus
+    latestConnectionStatus: EnumConnectionStatus,
   ) => void
   shouldUpdatedOfflineUserEnd?: (user: Member) => boolean
 }
@@ -31,13 +31,13 @@ export const usePresencePusher = ({
   const [myMembership, setMyMembership] = useState({ id: "", name: "" })
   const errorMessage = useRef<string>()
   const connectionStatus = useRef<EnumConnectionStatus>(
-    EnumConnectionStatus.Disconnected
+    EnumConnectionStatus.Disconnected,
   )
 
   const channelName = "presence-wal-videocall"
 
   const updateConnectionStatus = (
-    latestConnectionStatus: EnumConnectionStatus
+    latestConnectionStatus: EnumConnectionStatus,
   ) => {
     connectionStatus.current = latestConnectionStatus
     updateConnectionCallback(latestConnectionStatus)
@@ -143,7 +143,7 @@ export const usePresencePusher = ({
   const bind = useCallback(
     <T extends object & Presence>(
       event: string,
-      callback: (data: T) => void
+      callback: (data: T) => void,
     ): boolean => {
       if (channel.current) {
         if (eventsBinded.includes(event)) {
@@ -155,7 +155,7 @@ export const usePresencePusher = ({
       }
       throw new Error("Channel has not been initialized")
     },
-    [eventsBinded]
+    [eventsBinded],
   )
 
   const getErrorMessage = () => errorMessage.current

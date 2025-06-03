@@ -24,12 +24,12 @@ describe("register", () => {
 
   it("should be able to unregister", async () => {
     expect(
-      (await window.navigator.serviceWorker.getRegistration())?.active?.state
+      (await window.navigator.serviceWorker.getRegistration())?.active?.state,
     ).toBe("activated")
     unregister()
     await waitFor(async () => {
       expect(
-        (await window.navigator.serviceWorker.getRegistration())?.active?.state
+        (await window.navigator.serviceWorker.getRegistration())?.active?.state,
       ).toBe(undefined)
     })
   })
@@ -38,13 +38,13 @@ describe("register", () => {
     unregister()
     await waitFor(async () => {
       expect(
-        (await window.navigator.serviceWorker.getRegistration())?.active?.state
+        (await window.navigator.serviceWorker.getRegistration())?.active?.state,
       ).toBe(undefined)
     })
     const registered = register()
     expect(registered).toBeTruthy()
     expect(
-      (await window.navigator.serviceWorker.getRegistration())?.active?.state
+      (await window.navigator.serviceWorker.getRegistration())?.active?.state,
     ).toBe("activated")
   })
 

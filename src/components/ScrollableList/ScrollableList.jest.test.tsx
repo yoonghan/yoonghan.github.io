@@ -14,7 +14,7 @@ describe("ScrollableList", () => {
           { id: "6", content: <>6</> },
         ]}
         maxItemsToRender={2}
-      />
+      />,
     )
   }
 

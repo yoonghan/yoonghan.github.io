@@ -31,7 +31,7 @@ describe("cron", () => {
       "http://walcron.com/api/cron?action=invalid",
       {
         method: "GET",
-      }
+      },
     )
     const response = await GET(request)
     expect(response.status).toBe(400)

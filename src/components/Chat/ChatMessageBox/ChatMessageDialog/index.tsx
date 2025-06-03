@@ -28,7 +28,7 @@ export type MessageHandler = {
   addMessage: (
     senderId: number | undefined,
     message: string,
-    messageType?: MessageType
+    messageType?: MessageType,
   ) => void
 }
 
@@ -61,7 +61,7 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
     const [messages, dispatch] = useReducer(
       messageReducer,
-      initialMessage ?? messageReducerInitialState
+      initialMessage ?? messageReducerInitialState,
     )
     const height = useRef<number>(0)
 
@@ -74,7 +74,7 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
         addMessage(
           senderId: number | undefined,
           message: string,
-          messageType: MessageType = MessageType.TEXT
+          messageType: MessageType = MessageType.TEXT,
         ) {
           dispatch({
             type: MessageActionType.Add,
@@ -98,7 +98,7 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
         />
       </div>
     )
-  }
+  },
 )
 
 export default ChatMessageDialog

@@ -14,7 +14,7 @@ describe("Figure", () => {
         imageCaption="Dummy Pic"
       >
         <p>Sample Display</p>
-      </Figure>
+      </Figure>,
     )
     expect(screen.getByRole("img", { name: "test image" })).toBeInTheDocument()
     expect(screen.getByText("Sample Display")).toBeInTheDocument()
@@ -34,7 +34,7 @@ describe("Figure", () => {
         imageCaption="Dummy Pic"
       >
         <p>Sample Display</p>
-      </Figure>
+      </Figure>,
     )
     expect(screen.getByRole("figure")).toHaveClass("md:order-1")
   })
@@ -52,12 +52,12 @@ describe("Figure", () => {
         imageCaption="Dummy Pic"
       >
         <p>Sample Display</p>
-      </Figure>
+      </Figure>,
     )
     expect(
       screen.queryByRole("img", {
         name: "Arrow to describe figure image of test image",
-      })
+      }),
     ).not.toBeInTheDocument()
   })
 })

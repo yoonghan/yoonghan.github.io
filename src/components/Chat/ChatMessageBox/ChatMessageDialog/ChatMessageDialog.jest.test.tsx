@@ -13,7 +13,7 @@ describe("ChatMessageDialog", () => {
     })
     formattedTime = formattedTime.substring(
       formattedTime.startsWith("0") ? 1 : 0,
-      formattedTime.length
+      formattedTime.length,
     )
     return formattedTime
   }
@@ -43,7 +43,7 @@ describe("ChatMessageDialog", () => {
     expect(
       screen.getAllByText(formatDateToTime(createdOn), {
         normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
-      })
+      }),
     ).toHaveLength(2)
   })
 

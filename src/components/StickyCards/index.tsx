@@ -47,7 +47,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
               )}
             </div>
           ),
-        })
+        }),
       )}
       className={styles.container}
     ></ScrollableCard>

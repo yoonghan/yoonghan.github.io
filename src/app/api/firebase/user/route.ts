@@ -7,17 +7,17 @@ import { Firebase } from "../Firebase"
 const createUser = (
   email: string,
   password: string,
-  additionalInfo: AdditionalInfo
+  additionalInfo: AdditionalInfo,
 ) => {
   if (!validEmail(email)) {
     throw new Error(
-      "Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/."
+      "Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/.",
     )
   }
 
   if (!validInput(password)) {
     throw new Error(
-      "Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>)."
+      "Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>).",
     )
   }
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const response = await createUser(
       reqBody.email,
       reqBody.password,
-      reqBody.additionalInfo
+      reqBody.additionalInfo,
     )
     return NextResponse.json({ data: response, status: "ok" })
   } catch (error: any) {

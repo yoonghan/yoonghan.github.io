@@ -7,7 +7,7 @@ const fakeSuccessResponse = async () => {
   const fakePromise: string = await new Promise((resolve, _) =>
     setTimeout(() => {
       resolve("I am done")
-    }, waitTime - 500)
+    }, waitTime - 500),
   )
   return fakePromise
 }
@@ -16,7 +16,7 @@ const fakeFailResponse: () => Promise<Error> = async () => {
   return await new Promise((_, reject) =>
     setTimeout(() => {
       reject(new Error("I failed"))
-    }, waitTime)
+    }, waitTime),
   )
 }
 

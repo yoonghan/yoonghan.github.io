@@ -31,7 +31,7 @@ describe("VideoChat", () => {
         record={record}
         videoFailedCallback={videoFailedCallback}
         videoTracksCallback={videoTracksCallback}
-      />
+      />,
     )
   }
 
@@ -86,7 +86,7 @@ describe("VideoChat", () => {
         record={false}
         videoFailedCallback={jest.fn()}
         videoTracksCallback={videoTracks}
-      />
+      />,
     )
 
     await waitFor(() => {
@@ -151,7 +151,7 @@ describe("VideoChat", () => {
       const streamData = "Stream data" as any
       const { videoTracks } = createUserMedia()
       render(
-        <Wrapper videoTracksCallback={videoTracks} mediaStream={streamData} />
+        <Wrapper videoTracksCallback={videoTracks} mediaStream={streamData} />,
       )
       await waitFor(() => {
         expect(videoTracks).toHaveBeenCalled()

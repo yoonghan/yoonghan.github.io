@@ -22,7 +22,7 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
       scrollPosition - maxItemsToRender > 0
         ? scrollPosition - maxItemsToRender
         : 0,
-    [maxItemsToRender, scrollPosition]
+    [maxItemsToRender, scrollPosition],
   )
 
   const endPosition = useMemo(
@@ -30,7 +30,7 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
       scrollPosition + maxItemsToRender >= listItems.length
         ? listItems.length
         : scrollPosition + maxItemsToRender,
-    [listItems.length, maxItemsToRender, scrollPosition]
+    [listItems.length, maxItemsToRender, scrollPosition],
   )
 
   useEffect(() => {

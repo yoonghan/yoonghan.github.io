@@ -18,7 +18,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
       (
         e?:
           | React.FormEvent<HTMLFormElement>
-          | React.MouseEvent<HTMLButtonElement>
+          | React.MouseEvent<HTMLButtonElement>,
       ) => {
         e?.preventDefault()
 
@@ -27,7 +27,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
         }
         onOk()
       },
-    [onOk]
+    [onOk],
   )
 
   return (

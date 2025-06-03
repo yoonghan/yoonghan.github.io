@@ -25,7 +25,7 @@ export type ScrollHandler = {
 
 const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
   { scrollContainer, children },
-  ref
+  ref,
 ) {
   const arrayChildren = Children.toArray(children)
   const windowInnerHeight = useRef(0)
@@ -39,18 +39,18 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
     const currentPos = e.target.scrollTop
     const currentDisplayIdx = activeWindowIndex(
       currentPos,
-      windowInnerHeight.current
+      windowInnerHeight.current,
     )
 
     const percentageChanged = calculatePercentageChange(
       currentPos - windowInnerHeight.current * currentDisplayIdx,
-      windowInnerHeight.current
+      windowInnerHeight.current,
     )
     queueMicrotask(() => {
       updateElem(
         parallaxSectionsRef.current,
         currentDisplayIdx,
-        percentageChanged
+        percentageChanged,
       )
     })
     //})
@@ -83,8 +83,8 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
   useEffect(() => {
     parallaxSectionsRef.current = Array.from(
       document.getElementsByClassName(
-        styles["section-container"]
-      ) as HTMLCollectionOf<HTMLDivElement>
+        styles["section-container"],
+      ) as HTMLCollectionOf<HTMLDivElement>,
     )
   }, [scrollContainer])
 
@@ -104,7 +104,7 @@ const Parallax = forwardRef<ScrollHandler, Props>(function ParallaxWithScroll(
       window.removeEventListener("resize", refreshContainer)
       scrollContainerRef?.removeEventListener(
         "scroll",
-        parallaxScrollForeground
+        parallaxScrollForeground,
       )
     }
   }, [parallaxScrollForeground, refreshContainer, scrollContainer])

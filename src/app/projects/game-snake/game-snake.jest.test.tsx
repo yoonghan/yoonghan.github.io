@@ -12,7 +12,7 @@ describe("Snake Game", () => {
     renderComponent()
     expect(screen.getByText("Snake Game")).toBeInTheDocument()
     expect(
-      await screen.findByRole("button", { name: "Play" })
+      await screen.findByRole("button", { name: "Play" }),
     ).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: "Play" }))
     expect(screen.getByLabelText("World Dimension:")).toBeDisabled()
@@ -22,7 +22,7 @@ describe("Snake Game", () => {
     renderComponent()
     expect(screen.getByText("Snake Game")).toBeInTheDocument()
     expect(
-      await screen.findByRole("button", { name: "Play" })
+      await screen.findByRole("button", { name: "Play" }),
     ).toBeInTheDocument()
     await userEvent.type(screen.getByLabelText("Snake Size:"), "4", {
       initialSelectionStart: 1,
@@ -36,7 +36,7 @@ describe("Snake Game", () => {
     expect(mockRandom).toHaveBeenCalled()
     expect(screen.getByText("Snake Game")).toBeInTheDocument()
     expect(
-      await screen.findByRole("button", { name: "Play" })
+      await screen.findByRole("button", { name: "Play" }),
     ).toBeInTheDocument()
     await userEvent.type(screen.getByLabelText("World Dimension:"), "2", {
       initialSelectionStart: 1,

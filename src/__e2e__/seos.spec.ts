@@ -9,7 +9,7 @@ test.describe("important! SEO urls", () => {
   test("should be able to see robots.txt", async ({ page }) => {
     await page.goto("/robots.txt")
     expect(await page.content()).toContain(
-      "Sitemap: https://www.walcron.com/sitemap.xml"
+      "Sitemap: https://www.walcron.com/sitemap.xml",
     )
   })
 })

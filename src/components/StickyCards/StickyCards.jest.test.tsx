@@ -18,13 +18,13 @@ describe("StickyCards", () => {
             description: "Two description",
           },
         ]}
-      />
+      />,
     )
 
     expect(screen.getByText("One")).toBeInTheDocument()
     expect(screen.getByText("One description")).toBeInTheDocument()
     expect(
-      screen.getByRole("link", { name: "View Arrow icon" })
+      screen.getByRole("link", { name: "View Arrow icon" }),
     ).toBeInTheDocument()
 
     expect(screen.getByText("Two")).toBeInTheDocument()

@@ -30,7 +30,9 @@ describe("PwaEnabler", () => {
       spyOnReferrer("android-app://com.walcron.web")
       renderComponent()
       expect(
-        screen.getByText("Trusted Web Application is detected, pwa is ENABLED.")
+        screen.getByText(
+          "Trusted Web Application is detected, pwa is ENABLED.",
+        ),
       )
     })
   })
@@ -57,7 +59,7 @@ describe("PwaEnabler", () => {
         await screen.findByText("Disabled", undefined, {
           timeout: 2000,
           interval: 500,
-        })
+        }),
       ).toBeInTheDocument()
       await userEvent.click(screen.getByRole("checkbox", { name: "Disabled" }))
       expect(await screen.findByText("Processing")).toBeInTheDocument()
@@ -65,7 +67,7 @@ describe("PwaEnabler", () => {
         await screen.findByText("Installed", undefined, {
           timeout: 2000,
           interval: 500,
-        })
+        }),
       ).toBeInTheDocument()
     })
 
@@ -74,7 +76,7 @@ describe("PwaEnabler", () => {
       renderComponent()
       expect(await screen.findByText("Installed")).toBeInTheDocument()
       expect(
-        screen.getByText("For Safari mobile users, follow these steps.")
+        screen.getByText("For Safari mobile users, follow these steps."),
       ).toBeInTheDocument()
     })
 

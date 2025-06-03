@@ -43,7 +43,7 @@ export const useTrackReducer = ({
         }, allowStorageAfterMiliseconds)
       }
     },
-    [allowStorageAfterMiliseconds, maxStorage]
+    [allowStorageAfterMiliseconds, maxStorage],
   )
 
   const doNothing = useCallback(() => {

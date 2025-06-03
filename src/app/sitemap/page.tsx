@@ -16,7 +16,7 @@ export const metadata = {
 const SiteMap = () => {
   const groupedMenu = useMemo(
     () => new SiteMapConstructor().getGroups(sortedSiteMapPages),
-    []
+    [],
   )
 
   const draw = (results: Result[]) => {
