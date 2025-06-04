@@ -72,6 +72,8 @@ jobs:
   build:
     needs: E2E
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: ✅ Just to say i am ok
         run: |
