@@ -1,14 +1,13 @@
 import { useState, useEffect, createRef, useMemo, useCallback } from "react"
-import Toggle from "react-toggle"
+import Toggle from "@/components/Toggle"
 import Image from "next/image"
-import Dialog from "../../Dialog"
+import Dialog from "@/components/Dialog"
 import { usePwaHooks } from "./usePwaHooks"
 import { isAndroid, isMacOrIOS } from "./utils/browserCheck"
 import { register, unregister } from "./utils/register"
 import styles from "./PwaEnabler.module.css"
-import Button from "../../Button"
+import Button from "@/components/Button"
 import { ANDROID_PACKAGE_NAME } from "./utils/const"
-import "../react-toggle.css"
 
 interface Props {
   onCancel: () => void
@@ -96,15 +95,12 @@ const PwaEnabler = ({ onCancel }: Props) => {
   const drawnSelection = useMemo(() => {
     if (!isTwaApp) {
       return (
-        <label>
-          <Toggle
-            id="toggle-pwa"
-            disabled={isProcessing}
-            checked={isEnabled}
-            onChange={onChangeEnabler}
-          />
-          <span className={styles.labelText}>{labelText}</span>
-        </label>
+        <Toggle
+          label={labelText}
+          disabled={isProcessing}
+          checked={isEnabled}
+          onChange={onChangeEnabler}
+        />
       )
     } else {
       return <span>Trusted Web Application is detected, pwa is ENABLED.</span>
