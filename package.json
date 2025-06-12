@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.8",
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@opentelemetry/exporter-trace-otlp-http": "^0.57.1",
     "@opentelemetry/sdk-trace-node": "^1.30.1",
