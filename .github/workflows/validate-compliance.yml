@@ -55,9 +55,9 @@ jobs:
           args: --failOnCVSS 7
             --enableRetired
 
-      - name: ⬆️ Upload Dependency Check results # only uploads if it's on master
+      - name: ⬆️ Upload Dependency Check results # only uploads if it's on main
         uses: actions/upload-artifact@master
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         with:
           name: Compliance report
           path: reports
@@ -114,7 +114,7 @@ jobs:
 
       - name: ⬆️ Upload Lighthouse results
         uses: actions/upload-artifact@master
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         with:
           name: Lighthouse report
           path: .lighthouseci
