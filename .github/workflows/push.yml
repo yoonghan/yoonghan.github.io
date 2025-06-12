@@ -4,7 +4,7 @@ on:
   # run on any push except merge
   push:
     branches-ignore:
-      - master
+      - main
 
   # for retriggering
   workflow_call:
