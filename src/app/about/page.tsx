@@ -146,27 +146,35 @@ const About = () => {
                   imageUrl:
                     "/img/certifications/microsoft-certified-expert-badge.svg",
                   className: "bg-blue-500",
-                  title: "Azure Solution Architect Expert",
+                  title:
+                    "Microsoft Certified: Azure Solutions Architect Expert",
                   href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
                 },
                 {
                   imageUrl:
-                    "https://d1.awsstatic.com/certification/badges/AWS-Certified-Solutions-Architect-Associate_badge_150x150.e359ae4a6d4d82c3e31d4f9104c8d389b56a2423.png",
+                    "/img/certifications/microsoft-certified-expert-badge.svg",
                   className: "bg-blue-400",
+                  title: "Microsoft Certified: DevOps Engineer Expert",
+                  href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/4b0bb693435b43f0",
+                },
+                {
+                  imageUrl:
+                    "https://d1.awsstatic.com/certification/badges/AWS-Certified-Solutions-Architect-Associate_badge_150x150.e359ae4a6d4d82c3e31d4f9104c8d389b56a2423.png",
+                  className: "bg-blue-300",
                   title: "AWS Solution Architect Associate",
                   href: "https://www.credly.com/badges/964f2164-02ab-469c-b964-a01c2210ef24",
                 },
                 {
                   imageUrl:
                     "/img/certifications/microsoft-certified-associate-badge.svg",
-                  className: "bg-blue-300",
+                  className: "bg-blue-200",
                   title: "Azure Administrator Associate",
-                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B?sharingId=FE2E719D4C5E0EFB",
+                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B",
                 },
                 {
                   imageUrl:
                     "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png",
-                  className: "bg-blue-200",
+                  className: "bg-blue-100",
                   title: "AWS Developer Associate",
                   href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
                 },
@@ -175,7 +183,7 @@ const About = () => {
                     "/img/certifications/microsoft-certified-fundamentals-badge.svg",
                   className: "bg-teal-400",
                   title: "Azure Cloud Fundamentals (AZ-900)",
-                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9?sharingId=FE2E719D4C5E0EFB",
+                  href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9",
                 },
                 {
                   imageUrl:
