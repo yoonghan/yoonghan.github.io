@@ -66,15 +66,16 @@ jobs:
 
       - name: Make snapshot-check.sh executable
         shell: bash
-        run: chmod a+x ./.github/scripts/snapshot-check.sh 
+        run: chmod a+x ./.github/scripts/snapshot-check.sh
 
       - name: ▶️ Run page rendering check
+        id: renderingCheck
         shell: bash
         continue-on-error: true
         run: npm run backstop:test
 
       - name: ▶️ Retry page rendering check if fail
-        if: failure()
+        if: steps.renderingCheck.outcome == 'failure'
         shell: bash
         continue-on-error: true
         run: rm -rf backstop_data/bitmaps_local_reference && npm run backstop:test
