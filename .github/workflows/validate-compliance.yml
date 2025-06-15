@@ -36,6 +36,9 @@ jobs:
 
       - name: ✅ Dependency checks
         run: npm run dependency:check
+        
+      - name: License compliance check
+        uses: mikaelvesavuori/license-compliance-action@v1
 
       - name: Remove package.json with dev or local builds
         run: |
