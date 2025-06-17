@@ -62,7 +62,7 @@
     "knip": "^5.27.0",
     "postcss": "^8.4.40",
     "pusher-js": "^8.4.0",
-    "react-bell-chat": "^1.0.51",
+    "react-bell-chat": "^1.0.53",
     "react-confirm": "^0.2.3",
     "react-ga4": "^2.1.0",
     "react-intersection-observer": "^9.4.0",
