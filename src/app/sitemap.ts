@@ -2,6 +2,8 @@ import { sortedSiteMapPages } from "@/config/pages"
 import { site } from "@/config/site"
 import { MetadataRoute } from "next"
 
+export const dynamic = "force-static"
+
 const defaultDomain = site.url
 
 const getPriorityAndFrequency = (path: string) => {
