@@ -1,4 +1,3 @@
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 import { NextRequest, NextResponse } from "next/server"
 import Pusher, { PresenceChannelData } from "pusher"
 import { PusherAPIClient } from "../PusherAPIClient"
@@ -82,7 +81,7 @@ const postMessage = async (req: NextRequest, userName: string) => {
   }
 }
 
-export async function POST(request: NextRequest, { params }: Params) {
+export async function POST(request: NextRequest, { params }: any) {
   try {
     return await postMessage(request, params.username)
   } catch (err: any) {
