@@ -1,13 +1,17 @@
-import { ComponentType, useCallback, useEffect, useRef } from "react"
-import { createConfirmation } from "react-confirm"
+import { useCallback, useEffect, useRef } from "react"
+import { ConfirmDialog, createConfirmation, confirmable } from "react-confirm"
 import dialogRootCreator from "../dialogRootCreator"
 
-export const useDialogCreation = <T>(component: ComponentType<T>) => {
+export const useDialogCreation = <T>(component: ConfirmDialog<T, string>) => {
   const confirmationRef = useRef<(props: T) => Promise<string>>()
 
   useEffect(() => {
     const elem = dialogRootCreator.create()
-    confirmationRef.current = createConfirmation(component, 1000, elem)
+    confirmationRef.current = createConfirmation(
+      confirmable(component),
+      1000,
+      elem,
+    )
   }, [component])
 
   const confirm = useCallback(async (props: T) => {
