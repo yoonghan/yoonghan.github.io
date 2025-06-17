@@ -10,9 +10,7 @@ import Lifecycle from "@/components/Lifecycle"
 import Animate from "./Animate"
 import FunkyScroller from "@/components/Animate/FunkyScroller"
 
-const NoSSRDialog = dynamic(() => import("./Dialogs"), {
-  ssr: false,
-})
+const NoSSRDialog = dynamic(() => import("./Dialogs"))
 
 export const storyBookList = [
   {
