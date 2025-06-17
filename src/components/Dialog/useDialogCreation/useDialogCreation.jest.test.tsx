@@ -1,5 +1,4 @@
-import { screen, waitFor } from "@testing-library/react"
-import { renderHook } from "@testing-library/react"
+import { screen, waitFor, renderHook } from "@testing-library/react"
 import { act } from "react"
 import { useDialogCreation } from "./useDialogCreation"
 

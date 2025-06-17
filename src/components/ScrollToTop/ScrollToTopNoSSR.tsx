@@ -9,7 +9,7 @@ const _isOverTheBar = () => {
 }
 
 const ScrollToTopNoSSR = () => {
-  const [visible, setVisible] = useState(_isOverTheBar())
+  const [visible, setVisible] = useState(false)
   const [_, startTransition] = useTransition()
 
   const updateScroller = useCallback(
