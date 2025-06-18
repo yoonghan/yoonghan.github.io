@@ -398,9 +398,11 @@ const Lessons = () => {
         </ol>
       </article>
       <article className="my-8">
-        <strong>Migrating NextJS major</strong>
-        These are the steps that got me moved from 13 -&gt; 14 - &gt; 15
-        <ol>
+        <strong>Migrating NextJS major upgrades</strong>
+        <p className="pt-2np">
+          These are the steps that got me moved from 13 -&gt; 14 - &gt; 15
+        </p>
+        <ol className="list-decimal ml-4 mt-4">
           <li>Make sure to upgrade React first.</li>
           <li>
             Remove/Replace or Update all React library that does not comply with
