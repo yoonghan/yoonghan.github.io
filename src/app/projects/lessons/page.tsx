@@ -397,6 +397,26 @@ const Lessons = () => {
           </li>
         </ol>
       </article>
+      <article className="my-8">
+        <strong>Migrating NextJS major</strong>
+        These are the steps that got me moved from 13 -&gt; 14 - &gt; 15
+        <ol>
+          <li>Make sure to upgrade React first.</li>
+          <li>
+            Remove/Replace or Update all React library that does not comply with
+            the new version.
+          </li>
+          <li>
+            Run test, and see how big the impact is. If big then wait for more
+            stable release.
+          </li>
+          <li>Update to the latest NextJS. Update with latest config.</li>
+          <li>
+            Run, fix and rerun and repeat cycle until all testcases and e2e are
+            fixed.
+          </li>
+        </ol>
+      </article>
       <ScrollToTop />
     </div>
   )
