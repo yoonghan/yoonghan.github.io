@@ -1,5 +1,5 @@
 import "@/__tests__/mocks/site"
-import sitemapGenerator from "./sitemap"
+import sitemapGenerator, { dynamic } from "./sitemap"
 import "@/__tests__/mocks/fetchMock"
 
 describe("sitemap", () => {
@@ -9,5 +9,9 @@ describe("sitemap", () => {
     expect(response[0].lastModified).not.toBe(undefined)
     expect(response[1].url).toBe("https://mockedUrl.com/about")
     expect(response[1].lastModified).not.toBe(undefined)
+  })
+
+  it("export dynamic routes", () => {
+    expect(dynamic).toBe("force-static")
   })
 })
