@@ -7,6 +7,7 @@ import {
   faCog,
   faBoltLightning,
   faMagnifyingGlass,
+  faCertificate,
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -103,6 +104,7 @@ export const siteHistory: IEvent[] = [
   {
     id: "2023",
     date: "January-2023",
+    special: "Host in Vercel",
     desc: "Migrated to NextJS 13",
     faIcon: faCog,
   },
@@ -130,8 +132,15 @@ export const siteHistory: IEvent[] = [
   {
     id: "Jan-2025",
     date: "Jan-2025",
-    special: "AWS Certified",
+    special: "AWS Associate Certified",
     desc: "Add OpenTelemetry and monitoring",
     faIcon: faMagnifyingGlass,
+  },
+  {
+    id: "Jun-2025",
+    date: "Jun-2025",
+    special: "Azure Expert Certified",
+    desc: "Successfully Migrated to NextJS 15",
+    faIcon: faCertificate,
   },
 ]
