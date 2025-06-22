@@ -419,6 +419,55 @@ const Lessons = () => {
           </li>
         </ol>
       </article>
+      <article className="my-8">
+        <strong>Updating npm libraries</strong>
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th className="px-4 py-2">Command</th>
+              <th className="px-4 py-2">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border px-4 py-2">npm audit fix</td>
+              <td className="border px-4 py-2">
+                Fix auditing, try not to use force. This fix only up-to-minor.
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">npm uninstall/install</td>
+              <td className="border px-4 py-2">
+                Fix auditing, try not to use force.
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">npm update</td>
+              <td className="border px-4 py-2">
+                Update all libraries to latest version, This fix only
+                up-to-minor, those with ^.
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">npm update --force</td>
+              <td className="border px-4 py-2">
+                Update all libraries to latest version, This fix only
+                up-to-major, those with ~.
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">npm outdated</td>
+              <td className="border px-4 py-2">List all outdated libraries.</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">npm ls [library]</td>
+              <td className="border px-4 py-2">
+                List all libraries installed, and their version.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
       <ScrollToTop />
     </div>
   )
