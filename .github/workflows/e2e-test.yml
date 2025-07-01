@@ -3,6 +3,9 @@ name: Validate e2e project
 permissions:
   contents: read
 
+env:
+  NODE_VERSION: 20
+
 on:
   workflow_dispatch:
     inputs:
@@ -31,7 +34,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
@@ -108,7 +111,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
