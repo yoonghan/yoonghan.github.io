@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 import SocialFabNoSSR from "./SocialFabNoSSR"
 import "@/__tests__/mocks/windowMock"
 
@@ -36,10 +36,10 @@ describe("SocialFabNoSSR", () => {
 
   it("should show letterbox dialog if email button is pressed", async () => {
     render(<SocialFabNoSSR />)
-    await UserEvent.click(screen.getByRole("button", { name: "gmail" }))
+    await userEvent.click(screen.getByRole("button", { name: "gmail" }))
     expect(screen.getByRole("dialog")).toBeInTheDocument()
 
-    await UserEvent.click(screen.getByRole("button", { name: "[ESC]" }))
+    await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
   })
 })

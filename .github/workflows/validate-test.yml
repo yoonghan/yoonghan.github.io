@@ -3,6 +3,9 @@ name: Test project
 permissions:
   contents: read
 
+env:
+  NODE_VERSION: 20
+
 on:
   # allow as dispatch call
   workflow_dispatch:
@@ -31,7 +34,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
@@ -95,7 +98,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
 
       - uses: browser-actions/setup-chrome@v1

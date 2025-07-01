@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 import Navigator from "."
 
 describe("Navigator", () => {
@@ -42,10 +42,10 @@ describe("Navigator", () => {
     const linkFn = jest.fn()
     render(<Navigator links={links} onLinkClick={linkFn} label="Site" />)
 
-    await UserEvent.click(screen.getAllByRole("menuitem")[0])
+    await userEvent.click(screen.getAllByRole("menuitem")[0])
     expect(linkFn).toBeCalledWith("link1")
 
-    await UserEvent.type(screen.getAllByRole("menuitem")[1], "{enter}")
+    await userEvent.type(screen.getAllByRole("menuitem")[1], "{enter}")
     expect(linkFn).toBeCalledWith("link2")
   })
 })
