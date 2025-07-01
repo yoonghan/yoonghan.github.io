@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react"
 import { MessageHandler } from "./ChatMessageDialog"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 import { useRef } from "react"
 import "@/__tests__/mocks/fetchMock"
 import ChatMessageBox, { apiUrl } from "."
@@ -17,7 +17,7 @@ describe("ChatMessageBox", () => {
       ),
     ).toBeInTheDocument()
     const yesBtn = await screen.findByRole("button", { name: "Yes" })
-    await UserEvent.click(yesBtn)
+    await userEvent.click(yesBtn)
   }
 
   it("should post to the right api url", () => {
@@ -37,11 +37,11 @@ describe("ChatMessageBox", () => {
   it("should be able to send message and dialog displays the message", async () => {
     const messageSendFn = jest.fn()
     renderComponent(messageSendFn)
-    await UserEvent.type(
+    await userEvent.type(
       screen.getByPlaceholderText("Your Message"),
       "sample message",
     )
-    await UserEvent.click(screen.getByRole("button", { name: "Send" }))
+    await userEvent.click(screen.getByRole("button", { name: "Send" }))
 
     expect(screen.getByLabelText("Message:")).toHaveValue("")
     expect(screen.getByText("sample message")).toBeInTheDocument()
@@ -50,7 +50,7 @@ describe("ChatMessageBox", () => {
   it("should be able to send message and dialog with enter key only", async () => {
     const messageSendFn = jest.fn()
     renderComponent(messageSendFn)
-    await UserEvent.type(
+    await userEvent.type(
       screen.getByPlaceholderText("Your Message"),
       "sample{Shift>}{enter}{/Shift}message{enter}",
     )
@@ -62,14 +62,14 @@ describe("ChatMessageBox", () => {
   it("should not send message, if message input is blank", async () => {
     const messageSendFn = jest.fn()
     renderComponent(messageSendFn)
-    await UserEvent.click(screen.getByRole("button", { name: "Send" }))
+    await userEvent.click(screen.getByRole("button", { name: "Send" }))
 
     expect(messageSendFn).not.toBeCalled()
   })
 
   it("should be able to upload a file, but fail to process", async () => {
     renderComponent(jest.fn())
-    await UserEvent.upload(
+    await userEvent.upload(
       screen.getByTestId("file-uploader"),
       new File(["A file content."], "chucknorris.png", { type: "image/png" }),
     )
@@ -88,7 +88,7 @@ describe("ChatMessageBox", () => {
       json: () => Promise.resolve({ status: "ok", data: serverFileName }),
     })
     renderComponent(messageSendFn)
-    await UserEvent.upload(
+    await userEvent.upload(
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" }),
     )
@@ -105,7 +105,7 @@ describe("ChatMessageBox", () => {
     const uploadFilename = "jamesmillar.jpg"
     ;(global.fetch as unknown as jest.Mock).mockRejectedValue("Server failed")
     renderComponent(messageSendFn)
-    await UserEvent.upload(
+    await userEvent.upload(
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" }),
     )
@@ -124,8 +124,8 @@ describe("ChatMessageBox", () => {
     const uploadFilename = "jamesmillar.jpg"
     ;(global.fetch as unknown as jest.Mock).mockRejectedValue("Server failed")
     renderComponent(messageSendFn)
-    await UserEvent.click(screen.getByRole("button", { name: "Upload" }))
-    await UserEvent.upload(
+    await userEvent.click(screen.getByRole("button", { name: "Upload" }))
+    await userEvent.upload(
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" }),
     )
@@ -144,8 +144,8 @@ describe("ChatMessageBox", () => {
     const uploadFilename = "jamesmillar.jpg"
     ;(global.fetch as unknown as jest.Mock).mockRejectedValue("Server failed")
     renderComponent(messageSendFn)
-    await UserEvent.click(screen.getByRole("button", { name: "Upload" }))
-    await UserEvent.upload(
+    await userEvent.click(screen.getByRole("button", { name: "Upload" }))
+    await userEvent.upload(
       screen.getByTestId("file-uploader"),
       new File(["A file content."], uploadFilename, { type: "image/jpeg" }),
     )
@@ -155,7 +155,7 @@ describe("ChatMessageBox", () => {
         "This file will be shared publicly. Are you sure?",
       ),
     ).toBeInTheDocument()
-    await UserEvent.click(await screen.findByRole("button", { name: "No" }))
+    await userEvent.click(await screen.findByRole("button", { name: "No" }))
 
     expect(
       screen.queryByText("This file will be shared publicly. Are you sure?"),
@@ -185,7 +185,7 @@ describe("ChatMessageBox", () => {
     it("should be able to add message to the dialog", async () => {
       renderIntegratedComponent()
 
-      await UserEvent.click(
+      await userEvent.click(
         screen.getByRole("button", { name: "Custom Buttom" }),
       )
 
