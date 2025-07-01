@@ -1,7 +1,7 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
 import "@/__tests__/mocks/routerMock"
 import HomePage from "./page"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 
 describe("HomePage", () => {
   const renderComponent = () => {
@@ -38,28 +38,28 @@ describe("HomePage", () => {
           .mockReturnValue(500)
       }
 
-      await UserEvent.click(navigation.getByText("Test Driven Development"))
+      await userEvent.click(navigation.getByText("Test Driven Development"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 500)
 
-      await UserEvent.click(navigation.getByText("Going Live"))
+      await userEvent.click(navigation.getByText("Going Live"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 3000)
 
-      await UserEvent.click(navigation.getByText("Github Pull Request"))
+      await userEvent.click(navigation.getByText("Github Pull Request"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 1000)
 
-      await UserEvent.click(navigation.getByText("Github Workflow"))
+      await userEvent.click(navigation.getByText("Github Workflow"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 1500)
 
-      await UserEvent.click(navigation.getByText("Testing Deployment"))
+      await userEvent.click(navigation.getByText("Testing Deployment"))
       expect(scrollToFn).toHaveBeenNthCalledWith(5, 0, 2000)
 
-      await UserEvent.click(navigation.getByText("UI/UX Validation"))
+      await userEvent.click(navigation.getByText("UI/UX Validation"))
       expect(scrollToFn).toHaveBeenNthCalledWith(6, 0, 2500)
 
-      await UserEvent.click(navigation.getByText("Periodic Security Checks"))
+      await userEvent.click(navigation.getByText("Periodic Security Checks"))
       expect(scrollToFn).toHaveBeenNthCalledWith(7, 0, 3500)
 
-      await UserEvent.click(navigation.getByText("Video About Us"))
+      await userEvent.click(navigation.getByText("Video About Us"))
       expect(scrollToFn).toHaveBeenNthCalledWith(8, 0, 4000)
     })
 
@@ -73,10 +73,10 @@ describe("HomePage", () => {
         parallaxContainer.scrollTo = scrollToFn
       }
 
-      await UserEvent.click(screen.getByText("Return to top"))
+      await userEvent.click(screen.getByText("Return to top"))
       expect(scrollToFn).toHaveBeenCalledWith(0, 0)
 
-      await UserEvent.type(screen.getByText("Return to top"), "{enter}")
+      await userEvent.type(screen.getByText("Return to top"), "{enter}")
       expect(scrollToFn).toHaveBeenCalledWith(0, 0)
     })
   })
