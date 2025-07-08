@@ -64,7 +64,7 @@ describe("ChatMessageBox", () => {
     renderComponent(messageSendFn)
     await userEvent.click(screen.getByRole("button", { name: "Send" }))
 
-    expect(messageSendFn).not.toBeCalled()
+    expect(messageSendFn).not.toHaveBeenCalled()
   })
 
   it("should be able to upload a file, but fail to process", async () => {
@@ -97,7 +97,10 @@ describe("ChatMessageBox", () => {
       await screen.findByText("Uploading file jamesmillar.jpg..."),
     ).toBeInTheDocument()
     expect(await screen.findByText(`${serverFileName}`)).toBeInTheDocument()
-    expect(messageSendFn).toBeCalledWith(`${serverFileName}`, MessageType.FILE)
+    expect(messageSendFn).toHaveBeenCalledWith(
+      `${serverFileName}`,
+      MessageType.FILE,
+    )
   })
 
   it("should be able to handle failed", async () => {
@@ -116,7 +119,7 @@ describe("ChatMessageBox", () => {
     expect(
       await screen.findByText(`File upload failed, (Server failed)`),
     ).toBeInTheDocument()
-    expect(messageSendFn).not.toBeCalled()
+    expect(messageSendFn).not.toHaveBeenCalled()
   })
 
   it("should be able to handle file upload via button", async () => {
@@ -136,7 +139,7 @@ describe("ChatMessageBox", () => {
     expect(
       await screen.findByText(`File upload failed, (Server failed)`),
     ).toBeInTheDocument()
-    expect(messageSendFn).not.toBeCalled()
+    expect(messageSendFn).not.toHaveBeenCalled()
   })
 
   it("should not do anything when dialog clicked is no", async () => {

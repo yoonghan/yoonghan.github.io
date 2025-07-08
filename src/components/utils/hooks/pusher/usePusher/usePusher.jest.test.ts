@@ -45,8 +45,8 @@ describe("usePusher", () => {
     expect(client.isConnected()).toBe(false)
     expect(client.channelName).toBe("private-wal_CHANNEL")
     expect(client.eventName).toBe("client-RANDOM_EVENT")
-    expect(printConnectionCallback).not.toBeCalled()
-    expect(printEventCallback).not.toBeCalled()
+    expect(printConnectionCallback).not.toHaveBeenCalled()
+    expect(printEventCallback).not.toHaveBeenCalled()
   })
 
   it("should not create a channel name with private- prefixed if it is a non-private chat", () => {
@@ -72,7 +72,7 @@ describe("usePusher", () => {
     act(() => {
       result.current.connect()
     })
-    expect(printConnectionCallback).toBeCalledWith(
+    expect(printConnectionCallback).toHaveBeenCalledWith(
       "Establishing Connection, please wait.",
       MessageType.TEXT,
     )
@@ -141,7 +141,7 @@ describe("usePusher", () => {
         EnumConnectionStatus.Disconnected,
       )
       expect(result.current.isConnected()).toBe(false)
-      expect(debugEventFn).toBeCalledWith("connection:Disconnected")
+      expect(debugEventFn).toHaveBeenCalledWith("connection:Disconnected")
       spy.mockClear()
     })
 
@@ -151,7 +151,7 @@ describe("usePusher", () => {
         result.current.emitConnection("failed")
       })
 
-      expect(printConnectionCallback).toBeCalledWith(
+      expect(printConnectionCallback).toHaveBeenCalledWith(
         "Connection failed as websocket is not supported by browser",
         MessageType.CONNECTION_ERROR,
       )
@@ -169,7 +169,7 @@ describe("usePusher", () => {
         result.current.emitConnection("error")
       })
 
-      expect(printConnectionCallback).toBeCalledWith(
+      expect(printConnectionCallback).toHaveBeenCalledWith(
         "Interruption error encountered",
         MessageType.CONNECTION_ERROR,
       )
@@ -188,7 +188,7 @@ describe("usePusher", () => {
         })
       })
 
-      expect(printConnectionCallback).toBeCalledWith(
+      expect(printConnectionCallback).toHaveBeenCalledWith(
         "A different Id was requested, please refresh the page.",
         MessageType.CONNECTION_ERROR,
       )
@@ -204,7 +204,7 @@ describe("usePusher", () => {
         const message = result.current.send("Hello message", MessageType.TEXT)
         expect(message).toBe(false) //will always return false, doesn't matter
       })
-      expect(printEventCallback).not.toBeCalled()
+      expect(printEventCallback).not.toHaveBeenCalled()
     })
 
     it("should be able to emit message", () => {
@@ -216,7 +216,7 @@ describe("usePusher", () => {
           : false
         expect(message).toBe(true)
       })
-      expect(printEventCallback).toBeCalledWith(
+      expect(printEventCallback).toHaveBeenCalledWith(
         "Hello message",
         MessageType.TEXT,
         2,
@@ -232,7 +232,7 @@ describe("usePusher", () => {
           : false
         expect(message).toBe(true)
       })
-      expect(printEventCallback).toBeCalledWith(
+      expect(printEventCallback).toHaveBeenCalledWith(
         "Hello message",
         MessageType.CONNECTION,
         2,
@@ -246,7 +246,7 @@ describe("usePusher", () => {
         result.current.connect()
       })
 
-      expect(printConnectionCallback).toBeCalledWith(
+      expect(printConnectionCallback).toHaveBeenCalledWith(
         "Connection is already established",
         MessageType.TEXT,
       )
@@ -259,7 +259,7 @@ describe("usePusher", () => {
         const message = isNoOfUserEmitter(emitter) ? emitter(2) : false
         expect(message).toBe(true)
       })
-      expect(printConnectionCallback).toBeCalledWith(
+      expect(printConnectionCallback).toHaveBeenCalledWith(
         "Active user count: 2",
         MessageType.USERCOUNT,
       )

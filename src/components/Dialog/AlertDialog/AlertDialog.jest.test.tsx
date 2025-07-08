@@ -61,7 +61,7 @@ describe("AlertDialog", () => {
       const { onOk } = renderComponent()
       assertDialog(true)
       await userEvent.click(screen.getByRole("button", { name: "Ok" }))
-      expect(onOk).toBeCalled()
+      expect(onOk).toHaveBeenCalled()
       assertDialog(false)
     })
 
@@ -69,7 +69,7 @@ describe("AlertDialog", () => {
       const { onOk } = renderComponent()
       assertDialog(true)
       await userEvent.type(screen.getByRole("dialog"), "{escape}")
-      expect(onOk).toBeCalled()
+      expect(onOk).toHaveBeenCalled()
       assertDialog(false)
     })
   })

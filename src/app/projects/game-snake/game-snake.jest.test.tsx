@@ -43,6 +43,6 @@ describe("Snake Game", () => {
       initialSelectionEnd: 2,
     })
     expect(screen.getByLabelText("World Dimension:")).toHaveValue(12)
-    expect(mockRandom).toBeCalledTimes(7)
+    expect(mockRandom).toHaveBeenCalledTimes(7)
   })
 })
