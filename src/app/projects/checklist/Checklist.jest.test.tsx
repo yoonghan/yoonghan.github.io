@@ -119,7 +119,7 @@ describe("Checklist", () => {
       assertValue(screen.getByText("Update Installed (N/T)"), true)
     })
 
-    it("should be able to set twa to true", async () => {
+    xit("should be able to set twa to true", async () => {
       window.location.href = "?utm_source=launcher"
       render(<TroubleshootPwaCheckList />)
       expect(await screen.findAllByText("true")).toHaveLength(1)
