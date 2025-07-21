@@ -1,7 +1,7 @@
+import { spyReload } from "@/__tests__/mocks/locationMock"
 import { KeyboardKeys } from "@/components/PopupKeyboard"
 import { act, render, screen } from "@testing-library/react"
 import testLibUserEvent from "@testing-library/user-event"
-import { spyOnReload } from "@/__tests__/mocks/windowMock"
 import "@/__tests__/mocks/snakeWasmMock"
 import Board from "./Board"
 import { GameContext } from "./GameContext"
@@ -69,12 +69,11 @@ describe("Board", () => {
     }
 
     it("should render reload on Play of game if game is start", async () => {
-      const reloadFn = spyOnReload()
       await renderComponent(true)
 
       await userEvent.click(await screen.findByRole("button", { name: "Play" }))
 
-      expect(reloadFn).toHaveBeenCalled()
+      expect(spyReload).toHaveBeenCalled()
     })
 
     it("should be able to press UP", async () => {

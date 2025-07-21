@@ -72,7 +72,7 @@ describe("Video", () => {
       screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
     await userEvent.hover(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
       screen.getByRole("button", { name: "with sound ( off )" }),
@@ -89,7 +89,7 @@ describe("Video", () => {
       screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
     await userEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
       screen.getByRole("button", { name: "with sound ( on )" }),
@@ -105,12 +105,12 @@ describe("Video", () => {
     video.pause = videoPauseFn
 
     await userEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
 
     await userEvent.unhover(videoDivWrapper)
     expect(video).toHaveStyle({ opacity: 0 })
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   it("should play video when user click play  with sound on without unhovering out", async () => {
@@ -127,7 +127,7 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
   })
 
   it("should play video when user click play, then click unplay with sound on", async () => {
@@ -146,10 +146,10 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   it("should stop playing video when has sound turned on and play then unhover", async () => {
@@ -168,9 +168,9 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
     fireEvent.mouseOut(videoDivWrapper)
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   describe("preload", () => {

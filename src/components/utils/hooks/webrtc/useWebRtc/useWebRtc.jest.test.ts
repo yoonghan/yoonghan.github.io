@@ -19,7 +19,7 @@ describe("useWebRtc", () => {
       },
     )
     result.current.initialize(new MediaStream(), () => {})
-    expect(errorCallbackFn).toBeCalledWith("No video")
+    expect(errorCallbackFn).toHaveBeenCalledWith("No video")
   })
 
   it("should be able initiate call as requestor, when there is a video", async () => {
@@ -46,7 +46,7 @@ describe("useWebRtc", () => {
     expect(setRemoteDescriptionMock).toHaveBeenCalledWith(sdp)
     expect(setLocalDescriptionMock).toHaveBeenCalledWith("answer sdp")
 
-    expect(errorCallbackFn).not.toBeCalledWith()
+    expect(errorCallbackFn).not.toHaveBeenCalledWith()
     result.current.disconnect()
   })
 
@@ -77,7 +77,7 @@ describe("useWebRtc", () => {
     result.current.addIceCandidate(iceCandidate)
     expect(setRemoteDescriptionMock).toHaveBeenCalledWith(sdp)
 
-    expect(errorCallbackFn).not.toBeCalledWith()
+    expect(errorCallbackFn).not.toHaveBeenCalledWith()
     result.current.disconnect()
   })
 

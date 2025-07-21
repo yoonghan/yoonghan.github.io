@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { spySearch } from "@/__tests__/mocks/locationMock"
 import FunkyScroller from "."
 
 describe("Funky Scroller", () => {
@@ -24,10 +25,7 @@ describe("Funky Scroller", () => {
   })
 
   it("should be able to disable animation", () => {
-    Object.defineProperty(window, "location", {
-      value: { search: "?animate=none" },
-      writable: true,
-    })
+    spySearch.mockReturnValue("?animate=none")
     renderComponent("Funky-Scroller-1")
     expect(screen.getByTitle("Funky-Scroller-1")).toHaveClass("animate-none")
   })
