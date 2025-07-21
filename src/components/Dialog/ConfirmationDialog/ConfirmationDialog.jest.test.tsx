@@ -88,7 +88,7 @@ describe("ConfirmationDialog", () => {
       const { onYesClick } = renderComponent()
       assertDialog(true)
       await userEvent.click(screen.getByRole("button", { name: "Yes" }))
-      expect(onYesClick).toBeCalled()
+      expect(onYesClick).toHaveBeenCalled()
       assertDialog(false)
     })
 
@@ -96,7 +96,7 @@ describe("ConfirmationDialog", () => {
       const { onNoClick } = renderComponent()
       assertDialog(true)
       await userEvent.click(screen.getByRole("button", { name: "No" }))
-      expect(onNoClick).toBeCalled()
+      expect(onNoClick).toHaveBeenCalled()
       assertDialog(false)
     })
 
@@ -104,7 +104,7 @@ describe("ConfirmationDialog", () => {
       const { onCancel } = renderComponent()
       assertDialog(true)
       await userEvent.type(screen.getByRole("dialog"), "{escape}")
-      expect(onCancel).toBeCalled()
+      expect(onCancel).toHaveBeenCalled()
       assertDialog(false)
     })
 

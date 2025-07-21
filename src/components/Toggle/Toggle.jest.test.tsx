@@ -32,7 +32,9 @@ describe("Toggle", () => {
   })
 
   it("checkbox reflects checked prop", () => {
-    const { rerender } = render(<Toggle label="Test Label" checked={false} />)
+    const { rerender } = render(
+      <Toggle label="Test Label" checked={false} onChange={jest.fn()} />,
+    )
     const checkbox = screen.getByRole("checkbox")
     expect(checkbox).not.toBeChecked()
     rerender(<Toggle label="Test Label" checked={true} />)
