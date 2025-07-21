@@ -6,6 +6,7 @@ import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 import { site } from "@/config/site"
+import { redirectTo } from "@/util/location"
 
 export enum EnumAction {
   COMMAND,
@@ -130,7 +131,7 @@ export const AvailableInput: ICommand = {
     synonym: ["no animate", "stop animate"],
     action: EnumAction.LINK,
     exec: (_: AppRouterInstance, pathname: string) => {
-      window.location.href = pathname + "?animate=none"
+      redirectTo(pathname + "?animate=none")
       return <></>
     },
   },
