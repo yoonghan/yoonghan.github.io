@@ -28,7 +28,7 @@ describe("RecipientList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "Call alicia" }))
 
-    expect(callbackFn).toBeCalledWith({ id: "2", name: "alicia" })
+    expect(callbackFn).toHaveBeenCalledWith({ id: "2", name: "alicia" })
   })
 
   it("should be able to render list of disabled buttons that can't be triggered", async () => {
@@ -56,6 +56,6 @@ describe("RecipientList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "Call alicia" }))
 
-    expect(callbackFn).not.toBeCalledWith({ id: "2", name: "alicia" })
+    expect(callbackFn).not.toHaveBeenCalledWith({ id: "2", name: "alicia" })
   })
 })

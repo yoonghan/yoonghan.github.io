@@ -1,6 +1,6 @@
+import { spyRedirect } from "@/__tests__/mocks/locationMock"
 import { render, screen } from "@testing-library/react"
 import EmailSender from "./EmailSender"
-import "@/__tests__/mocks/windowMock"
 import userEvent from "@testing-library/user-event"
 
 describe("EmailSender", () => {
@@ -32,7 +32,8 @@ describe("EmailSender", () => {
         onCancel={jest.fn()}
       />,
     )
-    expect(window.location.href).toBe(
+
+    expect(spyRedirect).toHaveBeenCalledWith(
       `mailto:${sender}?subject=Contact%20from%20Enc0%26dRecX%20website&body=${expectedBody}`,
     )
   })

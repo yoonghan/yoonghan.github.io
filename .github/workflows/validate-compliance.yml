@@ -3,8 +3,10 @@ name: Validate libraries used are compliant
 on:
   # allow as dispatch call
   workflow_dispatch:
-
   workflow_call:
+
+env:
+  NODE_VERSION: 20
 
 jobs:
   compliance:
@@ -22,7 +24,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 
@@ -36,7 +38,7 @@ jobs:
 
       - name: ✅ Dependency checks
         run: npm run dependency:check
-        
+
       - name: License compliance check
         uses: mikaelvesavuori/license-compliance-action@v1
 
@@ -80,7 +82,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 

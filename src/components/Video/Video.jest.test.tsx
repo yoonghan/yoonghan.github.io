@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 import Video from "."
 
 describe("Video", () => {
@@ -50,13 +50,13 @@ describe("Video", () => {
 
     it("should render sound can be toggled", async () => {
       renderComponent({})
-      await UserEvent.click(
+      await userEvent.click(
         screen.getByRole("button", { name: "with sound ( off )" }),
       )
-      await UserEvent.click(
+      await userEvent.click(
         screen.getByRole("button", { name: "with sound ( on )" }),
       )
-      await UserEvent.click(
+      await userEvent.click(
         screen.getByRole("button", { name: "with sound ( off )" }),
       )
     })
@@ -71,8 +71,8 @@ describe("Video", () => {
     expect(
       screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
-    await UserEvent.hover(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    await userEvent.hover(videoDivWrapper)
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
       screen.getByRole("button", { name: "with sound ( off )" }),
@@ -88,8 +88,8 @@ describe("Video", () => {
     expect(
       screen.getByRole("button", { name: "with sound ( off )" }),
     ).toBeInTheDocument()
-    await UserEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    await userEvent.click(videoDivWrapper)
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
     expect(
       screen.getByRole("button", { name: "with sound ( on )" }),
@@ -104,13 +104,13 @@ describe("Video", () => {
     const videoPauseFn = jest.fn()
     video.pause = videoPauseFn
 
-    await UserEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    await userEvent.click(videoDivWrapper)
+    expect(videoPlayFn).toHaveBeenCalled()
     expect(video).toHaveStyle({ opacity: 1 })
 
-    await UserEvent.unhover(videoDivWrapper)
+    await userEvent.unhover(videoDivWrapper)
     expect(video).toHaveStyle({ opacity: 0 })
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   it("should play video when user click play  with sound on without unhovering out", async () => {
@@ -119,7 +119,7 @@ describe("Video", () => {
     const videoPlayFn = jest.fn()
     video.play = videoPlayFn
 
-    await UserEvent.click(
+    await userEvent.click(
       screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
@@ -127,7 +127,7 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
   })
 
   it("should play video when user click play, then click unplay with sound on", async () => {
@@ -138,7 +138,7 @@ describe("Video", () => {
     const videoPlayFn = jest.fn()
     video.play = videoPlayFn
 
-    await UserEvent.click(
+    await userEvent.click(
       screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
@@ -146,10 +146,10 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   it("should stop playing video when has sound turned on and play then unhover", async () => {
@@ -160,7 +160,7 @@ describe("Video", () => {
     const videoPlayFn = jest.fn()
     video.play = videoPlayFn
 
-    await UserEvent.click(
+    await userEvent.click(
       screen.getByRole("button", { name: "with sound ( off )" }),
     )
     expect(
@@ -168,9 +168,9 @@ describe("Video", () => {
     ).toBeInTheDocument()
 
     fireEvent.click(videoDivWrapper)
-    expect(videoPlayFn).toBeCalled()
+    expect(videoPlayFn).toHaveBeenCalled()
     fireEvent.mouseOut(videoDivWrapper)
-    expect(videoPauseFn).toBeCalled()
+    expect(videoPauseFn).toHaveBeenCalled()
   })
 
   describe("preload", () => {
