@@ -3,3 +3,5 @@ export const redirectTo = (url: string) => {
 }
 
 export const search = () => window.location.search
+
+export const reload = () => window.location.reload()

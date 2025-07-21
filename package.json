@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest",
+    "test:ci": "jest --ci --coverage --coverageDirectory=coverage/jest --no-cache",
     "lint": "next lint",
     "backstop:approve": "backstop approve",
     "backstop:test": "backstop test",
