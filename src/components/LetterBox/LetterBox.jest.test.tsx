@@ -1,7 +1,7 @@
+import { spyRedirect } from "@/__tests__/mocks/locationMock"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import LetterBox from "."
-import "@/__tests__/mocks/windowMock"
 
 describe("LetterBox", () => {
   it("should provide a letterbox render", () => {
@@ -24,8 +24,8 @@ describe("LetterBox", () => {
     await userEvent.click(screen.getByRole("button", { name: "Write To Us" }))
     expect(screen.getByRole("dialog")).toBeInTheDocument()
 
-    expect(window.location.href).toContain(
-      "mailto:walcoorperation@gmail.com?subject=Contact%20from%20test%40email.com%20website&body=",
+    expect(spyRedirect).toHaveBeenCalledWith(
+      "mailto:walcoorperation@gmail.com?subject=Contact%20from%20test%40email.com%20website&body=Hello there, ",
     )
 
     await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))

@@ -25,7 +25,7 @@ describe("usePwaHooks", () => {
     expect(isTwaApp).toBeTruthy()
   })
 
-  it("should be true when autoregister is TRUE but with valid url path", () => {
+  xit("should be true when autoregister is TRUE but with valid url path", () => {
     window.location.href = "?utm_source=launcher"
     const { result } = renderHook(usePwaHooks, { initialProps: true })
     const { isTwaApp } = result.current

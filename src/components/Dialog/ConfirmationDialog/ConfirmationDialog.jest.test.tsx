@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import ConfirmationDialog from "."
-import UserEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event"
 
 describe("ConfirmationDialog", () => {
   it("should render component correctly", async () => {
@@ -87,24 +87,24 @@ describe("ConfirmationDialog", () => {
     it("should close after Yes is clicked", async () => {
       const { onYesClick } = renderComponent()
       assertDialog(true)
-      await UserEvent.click(screen.getByRole("button", { name: "Yes" }))
-      expect(onYesClick).toBeCalled()
+      await userEvent.click(screen.getByRole("button", { name: "Yes" }))
+      expect(onYesClick).toHaveBeenCalled()
       assertDialog(false)
     })
 
     it("should close after No is clicked", async () => {
       const { onNoClick } = renderComponent()
       assertDialog(true)
-      await UserEvent.click(screen.getByRole("button", { name: "No" }))
-      expect(onNoClick).toBeCalled()
+      await userEvent.click(screen.getByRole("button", { name: "No" }))
+      expect(onNoClick).toHaveBeenCalled()
       assertDialog(false)
     })
 
     it("should close after Cancel is clicked", async () => {
       const { onCancel } = renderComponent()
       assertDialog(true)
-      await UserEvent.type(screen.getByRole("dialog"), "{escape}")
-      expect(onCancel).toBeCalled()
+      await userEvent.type(screen.getByRole("dialog"), "{escape}")
+      expect(onCancel).toHaveBeenCalled()
       assertDialog(false)
     })
 
@@ -119,7 +119,7 @@ describe("ConfirmationDialog", () => {
         />,
       )
       assertDialog(true)
-      await UserEvent.type(screen.getByRole("dialog"), "{escape}")
+      await userEvent.type(screen.getByRole("dialog"), "{escape}")
       assertDialog(false)
     })
 
@@ -134,7 +134,7 @@ describe("ConfirmationDialog", () => {
         />,
       )
       assertDialog(true)
-      await UserEvent.click(screen.getByRole("button", { name: "No" }))
+      await userEvent.click(screen.getByRole("button", { name: "No" }))
       assertDialog(false)
     })
   })

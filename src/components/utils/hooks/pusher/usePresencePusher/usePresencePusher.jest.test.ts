@@ -74,13 +74,13 @@ describe("usePresencePusher", () => {
       act(() => {
         result.current.connect("billy")
       })
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.StartConnecting,
       )
 
       emitSubscriptionSuccess(result.current.emit)
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Connected,
       )
 
@@ -100,12 +100,12 @@ describe("usePresencePusher", () => {
         result.current.connect("billy")
       })
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.StartConnecting,
       )
       emitSubscriptionSuccess(result.current.emit)
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Connected,
       )
 
@@ -113,7 +113,7 @@ describe("usePresencePusher", () => {
         result.current.connect("new username, but will never be added")
       })
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Connected,
       )
     })
@@ -133,7 +133,7 @@ describe("usePresencePusher", () => {
         result.current.disconnect()
       })
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Disconnected,
       )
 
@@ -152,7 +152,7 @@ describe("usePresencePusher", () => {
         })
       })
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Connected,
       )
 
@@ -178,7 +178,7 @@ describe("usePresencePusher", () => {
         result.current.emit("pusher:subscription_error", error)
       })
 
-      expect(updateConnectionCallback).toBeCalledWith(
+      expect(updateConnectionCallback).toHaveBeenCalledWith(
         EnumConnectionStatus.Error,
       )
 
@@ -237,7 +237,7 @@ describe("usePresencePusher", () => {
         data: "test",
       })
 
-      expect(clientCallback).toBeCalledWith({
+      expect(clientCallback).toHaveBeenCalledWith({
         data: "test",
         from: "billy",
         fromName: "Billy Joe",
@@ -299,7 +299,7 @@ describe("usePresencePusher", () => {
       trigger(result.current, "client-event", {
         data: "test",
       })
-      expect(newClientCallback).toBeCalledWith({
+      expect(newClientCallback).toHaveBeenCalledWith({
         data: "test",
         from: "johnny",
         fromName: "Johnny Depp",

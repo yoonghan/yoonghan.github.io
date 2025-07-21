@@ -34,7 +34,7 @@ describe("CustomSystemChatBubble", () => {
     )
     expect(screen.getByText("Connection OK")).toBeInTheDocument()
     expect(screen.getByText("Connection OK")).toHaveStyle({
-      color: "deepskyblue",
+      color: "rgb(0, 191, 255)",
     })
   })
 
@@ -49,7 +49,7 @@ describe("CustomSystemChatBubble", () => {
     )
     expect(screen.getByText("Connection Error")).toBeInTheDocument()
     expect(screen.getByText("Connection Error")).toHaveStyle({
-      color: "darkred",
+      color: "rgb(139, 0, 0)",
     })
   })
 })
