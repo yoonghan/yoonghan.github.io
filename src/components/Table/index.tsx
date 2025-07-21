@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, JSX } from "react"
 
 type ListRecord = Record<string, ReactNode>
 
