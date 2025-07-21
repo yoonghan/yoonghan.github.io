@@ -1,3 +1,4 @@
+import { JSX } from "react"
 import Image, { StaticImageData } from "next/image"
 
 interface IProfiler {

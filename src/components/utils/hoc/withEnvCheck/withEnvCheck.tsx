@@ -1,4 +1,5 @@
 import { hasEmptyValueInObject } from "../../common/object"
+import { JSX } from "react"
 
 export const withNonEmptyEnvCheck = <T extends { [key: string]: any }>(
   Component: (props: T) => JSX.Element,

@@ -3,7 +3,7 @@ import { ConfirmDialog, createConfirmation, confirmable } from "react-confirm"
 import dialogRootCreator from "../dialogRootCreator"
 
 export const useDialogCreation = <T>(component: ConfirmDialog<T, string>) => {
-  const confirmationRef = useRef<(props: T) => Promise<string>>()
+  const confirmationRef = useRef<(props: T) => Promise<string>>(undefined)
 
   useEffect(() => {
     const elem = dialogRootCreator.create()

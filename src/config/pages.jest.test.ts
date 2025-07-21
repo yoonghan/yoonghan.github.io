@@ -129,10 +129,6 @@ describe("pages", () => {
         path: "/experiments/storybook",
         display: "Storybook",
       },
-      {
-        path: "/experiments/homepage-v1",
-        display: "Parallax Homepage",
-      },
     ]
 
     expect(findAllChildByPath("/about")).toStrictEqual([])

@@ -27,7 +27,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     ref,
   ) {
     const videoRef = useRef<HTMLVideoElement>(null)
-    const streamRef = useRef<MediaStream>()
+    const streamRef = useRef<MediaStream>(undefined)
 
     const stream = useCallback((stream: MediaStream) => {
       if (videoRef.current !== null) {
