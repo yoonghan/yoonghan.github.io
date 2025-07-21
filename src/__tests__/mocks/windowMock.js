@@ -1,9 +1,3 @@
-global.window ??= Object.create(window)
-const windowLocation = window.location
-Object.defineProperty(window, "location", {
-  value: { ...windowLocation, reload: () => {} },
-})
-
 afterEach(() => {
   jest.restoreAllMocks()
 })

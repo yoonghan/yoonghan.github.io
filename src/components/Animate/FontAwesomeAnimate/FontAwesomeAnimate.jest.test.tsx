@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react"
+import { spySearch } from "@/__tests__/mocks/locationMock"
 import FontAwesomeAnimate, { SupportedAnimation } from "."
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
-describe("Animate FontAwesomeAnimate", () => {
+describe("FontAwesomeAnimate", () => {
   const renderComponent = (
     title: string,
     className?: string,
@@ -39,10 +40,7 @@ describe("Animate FontAwesomeAnimate", () => {
   })
 
   it("should be able to disable animation", () => {
-    Object.defineProperty(window, "location", {
-      value: { search: "?animate=none" },
-      writable: true,
-    })
+    spySearch.mockReturnValue("?animate=none")
     renderComponent("arrow-zoom-3")
     assertAnimate(false, "bounce")
   })
