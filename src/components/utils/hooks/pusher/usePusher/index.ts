@@ -27,8 +27,8 @@ type Props = {
 
 export function usePusher(props: Props) {
   const { printConnectionCallback, printEventCallback, appKey, cluster } = props
-  const pusherChannelClient = useRef<PusherJS>()
-  const channel = useRef<Channel>()
+  const pusherChannelClient = useRef<PusherJS>(undefined)
+  const channel = useRef<Channel>(undefined)
   const connectionStatus = useRef<EnumConnectionStatus>(
     EnumConnectionStatus.Disconnected,
   )
