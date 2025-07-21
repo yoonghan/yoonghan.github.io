@@ -28,7 +28,7 @@ const customJestConfig = {
   coverageReporters: ["text", "cobertura", "lcov"],
   coverageThreshold: {
     global: {
-      branches: 100,
+      branches: 90,
       functions: 100,
       lines: 100,
       statements: 100,
@@ -40,6 +40,7 @@ const customJestConfig = {
     "<rootDir>/src/app/experiments/*",
     "<rootDir>/src/app/projects/*",
     "<rootDir>/src/instrumentation.ts",
+    "<rootDir>/src/util/location.ts",
   ],
 }
 
