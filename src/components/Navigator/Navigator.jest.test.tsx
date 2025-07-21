@@ -43,9 +43,9 @@ describe("Navigator", () => {
     render(<Navigator links={links} onLinkClick={linkFn} label="Site" />)
 
     await userEvent.click(screen.getAllByRole("menuitem")[0])
-    expect(linkFn).toBeCalledWith("link1")
+    expect(linkFn).toHaveBeenCalledWith("link1")
 
     await userEvent.type(screen.getAllByRole("menuitem")[1], "{enter}")
-    expect(linkFn).toBeCalledWith("link2")
+    expect(linkFn).toHaveBeenCalledWith("link2")
   })
 })
