@@ -174,6 +174,6 @@ npm run rust:test //test rust running on browser
 2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
 
 [build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml
-[build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+master"
+[build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+main"
 [coverage-badge]: https://codecov.io/gh/yoonghan/yoonghan.github.io/graph/badge.svg?token=HPWQMQPPS1
 [coverage]: https://codecov.io/gh/yoonghan/yoonghan.github.io
