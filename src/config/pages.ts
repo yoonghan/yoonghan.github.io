@@ -93,11 +93,6 @@ const pages: PageConfig[] = [
     order: 2,
   },
   {
-    path: "/experiments/homepage-v1",
-    display: "Parallax Homepage",
-    order: 4,
-  },
-  {
     path: "/experiments/storybook",
     display: "Storybook",
     order: 3,

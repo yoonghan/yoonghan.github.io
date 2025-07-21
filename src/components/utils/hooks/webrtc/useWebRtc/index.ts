@@ -9,8 +9,8 @@ export const useWebRtc = (
   setRemoteStream: (stream: MediaStream) => void,
   errorCallback: (error: string) => void,
 ) => {
-  const callerRef = useRef<RTCPeerConnection>()
-  const remoteStream = useRef<MediaStream>()
+  const callerRef = useRef<RTCPeerConnection>(undefined)
+  const remoteStream = useRef<MediaStream>(undefined)
 
   const acknowledgeAnswer = useCallback(
     (sdp: RTCSessionDescriptionInit) => {

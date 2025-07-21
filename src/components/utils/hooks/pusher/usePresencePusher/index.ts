@@ -23,13 +23,13 @@ export const usePresencePusher = ({
   updateConnectionCallback,
   shouldUpdatedOfflineUserEnd,
 }: Props) => {
-  const pusher = useRef<PusherJS>()
-  const channel = useRef<Channel>()
+  const pusher = useRef<PusherJS>(undefined)
+  const channel = useRef<Channel>(undefined)
 
   const [onlineUsers, dispatch] = useReducer(onlineUserReducer, [])
   const [eventsBinded, setEventsBinded] = useState<string[]>([])
   const [myMembership, setMyMembership] = useState({ id: "", name: "" })
-  const errorMessage = useRef<string>()
+  const errorMessage = useRef<string>(undefined)
   const connectionStatus = useRef<EnumConnectionStatus>(
     EnumConnectionStatus.Disconnected,
   )
