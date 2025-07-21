@@ -1,4 +1,5 @@
 import { render, screen, within } from "@testing-library/react"
+import { spySearch } from "@/__tests__/mocks/locationMock"
 import Gauge from "."
 
 describe("Animate Gauge", () => {
@@ -15,10 +16,7 @@ describe("Animate Gauge", () => {
   })
 
   it("should be able to disable animation", () => {
-    Object.defineProperty(window, "location", {
-      value: { search: "?animate=none" },
-      writable: true,
-    })
+    spySearch.mockReturnValue("?animate=none")
     renderComponent("workflow-1")
     expect(
       within(screen.getByTitle("workflow-1")).getByTestId("gauge"),

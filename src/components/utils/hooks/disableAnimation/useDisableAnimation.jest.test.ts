@@ -1,3 +1,4 @@
+import { spySearch } from "@/__tests__/mocks/locationMock"
 import { renderHook } from "@testing-library/react"
 import {
   disableAnimationRegex,
@@ -11,18 +12,10 @@ describe("useDisableAnimation", () => {
   })
 
   it("should stop animate when querystring animatable=none", () => {
-    Object.defineProperty(window, "location", {
-      value: { search: "?animate=none" },
-      writable: true,
-    })
+    spySearch.mockReturnValue("?animate=none")
 
     const { result } = renderHook(useDisableAnimation, {})
     expect(result.current.isAnimatable).toBe(false)
-
-    Object.defineProperty(window, "location", {
-      value: { search: "" },
-      writable: false,
-    })
   })
 
   it("should return correctly define disableAnimation REGEX", () => {

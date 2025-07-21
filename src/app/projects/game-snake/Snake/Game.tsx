@@ -6,6 +6,7 @@ import { GameContext } from "./GameContext"
 import styles from "./Snake.module.css"
 import { drawCell, drawSquareBoard } from "./util/drawCanvas"
 import { useInterval } from "usehooks-ts"
+import { reload } from "@/util/location"
 
 export type GameProps = {
   world: World
@@ -112,7 +113,7 @@ const Game = ({
 
   const onPlayClicked = useCallback(() => {
     if (gameContext.isGameStarted) {
-      location.reload()
+      reload()
     } else {
       if (gameContext.setGameStarted) {
         gameContext.setGameStarted(true)
