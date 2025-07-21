@@ -44,16 +44,14 @@ export const useWebRtc = (
 
   const addOnTrack = useCallback(
     (event: RTCTrackEvent) => {
-      if (remoteStream.current) {
-        const stream = remoteStream.current
-        stream.addTrack(event.track)
-        if (event.streams?.length) {
-          event.streams[0]?.getTracks().forEach((track) => {
-            stream.addTrack(track)
-          })
-        }
-        setRemoteStream(stream)
+      const stream = remoteStream.current
+      stream?.addTrack(event.track)
+      if (event.streams?.length) {
+        event.streams[0]?.getTracks().forEach((track) => {
+          stream?.addTrack(track)
+        })
       }
+      stream && setRemoteStream(stream)
     },
     [setRemoteStream],
   )
@@ -118,9 +116,7 @@ export const useWebRtc = (
     remoteStream.current?.getTracks()?.forEach((track) => {
       track.stop()
     })
-    if (callerRef.current) {
-      callerRef.current.close()
-    }
+    callerRef.current?.close()
   }, [])
 
   return {
