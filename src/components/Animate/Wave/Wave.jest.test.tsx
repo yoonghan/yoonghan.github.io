@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import { spySearch } from "@/__tests__/mocks/locationMock"
 import Wave from "."
 
 describe("Wave", () => {
@@ -10,10 +11,7 @@ describe("Wave", () => {
     )
 
   it("should be able to disable animation", () => {
-    Object.defineProperty(window, "location", {
-      value: { search: "?animate=none" },
-      writable: true,
-    })
+    spySearch.mockReturnValue("?animate=none")
     renderComponent("waves-1")
     screen
       .getByTitle("waves-1")

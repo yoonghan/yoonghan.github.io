@@ -1,6 +1,6 @@
+import { spyRedirect } from "@/__tests__/mocks/locationMock"
 import { render, screen } from "@testing-library/react"
 import { exec } from "./ExecuteCommand"
-import "@/__tests__/mocks/windowMock"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 describe("CommandBar", () => {
@@ -218,7 +218,7 @@ describe("CommandBar", () => {
   describe("no-animate", () => {
     it("should update location with no-animate", function () {
       render(<div>{createCommandBar()("no-animate")}</div>)
-      expect(window.location.href).toBe("/samplePage?animate=none")
+      expect(spyRedirect).toHaveBeenCalledWith("/samplePage?animate=none")
     })
   })
 })

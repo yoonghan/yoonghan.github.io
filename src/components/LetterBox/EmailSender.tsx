@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import Dialog from "../Dialog"
+import { redirectTo } from "@/util/location"
 
 interface EmailSenderProps {
   writeTo: string
@@ -12,7 +13,7 @@ const EmailSender = ({ writeTo, writeFrom, onCancel }: EmailSenderProps) => {
     const subject = encodeURIComponent(`Contact from ${writeFrom} website`)
     const body = "Hello there, "
 
-    window.location.href = `mailto:${writeTo}?subject=${subject}&body=${body}`
+    redirectTo(`mailto:${writeTo}?subject=${subject}&body=${body}`)
   }, [writeFrom, writeTo])
 
   return (
