@@ -276,7 +276,7 @@ function Homepage() {
               We did it by relying on both PureCSS, Server Side Generation and
               ensuring non-critical usage for Javascript. The old homepage was
               Javascript heavy with Parallax Effect and we encountered{" "}
-              <strong>performance and accessibility</strong>{" "}issues.
+              <strong>performance and accessibility</strong> issues.
             </p>
             <FontAwesomeAnimate
               title={"Keyboard Accessible"}
