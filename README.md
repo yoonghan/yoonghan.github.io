@@ -1,7 +1,12 @@
 # Walcron - a personal website
 
-[![Build Status][build-badge]][build]
-[![codecov][coverage-badge]][coverage]
+[![Build Status](https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml)](https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+main")
+[![codecov](https://codecov.io/gh/yoonghan/yoonghan.github.io/graph/badge.svg?token=HPWQMQPPS1)](https://codecov.io/gh/yoonghan/yoonghan.github.io)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yoonghan_yoonghan.github.io&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yoonghan_yoonghan.github.io)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=yoonghan_yoonghan.github.io&metric=bugs)](https://sonarcloud.io/summary/new_code?id=yoonghan_yoonghan.github.io)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yoonghan_yoonghan.github.io&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yoonghan_yoonghan.github.io)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yoonghan_yoonghan.github.io&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yoonghan_yoonghan.github.io)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=yoonghan_yoonghan.github.io&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=yoonghan_yoonghan.github.io)
 
 ---
 
@@ -173,7 +178,3 @@ npm run rust:test //test rust running on browser
 1. Set variables configured in axiom to view telemetry AXIOM_API_TOKEN and AXIOM_DATASET_NAME.
 2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
 
-[build-badge]: https://img.shields.io/github/actions/workflow/status/yoonghan/yoonghan.github.io/merge.yml
-[build]: https://github.com/yoonghan/yoonghan.github.io/actions?query=workflow%3A"Report+merged+result+on+main"
-[coverage-badge]: https://codecov.io/gh/yoonghan/yoonghan.github.io/graph/badge.svg?token=HPWQMQPPS1
-[coverage]: https://codecov.io/gh/yoonghan/yoonghan.github.io
