@@ -94,7 +94,8 @@ jobs:
       - name: ▶️ Start website in background
         run: |
           npm run build 
-          npm run start &
+          nohup npm start > npm.log 2>&1 &
+          echo $! > npm.pid
 
       - name: ▶️ Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v12
@@ -105,6 +106,15 @@ jobs:
             http://localhost:3000/about
             http://localhost:3000/history
           configPath: "./lighthouserc.json"
+
+      - name: Kill npm background process 
+        run: |
+          if [ -f npm.pid ]; then
+            kill $(cat npm.pid)
+            echo "Killed npm process"
+          else
+            echo "No PID file found"
+          fi
 
       - name: ✅ Verify status
         run: |
