@@ -1,15 +1,12 @@
 export const cloud_certificates = [
   {
-    imageUrl:
-      "/img/certifications/microsoft-certified-expert-badge.svg",
+    imageUrl: "/img/certifications/microsoft-certified-expert-badge.svg",
     className: "bg-blue-500",
-    title:
-      "Microsoft Certified: Azure Solutions Architect Expert",
+    title: "Microsoft Certified: Azure Solutions Architect Expert",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
   },
   {
-    imageUrl:
-      "/img/certifications/microsoft-certified-expert-badge.svg",
+    imageUrl: "/img/certifications/microsoft-certified-expert-badge.svg",
     className: "bg-blue-400",
     title: "Microsoft Certified: DevOps Engineer Expert",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/4b0bb693435b43f0",
@@ -22,8 +19,7 @@ export const cloud_certificates = [
     href: "https://www.credly.com/badges/964f2164-02ab-469c-b964-a01c2210ef24",
   },
   {
-    imageUrl:
-      "/img/certifications/microsoft-certified-associate-badge.svg",
+    imageUrl: "/img/certifications/microsoft-certified-associate-badge.svg",
     className: "bg-blue-200",
     title: "Azure Administrator Associate",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B",
@@ -36,8 +32,7 @@ export const cloud_certificates = [
     href: "https://www.credly.com/badges/fb17e291-5f18-4c0f-9474-364d82549bbe",
   },
   {
-    imageUrl:
-      "/img/certifications/microsoft-certified-fundamentals-badge.svg",
+    imageUrl: "/img/certifications/microsoft-certified-fundamentals-badge.svg",
     className: "bg-teal-400",
     title: "Azure Cloud Fundamentals (AZ-900)",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9",

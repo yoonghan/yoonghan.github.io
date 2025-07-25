@@ -141,9 +141,7 @@ const About = () => {
 
           <h4 className="text-xl text-center py-6">Cloud Certifications</h4>
           <div className="relative">
-            <StickyCards
-              contents={cloud_certificates}
-            />
+            <StickyCards contents={cloud_certificates} />
           </div>
           <h4 className="text-xl text-center py-12">
             Programming Certifications
