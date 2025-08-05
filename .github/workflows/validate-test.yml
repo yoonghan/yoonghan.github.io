@@ -103,7 +103,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
 
-      - uses: browser-actions/setup-chrome@v1
+      - uses: browser-actions/setup-chrome@v2
 
       - name: ✅ Validate Wasm binary is latest with BEST effort
         uses: nick-fields/retry@v3
