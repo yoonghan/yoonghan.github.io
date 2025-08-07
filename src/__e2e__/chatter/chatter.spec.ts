@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable testing-library/prefer-screen-queries */
-
 /*
  Do not split test.
  Due to be using vercel preview, many instabilities happen over here.
