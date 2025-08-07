@@ -1,17 +1,22 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { dirname } from "path"
+import { fileURLToPath } from "url"
+import { FlatCompat } from "@eslint/eslintrc"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-});
+})
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:jsx-a11y/recommended", "plugin:testing-library/react"),
-  ...compat.plugins("testing-library"),
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:jsx-a11y/recommended",
+    "plugin:testing-library/react",
+  ),
+  ...compat.plugins("testing-library", "eslint-plugin-prettier"),
   {
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
@@ -25,10 +30,10 @@ const eslintConfig = [
       "no-var": "off",
       "@typescript-eslint/no-this-alias": "off",
       "no-console": "warn",
-      "testing-library/no-node-access": "warn"
+      "testing-library/no-node-access": "warn",
+      "prettier/prettier": "warn",
     },
+  },
+]
 
-  }
-];
-
-export default eslintConfig;
+export default eslintConfig

@@ -14,7 +14,6 @@
     "@typescript-eslint/eslint-plugin",
     "eslint",
     "eslint-config-next",
-    "eslint-config-prettier",
     "eslint-plugin-jsx-a11y",
     "eslint-plugin-prettier",
     "eslint-plugin-testing-library"
