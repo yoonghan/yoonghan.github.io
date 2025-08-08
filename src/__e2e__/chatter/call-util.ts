@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+/* eslint-disable testing-library/prefer-screen-queries */
+
 import { chromium, expect, Page } from "@playwright/test"
 
 export const startCall = async (userName: string) => {
