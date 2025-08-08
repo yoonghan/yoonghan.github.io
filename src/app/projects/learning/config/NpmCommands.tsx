@@ -12,7 +12,8 @@ const model = [
           update to specific version
         </li>
         <li>
-          npm update &quot;packages&quot; # update to latest but based on ~, ^
+          npm update &quot;packages&quot; # update to latest but based on ~, ^,
+          works even on sub-project like jose in firebase-admin
         </li>
         <li>npm audit fix # fix security and may break</li>
         <li>npm ls &quot;package&quot; # list dependency</li>
