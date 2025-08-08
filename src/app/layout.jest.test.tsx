@@ -12,6 +12,50 @@ describe("Main Layout", () => {
     )
   }
 
+  beforeEach(() => {
+    // Mock the performance object before each test
+    Object.defineProperty(window, "performance", {
+      value: {
+        getEntries: jest.fn(() => [
+          {
+            name: "my-mark-1",
+            entryType: "mark",
+            startTime: 100,
+            duration: 0,
+          },
+          {
+            name: "my-measure-1",
+            entryType: "measure",
+            startTime: 100,
+            duration: 50,
+          },
+        ]),
+        getEntriesByType: jest.fn((type) => {
+          if (type === "mark") {
+            return [
+              {
+                name: "my-mark-1",
+                entryType: "mark",
+                startTime: 100,
+                duration: 0,
+              },
+            ]
+          }
+          return []
+        }),
+        mark: jest.fn(),
+        measure: jest.fn(),
+        // Add other performance methods if needed
+      },
+      writable: true, // Make it writable for mocking
+    })
+  })
+
+  afterEach(() => {
+    // Clean up the mock after each test
+    jest.restoreAllMocks()
+  })
+
   const assertFooter = () => {
     const footer = screen.getByRole("contentinfo")
     expect(within(footer).getByText("Walcron 2014-2025 ©")).toBeInTheDocument()
