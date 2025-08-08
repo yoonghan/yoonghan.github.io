@@ -47,7 +47,6 @@ jobs:
           npm uninstall snake-game
           npm uninstall backstopjs
           npm uninstall @ducanh2912/next-pwa
-          npm uninstall @tailwindcss/postcss
           npm uninstall firebase-admin
 
       - name: ✅ Owasp Dependency Check
