@@ -57,7 +57,7 @@
     "eslint-plugin-prettier": "^5.5.3",
     "eslint-plugin-testing-library": "^7.5.3",
     "isomorphic-fetch": "^3.0.0",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^30.0.4",
     "knip": "^5.27.0",
