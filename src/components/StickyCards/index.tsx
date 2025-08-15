@@ -47,6 +47,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
               )}
             </div>
           ),
+          id: title,
         }),
       )}
       className={styles.container}
