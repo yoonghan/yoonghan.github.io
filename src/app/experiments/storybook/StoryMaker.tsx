@@ -3,6 +3,7 @@ type Props = {
 }
 
 function StoryMaker({ items }: Props) {
+  console.log("X")
   return (
     <>
       {items.map((item, index) => (
