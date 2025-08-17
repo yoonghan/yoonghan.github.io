@@ -1,6 +1,9 @@
 name: Quality Gate Validation
 description: Validate code quality and run tests only on main branch
 
+permissions:
+  contents: read
+
 env:
   NODE_VERSION: 20
 
