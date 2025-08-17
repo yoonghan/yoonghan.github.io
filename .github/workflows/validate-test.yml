@@ -67,7 +67,8 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          commit_parent: false. # something broked in codecov that returned Missing Head Report. Added this for solution.
+          commit: ${{ github.sha }} # something broked in codecov that returned Missing Head Report. Added this for solution.
+          verbose: true
         if: inputs.push_code_coverage == true
 
   rust:
