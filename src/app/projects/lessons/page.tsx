@@ -468,6 +468,35 @@ const Lessons = () => {
           </tbody>
         </table>
       </article>
+      <article className="my-8">
+        <strong>Broke CodeCov</strong>
+        <p className="pt-2">
+          Code cov was broken due to a merge PR and it was not fixable. The
+          error prompted was &quot;No coverage report uploaded for this branch
+          head commit.&quot; and in the commit &quot;Missing Head Report&quot;.
+        </p>
+        <p>
+          <strong>Reason</strong>: The was a merge PR that was not rebased and
+          it caused the coverage report to be missing a commit HEAD. I merged a
+          PR, and changed branch without rebase; this branch was having a commit
+          that failed (due to RUST retry) and the previous commit of the old PR
+          (because the merged PR was branched from this branch). When the pull
+          request was created, it merged (somehow it was successful because it
+          updates the branch in Github). This then failed any subsequent merge
+          PR/commits to codecov.
+        </p>
+        <p>
+          <strong>Effect</strong>: In README, the codecov shows unknown instead
+          of % coverage.
+        </p>
+        <p>
+          <strong>Fix</strong>: Goto codecov -&gt; goto commit tab -&gt; Find
+          the commit that starts to show &quot;Missing Head Report&quot;.
+          Unprotect the branch and fix the whole default branch by reseting to
+          the commit before the problematic commit. Then, cherry-pick and
+          re-commit.
+        </p>
+      </article>
       <ScrollToTop />
     </div>
   )
