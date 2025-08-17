@@ -140,6 +140,13 @@ function Homepage() {
                       ]
                     </li>
                     <li>
+                      <strong>Quality Gate</strong> - {"Code Quality scans"}. [
+                      <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/validate-quality.yml">
+                        Ensure code quality
+                      </Link>
+                      ]
+                    </li>
+                    <li>
                       <strong>Release</strong> - Deploys{" "}
                       <em className="text-green-700">ONLY successful</em>{" "}
                       pull-request.

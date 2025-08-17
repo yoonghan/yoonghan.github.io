@@ -1,0 +1,63 @@
+name: Quality Gate Validation
+description: Validate code quality and run tests only on main branch
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: 20
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+          key: modules-node-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download deps
+        run: |
+          npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: 📊 Quality Gate Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=walcoorperation
+            -Dsonar.projectKey=yoonghan_yoonghan.github.io
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.login=${{ env.SONAR_PROJECT_KEY }}
