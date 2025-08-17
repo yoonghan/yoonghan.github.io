@@ -7,6 +7,7 @@ import Image from "next/image"
 
 interface Content {
   imageUrl?: string
+  alt?: string
   title: string
   className: string
   description?: ReactNode
@@ -18,12 +19,12 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
     <ScrollableCard
       isReversed={true}
       model={contents.map(
-        ({ imageUrl, className, title, description, href }) => ({
+        ({ imageUrl, className, title, description, href, alt }) => ({
           content: (
             <div className={className}>
               {imageUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imageUrl} height={150} width={150} alt="cert" />
+                <img src={imageUrl} height={150} width={150} alt={alt} />
               )}
               <div className="text-4xl pb-4">{title}</div>
               {description && <div className="pb-8">{description}</div>}
