@@ -51,9 +51,6 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 
 module.exports = withPWA({
   //placeholder_for_static_generation
-  experimental: {
-    instrumentationHook: true,
-  },
   async headers() {
     return [
       {
