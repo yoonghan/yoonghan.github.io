@@ -37,8 +37,16 @@ export const cloud_certificates = [
     alt: "Aws Certification",
   },
   {
-    imageUrl: "/img/certifications/microsoft-certified-fundamentals-badge.svg",
+    imageUrl:
+      "https://images.credly.com/size/680x680/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png",
     className: "bg-teal-400",
+    title: "AWS Certified AI Practitioner",
+    href: "https://www.credly.com/badges/706cb51a-ba27-4587-ae20-8dca06007bc4",
+    alt: "Aws Certification",
+  },
+  {
+    imageUrl: "/img/certifications/microsoft-certified-fundamentals-badge.svg",
+    className: "bg-teal-300",
     title: "Azure Cloud Fundamentals (AZ-900)",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9",
     alt: "Azure Certification",
@@ -46,7 +54,7 @@ export const cloud_certificates = [
   {
     imageUrl:
       "https://d1.awsstatic.com/certification/badges/AWS-Certified-Cloud-Practitioner_badge_150x150.17da917fbddc5383838d9f8209d2030c8d99f31e.png",
-    className: "bg-teal-300",
+    className: "bg-teal-200",
     title: "AWS Cloud Practitioner",
     href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
     alt: "Aws Certification",
