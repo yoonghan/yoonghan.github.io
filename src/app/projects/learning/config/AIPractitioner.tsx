@@ -4,12 +4,21 @@ import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const model = [
   {
-    label: "Update",
+    label: "AI Practitioner",
     content: (
-      <ul>
-        <li>AWS Ai Practitioner</li>
-        <li>Prompt Engineering</li>
-      </ul>
+      <div>
+        <a href="https://github.com/users/yoonghan/projects/6">
+          Linked Notes to AWS Certified AI Practitioner.
+        </a>
+        ,
+        <br />
+        Practically learned:
+        <ul>
+          <li>Machine Learning and Terminology</li>
+          <li>Prompt Engineering</li>
+          <li>AWS AI Services</li>
+        </ul>
+      </div>
     ),
   },
 ]
