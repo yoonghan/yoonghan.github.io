@@ -41,12 +41,14 @@ jobs:
           key: modules-node-${{ hashFiles('package-lock.json') }}
 
       - name: 📥 Download deps
+        if: github.actor != 'dependabot[bot]'
         run: |
           npm ci --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📊 Quality Gate Scan
+        if: github.actor != 'dependabot[bot]'
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
