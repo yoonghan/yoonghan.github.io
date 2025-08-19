@@ -38,7 +38,7 @@ function isSpecialCommand(inputCommand: string) {
 export function exec(
   element: HTMLDivElement,
   cancellationCallback: () => void,
-  router?: AppRouterInstance,
+  router: AppRouterInstance,
   currentPath?: string | null,
   specialInputCallback?: (input: string) => void,
 ) {
@@ -63,7 +63,7 @@ export function exec(
   }
 
   const executeLink = (inputCommand: string) => {
-    if (router) return AvailableInput[inputCommand].exec(router, currentPath)
+    return AvailableInput[inputCommand].exec(router, currentPath)
   }
 
   /**
