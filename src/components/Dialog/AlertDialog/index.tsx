@@ -14,7 +14,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
   const dialogRef = useRef<DialogHandler>(null)
 
   const onAction = useCallback(
-    () =>
+    (isOkClick: boolean) =>
       (
         e?:
           | React.FormEvent<HTMLFormElement>
@@ -25,13 +25,14 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
         if (dialogRef.current !== null) {
           dialogRef.current.close()
         }
-        onOk()
+
+        if (isOkClick) onOk()
       },
     [onOk],
   )
 
   return (
-    <Dialog onCancel={onAction()} ref={dialogRef} nonPortal={true}>
+    <Dialog onCancel={onAction(false)} ref={dialogRef} nonPortal={true}>
       <div className={styles.container}>
         <div>
           <h4>{title}</h4>
@@ -39,7 +40,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
         </div>
         <hr />
         <div className={styles.buttonContainer}>
-          <Button color="blue" onClick={onAction()}>
+          <Button color="blue" onClick={onAction(true)}>
             {okBtnText ?? "Ok"}
           </Button>
         </div>
