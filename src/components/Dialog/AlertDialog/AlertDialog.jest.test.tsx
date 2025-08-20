@@ -65,11 +65,11 @@ describe("AlertDialog", () => {
       assertDialog(false)
     })
 
-    it("should close after Cancel is clicked", async () => {
+    it("should close after Cancel is clicked, but should not be trigger", async () => {
       const { onOk } = renderComponent()
       assertDialog(true)
       await userEvent.type(screen.getByRole("dialog"), "{escape}")
-      expect(onOk).toHaveBeenCalled()
+      expect(onOk).not.toHaveBeenCalled()
       assertDialog(false)
     })
   })
