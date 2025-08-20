@@ -47,14 +47,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Run Unit test with coverage
+        run: npm run test:ci
+
       - name: 📊 Quality Gate Scan
-        if: github.actor != 'dependabot[bot]'
         uses: SonarSource/sonarcloud-github-action@v2
+        if: github.actor != 'dependabot[bot]'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=walcoorperation
-            -Dsonar.projectKey=yoonghan_yoonghan.github.io
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ env.SONAR_PROJECT_KEY }}
