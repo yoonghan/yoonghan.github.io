@@ -34,17 +34,25 @@ const model = [
             {
               input: "Task",
               reference: (
-                <ol>
-                  <li>Define the task</li>
-                  <li>Define the output</li>
-                </ol>
+                <p>
+                  Describe your task, specifying a persona and format
+                  preference.
+                  <ol>
+                    <li>Give a persona (optional)</li>
+                    <li>Define the task</li>
+                    <li>Define the output/format</li>
+                  </ol>
+                </p>
               ),
             },
             {
               input: "Context",
               reference: (
                 <p>
-                  Specify goals, constraints, and requirements.
+                  Specify goals, constraints, and requirements. Context has the
+                  potential to be the longest piece of a prompt. One of the most
+                  powerful and reliable ways to provide an AI tool with context
+                  is to give the model specific reference materials to use.
                   <ul>
                     <li>Persona</li>
                     <li>I would like...</li>
@@ -55,15 +63,27 @@ const model = [
             },
             {
               input: "Reference",
-              reference: "Add examples, zero/single/few shots. ",
+              reference: (
+                <p>
+                  Add examples, zero/single/few shots for gen AI tool can use to
+                  inform its output. Use:
+                  <ul>
+                    <li>Transitional phase, i.e. use this template</li>
+                    <li>Markdown tags</li>
+                    <li>XML</li>
+                  </ul>
+                </p>
+              ),
             },
             {
               input: "Evaluate",
-              reference: "Always evaluate the output",
+              reference:
+                "evaluate the output to identify opportunities for improvement.",
             },
             {
               input: "Iterate",
-              reference: "Always reiterate",
+              reference:
+                "Iterate on your initial prompt to attain those improvements.",
             },
           ]}
           headers={["Input Prompt", "Reference"]}
