@@ -68,17 +68,24 @@ describe("Board", () => {
       return { rewardInfo }
     }
 
+    const clickPlayButton = async () => {
+      // eslint-disable-next-line testing-library/no-node-access
+      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+    }
+
     it("should render reload on Play of game if game is start", async () => {
       await renderComponent(true)
 
-      await userEvent.click(await screen.findByRole("button", { name: "Play" }))
+      await clickPlayButton()
 
       expect(spyReload).toHaveBeenCalled()
     })
 
     it("should be able to press UP", async () => {
       await renderComponent()
-      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+
+      await clickPlayButton()
+
       expect(
         await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
@@ -97,7 +104,9 @@ describe("Board", () => {
 
     it("should be able to play the game and move to Lost after play", async () => {
       await renderComponent()
-      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+
+      await clickPlayButton()
+
       expect(
         await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
@@ -116,7 +125,9 @@ describe("Board", () => {
 
     it("should be able to Win the game play", async () => {
       await renderComponent()
-      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+
+      await clickPlayButton()
+
       expect(
         await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
@@ -148,7 +159,9 @@ describe("Board", () => {
 
     it("should be able to Win the game play with Right direction", async () => {
       await renderComponent()
-      await userEvent.click(screen.getByRole("button", { name: "Play" }))
+
+      await clickPlayButton()
+
       expect(
         await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
