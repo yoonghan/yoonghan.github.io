@@ -79,7 +79,7 @@ export function exec(
 
   const findClosestInputMatch = (inputCommand: string) => {
     //Cache it? Naw, too little to do that.
-    for (let key in AvailableInput) {
+    for (const key in AvailableInput) {
       const synonym = AvailableInput[key].synonym
       if (synonym) {
         const found = synonym.find((elem) => elem === inputCommand)

@@ -12,7 +12,7 @@ describe("drawCanvas", () => {
   it("should draw a squared board", () => {
     renderComponent()
     const canvas = screen.getByTestId(getCanvasTestId) as HTMLCanvasElement
-    const ctx = canvas.getContext("2d")!!
+    const ctx = canvas.getContext("2d")!
     drawSquareBoard(ctx, 5, 5)
     const calls = ctx.__getDrawCalls()
     expect(calls).toMatchSnapshot()
@@ -21,7 +21,7 @@ describe("drawCanvas", () => {
   it("should draw a cell", () => {
     renderComponent()
     const canvas = screen.getByTestId(getCanvasTestId) as HTMLCanvasElement
-    const ctx = canvas.getContext("2d")!!
+    const ctx = canvas.getContext("2d")!
     drawCell(ctx, 0, 10, 5)
     const calls = ctx.__getDrawCalls()
     expect(calls).toMatchSnapshot()
@@ -30,7 +30,7 @@ describe("drawCanvas", () => {
   it("should be able to clear", () => {
     renderComponent()
     const canvas = screen.getByTestId(getCanvasTestId) as HTMLCanvasElement
-    const ctx = canvas.getContext("2d")!!
+    const ctx = canvas.getContext("2d")!
     drawCell(ctx, 0, 10, 5, "green")
     clearBoard(ctx, canvas)
     const calls = ctx.__getDrawCalls()
