@@ -29,7 +29,7 @@ export const useTrackReducer = ({
   maxStorage?: number
   allowStorageAfterMiliseconds?: number
 }) => {
-  let canStore = useRef(true)
+  const canStore = useRef(true)
   const [data, dispatch] = useReducer(reducer, initialData)
 
   const append = useCallback(
