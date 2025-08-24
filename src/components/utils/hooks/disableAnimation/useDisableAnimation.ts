@@ -7,7 +7,7 @@ export function useDisableAnimation() {
   const [isAnimatable, setIsAnimatable] = useState(false)
 
   useEffect(() => {
-    let query = search()
+    const query = search()
     const disabled = disableAnimationRegex.test(query)
     setIsAnimatable(!disabled)
   }, [])

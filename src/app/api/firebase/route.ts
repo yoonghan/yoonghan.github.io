@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { v4 as uuidv4 } from "uuid"
 import { Blob } from "node:buffer"
 import { Firebase } from "./Firebase"
+import stream from "stream"
 
 const uploadIntoSystem = async (
   req: NextRequest,
@@ -56,7 +57,6 @@ const uploadIntoSystem = async (
 
     const googleCloud = storageBucket.file(uploadFileName)
 
-    const stream = require("stream")
     // Create a pass through stream from a string
     const passthroughStream = new stream.PassThrough()
     passthroughStream.write(buffer)

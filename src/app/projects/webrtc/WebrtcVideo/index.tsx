@@ -151,7 +151,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
 
         bind<ClientAnswerAndSdp>("client-sdp", async (msg) => {
           if (msg.room === myId) {
-            let answer = await new Promise((resolve, reject) => {
+            const answer = await new Promise((resolve, reject) => {
               promptConfirmDialog({
                 title: "You got a call",
                 message: `You have a call from (${msg.fromName}). Would you like to answer?`,

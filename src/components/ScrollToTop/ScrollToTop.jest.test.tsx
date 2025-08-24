@@ -45,7 +45,7 @@ describe("ScrollToTop", () => {
   })
 
   describe("listener mounting", () => {
-    var adder: jest.SpyInstance, remover: jest.SpyInstance
+    let adder: jest.SpyInstance, remover: jest.SpyInstance
 
     beforeEach(() => {
       adder = jest

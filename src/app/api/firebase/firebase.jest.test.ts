@@ -28,7 +28,7 @@ describe("firebase", () => {
 
   describe("with firebase env", () => {
     const createFormDataWithFile = () => {
-      var textFileBlob = new Blob(["I am a blob in a file"], {
+      const textFileBlob = new Blob(["I am a blob in a file"], {
         type: "text/plain",
       })
       const formData = new FormData()

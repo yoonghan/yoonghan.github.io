@@ -14,7 +14,7 @@ const Canvases = () => {
 
   const onClickDraw = (dimensionWidth: number) => {
     if (canvasRef.current !== null) {
-      const ctx = canvasRef.current.getContext("2d")!!
+      const ctx = canvasRef.current.getContext("2d")!
       ctx.clearRect(0, 0, 100, 100)
       clearBoard(ctx, canvasRef.current)
       drawCell(
