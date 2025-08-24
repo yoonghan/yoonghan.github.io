@@ -1,0 +1,59 @@
+name: Auto fix linting issues
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: Branchname to execute
+        type: string
+        required: true
+
+jobs:
+  auto_approve:
+    runs-on: ubuntu-latest
+    outputs:
+      changes_detected: ${{ steps.auto-commit-action.outputs.changes_detected }}
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }} # GITHUB_TOKEN cannot be used here as commit to pr will not recreate a new pull-request
+          ref: ${{ inputs.branch }}
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./node_modules
+          key: modules-node-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download deps
+        run: |
+          npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Auto fix lint issues
+        run: |
+          npm run lint --fix
+
+      - name: 💼 Auto commit codes
+        uses: stefanzweifel/git-auto-commit-action@v6
+        id: auto-commit-action
+        with:
+          commit_message: Update backstop with auto approval
+          file_pattern: "src/*.ts src/*.tsx src/*.js src/*.jsx"
