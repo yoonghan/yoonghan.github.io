@@ -176,7 +176,19 @@ const About = () => {
                   ),
                 },
                 {
-                  className: "bg-orange-400",
+                  className: "bg-purple-400",
+                  title: "Google - Start Writing Prompts like a Pro",
+                  description: (
+                    <span>
+                      Recognize and apply the prompting framework (task,
+                      context, references, evaluate, iterate) to create
+                      effective prompts.
+                    </span>
+                  ),
+                  href: "https://coursera.org/share/444aae878ac4ad451e8339cb399ffe84",
+                },
+                {
+                  className: "bg-orange-300",
                   title: "Introduction to Github Copilot",
                   description: (
                     <span>Use Gitlab Co-pilot for Python programming.</span>
@@ -184,7 +196,7 @@ const About = () => {
                   href: "https://www.coursera.org/account/accomplishments/verify/ATLFGOBTUICD",
                 },
                 {
-                  className: "bg-orange-300",
+                  className: "bg-orange-200",
                   title: "Effective ChatGPT",
                   description: (
                     <span>

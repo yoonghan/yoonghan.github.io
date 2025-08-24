@@ -58,8 +58,8 @@ const model = [
                     <li>I would like...</li>
                     <li>Use this template...</li>
                   </ul>
-                  <strong>Tips:</strong> Don't use gender bias. E.g. firefighter
-                  not fireman.
+                  <strong>Tips:</strong>{" "}
+                  {"Don't use gender bias. E.g. firefighter not fireman."}
                 </p>
               ),
             },
