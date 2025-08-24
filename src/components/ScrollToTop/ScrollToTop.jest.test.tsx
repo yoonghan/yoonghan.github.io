@@ -37,7 +37,7 @@ describe("ScrollToTop", () => {
     const timedUserEvent = userEvent.setup({
       advanceTimers: jest.advanceTimersByTime,
     })
-    // eslint-disable-next-line testing-library/no-node-access
+
     await timedUserEvent.click(scrollButton)
     expect(window.scrollY).toBe(0)
     advanceScroll()

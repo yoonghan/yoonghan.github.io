@@ -71,6 +71,7 @@ describe("Board", () => {
     it("should render reload on Play of game if game is start", async () => {
       await renderComponent(true)
 
+      // eslint-disable-next-line testing-library/no-node-access
       await userEvent.click(await screen.findByRole("button", { name: "Play" }))
 
       expect(spyReload).toHaveBeenCalled()
@@ -78,7 +79,10 @@ describe("Board", () => {
 
     it("should be able to press UP", async () => {
       await renderComponent()
+
+      // eslint-disable-next-line testing-library/no-node-access
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
+
       expect(
         await screen.findByRole("button", { name: "Playing..." }),
       ).toBeInTheDocument()
