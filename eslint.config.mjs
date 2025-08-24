@@ -29,9 +29,9 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "off",
       "no-var": "off",
       "@typescript-eslint/no-this-alias": "off",
-      "no-console": "warn",
-      "testing-library/no-node-access": "warn",
-      "prettier/prettier": "warn",
+      "no-console": "error",
+      "testing-library/no-node-access": "error",
+      "prettier/prettier": "error",
     },
   },
 ]
