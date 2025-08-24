@@ -44,13 +44,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Auto fix lint issues
+      - name: 🔧 Auto fix lint issues
         run: |
-          npm run lint --fix
+          npm run lint:fix
 
-      - name: 💼 Auto commit codes
+      - name: 💼 Auto commit lint codes
         uses: stefanzweifel/git-auto-commit-action@v6
         id: auto-commit-action
         with:
-          commit_message: Update backstop with auto approval
+          commit_message: Auto fix lint issues
           file_pattern: "src/*.ts src/*.tsx src/*.js src/*.jsx"

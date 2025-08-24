@@ -34,10 +34,10 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 
   useEffect(() => {
     function getCookie(cname: string) {
-      let name = cname + "="
-      let decodedCookie = decodeURIComponent(document.cookie)
-      let ca = decodedCookie.split(";")
-      for (let cookie of ca) {
+      const name = cname + "="
+      const decodedCookie = decodeURIComponent(document.cookie)
+      const ca = decodedCookie.split(";")
+      for (const cookie of ca) {
         let c = cookie
         while (c.startsWith(" ")) {
           c = c.slice(1)
