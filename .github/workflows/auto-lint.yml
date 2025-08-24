@@ -1,12 +1,9 @@
 name: Auto fix linting issues
 
 on:
-  workflow_call:
-    inputs:
-      branch:
-        description: Branchname to execute
-        type: string
-        required: true
+  workflow_dispatch:
+    branches-ignore:
+      - main
 
 jobs:
   auto_approve:

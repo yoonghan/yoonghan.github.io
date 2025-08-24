@@ -158,6 +158,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
               id="file-upload-btn"
               aria-label="Upload"
               onClick={() => {
+                // eslint-disable-next-line testing-library/no-node-access
                 inputRef.current?.click()
               }}
             >
