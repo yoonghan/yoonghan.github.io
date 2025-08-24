@@ -47,7 +47,7 @@ const Board = ({
         startRewardCell,
       )
       const worldWidth = world.width()
-      const ctx = canvas.getContext("2d")!!
+      const ctx = canvas.getContext("2d")!
       setGame({
         world,
         worldWidth,
