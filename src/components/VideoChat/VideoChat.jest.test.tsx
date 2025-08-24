@@ -5,7 +5,7 @@ import { useRef } from "react"
 import userEvent from "@testing-library/user-event"
 
 describe("VideoChat", () => {
-  var oldVideoFn: () => void
+  let oldVideoFn: () => void
 
   beforeAll(() => {
     oldVideoFn = setVideo()
