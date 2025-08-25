@@ -176,6 +176,18 @@ const About = () => {
                   ),
                 },
                 {
+                  className: "bg-purple-500",
+                  title: "Google - Speed Up Data Analysis and Presentation Building",
+                  description: (
+                    <span>
+                      Apply the prompting framework to draft text content, help
+                      with brainstorming, create tables and timelines, and
+                      summarize lengthy text.
+                    </span>
+                  ),
+                  href: "https://coursera.org/share/440ea2485ea1ad0349c285bd5b7c6230",
+                },
+                {
                   className: "bg-purple-400",
                   title: "Google - Design Prompts for Everyday Work Tasks",
                   description: (
