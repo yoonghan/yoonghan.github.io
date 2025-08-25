@@ -53,4 +53,4 @@ jobs:
         id: auto-commit-action
         with:
           commit_message: Auto fix lint issues
-          file_pattern: "src/*.ts src/*.tsx src/*.js src/*.jsx"
+          file_pattern: "src/*.ts src/*.tsx src/*.js"
