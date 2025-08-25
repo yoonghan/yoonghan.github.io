@@ -176,6 +176,19 @@ const About = () => {
                   ),
                 },
                 {
+                  className: "bg-purple-500",
+                  title:
+                    "Google - Speed Up Data Analysis and Presentation Building",
+                  description: (
+                    <span>
+                      Apply the prompting framework to extract insights from
+                      data, identify and fix spreadsheet formulas, and explore
+                      data visualization.
+                    </span>
+                  ),
+                  href: "https://coursera.org/share/1f2f3b6dc82974bb1f323577692e91d2",
+                },
+                {
                   className: "bg-purple-400",
                   title: "Google - Design Prompts for Everyday Work Tasks",
                   description: (
