@@ -176,41 +176,17 @@ const About = () => {
                   ),
                 },
                 {
-                  className: "bg-purple-500",
-                  title:
-                    "Google - Speed Up Data Analysis and Presentation Building",
-                  description: (
-                    <span>
-                      Apply the prompting framework to extract insights from
-                      data, identify and fix spreadsheet formulas, and explore
-                      data visualization.
-                    </span>
-                  ),
-                  href: "https://coursera.org/share/1f2f3b6dc82974bb1f323577692e91d2",
-                },
-                {
-                  className: "bg-purple-400",
-                  title: "Google - Design Prompts for Everyday Work Tasks",
-                  description: (
-                    <span>
-                      Apply the prompting framework to draft text content, help
-                      with brainstorming, create tables and timelines, and
-                      summarize lengthy text.
-                    </span>
-                  ),
-                  href: "https://coursera.org/share/440ea2485ea1ad0349c285bd5b7c6230",
-                },
-                {
-                  className: "bg-purple-300",
-                  title: "Google - Start Writing Prompts like a Pro",
+                  className: "bg-orange-300",
+                  title: "Google Prompting Essentials",
                   description: (
                     <span>
                       Recognize and apply the prompting framework (task,
                       context, references, evaluate, iterate) to create
-                      effective prompts.
+                      effective prompts. Apply the prompting framework to
+                      extract insights from data, brainstorming.
                     </span>
                   ),
-                  href: "https://coursera.org/share/444aae878ac4ad451e8339cb399ffe84",
+                  href: "https://coursera.org/share/d0dae1978ec539fe9dfa36acae5dfce8",
                 },
                 {
                   className: "bg-orange-200",

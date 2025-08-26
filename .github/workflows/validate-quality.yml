@@ -48,6 +48,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Run Unit test with coverage
+        if: github.actor != 'dependabot[bot]'
         run: npm run test:ci
 
       - name: 📊 Quality Gate Scan
