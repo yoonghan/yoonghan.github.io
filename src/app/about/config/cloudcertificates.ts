@@ -37,14 +37,6 @@ export const cloud_certificates = [
     alt: "Aws Certification",
   },
   {
-    imageUrl:
-      "https://images.credly.com/size/680x680/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png",
-    className: "bg-teal-400",
-    title: "AWS Certified AI Practitioner",
-    href: "https://www.credly.com/badges/706cb51a-ba27-4587-ae20-8dca06007bc4",
-    alt: "Aws Certification",
-  },
-  {
     imageUrl: "/img/certifications/microsoft-certified-fundamentals-badge.svg",
     className: "bg-teal-300",
     title: "Azure Cloud Fundamentals (AZ-900)",
