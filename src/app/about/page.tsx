@@ -10,6 +10,7 @@ import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import StickyCards from "@/components/StickyCards"
 import Image from "next/image"
 import { cloud_certificates } from "./config/cloudcertificates"
+import { ai_certifications } from "./config/aicertitificates"
 
 const authorModel = [
   {
@@ -143,6 +144,12 @@ const About = () => {
           <div className="relative">
             <StickyCards contents={cloud_certificates} />
           </div>
+
+          <h4 className="text-xl text-center py-6">AI Certifications</h4>
+          <div className="relative">
+            <StickyCards contents={ai_certifications} />
+          </div>
+
           <h4 className="text-xl text-center py-12">
             Programming Certifications
           </h4>
@@ -160,7 +167,6 @@ const About = () => {
                   ),
                   href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
                 },
-
                 {
                   className: "bg-blue-300",
                   title: "Sun Java Certified",
@@ -174,40 +180,6 @@ const About = () => {
                       Rusty but worky on RUST programming with javascript.
                     </span>
                   ),
-                },
-                {
-                  className: "bg-orange-300",
-                  title: "Google Prompting Essentials",
-                  description: (
-                    <span>
-                      Recognize and apply the prompting framework (task,
-                      context, references, evaluate, iterate) to create
-                      effective prompts. Apply the prompting framework to
-                      extract insights from data, brainstorming.
-                    </span>
-                  ),
-                  href: "https://coursera.org/share/d0dae1978ec539fe9dfa36acae5dfce8",
-                },
-                {
-                  className: "bg-orange-200",
-                  title: "Introduction to Github Copilot",
-                  description: (
-                    <span>Use Gitlab Co-pilot for Python programming.</span>
-                  ),
-                  href: "https://www.coursera.org/account/accomplishments/verify/ATLFGOBTUICD",
-                },
-                {
-                  className: "bg-orange-100",
-                  title: "Effective ChatGPT",
-                  description: (
-                    <span>
-                      Learning ChatGPT.{" "}
-                      <a href="https://www.credly.com/badges/90c47b88-4325-4611-be46-f6b0ca688251">
-                        [ Foundation ]
-                      </a>
-                    </span>
-                  ),
-                  href: "https://www.credly.com/badges/395a3138-11d3-4144-94dd-2389c52213aa",
                 },
                 {
                   className: "bg-green-400",
