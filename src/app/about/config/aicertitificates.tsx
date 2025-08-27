@@ -20,6 +20,7 @@ export const ai_certifications = [
       </span>
     ),
     href: "https://coursera.org/share/d0dae1978ec539fe9dfa36acae5dfce8",
+    alt: "Google certification",
   },
   {
     className: "bg-teal-200",
@@ -28,6 +29,7 @@ export const ai_certifications = [
       "https://coursera-university-assets.s3.amazonaws.com/73/8792b24ae547c1a582c33f7ea4d569/Microsoft-logo_rgb_200x43.png?auto=format%2Ccompress&dpr=2&h=45",
     description: <span>Use Gitlab Co-pilot for Python programming.</span>,
     href: "https://www.coursera.org/account/accomplishments/verify/ATLFGOBTUICD",
+    alt: "Microsoft's CoPilot certification",
   },
   {
     className: "bg-teal-100",
@@ -43,5 +45,6 @@ export const ai_certifications = [
       </span>
     ),
     href: "https://www.credly.com/badges/395a3138-11d3-4144-94dd-2389c52213aa",
+    alt: "Orielly's certification",
   },
 ]
