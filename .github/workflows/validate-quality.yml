@@ -52,7 +52,7 @@ jobs:
         run: npm run test:ci
 
       - name: 📊 Quality Gate Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarcloud-github-action@v5
         if: github.actor != 'dependabot[bot]'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
