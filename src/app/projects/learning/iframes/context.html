@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Processing Diagram</title><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .step-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            position: relative;
+        }
+        .diagram-box {
+            background-color: #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: absolute;
+            opacity: 0;
+            transform: scale(0.8);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .diagram-box.active {
+            opacity: 1;
+            transform: scale(1);
+            display: flex;
+        }
+        .arrow {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a5568;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .arrow.visible {
+            opacity: 1;
+        }
+        .arrow-1 { top: 110px; left: 180px; }
+        .arrow-2 { top: 110px; left: 450px; }
+        .arrow-3 { top: 110px; left: 690px; }
+        .text-stage, .tokens-stage, .embeddings-stage, .context-stage {
+            min-width: 200px;
+            max-width: 250px;
+        }
+        .tokens-grid, .embeddings-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .token-item {
+            background-color: #a0aec0;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+        .vector-item {
+            background-color: #63b3ed;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+        .context-window-content {
+            background-color: #e2e8f0;
+            border: 2px dashed #4a5568;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">The LLM Processing Pipeline</h1>
+        <p class="text-center text-gray-600 mb-8">Click the buttons to see how a Large Language Model processes text.</p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <button onclick="showStage('text-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">1. Raw Text</button>
+            <button onclick="showStage('tokens-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">2. Tokenization</button>
+            <button onclick="showStage('embeddings-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">3. Embeddings</button>
+            <button onclick="showStage('context-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">4. Context Window</button>
+        </div>
+
+        <div class="diagram-container bg-gray-200 rounded-xl">
+            <!-- Stage 1: Raw Text -->
+            <div id="text-stage" class="diagram-box text-stage active">
+                <p class="font-semibold text-xl text-gray-700">Raw Text</p>
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg w-full text-left">
+                    "The dog barked loudly."
+                </div>
+            </div>
+
+            <!-- Arrow 1 -->
+            <div id="arrow-1" class="arrow arrow-1">→</div>
+
+            <!-- Stage 2: Tokens -->
+            <div id="tokens-stage" class="diagram-box tokens-stage">
+                <p class="font-semibold text-xl text-gray-700">Tokens</p>
+                <div class="tokens-grid mt-4">
+                    <span class="token-item">The</span>
+                    <span class="token-item">dog</span>
+                    <span class="token-item">bark</span>
+                    <span class="token-item">ed</span>
+                    <span class="token-item">loudly</span>
+                    <span class="token-item">.</span>
+                </div>
+            </div>
+
+            <!-- Arrow 2 -->
+            <div id="arrow-2" class="arrow arrow-2">→</div>
+
+            <!-- Stage 3: Embeddings -->
+            <div id="embeddings-stage" class="diagram-box embeddings-stage">
+                <p class="font-semibold text-xl text-gray-700">Embeddings</p>
+                <div class="embeddings-grid mt-4">
+                    <span class="vector-item">[0.1, -0.4, 0.9, ...]</span>
+                    <span class="vector-item">[-0.2, 0.7, 0.1, ...]</span>
+                    <span class="vector-item">[0.6, -0.3, -0.5, ...]</span>
+                    <span class="vector-item">[0.3, 0.8, -0.1, ...]</span>
+                    <span class="vector-item">[-0.5, 0.2, 0.6, ...]</span>
+                    <span class="vector-item">[0.9, 0.1, -0.8, ...]</span>
+                </div>
+            </div>
+
+            <!-- Arrow 3 -->
+            <div id="arrow-3" class="arrow arrow-3">→</div>
+
+            <!-- Stage 4: Context Window -->
+            <div id="context-stage" class="diagram-box context-stage">
+                <p class="font-semibold text-xl text-gray-700">Context Window</p>
+                <div class="context-window-content">
+                    <span class="token-item">The</span>
+                    <span class="token-item">dog</span>
+                    <span class="token-item">bark</span>
+                    <span class="token-item">ed</span>
+                    <span class="token-item">loudly</span>
+                    <span class="token-item">.</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Maximum token capacity for the model's "memory"</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the interactive diagram
+        function showStage(stageId) {
+            const stages = ['text-stage', 'tokens-stage', 'embeddings-stage', 'context-stage'];
+            const arrows = ['arrow-1', 'arrow-2', 'arrow-3'];
+
+            // Hide all stages and arrows
+            stages.forEach(id => {
+                document.getElementById(id).classList.remove('active');
+            });
+            arrows.forEach(id => {
+                document.getElementById(id).classList.remove('visible');
+            });
+
+            // Show the selected stage
+            document.getElementById(stageId).classList.add('active');
+
+            // Show arrows up to the selected stage
+            if (stageId === 'tokens') {
+                document.getElementById('arrow-1').classList.add('visible');
+            } else if (stageId === 'embeddings') {
+                document.getElementById('arrow-1').classList.add('visible');
+                document.getElementById('arrow-2').classList.add('visible');
+            } else if (stageId === 'context') {
+                document.getElementById('arrow-1').classList.add('visible');
+                document.getElementById('arrow-2').classList.add('visible');
+                document.getElementById('arrow-3').classList.add('visible');
+            }
+        }
+
+        // Initialize with the first stage
+        document.addEventListener('DOMContentLoaded', () => {
+            showStage('text-stage');
+        });
+    </script>
+</body>
+</html>
