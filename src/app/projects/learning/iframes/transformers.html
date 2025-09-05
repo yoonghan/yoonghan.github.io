@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attention Mechanism Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .step-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .diagram-section {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            background-color: #e2e8f0;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(20px);
+        }
+        .diagram-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .vector-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #cbd5e1;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 150px;
+        }
+        .vector-label {
+            font-weight: bold;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .vector-values {
+            font-family: monospace;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        .vector-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .score-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            text-align: center;
+            font-family: monospace;
+        }
+        .score-cell {
+            background-color: #f1f5f9;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #cbd5e1;
+            font-size: 0.8rem;
+        }
+        .arrow {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a5568;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .word-token {
+            background-color: #a0aec0;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+        .output-vector-box {
+            background-color: #38a169;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Self-Attention Explained</h1>
+        <p class="text-center text-gray-600 mb-6">A developer's guide to the core mechanism of Transformers.</p>
+        
+        <!-- Interactive controls -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button id="prevBtn" onclick="prevStep()" class="bg-gray-400 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Previous</button>
+            <button id="nextBtn" onclick="nextStep()" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors hover:bg-blue-600">Next Step</button>
+        </div>
+
+        <div class="flow-diagram">
+            <!-- Step 1: Input & Tokens -->
+            <div id="step-1" class="diagram-section active">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Step 1: Input & Embeddings</h2>
+                <p class="text-gray-600 mb-4">The input sentence is first tokenized and each token is converted into a numerical vector (an embedding).</p>
+                <div class="flex items-center justify-center gap-4 flex-wrap">
+                    <div class="vector-box">
+                        <span class="vector-label">The</span>
+                        <div class="vector-values">[0.1, 0.5, -0.2]</div>
+                    </div>
+                    <div class="vector-box">
+                        <span class="vector-label">developer</span>
+                        <div class="vector-values">[-0.4, 0.8, 0.1]</div>
+                    </div>
+                    <div class="vector-box">
+                        <span class="vector-label">wrote</span>
+                        <div class="vector-values">[0.7, -0.3, 0.4]</div>
+                    </div>
+                    <div class="vector-box">
+                        <span class="vector-label">the</span>
+                        <div class="vector-values">[0.1, 0.5, -0.2]</div>
+                    </div>
+                    <div class="vector-box">
+                        <span class="vector-label">code</span>
+                        <div class="vector-values">[0.2, 0.1, -0.5]</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Query, Key, Value -->
+            <div id="step-2" class="diagram-section">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Step 2: Creating Q, K, V Vectors</h2>
+                <p class="text-gray-600 mb-4">Each embedding is linearly transformed into three new vectors: a Query (Q), a Key (K), and a Value (V) vector. These are like a search query, a search tag, and the content itself.</p>
+                <div class="flex items-start justify-center gap-8">
+                    <div class="text-center">
+                        <div class="word-token mb-2">developer</div>
+                        <div class="vector-box bg-blue-300">
+                            <span class="vector-label text-blue-800">Query (Q)</span>
+                            <div class="vector-values">[0.5, 0.1, -0.3]</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="word-token mb-2">code</div>
+                        <div class="vector-box bg-red-300">
+                            <span class="vector-label text-red-800">Key (K)</span>
+                            <div class="vector-values">[0.2, -0.1, 0.4]</div>
+                        </div>
+                        <div class="vector-box bg-green-300 mt-4">
+                            <span class="vector-label text-green-800">Value (V)</span>
+                            <div class="vector-values">[0.8, 0.6, 0.9]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="text-center">This is done for ALL tokens in the sentence.</div>
+            </div>
+
+            <!-- Step 3: Scoring & Softmax -->
+            <div id="step-3" class="diagram-section">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Step 3: Scoring & Attention Weights</h2>
+                <p class="text-gray-600 mb-4">The `Query` vector of each token is multiplied by the `Key` vector of every other token to get a similarity score. This score is then normalized using a Softmax function to get a final weight (a number between 0 and 1).</p>
+                <div class="score-matrix mb-4">
+                    <div class="score-cell bg-gray-300 font-bold">Query</div>
+                    <div class="score-cell bg-gray-300 font-bold">The</div>
+                    <div class="score-cell bg-gray-300 font-bold">developer</div>
+                    <div class="score-cell bg-gray-300 font-bold">wrote</div>
+                    <!-- Row 1: The -->
+                    <div class="score-cell font-bold">The</div>
+                    <div class="score-cell">0.1</div>
+                    <div class="score-cell">0.2</div>
+                    <div class="score-cell">0.4</div>
+                    <!-- Row 2: developer -->
+                    <div class="score-cell font-bold">developer</div>
+                    <div class="score-cell">0.1</div>
+                    <div class="score-cell">0.5</div>
+                    <div class="score-cell">0.3</div>
+                    <!-- Row 3: wrote -->
+                    <div class="score-cell font-bold">wrote</div>
+                    <div class="score-cell">0.2</div>
+                    <div class="score-cell">0.4</div>
+                    <div class="score-cell">0.6</div>
+                </div>
+                <div class="arrow">↓</div>
+                <p class="text-center text-sm text-gray-500">The values above are simplified raw scores. These are then normalized with Softmax to get final attention weights that sum to 1 for each row.</p>
+            </div>
+
+            <!-- Step 4: Weighted Sum -->
+            <div id="step-4" class="diagram-section">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Step 4: The Final Output Vector</h2>
+                <p class="text-gray-600 mb-4">Each token's new, context-aware vector is a weighted sum of **all** the `Value` vectors, where the weights are the scores from the previous step. This is how the model "attends" to different parts of the sentence.</p>
+                <div class="flex justify-center items-center gap-4">
+                    <div class="flex-1 text-right">
+                        <span class="font-bold text-lg text-green-800">Value Vectors</span>
+                        <div class="mt-2 text-sm text-gray-700">[0.8, 0.6, 0.9] (from "code")</div>
+                        <div class="mt-1 text-sm text-gray-700">[...] (from "wrote")</div>
+                    </div>
+                    <div class="text-2xl font-bold">+</div>
+                    <div class="flex-1 text-left">
+                        <span class="font-bold text-lg text-blue-800">Weights</span>
+                        <div class="mt-2 text-sm text-gray-700">0.8 (from "developer" → "code" score)</div>
+                        <div class="mt-1 text-sm text-gray-700">0.1 (from "developer" → "wrote" score)</div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="flex justify-center mt-4">
+                    <div class="output-vector-box text-center">
+                        <span class="font-bold">New Vector for "developer"</span>
+                        <div class="vector-values">[0.75, 0.5, 0.8] (example)</div>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">This new vector for "developer" now contains information from all other words, making it context-aware.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = ['step-1', 'step-2', 'step-3', 'step-4'];
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            // Ensure index is within bounds
+            if (stepIndex < 0 || stepIndex >= sections.length) {
+                return;
+            }
+            // Hide all sections
+            sections.forEach(id => {
+                document.getElementById(id).classList.remove('active');
+            });
+            // Show the current section
+            document.getElementById(sections[stepIndex]).classList.add('active');
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = stepIndex === 0;
+            document.getElementById('nextBtn').disabled = stepIndex === sections.length - 1;
+
+            currentStep = stepIndex;
+        }
+
+        function nextStep() {
+            showStep(currentStep + 1);
+        }
+
+        function prevStep() {
+            showStep(currentStep - 1);
+        }
+
+        // Initialize with the first step on load
+        window.onload = () => showStep(0);
+    </script>
+</body>
+</html>
