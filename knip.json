@@ -10,7 +10,6 @@
     "sharp",
     "snake-game",
     "dotenv-cli",
-    "@types/jest",
     "@typescript-eslint/eslint-plugin",
     "eslint",
     "eslint-config-next",
