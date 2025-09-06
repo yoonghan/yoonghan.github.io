@@ -1,11 +1,106 @@
+import React from "react"
 import { render, screen } from "@testing-library/react"
-import Grid from "."
+import "@testing-library/jest-dom"
+import Grid, { Certificate } from "./index"
 
-describe("Grid", () => {
-  const renderComponent = () => render(<Grid />)
+// Mock data for testing the Grid component
+const mockCertificates: Certificate[] = [
+  {
+    label: "AWS Certified Solutions Architect",
+    imageSrc: "/img/certs/aws-sa.png", // Using a placeholder path
+    text: "Validates ability to design and deploy well-architected solutions on AWS.",
+    href: "https://www.credly.com/badges/123",
+  },
+  {
+    label: "Microsoft Certified: Azure Administrator",
+    imageSrc: "/img/certs/azure-admin.png",
+    text: "Validates expertise in implementing, managing, and monitoring an organization’s Microsoft Azure environment.",
+    href: "https://www.credly.com/badges/456",
+  },
+  {
+    label: "Google Cloud Professional Cloud Architect",
+    imageSrc: "/img/certs/gcp-pca.png",
+    text: "Enables professionals to design, develop, and manage robust, secure, scalable, and dynamic solutions.",
+    href: "https://www.credly.com/badges/789",
+  },
+]
 
-  it("should render", () => {
-    renderComponent()
-    expect(screen.getByText("Grid")).toBeInTheDocument()
+const mockCertificatesWithNoLink: Certificate[] = [
+  {
+    label: "AWS Certified Solutions Architect",
+    imageSrc: "/img/certs/aws-sa.png",
+    text: "Validates ability to design and deploy well-architected solutions on AWS.",
+    href: "https://www.credly.com/badges/123",
+  },
+  {
+    label: "Sun Java Certified",
+    text: "Certification on Java programmer.",
+  },
+]
+
+const mockCertificatesWithNoImage: Certificate[] = [
+  {
+    label: "Functional Programming Principal In Scala",
+    text: "Functional programming with compose, synthentic sugar and immutability.",
+    href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
+  },
+]
+
+describe("Grid Component", () => {
+  it("renders the correct number of certificate tiles", () => {
+    render(<Grid items={mockCertificates} />)
+    const links = screen.getAllByRole("link")
+    expect(links).toHaveLength(mockCertificates.length)
+  })
+
+  it("renders a mix of links and non-links correctly", () => {
+    render(<Grid items={mockCertificatesWithNoLink} />)
+    const links = screen.queryAllByRole("link")
+    expect(links).toHaveLength(1)
+    expect(screen.getByText("Sun Java Certified")).toBeInTheDocument()
+  })
+
+  it("displays the content for each certificate correctly", () => {
+    render(<Grid items={mockCertificates} />)
+
+    // Check that the content for the first certificate is present.
+    expect(
+      screen.getByText("AWS Certified Solutions Architect"),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        "Validates ability to design and deploy well-architected solutions on AWS.",
+      ),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByAltText("AWS Certified Solutions Architect logo"),
+    ).toBeInTheDocument()
+  })
+
+  it("does not render an image if imageSrc is not provided", () => {
+    render(<Grid items={mockCertificatesWithNoImage} />)
+    const image = screen.queryByRole("img")
+    expect(image).not.toBeInTheDocument()
+  })
+
+  it("links to the correct external URL and opens in a new tab", () => {
+    render(<Grid items={mockCertificates} />)
+
+    // Get the link for the second certificate by its text content.
+    const link = screen.getByRole("link", {
+      name: /Microsoft Certified: Azure Administrator/i,
+    })
+
+    // Assert that the href and target attributes are correct.
+    expect(link).toHaveAttribute("href", "https://www.credly.com/badges/456")
+    expect(link).toHaveAttribute("target", "certificate")
+    expect(link).toHaveAttribute("rel", "noopener noreferrer")
+  })
+
+  it("renders nothing if the items array is empty", () => {
+    render(<Grid items={[]} />)
+    // queryAllByRole returns an empty array if no elements are found, unlike getAllByRole which would throw an error.
+    const links = screen.queryAllByRole("link")
+    expect(links).toHaveLength(0)
   })
 })
