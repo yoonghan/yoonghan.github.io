@@ -7,10 +7,11 @@ import hanImg from "@/images/profile/han.webp"
 import gladysImg from "@/images/profile/gladys.webp"
 import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import StickyCards from "@/components/StickyCards"
+import Grid from "@/components/Grid"
 import Image from "next/image"
-import { cloud_certificates } from "./config/cloudcertificates"
-import { ai_certifications } from "./config/aicertitificates"
+import { aiCertificates } from "./config/aiCertificates"
+import { cloudCertificates } from "./config/cloudCertificates"
+import { otherDeveloperCertificates } from "./config/otherDeveloperCertificates"
 
 const authorModel = [
   {
@@ -130,57 +131,20 @@ const About = () => {
           />
         </article>
         <article id={authorModel[3].hashId} className="py-20">
-          <h3 className="text-2xl text-center pb-6">{authorModel[3].title}</h3>
-
-          <h4 className="text-xl text-center py-6">Cloud Certifications</h4>
-          <div className="relative">
-            <StickyCards contents={cloud_certificates} />
+          <h3 className="text-2xl text-center pb-12">{authorModel[3].title}</h3>
+          <div>
+            <h4 className="text-xl text-center pb-8">Cloud Certification</h4>
+            <Grid items={cloudCertificates} />
           </div>
-
-          <h4 className="text-xl text-center py-6">AI Certifications</h4>
-          <div className="relative">
-            <StickyCards contents={ai_certifications} />
+          <div>
+            <h4 className="text-xl text-center py-8">AI Certification</h4>
+            <Grid items={aiCertificates} />
           </div>
-
-          <h4 className="text-xl text-center py-12">
-            Programming Certifications
-          </h4>
-          <div className="relative">
-            <StickyCards
-              contents={[
-                {
-                  className: "bg-blue-400",
-                  title: "Functional Programming Principal In Scala",
-                  description: (
-                    <span>
-                      Functional programming with compose, synthentic sugar and
-                      immutability.
-                    </span>
-                  ),
-                  href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
-                },
-                {
-                  className: "bg-blue-300",
-                  title: "Sun Java Certified",
-                  description: <span>Certification on Java programmer.</span>,
-                },
-                {
-                  className: "bg-blue-200",
-                  title: "Webassembly with RUST programming",
-                  description: (
-                    <span>
-                      Rusty but worky on RUST programming with javascript.
-                    </span>
-                  ),
-                },
-                {
-                  className: "bg-green-400",
-                  title: "Samurai Leadership",
-                  description: <span>Samurai Leadership - Green Belt.</span>,
-                  href: "/certs/samurai-leadership-yoong-han.pdf",
-                },
-              ]}
-            />
+          <div>
+            <h4 className="text-xl text-center py-8">
+              Other developer certifications
+            </h4>
+            <Grid items={otherDeveloperCertificates} />
           </div>
         </article>
         <hr />
