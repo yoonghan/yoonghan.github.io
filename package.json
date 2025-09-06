@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
+    "test:single": "jest",
     "test:ci": "jest --ci --coverage --no-cache",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
