@@ -60,7 +60,7 @@ describe("Grid Component", () => {
 
     // Assert that the href and target attributes are correct.
     expect(link).toHaveAttribute("href", "https://www.credly.com/badges/456")
-    expect(link).toHaveAttribute("target", "_blank")
+    expect(link).toHaveAttribute("target", "certificate")
     expect(link).toHaveAttribute("rel", "noopener noreferrer")
   })
 

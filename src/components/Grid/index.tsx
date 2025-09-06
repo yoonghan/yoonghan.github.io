@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react"
-import Image from "next/image"
 
 // Define the interface for a single certificate item that the Grid will display.
 export interface Certificate {
@@ -26,12 +26,12 @@ const Grid: React.FC<GridProps> = ({ items }) => {
         <a
           key={item.label}
           href={item.href}
-          target="_blank"
+          target="certificate"
           rel="noopener noreferrer"
           className="block p-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white transform hover:-translate-y-1"
         >
           <div className="flex items-center mb-4">
-            <Image
+            <img
               src={item.imageSrc}
               alt={`${item.label} logo`}
               width={40}
