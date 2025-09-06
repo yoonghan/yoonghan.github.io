@@ -87,13 +87,11 @@ export const allCertificates: Certificate[] = [
     label: "Sun Java Certified",
     imageSrc: "/favicon.ico", // Placeholder
     text: "Certification on Java programmer.",
-    href: "#", // No link provided
   },
   {
     label: "Webassembly with RUST programming",
     imageSrc: "/favicon.ico", // Placeholder
     text: "Rusty but worky on RUST programming with javascript.",
-    href: "#", // No link provided
   },
   {
     label: "Samurai Leadership",

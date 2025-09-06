@@ -25,12 +25,32 @@ const mockCertificates: Certificate[] = [
   },
 ]
 
+const mockCertificatesWithNoLink: Certificate[] = [
+  {
+    label: "AWS Certified Solutions Architect",
+    imageSrc: "/img/certs/aws-sa.png",
+    text: "Validates ability to design and deploy well-architected solutions on AWS.",
+    href: "https://www.credly.com/badges/123",
+  },
+  {
+    label: "Sun Java Certified",
+    imageSrc: "/favicon.ico",
+    text: "Certification on Java programmer.",
+  },
+]
+
 describe("Grid Component", () => {
   it("renders the correct number of certificate tiles", () => {
     render(<Grid items={mockCertificates} />)
-    // Each tile is a link, so we can count the number of links rendered.
     const links = screen.getAllByRole("link")
     expect(links).toHaveLength(mockCertificates.length)
+  })
+
+  it("renders a mix of links and non-links correctly", () => {
+    render(<Grid items={mockCertificatesWithNoLink} />)
+    const links = screen.queryAllByRole("link")
+    expect(links).toHaveLength(1)
+    expect(screen.getByText("Sun Java Certified")).toBeInTheDocument()
   })
 
   it("displays the content for each certificate correctly", () => {
