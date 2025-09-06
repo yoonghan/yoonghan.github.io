@@ -34,8 +34,15 @@ const mockCertificatesWithNoLink: Certificate[] = [
   },
   {
     label: "Sun Java Certified",
-    imageSrc: "/favicon.ico",
     text: "Certification on Java programmer.",
+  },
+]
+
+const mockCertificatesWithNoImage: Certificate[] = [
+  {
+    label: "Functional Programming Principal In Scala",
+    text: "Functional programming with compose, synthentic sugar and immutability.",
+    href: "https://www.coursera.org/account/accomplishments/verify/8CPTGHDQS6",
   },
 ]
 
@@ -68,6 +75,12 @@ describe("Grid Component", () => {
     expect(
       screen.getByAltText("AWS Certified Solutions Architect logo"),
     ).toBeInTheDocument()
+  })
+
+  it("does not render an image if imageSrc is not provided", () => {
+    render(<Grid items={mockCertificatesWithNoImage} />)
+    const image = screen.queryByRole("img")
+    expect(image).not.toBeInTheDocument()
   })
 
   it("links to the correct external URL and opens in a new tab", () => {
