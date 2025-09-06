@@ -100,6 +100,7 @@ const About = () => {
             profiles={[
               {
                 name: "Han Yoong",
+                title: "Lead Developer & Tech Visionary",
                 description: (
                   <p>
                     A passionate coder who is now stuck in a proprietery
@@ -108,28 +109,19 @@ const About = () => {
                     <i>Walcron Cooperation</i> publicity. He has been
                     contributing to Stackoverflow and sharing write-ups in
                     Github.
-                    <br />
-                    <br />
-                    <i>An enthusiast programmer.</i>
                   </p>
                 ),
                 imgSrc: hanImg,
               },
               {
                 name: "Gladys Tai",
+                title: "Project & Delivery Lead",
                 description: (
                   <p>
-                    An achiever with a bad-ass attitude. She always complains
-                    that she wouldn&apos;t make it in time or the task are too
-                    complex to handle. However,{" "}
-                    <i>
-                      all the projects that was/has been delivered by her are
-                      faultless.
-                    </i>{" "}
-                    As a girl, she spends most of her time being presentable.
-                    <br />
-                    <br />
-                    <i>She is a worrier and a warrior.</i>
+                    Gladys is a results-oriented leader who excels at navigating
+                    complex projects. Her meticulous attention to detail and
+                    commitment to quality ensure that every project she delivers
+                    is a success.
                   </p>
                 ),
                 imgSrc: gladysImg,

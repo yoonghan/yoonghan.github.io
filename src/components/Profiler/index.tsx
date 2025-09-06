@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image"
 
 interface IProfiler {
   name: string
+  title: string
   description: JSX.Element
   imgSrc: string | StaticImageData
   width?: number
@@ -16,6 +17,7 @@ interface Props {
 const _getUser = (
   idx: number,
   name: string,
+  title: string,
   description: JSX.Element,
   imgSrc: string | StaticImageData,
   width = 285,
@@ -31,6 +33,7 @@ const _getUser = (
     />
     <div className="py-4 text-center border-b-2 mb-4">
       <strong>{name}</strong>
+      <p className="text-sm text-gray-500">{title}</p>
     </div>
     {description}
   </div>
@@ -43,6 +46,7 @@ const Profiler = ({ profiles }: Props) => {
         _getUser(
           idx,
           profile.name,
+          profile.title,
           profile.description,
           profile.imgSrc,
           profile.width,
