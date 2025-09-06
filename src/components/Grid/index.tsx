@@ -4,7 +4,7 @@ import React from "react"
 // Define the interface for a single certificate item that the Grid will display.
 export interface Certificate {
   label: string
-  imageSrc: string // URL or path to the certificate logo/image.
+  imageSrc?: string // URL or path to the certificate logo/image.
   text: string // A short description of the certificate.
   href?: string // The external URL the certificate tile will link to.
 }
@@ -26,13 +26,15 @@ const Grid: React.FC<GridProps> = ({ items }) => {
         const content = (
           <>
             <div className="flex items-center mb-4">
-              <img
-                src={item.imageSrc}
-                alt={`${item.label} logo`}
-                width={40}
-                height={40}
-                className="mr-4 object-contain"
-              />
+              {item.imageSrc && (
+                <img
+                  src={item.imageSrc}
+                  alt={`${item.label} logo`}
+                  width={40}
+                  height={40}
+                  className="mr-4 object-contain"
+                />
+              )}
               <h3 className="text-lg font-semibold text-gray-800">
                 {item.label}
               </h3>
