@@ -9,7 +9,9 @@ import { MiniMenu } from "@yoonghan/walcron-microfrontend-shared"
 import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 import Grid from "@/components/Grid"
 import Image from "next/image"
-import { allCertificates } from "./config/certificates"
+import { aiCertificates } from "./config/aiCertificates"
+import { cloudCertificates } from "./config/cloudCertificates"
+import { otherDeveloperCertificates } from "./config/otherDeveloperCertificates"
 
 const authorModel = [
   {
@@ -130,7 +132,20 @@ const About = () => {
         </article>
         <article id={authorModel[3].hashId} className="py-20">
           <h3 className="text-2xl text-center pb-12">{authorModel[3].title}</h3>
-          <Grid items={allCertificates} />
+          <div>
+            <h4 className="text-xl text-center pb-8">Cloud Certification</h4>
+            <Grid items={cloudCertificates} />
+          </div>
+          <div>
+            <h4 className="text-xl text-center py-8">AI Certification</h4>
+            <Grid items={aiCertificates} />
+          </div>
+          <div>
+            <h4 className="text-xl text-center py-8">
+              Other developer certifications
+            </h4>
+            <Grid items={otherDeveloperCertificates} />
+          </div>
         </article>
         <hr />
         <div className="py-8">
