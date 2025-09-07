@@ -9,6 +9,7 @@ import { OrderedFigure, ReversedFigure } from "./Figure"
 import Lifecycle from "@/components/Lifecycle"
 import Animate from "./Animate"
 import FunkyScroller from "@/components/Animate/FunkyScroller"
+import { SiriLikeOrb } from "./Orb"
 
 const NoSSRDialog = dynamic(() => import("./Dialogs"))
 
@@ -69,5 +70,9 @@ export const storyBookList = [
         ]}
       />
     ),
+  },
+  {
+    title: "Orb",
+    component: <SiriLikeOrb />,
   },
 ]
