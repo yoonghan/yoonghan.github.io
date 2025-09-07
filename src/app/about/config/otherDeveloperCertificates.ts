@@ -11,18 +11,12 @@ export const otherDeveloperCertificates = [
   {
     label: "Sun Java Certified",
     text: "Certification on Java programmer.",
-    imageSrc:
-      "https://upload.wikimedia.org/wikipedia/commons/8/8b/Sun-Logo.svg",
     className: "bg-teal-200",
-    alt: "Java logo",
   },
   {
     label: "Webassembly with RUST programming",
     text: "Rusty but worky on RUST programming with javascript.",
-    imageSrc:
-      "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg",
     className: "bg-teal-300",
-    alt: "Rust logo",
   },
   {
     label: "Samurai Leadership",
