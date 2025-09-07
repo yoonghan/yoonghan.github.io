@@ -1,0 +1,75 @@
+.siriOrb {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wave {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse 6s ease-in-out infinite;
+}
+
+.wave1 {
+    width: 100%;
+    height: 100%;
+    box-shadow:
+        inset 0 0 50px rgba(51, 153, 255, 0.6),
+        inset 20px 0 80px rgba(255, 0, 255, 0.6),
+        inset -20px 0 80px rgba(0, 255, 255, 0.6),
+        0 0 50px rgba(51, 153, 255, 0.5),
+        -10px 0 80px rgba(255, 0, 255, 0.5),
+        10px 0 80px rgba(0, 255, 255, 0.5);
+    animation-delay: 0s;
+}
+
+.wave2 {
+    width: 80%;
+    height: 80%;
+    background-color: rgba(127, 0, 255, 0.2);
+    box-shadow: inset 0 0 40px rgba(127, 0, 255, 0.8);
+    animation-delay: -1.5s;
+}
+
+.wave3 {
+    width: 60%;
+    height: 60%;
+    background-color: rgba(0, 255, 255, 0.2);
+    box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.8);
+    animation-delay: -3s;
+}
+
+.wave4 {
+    width: 40%;
+    height: 40%;
+    background-color: rgba(255, 105, 180, 0.2);
+    box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.8);
+    animation-delay: -4.5s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.2);
+        opacity: 0.2;
+    }
+    40% {
+        transform: scale(1.0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1.0;
+    }
+    60% {
+        transform: scale(1.0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.2);
+        opacity: 0.2;
+    }
+}
