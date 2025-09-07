@@ -7,15 +7,15 @@ describe("StickyCards", () => {
       <StickyCards
         contents={[
           {
-            title: "One",
+            label: "One",
             className: "class-1",
-            description: "One description",
+            text: "One description",
             href: "link",
           },
           {
-            title: "Two",
+            label: "Two",
             className: "class-2",
-            description: "Two description",
+            text: "Two description",
           },
         ]}
       />,
