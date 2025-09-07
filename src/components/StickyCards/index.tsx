@@ -6,11 +6,11 @@ import Link from "../Link"
 import Image from "next/image"
 
 interface Content {
-  imageUrl?: string
+  imageSrc?: string
   alt?: string
-  title: string
+  label: string
   className: string
-  description?: ReactNode
+  text?: ReactNode
   href?: string
 }
 
@@ -19,15 +19,15 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
     <ScrollableCard
       isReversed={true}
       model={contents.map(
-        ({ imageUrl, className, title, description, href, alt }) => ({
+        ({ imageSrc, className, label, text, href, alt }) => ({
           content: (
             <div className={className}>
-              {imageUrl && (
+              {imageSrc && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imageUrl} height={150} width={150} alt={alt} />
+                <img src={imageSrc} height={150} width={150} alt={alt} />
               )}
-              <div className="text-4xl pb-4">{title}</div>
-              {description && <div className="pb-8">{description}</div>}
+              <div className="text-4xl pb-4">{label}</div>
+              {text && <div className="pb-8">{text}</div>}
               {href && (
                 <Link
                   href={href}
@@ -48,7 +48,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
               )}
             </div>
           ),
-          id: title,
+          id: label,
         }),
       )}
       className={styles.container}
