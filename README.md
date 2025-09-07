@@ -178,3 +178,6 @@ npm run rust:test //test rust running on browser
 1. Set variables configured in axiom to view telemetry AXIOM_API_TOKEN and AXIOM_DATASET_NAME.
 2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
 
+## Using Vibe code.
+
+Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md.
