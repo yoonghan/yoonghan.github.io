@@ -44,18 +44,18 @@ const JavascriptFree = () => {
           contents={[
             {
               className: "bg-amber-400",
-              title: "My first card",
-              description: <span>Empty</span>,
+              label: "My first card",
+              text: <span>Empty</span>,
             },
             {
               className: "bg-teal-400",
-              title: "Second card",
-              description: <span>Empty</span>,
+              label: "Second card",
+              text: <span>Empty</span>,
             },
             {
               className: "bg-green-400",
-              title: "Third card",
-              description: <span>Empty</span>,
+              label: "Third card",
+              text: <span>Empty</span>,
             },
           ]}
         ></StickyCards>
