@@ -12,6 +12,7 @@ import Image from "next/image"
 import { aiCertificates } from "./config/aiCertificates"
 import { cloudCertificates } from "./config/cloudCertificates"
 import { otherDeveloperCertificates } from "./config/otherDeveloperCertificates"
+import StickyCards from "@/components/StickyCards"
 
 const authorModel = [
   {
@@ -88,11 +89,12 @@ const About = () => {
             </li>
             <li>E-Commerce and Non-government organization websites.</li>
             <li>Quick mock-ups and builds for clients.</li>
-            <li>Code coverage and system stability.</li>
+            <li>Development with full flow Continuous Integration.</li>
             <li>
               Integration of Business-to-Business and Business-to-Consumer.
             </li>
-            <li>DevOps from development, integration to deployment.</li>
+            <li>DevOps from development to monitoring.</li>
+            <li>Vibe Coding with AI.</li>
           </ul>
         </article>
         <article id={authorModel[2].hashId} className="py-20">
@@ -101,7 +103,7 @@ const About = () => {
             profiles={[
               {
                 name: "Han Yoong",
-                title: "Lead Developer & Tech Visionary",
+                title: "Developer & Tech Visionary",
                 description: (
                   <p>
                     A passionate coder who is now stuck in a proprietery
@@ -116,7 +118,7 @@ const About = () => {
               },
               {
                 name: "Gladys Tai",
-                title: "Project & Delivery Lead",
+                title: "Project & Delivery Specialist",
                 description: (
                   <p>
                     Gladys is a results-oriented leader who excels at navigating
@@ -144,7 +146,7 @@ const About = () => {
             <h4 className="text-xl text-center py-8">
               Other developer certifications
             </h4>
-            <Grid items={otherDeveloperCertificates} />
+            <StickyCards contents={otherDeveloperCertificates} />
           </div>
         </article>
         <hr />
