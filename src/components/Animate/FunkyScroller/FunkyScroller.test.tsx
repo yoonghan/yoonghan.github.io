@@ -28,5 +28,6 @@ describe("Funky Scroller", () => {
     spySearch.mockReturnValue("?animate=none")
     renderComponent("Funky-Scroller-1")
     expect(screen.getByTitle("Funky-Scroller-1")).toHaveClass("animate-none")
+    spySearch.mockClear()
   })
 })

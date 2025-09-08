@@ -20,6 +20,7 @@ describe("Wave", () => {
       .forEach((elem) => {
         expect(elem.className).toContain(" animate-none")
       })
+    spySearch.mockClear()
   })
 
   it("should render with optional className", () => {
