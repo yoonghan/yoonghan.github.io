@@ -35,7 +35,7 @@
     "react-dom": "^19.1.1",
     "react-dropzone": "^14.3.8",
     "sharp": "^0.34.3",
-    "swr": "^2.3.3"
+    "swr": "^2.3.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
