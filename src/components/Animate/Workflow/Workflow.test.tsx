@@ -21,5 +21,6 @@ describe("Animate Workflow", () => {
     expect(
       within(screen.getByTitle("workflow-1")).getByTestId("workflow"),
     ).toHaveClass("animate-none")
+    spySearch.mockClear()
   })
 })
