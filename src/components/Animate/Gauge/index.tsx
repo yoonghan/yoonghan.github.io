@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode } from "react"
-import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
+import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation"
 import styles from "./Gauge.module.css"
 
 function Gauge({
