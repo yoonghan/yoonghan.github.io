@@ -71,4 +71,8 @@ export const storyBookList = [
       />
     ),
   },
+  {
+    title: "Siri Orb like",
+    component: <SiriLikeOrb />,
+  },
 ]
