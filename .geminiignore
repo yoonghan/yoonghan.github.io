@@ -1,0 +1,8 @@
+# Ignore the crate folder, as it is not relevant to the project's main logic to handle RUST.
+crate/
+
+# Ignore the backstop_data folder, as it contains large, irrelevant snapshots.
+backstop_data/
+
+# Ignore public folder, it contains images and large document files.
+public/
