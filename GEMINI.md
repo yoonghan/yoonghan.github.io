@@ -18,4 +18,3 @@
 - `src/app/`: This directory contains all pages and routes for the application. Files here are responsible for data fetching and view composition.
 - `src/components/`: This directory holds all reusable React components like buttons, cards, and forms. Components should be stateless unless they need to manage their own UI state.
 - `styles/`: This folder contains global CSS files, utility classes, and theming configurations.
-- `public/`: This folder contains all static image or document assets.

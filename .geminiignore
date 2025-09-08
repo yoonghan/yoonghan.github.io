@@ -3,3 +3,6 @@ crate/
 
 # Ignore the backstop_data folder, as it contains large, irrelevant snapshots.
 backstop_data/
+
+# Ignore public folder, it contains images and large document files.
+public/
