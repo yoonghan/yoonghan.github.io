@@ -12,3 +12,10 @@
 - **Testing:** Write unit tests for new features using Jest and React Testing Library. Test files should be co-located with the component and named with the pattern `[ComponentName].test.tsx`.
 - **Code Quality:** Keep the code clean, readable, and well-documented where necessary.
 - **Technology Stack:** This is a Next.js project using TypeScript and Tailwind CSS.
+
+## Next.js Project Architecture
+
+- `src/app/`: This directory contains all pages and routes for the application. Files here are responsible for data fetching and view composition.
+- `src/components/`: This directory holds all reusable React components like buttons, cards, and forms. Components should be stateless unless they need to manage their own UI state.
+- `styles/`: This folder contains global CSS files, utility classes, and theming configurations.
+- `public/`: This folder contains all static image or document assets.
