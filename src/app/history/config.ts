@@ -8,6 +8,7 @@ import {
   faBoltLightning,
   faMagnifyingGlass,
   faCertificate,
+  faBrain,
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -142,5 +143,12 @@ export const siteHistory: IEvent[] = [
     special: "Azure Expert Certified",
     desc: "Successfully Migrated to NextJS 15",
     faIcon: faCertificate,
+  },
+  {
+    id: "Aug-2025",
+    date: "Aug-2025",
+    special: "Invest heavily on Generative AI",
+    desc: "Certified Practitioner and refining Prompt Engineering",
+    faIcon: faBrain,
   },
 ]
