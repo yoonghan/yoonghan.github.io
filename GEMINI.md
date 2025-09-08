@@ -2,7 +2,7 @@
 
 **Instructions for all code generation:**
 
-- This is a Gemini project. Please adhere to the following coding standards:
+- This is a NextJS project. Please adhere to the following coding standards:
 
 - **Follow Existing Style:** Strictly adhere to the existing coding style, conventions, and file structure.
 - **Component Structure:** Create new components in their own folder (e.g., `src/components/MyComponent/index.tsx`).
@@ -12,8 +12,6 @@
 - **Testing:** Write unit tests for new features using Jest and React Testing Library. Test files should be co-located with the component and named with the pattern `[ComponentName].test.tsx`. To run a single test, use `npm run test:single -- <test_file_path>`.
 - **Code Quality:** Keep the code clean, readable, and well-documented where necessary.
 - **Technology Stack:** This is a Next.js project using TypeScript and Tailwind CSS.
-
-## Next.js Project Architecture
 
 - `src/app/`: This directory contains all pages and routes for the application. Files here are responsible for data fetching and view composition.
 - `src/components/`: This directory holds all reusable React components like buttons, cards, and forms. Components should be stateless unless they need to manage their own UI state.
