@@ -43,5 +43,6 @@ describe("FontAwesomeAnimate", () => {
     spySearch.mockReturnValue("?animate=none")
     renderComponent("arrow-zoom-3")
     assertAnimate(false, "bounce")
+    spySearch.mockClear()
   })
 })

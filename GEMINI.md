@@ -1,20 +1,99 @@
-# Project Coding Standards
+# Project Overview
 
-**Instructions for all code generation:**
+This is a personal website built with Next.js, TypeScript, and Tailwind CSS. The project is hosted on both Vercel and GitHub Pages. It includes a comprehensive setup for testing, CI/CD, and performance monitoring.
 
-- This is a Gemini project. Please adhere to the following coding standards:
+## Building and Running
 
-- **Follow Existing Style:** Strictly adhere to the existing coding style, conventions, and file structure.
-- **Component Structure:** Create new components in their own folder (e.g., `src/components/MyComponent/index.tsx`).
-- **No Semicolons:** Do not use semicolons at the end of statements, as per the project's Prettier configuration (`"semi": false`).
-- **ESLint and Prettier:** Ensure all code passes ESLint and Prettier checks. Run `npm run lint` to verify.
-- **No Console Logs:** Avoid using `console.log()` or other console methods. Use a proper logger if needed.
-- **Testing:** Write unit tests for new features using Jest and React Testing Library. Test files should be co-located with the component and named with the pattern `[ComponentName].test.tsx`.
-- **Code Quality:** Keep the code clean, readable, and well-documented where necessary.
-- **Technology Stack:** This is a Next.js project using TypeScript and Tailwind CSS.
+### Development
 
-## Next.js Project Architecture
+To run the development server, use the following command:
 
+```bash
+npm run dev
+```
+
+### Testing
+
+The project uses a multi-layered testing strategy:
+
+*   **Unit Tests:** Run unit tests with Jest:
+    ```bash
+    npm run test:single
+    ```
+*   **End-to-End (E2E) Tests:** Run E2E tests with Playwright:
+    ```bash
+    npm run e2e:test
+    ```
+*   **Smoke Tests:** Run smoke tests with Playwright:
+    ```bash
+    npm run smoke:test
+    ```
+*   **Visual Regression Tests:** Use BackstopJS for visual regression testing:
+    ```bash
+    npm run backstop:test
+    npm run backstop:approve
+    ```
+
+### Linting
+
+To check for linting and formatting errors, run:
+
+```bash
+npm run lint
+```
+
+To automatically fix linting and formatting issues, use:
+
+```bash
+npm run lint:fix
+```
+
+## Development Conventions
+
+### Code Style
+
+The project uses ESLint and Prettier to enforce a consistent code style. Configuration can be found in `eslint.config.mjs` and `.prettierrc.json`.
+
+Key code style rules:
+* No semicolons.
+* Double quotes for strings.
+
+Folder structure:
 - `src/app/`: This directory contains all pages and routes for the application. Files here are responsible for data fetching and view composition.
 - `src/components/`: This directory holds all reusable React components like buttons, cards, and forms. Components should be stateless unless they need to manage their own UI state.
 - `styles/`: This folder contains global CSS files, utility classes, and theming configurations.
+
+### Dependency Management
+
+The project uses `knip` to check for unused dependencies. Run the following command to check for unused dependencies:
+
+```bash
+npm run dependency:check
+```
+
+### CI/CD
+
+The project has a CI/CD pipeline configured with GitHub Actions. The pipeline includes steps for:
+
+*   Linting and testing
+*   Building and deploying to Vercel
+*   Generating and deploying a static version to GitHub Pages
+*   Running smoke tests after deployment
+
+### Environment Variables
+
+Environment variables are managed using a `.env.local` file. To set up the environment variables, you can use the Vercel CLI to pull them from the Vercel project:
+
+```bash
+vercel env pull .env.local
+```
+
+### Rust/Wasm Integration
+
+The project includes a Rust-based WebAssembly module for a snake game. To build the Wasm module, run:
+
+```bash
+npm run rust:generate
+```
+
+

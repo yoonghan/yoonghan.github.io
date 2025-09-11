@@ -21,5 +21,6 @@ describe("Animate Gauge", () => {
     expect(
       within(screen.getByTitle("workflow-1")).getByTestId("gauge"),
     ).toHaveClass("animate-none")
+    spySearch.mockClear()
   })
 })
