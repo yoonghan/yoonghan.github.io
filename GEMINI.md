@@ -96,4 +96,8 @@ The project includes a Rust-based WebAssembly module for a snake game. To build 
 npm run rust:generate
 ```
 
+### Observability
 
+#### OpenTelemetry
+
+This project uses OpenTelemetry for observability. The configuration is in `src/instrumentation.ts`, and it uses `@opentelemetry/exporter-trace-otlp-http` to send traces to an OTLP endpoint.
