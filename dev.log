@@ -1,0 +1,63 @@
+
+> dev
+> source .env.local && next dev
+
+   ▲ Next.js 15.5.2
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.86:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ○ Compiling /instrumentation ...
+ ⚠ ./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+Module not found: Can't resolve '@opentelemetry/winston-transport' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/instrumentation-winston/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+./node_modules/@opentelemetry/instrumentation-winston/build/src/index.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/utils.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/index.js
+
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+Module not found: Can't resolve '@opentelemetry/exporter-jaeger' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/sdk-node/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+./node_modules/@opentelemetry/sdk-node/build/src/sdk.js
+./node_modules/@opentelemetry/sdk-node/build/src/index.js
+ ✓ Ready in 2.7s
+ ⚠ ./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+Module not found: Can't resolve '@opentelemetry/winston-transport' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/instrumentation-winston/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+./node_modules/@opentelemetry/instrumentation-winston/build/src/index.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/utils.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/index.js
+
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+Module not found: Can't resolve '@opentelemetry/exporter-jaeger' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/sdk-node/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+./node_modules/@opentelemetry/sdk-node/build/src/sdk.js
+./node_modules/@opentelemetry/sdk-node/build/src/index.js
+ ⚠ ./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+Module not found: Can't resolve '@opentelemetry/winston-transport' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/instrumentation-winston/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/instrumentation-winston/build/src/instrumentation.js
+./node_modules/@opentelemetry/instrumentation-winston/build/src/index.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/utils.js
+./node_modules/@opentelemetry/auto-instrumentations-node/build/src/index.js
+
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+Module not found: Can't resolve '@opentelemetry/exporter-jaeger' in '/Users/gladys/Work/nextjs/yoonghan.github.io/node_modules/@opentelemetry/sdk-node/build/src'
+
+Import trace for requested module:
+./node_modules/@opentelemetry/sdk-node/build/src/utils.js
+./node_modules/@opentelemetry/sdk-node/build/src/sdk.js
+./node_modules/@opentelemetry/sdk-node/build/src/index.js
+ GET / 200 in 2433ms
+[?25h
