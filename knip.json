@@ -15,7 +15,10 @@
     "eslint-config-next",
     "eslint-plugin-jsx-a11y",
     "eslint-plugin-prettier",
-    "eslint-plugin-testing-library"
+    "eslint-plugin-testing-library",
+    "@opentelemetry/exporter-jaeger",
+    "@opentelemetry/sdk-trace-node",
+    "@opentelemetry/winston-transport"
   ],
   "ignoreBinaries": [
     "wasm-pack"
