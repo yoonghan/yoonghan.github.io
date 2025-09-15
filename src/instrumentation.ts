@@ -10,6 +10,7 @@ export function register() {
     } = require("@opentelemetry/exporter-trace-otlp-http")
 
     const sdk = new NodeSDK({
+      serviceName: "api",
       traceExporter: new OTLPTraceExporter({
         url: "https://api.axiom.co/v1/traces",
         headers: {
