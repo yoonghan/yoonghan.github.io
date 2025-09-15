@@ -7,6 +7,7 @@ class NextRequest extends IncomingMessage {
   }> = {}
   public body: any
   public url: any
+  public nextUrl: URL
 
   constructor(url: URL | string, options?: RequestInit) {
     super(new Socket())
@@ -14,8 +15,9 @@ class NextRequest extends IncomingMessage {
     if (options) {
       this.method = options.method
       this.body = options.body
-      this.url = url
     }
+    this.url = url
+    this.nextUrl = new URL(url.toString())
   }
 
   public formData = () => {
