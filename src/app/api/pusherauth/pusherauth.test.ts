@@ -3,6 +3,17 @@ import { POST } from "@/app/api/pusherauth/route"
 import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
 import { NextRequest } from "next/server"
 import { setEnv } from "@/__tests__/mocks/setEnv"
+import { trace } from "@opentelemetry/api"
+
+jest.mock("@opentelemetry/api", () => ({
+  trace: {
+    getTracer: jest.fn(() => ({
+      startActiveSpan: jest.fn((name, fn) =>
+        fn({ end: jest.fn(), setAttributes: jest.fn() }),
+      ),
+    })),
+  },
+}))
 
 describe("pusherauth", () => {
   const mockRequest = (channel_name: string = "sample_channel") => {
@@ -69,6 +80,7 @@ describe("pusherauth", () => {
       expect(response.status).toBe(200)
       const result = await response.json()
       expect(result.auth as string).toContain(`${APP_KEY}:`)
+      expect(trace.getTracer).toHaveBeenCalledWith("pusher-auth")
     })
 
     it("should be able to fail authentication", async () => {
