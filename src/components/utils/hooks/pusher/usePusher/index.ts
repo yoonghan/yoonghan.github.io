@@ -9,6 +9,7 @@ import {
   decodeMessage,
   encodeMessage,
 } from "../../../../Chat/config/MessageFormatter"
+import { trace } from "@opentelemetry/api"
 
 type Props = {
   eventName: string
@@ -176,35 +177,65 @@ export function usePusher(props: Props) {
   }
 
   const sendMessage = (message: string, messageType: MessageType) => {
-    if (channel.current) {
-      const complexMessage = encodeMessage(message, messageType)
-      const isSent = channel.current.trigger(eventName, {
-        message: complexMessage,
-      })
-      return isSent
-    }
-    return false
+    const tracer = trace.getTracer("pusher-hook")
+    return tracer.startActiveSpan("send-message", (span) => {
+      if (channel.current) {
+        const complexMessage = encodeMessage(message, messageType)
+        span.setAttributes({
+          "pusher.channel": channelName,
+          "pusher.event": eventName,
+          "pusher.message": complexMessage,
+        })
+        const isSent = channel.current.trigger(eventName, {
+          message: complexMessage,
+        })
+        span.end()
+        return isSent
+      }
+      span.end()
+      return false
+    })
   }
 
   const emit = (type: "Event" | "NoOfUsers"): Emitter => {
+    const tracer = trace.getTracer("pusher-hook")
     switch (type) {
       case "Event":
         return (message: string, senderId: number) => {
-          if (channel.current) {
-            channel.current.emit(eventName, { senderId, message })
-            return true
-          }
-          return false
+          return tracer.startActiveSpan("emit-event", (span) => {
+            if (channel.current) {
+              span.setAttributes({
+                "pusher.channel": channelName,
+                "pusher.event": eventName,
+                "pusher.message": message,
+                "pusher.senderId": senderId,
+              })
+              channel.current.emit(eventName, { senderId, message })
+              span.end()
+              return true
+            }
+            span.end()
+            return false
+          })
         }
       case "NoOfUsers": {
         return (subscription_count: number) => {
-          if (channel.current) {
-            channel.current.emit("pusher:subscription_count", {
-              subscription_count,
-            })
-            return true
-          }
-          return false
+          return tracer.startActiveSpan("emit-user-count", (span) => {
+            if (channel.current) {
+              span.setAttributes({
+                "pusher.channel": channelName,
+                "pusher.event": "pusher:subscription_count",
+                "pusher.subscription_count": subscription_count,
+              })
+              channel.current.emit("pusher:subscription_count", {
+                subscription_count,
+              })
+              span.end()
+              return true
+            }
+            span.end()
+            return false
+          })
         }
       }
     }
