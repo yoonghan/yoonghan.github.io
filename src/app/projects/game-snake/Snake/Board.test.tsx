@@ -69,7 +69,6 @@ describe("Board", () => {
     }
 
     const clickPlayButton = async () => {
-      // eslint-disable-next-line testing-library/no-node-access
       await userEvent.click(screen.getByRole("button", { name: "Play" }))
     }
 

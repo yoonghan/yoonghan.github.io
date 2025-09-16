@@ -6,6 +6,17 @@ import { act } from "react"
 import React from "react"
 import { MessageType } from "../../../../Chat/config/MessageType"
 import { encodeMessage } from "../../../../Chat/config/MessageFormatter"
+import { trace } from "@opentelemetry/api"
+
+jest.mock("@opentelemetry/api", () => ({
+  trace: {
+    getTracer: jest.fn(() => ({
+      startActiveSpan: jest.fn((name, fn) =>
+        fn({ end: jest.fn(), setAttributes: jest.fn() }),
+      ),
+    })),
+  },
+}))
 
 describe("usePusher", () => {
   const createPusher = (props: {
@@ -205,6 +216,7 @@ describe("usePusher", () => {
         expect(message).toBe(false) //will always return false, doesn't matter
       })
       expect(printEventCallback).not.toHaveBeenCalled()
+      expect(trace.getTracer).toHaveBeenCalledWith("pusher-hook")
     })
 
     it("should be able to emit message", () => {
@@ -221,6 +233,7 @@ describe("usePusher", () => {
         MessageType.TEXT,
         2,
       )
+      expect(trace.getTracer).toHaveBeenCalledWith("pusher-hook")
     })
 
     it("should be able to emit complex message", () => {
