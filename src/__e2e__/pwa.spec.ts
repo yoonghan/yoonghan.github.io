@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, expect } from "@playwright/test"
 

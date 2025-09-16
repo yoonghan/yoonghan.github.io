@@ -1,3 +1,4 @@
+import OtelProvider from "@/components/OtelProvider"
 import Footer from "@/components/Footer"
 import { GoogleAnalytic } from "@/components/GoogleAnalytic"
 import MegaMenu from "@/components/MegaMenu"
@@ -74,7 +75,9 @@ export default function RootLayout({
         }`}
       </Script>
       <body>
-        <Body>{children}</Body>
+        <OtelProvider>
+          <Body>{children}</Body>
+        </OtelProvider>
       </body>
     </html>
   )
