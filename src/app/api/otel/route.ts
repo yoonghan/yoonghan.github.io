@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
         "X-Axiom-Dataset": `${process.env.AXIOM_DATASET_NAME}`,
       },
       body: req.body,
+      // @ts-expect-error duplex is not in RequestInit type yet
+      duplex: "half",
     })
 
     if (response.ok) {
