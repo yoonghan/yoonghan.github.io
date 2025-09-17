@@ -21,6 +21,7 @@ const NoSSRCommandBar = () => {
 
     return () => {
       queueMicrotask(() => {
+        /* istanbul ignore next */
         if (elem !== null && document.body.contains(elem)) {
           document.body.removeChild(elem)
         }
