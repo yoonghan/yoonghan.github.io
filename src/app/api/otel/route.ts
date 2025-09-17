@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const response = await fetch("https://api.axiom.co/v1/traces", {
       method: "POST",
       headers: {
-        "Content-Type": req.headers.get("Content-Type") || "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.AXIOM_API_TOKEN}`,
         "X-Axiom-Dataset": `${process.env.AXIOM_DATASET_NAME}`,
       },
