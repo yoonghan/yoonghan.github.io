@@ -100,4 +100,4 @@ npm run rust:generate
 
 #### OpenTelemetry
 
-This project uses OpenTelemetry for observability. The configuration is in `src/instrumentation.ts`, and it uses `@opentelemetry/exporter-trace-otlp-http` to send traces to an OTLP endpoint.
+This project uses OpenTelemetry for observability. The backend configuration is in `src/instrumentation.ts`, and it uses `@opentelemetry/exporter-trace-otlp-http` to send traces to an OTLP endpoint. The client-side configuration is in `src/util/otel-web.ts` and is initialized in the root layout. To avoid CORS issues, client-side traces are sent to an `/api/otel` route, which acts as a bridge and forwards them to the OTLP endpoint.
