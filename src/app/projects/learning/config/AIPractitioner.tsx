@@ -34,7 +34,7 @@ const model = [
             {
               input: "Task",
               reference: (
-                <p>
+                <div>
                   Describe your task, specifying a persona and format
                   preference.
                   <ol>
@@ -42,13 +42,13 @@ const model = [
                     <li>Define the task</li>
                     <li>Define the output/format</li>
                   </ol>
-                </p>
+                </div>
               ),
             },
             {
               input: "Context",
               reference: (
-                <p>
+                <div>
                   Specify goals, constraints, and requirements. Context has the
                   potential to be the longest piece of a prompt. One of the most
                   powerful and reliable ways to provide an AI tool with context
@@ -60,13 +60,13 @@ const model = [
                   </ul>
                   <strong>Tips:</strong>{" "}
                   {"Don't use gender bias. E.g. firefighter not fireman."}
-                </p>
+                </div>
               ),
             },
             {
               input: "Reference",
               reference: (
-                <p>
+                <div>
                   Add examples, zero/single/few shots for gen AI tool can use to
                   inform its output. Use:
                   <ul>
@@ -74,7 +74,7 @@ const model = [
                     <li>Markdown tags</li>
                     <li>XML</li>
                   </ul>
-                </p>
+                </div>
               ),
             },
             {
@@ -113,17 +113,14 @@ const model = [
           <p className="mt-2">
             I am tight on budget, so list me 2 menu and no appetizer.
           </p>
-          <p>
-            Output expectation / control:
-            <ol>
-              <li>Revisit the prompting framework - add personas, context</li>
-              <li>
-                Break the prompt into shorter sentences - chain of thoughts
-              </li>
-              <li>Introduce contrainsts</li>
-              <li>Tweak your phrasing / swith analogous task</li>
-            </ol>
-          </p>
+          <br />
+          Output expectation / control:
+          <ol>
+            <li>Revisit the prompting framework - add personas, context</li>
+            <li>Break the prompt into shorter sentences - chain of thoughts</li>
+            <li>Introduce contrainsts</li>
+            <li>Tweak your phrasing / swith analogous task</li>
+          </ol>
         </section>
       </div>
     ),
