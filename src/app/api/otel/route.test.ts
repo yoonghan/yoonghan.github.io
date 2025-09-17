@@ -43,6 +43,7 @@ describe("POST /api/otel", () => {
         Authorization: "Bearer test-axiom-token",
         "X-Axiom-Dataset": "test-axiom-dataset",
       },
+      duplex: "half",
       body: request.body,
     })
 
