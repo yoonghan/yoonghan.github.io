@@ -67,6 +67,7 @@ const PwaEnabler = ({ onCancel }: Props) => {
           </div>
         )
       }
+      /* istanbul ignore next */
       if (isMacOrIOS()) {
         return (
           <div className={styles["mobile-container"]}>

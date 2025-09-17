@@ -6,16 +6,13 @@ import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base"
 import { registerInstrumentations } from "@opentelemetry/instrumentation"
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch"
 import { ZoneContextManager } from "@opentelemetry/context-zone"
+import { site } from "@/config/site"
 
 export const initOpenTelemetry = (window: Window | undefined) => {
   if (typeof window !== "undefined") {
     const spanProcessor = new BatchSpanProcessor(
       new OTLPTraceExporter({
-        url: "https://api.axiom.co/v1/traces",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AXIOM_API_TOKEN}`,
-          "X-Axiom-Dataset": `${process.env.NEXT_PUBLIC_AXIOM_DATASET_NAME}`,
-        },
+        url: "${site.apiUrl}/otel",
       }),
     )
 

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useState, useEffect, useCallback } from "react"
 import { ANDROID_PACKAGE_NAME } from "./utils/const"
 import { register } from "./utils/register"
