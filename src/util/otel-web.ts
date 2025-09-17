@@ -12,7 +12,7 @@ export const initOpenTelemetry = (window: Window | undefined) => {
   if (typeof window !== "undefined") {
     const spanProcessor = new BatchSpanProcessor(
       new OTLPTraceExporter({
-        url: "${site.apiUrl}/otel",
+        url: `${site.apiUrl}/otel`,
       }),
     )
 
