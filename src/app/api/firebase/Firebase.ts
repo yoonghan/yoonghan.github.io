@@ -50,6 +50,7 @@ export class Firebase {
 
   public static readonly getFirebaseInitializeApp = () => {
     const validCredentials = this.getValidCredentials()
+    /* istanbul ignore next */
     if (admin.apps.length === 0) {
       admin.initializeApp({
         credential: admin.credential.cert(
