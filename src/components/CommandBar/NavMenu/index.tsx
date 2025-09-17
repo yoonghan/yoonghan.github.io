@@ -12,19 +12,18 @@ const writeLink = (pathname: string | null) => {
           home
         </a>
       ) : null
-    } else if (path !== "") {
-      accumulatedPath += "/" + path
-      return (
-        <a
-          href={accumulatedPath}
-          key={`_link${path}`}
-          className={styles.navmenuLink}
-        >
-          {" "}
-          &gt; {path}
-        </a>
-      )
     }
+    accumulatedPath += "/" + path
+    return (
+      <a
+        href={accumulatedPath}
+        key={`_link${path}`}
+        className={styles.navmenuLink}
+      >
+        {" "}
+        &gt; {path}
+      </a>
+    )
   })
   return splittedLinks
 }
