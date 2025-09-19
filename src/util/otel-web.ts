@@ -13,6 +13,20 @@ import {
 } from "@opentelemetry/resources"
 
 export const initOpenTelemetry = (window: Window | undefined) => {
+  /* istanbul ignore next */
+  const resource = {
+    attributes: {
+      "service-name": "web",
+    },
+    merge: function (_other: Resource | null): Resource {
+      /* istanbul ignore next */
+      throw new Error("Function not implemented.")
+    },
+    getRawAttributes: function (): RawResourceAttribute[] {
+      throw new Error("Function not implemented.")
+    },
+  }
+
   if (typeof window !== "undefined") {
     const spanProcessor = new BatchSpanProcessor(
       new OTLPTraceExporter({
@@ -21,21 +35,7 @@ export const initOpenTelemetry = (window: Window | undefined) => {
     )
 
     const provider = new WebTracerProvider({
-      resource: {
-        attributes: {
-          "service-name": "web",
-        },
-        /* istanbul ignore next */
-        merge: function (_other: Resource | null): Resource {
-          /* istanbul ignore next */
-          throw new Error("Function not implemented.")
-        },
-        /* istanbul ignore next */
-        getRawAttributes: function (): RawResourceAttribute[] {
-          /* istanbul ignore next */
-          throw new Error("Function not implemented.")
-        },
-      },
+      resource,
       spanProcessors: [spanProcessor],
     })
 
