@@ -25,10 +25,14 @@ export const initOpenTelemetry = (window: Window | undefined) => {
         attributes: {
           "service-name": "web",
         },
-        merge: function (other: Resource | null): Resource {
+        /* istanbul ignore next */
+        merge: function (_other: Resource | null): Resource {
+          /* istanbul ignore next */
           throw new Error("Function not implemented.")
         },
+        /* istanbul ignore next */
         getRawAttributes: function (): RawResourceAttribute[] {
+          /* istanbul ignore next */
           throw new Error("Function not implemented.")
         },
       },
