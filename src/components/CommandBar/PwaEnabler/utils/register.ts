@@ -13,6 +13,7 @@ export async function register(swPath?: string, options?: RegistrationOptions) {
 }
 
 export function unregister() {
+  /* istanbul ignore else */
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready.then(function (registration) {
       registration.unregister()

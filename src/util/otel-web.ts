@@ -7,8 +7,26 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation"
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch"
 import { ZoneContextManager } from "@opentelemetry/context-zone"
 import { site } from "@/config/site"
+import {
+  type Resource,
+  type RawResourceAttribute,
+} from "@opentelemetry/resources"
 
 export const initOpenTelemetry = (window: Window | undefined) => {
+  /* istanbul ignore next */
+  const resource = {
+    attributes: {
+      "service-name": "web",
+    },
+    merge: function (_other: Resource | null): Resource {
+      /* istanbul ignore next */
+      throw new Error("Function not implemented.")
+    },
+    getRawAttributes: function (): RawResourceAttribute[] {
+      throw new Error("Function not implemented.")
+    },
+  }
+
   if (typeof window !== "undefined") {
     const spanProcessor = new BatchSpanProcessor(
       new OTLPTraceExporter({
@@ -17,6 +35,7 @@ export const initOpenTelemetry = (window: Window | undefined) => {
     )
 
     const provider = new WebTracerProvider({
+      resource,
       spanProcessors: [spanProcessor],
     })
 

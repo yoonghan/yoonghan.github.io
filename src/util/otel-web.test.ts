@@ -42,6 +42,13 @@ describe("otel-web", () => {
     initOpenTelemetry(window)
 
     expect(WebTracerProvider).toHaveBeenCalledWith({
+      resource: {
+        attributes: {
+          "service-name": "web",
+        },
+        merge: expect.any(Function),
+        getRawAttributes: expect.any(Function),
+      },
       spanProcessors: [expect.any(Object)],
     })
     expect(BatchSpanProcessor).toHaveBeenCalled()
