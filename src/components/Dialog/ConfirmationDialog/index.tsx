@@ -43,9 +43,8 @@ const ConfirmationDialog = ({
       ) => {
         e?.preventDefault()
 
-        if (dialogRef.current !== null) {
-          dialogRef.current.close()
-        }
+        dialogRef.current?.close()
+
         switch (action) {
           case Action.Cancel:
             onCancel()
