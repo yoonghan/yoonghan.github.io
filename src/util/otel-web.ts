@@ -7,6 +7,8 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation"
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch"
 import { ZoneContextManager } from "@opentelemetry/context-zone"
 import { site } from "@/config/site"
+import { resourceFromAttributes } from "@opentelemetry/resources"
+import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions"
 
 export const initOpenTelemetry = (window: Window | undefined) => {
   if (typeof window !== "undefined") {
@@ -17,6 +19,9 @@ export const initOpenTelemetry = (window: Window | undefined) => {
     )
 
     const provider = new WebTracerProvider({
+      resource: resourceFromAttributes({
+        [ATTR_SERVICE_NAME]: "web",
+      }),
       spanProcessors: [spanProcessor],
     })
 
