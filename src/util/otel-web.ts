@@ -7,7 +7,10 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation"
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch"
 import { ZoneContextManager } from "@opentelemetry/context-zone"
 import { site } from "@/config/site"
-import { Resource, RawResourceAttribute } from "@opentelemetry/resources"
+import {
+  type Resource,
+  type RawResourceAttribute,
+} from "@opentelemetry/resources"
 
 export const initOpenTelemetry = (window: Window | undefined) => {
   if (typeof window !== "undefined") {
