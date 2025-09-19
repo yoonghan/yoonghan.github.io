@@ -22,9 +22,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
       ) => {
         e?.preventDefault()
 
-        if (dialogRef.current !== null) {
-          dialogRef.current.close()
-        }
+        dialogRef.current?.close()
 
         if (isOkClick) onOk()
       },

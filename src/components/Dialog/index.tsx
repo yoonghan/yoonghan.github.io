@@ -37,10 +37,8 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
     const [showDialog, setShowDialog] = useState(true)
 
     const close = useCallback(() => {
-      if (dialogElem.current !== null) {
-        setShowDialog(false)
-      }
-    }, [dialogElem])
+      setShowDialog(false)
+    }, [])
 
     useImperativeHandle(ref, () => {
       return {
