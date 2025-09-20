@@ -6,7 +6,7 @@ describe("ScrollIcon", () => {
   const Container = ({
     children,
   }: {
-    children: (ref: RefObject<HTMLDivElement>) => React.ReactNode
+    children: (ref: RefObject<HTMLDivElement | null>) => React.ReactNode
   }) => {
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -54,5 +54,33 @@ describe("ScrollIcon", () => {
     const scrollText = screen.getByText("Howdy")
     expect(scrollText).toBeInTheDocument()
     expect(scrollText).toHaveClass("scroll text")
+  })
+
+  it("should handle no reference passed and nothing happens", async () => {
+    const EmptyContainer = () => {
+      const containerRef = useRef<HTMLDivElement>(null)
+
+      return (
+        <div data-testid="parent-elem">
+          <ScrollIcon scrollContainer={containerRef} text={"Empty"} />
+        </div>
+      )
+    }
+    render(<EmptyContainer />)
+
+    const scrollText = screen.getByText("Empty")
+    expect(scrollText).toBeInTheDocument()
+    expect(scrollText).toHaveClass("scroll text")
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
+
+    fireEvent.scroll(parent)
+    await waitFor(
+      () => {
+        // eslint-disable-next-line testing-library/no-node-access
+        expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
+      },
+      { interval: 1000 },
+    )
   })
 })
