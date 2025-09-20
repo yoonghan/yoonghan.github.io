@@ -11,16 +11,17 @@ import { trace } from "@opentelemetry/api"
 jest.mock("@opentelemetry/api", () => ({
   trace: {
     getTracer: jest.fn(() => ({
-      startActiveSpan: jest.fn((name, options, fn) => {
-        if (fn) {
+      startActiveSpan: jest.fn((name, fn) => {
+        if (typeof fn === "function") {
           return fn({ end: jest.fn(), setAttributes: jest.fn() })
         }
-        return options({ end: jest.fn(), setAttributes: jest.fn() })
+        return { end: jest.fn(), setAttributes: jest.fn() }
       }),
     })),
   },
   context: {
     active: jest.fn(),
+    with: jest.fn((_, fn) => fn()),
   },
   propagation: {
     extract: jest.fn(),
