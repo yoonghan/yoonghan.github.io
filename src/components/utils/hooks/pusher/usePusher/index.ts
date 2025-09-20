@@ -62,10 +62,8 @@ export function usePusher(props: Props) {
             data.traceContext,
           )
           const tracer = trace.getTracer("pusher-hook")
-          tracer.startActiveSpan(
-            "receive-message",
-            { context: parentCtx },
-            (span) => {
+          context.with(parentCtx, () => {
+            tracer.startActiveSpan("receive-message", (span) => {
               const complexMessage = decodeMessage(data.message)
               span.setAttributes({
                 "pusher.channel": channelName,
@@ -79,8 +77,8 @@ export function usePusher(props: Props) {
                 data.senderId,
               )
               span.end()
-            },
-          )
+            })
+          })
         },
       )
     }
