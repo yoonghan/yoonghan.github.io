@@ -8,7 +8,6 @@ describe("PopupKeyboard", () => {
     render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
       />,
     )
@@ -34,7 +33,6 @@ describe("PopupKeyboard", () => {
       <div data-testid="outside-wrapper">
         <PopupKeyboard
           buttonText={"Interactive Keyboard"}
-          keyboardType={"Arrows"}
           onClickCallback={clickCallback}
         />
       </div>,
@@ -62,7 +60,6 @@ describe("PopupKeyboard", () => {
     render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
       />,
@@ -87,7 +84,6 @@ describe("PopupKeyboard", () => {
     const { unmount } = render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
       />,
