@@ -9,7 +9,7 @@ import {
   decodeMessage,
   encodeMessage,
 } from "../../../../Chat/config/MessageFormatter"
-import { trace } from "@opentelemetry/api"
+import { trace, context, propagation } from "@opentelemetry/api"
 
 type Props = {
   eventName: string
@@ -56,13 +56,29 @@ export function usePusher(props: Props) {
       channel.current = pusherChannelClient.current.subscribe(channelName)
       channel.current.bind(
         eventName,
-        (data: { message: string; senderId?: number }) => {
-          const complexMessage = decodeMessage(data.message)
-          printEventCallback(
-            complexMessage.message,
-            complexMessage.messageType,
-            data.senderId,
+        (data: { message: string; senderId?: number; traceContext?: any }) => {
+          const parentCtx = propagation.extract(
+            context.active(),
+            data.traceContext,
           )
+          const tracer = trace.getTracer("pusher-hook")
+          context.with(parentCtx, () => {
+            tracer.startActiveSpan("receive-message", (span) => {
+              const complexMessage = decodeMessage(data.message)
+              span.setAttributes({
+                "pusher.channel": channelName,
+                "pusher.event": eventName,
+                "pusher.message": data.message,
+                "pusher.senderId": data.senderId,
+              })
+              printEventCallback(
+                complexMessage.message,
+                complexMessage.messageType,
+                data.senderId,
+              )
+              span.end()
+            })
+          })
         },
       )
     }
@@ -181,6 +197,8 @@ export function usePusher(props: Props) {
     return tracer.startActiveSpan("send-message", (span) => {
       if (channel.current) {
         const complexMessage = encodeMessage(message, messageType)
+        const traceContext = {}
+        propagation.inject(context.active(), traceContext)
         span.setAttributes({
           "pusher.channel": channelName,
           "pusher.event": eventName,
@@ -188,6 +206,7 @@ export function usePusher(props: Props) {
         })
         const isSent = channel.current.trigger(eventName, {
           message: complexMessage,
+          traceContext,
         })
         span.end()
         return isSent
@@ -204,13 +223,19 @@ export function usePusher(props: Props) {
         return (message: string, senderId: number) => {
           return tracer.startActiveSpan("emit-event", (span) => {
             if (channel.current) {
+              const traceContext = {}
+              propagation.inject(context.active(), traceContext)
               span.setAttributes({
                 "pusher.channel": channelName,
                 "pusher.event": eventName,
                 "pusher.message": message,
                 "pusher.senderId": senderId,
               })
-              channel.current.emit(eventName, { senderId, message })
+              channel.current.emit(eventName, {
+                senderId,
+                message,
+                traceContext,
+              })
               span.end()
               return true
             }
