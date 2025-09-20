@@ -103,4 +103,23 @@ describe("PopupKeyboard", () => {
       { interval: 200 }, //wait for queue to complete
     )
   })
+
+  it("should not enable keyboard listener", async () => {
+    const clickCallback = jest.fn()
+    render(
+      <PopupKeyboard
+        buttonText={"Interactive Keyboard"}
+        onClickCallback={clickCallback}
+        enableKeyboardListener={true}
+      />,
+    )
+
+    await userEvent.keyboard("G")
+    await waitFor(
+      () => {
+        expect(clickCallback).not.toHaveBeenCalled()
+      },
+      { interval: 200 }, //wait for queue to complete
+    )
+  })
 })
