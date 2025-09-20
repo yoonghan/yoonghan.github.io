@@ -53,6 +53,9 @@ describe("POST /api/otel", () => {
   })
 
   it("should handle errors from the Axiom API", async () => {
+    const consoleErrorSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => {})
     const requestBody = JSON.stringify({ trace: "data" })
     const request = new NextRequest("http://localhost/api/otel", {
       method: "POST",
@@ -69,6 +72,7 @@ describe("POST /api/otel", () => {
     expect(response.status).toBe(401)
     const responseText = await response.text()
     expect(responseText).toBe("Unauthorized")
+    consoleErrorSpy.mockRestore()
   })
 
   it("should handle network errors when calling Axiom", async () => {
