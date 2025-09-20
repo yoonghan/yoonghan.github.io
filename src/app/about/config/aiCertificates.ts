@@ -24,8 +24,6 @@ export const aiCertificates: Certificate[] = [
   },
   {
     label: "Effective ChatGPT",
-    imageSrc:
-      "https://images.credly.com/images/bfbfeb07-49b9-4cce-866c-f06ef9e2aae9/f9681bc8-450d-40fd-81c4-a3a20e483c0b.png",
     text: "Learning ChatGPT. [Foundation]",
     href: "https://www.credly.com/badges/395a3138-11d3-4144-94dd-2389c52213aa",
   },
