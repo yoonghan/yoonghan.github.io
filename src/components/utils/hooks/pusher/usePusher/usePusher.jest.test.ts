@@ -11,10 +11,21 @@ import { trace } from "@opentelemetry/api"
 jest.mock("@opentelemetry/api", () => ({
   trace: {
     getTracer: jest.fn(() => ({
-      startActiveSpan: jest.fn((name, fn) =>
-        fn({ end: jest.fn(), setAttributes: jest.fn() }),
-      ),
+      startActiveSpan: jest.fn((name, fn) => {
+        if (typeof fn === "function") {
+          return fn({ end: jest.fn(), setAttributes: jest.fn() })
+        }
+        return { end: jest.fn(), setAttributes: jest.fn() }
+      }),
     })),
+  },
+  context: {
+    active: jest.fn(),
+    with: jest.fn((_, fn) => fn()),
+  },
+  propagation: {
+    extract: jest.fn(),
+    inject: jest.fn(),
   },
 }))
 
@@ -213,7 +224,7 @@ describe("usePusher", () => {
       const { result, printEventCallback } = createConnectedPusher()
       act(() => {
         const message = result.current.send("Hello message", MessageType.TEXT)
-        expect(message).toBe(false) //will always return false, doesn't matter
+        expect(message).toBe(false) // will always return false.
       })
       expect(printEventCallback).not.toHaveBeenCalled()
       expect(trace.getTracer).toHaveBeenCalledWith("pusher-hook")
