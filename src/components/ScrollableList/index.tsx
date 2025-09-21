@@ -7,11 +7,12 @@ import { useDebounceValue } from "usehooks-ts"
 type Props = {
   listItems: { id: string; content: React.ReactNode }[]
   maxItemsToRender: number
+  noRef?: boolean
 }
 
 const heightOfItem = 30 //base on item css in px
 
-const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
+const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
   const listRef = useRef<HTMLDivElement>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [scrollToTop, setScrollToTop] = useState(0)
@@ -43,9 +44,7 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
   }, [debounceScrollToTop, maxItemsToRender, scrollPosition])
 
   const updateScrollPosition = useCallback(() => {
-    if (listRef.current !== null) {
-      setScrollToTop(listRef.current.scrollTop)
-    }
+    setScrollToTop(listRef.current!.scrollTop)
   }, [])
 
   useEffect(() => {
@@ -63,7 +62,7 @@ const ScrollableList = ({ listItems, maxItemsToRender }: Props) => {
   return (
     <div
       className={style.container}
-      ref={listRef}
+      ref={noRef ? null : listRef}
       data-testid="scrollable-list"
     >
       <div
