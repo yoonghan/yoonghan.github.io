@@ -7,8 +7,8 @@ import ChatMessageBox, { apiUrl } from "."
 import { MessageType } from "../config/MessageType"
 
 describe("ChatMessageBox", () => {
-  const renderComponent = (onMessageSend = jest.fn()) =>
-    render(<ChatMessageBox onMessageSend={onMessageSend} />)
+  const renderComponent = (onMessageSend = jest.fn(), noRef = false) =>
+    render(<ChatMessageBox onMessageSend={onMessageSend} noRef={noRef} />)
 
   const clickDialogYes = async () => {
     expect(
@@ -163,6 +163,25 @@ describe("ChatMessageBox", () => {
     expect(
       screen.queryByText("This file will be shared publicly. Are you sure?"),
     ).not.toBeInTheDocument()
+  })
+
+  it("should work as expected if ref is undefined", async () => {
+    const mockSend = jest.fn()
+    const { unmount } = renderComponent(mockSend, true)
+
+    expect(screen.queryByText("Loading Chat Room")).not.toBeInTheDocument()
+    expect(screen.getByLabelText("Message:")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Send" })).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.queryByText("Loading Chat Room")).not.toBeInTheDocument()
+    })
+
+    await userEvent.upload(
+      screen.getByTestId("file-uploader"),
+      new File(["A file content."], "chucknorris.png", { type: "image/png" }),
+    )
+
+    unmount()
   })
 
   describe("integration", () => {
