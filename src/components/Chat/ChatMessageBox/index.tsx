@@ -22,6 +22,7 @@ import "../react-chat-bell.css"
 
 interface Props {
   onMessageSend: (message: string, messageType: MessageType) => void
+  noRef?: boolean
 }
 
 export const apiUrl = `${site.apiUrl}/firebase`
@@ -52,7 +53,10 @@ const dropFile =
   }
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
-  function ChatMessageDialogWithMessageHandler({ onMessageSend }, ref) {
+  function ChatMessageDialogWithMessageHandler(
+    { onMessageSend, noRef = false },
+    ref,
+  ) {
     const confirm = useDialogCreation(ConfirmationDialog)
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
@@ -68,10 +72,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 
     const sendFileMessage = useCallback(
       (message: string, notifyReceipient = false) => {
-        if (chatMessageDialogRef.current !== null) {
-          chatMessageDialogRef.current.addMessage(undefined, message)
-          if (notifyReceipient) onMessageSend(message, MessageType.FILE)
-        }
+        chatMessageDialogRef.current!.addMessage(undefined, message)
+        if (notifyReceipient) onMessageSend(message, MessageType.FILE)
       },
       [onMessageSend],
     )
@@ -82,20 +84,16 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
     )
 
     const onDrop = (acceptedFiles: File[]) => {
-      if (acceptedFiles && acceptedFiles.length > 0) {
-        const filesToUpload = acceptedFiles
-        if (inputRef.current) {
-          inputRef.current.value = ""
-        }
-        confirm({
-          title: "Upload File",
-          onYesClick: () => {
-            filesToUpload && dropFileWithMessage(filesToUpload)
-          },
-          message: "This file will be shared publicly. Are you sure?",
-          nonPortal: true,
-        })
-      }
+      const filesToUpload = acceptedFiles
+      inputRef.current!.value = ""
+      confirm({
+        title: "Upload File",
+        onYesClick: () => {
+          filesToUpload && dropFileWithMessage(filesToUpload)
+        },
+        message: "This file will be shared publicly. Are you sure?",
+        nonPortal: true,
+      })
     }
 
     const { getRootProps, getInputProps, inputRef } = useDropzone({
@@ -109,20 +107,18 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
           message: string,
           messageType?: MessageType,
         ) {
-          if (chatMessageDialogRef.current !== null) {
-            chatMessageDialogRef.current.addMessage(
-              senderId,
-              message,
-              messageType,
-            )
-          }
+          chatMessageDialogRef.current!.addMessage(
+            senderId,
+            message,
+            messageType,
+          )
         },
       }
     })
 
     return (
       <div className={styles.container}>
-        <ChatMessageDialog ref={chatMessageDialogRef} />
+        <ChatMessageDialog ref={noRef ? null : chatMessageDialogRef} />
         <br />
         <form
           action=""
@@ -158,7 +154,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
               id="file-upload-btn"
               aria-label="Upload"
               onClick={() => {
-                inputRef.current?.click()
+                // eslint-disable-next-line testing-library/no-node-access
+                inputRef.current!.click()
               }}
             >
               <FontAwesomeIcon icon={faPaperclip} />
