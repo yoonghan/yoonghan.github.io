@@ -29,6 +29,16 @@ describe("usePresencePusher", () => {
     expect(client.channelName).toBe("presence-wal-videocall")
   })
 
+  it("should be able to immediately disconnect without connection", () => {
+    const { result } = createPusher()
+    result.current.disconnect()
+  })
+
+  it("should be able to emit without connection", () => {
+    const { result } = createPusher()
+    result.current.emit("event", { message: "empty" })
+  })
+
   describe("connection", () => {
     const trigger = (
       { emit, trigger }: any,
