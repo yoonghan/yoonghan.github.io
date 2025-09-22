@@ -7,9 +7,17 @@ interface Props {
   imgWebpSrc: string
   imgAlt: string
   preload?: string
+  noRef?: boolean
 }
 
-const Video = ({ src, imgJpgSrc, imgWebpSrc, imgAlt, preload }: Props) => {
+const Video = ({
+  src,
+  imgJpgSrc,
+  imgWebpSrc,
+  imgAlt,
+  preload,
+  noRef,
+}: Props) => {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const [sound, setSound] = React.useState(false)
   const [isPlaying, setPlaying] = React.useState(false)
@@ -80,7 +88,7 @@ const Video = ({ src, imgJpgSrc, imgWebpSrc, imgAlt, preload }: Props) => {
           loop
           muted
           preload={preload ?? "auto"}
-          ref={videoRef}
+          ref={noRef ? null : videoRef}
           data-testid={"video"}
         >
           <source src={src} type="video/mp4" />
