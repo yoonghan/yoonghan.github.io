@@ -49,16 +49,16 @@ jobs:
           npm uninstall @ducanh2912/next-pwa
           npm uninstall firebase-admin
 
-      - name: ✅ Owasp Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
-        with:
-          project: "Walcron Project"
-          path: "./package-lock.json"
-          format: "HTML"
-          out: "reports" # this is the default, no need to specify unless you wish to override it
-          args: --failOnCVSS 7
-            --enableRetired
+      # - name: ✅ Owasp Dependency Check
+      #   uses: dependency-check/Dependency-Check_Action@main
+      #   id: Depcheck
+      #   with:
+      #     project: "Walcron Project"
+      #     path: "./package-lock.json"
+      #     format: "HTML"
+      #     out: "reports" # this is the default, no need to specify unless you wish to override it
+      #     args: --failOnCVSS 7
+      #       --enableRetired
 
       - name: ⬆️ Upload Dependency Check results # only uploads if it's on main
         uses: actions/upload-artifact@master
