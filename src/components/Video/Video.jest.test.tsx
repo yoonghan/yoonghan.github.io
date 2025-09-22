@@ -9,12 +9,14 @@ describe("Video", () => {
     imgWebpSrc = "imgWebpSrcSample",
     imgAlt = "imgAltSample",
     preload = undefined,
+    noRef = false,
   }: {
     src?: string
     imgJpgSrc?: string
     imgWebpSrc?: string
     imgAlt?: string
     preload?: string
+    noRef?: boolean
   }) => {
     render(
       <Video
@@ -23,6 +25,7 @@ describe("Video", () => {
         imgWebpSrc={imgWebpSrc}
         imgAlt={imgAlt}
         preload={preload}
+        noRef={noRef}
       />,
     )
     const video = screen.getByTestId("video") as HTMLVideoElement
@@ -32,7 +35,7 @@ describe("Video", () => {
   }
 
   it("should render video with non-supported html", () => {
-    const { video } = renderComponent({})
+    renderComponent({})
     expect(screen.getByTestId("video")).toBeInTheDocument()
     expect(
       screen.getByText("Your browser does not support MP4 videos"),
@@ -183,5 +186,29 @@ describe("Video", () => {
     it("can defaults as auto", () => {
       const { video } = renderComponent({})
     })
+  })
+
+  it("should work but without functionality if ref is not ready", async () => {
+    const { video, videoDivWrapper } = renderComponent({ noRef: true })
+
+    const videoPlayFn = jest.fn()
+    video.play = videoPlayFn
+
+    const videoPauseFn = jest.fn()
+    video.pause = videoPauseFn
+
+    await userEvent.click(
+      screen.getByRole("button", { name: "with sound ( off )" }),
+    )
+    expect(video.muted).toBe(true)
+
+    await userEvent.click(videoDivWrapper)
+    expect(video.muted).toBe(true)
+
+    await userEvent.click(videoDivWrapper)
+    expect(videoPlayFn).not.toHaveBeenCalled()
+
+    fireEvent.mouseOut(videoDivWrapper)
+    expect(videoPauseFn).not.toHaveBeenCalled()
   })
 })
