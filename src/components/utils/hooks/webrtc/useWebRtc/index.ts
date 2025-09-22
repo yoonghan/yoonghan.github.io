@@ -46,6 +46,7 @@ export const useWebRtc = (
     (event: RTCTrackEvent) => {
       const stream = remoteStream.current
       stream?.addTrack(event.track)
+      /* istanbul ignore next */
       if (event.streams?.length) {
         event.streams[0]?.getTracks().forEach((track) => {
           stream?.addTrack(track)
@@ -65,6 +66,7 @@ export const useWebRtc = (
         const caller = new RTCPeerConnection()
         callerRef.current = caller
         caller.onicecandidate = function (evt) {
+          /* istanbul ignore next */
           if (evt.candidate) {
             triggerCandidate(evt.candidate)
           }

@@ -8,7 +8,6 @@ describe("PopupKeyboard", () => {
     render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
       />,
     )
@@ -34,7 +33,6 @@ describe("PopupKeyboard", () => {
       <div data-testid="outside-wrapper">
         <PopupKeyboard
           buttonText={"Interactive Keyboard"}
-          keyboardType={"Arrows"}
           onClickCallback={clickCallback}
         />
       </div>,
@@ -62,7 +60,6 @@ describe("PopupKeyboard", () => {
     render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
       />,
@@ -87,7 +84,6 @@ describe("PopupKeyboard", () => {
     const { unmount } = render(
       <PopupKeyboard
         buttonText={"Interactive Keyboard"}
-        keyboardType={"Arrows"}
         onClickCallback={clickCallback}
         enableKeyboardListener={true}
       />,
@@ -103,6 +99,25 @@ describe("PopupKeyboard", () => {
     await waitFor(
       () => {
         expect(clickCallback).toHaveBeenCalledTimes(1)
+      },
+      { interval: 200 }, //wait for queue to complete
+    )
+  })
+
+  it("should not enable keyboard listener", async () => {
+    const clickCallback = jest.fn()
+    render(
+      <PopupKeyboard
+        buttonText={"Interactive Keyboard"}
+        onClickCallback={clickCallback}
+        enableKeyboardListener={true}
+      />,
+    )
+
+    await userEvent.keyboard("G")
+    await waitFor(
+      () => {
+        expect(clickCallback).not.toHaveBeenCalled()
       },
       { interval: 200 }, //wait for queue to complete
     )

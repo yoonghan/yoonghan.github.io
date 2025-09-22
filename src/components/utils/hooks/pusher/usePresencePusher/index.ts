@@ -102,10 +102,8 @@ export const usePresencePusher = ({
 
     pusher.current = new PusherJS(appKey, pusherConfiguration)
 
-    if (pusher.current) {
-      channel.current = pusher.current.subscribe(channelName)
-      bindChannel(channel.current)
-    }
+    channel.current = pusher.current.subscribe(channelName)
+    bindChannel(channel.current)
   }
 
   const disconnect = () => {
