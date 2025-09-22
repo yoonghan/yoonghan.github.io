@@ -51,111 +51,100 @@ export function usePusher(props: Props) {
     )
   }
 
-  const subscribeToChannel = () => {
-    if (pusherChannelClient.current) {
-      channel.current = pusherChannelClient.current.subscribe(channelName)
-      channel.current.bind(
-        eventName,
-        (data: { message: string; senderId?: number; traceContext?: any }) => {
-          const parentCtx = propagation.extract(
-            context.active(),
-            data.traceContext,
-          )
-          const tracer = trace.getTracer("pusher-hook")
-          context.with(parentCtx, () => {
-            tracer.startActiveSpan("receive-message", (span) => {
-              const complexMessage = decodeMessage(data.message)
-              span.setAttributes({
-                "pusher.channel": channelName,
-                "pusher.event": eventName,
-                "pusher.message": data.message,
-                "pusher.senderId": data.senderId,
-              })
-              printEventCallback(
-                complexMessage.message,
-                complexMessage.messageType,
-                data.senderId,
-              )
-              span.end()
+  const subscribeToChannel = (current: PusherJS) => {
+    channel.current = current.subscribe(channelName)
+    channel.current.bind(
+      eventName,
+      (data: { message: string; senderId?: number; traceContext?: any }) => {
+        const parentCtx = propagation.extract(
+          context.active(),
+          data.traceContext,
+        )
+        const tracer = trace.getTracer("pusher-hook")
+        context.with(parentCtx, () => {
+          tracer.startActiveSpan("receive-message", (span) => {
+            const complexMessage = decodeMessage(data.message)
+            span.setAttributes({
+              "pusher.channel": channelName,
+              "pusher.event": eventName,
+              "pusher.message": data.message,
+              "pusher.senderId": data.senderId,
             })
+            printEventCallback(
+              complexMessage.message,
+              complexMessage.messageType,
+              data.senderId,
+            )
+            span.end()
           })
-        },
-      )
-    }
+        })
+      },
+    )
+    return channel.current
   }
 
-  const monitorOnlineUsers = () => {
-    if (channel.current) {
-      channel.current.bind(
-        "pusher:subscription_count",
-        (data: { subscription_count: string }) => {
-          printConnectionCallback(
-            `Active user count: ${data.subscription_count}`,
-            MessageType.USERCOUNT,
-          )
-        },
-      )
-    }
-  }
-
-  const monitorConnection = () => {
-    if (pusherChannelClient.current) {
-      pusherChannelClient.current.connection.bind("connected", () => {
-        updateConnectionStatus(EnumConnectionStatus.Connected)
-      })
-    }
-  }
-
-  const monitorFail = () => {
-    if (pusherChannelClient.current) {
-      pusherChannelClient.current.connection.bind("failed", () => {
-        updateConnectionStatus(EnumConnectionStatus.Disconnected)
+  const monitorOnlineUsers = (channel: Channel) => {
+    channel.bind(
+      "pusher:subscription_count",
+      (data: { subscription_count: string }) => {
         printConnectionCallback(
-          "Connection failed as websocket is not supported by browser",
+          `Active user count: ${data.subscription_count}`,
+          MessageType.USERCOUNT,
+        )
+      },
+    )
+  }
+
+  const monitorConnection = (current: PusherJS) => {
+    current.connection.bind("connected", () => {
+      updateConnectionStatus(EnumConnectionStatus.Connected)
+    })
+  }
+
+  const monitorFail = (current: PusherJS) => {
+    current.connection.bind("failed", () => {
+      updateConnectionStatus(EnumConnectionStatus.Disconnected)
+      printConnectionCallback(
+        "Connection failed as websocket is not supported by browser",
+        MessageType.CONNECTION_ERROR,
+      )
+      pusherChannelClient.current = undefined
+      channel.current = undefined
+    })
+  }
+
+  const monitorError = (current: PusherJS) => {
+    current.connection.bind("error", (error: any) => {
+      if (
+        error?.type === "WebSocketError" &&
+        error?.error?.data?.code !== 1006
+      ) {
+        printConnectionCallback(
+          "A different Id was requested, please refresh the page.",
           MessageType.CONNECTION_ERROR,
         )
-        pusherChannelClient.current = undefined
-        channel.current = undefined
-      })
-    }
-  }
-
-  const monitorError = () => {
-    if (pusherChannelClient.current) {
-      pusherChannelClient.current.connection.bind("error", (error: any) => {
-        if (
-          error?.type === "WebSocketError" &&
-          error?.error?.data?.code !== 1006
-        ) {
-          printConnectionCallback(
-            "A different Id was requested, please refresh the page.",
-            MessageType.CONNECTION_ERROR,
-          )
-          updateConnectionStatus(EnumConnectionStatus.Disconnected)
-          pusherChannelClient.current = undefined
-          channel.current = undefined
-        } else {
-          // eslint-disable-next-line no-console
-          console.error("error", error)
-          updateConnectionStatus(EnumConnectionStatus.Error)
-          printConnectionCallback(
-            "Interruption error encountered",
-            MessageType.CONNECTION_ERROR,
-          )
-        }
-      })
-    }
-  }
-
-  const monitorDisconnected = () => {
-    if (pusherChannelClient.current) {
-      pusherChannelClient.current.connection.bind("disconnected", () => {
         updateConnectionStatus(EnumConnectionStatus.Disconnected)
-        printConnectionCallback("Disconnected", MessageType.CONNECTION_ERROR)
         pusherChannelClient.current = undefined
         channel.current = undefined
-      })
-    }
+      } else {
+        // eslint-disable-next-line no-console
+        console.error("error", error)
+        updateConnectionStatus(EnumConnectionStatus.Error)
+        printConnectionCallback(
+          "Interruption error encountered",
+          MessageType.CONNECTION_ERROR,
+        )
+      }
+    })
+  }
+
+  const monitorDisconnected = (current: PusherJS) => {
+    current.connection.bind("disconnected", () => {
+      updateConnectionStatus(EnumConnectionStatus.Disconnected)
+      printConnectionCallback("Disconnected", MessageType.CONNECTION_ERROR)
+      pusherChannelClient.current = undefined
+      channel.current = undefined
+    })
   }
 
   const connect = () => {
@@ -182,14 +171,12 @@ export function usePusher(props: Props) {
     }
     pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration)
 
-    if (pusherChannelClient.current) {
-      subscribeToChannel()
-      monitorConnection()
-      monitorError()
-      monitorDisconnected()
-      monitorFail()
-      monitorOnlineUsers()
-    }
+    const channel = subscribeToChannel(pusherChannelClient.current)
+    monitorConnection(pusherChannelClient.current)
+    monitorError(pusherChannelClient.current)
+    monitorDisconnected(pusherChannelClient.current)
+    monitorFail(pusherChannelClient.current)
+    monitorOnlineUsers(channel)
   }
 
   const sendMessage = (message: string, messageType: MessageType) => {
