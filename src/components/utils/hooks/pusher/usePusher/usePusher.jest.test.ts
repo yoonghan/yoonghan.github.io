@@ -167,7 +167,7 @@ describe("usePusher", () => {
       spy.mockClear()
     })
 
-    it("should be able to disconnect", () => {
+    it("should auto disconnect if fail", () => {
       const { result, printConnectionCallback } = createConnectedPusher()
       act(() => {
         result.current.emitConnection("failed")
@@ -287,6 +287,53 @@ describe("usePusher", () => {
         "Active user count: 2",
         MessageType.USERCOUNT,
       )
+    })
+
+    it("should print connection status on connection", () => {
+      const { printConnectionCallback } = createConnectedPusher()
+      expect(printConnectionCallback).toHaveBeenCalledWith(
+        `Status: ${EnumConnectionStatus.Connected}`,
+        MessageType.CONNECTION,
+      )
+    })
+
+    it("should not re-establish connection if already connected", () => {
+      const { result, printConnectionCallback } = createConnectedPusher()
+      printConnectionCallback.mockClear()
+      act(() => {
+        result.current.connect()
+      })
+      expect(printConnectionCallback).toHaveBeenCalledWith(
+        "Connection is already established",
+        MessageType.TEXT,
+      )
+      expect(printConnectionCallback).toHaveBeenCalledTimes(1)
+    })
+
+    it("should be considered connected when a specific websocket error occurs", () => {
+      const { result } = createConnectedPusher()
+      act(() => {
+        result.current.emitConnection("error", {
+          type: "WebSocketError",
+          error: { data: { code: 1006 } },
+        })
+      })
+      expect(result.current.getConnectionStatus()).toBe(
+        EnumConnectionStatus.Error,
+      )
+      expect(result.current.isConnected()).toBe(true)
+    })
+
+    it("should not fail to emit if disconnected", () => {
+      const { result } = createConnectedPusher()
+      act(() => {
+        result.current.disconnect()
+      })
+      act(() => {
+        result.current.emitConnection("failed")
+        result.current.emit("NoOfUsers")
+        result.current.disconnect()
+      })
     })
   })
 })

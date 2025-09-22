@@ -40,6 +40,7 @@ describe("useTrackAggruseTrackReduceregrator", () => {
     })
     act(() => {
       result.current.append(5)
+      result.current.append(6) //skip immediate append.
     })
     expect(result.current.data).toStrictEqual([5, 4])
     jest.useRealTimers()

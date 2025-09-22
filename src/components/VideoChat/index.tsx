@@ -14,6 +14,7 @@ type Props = {
   muted: boolean
   videoFailedCallback: (exception: unknown) => void
   videoTracksCallback: (mediaStream: MediaStream | undefined) => void
+  noRef?: boolean
 }
 
 export interface VideoStreamHandler {
@@ -23,22 +24,25 @@ export interface VideoStreamHandler {
 
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
   function VideoWithStreamHandler(
-    { id, record, muted, videoFailedCallback, videoTracksCallback }: Props,
+    {
+      id,
+      record,
+      muted,
+      videoFailedCallback,
+      videoTracksCallback,
+      noRef,
+    }: Props,
     ref,
   ) {
     const videoRef = useRef<HTMLVideoElement>(null)
     const streamRef = useRef<MediaStream>(undefined)
 
     const stream = useCallback((stream: MediaStream) => {
-      if (videoRef.current !== null) {
-        videoRef.current.srcObject = stream
-      }
+      videoRef.current!.srcObject = stream
     }, [])
 
     const stopStream = useCallback(() => {
-      if (videoRef.current !== null) {
-        videoRef.current.srcObject = null
-      }
+      videoRef.current!.srcObject = null
     }, [])
 
     useImperativeHandle(ref, () => {
@@ -98,7 +102,7 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     return (
       // eslint-disable-next-line jsx-a11y/media-has-caption
       <video
-        ref={videoRef}
+        ref={noRef ? null : videoRef}
         id={id}
         autoPlay
         muted={muted}
