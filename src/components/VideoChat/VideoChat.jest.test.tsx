@@ -19,10 +19,12 @@ describe("VideoChat", () => {
     record = true,
     videoFailedCallback = jest.fn(),
     videoTracksCallback = jest.fn(),
+    noRef = false,
   }: {
     record?: boolean
     videoFailedCallback?: (exception: unknown) => void
     videoTracksCallback?: (mediaStream: MediaStream | undefined) => void
+    noRef?: boolean
   }) => {
     return render(
       <VideoChat
@@ -31,6 +33,7 @@ describe("VideoChat", () => {
         record={record}
         videoFailedCallback={videoFailedCallback}
         videoTracksCallback={videoTracksCallback}
+        noRef={noRef}
       />,
     )
   }
@@ -163,6 +166,13 @@ describe("VideoChat", () => {
 
       await userEvent.click(screen.getByRole("button", { name: "Stop Stream" }))
       expect(video.srcObject).toBe(null)
+    })
+
+    it("should function as expected if ref is not ready", async () => {
+      const { unmount } = renderComponent({ noRef: true })
+      const video = screen.getByTestId("video-chat") as HTMLVideoElement
+      expect(video.srcObject).toBe(undefined)
+      unmount()
     })
   })
 })

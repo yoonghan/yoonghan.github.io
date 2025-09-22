@@ -3,7 +3,7 @@ import { useSpring, animated } from "@react-spring/web"
 import styles from "./ScrollIcon.module.css"
 
 interface Props {
-  scrollContainer: React.RefObject<HTMLDivElement>
+  scrollContainer: React.RefObject<HTMLDivElement | null>
   text?: string
 }
 

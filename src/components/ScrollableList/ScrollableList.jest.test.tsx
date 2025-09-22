@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import ScrollableList from "."
 
 describe("ScrollableList", () => {
-  const renderComponent = () => {
+  const renderComponent = (noRef = false) => {
     render(
       <ScrollableList
         listItems={[
@@ -14,6 +14,7 @@ describe("ScrollableList", () => {
           { id: "6", content: <>6</> },
         ]}
         maxItemsToRender={2}
+        noRef={noRef}
       />,
     )
   }
@@ -43,5 +44,12 @@ describe("ScrollableList", () => {
     expect(await screen.findByText("4")).toBeInTheDocument()
     expect(screen.queryByText("5")).not.toBeInTheDocument()
     expect(screen.queryByText("6")).not.toBeInTheDocument()
+  })
+
+  it("should render without issues with no ref", () => {
+    renderComponent(true)
+    const scrollableList = screen.getByTestId("scrollable-list")
+    fireEvent.scroll(scrollableList, { target: { scrollTop: 61 } })
+    expect(screen.queryByText("3")).not.toBeInTheDocument()
   })
 })

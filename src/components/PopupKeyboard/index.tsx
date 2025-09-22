@@ -16,7 +16,6 @@ const arrowValues = Object.values(KeyboardKeys)
 
 type PopupKeyboardType = {
   buttonText: string
-  keyboardType: "Arrows"
   onClickCallback: (key: KeyboardKeys) => void
   enableKeyboardListener?: boolean
 }
@@ -28,7 +27,6 @@ const preventKeyboardEvent = (e: Event) => {
 
 const PopupKeyboard = ({
   buttonText,
-  keyboardType,
   onClickCallback,
   enableKeyboardListener = false,
 }: PopupKeyboardType) => {
@@ -42,16 +40,14 @@ const PopupKeyboard = ({
   const buildKeyboardListener = useCallback(() => {
     return (event: KeyboardEvent) => {
       const direction = event.key
-      if (keyboardType === "Arrows") {
-        const matchedKey = arrowValues.find(
-          (arrowValue) => arrowValue === direction,
-        )
-        if (matchedKey !== undefined) {
-          queueMicrotask(onKeyClick(matchedKey))
-        }
+      const matchedKey = arrowValues.find(
+        (arrowValue) => arrowValue === direction,
+      )
+      if (matchedKey !== undefined) {
+        queueMicrotask(onKeyClick(matchedKey))
       }
     }
-  }, [keyboardType, onKeyClick])
+  }, [onKeyClick])
 
   useEffect(() => {
     if (enableKeyboardListener) {
@@ -68,47 +64,45 @@ const PopupKeyboard = ({
   }, [enableKeyboardListener, buildKeyboardListener])
 
   const drawnKeyboard = useMemo(() => {
-    if (keyboardType === "Arrows") {
-      return (
-        <div className={styles["arrow-BtnContainer"]}>
+    return (
+      <div className={styles["arrow-BtnContainer"]}>
+        <div>
+          <Button
+            styling={{ small: true, inverted: true }}
+            onClick={onKeyClick(KeyboardKeys.UP)}
+          >
+            &nbsp;↑&nbsp;
+          </Button>
+        </div>
+        <div>
           <div>
             <Button
               styling={{ small: true, inverted: true }}
-              onClick={onKeyClick(KeyboardKeys.UP)}
+              onClick={onKeyClick(KeyboardKeys.LEFT)}
             >
-              &nbsp;↑&nbsp;
+              ←
             </Button>
           </div>
           <div>
-            <div>
-              <Button
-                styling={{ small: true, inverted: true }}
-                onClick={onKeyClick(KeyboardKeys.LEFT)}
-              >
-                ←
-              </Button>
-            </div>
-            <div>
-              <Button
-                styling={{ small: true, inverted: true }}
-                onClick={onKeyClick(KeyboardKeys.DOWN)}
-              >
-                &nbsp;↓&nbsp;
-              </Button>
-            </div>
-            <div>
-              <Button
-                styling={{ small: true, inverted: true }}
-                onClick={onKeyClick(KeyboardKeys.RIGHT)}
-              >
-                →
-              </Button>
-            </div>
+            <Button
+              styling={{ small: true, inverted: true }}
+              onClick={onKeyClick(KeyboardKeys.DOWN)}
+            >
+              &nbsp;↓&nbsp;
+            </Button>
+          </div>
+          <div>
+            <Button
+              styling={{ small: true, inverted: true }}
+              onClick={onKeyClick(KeyboardKeys.RIGHT)}
+            >
+              →
+            </Button>
           </div>
         </div>
-      )
-    }
-  }, [keyboardType, onKeyClick])
+      </div>
+    )
+  }, [onKeyClick])
 
   return (
     <Popup

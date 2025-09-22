@@ -165,7 +165,6 @@ const Game = ({
 
       <div className={styles.keyboard}>
         <PopupKeyboard
-          keyboardType="Arrows"
           onClickCallback={onKeyboardClick}
           buttonText={"Popup Keyboard"}
           enableKeyboardListener={world.game_status() !== undefined}
