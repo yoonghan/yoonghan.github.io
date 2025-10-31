@@ -1,3 +1,4 @@
+import withPWAInit from "@ducanh2912/next-pwa"
 /**
  * @type {import('next').NextConfig}
  */
@@ -42,7 +43,14 @@ const apiSecurityHeaders = [
   },
 ]
 
-const nextConfig = {
+const withPWA = withPWAInit({
+  disable: process.env.NODE_ENV === "development",
+  register: false,
+  dest: "public",
+  publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
+})
+
+const nextConfig = withPWA({
   async headers() {
     return [
       {
@@ -72,6 +80,6 @@ const nextConfig = {
     }
     return config
   },
-}
+})
 
 export default nextConfig
