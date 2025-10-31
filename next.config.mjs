@@ -1,3 +1,7 @@
+/**
+ * @type {import('next').NextConfig}
+ */
+
 const securityHeaders = [
   {
     key: "X-DNS-Prefetch-Control",
@@ -38,19 +42,7 @@ const apiSecurityHeaders = [
   },
 ]
 
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-//   enabled: true,
-// })
-
-const withPWA = require("@ducanh2912/next-pwa").default({
-  disable: process.env.NODE_ENV === "development",
-  register: false,
-  dest: "public",
-  publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
-})
-
-module.exports = withPWA({
-  //placeholder_for_static_generation
+const nextConfig = {
   async headers() {
     return [
       {
@@ -63,7 +55,15 @@ module.exports = withPWA({
       },
     ]
   },
-  webpack: (config, { isServer }) => {
+  turbopack: {
+    resolveAlias: {
+      // You may need to investigate the exact alias for 'tls' or other fallbacks
+      // as the Turbopack documentation emphasizes aliasing, not general fallbacks.
+      // Often, core modules that are only needed on the server are automatically
+      // stripped from the client bundle.
+    },
+  },
+  turbopack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
         // Disable the 'tls' module on the client side
@@ -72,4 +72,6 @@ module.exports = withPWA({
     }
     return config
   },
-})
+}
+
+export default nextConfig
