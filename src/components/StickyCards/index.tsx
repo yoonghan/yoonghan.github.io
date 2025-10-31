@@ -24,7 +24,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
             <div className={className}>
               {imageSrc && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={imageSrc} height={150} width={150} alt={alt} />
+                <img src={imageSrc} height={50} width={50} alt={alt} />
               )}
               <div className="text-4xl pb-4">{label}</div>
               {text && <div className="pb-8">{text}</div>}
