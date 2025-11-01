@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+import { NodeSDK } from "@opentelemetry/sdk-node"
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node"
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http"
+
 export function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
-    const { NodeSDK } = require("@opentelemetry/sdk-node")
-    const {
-      getNodeAutoInstrumentations,
-    } = require("@opentelemetry/auto-instrumentations-node")
-    const {
-      OTLPTraceExporter,
-    } = require("@opentelemetry/exporter-trace-otlp-http")
-
     const sdk = new NodeSDK({
       serviceName: "api",
       traceExporter: new OTLPTraceExporter({
