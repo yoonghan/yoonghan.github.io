@@ -19,7 +19,7 @@ describe("Footer", () => {
     render(<Footer />)
     expect(screen.getByText("Privacy")).toBeInTheDocument()
     expect(screen.getByText("Site Map")).toBeInTheDocument()
-    expect(screen.getByText("Site Map")).toHaveAttribute("href", "/sitemap")
+    expect(screen.getByText("Site Map")).toHaveAttribute("href", "/site-map")
   })
 
   it("should contain for main sites", () => {

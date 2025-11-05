@@ -98,7 +98,7 @@ const pages: PageConfig[] = [
     order: 3,
   },
   {
-    path: "/sitemap",
+    path: "/site-map",
     display: "Site Map",
     filterOptions: [
       FilterOption.NOT_MENU,
