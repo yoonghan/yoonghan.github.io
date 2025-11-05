@@ -97,14 +97,14 @@ describe("pages", () => {
   it("should filter footer with NON_FOOTER filterOption", () => {
     const footerPageMappedByDisplay = sortedFooterPages.map((page) => page.path)
     expect(footerPageMappedByDisplay).toContain("/projects")
-    expect(footerPageMappedByDisplay).not.toContain(["/sitemap"])
+    expect(footerPageMappedByDisplay).not.toContain(["/site-map"])
   })
 
   it("should filter sitemap with NON_SITE_MAP filterOption", () => {
     const footerPageMappedByDisplay = sortedSiteMapPages.map(
       (page) => page.path,
     )
-    expect(footerPageMappedByDisplay).not.toContain(["/sitemap"])
+    expect(footerPageMappedByDisplay).not.toContain(["/site-map"])
   })
 
   it("should be able to ge pageConfig by path", () => {
