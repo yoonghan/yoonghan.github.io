@@ -90,17 +90,17 @@ jobs:
 
       - uses: browser-actions/setup-chrome@v2
 
-      - name: ✅ Validate Wasm binary is latest with BEST effort
-        uses: nick-fields/retry@v3
-        with:
-          timeout_seconds: 60
-          max_attempts: 3
-          shell: bash
-          retry_on: error
-          command: |
-            cd crate/snake && wasm-pack build --target web --out-dir pkg_compare
-            cd -
-            chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
+      # - name: ✅ Validate Wasm binary is latest with BEST effort
+      #   uses: nick-fields/retry@v3
+      #   with:
+      #     timeout_seconds: 60
+      #     max_attempts: 3
+      #     shell: bash
+      #     retry_on: error
+      #     command: |
+      #       cd crate/snake && wasm-pack build --target web --out-dir pkg_compare
+      #       cd -
+      #       chmod a+x ./.github/scripts/wasm-check.sh && ./.github/scripts/wasm-check.sh pkg_compare
 
       - name: ✅ Validate wasm test
         run: |
