@@ -45,14 +45,14 @@ jobs:
 
       - name: Override extended nextjs
         run: |
-          echo "module.exports = {}" > extended.next.config.js
+          echo "module.exports = {}" > extended.next.config.ts
 
       - name: Setup Pages for static generation
         run: |
-          sed -i -e 's/\/\/placeholder_for_static_generation/images: {unoptimized: true},basePath: "",output: "export",/' next.config.js
+          sed -i -e 's/\/\/placeholder_for_static_generation/images: {unoptimized: true},basePath: "",output: "export",/' next.config.ts
           echo "New config"
           echo "---"
-          cat next.config.js
+          cat next.config.ts
 
       - name: Cache dependencies
         id: cache
