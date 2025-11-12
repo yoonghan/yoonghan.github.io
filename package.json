@@ -1,6 +1,5 @@
 {
   "private": true,
-  
   "scripts": {
     "dev": "source .env.local && next dev",
     "build": "next build",
@@ -66,7 +65,7 @@
     "backstopjs": "^6.3.25",
     "dotenv-cli": "^10.0.0",
     "eslint": "^9.38.0",
-    "eslint-config-next": "^16.0.0",
+    "eslint-config-next": "^16.0.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-testing-library": "^7.13.3",
