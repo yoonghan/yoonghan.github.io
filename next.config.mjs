@@ -51,6 +51,7 @@ const withPWA = withPWAInit({
 })
 
 const nextConfig = withPWA({
+  //placeholder_for_static_generation
   async headers() {
     return [
       {
