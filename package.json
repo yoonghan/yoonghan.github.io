@@ -34,7 +34,7 @@
     "@opentelemetry/resources": "^2.2.0",
     "@opentelemetry/sdk-node": "^0.205.0",
     "@opentelemetry/sdk-trace-base": "^2.1.0",
-    "@opentelemetry/sdk-trace-node": "^2.1.0",
+    "@opentelemetry/sdk-trace-node": "^2.2.0",
     "@opentelemetry/sdk-trace-web": "^2.1.0",
     "@opentelemetry/semantic-conventions": "^1.37.0",
     "@opentelemetry/winston-transport": "^0.17.0",
