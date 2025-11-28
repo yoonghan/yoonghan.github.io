@@ -83,7 +83,9 @@ const postMessage = async (req: NextRequest, userName: string) => {
 
 export async function POST(request: NextRequest, { params }: any) {
   try {
-    return await postMessage(request, params.username)
+    // In Next.js 16, params can be a promise that needs to be awaited.
+    const resolvedParams = await params
+    return await postMessage(request, resolvedParams.username)
   } catch (err: any) {
     return NextResponse.json(
       {
