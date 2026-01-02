@@ -58,7 +58,7 @@ describe("Main Layout", () => {
 
   const assertFooter = () => {
     const footer = screen.getByRole("contentinfo")
-    expect(within(footer).getByText("Walcron 2014-2025 ©")).toBeInTheDocument()
+    expect(within(footer).getByText("Walcron 2014-2026 ©")).toBeInTheDocument()
   }
 
   const assertMenu = async () => {
