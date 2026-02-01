@@ -25,7 +25,7 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     steps:
       - name: 🛑 Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.12.1
+        uses: styfle/cancel-workflow-action@0.13.0
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v6
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.12.1
+        uses: styfle/cancel-workflow-action@0.13.0
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v6
