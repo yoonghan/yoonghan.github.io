@@ -64,14 +64,7 @@ const nextConfig = withPWA({
       },
     ]
   },
-  turbopack: {
-    resolveAlias: {
-      // You may need to investigate the exact alias for 'tls' or other fallbacks
-      // as the Turbopack documentation emphasizes aliasing, not general fallbacks.
-      // Often, core modules that are only needed on the server are automatically
-      // stripped from the client bundle.
-    },
-  },
+
   turbopack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
