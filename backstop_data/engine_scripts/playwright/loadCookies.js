@@ -16,6 +16,5 @@ module.exports = async (browserContext, scenario) => {
   // Add cookies to browser
   browserContext.addCookies(cookies)
 
-  // eslint-disable-next-line no-console
   console.log("Cookie state restored with:", JSON.stringify(cookies, null, 2))
 }

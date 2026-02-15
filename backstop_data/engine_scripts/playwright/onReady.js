@@ -3,9 +3,8 @@ module.exports = async (
   scenario,
   viewport,
   isReference,
-  browserContext
+  browserContext,
 ) => {
-  // eslint-disable-next-line no-console
   console.log("SCENARIO > " + scenario.label)
   await require("./customWalcron")(page, scenario, viewport)
   await require("./clickAndHoverHelper")(page, scenario, viewport)
