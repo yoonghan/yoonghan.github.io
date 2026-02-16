@@ -21,7 +21,7 @@ const Loader = () => {
   const iLoader = useSpring({
     from: { opacity: 0, diameter: 0 },
     to: async (next: any) => {
-      while (1) {
+      while (true) {
         await next({ opacity: 1, diameter: 50 })
       }
     },

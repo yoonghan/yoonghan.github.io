@@ -23,6 +23,5 @@ module.exports = async (page, scenario) => {
     content: BACKSTOP_TEST_CSS_OVERRIDE,
   })
 
-  // eslint-disable-next-line no-console
   console.log("BACKSTOP_TEST_CSS_OVERRIDE injected for: " + scenario.label)
 }

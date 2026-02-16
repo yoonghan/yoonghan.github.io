@@ -13,13 +13,12 @@ module.exports = async (page, scenario, viewport) => {
     await page.evaluate(
       ([{ id, posY }, viewPortHeight]) => {
         if (!id) {
-          // eslint-disable-next-line no-console
           console.error("Definition is missing [id]")
         }
         const element = document.querySelector(id)
         element.scrollBy(0, posY || viewPortHeight)
       },
-      [scrollBySelector, viewport.height]
+      [scrollBySelector, viewport.height],
     )
   }
 
@@ -28,7 +27,7 @@ module.exports = async (page, scenario, viewport) => {
       await page.waitForSelector(keyPressSelectorItem.selector)
       await page.type(
         keyPressSelectorItem.selector,
-        keyPressSelectorItem.keyPress
+        keyPressSelectorItem.keyPress,
       )
     }
   }

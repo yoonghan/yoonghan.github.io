@@ -36,7 +36,7 @@ jest.mock("firebase-admin", () => ({
     cert: jest.fn(),
   },
   initializeApp: jest.fn(),
-  firestore: jest.fn(),
+
   storage: () => ({
     bucket: () => ({
       file: () => ({
