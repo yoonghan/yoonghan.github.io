@@ -3,15 +3,27 @@ import { Certificate } from "@/components/Grid"
 export const cloudCertificates: Certificate[] = [
   {
     label: "Microsoft Certified: Azure Solutions Architect Expert",
-    imageSrc: "/img/certifications/microsoft-certified-expert-badge.svg",
+    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
   },
   {
     label: "Microsoft Certified: DevOps Engineer Expert",
-    imageSrc: "/img/certifications/microsoft-certified-expert-badge.svg",
+    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/4b0bb693435b43f0",
+  },
+  {
+    label: "Microsoft Certified: Azure Cosmos DB Developer Specialty",
+    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-specialty-badge.svg",
+    text: "Azure Certification",
+    href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/B726FED22FD858EC?sharingId=FE2E719D4C5E0EFB",
+  },
+  {
+    label: "Azure Administrator Associate",
+    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+    text: "Azure Certification",
+    href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B",
   },
   {
     label: "AWS Solution Architect Associate",
@@ -19,12 +31,6 @@ export const cloudCertificates: Certificate[] = [
       "https://d1.awsstatic.com/certification/badges/AWS-Certified-Solutions-Architect-Associate_badge_150x150.e359ae4a6d4d82c3e31d4f9104c8d389b56a2423.png",
     text: "Aws Certification",
     href: "https://www.credly.com/badges/964f2164-02ab-469c-b964-a01c2210ef24",
-  },
-  {
-    label: "Azure Administrator Associate",
-    imageSrc: "/img/certifications/microsoft-certified-associate-badge.svg",
-    text: "Azure Certification",
-    href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B",
   },
   {
     label: "AWS Developer Associate",
@@ -35,7 +41,7 @@ export const cloudCertificates: Certificate[] = [
   },
   {
     label: "Azure Cloud Fundamentals (AZ-900)",
-    imageSrc: "/img/certifications/microsoft-certified-fundamentals-badge.svg",
+    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9",
   },
