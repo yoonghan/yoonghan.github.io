@@ -60,8 +60,8 @@ const pages: PageConfig[] = [
     order: 5,
   },
   {
-    path: "/projects/learning",
-    display: "Learning",
+    path: "/projects/certifications",
+    display: "Certifications",
     filterOptions: [FilterOption.NOT_FOOTER],
     order: 6,
   },
