@@ -21,14 +21,18 @@ export const metadata: Metadata = {
 const Learning = () => {
   return (
     <div className="walcron-container">
-      <h1>Certification taken</h1>
+      <h1>Certification</h1>
+      <p className="mb-8">
+        Having taken some certifications over the years, I've decided to put them here for reference.
+        I'm not a big fan of certifications, but they are a good way to structure my learning and ensure I cover the fundamentals.
+      </p>
       <section className="grid grid-column gap-4">
-        <NpmCommands />
         <AIPractitioner />
         <AwsSolutionArchitectArticle />
         <AwsCloudPractitionerArticle />
         <SunJavaDeveloperArticle />
         <ScalaFunctionalProgrammingArticle />
+        <NpmCommands />
       </section>
       <ScrollToTop />
     </div>
