@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "@/components/Link"
 import Table from "@/components/Table"
 import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
@@ -238,7 +239,12 @@ const model = [
 export function AIPractitioner() {
   return (
     <article>
-      <p className="text-2xl">Artificial Intelligence Practitioner</p>
+      <p className="text-2xl">AWS Certified AI Practitioner(AIF-C01)</p>
+      <p className="my-4">
+        Very useful to understand the AI services provided by AWS and how to use them
+        in real world scenarios.
+      </p>
+      <strong>Notes:</strong> <Link href="https://github.com/users/yoonghan/projects/6">AI Fundamentals</Link>
       <Accordion model={model} groupName={"ai"} />
     </article>
   )
