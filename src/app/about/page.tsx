@@ -20,16 +20,12 @@ const authorModel = [
     title: "About Us",
   },
   {
-    hashId: "consultation",
-    title: "What do we do?",
-  },
-  {
     hashId: "founders",
     title: "Founders",
   },
   {
     hashId: "certification",
-    title: "Certification",
+    title: "Certifications",
   },
 ]
 
@@ -53,7 +49,9 @@ const About = () => {
             The development journey to Walcron has so far lead us to learn and
             was able to consult on search-analytics, api integrations and
             develop user-experience that was so far out-of-scope in internal
-            websites.
+            websites. With the current trend of AI, we are also exploring and
+            experimenting with AI technologies to improve our development
+            process and user experience.
           </p>
           <figure className="text-center pt-8">
             <Image
@@ -76,29 +74,7 @@ const About = () => {
           </figure>
         </article>
         <article id={authorModel[1].hashId} className="py-20">
-          <h2 className="text-2xl text-center pb-12">{authorModel[1].title}</h2>
-          <p>
-            We provide consultation on software development. Provide us your
-            contact information and we will reach out to you.
-          </p>
-          <p className="pb-4">Things we had done in the past:</p>
-          <ul className="list-disc ml-4">
-            <li>
-              Maintain and improve high volume (35 million records) data
-              transactions and synchronization.
-            </li>
-            <li>E-Commerce and Non-government organization websites.</li>
-            <li>Quick mock-ups and builds for clients.</li>
-            <li>Development with full flow Continuous Integration.</li>
-            <li>
-              Integration of Business-to-Business and Business-to-Consumer.
-            </li>
-            <li>DevOps from development to monitoring.</li>
-            <li>Vibe Coding with AI.</li>
-          </ul>
-        </article>
-        <article id={authorModel[2].hashId} className="py-20">
-          <h3 className="text-2xl text-center pb-12">{authorModel[2].title}</h3>
+          <h3 className="text-2xl text-center pb-12">{authorModel[1].title}</h3>
           <Profiler
             profiles={[
               {
@@ -132,8 +108,8 @@ const About = () => {
             ]}
           />
         </article>
-        <article id={authorModel[3].hashId} className="py-20">
-          <h3 className="text-2xl text-center pb-12">{authorModel[3].title}</h3>
+        <article id={authorModel[2].hashId} className="py-20">
+          <h3 className="text-2xl text-center pb-12">{authorModel[2].title}</h3>
           <div>
             <h4 className="text-xl text-center pb-8">Cloud Certification</h4>
             <Grid items={cloudCertificates} />
