@@ -39,17 +39,21 @@ const About = () => {
           <h1 className="text-2xl text-center pb-12">{authorModel[0].title}</h1>
           <p>
             <strong>Walcron</strong> is a by-product of a couple&apos;s journey
-            in IT industry. The <strong>Walcron</strong> website was created for
-            experimentation in optimizing and prototyping new Web technologies.
-            Ocassionally this is being re-contributed back into our{" "}
-            <em>9-to-5 office facing jobs</em> and <em>open-source</em>{" "}
+            in the IT industry, with the main purpose of sharing our knowledge and
+            experience with the world. We are also experimenting with new web
+            technologies and occasionally contributing these learnings back to
+            our{" "}
+            <em>9-to-5 office-facing jobs</em> and the <em>open-source</em>{" "}
             community.
           </p>
           <p className="pt-8">
-            The development journey to Walcron has so far lead us to learn and
-            was able to consult on search-analytics, api integrations and
-            develop user-experience that was so far out-of-scope in internal
-            websites. With the current trend of AI, we are also exploring and
+            The development journey of Walcron has enabled us to learn and
+            consult on search analytics and API integrations, and to
+            develop user experiences that were previously out-of-scope for internal
+            websites.
+          </p>
+          <p className="pt-8">
+            With the current trend of AI, we are also exploring and
             experimenting with AI technologies to improve our development
             process and user experience.
           </p>
@@ -82,12 +86,12 @@ const About = () => {
                 title: "Developer & Tech Visionary",
                 description: (
                   <p>
-                    A passionate coder who is now stuck in a proprietery
-                    software and hardware industry. In his free time, he spends
-                    time to read and experiment new ways to improve the{" "}
-                    <i>Walcron Cooperation</i> publicity. He has been
-                    contributing to Stackoverflow and sharing write-ups in
-                    Github.
+                    A passionate coder who is currently stuck in the proprietary
+                    software and hardware industry. In his free time, he reads
+                    and experiments with new ways to improve the publicity of{" "}
+                    <i>Walcron Cooperation</i>. He has also been
+                    contributing to Stack Overflow and sharing write-ups on
+                    GitHub.
                   </p>
                 ),
                 imgSrc: hanImg,
