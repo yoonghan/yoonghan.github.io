@@ -10,8 +10,9 @@ import imgTypescriptImport from "@/images/lesson/1/typescript-import.jpg"
 import imgFinalResult from "@/images/lesson/1/final-result.jpg"
 import { site } from "@/config/site"
 import Link from "@/components/Link"
+import { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Lessons",
   description: "Lesson learned on CI/CD and web developments.",
   alternates: {
