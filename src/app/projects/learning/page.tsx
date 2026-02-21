@@ -8,8 +8,9 @@ import { ScalaFunctionalProgrammingArticle } from "./config/ScalaFunctionalProgr
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
 import { NpmCommands } from "./config/NpmCommands"
 import { AIPractitioner } from "./config/AIPractitioner"
+import { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Learning",
   description: "Certification and thing learnt.",
   alternates: {
