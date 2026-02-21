@@ -10,6 +10,7 @@ import { NpmCommands } from "./config/NpmCommands"
 import { AIPractitioner } from "./config/AIPractitioner"
 import { Metadata } from "next"
 import { AzureDevOps } from "./config/AzureDevOps"
+import { AzureCosmosDBDeveloperSpecialty } from "./config/AzureCosmosDBDeveloperSpecialty"
 
 export const metadata: Metadata = {
   title: "Learning",
@@ -28,6 +29,7 @@ const Learning = () => {
         I'm not a big fan of certifications, but they are a good way to structure my learning and ensure I cover the fundamentals.
       </p>
       <section className="grid grid-column gap-4">
+        <AzureCosmosDBDeveloperSpecialty />
         <AzureDevOps />
         <AIPractitioner />
         <AwsSolutionArchitectArticle />

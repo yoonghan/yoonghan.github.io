@@ -1,13 +1,11 @@
 "use client"
 
 import Link from "@/components/Link"
-import Table from "@/components/Table"
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 export function AzureDevOps() {
     return (
         <article>
-            <p className="text-2xl">Azure DevOps Engineer Expert(AZ-400)</p>
+            <p className="text-2xl">Microsoft Certified: Azure DevOps Engineer Expert (AZ-400)</p>
             <p>
                 A practical hands-on exam that tests your ability to design and implement DevOps solutions on Azure.
                 It is a challenging exam that requires a good understanding of Azure DevOps and DevOps practices.
