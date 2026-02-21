@@ -240,7 +240,7 @@ export function AIPractitioner() {
   return (
     <article>
       <p className="text-2xl">AWS Certified AI Practitioner(AIF-C01)</p>
-      <p className="my-4">
+      <p>
         Very useful to understand the AI services provided by AWS and how to use them
         in real world scenarios.
       </p>
