@@ -78,7 +78,7 @@ const About = () => {
           </figure>
         </article>
         <article id={authorModel[1].hashId} className="py-20">
-          <h3 className="text-2xl text-center pb-12">{authorModel[1].title}</h3>
+          <h2 className="text-2xl text-center pb-12">{authorModel[1].title}</h2>
           <Profiler
             profiles={[
               {
