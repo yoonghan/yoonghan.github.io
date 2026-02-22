@@ -8,8 +8,11 @@ import { ScalaFunctionalProgrammingArticle } from "./config/ScalaFunctionalProgr
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
 import { NpmCommands } from "./config/NpmCommands"
 import { AIPractitioner } from "./config/AIPractitioner"
+import { Metadata } from "next"
+import { AzureDevOps } from "./config/AzureDevOps"
+import { AzureCosmosDBDeveloperSpecialty } from "./config/AzureCosmosDBDeveloperSpecialty"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Learning",
   description: "Certification and thing learnt.",
   alternates: {
@@ -20,14 +23,20 @@ export const metadata = {
 const Learning = () => {
   return (
     <div className="walcron-container">
-      <h1>Certification taken</h1>
+      <h1>Certification</h1>
+      <p className="mb-8">
+        Having taken some certifications over the years, I've decided to put them here for reference.
+        I'm not a big fan of certifications, but they are a good way to structure my learning and ensure I cover the fundamentals.
+      </p>
       <section className="grid grid-column gap-4">
-        <NpmCommands />
+        <AzureCosmosDBDeveloperSpecialty />
+        <AzureDevOps />
         <AIPractitioner />
         <AwsSolutionArchitectArticle />
         <AwsCloudPractitionerArticle />
         <SunJavaDeveloperArticle />
         <ScalaFunctionalProgrammingArticle />
+        <NpmCommands />
       </section>
       <ScrollToTop />
     </div>
