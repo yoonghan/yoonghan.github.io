@@ -1,8 +1,9 @@
 import Script from "next/script"
 import { schema } from "./config/schema"
 import { site } from "@/config/site"
+import { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Walcron",
   description:
     "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
