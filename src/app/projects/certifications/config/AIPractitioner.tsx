@@ -241,10 +241,13 @@ export function AIPractitioner() {
     <article>
       <p className="text-2xl">AWS Certified AI Practitioner(AIF-C01)</p>
       <p>
-        Very useful to understand the AI services provided by AWS and how to use them
-        in real world scenarios.
+        Very useful to understand the AI services provided by AWS and how to use
+        them in real world scenarios.
       </p>
-      <strong>Notes:</strong> <Link href="https://github.com/users/yoonghan/projects/6">AI Fundamentals</Link>
+      <strong>Notes:</strong>{" "}
+      <Link href="https://github.com/users/yoonghan/projects/6">
+        AI Fundamentals
+      </Link>
       <Accordion model={model} groupName={"ai"} />
     </article>
   )

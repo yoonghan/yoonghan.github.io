@@ -39,17 +39,16 @@ const About = () => {
           <h1 className="text-2xl text-center pb-12">{authorModel[0].title}</h1>
           <p>
             <strong>Walcron</strong> is a by-product of a couple&apos;s journey
-            in the IT industry, with the main purpose of sharing our knowledge and
-            experience with the world. We are also experimenting with new web
-            technologies and occasionally contributing these learnings back to
-            our{" "}
-            <em>9-to-5 office-facing jobs</em> and the <em>open-source</em>{" "}
-            community.
+            in the IT industry, with the main purpose of sharing our knowledge
+            and experience with the world. We are also experimenting with new
+            web technologies and occasionally contributing these learnings back
+            to our <em>9-to-5 office-facing jobs</em> and the{" "}
+            <em>open-source</em> community.
           </p>
           <p className="pt-8">
             The development journey of Walcron has enabled us to learn and
-            consult on search analytics and API integrations, and to
-            develop user experiences that were previously out-of-scope for internal
+            consult on search analytics and API integrations, and to develop
+            user experiences that were previously out-of-scope for internal
             websites.
           </p>
           <p className="pt-8">
@@ -89,9 +88,8 @@ const About = () => {
                     A passionate coder who is currently stuck in the proprietary
                     software and hardware industry. In his free time, he reads
                     and experiments with new ways to improve the publicity of{" "}
-                    <i>Walcron Cooperation</i>. He has also been
-                    contributing to Stack Overflow and sharing write-ups on
-                    GitHub.
+                    <i>Walcron Cooperation</i>. He has also been contributing to
+                    Stack Overflow and sharing write-ups on GitHub.
                   </p>
                 ),
                 imgSrc: hanImg,
