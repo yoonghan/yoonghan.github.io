@@ -21,7 +21,6 @@ const eslintConfig = [
   ...compat.extends(
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@next/next/core-web-vitals",
     "plugin:jsx-a11y/recommended",
     "plugin:testing-library/react",
   ),

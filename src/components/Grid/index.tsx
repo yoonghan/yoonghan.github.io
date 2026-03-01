@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react"
 
 // Define the interface for a single certificate item that the Grid will display.
