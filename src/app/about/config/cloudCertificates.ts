@@ -3,25 +3,29 @@ import { Certificate } from "@/components/Grid"
 export const cloudCertificates: Certificate[] = [
   {
     label: "Microsoft Certified: Azure Solutions Architect Expert",
-    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+    imageSrc:
+      "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/8dbc518645d2a56",
   },
   {
     label: "Microsoft Certified: DevOps Engineer Expert",
-    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+    imageSrc:
+      "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/en-us/users/hanyoong-5994/credentials/4b0bb693435b43f0",
   },
   {
     label: "Microsoft Certified: Azure Cosmos DB Developer Specialty",
-    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-specialty-badge.svg",
+    imageSrc:
+      "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-specialty-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/B726FED22FD858EC?sharingId=FE2E719D4C5E0EFB",
   },
   {
     label: "Azure Administrator Associate",
-    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+    imageSrc:
+      "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/AE5F2EC02868991B",
   },
@@ -41,7 +45,8 @@ export const cloudCertificates: Certificate[] = [
   },
   {
     label: "Azure Cloud Fundamentals (AZ-900)",
-    imageSrc: "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+    imageSrc:
+      "https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
     text: "Azure Certification",
     href: "https://learn.microsoft.com/api/credentials/share/en-us/HanYoong-5994/47B43AF13DE84FB9",
   },
