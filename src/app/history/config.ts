@@ -151,4 +151,11 @@ export const siteHistory: IEvent[] = [
     desc: "Certified Practitioner and refining Prompt Engineering",
     faIcon: faBrain,
   },
+  {
+    id: "Mar-2026",
+    date: "Mar-2026",
+    special: "Certified Azure Cosmos DB Specialist",
+    desc: "Certified Cosmos DB, now focus on documenting my Azure knowledge.",
+    faIcon: faBrain,
+  },
 ]

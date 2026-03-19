@@ -10,7 +10,7 @@ import { NpmCommands } from "./config/NpmCommands"
 import { AIPractitioner } from "./config/AIPractitioner"
 import { Metadata } from "next"
 import { AzureDevOps } from "./config/AzureDevOps"
-import { AzureCosmosDBDeveloperSpecialty } from "./config/AzureCosmosDBDeveloperSpecialty"
+import Link from "@/components/Link"
 
 export const metadata: Metadata = {
   title: "Learning",
@@ -31,7 +31,14 @@ const Learning = () => {
         fundamentals.
       </p>
       <section className="grid grid-column gap-4">
-        <AzureCosmosDBDeveloperSpecialty />
+        <article>
+          <p className="text-2xl">DP-420 Azure Cosmos DB Specialist</p>
+          Enjoyed this exam as it's practical and hands-on.
+          <br />
+          <strong>Notes</strong>: <Link href="https://yoonghan.github.io/Azure-Cosmos-DB-DP-420/">
+            Azure Cosmos DB Overview
+          </Link>
+        </article>
         <AzureDevOps />
         <AIPractitioner />
         <AwsSolutionArchitectArticle />
@@ -41,7 +48,7 @@ const Learning = () => {
         <NpmCommands />
       </section>
       <ScrollToTop />
-    </div>
+    </div >
   )
 }
 
