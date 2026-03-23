@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
 import Table from "@/components/Table"
-import { TroubleshootPwaCheckList, CronJobCheckList } from "./Checklist"
+import { CronJobCheckList } from "./Checklist"
 import wrapPromise from "@/components/utils/common/wrapPromise"
 import { site } from "@/config/site"
 
@@ -116,8 +116,7 @@ const CheckList = () => {
       </span>
       <br />
       <br />
-      <TroubleshootPwaCheckList />
-      <br />
+
       <br />
       <CronJobCheckList
         latestDeployedCronMessage={latestDeployedCronMessage}
