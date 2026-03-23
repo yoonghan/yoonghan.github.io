@@ -1,4 +1,4 @@
-import withPWAInit from "@ducanh2912/next-pwa"
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -43,14 +43,7 @@ const apiSecurityHeaders = [
   },
 ]
 
-const withPWA = withPWAInit({
-  disable: process.env.NODE_ENV === "development",
-  register: false,
-  dest: "public",
-  publicExcludes: ["!**/*.mp4", "!**/*.mp3", "!**/*.png"],
-})
-
-const nextConfig = withPWA({
+const nextConfig = {
   //placeholder_for_static_generation
   async headers() {
     return [
@@ -65,15 +58,17 @@ const nextConfig = withPWA({
     ]
   },
 
-  turbopack: (config, { isServer }) => {
+  webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
+        ...config.resolve.fallback,
         // Disable the 'tls' module on the client side
         tls: false,
       }
     }
     return config
   },
-})
+  turbopack: {},
+}
 
 export default nextConfig

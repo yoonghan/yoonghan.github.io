@@ -20,7 +20,6 @@
     "dependency:check": "knip"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.6",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
