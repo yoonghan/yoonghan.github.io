@@ -43,7 +43,6 @@ const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/pwa/apple-icon.png",
   },
-  manifest: "/manifest.json",
   alternates: {
     ...site.generateCanonical(""),
   },

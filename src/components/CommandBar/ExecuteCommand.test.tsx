@@ -1,7 +1,7 @@
 import { spyRedirect } from "@/__tests__/mocks/locationMock"
 import { render, screen } from "@testing-library/react"
 import { exec } from "./ExecuteCommand"
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 
 describe("CommandBar", () => {
   let routeCallback: jest.Mock<any, any>
@@ -203,17 +203,6 @@ describe("CommandBar", () => {
     })
   })
 
-  describe("pwa", () => {
-    it("should show pwa", function () {
-      render(<div>{createCommandBar()("pwa")}</div>)
-      expect(screen.getByText("Progressive Web App")).toBeInTheDocument()
-    })
-
-    it("should show pwa if typed offline", function () {
-      render(<div>{createCommandBar()("offline")}</div>)
-      expect(screen.getByText("Progressive Web App")).toBeInTheDocument()
-    })
-  })
 
   describe("no-animate", () => {
     it("should update location with no-animate", function () {

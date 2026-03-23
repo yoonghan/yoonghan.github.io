@@ -1,7 +1,7 @@
 import { findPageByPath } from "@/config/pages"
 import * as React from "react"
 import { createPortal } from "react-dom"
-import PwaEnabler from "../PwaEnabler"
+
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
@@ -115,17 +115,7 @@ export const AvailableInput: ICommand = {
       }
     },
   },
-  pwa: {
-    description: "Enable PWA",
-    synonym: ["offline"],
-    action: EnumAction.COMMAND,
-    exec: (element: HTMLDivElement, cancellationCallback: () => void) => {
-      return createPortal(
-        <PwaEnabler onCancel={cancellationCallback} />,
-        element,
-      )
-    },
-  },
+
   "no-animate": {
     description: "Disable animation",
     synonym: ["no animate", "stop animate"],
