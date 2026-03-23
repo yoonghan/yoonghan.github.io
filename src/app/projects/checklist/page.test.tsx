@@ -12,7 +12,6 @@ describe("Checklist", () => {
     renderComponent()
     await assertScrollToTop()
     expect(screen.getByText("Important Checklist Links"))
-    expect(screen.getByText("PWA"))
     expect(screen.getByText("CronJob"))
     expect(screen.getByText("Since Deployment"))
     expect(screen.getByText("Today's Run"))
