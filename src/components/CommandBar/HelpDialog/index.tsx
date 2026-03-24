@@ -8,7 +8,7 @@ interface Props {
 
 const HelpDialog = ({ onCancel, specialInputCallback }: Props) => {
   const updateSelectedInput = (input: string) => {
-    specialInputCallback && specialInputCallback(input)
+    specialInputCallback?.(input)
     onCancel()
   }
 
