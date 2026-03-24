@@ -30,7 +30,7 @@ const ButtonsBar = ({ menuTexts, activeIndex }: ButtonsBarProps) => {
 
   return (
     <menu className={`${styles.btnsbar} ${styles["with-indicator"]}`}>
-      {menuTexts.map(_generateMenu)}
+      {menuTexts.map((menu, idx) => _generateMenu(menu, idx))}
     </menu>
   )
 }
