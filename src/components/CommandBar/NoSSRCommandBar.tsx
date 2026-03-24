@@ -23,7 +23,7 @@ const NoSSRCommandBar = () => {
       queueMicrotask(() => {
         /* istanbul ignore next */
         if (elem !== null && document.body.contains(elem)) {
-          document.body.removeChild(elem)
+          elem.remove()
         }
       })
     }
@@ -58,8 +58,8 @@ const NoSSRCommandBar = () => {
     <div className={styles.container}>
       <CommandBarInput
         onSuggestedInputCallback={inputCallback}
-        onBlurCallback={() => {}}
-        onFocusCallback={() => {}}
+        onBlurCallback={() => { }}
+        onFocusCallback={() => { }}
         onSubmitCallback={handleSubmit}
         suggestedInput={suggestedInput}
       />
