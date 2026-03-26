@@ -107,7 +107,7 @@
     },
     {
       "label": "Storybook",
-      "url": "http://localhost:3000/experiments/storybook",
+      "url": "http://localhost:3000/experiments/storybook?animate=none",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
@@ -118,7 +118,7 @@
     },
     {
       "label": "Storybook - Confirmation",
-      "url": "http://localhost:3000/experiments/storybook",
+      "url": "http://localhost:3000/experiments/storybook?animate=none",
       "cookieDomain": "localhost",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "delay": 100,
