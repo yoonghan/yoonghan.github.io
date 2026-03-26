@@ -272,7 +272,7 @@ function Homepage() {
           <hr />
           {/* Accessibility */}
           <article>
-            <h4 className="text-3xl text-center font-bold" id="accessibility">
+            <h4 className="text-3xl text-center" id="accessibility">
               Accessibility (WCAG)
             </h4>
             <FontAwesomeAnimate
@@ -346,7 +346,7 @@ function Homepage() {
           <hr />
           {/* Monitoring */}
           <article>
-            <h5 className="text-3xl text-center font-bold" id="monitoring">
+            <h5 className="text-3xl text-center" id="monitoring">
               Monitoring
             </h5>
             <Wave
@@ -411,7 +411,7 @@ function Homepage() {
           <hr />
           {/* Performance */}
           <article>
-            <h6 className="text-3xl text-center font-bold" id="performance">
+            <h6 className="text-3xl text-center" id="performance">
               Performance
             </h6>
             <Gauge

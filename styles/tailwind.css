@@ -4,10 +4,6 @@
 
 @layer base {
   h1 {
-    @apply text-2xl pb-8 font-bold;
-  }
-  h2,
-  h3 {
-    @apply font-bold;
+    @apply text-2xl pb-8;
   }
 }
