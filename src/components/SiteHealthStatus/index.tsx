@@ -1,6 +1,6 @@
 import Link from "@/components/Link"
 
-export interface SiteHealthStatusProps {
+interface SiteHealthStatusProps {
     repo: string;
     codecovToken: string;
 }
