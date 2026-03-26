@@ -18,6 +18,7 @@ import Workflow from "@/components/Animate/Workflow"
 import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
 import Gauge from "@/components/Animate/Gauge"
 import FunkyScroller from "@/components/Animate/FunkyScroller"
+import SiteHealthStatus from "@/components/SiteHealthStatus"
 
 function Homepage() {
   const walcronText = "Walcron"
@@ -92,6 +93,9 @@ function Homepage() {
               <span className="italic text-md">Site Development Lifecycle</span>
             </div>
           </article>
+          <hr />
+          {/* Site Health Status */}
+          <SiteHealthStatus repo="yoonghan/yoonghan.github.io" codecovToken="HPWQMQPPS1" />
           <hr />
           {/* Reliability */}
           <article>
