@@ -6,7 +6,7 @@ import { cards } from "./config"
 import { site } from "@/config/site"
 
 export const metadata = {
-  title: "Projects",
+  title: "Projects Portfolio",
   description: "Playground projects that we had been working on.",
   alternates: {
     ...site.generateCanonical("/projects"),
@@ -16,7 +16,7 @@ export const metadata = {
 const Projects = () => {
   return (
     <div className="walcron-container">
-      <h1>Playground projects</h1>
+      <h1>Projects Portfolio</h1>
       <div>
         <p>
           Projects that we are working on{" "}

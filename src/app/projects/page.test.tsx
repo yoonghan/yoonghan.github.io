@@ -11,7 +11,7 @@ describe("Projects", () => {
 
   it("should render the page with the important components", () => {
     renderComponent()
-    expect(screen.getByText("Playground projects"))
+    expect(screen.getByText("Projects Portfolio"))
     assertScrollToTop()
   })
 
