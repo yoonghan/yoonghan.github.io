@@ -28,7 +28,7 @@ describe("menu items", () => {
           },
           { label: "Storybook", url: "/experiments/storybook" },
         ],
-        label: "Experiments",
+        label: "Lab/R&D",
         url: "/experiments",
       },
     ])

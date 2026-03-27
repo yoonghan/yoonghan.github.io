@@ -32,8 +32,8 @@ describe("pages", () => {
       },
       {
         path: "/projects/experiment",
-        display: "Experiment",
-        description: "Experiment",
+        display: "Lab/R&D",
+        description: "Lab, Research and Development",
         order: 1,
       },
       {
