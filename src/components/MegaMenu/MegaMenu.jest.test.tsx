@@ -10,7 +10,7 @@ describe("MegaMenu", () => {
   it("should load menu with image", async () => {
     render(<MegaMenu />)
     expect(screen.getByRole("img", { name: "home" })).toBeInTheDocument()
-    expect(screen.getAllByText("Projects")).toHaveLength(2)
+    expect(screen.getAllByText("Project Portfolio")).toHaveLength(2)
 
     await waitForCommandBarToLoad()
   })
