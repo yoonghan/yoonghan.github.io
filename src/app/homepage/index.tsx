@@ -39,9 +39,9 @@ function Homepage() {
           blurDataURL="/img/homepage/girl-in-glass-blur.webp"
         ></Image>
         <div>
-          <h1>PORTFOLIO PORTAL</h1>
+          <h1>Walcron: A DevOps-First Solution Portal.</h1>
           <div className="py-8 comment">
-            Walcron is a self-maintained serverless website.
+            An enterprise-grade, serverless portal architected for 100% accessibility and zero-JS overhead. Leveraging a 'Security-by-Design' approach with Cloudflare and Azure, Walcron demonstrates high-performance Edge delivery with integrated DevOps observability.
           </div>
           <Button href="/about">Get To Know Us</Button>
         </div>
