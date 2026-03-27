@@ -78,7 +78,7 @@ const pages: PageConfig[] = [
   },
   {
     path: "/experiments",
-    display: "Experiments",
+    display: "Lab/R&D",
     filterOptions: [FilterOption.NOT_FOOTER],
     order: 5,
   },
