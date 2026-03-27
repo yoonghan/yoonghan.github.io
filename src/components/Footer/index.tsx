@@ -5,7 +5,7 @@ import styles from "./Footer.module.css"
 
 const Footer = () => {
   const renameDisplays = (display: string) => {
-    if (display === "Projects") {
+    if (display === "Project Portfolio") {
       return "All"
     }
     return display
@@ -52,8 +52,8 @@ const Footer = () => {
           <li>Learn</li>
           {renderedLearn}
         </ul>
-        <ul aria-label="Projects">
-          <li>Projects</li>
+        <ul aria-label="Project Portfolio">
+          <li>Project Portfolio</li>
           {renderedProjects}
         </ul>
         <ul aria-label="Experiments">

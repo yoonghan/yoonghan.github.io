@@ -30,7 +30,7 @@ const pages: PageConfig[] = [
   },
   {
     path: "/projects",
-    display: "Projects",
+    display: "Project Portfolio",
     order: 4,
   },
   {

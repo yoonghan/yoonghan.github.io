@@ -25,12 +25,12 @@ describe("Footer", () => {
   it("should contain for main sites", () => {
     render(<Footer />)
     expect(screen.getByText("Learn")).toBeInTheDocument()
-    expect(screen.getByText("Projects")).toBeInTheDocument()
+    expect(screen.getByText("Project Portfolio")).toBeInTheDocument()
   })
 
-  it("should group Projects correctly", () => {
+  it("should group Project Portfolio correctly", () => {
     render(<Footer />)
-    const projectMenuItem = screen.getByLabelText("Projects")
+    const projectMenuItem = screen.getByLabelText("Project Portfolio")
     expect(within(projectMenuItem).getByText("All")).toBeInTheDocument
     expect(within(projectMenuItem).getByText("Microfrontend")).toBeInTheDocument
     expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument
