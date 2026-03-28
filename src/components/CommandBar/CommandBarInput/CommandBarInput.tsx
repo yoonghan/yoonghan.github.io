@@ -5,10 +5,10 @@ import styles from "./CommandBarInput.module.css"
 interface Props {
   suggestedInput: string
   onSuggestedInputCallback: (str: string) => void
-  onBlurCallback: (event: React.FormEvent<HTMLInputElement>) => void
-  onFocusCallback: (event: React.FormEvent<HTMLInputElement>) => void
+  onBlurCallback: (event: React.FocusEvent<HTMLInputElement>) => void
+  onFocusCallback: (event: React.FocusEvent<HTMLInputElement>) => void
   onSubmitCallback: (
-    event: React.FormEvent<HTMLFormElement>,
+    event: React.SubmitEvent<HTMLFormElement>,
     typedInput: string,
   ) => void
 }
@@ -34,15 +34,15 @@ const CommandBarInput = (props: Props) => {
     props.onSuggestedInputCallback(value)
   }
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     props.onSubmitCallback(event, props.suggestedInput)
   }
 
-  const onFocus = (event: React.FormEvent<HTMLInputElement>) => {
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     props.onFocusCallback(event)
   }
 
-  const onBlur = (event: React.FormEvent<HTMLInputElement>) => {
+  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     props.onBlurCallback(event)
   }
 

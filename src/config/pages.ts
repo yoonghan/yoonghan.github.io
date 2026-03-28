@@ -30,7 +30,7 @@ const pages: PageConfig[] = [
   },
   {
     path: "/projects",
-    display: "Projects",
+    display: "Project Portfolio",
     order: 4,
   },
   {
@@ -78,7 +78,7 @@ const pages: PageConfig[] = [
   },
   {
     path: "/experiments",
-    display: "Experiments",
+    display: "Lab/R&D",
     filterOptions: [FilterOption.NOT_FOOTER],
     order: 5,
   },

@@ -89,6 +89,4 @@ describe("Checklist", () => {
       expect(screen.getByText("Loading data...")).toBeInTheDocument()
     })
   })
-
-
 })

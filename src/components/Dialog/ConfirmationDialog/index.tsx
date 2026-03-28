@@ -38,7 +38,7 @@ const ConfirmationDialog = ({
     (action: Action) =>
       (
         e?:
-          | React.FormEvent<HTMLFormElement>
+          | React.SubmitEvent<HTMLFormElement>
           | React.MouseEvent<HTMLButtonElement>,
       ) => {
         e?.preventDefault()
