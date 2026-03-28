@@ -203,7 +203,6 @@ describe("CommandBar", () => {
     })
   })
 
-
   describe("no-animate", () => {
     it("should update location with no-animate", function () {
       render(<div>{createCommandBar()("no-animate")}</div>)

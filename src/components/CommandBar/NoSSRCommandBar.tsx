@@ -58,8 +58,8 @@ const NoSSRCommandBar = () => {
     <div className={styles.container}>
       <CommandBarInput
         onSuggestedInputCallback={inputCallback}
-        onBlurCallback={() => { }}
-        onFocusCallback={() => { }}
+        onBlurCallback={() => {}}
+        onFocusCallback={() => {}}
         onSubmitCallback={handleSubmit}
         suggestedInput={suggestedInput}
       />

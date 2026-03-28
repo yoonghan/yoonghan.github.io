@@ -11,7 +11,7 @@ import {
   faBrain,
   faCloud,
   faTelevision,
-  faDatabase
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -73,7 +73,7 @@ export const siteHistory: IEvent[] = [
     id: "2016",
     date: "2016",
     desc: "Onboard Cloudflare and learnt Javascript",
-    faIcon: faCloud
+    faIcon: faCloud,
   },
   {
     id: "2017",
@@ -122,7 +122,7 @@ export const siteHistory: IEvent[] = [
     id: "May-2023",
     date: "May-2023",
     desc: "Experimented Web RTC technology",
-    faIcon: faTelevision
+    faIcon: faTelevision,
   },
   {
     id: "Aug-2024",
