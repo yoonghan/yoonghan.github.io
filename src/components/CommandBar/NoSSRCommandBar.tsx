@@ -38,7 +38,7 @@ const NoSSRCommandBar = () => {
   }
 
   const handleSubmit = (
-    event: React.FormEvent<HTMLFormElement>,
+    event: React.SubmitEvent<HTMLFormElement>,
     typedInput: string,
   ) => {
     event.preventDefault()
