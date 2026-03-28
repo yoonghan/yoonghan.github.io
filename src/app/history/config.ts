@@ -10,7 +10,8 @@ import {
   faCertificate,
   faBrain,
   faCloud,
-  faTelevision
+  faTelevision,
+  faDatabase
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -155,6 +156,6 @@ export const siteHistory: IEvent[] = [
     date: "Mar-2026",
     special: "Certified Azure Cosmos DB Specialist",
     desc: "Certified Cosmos DB, now focus on documenting my Azure knowledge.",
-    faIcon: faBrain,
+    faIcon: faDatabase,
   },
 ]
