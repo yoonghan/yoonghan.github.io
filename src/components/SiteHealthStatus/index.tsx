@@ -5,7 +5,7 @@ interface SiteHealthStatusProps {
     codecovToken: string;
 }
 
-function SiteHealthStatus({ repo, codecovToken }: SiteHealthStatusProps) {
+function SiteHealthStatus({ repo, codecovToken }: Readonly<SiteHealthStatusProps>) {
     const sonarId = repo.replace("/", "_")
     const badgeClass = "inline border-0 mr-2 mb-2"
 

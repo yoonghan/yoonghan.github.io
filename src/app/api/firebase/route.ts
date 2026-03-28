@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { v4 as uuidv4 } from "uuid"
 import { Blob } from "node:buffer"
 import { Firebase } from "./Firebase"
-import stream from "stream"
+import stream from "node:stream"
 
 const uploadIntoSystem = async (
   req: NextRequest,

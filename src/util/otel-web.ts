@@ -10,8 +10,8 @@ import { site } from "@/config/site"
 import { resourceFromAttributes } from "@opentelemetry/resources"
 import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions"
 
-export const initOpenTelemetry = (window: Window | undefined) => {
-  if (typeof window !== "undefined") {
+export const initOpenTelemetry = (globalObj: typeof globalThis | undefined) => {
+  if (globalObj !== undefined) {
     const spanProcessor = new BatchSpanProcessor(
       new OTLPTraceExporter({
         url: `${site.apiUrl}/otel`,

@@ -39,7 +39,7 @@ describe("otel-web", () => {
   })
 
   it("should initialize OpenTelemetry when window is defined", () => {
-    initOpenTelemetry(window)
+    initOpenTelemetry(globalThis)
     expect(WebTracerProvider).toHaveBeenCalled()
     expect(BatchSpanProcessor).toHaveBeenCalled()
     expect(OTLPTraceExporter).toHaveBeenCalled()

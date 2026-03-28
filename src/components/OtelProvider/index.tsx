@@ -5,11 +5,11 @@ import { useEffect } from "react"
 
 export default function OtelProvider({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   useEffect(() => {
-    initOpenTelemetry(window)
+    initOpenTelemetry(globalThis)
   }, [])
 
   return <>{children}</>

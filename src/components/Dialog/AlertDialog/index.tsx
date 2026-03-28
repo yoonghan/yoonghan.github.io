@@ -17,7 +17,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
     (isOkClick: boolean) =>
       (
         e?:
-          | React.FormEvent<HTMLFormElement>
+          | React.SubmitEvent<HTMLFormElement>
           | React.MouseEvent<HTMLButtonElement>,
       ) => {
         e?.preventDefault()
