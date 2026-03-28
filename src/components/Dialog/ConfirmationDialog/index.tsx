@@ -24,9 +24,9 @@ export interface Props {
 const ConfirmationDialog = ({
   title,
   message,
-  onNoClick = () => { },
+  onNoClick = () => {},
   onYesClick,
-  onCancel = () => { },
+  onCancel = () => {},
   yesButtonText,
   noButtonText,
   nonPortal = true,
