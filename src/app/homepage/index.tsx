@@ -17,7 +17,6 @@ import Wave from "@/components/Animate/Wave"
 import Workflow from "@/components/Animate/Workflow"
 import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
 import Gauge from "@/components/Animate/Gauge"
-import FunkyScroller from "@/components/Animate/FunkyScroller"
 import SiteHealthStatus from "@/components/SiteHealthStatus"
 
 function Homepage() {
