@@ -8,7 +8,7 @@ describe("Experiments", () => {
   it("should render page correctly", async () => {
     render(<Experiment />)
     await assertScrollToTop()
-    expect(screen.getByText("Experimental projects")).toBeInTheDocument()
+    expect(screen.getByText("Lab, Research & Development")).toBeInTheDocument()
   })
 
   it("should contain all Experiments submenus", () => {

@@ -13,7 +13,7 @@ const LetterBox = () => {
   const [name, setName] = useState("")
   const confirm = useDialogCreation(EmailSender)
 
-  const onSubmitPressed = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitPressed = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault()
     onSendButtonClick()
   }

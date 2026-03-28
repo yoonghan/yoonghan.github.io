@@ -16,7 +16,7 @@ describe("menu items", () => {
           { label: "Checklist", url: "/projects/checklist" },
           { label: "No Javascript", url: "/projects/javascript-free" },
         ],
-        label: "Projects",
+        label: "Project Portfolio",
         url: "/projects",
       },
       {
@@ -28,7 +28,7 @@ describe("menu items", () => {
           },
           { label: "Storybook", url: "/experiments/storybook" },
         ],
-        label: "Experiments",
+        label: "Lab/R&D",
         url: "/experiments",
       },
     ])
