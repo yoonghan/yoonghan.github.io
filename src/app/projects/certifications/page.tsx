@@ -35,7 +35,8 @@ const Learning = () => {
           <p className="text-2xl">DP-420 Azure Cosmos DB Specialist</p>
           Enjoyed this exam as it's practical and hands-on.
           <br />
-          <strong>Notes</strong>: <Link href="https://yoonghan.github.io/Azure-Cosmos-DB-DP-420/">
+          <strong>Notes</strong>:{" "}
+          <Link href="https://yoonghan.github.io/Azure-Cosmos-DB-DP-420/">
             Azure Cosmos DB Overview
           </Link>
         </article>
@@ -48,7 +49,7 @@ const Learning = () => {
         <NpmCommands />
       </section>
       <ScrollToTop />
-    </div >
+    </div>
   )
 }
 
