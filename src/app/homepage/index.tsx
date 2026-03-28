@@ -33,14 +33,14 @@ function Homepage() {
           width={378}
           height={504}
           alt="Wide view angle"
-          className={`${styles.clip} absolute md:relative opacity-25 md:opacity-100`}
+          className={`${styles.clip} flex-1 absolute md:relative opacity-25 md:opacity-100`}
           priority={true}
           placeholder="blur"
           blurDataURL="/img/homepage/girl-in-glass-blur.webp"
         ></Image>
-        <div>
-          <h1>Walcron: A DevOps-First Solution Portal</h1>
-          <div className="py-8 comment">
+        <div className="pb-4 flex-2">
+          <h1 className="py-4">DevOps Solution Portal</h1>
+          <div className="py-4 text-justify">
             An enterprise-grade, serverless portal architected for 100% accessibility and zero-JS overhead. Leveraging a 'Security-by-Design' approach with Cloudflare and Azure, Walcron demonstrates high-performance Edge delivery with integrated DevOps observability.
           </div>
           <Button href="/about">Get To Know Us</Button>
@@ -48,27 +48,29 @@ function Homepage() {
       </div>
       <hr />
       <div className="relative">
-        <div className="sticky top-0 h-0 hidden lg:block -z-10">
-          <FunkyScroller title="scroll-monitor" />
-        </div>
         <div
           className={`${styles.container} container mx-auto px-4 max-w-screen-lg`}
         >
           <article className="text-center">
-            <h2 className="text-3xl pb-12">How We Develop This Website</h2>
-            <p className="text-justify">
-              This site is up since <strong>2014</strong> and had since went
-              thru many web change iterations [
-              <Link href="/history">Site History</Link>]. We had evolved the
-              site from <strong>AJAX/SPA</strong> to{" "}
-              <strong>Pure Server Render</strong> to a now{""}
-              <strong> Non-Javascript Accessible</strong> site. The objective is
+            <h2 className="text-3xl pb-12">The Evolution of Walcron: A Strategic Shift</h2>
+            <div className="text-justify">
+              Every architecture has a "shelf life." As the web evolved
+              [<Link href="/history">History</Link>],
+              so did our requirements
+              for <strong>Accessibility (WCAG)</strong> and <strong>SEO Performance</strong>.
+              The rationale for our migration from a Javascript-heavy Single Page Application (SPA)
+              to our current Server-Side Generated (SSG) model optimized our:
+              <ul className="mt-4 ml-4 list-disc">
+                <li>Performance</li> <li>Accessibility</li> <li>SEO</li> <li>Complexity</li> <li>Security</li>
+              </ul>
+              <br />
+              The objective is
               to have a site that is <em>DevOps-oriented</em> development in{" "}
               <em>Cloud</em> platform.{" "}
               {
                 'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored, reliable releases".'
               }
-            </p>
+            </div>
             <div className="flex justify-center flex-col items-center">
               <Lifecycle
                 models={[
