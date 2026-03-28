@@ -24,9 +24,9 @@ export interface Props {
 const ConfirmationDialog = ({
   title,
   message,
-  onNoClick = () => {},
+  onNoClick = () => { },
   onYesClick,
-  onCancel = () => {},
+  onCancel = () => { },
   yesButtonText,
   noButtonText,
   nonPortal = true,
@@ -38,7 +38,7 @@ const ConfirmationDialog = ({
     (action: Action) =>
       (
         e?:
-          | React.FormEvent<HTMLFormElement>
+          | React.SubmitEvent<HTMLFormElement>
           | React.MouseEvent<HTMLButtonElement>,
       ) => {
         e?.preventDefault()
