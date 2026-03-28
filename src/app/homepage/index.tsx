@@ -99,6 +99,17 @@ function Homepage() {
           {/* Site Health Status */}
           <SiteHealthStatus repo="yoonghan/yoonghan.github.io" codecovToken="HPWQMQPPS1" />
           <hr />
+          {/* Tech Stack */}
+          <article>
+            <div className="text-3xl text-center pb-8" id="tech-stack">Tech Stack</div>
+            <ul className="flex flex-col gap-2 w-fit mx-auto">
+              <li><strong>Platform:</strong> Azure & Vercel (Reliable, Global Infrastructure)</li>
+              <li><strong>Engine:</strong> Next.js & WebAssembly (High-performance Rendering)</li>
+              <li><strong>Guardrails:</strong> GitHub Actions & CodeCov & SonarQube (Quality & Security Compliance)</li>
+              <li><strong>Insights:</strong> Axiom & Checkly (Real-time Observability)</li>
+            </ul>
+          </article>
+          <hr />
           {/* Reliability */}
           <article>
             <h3 className="text-3xl text-center" id="reliability">
