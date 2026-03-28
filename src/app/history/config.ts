@@ -9,6 +9,8 @@ import {
   faMagnifyingGlass,
   faCertificate,
   faBrain,
+  faCloud,
+  faTelevision
 } from "@fortawesome/free-solid-svg-icons"
 import { IEvent } from "@/components/Timeline"
 
@@ -69,7 +71,8 @@ export const siteHistory: IEvent[] = [
   {
     id: "2016",
     date: "2016",
-    desc: "Made into cloudflare and learn heavily on Javascript",
+    desc: "Onboard Cloudflare and learnt Javascript",
+    faIcon: faCloud
   },
   {
     id: "2017",
@@ -112,29 +115,25 @@ export const siteHistory: IEvent[] = [
   {
     id: "March-2023",
     date: "March-2023",
-    desc: "Development focus on Rust",
+    desc: "Development Rust application",
   },
   {
     id: "May-2023",
     date: "May-2023",
-    desc: "Add Web RTC technology",
-  },
-  {
-    id: "Jan-2024",
-    date: "January-2024",
-    desc: "Learning PureCSS component",
+    desc: "Experimented Web RTC technology",
+    faIcon: faTelevision
   },
   {
     id: "Aug-2024",
     date: "August-2024",
-    desc: "New homepage for performance",
+    desc: "Revise homepage for performance",
     faIcon: faBoltLightning,
   },
   {
     id: "Jan-2025",
     date: "Jan-2025",
     special: "AWS Associate Certified",
-    desc: "Add OpenTelemetry and monitoring",
+    desc: "Integrate with OpenTelemetry and Monitoring",
     faIcon: faMagnifyingGlass,
   },
   {
@@ -147,8 +146,8 @@ export const siteHistory: IEvent[] = [
   {
     id: "Aug-2025",
     date: "Aug-2025",
-    special: "Invest heavily on Generative AI",
-    desc: "Certified Practitioner and refining Prompt Engineering",
+    special: "Certified Practitioner and refining Prompt Engineering",
+    desc: "Invest heavily on Generative AI",
     faIcon: faBrain,
   },
   {
