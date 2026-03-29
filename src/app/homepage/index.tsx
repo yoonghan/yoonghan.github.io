@@ -493,18 +493,18 @@ function Homepage() {
               </Figure>
             </div>
           </article>
+          <hr />
+          {/* Site Health Status */}
+          <article>
+            <div className="text-3xl text-center pb-8" id="status">
+              Site Health Status
+            </div>
+            <SiteHealthStatus
+              repo="yoonghan/yoonghan.github.io"
+              codecovToken="HPWQMQPPS1"
+            />
+          </article>
         </div>
-        <hr />
-        {/* Site Health Status */}
-        <article>
-          <div className="text-3xl text-center pb-8" id="status">
-            Site Health Status
-          </div>
-          <SiteHealthStatus
-            repo="yoonghan/yoonghan.github.io"
-            codecovToken="HPWQMQPPS1"
-          />
-        </article>
       </div>
       <SocialFab />
     </>
