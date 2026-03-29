@@ -75,4 +75,12 @@ describe("HomePage", () => {
       )
     })
   })
+
+  describe("health section", () => {
+    it("can navigate for health", () => {
+      const title = "Site Health Status"
+      renderComponent()
+      expect(screen.getByText(title)).toBeInTheDocument()
+    })
+  })
 })
