@@ -11,7 +11,6 @@ import {
   faUniversalAccess,
 } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
-import LetterBox from "@/components/LetterBox"
 import Lifecycle from "@/components/Lifecycle"
 import Wave from "@/components/Animate/Wave"
 import Workflow from "@/components/Animate/Workflow"
@@ -102,12 +101,6 @@ function Homepage() {
               <span className="italic text-md">Site Development Lifecycle</span>
             </div>
           </article>
-          <hr />
-          {/* Site Health Status */}
-          <SiteHealthStatus
-            repo="yoonghan/yoonghan.github.io"
-            codecovToken="HPWQMQPPS1"
-          />
           <hr />
           {/* Tech Stack */}
           <article>
@@ -502,9 +495,16 @@ function Homepage() {
           </article>
         </div>
         <hr />
-        <div className="py-8">
-          <LetterBox />
-        </div>
+        {/* Site Health Status */}
+        <article>
+          <div className="text-3xl text-center pb-8" id="status">
+            Site Health Status
+          </div>
+          <SiteHealthStatus
+            repo="yoonghan/yoonghan.github.io"
+            codecovToken="HPWQMQPPS1"
+          />
+        </article>
       </div>
       <SocialFab />
     </>
