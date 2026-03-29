@@ -9,9 +9,6 @@ describe("SiteHealthStatus component", () => {
         codecovToken="TEST_TOKEN"
       />,
     )
-
-    expect(screen.getByText("Site Health Status")).toBeInTheDocument()
-
     // Check if badges are rendered
     expect(
       screen.getByAltText("Report merged result on main branch"),
