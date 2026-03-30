@@ -12,6 +12,7 @@ const customJestConfig = {
     "<rootDir>/jest.setup.js",
     "react-intersection-observer/test-utils",
   ],
+  transformIgnorePatterns: ["/node_modules/(?!react-ga4/)/"],
   modulePathIgnorePatterns: [
     "<rootDir>/src/__tests__",
     "<rootDir>/src/__e2e__",
@@ -45,4 +46,13 @@ const customJestConfig = {
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(customJestConfig)
+const asyncConfig = createJestConfig(customJestConfig)
+
+module.exports = async () => {
+  const config = await asyncConfig()
+  config.transformIgnorePatterns = [
+    "/node_modules/(?!(react-ga4|geist)/)(?!.pnpm)",
+    "^.+\\.module\\.(css|sass|scss)$",
+  ]
+  return config
+}
