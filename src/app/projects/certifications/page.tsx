@@ -40,6 +40,15 @@ const Learning = () => {
             Azure Cosmos DB Overview
           </Link>
         </article>
+        <article>
+          <p className="text-2xl">AZ-104 / AZ-305 Azure Solution Architect</p>
+          One of the toughest exam I faced
+          <br />
+          <strong>Notes</strong>:{" "}
+          <Link href="https://yoonghan.github.io/AZ-104-Azure-Administrator-Associate//">
+            Azure Administrator Associate (AZ-104)
+          </Link>
+        </article>
         <AzureDevOps />
         <AIPractitioner />
         <AwsSolutionArchitectArticle />
