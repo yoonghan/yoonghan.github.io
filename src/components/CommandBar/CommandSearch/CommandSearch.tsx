@@ -1,6 +1,4 @@
 import { findPageByPath } from "@/config/pages"
-import * as React from "react"
-import { createPortal } from "react-dom"
 
 import InvalidCommand from "./InvalidCommand"
 import Output from "./Output"
@@ -87,10 +85,12 @@ export const AvailableInput: ICommand = {
     description: "Goto Previous.",
     action: EnumAction.LINK,
     exec: (router: AppRouterInstance, pathname: string) => {
-      if (pathname !== "/") {
+      if (pathname === "/") {
+        return <InvalidCommand invalidCommand={"Already at root"} />
+      } else {
         router.back()
         return <></>
-      } else return <InvalidCommand invalidCommand={"Already at root"} />
+      }
     },
   },
   "=": {

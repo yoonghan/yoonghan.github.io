@@ -19,16 +19,15 @@ const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
 const CommandBar = ({ commandPromptOnly }: CommandBarNoSSRProps) => {
   return (
     <div
-      className={`${styles["header"]} ${
-        commandPromptOnly ? styles["commandPromptOnly"] : ""
-      }`}
+      className={`${styles["header"]} ${commandPromptOnly ? styles["commandPromptOnly"] : ""
+        }`}
       id="commandbar"
     >
       <div
         className={
-          !commandPromptOnly
-            ? `${styles["desktop"]} ${styles["shift-to-right"]}`
-            : ""
+          commandPromptOnly
+            ? ""
+            : `${styles["desktop"]} ${styles["shift-to-right"]}`
         }
       >
         <NoSSRCommandBar />
