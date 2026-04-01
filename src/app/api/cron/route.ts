@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     span.setAttribute("action", action || "none")
 
     const response = await execute(action)
-    if (!(response instanceof Array) && isMessage(response) && response.error) {
+    if (!(Array.isArray(response)) && isMessage(response) && response.error) {
       span.setStatus({ code: SpanStatusCode.ERROR, message: response.message })
       span.recordException(toError(response.error))
       span.end()

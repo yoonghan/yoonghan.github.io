@@ -1,5 +1,5 @@
 import {
-  FormEvent,
+  SubmitEvent,
   forwardRef,
   useCallback,
   useImperativeHandle,
@@ -29,28 +29,28 @@ export const apiUrl = `${site.apiUrl}/firebase`
 
 const dropFile =
   (callback: (message: string, notifyReceipient?: boolean) => void) =>
-  (acceptedFiles: File[]) => {
-    const formData = new FormData()
-    formData.append("file", acceptedFiles[0])
+    (acceptedFiles: File[]) => {
+      const formData = new FormData()
+      formData.append("file", acceptedFiles[0])
 
-    callback(`Uploading file ${acceptedFiles[0].name}...`)
+      callback(`Uploading file ${acceptedFiles[0].name}...`)
 
-    fetch(apiUrl, {
-      method: "POST",
-      body: formData,
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data.status === "ok") {
-          callback(`${data.data}`, true)
-        } else {
-          callback(`File upload failed`)
-        }
+      fetch(apiUrl, {
+        method: "POST",
+        body: formData,
       })
-      .catch((err) => {
-        callback(`File upload failed, (${err})`)
-      })
-  }
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data.status === "ok") {
+            callback(`${data.data}`, true)
+          } else {
+            callback(`File upload failed`)
+          }
+        })
+        .catch((err) => {
+          callback(`File upload failed, (${err})`)
+        })
+    }
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
   function ChatMessageDialogWithMessageHandler(
@@ -61,7 +61,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
     const chatMessageDialogRef = useRef<MessageHandler>(null)
     const [message, setMessage] = useState("")
 
-    const sendMessage = (e?: Event | FormEvent) => {
+    const sendMessage = (e?: Event | SubmitEvent) => {
       e?.preventDefault()
       if (chatMessageDialogRef.current !== null && message !== "") {
         chatMessageDialogRef.current.addMessage(userId, message)

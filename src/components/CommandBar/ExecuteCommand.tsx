@@ -12,13 +12,13 @@ import HelpDialog from "./HelpDialog"
 import { createPortal } from "react-dom"
 
 function evaluateMath(mathEval: string): string {
-  const evaluatedResult = Function(`"use strict";return ${mathEval}`)()
+  const evaluatedResult = new Function(`"use strict";return ${mathEval}`)()
   return evaluatedResult
 }
 
 function getMathEvaluation(evaluation: string) {
   const equalsLocation = 1
-  const _evaluation = evaluation.replace(/ /g, "").substring(equalsLocation)
+  const _evaluation = evaluation.replaceAll(" ", "").substring(equalsLocation)
 
   const mathRegex = /^\d+(\.\d*)?([+\-*/]\d+(\.\d*)?)+$/
   const matches = mathRegex.test(_evaluation)
