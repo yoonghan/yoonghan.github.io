@@ -26,7 +26,7 @@ const userExists = async (
   if (res.status === 200) {
     const body = await res.json()
     return (
-      body.users.filter((user: { id: string }) => user.id === userid).length > 0
+      body.users.some((user: { id: string }) => user.id === userid)
     )
   }
   return false

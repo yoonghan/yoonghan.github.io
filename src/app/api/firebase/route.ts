@@ -41,7 +41,7 @@ const uploadIntoSystem = async (
       return
     }
     const filename: string = (file as any).name
-    const uploadFileName = `${new Date().getTime()}${filename}`
+    const uploadFileName = `${Date.now()}${filename}`
 
     if (!(file instanceof Blob)) {
       reject("File uploaded is not a valid")

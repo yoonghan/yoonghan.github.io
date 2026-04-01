@@ -35,14 +35,14 @@ const Link: React.FC<LinkProps> = ({
 }
 
 const LinkWrapper: React.FC<LinkProps> = ({ href, children, ...props }) => {
-  if (!href) {
-    return <span>{children}</span>
-  } else {
+  if (href) {
     return (
       <NextLink href={href} {...props}>
         {children}
       </NextLink>
     )
+  } else {
+    return <span>{children}</span>
   }
 }
 
