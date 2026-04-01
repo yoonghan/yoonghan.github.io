@@ -11,13 +11,13 @@ const createUser = (
 ) => {
   if (!validEmail(email)) {
     throw new Error(
-      "Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/.",
+      String.raw`Email must be a string matching /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/.`,
     )
   }
 
   if (!validInput(password)) {
     throw new Error(
-      "Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>).",
+      String.raw`Password must be (is not {} and a string matching /^[a-z|A-Z|0-9|!|\\$|@|?|#|%|\\^]+$/ and a collection or string with size a number greater than <5>).`,
     )
   }
 
