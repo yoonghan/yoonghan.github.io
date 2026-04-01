@@ -19,18 +19,12 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
   const [debounceScrollToTop] = useDebounceValue(scrollToTop, 10)
 
   const startPosition = useMemo(
-    () =>
-      scrollPosition - maxItemsToRender > 0
-        ? scrollPosition - maxItemsToRender
-        : 0,
+    () => Math.max(scrollPosition - maxItemsToRender, 0),
     [maxItemsToRender, scrollPosition],
   )
 
   const endPosition = useMemo(
-    () =>
-      scrollPosition + maxItemsToRender >= listItems.length
-        ? listItems.length
-        : scrollPosition + maxItemsToRender,
+    () => Math.min(listItems.length, scrollPosition + maxItemsToRender),
     [listItems.length, maxItemsToRender, scrollPosition],
   )
 

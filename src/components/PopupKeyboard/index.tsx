@@ -52,12 +52,12 @@ const PopupKeyboard = ({
   useEffect(() => {
     if (enableKeyboardListener) {
       const keyboardListener = buildKeyboardListener()
-      window.addEventListener("keydown", keyboardListener)
-      window.addEventListener("keydown", preventKeyboardEvent, false)
+      globalThis.addEventListener("keydown", keyboardListener)
+      globalThis.addEventListener("keydown", preventKeyboardEvent, false)
       return () => {
         queueMicrotask(() => {
-          window.removeEventListener("keydown", keyboardListener)
-          window.removeEventListener("keydown", preventKeyboardEvent, false)
+          globalThis.removeEventListener("keydown", keyboardListener)
+          globalThis.removeEventListener("keydown", preventKeyboardEvent, false)
         })
       }
     }

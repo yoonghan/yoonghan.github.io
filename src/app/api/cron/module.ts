@@ -54,14 +54,14 @@ const getToday = async (): Promise<Message> => {
 
   const doc = await db.collection(collectionName).doc(datedToday).get()
   const data = doc.data()
-  if (data !== undefined) {
-    return {
-      message: data[createdAtField],
-    }
-  } else {
+  if (data === undefined) {
     return {
       message: "Not Found",
       error: "Message not found",
+    }
+  } else {
+    return {
+      message: data[createdAtField],
     }
   }
 }
