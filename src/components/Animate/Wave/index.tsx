@@ -13,7 +13,7 @@ function Wave({
   className?: string
 }>) {
   const { isAnimatable } = useDisableAnimation()
-  const animateClass = !isAnimatable ? " animate-none" : ""
+  const animateClass = isAnimatable ? "" : " animate-none"
 
   return (
     <div className={`${className} relative`} title={title}>

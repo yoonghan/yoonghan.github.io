@@ -7,7 +7,7 @@ import EmailSender from "./EmailSender"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 
-export const email = "walcoor_perati_on@gm_ail.com".replace(/_/g, "")
+export const email = "walcoor_perati_on@gm_ail.com".replaceAll(" ", "")
 
 const LetterBox = () => {
   const [name, setName] = useState("")
