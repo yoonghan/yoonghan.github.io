@@ -21,7 +21,7 @@
   border-radius: 50%;
   font-size: 18px;
   padding-top: 6px;
-  color: #999;
+  color: #757575;
   margin-left: 4px;
   line-height: 23px;
 }
@@ -45,7 +45,7 @@
   bottom: 40px;
 }
 .container > li:last-child .icon {
-  background: rgb(21, 178, 21);
+  background: rgb(25, 128, 25);
   color: rgb(255, 255, 255);
 }
 .container > li > span:first-child {
