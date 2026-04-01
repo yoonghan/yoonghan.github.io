@@ -4,7 +4,7 @@ function isOnlyAlphabetsAndNumberAndSpace(input) {
 }
 
 function removeAllWhiteSpaces(input) {
-  return input.replaceAll(/\s/, "")
+  return input.replaceAll(/\s/g, "")
 }
 
 function capitalizeFirstWord(str) {
