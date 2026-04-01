@@ -42,7 +42,7 @@
   bottom: 40px;
 }
 .container:last-child .icon {
-  background: rgb(21, 178, 21);
+  background: rgb(25, 128, 25);
   color: rgb(255, 255, 255);
 }
 .container > span:first-child {
