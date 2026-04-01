@@ -18,9 +18,8 @@ function getCanonical(relativeUrl: string) {
   if (url === defaultUrl) return {}
   else {
     return {
-      canonical: `${defaultUrl}${
-        relativeUrl.replaceAll(" ", "").startsWith("/") ? "" : "/"
-      }${relativeUrl}`,
+      canonical: `${defaultUrl}${relativeUrl.replaceAll(/ /g, "").startsWith("/") ? "" : "/"
+        }${relativeUrl}`,
     }
   }
 }
