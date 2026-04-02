@@ -63,19 +63,7 @@ function Homepage() {
               <strong>Accessibility (WCAG)</strong> and{" "}
               <strong>SEO Performance</strong>. The rationale for our migration
               from a Javascript-heavy Single Page Application (SPA) to our
-              current Server-Side Generated (SSG) model optimized our:
-              <ul className="mt-4 ml-4 list-disc">
-                <li>Performance</li> <li>Accessibility</li> <li>SEO</li>{" "}
-                <li>Complexity</li> <li>Security</li>
-              </ul>
-              <br />
-              The objective is to have a site that is <em>
-                DevOps-oriented
-              </em>{" "}
-              development in <em>Cloud</em> platform.{" "}
-              {
-                'This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored, reliable releases".'
-              }
+              current Server-Side Generated (SSG) optimized website. This site is to showcase our work and a playbox for real-time testing. As of the mantra, we always do "monitored, reliable releases".
             </div>
             <div className="flex justify-center flex-col items-center">
               <Lifecycle
@@ -102,29 +90,20 @@ function Homepage() {
             </div>
           </article>
           <hr />
-          {/* Tech Stack */}
           <article>
-            <div className="text-3xl text-center pb-8" id="tech-stack">
-              Tech Stack
+            <div className="text-3xl text-center pb-8" id="workflow">
+              Deployment Workflow with GitHub
             </div>
-            <ul className="flex flex-col gap-2 w-fit mx-auto">
-              <li>
-                <strong>Platform:</strong> Azure & Vercel (Reliable, Global
-                Infrastructure)
-              </li>
-              <li>
-                <strong>Engine:</strong> Next.js & WebAssembly (High-performance
-                Rendering)
-              </li>
-              <li>
-                <strong>Guardrails:</strong> GitHub Actions & CodeCov &
-                SonarQube (Quality & Security Compliance)
-              </li>
-              <li>
-                <strong>Insights:</strong> Axiom & Checkly (Real-time
-                Observability)
-              </li>
-            </ul>
+            <div className="text-center pb-8">
+              Feel free to <Link href="https://github.com/yoonghan/yoonghan.github.io/actions" target="_blank">check out our workflow</Link>.
+            </div>
+            <Image
+              src="/img/workflow-architecture.svg"
+              width={500}
+              height={1200}
+              alt="Deployment architecture"
+              className="mx-auto border-0"
+            />
           </article>
           <hr />
           {/* Reliability */}
@@ -492,6 +471,31 @@ function Homepage() {
                 refresh for every deployment even for overrides.
               </Figure>
             </div>
+          </article>
+          <hr />
+          {/* Tech Stack */}
+          <article>
+            <div className="text-3xl text-center pb-8" id="tech-stack">
+              Tech Stack
+            </div>
+            <ul className="flex flex-col gap-2 w-fit mx-auto">
+              <li>
+                <strong>Platform:</strong> Azure & Vercel (Reliable, Global
+                Infrastructure)
+              </li>
+              <li>
+                <strong>Engine:</strong> Next.js & WebAssembly (High-performance
+                Rendering)
+              </li>
+              <li>
+                <strong>Guardrails:</strong> GitHub Actions & CodeCov &
+                SonarQube (Quality & Security Compliance)
+              </li>
+              <li>
+                <strong>Insights:</strong> Axiom & Checkly (Real-time
+                Observability)
+              </li>
+            </ul>
           </article>
           <hr />
           {/* Site Health Status */}
