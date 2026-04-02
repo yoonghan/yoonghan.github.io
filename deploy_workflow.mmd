@@ -1,0 +1,7 @@
+flowchart TD;
+   branch["branch w/ (Non-spaced and lowercased)"] --> commit --> push --> pull[pull request] --> quality["Check Quality Gate"] --> merge --> report["Generate Reports"];
+   push --> deployDev["Publish to Vercel Development Mode"]
+   merge --> promote["Promote Vercel"];
+   report --> deployGithub["Deploy to Github Pages"] --> tag --> smoketest["Smoke test"];
+   report --> sonar["SonarQube Cloud scan"]
+   deployDev --> backstop["BackstopJS test"]

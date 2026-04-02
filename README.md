@@ -84,14 +84,7 @@ To stop animation, append query string to use `animate-none` class
 
 ## Run Github workflows
 
-```mermaid
-flowchart TD;
-   branch["branch w/ (Non-spaced and lowercased)"] --> commit --> push --> pull[pull request] --> quality["Quality Gate"] --> workflow["success workflow"] --> merge --> report["Generate Reports"];
-   push --> deploy1["Vercel in Development Environment"]
-   merge --> promote["Promote Vercel"];
-   report --> deploy2["Github Pages"] --> tag --> smoketest["Smoke test"];
-   report --> sonar["SonarQube Cloud scan"]
-```
+![GitHub Workflow Architecture](public/img/workflow-architecture.svg)
 
 In case there is a need to generate a new backstopJS approved page.
 
@@ -181,3 +174,9 @@ npm run rust:test //test rust running on browser
 ## Using Vibe code.
 
 Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md.
+
+## Mermaid generator
+
+```bash
+npm run generate:mermaid
+```
