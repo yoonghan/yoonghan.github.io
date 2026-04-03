@@ -92,18 +92,21 @@ function Homepage() {
           <hr />
           <article>
             <div className="text-3xl text-center pb-8" id="workflow">
-              Deployment Workflow with GitHub
+              Serverless Edge Deployment with GitHub Actions
             </div>
             <div className="text-center pb-8">
               Feel free to <Link href="https://github.com/yoonghan/yoonghan.github.io/actions" target="_blank">check out our workflow</Link>.
             </div>
-            <Image
-              src="/img/workflow-architecture.svg"
-              width={500}
-              height={1200}
-              alt="Deployment architecture"
-              className="mx-auto border-0"
-            />
+            <figure>
+              <Image
+                src="/img/workflow-architecture.svg"
+                width={500}
+                height={1200}
+                alt="Deployment architecture"
+                className="mx-auto border-0"
+              />
+              <figcaption className="text-center text-sm mt-4">Serverless Edge Architecture & CI/CD Flow</figcaption>
+            </figure>
           </article>
           <hr />
           {/* Reliability */}
