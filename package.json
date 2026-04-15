@@ -40,7 +40,7 @@
     "@opentelemetry/winston-transport": "^0.22.0",
     "@react-spring/web": "^10.0.3",
     "@yoonghan/walcron-microfrontend-shared": "^12.1.2",
-    "next": "^16.1.7",
+    "next": "^16.2.3",
     "pusher": "^5.3.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
