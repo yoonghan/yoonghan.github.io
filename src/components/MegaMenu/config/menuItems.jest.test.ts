@@ -7,10 +7,11 @@ describe("menu items", () => {
       { label: "History", url: "/history" },
       {
         items: [
+          { label: "Azure Integration", url: "/projects/azure" },
           { label: "Microfrontend", url: "/projects/microfrontend" },
-          { label: "WebRtc", url: "/projects/webrtc" },
-          { label: "Chat", url: "/projects/messenger" },
-          { label: "Game", url: "/projects/game-snake" },
+          { label: "Web Real-Time Communication", url: "/projects/webrtc" },
+          { label: "Chat Messenger", url: "/projects/messenger" },
+          { label: "Snake Game", url: "/projects/game-snake" },
           { label: "Lessons", url: "/projects/lessons" },
           { label: "Certifications", url: "/projects/certifications" },
           { label: "Checklist", url: "/projects/checklist" },

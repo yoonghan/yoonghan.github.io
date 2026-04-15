@@ -4,7 +4,7 @@ import { site } from "@/config/site"
 
 export const metadata = {
   title: "Video Conferencing",
-  description: "Peer to peer Web RTC video conferencing.",
+  description: "Peer to peer Web Real Time Communication video conferencing.",
   alternates: {
     ...site.generateCanonical("/projects/webrtc"),
   },
@@ -18,7 +18,7 @@ interface Props {
 const WebRtc = ({ appKey, cluster }: Props) => {
   return (
     <div className="mx-auto max-w-screen-lg px-4 pb-10">
-      <h1 className="py-8">Video call with Web RTC</h1>
+      <h1 className="py-8">Video call with Web Real Time Communication</h1>
       <WebrtcVideo appKey={appKey!} cluster={cluster!} />
     </div>
   )

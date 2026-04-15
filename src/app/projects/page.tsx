@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import Card from "@/components/Card"
 import { memo } from "react"
 import ScrollToTop from "@/components/ScrollToTop"
@@ -5,7 +6,7 @@ import LetterBox from "@/components/LetterBox"
 import { cards } from "./config"
 import { site } from "@/config/site"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Projects Portfolio",
   description: "Playground projects that we had been working on.",
   alternates: {
