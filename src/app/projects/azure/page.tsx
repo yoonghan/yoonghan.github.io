@@ -1,8 +1,9 @@
 import { memo, Suspense } from "react"
 import wrapPromise from "@/components/utils/common/wrapPromise"
 import { site } from "@/config/site"
+import { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Azure Integration",
     description: "Integration with Azure as test bed.",
     alternates: {
@@ -34,7 +35,11 @@ const Result = () => {
 
     return (
         <div>
-            <iframe src="https://azure.walcron.com" allow="fullscreen" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
+            {readSuccessResponse === "ready" ? (
+                <iframe src="https://azure.walcron.com" allow="fullscreen" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
+            ) : (
+                <div>Unable to load screen</div>
+            )}
         </div>
     )
 }
