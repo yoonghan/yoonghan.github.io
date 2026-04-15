@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import AzureIntegration from "./page"
-import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("Azure Integration", () => {
     const renderComponent = () => {
@@ -9,6 +8,8 @@ describe("Azure Integration", () => {
 
     it("should render correctly", async () => {
         renderComponent()
-        expect(screen.getByText("Azure Integration")).toBeInTheDocument()
+        expect(screen.getByRole("heading", { name: "Azure Integration for TODO List" })).toBeInTheDocument()
+        expect(screen.getByText("Warming Up Container")).toBeInTheDocument()
+        expect(await screen.findByTestId("azure-integration")).toBeInTheDocument()
     })
 })
