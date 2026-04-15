@@ -11,10 +11,7 @@ describe("Webrtc", () => {
       NEXT_PUBLIC_PUSHER_CLUSTER: "CLUSTER123",
     })
     renderComponent()
-    expect(screen.getByText("Video call with Web RTC")).toBeInTheDocument()
-    expect(
-      await screen.findByText("Video call with Web RTC"),
-    ).toBeInTheDocument()
+    expect(screen.getByText("Video call with Web Real Time Communication")).toBeInTheDocument()
     expect(screen.getByText("Identification")).toBeInTheDocument()
     expect(screen.getByText("List of online callers")).toBeInTheDocument()
   })
