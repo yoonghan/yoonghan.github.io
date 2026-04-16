@@ -2,7 +2,7 @@ import { memo, Suspense } from "react"
 import wrapPromise from "@/components/utils/common/wrapPromise"
 import { site } from "@/config/site"
 import { Metadata } from "next"
-import ContainerWarmMessenger from "./ContainerWarmMessenger"
+import TextLoader from "../../../components/TextLoader/TextLoader"
 
 export const metadata: Metadata = {
     title: "Azure Integration",
@@ -50,7 +50,7 @@ const Result = ({ promise }: { promise: { read: () => any } }) => {
 const SuspenseLoader = ({ promise }: { promise: { read: () => any } }) => {
     return (
         <Suspense
-            fallback={<ContainerWarmMessenger />}
+            fallback={<TextLoader text="Warming Up Container" />}
         >
             <Result promise={promise} />
         </Suspense>

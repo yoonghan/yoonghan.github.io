@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react"
-import ContainerWarmMessenger from "./ContainerWarmMessenger"
+import TextLoader from "./TextLoader"
 
-describe("Container Warmer Messenger", () => {
+describe("TextLoader", () => {
 
     const renderComponent = () => {
-        render(<ContainerWarmMessenger />)
+        render(<TextLoader text="Warming Up Container" />)
     }
 
     it("should render correctly", () => {
