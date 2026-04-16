@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     },
 }
 
+export const maxDuration = 60
+
 const callAzureWalcron = async () => {
     const response: string = await fetch("https://azure.walcron.com/healthz", { cache: "no-store" }).then((res) => {
         if (!res.ok) throw new Error("Unable to fetch");
