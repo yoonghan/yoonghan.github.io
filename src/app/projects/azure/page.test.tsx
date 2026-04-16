@@ -28,6 +28,7 @@ describe("Azure Integration", () => {
         expect(screen.getByRole("heading", { name: "Azure Integration for TODO List" })).toBeInTheDocument()
         expect(screen.getByText("Warming Up Container")).toBeInTheDocument()
         expect(await screen.findByTestId("azure-integration")).toBeInTheDocument()
+        expect(screen.getByTestId("azure-integration")).toHaveAttribute("src", "https://azure.walcron.com")
         expect(screen.queryByText("Warming Up Container")).not.toBeInTheDocument()
     })
 

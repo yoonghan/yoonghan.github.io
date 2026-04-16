@@ -1,4 +1,5 @@
 import { setEnv } from "@/__tests__/mocks/setEnv"
+import { azureUrl } from "./site"
 
 describe("root-url", () => {
   it("should be default with local website", async () => {
@@ -65,5 +66,9 @@ describe("root-url", () => {
     expect(site.cronApiUrl).toStrictEqual(
       "https://www.walcron.com/api/cron?action=today",
     )
+  })
+
+  it("should be an azure correct url", () => {
+    expect(azureUrl).toBe("https://azure.walcron.com")
   })
 })
