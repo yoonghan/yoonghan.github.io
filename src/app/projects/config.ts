@@ -7,6 +7,13 @@ export const cards = [
     target: "_self",
   },
   {
+    id: "azure",
+    title: "Azure Integration",
+    description: "Call and triggers to Azure to use System Identity and Container Apps.",
+    href: "/projects/azure",
+    target: "_self"
+  },
+  {
     id: "chat",
     title: "Chat / Messenger",
     description:
