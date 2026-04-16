@@ -41,7 +41,7 @@ const CronJobCheckList = ({
   }, [])
 
   const cronHistories = useMemo(() => {
-    if (cronHistoryData) {
+    if (cronHistoryData && Array.isArray(cronHistoryData)) {
       return (
         <ScrollableList
           maxItemsToRender={50}

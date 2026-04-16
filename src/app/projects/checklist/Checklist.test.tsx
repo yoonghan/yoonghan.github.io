@@ -9,6 +9,7 @@ import { CronJobCheckList } from "./Checklist"
 import { setServiceNavigator } from "@/__tests__/mocks/windowMock"
 import userEvent from "@testing-library/user-event"
 import { fetchMock } from "@/__tests__/mocks/fetchMock"
+import { SWRConfig } from "swr"
 
 describe("Checklist", () => {
   describe("CronJobCheckList", () => {
@@ -27,7 +28,8 @@ describe("Checklist", () => {
 
     it("should render as active if post is there", async () => {
       const result = "2024-12-12T01:01:01.293Z"
-      fetchMock.mockResolvedValue({
+
+      fetchMock.mockResolvedValueOnce({
         ok: true,
         status: 200,
         json: () =>
@@ -35,11 +37,27 @@ describe("Checklist", () => {
             message: result,
           }),
       })
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve([{
+            id: '1',
+            method: 'GET',
+            source: 'cron',
+            createdAt: "2026-12-12T01:01:01.293Z"
+          }]),
+      })
       render(
-        <CronJobCheckList
-          latestDeployedCronMessage={result}
-          queryTodayCron={true}
-        />,
+        <SWRConfig value={{
+          provider: () => new Map(),
+          dedupingInterval: 0
+        }}>
+          < CronJobCheckList
+            latestDeployedCronMessage={result}
+            queryTodayCron={true}
+          />
+        </SWRConfig>,
       )
       expect(screen.getByText("CronJob")).toBeInTheDocument()
       expect(
@@ -55,6 +73,9 @@ describe("Checklist", () => {
           "12/12/2024",
         ),
       ).toBeInTheDocument()
+      await userEvent.click(screen.getByRole("button", { name: "View More" }))
+      expect(await screen.findByText("cron")).toBeInTheDocument()
+      expect(screen.getByText(/^12\/12\/2026, .*/)).toBeInTheDocument()
     })
 
     it("should hide View More button and show error", async () => {
