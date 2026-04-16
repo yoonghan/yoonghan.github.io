@@ -2,6 +2,7 @@ import { memo, Suspense } from "react"
 import wrapPromise from "@/components/utils/common/wrapPromise"
 import { site } from "@/config/site"
 import { Metadata } from "next"
+import ContainerWarmMessenger from "./ContainerWarmMessenger"
 
 export const metadata: Metadata = {
     title: "Azure Integration",
@@ -34,7 +35,6 @@ const Result = ({ promise }: { promise: { read: () => any } }) => {
 
     return (
         <div>
-            {typeof readSuccessResponse === "string" ? readSuccessResponse : null}
             {readSuccessResponse === "ready" ? (
                 <iframe src="https://azure.walcron.com" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
             ) : (
@@ -44,10 +44,11 @@ const Result = ({ promise }: { promise: { read: () => any } }) => {
     )
 }
 
+
 const SuspenseLoader = ({ promise }: { promise: { read: () => any } }) => {
     return (
         <Suspense
-            fallback={<div style={{ color: "green" }}>Warming Up Container</div>}
+            fallback={<ContainerWarmMessenger />}
         >
             <Result promise={promise} />
         </Suspense>
@@ -57,10 +58,10 @@ const SuspenseLoader = ({ promise }: { promise: { read: () => any } }) => {
 const AzureIntegration = () => {
     const successResponse = wrapPromise(callAzureWalcron())
     return (
-        <>
+        <div className="walcron-container">
             <h1>Azure Integration for TODO List</h1>
             <SuspenseLoader promise={successResponse} />
-        </>
+        </div>
     )
 }
 
