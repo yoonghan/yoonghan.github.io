@@ -1,6 +1,7 @@
 import "@/__tests__/mocks/fetchMock"
 import { render, screen, act } from "@testing-library/react"
 import { fetchMock } from "@/__tests__/mocks/fetchMock"
+import { maxDuration } from "./page"
 
 describe("Azure Integration", () => {
     beforeEach(() => {
@@ -20,7 +21,7 @@ describe("Azure Integration", () => {
         })
 
         await renderComponent()
-        
+
         // Assert that we bypassed Next.js cache
         expect(fetchMock).toHaveBeenCalledWith("https://azure.walcron.com/healthz", { cache: "no-store" })
 
@@ -40,5 +41,9 @@ describe("Azure Integration", () => {
         expect(screen.getByRole("heading", { name: "Azure Integration for TODO List" })).toBeInTheDocument()
         expect(screen.getByText("Warming Up Container")).toBeInTheDocument()
         expect(await screen.findByText("Unable to load screen")).toBeInTheDocument()
+    })
+
+    it("should timeout only after 60 minutes for Azure Container to warm up", () => {
+        expect(maxDuration).toBe(60)
     })
 })
