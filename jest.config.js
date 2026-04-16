@@ -39,7 +39,6 @@ const customJestConfig = {
     "<rootDir>/crate",
     "layout.tsx",
     "<rootDir>/src/app/experiments/*",
-    "<rootDir>/src/app/projects/checklist/Checklist.tsx",
     "<rootDir>/src/app/projects/messenger/*",
     "<rootDir>/src/app/projects/javascript-free/*",
     "<rootDir>/src/app/projects/game-snake/*",
