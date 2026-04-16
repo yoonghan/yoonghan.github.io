@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 }
 
 const callAzureWalcron = async () => {
-    const response: string = await fetch("https://azure.walcron.com/healthz").then((res) => res.text())
+    const response: string = await fetch("https://azure.walcron.com/healthz", { cache: "no-store" }).then((res) => {
+        if (!res.ok) throw new Error("Unable to fetch");
+        return res.text();
+    })
     return response
 }
 
-
-const successResponse = wrapPromise(callAzureWalcron())
-
-const Result = () => {
+const Result = ({ promise }: { promise: { read: () => any } }) => {
     const catchAble = (response: { read: () => string | Error }) => {
         try {
             return response.read()
@@ -30,13 +30,13 @@ const Result = () => {
             return e
         }
     }
-
-    const readSuccessResponse = catchAble(successResponse)
+    const readSuccessResponse = catchAble(promise)
 
     return (
         <div>
+            {typeof readSuccessResponse === "string" ? readSuccessResponse : null}
             {readSuccessResponse === "ready" ? (
-                <iframe src="https://azure.walcron.com" allow="fullscreen" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
+                <iframe src="https://azure.walcron.com" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
             ) : (
                 <div>Unable to load screen</div>
             )}
@@ -44,19 +44,24 @@ const Result = () => {
     )
 }
 
-const SuspenseLoader = () => {
+const SuspenseLoader = ({ promise }: { promise: { read: () => any } }) => {
     return (
         <Suspense
             fallback={<div style={{ color: "green" }}>Warming Up Container</div>}
         >
-            <Result />
+            <Result promise={promise} />
         </Suspense>
     )
 }
 
-const AzureIntegration = () => <>
-    <h1>Azure Integration for TODO List</h1>
-    <SuspenseLoader />
-</>
+const AzureIntegration = () => {
+    const successResponse = wrapPromise(callAzureWalcron())
+    return (
+        <>
+            <h1>Azure Integration for TODO List</h1>
+            <SuspenseLoader promise={successResponse} />
+        </>
+    )
+}
 
 export default memo(AzureIntegration)
