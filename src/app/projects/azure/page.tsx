@@ -3,6 +3,7 @@ import wrapPromise from "@/components/utils/common/wrapPromise"
 import { site } from "@/config/site"
 import { Metadata } from "next"
 import TextLoader from "../../../components/TextLoader/TextLoader"
+import { azureUrl } from "@/config/site"
 
 export const metadata: Metadata = {
     title: "Azure Integration",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export const maxDuration = 60
 
 const callAzureWalcron = async () => {
-    const response: string = await fetch("https://azure.walcron.com/healthz", { cache: "no-store" }).then((res) => {
+    const response: string = await fetch(`${azureUrl}/healthz`, { cache: "no-store" }).then((res) => {
         if (!res.ok) throw new Error("Unable to fetch");
         return res.text();
     })
@@ -38,7 +39,7 @@ const Result = ({ promise }: { promise: { read: () => any } }) => {
     return (
         <div>
             {readSuccessResponse === "ready" ? (
-                <iframe src="https://azure.walcron.com" allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
+                <iframe src={azureUrl} allowFullScreen className="w-full h-screen" data-testid="azure-integration" />
             ) : (
                 <div>Unable to load screen</div>
             )}
