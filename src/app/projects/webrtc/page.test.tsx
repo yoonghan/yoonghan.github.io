@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import Webrtc from "./page"
+import Webrtc, { metadata } from "./page"
 import { setEnv } from "@/__tests__/mocks/setEnv"
 
 describe("Webrtc", () => {
@@ -23,5 +23,9 @@ describe("Webrtc", () => {
         "Pusher initialization failed due to missing environment variable.",
       ),
     ).toBeInTheDocument()
+  })
+
+  it("should render the right metaData", () => {
+    expect(metadata.alternates).toEqual({})
   })
 })

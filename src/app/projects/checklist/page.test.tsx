@@ -1,6 +1,6 @@
 import "@/__tests__/mocks/fetchMock"
 import { render, screen } from "@testing-library/react"
-import Checklist from "./page"
+import Checklist, { metadata } from "./page"
 import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 
 describe("Checklist", () => {
@@ -16,5 +16,9 @@ describe("Checklist", () => {
     expect(screen.getByText("Since Deployment"))
     expect(screen.getByText("Today's Run"))
     // don't mock fetch, we want it to run once
+  })
+
+  it("should render the right metaData", () => {
+    expect(metadata.alternates).toEqual({})
   })
 })
