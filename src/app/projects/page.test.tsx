@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import Projects from "./page"
+import Projects, { metadata } from "./page"
 import { cards } from "./config"
 import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop"
 import { findPageByPath } from "@/config/pages"
@@ -20,6 +20,14 @@ describe("Projects", () => {
     localCards.forEach((localCard) => {
       const localCardHref = localCard.href
       expect(findPageByPath(localCardHref)?.path).toBe(localCardHref)
+    })
+  })
+
+  it("should render the right metaData", () => {
+    expect(metadata).toEqual({
+      title: "Projects Portfolio",
+      description: "Playground projects that we had been working on.",
+      alternates: {},
     })
   })
 })

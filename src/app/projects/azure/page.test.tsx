@@ -1,7 +1,7 @@
 import "@/__tests__/mocks/fetchMock"
 import { render, screen, act } from "@testing-library/react"
 import { fetchMock } from "@/__tests__/mocks/fetchMock"
-import { maxDuration } from "./page"
+import { maxDuration, metadata } from "./page"
 
 describe("Azure Integration", () => {
     beforeEach(() => {
@@ -46,5 +46,13 @@ describe("Azure Integration", () => {
 
     it("should timeout only after 60 minutes for Azure Container to warm up", () => {
         expect(maxDuration).toBe(60)
+    })
+
+    it("should render the right metaData", () => {
+        expect(metadata).toEqual({
+            title: "Azure Integration",
+            description: "Integration with Azure as test bed.",
+            alternates: {},
+        })
     })
 })
