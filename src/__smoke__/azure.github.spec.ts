@@ -1,9 +1,10 @@
 import { test, expect } from "@playwright/test"
+import { azureUrl } from "@/config/site"
 
 test.describe("azure setup", () => {
-    test("azure is setup correctly", async ({ page }, testInfo) => {
+    test("azure is setup correctly with health status up", async ({ page }, testInfo) => {
         testInfo.setTimeout(50_000) //startup needs bout 30seconds
-        const response = await fetch("https://azure.walcron.com/healthz", {
+        const response = await fetch(`${azureUrl}/healthz`, {
             method: "GET",
         })
         expect(response.status).toBe(200)

@@ -1,4 +1,5 @@
 const defaultUrl = "https://www.walcron.com"
+const azureUrl = "https://azure.walcron.com"
 
 function getUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL || defaultUrl
@@ -36,4 +37,4 @@ const site = {
   defaultUrl,
 }
 
-export { site, getUrl, getApiUrl, getGA4Id }
+export { site, getUrl, getApiUrl, getGA4Id, azureUrl }
