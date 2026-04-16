@@ -1,5 +1,5 @@
 import "@/__tests__/mocks/fetchMock"
-import { render, screen } from "@testing-library/react"
+import { render, screen, act } from "@testing-library/react"
 import { fetchMock } from "@/__tests__/mocks/fetchMock"
 
 describe("Azure Integration", () => {
@@ -13,19 +13,28 @@ describe("Azure Integration", () => {
         render(<AzureIntegration />)
     }
 
-    it("should render correctly", async () => {
+    it("should render correctly and bypass NextJS fetch cache", async () => {
         fetchMock.mockResolvedValue({
+            ok: true,
             text: () => Promise.resolve("ready"),
         })
 
         await renderComponent()
+        
+        // Assert that we bypassed Next.js cache
+        expect(fetchMock).toHaveBeenCalledWith("https://azure.walcron.com/healthz", { cache: "no-store" })
+
         expect(screen.getByRole("heading", { name: "Azure Integration for TODO List" })).toBeInTheDocument()
         expect(screen.getByText("Warming Up Container")).toBeInTheDocument()
         expect(await screen.findByTestId("azure-integration")).toBeInTheDocument()
+        expect(screen.queryByText("Warming Up Container")).not.toBeInTheDocument()
     })
 
     it("should display error message on failed response", async () => {
-        fetchMock.mockRejectedValue(new Error("Unable to fetch"))
+        fetchMock.mockResolvedValue({
+            ok: false,
+            status: 404
+        })
 
         await renderComponent()
         expect(screen.getByRole("heading", { name: "Azure Integration for TODO List" })).toBeInTheDocument()
