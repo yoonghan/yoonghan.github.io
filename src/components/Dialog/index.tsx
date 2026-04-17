@@ -86,6 +86,7 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
               className={styles.container}
               ref={dialogElem}
               onClick={onDialogClick}
+              onKeyUp={onDialogClick}
             >
               <div className={styles.content} onClick={onContentClick}>
                 {children}
