@@ -1,8 +1,8 @@
 export type MemberInfo = {
-  name: string
-}
+	name: string;
+};
 
 export type Member = {
-  id: string
-  info: MemberInfo
-}
+	id: string;
+	info: MemberInfo;
+};

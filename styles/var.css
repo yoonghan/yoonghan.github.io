@@ -1,57 +1,57 @@
 :root {
-  --logo: #ff8400;
-  --link: #206db9;
-  --dialog-text: #fff;
-  --comment: #002222;
+	--logo: #ff8400;
+	--link: #206db9;
+	--dialog-text: #fff;
+	--comment: #002222;
 
-  --button: #fff;
-  --button-bg: #195794;
-  --button-blue: #fff;
-  --button-blue-bg: #206db9;
-  --button-orange: #222;
-  --button-orange-bg: rgb(255, 132, 0);
-  --button-grey: #206db9;
-  --button-grey-bg: rgb(200, 200, 200);
-  --button-bg-disabled: #999;
-  --button-disabled: rgba(66, 66, 66);
+	--button: #fff;
+	--button-bg: #195794;
+	--button-blue: #fff;
+	--button-blue-bg: #206db9;
+	--button-orange: #222;
+	--button-orange-bg: rgb(255, 132, 0);
+	--button-grey: #206db9;
+	--button-grey-bg: rgb(200, 200, 200);
+	--button-bg-disabled: #999;
+	--button-disabled: rgba(66, 66, 66);
 
-  --border-color: rgba(66, 66, 66);
-  --shadow: #999;
+	--border-color: rgba(66, 66, 66);
+	--shadow: #999;
 
-  --z-index-modal: 200;
-  --z-index-modal-content: 201;
-  --z-index-page-reader: 100;
+	--z-index-modal: 200;
+	--z-index-modal-content: 201;
+	--z-index-page-reader: 100;
 
-  --code: #029f02;
+	--code: #029f02;
 
-  --title-bar: #fff;
-  --title-bar-bg: #0053be;
+	--title-bar: #fff;
+	--title-bar-bg: #0053be;
 
-  --alert-color: #721c24;
-  --alert-bg-color: #f8d7da;
-  --alert-border-color: #f5c6cb;
+	--alert-color: #721c24;
+	--alert-bg-color: #f8d7da;
+	--alert-border-color: #f5c6cb;
 
-  --page-dark: #343233;
-  --page-light: #ffffff;
+	--page-dark: #343233;
+	--page-light: #ffffff;
 
-  --primary-color-text: #000;
-  --primary-color: #3993dd;
-  --primary-700: #fff;
+	--primary-color-text: #000;
+	--primary-color: #3993dd;
+	--primary-700: #fff;
 
-  --menu-color: #fff;
-  --menu-color-text: var(--link);
+	--menu-color: #fff;
+	--menu-color-text: var(--link);
 
-  --minimenu-color: #fff;
-  --minimenu-color-text: #034192;
+	--minimenu-color: #fff;
+	--minimenu-color-text: #034192;
 
-  --accordion-color: #3993dd;
-  --accordion-color-text: #fff;
-  --accordion-alt-color: #eee;
-  --accordion-alt-color-text: #000;
+	--accordion-color: #3993dd;
+	--accordion-color-text: #fff;
+	--accordion-alt-color: #eee;
+	--accordion-alt-color-text: #000;
 
-  --footer-color: #343233;
-  --footer-color-text: #fff;
+	--footer-color: #343233;
+	--footer-color-text: #fff;
 
-  --scrolltop-color: #504c4e;
-  --scrolltop-color-text: #fff;
+	--scrolltop-color: #504c4e;
+	--scrolltop-color-text: #fff;
 }

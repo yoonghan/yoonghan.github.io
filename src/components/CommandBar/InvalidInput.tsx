@@ -1,19 +1,17 @@
-import * as React from "react"
-
 interface InvalidInputProps {
-  invalidInput: string
+	invalidInput: string;
 }
 
 const trimInput = (input: string) => {
-  const _input = input.trim()
-  return _input.length > 6 ? _input.substring(0, 4) + "..." : _input
-}
+	const _input = input.trim();
+	return _input.length > 6 ? `${_input.substring(0, 4)}...` : _input;
+};
 
 const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
-  return (
-    <div className="error">
-      {trimInput(invalidInput)} - not found. type HELP.
-      <style>{`
+	return (
+		<div className="error">
+			{trimInput(invalidInput)} - not found. type HELP.
+			<style>{`
         .error {
           white-space: nowrap;
           font-family: Inconsolata;
@@ -24,8 +22,8 @@ const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
           left: 0;
         }
       `}</style>
-    </div>
-  )
-}
+		</div>
+	);
+};
 
-export default InvalidInput
+export default InvalidInput;

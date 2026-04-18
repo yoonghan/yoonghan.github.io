@@ -1,31 +1,31 @@
 .container {
-  position: relative;
+	position: relative;
 }
 
 .header {
-  text-align: center;
-  position: relative;
+	text-align: center;
+	position: relative;
 }
 
 .header.commandPromptOnly {
-  left: 0;
-  right: 0;
+	left: 0;
+	right: 0;
 }
 
 .desktop.shift-to-right {
-  position: relative;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  padding: 0 1rem;
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	padding: 0 1rem;
 }
 
 .desktop {
-  display: block;
+	display: block;
 }
 
 @media only screen and (max-width: 640px) {
-  .menu {
-    display: none !important;
-  }
+	.menu {
+		display: none !important;
+	}
 }

@@ -1,28 +1,28 @@
-import Script from "next/script"
-import { schema } from "./config/schema"
-import { site } from "@/config/site"
-import { Metadata } from "next"
+import type { Metadata } from "next";
+import Script from "next/script";
+import { site } from "@/config/site";
+import { schema } from "./config/schema";
 
 export const metadata: Metadata = {
-  title: "About Walcron",
-  description:
-    "Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
-  alternates: {
-    ...site.generateCanonical("/about"),
-  },
-}
+	title: "About Walcron",
+	description:
+		"Walcron Coorperation is a basic company setup by Yoong Han and Lee Wan for World Wide Web research purposes.",
+	alternates: {
+		...site.generateCanonical("/about"),
+	},
+};
 
 export default function AboutLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <Script type="application/ld+json" id="ld-json">
-        {JSON.stringify(schema)}
-      </Script>
-      {children}
-    </>
-  )
+	return (
+		<>
+			<Script type="application/ld+json" id="ld-json">
+				{JSON.stringify(schema)}
+			</Script>
+			{children}
+		</>
+	);
 }

@@ -1,28 +1,28 @@
-import { useEffect } from "react"
-import Dialog from "../Dialog"
-import { redirectTo } from "@/util/location"
+import { useEffect } from "react";
+import { redirectTo } from "@/util/location";
+import Dialog from "../Dialog";
 
 interface EmailSenderProps {
-  writeTo: string
-  writeFrom: string
-  onCancel: () => void
+	writeTo: string;
+	writeFrom: string;
+	onCancel: () => void;
 }
 
 const EmailSender = ({ writeTo, writeFrom, onCancel }: EmailSenderProps) => {
-  useEffect(() => {
-    const subject = encodeURIComponent(`Contact from ${writeFrom} website`)
-    const body = "Hello there, "
+	useEffect(() => {
+		const subject = encodeURIComponent(`Contact from ${writeFrom} website`);
+		const body = "Hello there, ";
 
-    redirectTo(`mailto:${writeTo}?subject=${subject}&body=${body}`)
-  }, [writeFrom, writeTo])
+		redirectTo(`mailto:${writeTo}?subject=${subject}&body=${body}`);
+	}, [writeFrom, writeTo]);
 
-  return (
-    <Dialog onCancel={onCancel} nonPortal={true}>
-      <div className="text-center bg-white p-8">
-        Apologies that we do require you to use your own mailbox
-      </div>
-    </Dialog>
-  )
-}
+	return (
+		<Dialog onCancel={onCancel} nonPortal={true}>
+			<div className="text-center bg-white p-8">
+				Apologies that we do require you to use your own mailbox
+			</div>
+		</Dialog>
+	);
+};
 
-export default EmailSender
+export default EmailSender;

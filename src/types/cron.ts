@@ -1,11 +1,11 @@
 export type CronJob = {
-  id: string
-  method: string
-  source: string
-  createdAt: string
-}
+	id: string;
+	method: string;
+	source: string;
+	createdAt: string;
+};
 
 export type Message = {
-  message: string
-  error?: unknown
-}
+	message: string;
+	error?: unknown;
+};

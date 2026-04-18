@@ -1,86 +1,86 @@
-import { useMemo, memo, useCallback } from "react"
-import Link from "next/link"
-import { sortedFooterPages, PageConfig } from "../../config/pages"
-import styles from "./Footer.module.css"
+import Link from "next/link";
+import { memo, useCallback, useMemo } from "react";
+import { type PageConfig, sortedFooterPages } from "../../config/pages";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
-  const renameDisplays = (display: string) => {
-    if (display === "Project Portfolio") {
-      return "All"
-    }
-    return display
-  }
+	const renameDisplays = useCallback((display: string) => {
+		if (display === "Project Portfolio") {
+			return "All";
+		}
+		return display;
+	}, []);
 
-  const renderLinks = useCallback(
-    (footerPage: PageConfig) => (
-      <li key={footerPage.display}>
-        <Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
-      </li>
-    ),
-    [],
-  )
+	const renderLinks = useCallback(
+		(footerPage: PageConfig) => (
+			<li key={footerPage.display}>
+				<Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
+			</li>
+		),
+		[renameDisplays],
+	);
 
-  const renderedLearn = useMemo(() => {
-    return sortedFooterPages
-      .filter(
-        (footerPage) =>
-          !footerPage.path.startsWith("/projects") &&
-          !footerPage.path.startsWith("/experiments"),
-      )
-      .map((footerPage) => renderLinks(footerPage))
-  }, [renderLinks])
+	const renderedLearn = useMemo(() => {
+		return sortedFooterPages
+			.filter(
+				(footerPage) =>
+					!footerPage.path.startsWith("/projects") &&
+					!footerPage.path.startsWith("/experiments"),
+			)
+			.map((footerPage) => renderLinks(footerPage));
+	}, [renderLinks]);
 
-  const renderedProjects = useMemo(() => {
-    return sortedFooterPages
-      .filter((footerPage) => footerPage.path.startsWith("/projects"))
-      .map((footerPage) => renderLinks(footerPage))
-  }, [renderLinks])
+	const renderedProjects = useMemo(() => {
+		return sortedFooterPages
+			.filter((footerPage) => footerPage.path.startsWith("/projects"))
+			.map((footerPage) => renderLinks(footerPage));
+	}, [renderLinks]);
 
-  const renderedExperiments = useMemo(() => {
-    return sortedFooterPages
-      .filter((footerPage) => footerPage.path.startsWith("/experiments"))
-      .map((footerPage) => renderLinks(footerPage))
-  }, [renderLinks])
+	const renderedExperiments = useMemo(() => {
+		return sortedFooterPages
+			.filter((footerPage) => footerPage.path.startsWith("/experiments"))
+			.map((footerPage) => renderLinks(footerPage));
+	}, [renderLinks]);
 
-  return (
-    <footer className={`pt-16 ${styles.container} text-sm`}>
-      <hr className="w-full"></hr>
-      <div
-        className={`flex-col flex justify-center gap-5 px-12 py-8 md:flex-row md:gap-14 ${styles.links}`}
-      >
-        <ul aria-label="Learn">
-          <li>Learn</li>
-          {renderedLearn}
-        </ul>
-        <ul aria-label="Project Portfolio">
-          <li>Project Portfolio</li>
-          {renderedProjects}
-        </ul>
-        <ul aria-label="Experiments">
-          <li>Experiments</li>
-          {renderedExperiments}
-        </ul>
-      </div>
-      <hr className="w-full"></hr>
-      <div className="flex justify-between  p-4">
-        <strong>Walcron 2014-2026 &copy;</strong>
-        <ul className="flex gap-4">
-          <li>
-            <Link
-              href="https://policies.google.com/technologies/cookies"
-              target="_blank"
-            >
-              Privacy
-            </Link>
-          </li>
-          <li>|</li>
-          <li>
-            <Link href="/site-map">Site Map</Link>
-          </li>
-        </ul>
-      </div>
-    </footer>
-  )
-}
+	return (
+		<footer className={`pt-16 ${styles.container} text-sm`}>
+			<hr className="w-full"></hr>
+			<div
+				className={`flex-col flex justify-center gap-5 px-12 py-8 md:flex-row md:gap-14 ${styles.links}`}
+			>
+				<ul aria-label="Learn">
+					<li>Learn</li>
+					{renderedLearn}
+				</ul>
+				<ul aria-label="Project Portfolio">
+					<li>Project Portfolio</li>
+					{renderedProjects}
+				</ul>
+				<ul aria-label="Experiments">
+					<li>Experiments</li>
+					{renderedExperiments}
+				</ul>
+			</div>
+			<hr className="w-full"></hr>
+			<div className="flex justify-between  p-4">
+				<strong>Walcron 2014-2026 &copy;</strong>
+				<ul className="flex gap-4">
+					<li>
+						<Link
+							href="https://policies.google.com/technologies/cookies"
+							target="_blank"
+						>
+							Privacy
+						</Link>
+					</li>
+					<li>|</li>
+					<li>
+						<Link href="/site-map">Site Map</Link>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	);
+};
 
-export default memo(Footer)
+export default memo(Footer);

@@ -1,5 +1,5 @@
-import Orb from "@/components/Animate/Orb"
+import Orb from "@/components/Animate/Orb";
 
 export function SiriLikeOrb() {
-  return <Orb />
+	return <Orb />;
 }

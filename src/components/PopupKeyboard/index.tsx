@@ -1,122 +1,126 @@
-"use client"
+"use client";
 
-import { useCallback, useEffect, useMemo } from "react"
-import Popup from "reactjs-popup"
-import Button from "../Button"
-import styles from "./PopupKeyboard.module.css"
+import { useCallback, useEffect, useMemo } from "react";
+import Popup from "reactjs-popup";
+import Button from "../Button";
+import styles from "./PopupKeyboard.module.css";
 
 export enum KeyboardKeys {
-  LEFT = "ArrowLeft",
-  RIGHT = "ArrowRight",
-  UP = "ArrowUp",
-  DOWN = "ArrowDown",
+	LEFT = "ArrowLeft",
+	RIGHT = "ArrowRight",
+	UP = "ArrowUp",
+	DOWN = "ArrowDown",
 }
 
-const arrowValues = Object.values(KeyboardKeys)
+const arrowValues = Object.values(KeyboardKeys);
 
 type PopupKeyboardType = {
-  buttonText: string
-  onClickCallback: (key: KeyboardKeys) => void
-  enableKeyboardListener?: boolean
-}
+	buttonText: string;
+	onClickCallback: (key: KeyboardKeys) => void;
+	enableKeyboardListener?: boolean;
+};
 
 const preventKeyboardEvent = (e: Event) => {
-  e.preventDefault()
-  return false
-}
+	e.preventDefault();
+	return false;
+};
 
 const PopupKeyboard = ({
-  buttonText,
-  onClickCallback,
-  enableKeyboardListener = false,
+	buttonText,
+	onClickCallback,
+	enableKeyboardListener = false,
 }: PopupKeyboardType) => {
-  const onKeyClick = useCallback(
-    (key: KeyboardKeys) => () => {
-      onClickCallback(key)
-    },
-    [onClickCallback],
-  )
+	const onKeyClick = useCallback(
+		(key: KeyboardKeys) => () => {
+			onClickCallback(key);
+		},
+		[onClickCallback],
+	);
 
-  const buildKeyboardListener = useCallback(() => {
-    return (event: KeyboardEvent) => {
-      const direction = event.key
-      const matchedKey = arrowValues.find(
-        (arrowValue) => arrowValue === direction,
-      )
-      if (matchedKey !== undefined) {
-        queueMicrotask(onKeyClick(matchedKey))
-      }
-    }
-  }, [onKeyClick])
+	const buildKeyboardListener = useCallback(() => {
+		return (event: KeyboardEvent) => {
+			const direction = event.key;
+			const matchedKey = arrowValues.find(
+				(arrowValue) => arrowValue === direction,
+			);
+			if (matchedKey !== undefined) {
+				queueMicrotask(onKeyClick(matchedKey));
+			}
+		};
+	}, [onKeyClick]);
 
-  useEffect(() => {
-    if (enableKeyboardListener) {
-      const keyboardListener = buildKeyboardListener()
-      globalThis.addEventListener("keydown", keyboardListener)
-      globalThis.addEventListener("keydown", preventKeyboardEvent, false)
-      return () => {
-        queueMicrotask(() => {
-          globalThis.removeEventListener("keydown", keyboardListener)
-          globalThis.removeEventListener("keydown", preventKeyboardEvent, false)
-        })
-      }
-    }
-  }, [enableKeyboardListener, buildKeyboardListener])
+	useEffect(() => {
+		if (enableKeyboardListener) {
+			const keyboardListener = buildKeyboardListener();
+			globalThis.addEventListener("keydown", keyboardListener);
+			globalThis.addEventListener("keydown", preventKeyboardEvent, false);
+			return () => {
+				queueMicrotask(() => {
+					globalThis.removeEventListener("keydown", keyboardListener);
+					globalThis.removeEventListener(
+						"keydown",
+						preventKeyboardEvent,
+						false,
+					);
+				});
+			};
+		}
+	}, [enableKeyboardListener, buildKeyboardListener]);
 
-  const drawnKeyboard = useMemo(() => {
-    return (
-      <div className={styles["arrow-BtnContainer"]}>
-        <div>
-          <Button
-            styling={{ small: true, inverted: true }}
-            onClick={onKeyClick(KeyboardKeys.UP)}
-          >
-            &nbsp;↑&nbsp;
-          </Button>
-        </div>
-        <div>
-          <div>
-            <Button
-              styling={{ small: true, inverted: true }}
-              onClick={onKeyClick(KeyboardKeys.LEFT)}
-            >
-              ←
-            </Button>
-          </div>
-          <div>
-            <Button
-              styling={{ small: true, inverted: true }}
-              onClick={onKeyClick(KeyboardKeys.DOWN)}
-            >
-              &nbsp;↓&nbsp;
-            </Button>
-          </div>
-          <div>
-            <Button
-              styling={{ small: true, inverted: true }}
-              onClick={onKeyClick(KeyboardKeys.RIGHT)}
-            >
-              →
-            </Button>
-          </div>
-        </div>
-      </div>
-    )
-  }, [onKeyClick])
+	const drawnKeyboard = useMemo(() => {
+		return (
+			<div className={styles["arrow-BtnContainer"]}>
+				<div>
+					<Button
+						styling={{ small: true, inverted: true }}
+						onClick={onKeyClick(KeyboardKeys.UP)}
+					>
+						&nbsp;↑&nbsp;
+					</Button>
+				</div>
+				<div>
+					<div>
+						<Button
+							styling={{ small: true, inverted: true }}
+							onClick={onKeyClick(KeyboardKeys.LEFT)}
+						>
+							←
+						</Button>
+					</div>
+					<div>
+						<Button
+							styling={{ small: true, inverted: true }}
+							onClick={onKeyClick(KeyboardKeys.DOWN)}
+						>
+							&nbsp;↓&nbsp;
+						</Button>
+					</div>
+					<div>
+						<Button
+							styling={{ small: true, inverted: true }}
+							onClick={onKeyClick(KeyboardKeys.RIGHT)}
+						>
+							→
+						</Button>
+					</div>
+				</div>
+			</div>
+		);
+	}, [onKeyClick]);
 
-  return (
-    <Popup
-      trigger={
-        <button type="button" className={styles.popupBtn}>
-          {buttonText}
-        </button>
-      }
-      position={["right center"]}
-      closeOnDocumentClick={false}
-    >
-      {drawnKeyboard}
-    </Popup>
-  )
-}
+	return (
+		<Popup
+			trigger={
+				<button type="button" className={styles.popupBtn}>
+					{buttonText}
+				</button>
+			}
+			position={["right center"]}
+			closeOnDocumentClick={false}
+		>
+			{drawnKeyboard}
+		</Popup>
+	);
+};
 
-export default PopupKeyboard
+export default PopupKeyboard;

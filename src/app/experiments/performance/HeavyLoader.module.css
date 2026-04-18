@@ -1,5 +1,5 @@
 .container div {
-  width: 100vw;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+	width: 100vw;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
 }
