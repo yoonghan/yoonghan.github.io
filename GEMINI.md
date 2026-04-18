@@ -34,25 +34,9 @@ The project uses a multi-layered testing strategy:
     npm run backstop:approve
     ```
 
-### Linting
-
-To check for linting and formatting errors, run:
-
-```bash
-npm run lint
-```
-
-To automatically fix linting and formatting issues, use:
-
-```bash
-npm run lint:fix
-```
-
 ## Development Conventions
 
 ### Code Style
-
-The project uses ESLint and Prettier to enforce a consistent code style. Configuration can be found in `eslint.config.mjs` and `.prettierrc.json`.
 
 Key code style rules:
 * No semicolons.
@@ -75,7 +59,7 @@ npm run dependency:check
 
 The project has a CI/CD pipeline configured with GitHub Actions. The pipeline includes steps for:
 
-*   Linting and testing
+*   Testing
 *   Building and deploying to Vercel
 *   Generating and deploying a static version to GitHub Pages
 *   Running smoke tests after deployment

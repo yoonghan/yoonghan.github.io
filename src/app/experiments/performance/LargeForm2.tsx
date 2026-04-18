@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { FormEvent, useEffect, useReducer, useState } from "react"
+import { SubmitEvent, useEffect, useReducer, useState } from "react"
 import { ChangeEvent, useCallback, useMemo } from "react"
 import { createContainer } from "react-tracked"
 
@@ -82,7 +81,7 @@ const InputForm = ({
   const [formFilled, setFormFilled] = useState<string>()
 
   const callSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
+    (e: SubmitEvent<HTMLFormElement>) => {
       e.preventDefault()
       const nonEmptyObjects = Object.entries(form).filter(
         ([_, value]) => !isEmpty(value),

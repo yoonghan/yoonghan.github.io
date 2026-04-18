@@ -42,12 +42,6 @@ For test coverage
 npm run test:ci
 ```
 
-For linting and prettifier check
-
-```bash
-npm run lint
-```
-
 For package analysing, do not check-in as it contains alot of security issues.
 
 ```bash

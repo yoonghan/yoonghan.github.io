@@ -10,13 +10,6 @@
     "sharp",
     "snake-game",
     "dotenv-cli",
-    "@typescript-eslint/eslint-plugin",
-    "@next/eslint-plugin-next",
-    "eslint-plugin-react",
-    "eslint-plugin-react-hooks",
-    "eslint-plugin-jsx-a11y",
-    "eslint-plugin-prettier",
-    "eslint-plugin-testing-library",
     "@opentelemetry/exporter-jaeger",
     "@opentelemetry/sdk-trace-node",
     "@opentelemetry/winston-transport"

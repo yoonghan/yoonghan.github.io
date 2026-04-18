@@ -1,5 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
-import React from "react"
 import { render, screen } from "@testing-library/react"
 import { spySearch } from "@/__tests__/mocks/locationMock"
 import Orb from "@/components/Animate/Orb"

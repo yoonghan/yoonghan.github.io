@@ -46,7 +46,6 @@ const Messenger = ({ appKey, cluster }: Props) => {
     return () => {
       disconnect()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const onMessageSend = useCallback(

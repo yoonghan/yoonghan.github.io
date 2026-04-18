@@ -95,7 +95,6 @@ const Lessons = () => {
           behaviours cannot be redefined. If test case runs after it&apos;s used
           hence it cannot be erased.
         </p>
-        {/* prettier-ignore */}
         <pre className={"code"}>{`
  describe( "test", () => {
    it("should one", ()=>{console.log(navigator.share)}) // = undefined 
@@ -110,7 +109,6 @@ const Lessons = () => {
           Jest mocked import for library order is important and must always be
           the first to override the import of the original 3rd party library.
         </p>
-        {/* prettier-ignore */}
         <pre className={"code"}>{`
  import "../__mocked__/pusherMock"; //mock library must be the first.
  import X from "someComponentThatUsesPusher"

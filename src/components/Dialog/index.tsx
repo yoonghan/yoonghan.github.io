@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   createRef,
   forwardRef,
@@ -72,7 +69,7 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
     }, [cancel, isNotModal])
 
     const onContentClick = useCallback(
-      (event: React.MouseEvent<HTMLDivElement>) => {
+      (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
         event.stopPropagation()
       },
       [],
@@ -86,7 +83,6 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
               className={styles.container}
               ref={dialogElem}
               onClick={onDialogClick}
-              onKeyUp={onDialogClick}
             >
               <div className={styles.content} onClick={onContentClick}>
                 {children}

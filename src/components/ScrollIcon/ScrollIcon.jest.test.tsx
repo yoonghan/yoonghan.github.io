@@ -23,9 +23,7 @@ describe("ScrollIcon", () => {
     )
     const scrollIcon = screen.getByTestId("scroll-icon")
     expect(scrollIcon).toHaveClass("scroll icon")
-    // eslint-disable-next-line testing-library/no-node-access
     expect(scrollIcon.parentElement).toHaveClass("container")
-    // eslint-disable-next-line testing-library/no-node-access
     expect(scrollIcon.parentElement).toHaveStyle({ opacity: 1 })
   })
 
@@ -38,7 +36,6 @@ describe("ScrollIcon", () => {
     fireEvent.scroll(parent)
     await waitFor(
       () => {
-        // eslint-disable-next-line testing-library/no-node-access
         expect(scrollIcon.parentElement).not.toHaveStyle({ opacity: 1 })
       },
       { interval: 1000 },
@@ -71,13 +68,11 @@ describe("ScrollIcon", () => {
     const scrollText = screen.getByText("Empty")
     expect(scrollText).toBeInTheDocument()
     expect(scrollText).toHaveClass("scroll text")
-    // eslint-disable-next-line testing-library/no-node-access
     expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
 
     fireEvent.scroll(parent)
     await waitFor(
       () => {
-        // eslint-disable-next-line testing-library/no-node-access
         expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
       },
       { interval: 1000 },
