@@ -21,7 +21,7 @@ describe("FontAwesomeAnimate", () => {
 		);
 
 	function assertAnimate(isAnimated: boolean, animate: SupportedAnimation) {
-		const spinClassName = "fa-" + animate;
+		const spinClassName = `fa-${animate}`;
 		if (isAnimated) {
 			expect(screen.getByRole("img", { hidden: true })).toHaveClass(
 				spinClassName,

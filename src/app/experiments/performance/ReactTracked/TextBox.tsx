@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useSharedState } from "./store";
 
 const TextBox = () => {
@@ -9,8 +7,8 @@ const TextBox = () => {
 	};
 	return (
 		<div>
-			{state["text"]}
-			<input value={state["text"]} onChange={(e) => setText(e.target.value)} />
+			{state.text}
+			<input value={state.text} onChange={(e) => setText(e.target.value)} />
 		</div>
 	);
 };

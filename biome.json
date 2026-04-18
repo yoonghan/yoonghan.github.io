@@ -2,7 +2,8 @@
 	"$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
 	"css": {
 		"parser": {
-			"tailwindDirectives": true
+			"tailwindDirectives": true,
+			"cssModules": true
 		},
 		"linter": {
 			"enabled": true
@@ -21,8 +22,9 @@
 		"includes": [
 			"**",
 			"!!**/crate",
-			"!!**/backstop_data",
 			"!!**/src/__tests__",
+			"!!**/src/app/experiments",
+			"!!**/src/app/projects",
 			"!!**/styles"
 		]
 	},
@@ -33,7 +35,14 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noArrayIndexKey": "off"
+			},
+			"complexity": {
+				"noImportantStyles": "off"
+			}
 		}
 	},
 	"javascript": {

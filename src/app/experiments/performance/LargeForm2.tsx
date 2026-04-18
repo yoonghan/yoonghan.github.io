@@ -94,7 +94,7 @@ const InputForm = ({
 				([_, value]) => !isEmpty(value),
 			);
 			if (nonEmptyObjects.length !== 0) {
-				setFormFilled(nonEmptyObjects.map(([key, value]) => key).join(", "));
+				setFormFilled(nonEmptyObjects.map(([key]) => key).join(", "));
 			} else {
 				setFormFilled(undefined);
 			}
@@ -113,7 +113,7 @@ const InputForm = ({
 				.map((_key, index) => (
 					<InputField
 						id={`field${index}`}
-						key={index}
+						key={`field${index}`}
 						updateMonitor={updateMonitor}
 						dependantField={`field${index + 1}`}
 					/>

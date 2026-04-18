@@ -1,3 +1,11 @@
+.mobile_container ul > li {
+	padding: 0.5rem 2px 0 2px;
+}
+
+.mobile_container ul > li a > div {
+	display: inline-block;
+}
+
 .desktop_container div > a:first-child {
 	padding: 1.5rem 0;
 	display: inline-block;
@@ -5,12 +13,4 @@
 
 .desktop_container ul > li ul > li div {
 	padding: 0.5rem 0;
-}
-
-.mobile_container ul > li {
-	padding: 0.5rem 2px 0 2px;
-}
-
-.mobile_container ul > li a > div {
-	display: inline-block;
 }

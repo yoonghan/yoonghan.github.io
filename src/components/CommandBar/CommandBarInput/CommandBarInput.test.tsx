@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import CommandBarInput from "./CommandBarInput";
@@ -21,7 +21,7 @@ describe("CommandBarInput", () => {
 		onSubmitCallback?: (
 			event: React.FormEvent<HTMLFormElement>,
 			typedInput: string,
-		) => {};
+		) => void;
 		onBlurCallback?: () => void;
 		onFocusCallback?: () => void;
 	}) => {
@@ -56,7 +56,7 @@ describe("CommandBarInput", () => {
 		);
 		const options = screen.getAllByRole("option", { hidden: true });
 		expect(
-			options.filter((option) => option.getAttribute("value") == "help"),
+			options.filter((option) => option.getAttribute("value") === "help"),
 		).toHaveLength(1);
 	});
 

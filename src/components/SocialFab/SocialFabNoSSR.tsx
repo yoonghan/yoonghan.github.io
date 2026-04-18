@@ -17,6 +17,7 @@ const SocialFabNoSSR = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.fabActionButton}>
+				{/* biome-ignore lint/a11y/noSvgWithoutTitle: expected */}
 				<svg className={styles.fabActionButtonIcon}>
 					<use xlinkHref="/img/social/social-sprite.svg#action"></use>
 				</svg>
@@ -29,6 +30,7 @@ const SocialFabNoSSR = () => {
 						target="onnew"
 						href="//www.linkedin.com/in/han-yoong-33755361/"
 					>
+						{/* biome-ignore lint/a11y/noSvgWithoutTitle: expected */}
 						<svg className={styles.fabActionButtonIcon}>
 							<use xlinkHref="/img/social/social-sprite.svg#linkedin"></use>
 						</svg>
@@ -53,6 +55,7 @@ const SocialFabNoSSR = () => {
 						target="onnew"
 						href="//stackoverflow.com/users/3893990/han"
 					>
+						{/* biome-ignore lint/a11y/noSvgWithoutTitle: expected */}
 						<svg className={styles.fabActionButtonIcon}>
 							<use xlinkHref="/img/social/social-sprite.svg#so"></use>
 						</svg>
@@ -65,6 +68,7 @@ const SocialFabNoSSR = () => {
 						target="onnew"
 						href="//www.facebook.com/walcron"
 					>
+						{/* biome-ignore lint/a11y/noSvgWithoutTitle: expected */}
 						<svg className={styles.fabActionButtonIcon}>
 							<use xlinkHref="/img/social/social-sprite.svg#fb"></use>
 						</svg>
@@ -72,11 +76,13 @@ const SocialFabNoSSR = () => {
 				</li>
 				<li className={styles.item}>
 					<button
+						type="button"
 						onClick={onOpenEmail}
 						aria-label="gmail"
 						tabIndex={0}
 						className="cursor-pointer"
 					>
+						{/* biome-ignore lint/a11y/noSvgWithoutTitle: expected */}
 						<svg className={styles.fabActionButtonIcon}>
 							<use xlinkHref="/img/social/social-sprite.svg#gm"></use>
 						</svg>

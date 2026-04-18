@@ -38,6 +38,13 @@
 	background-color: #858b94;
 	border-radius: 50%;
 }
+.container > li > span:first-child {
+	top: 0;
+	position: absolute;
+	bottom: 0;
+	width: 2px;
+	background-color: #858b94;
+}
 .container > li:first-child > span:first-child {
 	top: 5px;
 }
@@ -47,13 +54,6 @@
 .container > li:last-child .icon {
 	background: rgb(25, 128, 25);
 	color: rgb(255, 255, 255);
-}
-.container > li > span:first-child {
-	top: 0;
-	position: absolute;
-	bottom: 0;
-	width: 2px;
-	background-color: #858b94;
 }
 .container > li > span:nth-child(2) {
 	left: 0;

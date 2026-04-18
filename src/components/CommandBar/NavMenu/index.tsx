@@ -1,5 +1,4 @@
 import { usePathname } from "next/navigation";
-import * as React from "react";
 import styles from "./NavMenu.module.css";
 
 const writeLink = (pathname: string | null) => {
@@ -13,7 +12,7 @@ const writeLink = (pathname: string | null) => {
 				</a>
 			) : null;
 		}
-		accumulatedPath += "/" + path;
+		accumulatedPath += `/${path}`;
 		return (
 			<a
 				href={accumulatedPath}

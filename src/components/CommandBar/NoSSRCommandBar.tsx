@@ -12,7 +12,8 @@ const NoSSRCommandBar = () => {
 	const router = useRouter();
 	const currentPath = usePathname();
 	const [suggestedInput, setSuggestedInput] = useState("");
-	const [renderExecutedCommand, setRenderExecutedCommand] = useState(<></>);
+	const [renderExecutedCommand, setRenderExecutedCommand] =
+		useState<React.ReactNode>();
 
 	const elem = document.createElement("div");
 
@@ -30,7 +31,7 @@ const NoSSRCommandBar = () => {
 	}, [elem]);
 
 	const cancelExecutedCommand = () => {
-		setRenderExecutedCommand(<></>);
+		setRenderExecutedCommand(null);
 	};
 
 	const inputCallback = (suggestedInput: string) => {

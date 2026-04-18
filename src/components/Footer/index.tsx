@@ -4,12 +4,12 @@ import { type PageConfig, sortedFooterPages } from "../../config/pages";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
-	const renameDisplays = (display: string) => {
+	const renameDisplays = useCallback((display: string) => {
 		if (display === "Project Portfolio") {
 			return "All";
 		}
 		return display;
-	};
+	}, []);
 
 	const renderLinks = useCallback(
 		(footerPage: PageConfig) => (
@@ -17,7 +17,7 @@ const Footer = () => {
 				<Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
 			</li>
 		),
-		[],
+		[renameDisplays],
 	);
 
 	const renderedLearn = useMemo(() => {

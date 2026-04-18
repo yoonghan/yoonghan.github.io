@@ -118,13 +118,13 @@ export const findPageByPath = (path: string) =>
 	pages.find((page) => page.path === path);
 
 export const findAllChildByPath = (path: string) => {
-	const parentPath = isSubMenu(path) ? "/" + path.split("/")[1] : path;
-	return pages.filter((page) => page.path.startsWith(parentPath + "/"));
+	const parentPath = isSubMenu(path) ? `/${path.split("/")[1]}` : path;
+	return pages.filter((page) => page.path.startsWith(`${parentPath}/`));
 };
 
 export const sortPagesByPath = (pageConfigs: PageConfig[]) => {
 	const pathOrder = ({ order, path }: { order: number; path: string }) => {
-		const isPathRoot = path.split("/").length == 2;
+		const isPathRoot = path.split("/").length === 2;
 		return isPathRoot ? `${order}-${path}` : `99-${order}-${path}`;
 	};
 	return pageConfigs.sort((a: PageConfig, b: PageConfig) => {

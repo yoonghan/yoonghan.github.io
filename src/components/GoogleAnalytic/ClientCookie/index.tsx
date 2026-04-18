@@ -27,6 +27,7 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 	}, []);
 
 	const onCookieReadClicked = useCallback(() => {
+		// biome-ignore lint: Expected
 		document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`;
 		setIsCookieRead(true);
 		acceptGAConsent();
@@ -34,7 +35,7 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 
 	useEffect(() => {
 		function getCookie(cname: string) {
-			const name = cname + "=";
+			const name = `${cname}=`;
 			const decodedCookie = decodeURIComponent(document.cookie);
 			const ca = decodedCookie.split(";");
 			for (const cookie of ca) {
@@ -68,6 +69,7 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 	}, [acceptGAConsent, ga4Id]);
 
 	if (isCookieRead) {
+		// biome-ignore lint/complexity/noUselessFragments: expected
 		return <></>;
 	} else {
 		return (

@@ -145,41 +145,39 @@ function Homepage() {
 								}}
 								imageCaption="Github workflow from Testing to Deployment"
 							>
-								<>
-									In {walcronText} we implement{" "}
-									<Link href="https://docs.github.com/en/actions/writing-workflows">
-										GitHub workflow
-									</Link>{" "}
-									to do our biddings. A full CI/CD consist of:
-									<ul className="mt-4 ml-4 list-disc">
-										<li>
-											<strong>Testing</strong> - ensure safety in modification.[
-											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
-												GitHub Actions
-											</Link>
-											]
-										</li>
-										<li>
-											<strong>Integration</strong> - {"API doesn't break"}. [
-											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
-												Smoke and E2E
-											</Link>
-											]
-										</li>
-										<li>
-											<strong>Quality Gate</strong> - {"Code Quality scans"}. [
-											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/validate-quality.yml">
-												Ensure code quality
-											</Link>
-											]
-										</li>
-										<li>
-											<strong>Release</strong> - Deploys{" "}
-											<em className="text-green-700">ONLY successful</em>{" "}
-											pull-request.
-										</li>
-									</ul>
-								</>
+								In {walcronText} we implement{" "}
+								<Link href="https://docs.github.com/en/actions/writing-workflows">
+									GitHub workflow
+								</Link>{" "}
+								to do our biddings. A full CI/CD consist of:
+								<ul className="mt-4 ml-4 list-disc">
+									<li>
+										<strong>Testing</strong> - ensure safety in modification.[
+										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
+											GitHub Actions
+										</Link>
+										]
+									</li>
+									<li>
+										<strong>Integration</strong> - {"API doesn't break"}. [
+										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
+											Smoke and E2E
+										</Link>
+										]
+									</li>
+									<li>
+										<strong>Quality Gate</strong> - {"Code Quality scans"}. [
+										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/validate-quality.yml">
+											Ensure code quality
+										</Link>
+										]
+									</li>
+									<li>
+										<strong>Release</strong> - Deploys{" "}
+										<em className="text-green-700">ONLY successful</em>{" "}
+										pull-request.
+									</li>
+								</ul>
 							</Figure>
 							<div className="py-24">
 								<Figure
@@ -192,27 +190,25 @@ function Homepage() {
 									imageCaption="Detects before and after User Interface changes"
 									reversed={true}
 								>
-									<>
-										User Interface verification:
-										<ul className="mt-4 ml-4 list-disc">
-											<li>
-												<strong>Layout verification</strong> - Production layout
-												are compared with preview. [
-												<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10380878898">
-													Snapshots
-												</Link>
-												]
-											</li>
-											<li>
-												<strong>Approval workflow</strong> - Integrated approval
-												process. [
-												<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10462109042">
-													Snapshots
-												</Link>
-												]
-											</li>
-										</ul>
-									</>
+									User Interface verification:
+									<ul className="mt-4 ml-4 list-disc">
+										<li>
+											<strong>Layout verification</strong> - Production layout
+											are compared with preview. [
+											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10380878898">
+												Snapshots
+											</Link>
+											]
+										</li>
+										<li>
+											<strong>Approval workflow</strong> - Integrated approval
+											process. [
+											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10462109042">
+												Snapshots
+											</Link>
+											]
+										</li>
+									</ul>
 								</Figure>
 							</div>
 							<Figure
@@ -224,29 +220,31 @@ function Homepage() {
 								}}
 								imageCaption="Code coverage in CodeCov"
 							>
-								<>
-									We up-keep coding standards and security compliance:
-									<ul className="mt-4 ml-4 list-disc">
-										<li>
-											<strong>Coverage</strong> - 99.9% lines of code covered.[
-											<Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
-												CodeCov
-											</Link>
-											]
-										</li>
-										<li>
-											<strong>Compliance</strong> - Security checks. [
-											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
-												OWASP check
-											</Link>{" "}
-											and Dependabots]
-										</li>
-										<li>
-											<strong>Accessibility</strong> - Integrated lighthouse to
-											keep best-practises and accessibility at 100%.
-										</li>
-									</ul>
-								</>
+								We up-keep coding standards and security compliance:
+								<ul className="mt-4 ml-4 list-disc">
+									<li>
+										<strong>Coverage</strong> - 99.9% lines of code covered.[
+										<Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
+											CodeCov
+										</Link>
+										]
+									</li>
+									<li>
+										<strong>Linting</strong> - Coding checks to ensure proper
+										coding styles.
+									</li>
+									<li>
+										<strong>Compliance</strong> - Security checks. [
+										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
+											OWASP check
+										</Link>{" "}
+										and Dependabots]
+									</li>
+									<li>
+										<strong>Accessibility</strong> - Integrated lighthouse to
+										keep best-practises and accessibility at 100%.
+									</li>
+								</ul>
 							</Figure>
 							<div className="max-w-screen-md mx-auto pt-24">
 								<div className="text-center text-lg mb-12 italic">
@@ -262,28 +260,24 @@ function Homepage() {
 									imageCaption="Checkout Tag and Redeploy"
 									reversed={true}
 								>
-									<>
-										Face it, this happens with new experimentations. The
-										workflow is built to handles fallback options:
-										<ul className="list-decimal ml-4 mt-4">
-											<li>
-												Re-run the release tag in action workflow. Every
-												pull-request is tracked via Release [
-												<Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
-													list of releases
-												</Link>
-												] during merge workflow.
-											</li>
-											<li>
-												Revert via <Link href="https://vercel.com">Vercel</Link>
-												, but not applicable to GitHub Pages. Useful for API
-												break changes.
-											</li>
-											<li>
-												A guaranteed revert process is less than 10minutes.
-											</li>
-										</ul>
-									</>
+									Face it, this happens with new experimentations. The workflow
+									is built to handles fallback options:
+									<ul className="list-decimal ml-4 mt-4">
+										<li>
+											Re-run the release tag in action workflow. Every
+											pull-request is tracked via Release [
+											<Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
+												list of releases
+											</Link>
+											] during merge workflow.
+										</li>
+										<li>
+											Revert via <Link href="https://vercel.com">Vercel</Link>,
+											but not applicable to GitHub Pages. Useful for API break
+											changes.
+										</li>
+										<li>A guaranteed revert process is less than 10minutes.</li>
+									</ul>
 								</Figure>
 							</div>
 						</div>
@@ -317,7 +311,7 @@ function Homepage() {
 							This site can also be browsed with keyboard and text-readers.
 						</FontAwesomeAnimate>
 						<p className="pt-8">
-							We are going now commited with <strong>Web Accessibility</strong>;
+							We are going now commited with <strong>Web Accessibility</strong>,
 							eventhough we are still in the learning phase. The best reliance
 							is to run periodically test with{" "}
 							<Link

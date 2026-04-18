@@ -50,6 +50,12 @@ npm install @next/bundle-analyzer
 npx next build
 ```
 
+For linting and prettifier check
+
+```bash
+npm run lint
+```
+
 For BackstopJS - regression for view and approve website design UI
 **Note**: that browser executes differently in OS, especially font's. In this case use the approved generated backstopJS snapshots directly from the OS/Docker container.
 

@@ -181,10 +181,6 @@ describe("Video", () => {
 
 			expect(video).toHaveAttribute("preload", "none");
 		});
-
-		it("can defaults as auto", () => {
-			const { video } = renderComponent({});
-		});
 	});
 
 	it("should work but without functionality if ref is not ready", async () => {

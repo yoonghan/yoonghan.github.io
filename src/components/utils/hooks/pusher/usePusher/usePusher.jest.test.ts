@@ -10,7 +10,7 @@ import { usePusher } from ".";
 jest.mock("@opentelemetry/api", () => ({
 	trace: {
 		getTracer: jest.fn(() => ({
-			startActiveSpan: jest.fn((name, fn) => {
+			startActiveSpan: jest.fn((_name, fn) => {
 				if (typeof fn === "function") {
 					return fn({ end: jest.fn(), setAttributes: jest.fn() });
 				}
@@ -164,7 +164,7 @@ describe("usePusher", () => {
 				EnumConnectionStatus.Disconnected,
 			);
 			expect(result.current.isConnected()).toBe(false);
-			expect(debugEventFn).toHaveBeenCalledWith("connection:Disconnected");
+			expect(debugEventFn).toHaveBeenCalledWith("connection: Disconnected");
 			spy.mockClear();
 		});
 

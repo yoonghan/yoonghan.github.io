@@ -33,13 +33,6 @@
 	border-radius: 0 3px 3px 0;
 }
 
-.btnsbar-item.is-active a {
-	font-weight: bold;
-
-	background: var(--button) !important;
-	color: var(--button-bg) !important;
-}
-
 .btnsbar-item a {
 	color: var(--link);
 	display: block;
@@ -51,6 +44,13 @@
 
 .btnsbar-item a:hover {
 	color: #000;
+}
+
+.btnsbar-item.is-active a {
+	font-weight: bold;
+
+	background: var(--button) !important;
+	color: var(--button-bg) !important;
 }
 
 .with-indicator {

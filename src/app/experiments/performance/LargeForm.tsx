@@ -1,12 +1,11 @@
 import React, {
 	type ChangeEvent,
-	type FormEvent,
 	memo,
+	type SubmitEvent,
 	useCallback,
 	useEffect,
 	useMemo,
 	useReducer,
-	useRef,
 	useState,
 } from "react";
 
@@ -80,13 +79,13 @@ const InputForm = ({
 	const [formFilled, setFormFilled] = useState<string>();
 
 	const callSubmit = useCallback(
-		(e: FormEvent<HTMLFormElement>) => {
+		(e: SubmitEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			const nonEmptyObjects = Object.entries(form).filter(
 				([_, value]) => !isEmpty(value),
 			);
 			if (nonEmptyObjects.length !== 0) {
-				setFormFilled(nonEmptyObjects.map(([key, value]) => key).join(", "));
+				setFormFilled(nonEmptyObjects.map(([key]) => key).join(", "));
 			} else {
 				setFormFilled(undefined);
 			}

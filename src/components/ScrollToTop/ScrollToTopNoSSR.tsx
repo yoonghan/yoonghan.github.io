@@ -35,6 +35,7 @@ const ScrollToTopNoSSR = () => {
 
 	return (
 		<button
+			type="button"
 			data-testid="scroll-to-top"
 			onClick={clickScrollUp}
 			onKeyUp={clickScrollUp}
