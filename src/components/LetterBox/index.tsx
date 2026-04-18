@@ -1,62 +1,62 @@
-"use client"
+"use client";
 
-import { useCallback, useState } from "react"
-import Button from "../Button"
-import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
-import EmailSender from "./EmailSender"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback, useState } from "react";
+import Button from "../Button";
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation";
+import EmailSender from "./EmailSender";
 
-export const email = "walcoor_perati_on@gm_ail.com".replaceAll('_', "")
+export const email = "walcoor_perati_on@gm_ail.com".replaceAll("_", "");
 
 const LetterBox = () => {
-  const [name, setName] = useState("")
-  const confirm = useDialogCreation(EmailSender)
+	const [name, setName] = useState("");
+	const confirm = useDialogCreation(EmailSender);
 
-  const onSubmitPressed = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    onSendButtonClick()
-  }
+	const onSubmitPressed = (event: React.SubmitEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		onSendButtonClick();
+	};
 
-  const onSendButtonClick = useCallback(() => {
-    confirm({
-      writeFrom: name.trim(),
-      writeTo: email,
-      onCancel: () => {
-        setName("")
-      },
-    })
-  }, [confirm, name])
+	const onSendButtonClick = useCallback(() => {
+		confirm({
+			writeFrom: name.trim(),
+			writeTo: email,
+			onCancel: () => {
+				setName("");
+			},
+		});
+	}, [confirm, name]);
 
-  return (
-    <aside className="text-center max-w-screen-sm mx-auto">
-      <div className="text-2xl pb-4 font-bold">
-        Contact Us <FontAwesomeIcon icon={faEnvelope} className="pr-2" />
-      </div>
-      <div>
-        If you are interested to talk to us, leave us your contact. Let us reach
-        you instead.
-        <form
-          onSubmit={onSubmitPressed}
-          className="flex flex-col gap-2 p-4 w-full max-w-screen-sm mx-auto md:flex-row"
-        >
-          <input
-            type="text"
-            autoComplete="off"
-            maxLength={200}
-            placeholder={"Honorific and name"}
-            onChange={(event) => setName(event.target.value)}
-            value={name}
-            className="w-full"
-          />
-          <Button>
-            <FontAwesomeIcon icon={faEnvelope} className="pr-2" />
-            Write To Us
-          </Button>
-        </form>
-      </div>
-    </aside>
-  )
-}
+	return (
+		<aside className="text-center max-w-screen-sm mx-auto">
+			<div className="text-2xl pb-4 font-bold">
+				Contact Us <FontAwesomeIcon icon={faEnvelope} className="pr-2" />
+			</div>
+			<div>
+				If you are interested to talk to us, leave us your contact. Let us reach
+				you instead.
+				<form
+					onSubmit={onSubmitPressed}
+					className="flex flex-col gap-2 p-4 w-full max-w-screen-sm mx-auto md:flex-row"
+				>
+					<input
+						type="text"
+						autoComplete="off"
+						maxLength={200}
+						placeholder={"Honorific and name"}
+						onChange={(event) => setName(event.target.value)}
+						value={name}
+						className="w-full"
+					/>
+					<Button>
+						<FontAwesomeIcon icon={faEnvelope} className="pr-2" />
+						Write To Us
+					</Button>
+				</form>
+			</div>
+		</aside>
+	);
+};
 
-export default LetterBox
+export default LetterBox;

@@ -5,62 +5,62 @@
 
 /*https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements#specifying_a_uniform_font_size_for_h1*/
 h1 {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 body {
-  min-width: 320px;
+	min-width: 320px;
 }
 
 input,
 textarea {
-  border: 1px solid #6b7280;
+	border: 1px solid #6b7280;
 }
 
 input[type="text"],
 textarea {
-  padding: 0.5rem;
+	padding: 0.5rem;
 }
 
 header {
-  z-index: 100;
-  position: sticky;
+	z-index: 100;
+	position: sticky;
 }
 
 .alert {
-  position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
+	position: relative;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
 }
 
 .alert.danger {
-  color: var(--alert-color);
-  background-color: var(--alert-bg-color);
-  border-color: var(--alert-border-color);
+	color: var(--alert-color);
+	background-color: var(--alert-bg-color);
+	border-color: var(--alert-border-color);
 }
 
 .code {
-  color: var(--code);
-  font-style: italic;
-  overflow: scroll;
+	color: var(--code);
+	font-style: italic;
+	overflow: scroll;
 }
 
 .walcron-container {
-  padding-bottom: 5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
+	padding-bottom: 5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .walcron-container h1 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 }
 
 .comment {
-  color: var(--comment);
+	color: var(--comment);
 }

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import PopupKeyboard from "@/components/PopupKeyboard"
+import PopupKeyboard from "@/components/PopupKeyboard";
 
-const emptyFn = () => {}
+const emptyFn = () => {};
 
 export const ArrowKeyboard = () => (
-  <PopupKeyboard onClickCallback={emptyFn} buttonText={"Show Me"} />
-)
+	<PopupKeyboard onClickCallback={emptyFn} buttonText={"Show Me"} />
+);

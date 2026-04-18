@@ -1,7 +1,7 @@
-import { pusherAuthEndpoint } from "./config"
+import { pusherAuthEndpoint } from "./config";
 
 describe("Config", () => {
-  it("should have the correct pusher endpoint", () => {
-    expect(pusherAuthEndpoint).toBe("/api/pusherauth")
-  })
-})
+	it("should have the correct pusher endpoint", () => {
+		expect(pusherAuthEndpoint).toBe("/api/pusherauth");
+	});
+});

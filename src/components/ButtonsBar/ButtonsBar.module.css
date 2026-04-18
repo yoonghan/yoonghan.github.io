@@ -1,78 +1,78 @@
 .btnsbar {
-  list-style: none;
-  margin: 0 auto;
-  max-width: 720px;
-  padding: 0;
-  width: 100%;
-  display: flex;
+	list-style: none;
+	margin: 0 auto;
+	max-width: 720px;
+	padding: 0;
+	width: 100%;
+	display: flex;
 }
 
 .btnsbar-item {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.05);
-  display: block;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
-  user-select: none;
-  cursor: pointer;
-  border: 1px solid;
+	color: #2563eb;
+	background: rgba(37, 99, 235, 0.05);
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+	user-select: none;
+	cursor: pointer;
+	border: 1px solid;
 }
 
 .btnsbar-item:not(:first-child) {
-  border-left: none;
+	border-left: none;
 }
 
 .btnsbar-item:first-child {
-  border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
 }
 
 .btnsbar-item:last-child {
-  border-radius: 0 3px 3px 0;
-}
-
-.btnsbar-item.is-active a {
-  font-weight: bold;
-
-  background: var(--button) !important;
-  color: var(--button-bg) !important;
+	border-radius: 0 3px 3px 0;
 }
 
 .btnsbar-item a {
-  color: var(--link);
-  display: block;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-decoration: none;
-  cursor: pointer;
+	color: var(--link);
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .btnsbar-item a:hover {
-  color: #000;
+	color: #000;
+}
+
+.btnsbar-item.is-active a {
+	font-weight: bold;
+
+	background: var(--button) !important;
+	color: var(--button-bg) !important;
 }
 
 .with-indicator {
-  position: relative;
-  z-index: 0;
+	position: relative;
+	z-index: 0;
 }
 
 .with-indicator .btnsbar-item:last-child:after {
-  content: "";
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  transition: left 1s ease;
-  border-radius: 3px;
-  background: #fff;
-  top: 0px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
+	content: "";
+	display: block;
+	position: absolute;
+	pointer-events: none;
+	transition: left 1s ease;
+	border-radius: 3px;
+	background: #fff;
+	top: 0px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
 }
 
 .btnsbar:after {
-  clear: both;
+	clear: both;
 }

@@ -52,7 +52,7 @@ npm run lint:fix
 
 ### Code Style
 
-The project uses ESLint and Prettier to enforce a consistent code style. Configuration can be found in `eslint.config.mjs` and `.prettierrc.json`.
+The project uses Biome to enforce a consistent code style. Configuration can be found in `biome.json`.
 
 Key code style rules:
 * No semicolons.

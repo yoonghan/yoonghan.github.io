@@ -1,48 +1,48 @@
-import { render, screen } from "@testing-library/react"
-import { mockRandom } from "@/__tests__/mocks/snakeWasmMock"
-import GameSnake from "./page"
-import userEvent from "@testing-library/user-event"
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { mockRandom } from "@/__tests__/mocks/snakeWasmMock";
+import GameSnake from "./page";
 
 describe("Snake Game", () => {
-  const renderComponent = () => {
-    render(<GameSnake />)
-  }
+	const renderComponent = () => {
+		render(<GameSnake />);
+	};
 
-  it("should render the page and user can play", async () => {
-    renderComponent()
-    expect(screen.getByText("Snake Game")).toBeInTheDocument()
-    expect(
-      await screen.findByRole("button", { name: "Play" }),
-    ).toBeInTheDocument()
-    await userEvent.click(screen.getByRole("button", { name: "Play" }))
-    expect(screen.getByLabelText("World Dimension:")).toBeDisabled()
-  })
+	it("should render the page and user can play", async () => {
+		renderComponent();
+		expect(screen.getByText("Snake Game")).toBeInTheDocument();
+		expect(
+			await screen.findByRole("button", { name: "Play" }),
+		).toBeInTheDocument();
+		await userEvent.click(screen.getByRole("button", { name: "Play" }));
+		expect(screen.getByLabelText("World Dimension:")).toBeDisabled();
+	});
 
-  it("should be able to change form settings", async () => {
-    renderComponent()
-    expect(screen.getByText("Snake Game")).toBeInTheDocument()
-    expect(
-      await screen.findByRole("button", { name: "Play" }),
-    ).toBeInTheDocument()
-    await userEvent.type(screen.getByLabelText("Snake Size:"), "4", {
-      initialSelectionStart: 1,
-      initialSelectionEnd: 2,
-    })
-    expect(screen.getByLabelText("Snake Size:")).toHaveValue(14)
-  })
+	it("should be able to change form settings", async () => {
+		renderComponent();
+		expect(screen.getByText("Snake Game")).toBeInTheDocument();
+		expect(
+			await screen.findByRole("button", { name: "Play" }),
+		).toBeInTheDocument();
+		await userEvent.type(screen.getByLabelText("Snake Size:"), "4", {
+			initialSelectionStart: 1,
+			initialSelectionEnd: 2,
+		});
+		expect(screen.getByLabelText("Snake Size:")).toHaveValue(14);
+	});
 
-  it("should randomize once board dimension is changed", async () => {
-    renderComponent()
-    expect(mockRandom).toHaveBeenCalled()
-    expect(screen.getByText("Snake Game")).toBeInTheDocument()
-    expect(
-      await screen.findByRole("button", { name: "Play" }),
-    ).toBeInTheDocument()
-    await userEvent.type(screen.getByLabelText("World Dimension:"), "2", {
-      initialSelectionStart: 1,
-      initialSelectionEnd: 2,
-    })
-    expect(screen.getByLabelText("World Dimension:")).toHaveValue(12)
-    expect(mockRandom).toHaveBeenCalledTimes(7)
-  })
-})
+	it("should randomize once board dimension is changed", async () => {
+		renderComponent();
+		expect(mockRandom).toHaveBeenCalled();
+		expect(screen.getByText("Snake Game")).toBeInTheDocument();
+		expect(
+			await screen.findByRole("button", { name: "Play" }),
+		).toBeInTheDocument();
+		await userEvent.type(screen.getByLabelText("World Dimension:"), "2", {
+			initialSelectionStart: 1,
+			initialSelectionEnd: 2,
+		});
+		expect(screen.getByLabelText("World Dimension:")).toHaveValue(12);
+		expect(mockRandom).toHaveBeenCalledTimes(7);
+	});
+});

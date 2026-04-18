@@ -1,71 +1,86 @@
 .container {
-  padding: 0.5rem 2.5rem;
-  position: relative;
-  color: var(--button);
-  background: var(--button-bg);
-  transition-property: color, background;
-  transition-duration: 0.15s;
-  transition-timing-function: ease-in-out;
-  text-align: center;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  border: 1px solid;
-  margin: 0 1px 1px 0;
-  user-select: none;
-  white-space: nowrap;
-  box-shadow: 0 2px 2px 0 rgba(22, 22, 22, 0.14),
-    0 1px 5px 0 rgba(22, 22, 22, 0.12), 0 3px 1px -2px rgba(22, 22, 22, 0.2);
+	padding: 0.5rem 2.5rem;
+	position: relative;
+	color: var(--button);
+	background: var(--button-bg);
+	transition-property: color, background;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	text-align: center;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	border: 1px solid;
+	margin: 0 1px 1px 0;
+	user-select: none;
+	white-space: nowrap;
+	box-shadow:
+		0 2px 2px 0 rgba(22, 22, 22, 0.14),
+		0 1px 5px 0 rgba(22, 22, 22, 0.12),
+		0 3px 1px -2px rgba(22, 22, 22, 0.2);
 }
+
 .container:hover {
-  background: var(--button);
-  color: var(--button-bg);
+	background: var(--button);
+	color: var(--button-bg);
 }
+
 .container:active {
-  margin: 1px 0 0 1px;
+	margin: 1px 0 0 1px;
 }
+
 .container.small {
-  padding: 0.5rem;
-  font-size: 0.7rem;
+	padding: 0.5rem;
+	font-size: 0.7rem;
 }
+
 .container.invert {
-  background: var(--button-bg);
-  color: var(--button);
+	background: var(--button-bg);
+	color: var(--button);
 }
+
 .container.invert:hover {
-  color: var(--button-bg);
-  background: var(--button);
+	color: var(--button-bg);
+	background: var(--button);
 }
+
 .container.orange {
-  background: var(--button-orange-bg);
-  color: var(--button-orange);
-  border-color: var(--button-orange-bg);
+	background: var(--button-orange-bg);
+	color: var(--button-orange);
+	border-color: var(--button-orange-bg);
 }
+
 .container.orange:hover {
-  background: var(--button-orange);
-  color: var(--button-orange-bg);
+	background: var(--button-orange);
+	color: var(--button-orange-bg);
 }
+
 .container.grey {
-  background: var(--button-grey-bg);
-  color: var(--button-grey);
-  border-color: var(--button-grey-bg);
+	background: var(--button-grey-bg);
+	color: var(--button-grey);
+	border-color: var(--button-grey-bg);
 }
+
 .container.grey:hover {
-  background: var(--button-grey);
-  color: var(--button-grey-bg);
+	background: var(--button-grey);
+	color: var(--button-grey-bg);
 }
+
 .container.blue {
-  background: var(--button-blue-bg);
-  color: var(--button-blue);
-  border-color: var(--button-blue-bg);
+	background: var(--button-blue-bg);
+	color: var(--button-blue);
+	border-color: var(--button-blue-bg);
 }
+
 .container.blue:hover {
-  background: var(--button-blue);
-  color: var(--button-blue-bg);
+	background: var(--button-blue);
+	color: var(--button-blue-bg);
 }
+
 .container:disabled {
-  background-color: var(--button-bg-disabled) !important;
-  color: var(--button-disabled) !important;
+	background-color: var(--button-bg-disabled) !important;
+	color: var(--button-disabled) !important;
 }
+
 a.container {
-  display: inline-block;
+	display: inline-block;
 }

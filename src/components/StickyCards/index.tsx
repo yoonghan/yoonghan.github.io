@@ -1,58 +1,59 @@
-import { ScrollableCard } from "@yoonghan/walcron-microfrontend-shared"
-import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
-import styles from "./scrollable.module.css"
-import { ReactNode } from "react"
-import Link from "../Link"
-import Image from "next/image"
+import { ScrollableCard } from "@yoonghan/walcron-microfrontend-shared";
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css";
+import Image from "next/image";
+import type { ReactNode } from "react";
+import Link from "../Link";
+import styles from "./scrollable.module.css";
 
 interface Content {
-  imageSrc?: string
-  alt?: string
-  label: string
-  className: string
-  text?: ReactNode
-  href?: string
+	imageSrc?: string;
+	alt?: string;
+	label: string;
+	className: string;
+	text?: ReactNode;
+	href?: string;
 }
 
 function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
-  return (
-    <ScrollableCard
-      isReversed={true}
-      model={contents.map(
-        ({ imageSrc, className, label, text, href, alt }) => ({
-          content: (
-            <div className={className}>
-              {imageSrc && (
-                <img src={imageSrc} height={50} width={50} alt={alt} />
-              )}
-              <div className="text-4xl pb-4">{label}</div>
-              {text && <div className="pb-8">{text}</div>}
-              {href && (
-                <Link
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-black"
-                  prefetch={false}
-                >
-                  View{" "}
-                  <Image
-                    alt="Arrow icon"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' class='w-3 inline'%3E%3Cpath d='M15.5 8C15.5 8.29 15.38 8.56 15.16 8.75L7.16 15.75L5.84 14.24L11.84 8.99H0.5V6.99H11.84L5.84 1.76L7.16 0.25L15.16 7.25C15.38 7.44 15.5 7.71 15.5 8Z' data-type='fill'/%3E%3C/svg%3E"
-                    width={12}
-                    height={12}
-                    className="inline"
-                  />
-                </Link>
-              )}
-            </div>
-          ),
-          id: label,
-        }),
-      )}
-      className={styles.container}
-    ></ScrollableCard>
-  )
+	return (
+		<ScrollableCard
+			isReversed={true}
+			model={contents.map(
+				({ imageSrc, className, label, text, href, alt }) => ({
+					content: (
+						<div className={className}>
+							{imageSrc && (
+								// biome-ignore lint: expected
+								<img src={imageSrc} height={50} width={50} alt={alt} />
+							)}
+							<div className="text-4xl pb-4">{label}</div>
+							{text && <div className="pb-8">{text}</div>}
+							{href && (
+								<Link
+									href={href}
+									target="_blank"
+									rel="noreferrer"
+									className="text-black"
+									prefetch={false}
+								>
+									View{" "}
+									<Image
+										alt="Arrow icon"
+										src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' class='w-3 inline'%3E%3Cpath d='M15.5 8C15.5 8.29 15.38 8.56 15.16 8.75L7.16 15.75L5.84 14.24L11.84 8.99H0.5V6.99H11.84L5.84 1.76L7.16 0.25L15.16 7.25C15.38 7.44 15.5 7.71 15.5 8Z' data-type='fill'/%3E%3C/svg%3E"
+										width={12}
+										height={12}
+										className="inline"
+									/>
+								</Link>
+							)}
+						</div>
+					),
+					id: label,
+				}),
+			)}
+			className={styles.container}
+		></ScrollableCard>
+	);
 }
 
-export default StickyCards
+export default StickyCards;

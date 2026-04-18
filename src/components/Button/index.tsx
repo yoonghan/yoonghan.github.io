@@ -1,123 +1,123 @@
-import { ButtonHTMLAttributes, ReactNode, useMemo } from "react"
-import Link from "next/link"
-import { isExternalLink } from "./isExternalLink"
-import styles from "./Button.module.css"
+import Link from "next/link";
+import { type ButtonHTMLAttributes, type ReactNode, useMemo } from "react";
+import styles from "./Button.module.css";
+import { isExternalLink } from "./isExternalLink";
 
 interface ButtonProps {
-  href?: string
-  target?: string
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  color?: "orange" | "white" | "grey" | "blue"
-  styling?: {
-    small?: boolean
-    inverted?: boolean
-    className?: string
-  }
-  children: ReactNode
-  additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
+	href?: string;
+	target?: string;
+	onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+	color?: "orange" | "white" | "grey" | "blue";
+	styling?: {
+		small?: boolean;
+		inverted?: boolean;
+		className?: string;
+	};
+	children: ReactNode;
+	additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
 }
 
 const ClickableButton = ({
-  onClick,
-  children,
-  definedClass,
-  additionalProps,
+	onClick,
+	children,
+	definedClass,
+	additionalProps,
 }: {
-  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  children: ReactNode
-  definedClass: string
-  additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
+	onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+	children: ReactNode;
+	definedClass: string;
+	additionalProps?: Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
 }) => (
-  <button
-    className={definedClass}
-    onClick={onClick}
-    type="button"
-    {...additionalProps}
-  >
-    {children}
-  </button>
-)
+	<button
+		className={definedClass}
+		onClick={onClick}
+		type="button"
+		{...additionalProps}
+	>
+		{children}
+	</button>
+);
 
 const LinkButton = ({
-  href,
-  target,
-  children,
-  definedClass,
+	href,
+	target,
+	children,
+	definedClass,
 }: {
-  href: string
-  target?: string
-  children: ReactNode
-  definedClass: string
+	href: string;
+	target?: string;
+	children: ReactNode;
+	definedClass: string;
 }) => {
-  if (isExternalLink(href)) {
-    return (
-      <a
-        href={href}
-        target={target ?? "_self"}
-        rel="external"
-        className={definedClass}
-      >
-        <span>{children}</span>
-      </a>
-    )
-  } else {
-    return (
-      <Link href={href} className={definedClass}>
-        <span>{children}</span>
-      </Link>
-    )
-  }
-}
+	if (isExternalLink(href)) {
+		return (
+			<a
+				href={href}
+				target={target ?? "_self"}
+				rel="external"
+				className={definedClass}
+			>
+				<span>{children}</span>
+			</a>
+		);
+	} else {
+		return (
+			<Link href={href} className={definedClass}>
+				<span>{children}</span>
+			</Link>
+		);
+	}
+};
 
 const Button = ({
-  href,
-  children,
-  color,
-  onClick,
-  target,
-  styling,
-  additionalProps,
+	href,
+	children,
+	color,
+	onClick,
+	target,
+	styling,
+	additionalProps,
 }: ButtonProps) => {
-  const definedClass = useMemo(() => {
-    let style = styles.container
-    if (styling?.className) {
-      style += ` ${styling.className}`
-    }
-    if (styling?.small) {
-      style += " " + styles.small
-    }
-    if (styling?.inverted) {
-      style += " " + styles.invert
-    }
-    if (color) {
-      style += " " + styles[color]
-    }
-    return style
-  }, [styling, color])
+	const definedClass = useMemo(() => {
+		let style = styles.container;
+		if (styling?.className) {
+			style += ` ${styling.className}`;
+		}
+		if (styling?.small) {
+			style += ` ${styles.small}`;
+		}
+		if (styling?.inverted) {
+			style += ` ${styles.invert}`;
+		}
+		if (color) {
+			style += ` ${styles[color]}`;
+		}
+		return style;
+	}, [styling, color]);
 
-  if (onClick) {
-    return (
-      <ClickableButton
-        onClick={onClick}
-        definedClass={definedClass}
-        additionalProps={additionalProps}
-      >
-        {children}
-      </ClickableButton>
-    )
-  } else if (href) {
-    return (
-      <LinkButton href={href} target={target} definedClass={definedClass}>
-        {children}
-      </LinkButton>
-    )
-  } else {
-    return (
-      <button type="submit" className={definedClass} {...additionalProps}>
-        {children}
-      </button>
-    )
-  }
-}
+	if (onClick) {
+		return (
+			<ClickableButton
+				onClick={onClick}
+				definedClass={definedClass}
+				additionalProps={additionalProps}
+			>
+				{children}
+			</ClickableButton>
+		);
+	} else if (href) {
+		return (
+			<LinkButton href={href} target={target} definedClass={definedClass}>
+				{children}
+			</LinkButton>
+		);
+	} else {
+		return (
+			<button type="submit" className={definedClass} {...additionalProps}>
+				{children}
+			</button>
+		);
+	}
+};
 
-export default Button
+export default Button;
