@@ -1,13 +1,13 @@
 .circle {
-  border: 1px solid;
-  transition: width 0.5s;
-  height: 10vh;
-  opacity: 0.5;
-  margin-top: -1px;
-  margin-left: auto;
-  background-color: #ff8400;
+	border: 1px solid;
+	transition: width 0.5s;
+	height: 10vh;
+	opacity: 0.5;
+	margin-top: -1px;
+	margin-left: auto;
+	background-color: #ff8400;
 }
 
 .animate-none > .circle {
-  transition: none;
+	transition: none;
 }

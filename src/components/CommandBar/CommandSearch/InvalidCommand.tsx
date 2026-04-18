@@ -1,12 +1,12 @@
 interface Props {
-  invalidCommand: string
+	invalidCommand: string;
 }
 
 const InvalidCommand = ({ invalidCommand }: Props) => {
-  return (
-    <div className="error">
-      Msg: {invalidCommand}
-      <style>{`
+	return (
+		<div className="error">
+			Msg: {invalidCommand}
+			<style>{`
         .error {
           font-family: Inconsolata;
           font-size: #f90101;
@@ -16,8 +16,8 @@ const InvalidCommand = ({ invalidCommand }: Props) => {
           left: 0;
         }
       `}</style>
-    </div>
-  )
-}
+		</div>
+	);
+};
 
-export default InvalidCommand
+export default InvalidCommand;

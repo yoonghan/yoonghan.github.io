@@ -1,6 +1,6 @@
-import { createContext } from "react"
+import { createContext } from "react";
 
 export const GameContext = createContext<{
-  isGameStarted?: boolean
-  setGameStarted?: (isStarted: boolean) => void
-}>({})
+	isGameStarted?: boolean;
+	setGameStarted?: (isStarted: boolean) => void;
+}>({});

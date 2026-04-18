@@ -1,33 +1,33 @@
 .container {
-  padding: 1rem;
+	padding: 1rem;
 }
 
 .container .configuration {
-  display: flex;
-  gap: 0.5rem;
+	display: flex;
+	gap: 0.5rem;
 }
 
 .container .contoller {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 20px;
-  padding: 1rem;
-  border: 1px solid;
-  border-radius: 3px;
-  max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-bottom: 20px;
+	padding: 1rem;
+	border: 1px solid;
+	border-radius: 3px;
+	max-width: 640px;
 }
 
 .container .scoreBoard {
-  display: flex;
-  gap: 1rem;
+	display: flex;
+	gap: 1rem;
 }
 
 .container .gameBoard {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .container .keyboard {
-  padding-bottom: 2rem;
+	padding-bottom: 2rem;
 }

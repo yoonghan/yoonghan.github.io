@@ -1,33 +1,33 @@
-import Table from "@/components/Table"
-import { AvailableInput } from "../CommandSearch/CommandSearch"
-import { ReactNode } from "react"
+import type { ReactNode } from "react";
+import Table from "@/components/Table";
+import { AvailableInput } from "../CommandSearch/CommandSearch";
 
 interface Props {
-  updateSelectedInput: (input: string) => void
+	updateSelectedInput: (input: string) => void;
 }
 
 const HelpContent = ({ updateSelectedInput }: Props) => {
-  const onClick = (input: Record<string, ReactNode>) => {
-    updateSelectedInput(input["Command"] as string)
-  }
+	const onClick = (input: Record<string, ReactNode>) => {
+		updateSelectedInput(input["Command"] as string);
+	};
 
-  const listsOfCommands = Object.keys(AvailableInput)
-    .filter((input) => input !== "help")
-    .map((input) => ({
-      Command: input,
-      Description: AvailableInput[input].description,
-    }))
+	const listsOfCommands = Object.keys(AvailableInput)
+		.filter((input) => input !== "help")
+		.map((input) => ({
+			Command: input,
+			Description: AvailableInput[input].description,
+		}));
 
-  return (
-    <div className="p-8 bg-white drop-shadow-md">
-      <h4>Help</h4>
-      <Table
-        headers={["Command", "Description"]}
-        list={listsOfCommands}
-        onClick={onClick}
-      />
-    </div>
-  )
-}
+	return (
+		<div className="p-8 bg-white drop-shadow-md">
+			<h4>Help</h4>
+			<Table
+				headers={["Command", "Description"]}
+				list={listsOfCommands}
+				onClick={onClick}
+			/>
+		</div>
+	);
+};
 
-export default HelpContent
+export default HelpContent;

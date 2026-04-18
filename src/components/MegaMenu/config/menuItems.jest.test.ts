@@ -1,37 +1,37 @@
-import menuItems from "./menuItems"
+import menuItems from "./menuItems";
 
 describe("menu items", () => {
-  it("should contain list of menus", () => {
-    expect(menuItems).toStrictEqual([
-      { label: "About Us", url: "/about" },
-      { label: "History", url: "/history" },
-      {
-        items: [
-          { label: "Azure Integration", url: "/projects/azure" },
-          { label: "Microfrontend", url: "/projects/microfrontend" },
-          { label: "Web Real-Time Communication", url: "/projects/webrtc" },
-          { label: "Chat Messenger", url: "/projects/messenger" },
-          { label: "Snake Game", url: "/projects/game-snake" },
-          { label: "Lessons", url: "/projects/lessons" },
-          { label: "Certifications", url: "/projects/certifications" },
-          { label: "Checklist", url: "/projects/checklist" },
-          { label: "No Javascript", url: "/projects/javascript-free" },
-        ],
-        label: "Project Portfolio",
-        url: "/projects",
-      },
-      {
-        items: [
-          { label: "Performance", url: "/experiments/performance" },
-          {
-            label: "Accessibility (WCAG)",
-            url: "/experiments/aria",
-          },
-          { label: "Storybook", url: "/experiments/storybook" },
-        ],
-        label: "Lab/R&D",
-        url: "/experiments",
-      },
-    ])
-  })
-})
+	it("should contain list of menus", () => {
+		expect(menuItems).toStrictEqual([
+			{ label: "About Us", url: "/about" },
+			{ label: "History", url: "/history" },
+			{
+				items: [
+					{ label: "Azure Integration", url: "/projects/azure" },
+					{ label: "Microfrontend", url: "/projects/microfrontend" },
+					{ label: "Web Real-Time Communication", url: "/projects/webrtc" },
+					{ label: "Chat Messenger", url: "/projects/messenger" },
+					{ label: "Snake Game", url: "/projects/game-snake" },
+					{ label: "Lessons", url: "/projects/lessons" },
+					{ label: "Certifications", url: "/projects/certifications" },
+					{ label: "Checklist", url: "/projects/checklist" },
+					{ label: "No Javascript", url: "/projects/javascript-free" },
+				],
+				label: "Project Portfolio",
+				url: "/projects",
+			},
+			{
+				items: [
+					{ label: "Performance", url: "/experiments/performance" },
+					{
+						label: "Accessibility (WCAG)",
+						url: "/experiments/aria",
+					},
+					{ label: "Storybook", url: "/experiments/storybook" },
+				],
+				label: "Lab/R&D",
+				url: "/experiments",
+			},
+		]);
+	});
+});

@@ -1,13 +1,10 @@
 module.exports = async (
-  page,
-  scenario,
-  viewport,
-  isReference,
-  browserContext,
+	page,
+	scenario,
+	viewport
 ) => {
-  console.log("SCENARIO > " + scenario.label)
-  await require("./customWalcron")(page, scenario, viewport)
-  await require("./clickAndHoverHelper")(page, scenario, viewport)
+	await require("./customWalcron")(page, scenario, viewport);
+	await require("./clickAndHoverHelper")(page, scenario, viewport);
 
-  // add more ready handlers here...
-}
+	// add more ready handlers here...
+};

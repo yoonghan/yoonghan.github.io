@@ -1,12 +1,12 @@
 interface Props {
-  output: string | number
+	output: string | number;
 }
 
 const Output = ({ output }: Props) => {
-  return (
-    <div className="output">
-      Output: {output}
-      <style>{`
+	return (
+		<div className="output">
+			Output: {output}
+			<style>{`
         .output {
           font-family: Inconsolata;
           font-size: 1rem;
@@ -16,8 +16,8 @@ const Output = ({ output }: Props) => {
           left: 0;
         }
       `}</style>
-    </div>
-  )
-}
+		</div>
+	);
+};
 
-export default Output
+export default Output;
