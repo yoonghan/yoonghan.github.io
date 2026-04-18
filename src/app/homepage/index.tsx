@@ -224,11 +224,7 @@ function Homepage() {
                       ]
                     </li>
                     <li>
-                      <strong>Linting</strong> - Coding checks to ensure proper
-                      coding styles.
-                    </li>
-                    <li>
-                      <strong>Compliance</strong> - Security and Lint checks. [
+                      <strong>Compliance</strong> - Security checks. [
                       <Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
                         OWASP check
                       </Link>{" "}

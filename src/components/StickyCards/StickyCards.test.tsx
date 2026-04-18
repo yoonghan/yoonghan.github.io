@@ -28,7 +28,6 @@ describe("StickyCards", () => {
     ).toBeInTheDocument()
 
     expect(screen.getByText("Two")).toBeInTheDocument()
-    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByText("Two").parentNode).toHaveClass("class-2")
     expect(screen.getByText("Two description")).toBeInTheDocument()
   })

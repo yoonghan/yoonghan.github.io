@@ -29,7 +29,6 @@ describe("Video", () => {
       />,
     )
     const video = screen.getByTestId("video") as HTMLVideoElement
-    // eslint-disable-next-line testing-library/no-node-access
     const videoDivWrapper = video.parentElement as HTMLDivElement
     return { video, videoDivWrapper }
   }

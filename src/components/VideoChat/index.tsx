@@ -100,7 +100,6 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
     }, [startVideo, stopVideo, record])
 
     return (
-      // eslint-disable-next-line jsx-a11y/media-has-caption
       <video
         ref={noRef ? null : videoRef}
         id={id}
