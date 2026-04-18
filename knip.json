@@ -2,7 +2,7 @@
 	"ignore": [
 		"backstop_data/**",
 		"crate/**/pkg/**",
-		"src/__e2e__/chatter/chatter.spec.ts"
+		"src/__e2e__/chatter/call-util.ts"
 	],
 	"ignoreDependencies": [
 		"sharp",
