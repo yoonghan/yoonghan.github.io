@@ -1,5 +1,5 @@
-import { IncomingMessage } from "http";
-import { Socket } from "net";
+import { IncomingMessage } from "node:http";
+import { Socket } from "node:net";
 
 class NextRequest extends IncomingMessage {
 	public cookies: Partial<{
@@ -38,9 +38,9 @@ class NextRequest extends IncomingMessage {
 export class NextResponse extends Response {
 	public body: any;
 
-	send(body: string) {}
+	send(_body: string) {}
 
-	setHeader(name: string, value: string | number | readonly string[]) {}
+	setHeader(_name: string, _value: string | number | readonly string[]) {}
 
 	static readonly json = (body: any, init?: ResponseInit) => {
 		return new NextResponse(JSON.stringify(body), init);

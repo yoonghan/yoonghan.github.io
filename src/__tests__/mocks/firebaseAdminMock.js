@@ -16,7 +16,7 @@ const sampleFirebaseConfig = {
 
 const createStream = () => {
 	const streamData = new stream.Writable();
-	streamData._write = (chunk, encoding, done) => {
+	streamData._write = (_chunk, _encoding, done) => {
 		done();
 	};
 	return streamData;
@@ -48,7 +48,7 @@ jest.mock("firebase-admin", () => ({
 	firestore: () => ({
 		collection: () => ({
 			doc: () => ({
-				set: () => { },
+				set: () => {},
 				get: storeCollectionGet,
 			}),
 			get: () => ({

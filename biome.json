@@ -22,10 +22,9 @@
 		"includes": [
 			"**",
 			"!!**/crate",
-			"!!**/src/__tests__",
 			"!!**/src/app/experiments",
 			"!!**/src/app/projects",
-			"!!**/styles"
+			"!!**/styles/tailwind.css"
 		]
 	},
 	"formatter": {
