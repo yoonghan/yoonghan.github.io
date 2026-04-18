@@ -3,41 +3,41 @@
 
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
-import "isomorphic-fetch"
-import "@testing-library/jest-dom"
-import { defaultFallbackInView } from "react-intersection-observer"
-import { TextDecoder, TextEncoder } from "util"
+import "isomorphic-fetch";
+import "@testing-library/jest-dom";
+import { TextDecoder, TextEncoder } from "node:util";
+import { defaultFallbackInView } from "react-intersection-observer";
 
-global.TextDecoder = TextDecoder
-global.TextEncoder = TextEncoder
-global.IntersectionObserver = jest.fn()
-defaultFallbackInView(false)
+global.TextDecoder = TextDecoder;
+global.TextEncoder = TextEncoder;
+global.IntersectionObserver = jest.fn();
+defaultFallbackInView(false);
 
 function addEscapeKeyListenerToDocument(elem) {
-  document.body.addEventListener("keyup", (e) => {
-    if (e.key === "Escape" || e.key === "esc") {
-      elem.close()
-    }
-  })
+	document.body.addEventListener("keyup", (e) => {
+		if (e.key === "Escape" || e.key === "esc") {
+			elem.close();
+		}
+	});
 }
 
 HTMLDialogElement.prototype.show = jest.fn(function mock() {
-  this.open = true
-  addEscapeKeyListenerToDocument(this)
-})
+	this.open = true;
+	addEscapeKeyListenerToDocument(this);
+});
 
 HTMLDialogElement.prototype.showModal = jest.fn(function mock() {
-  this.open = true
-  addEscapeKeyListenerToDocument(this)
-})
+	this.open = true;
+	addEscapeKeyListenerToDocument(this);
+});
 
 HTMLDialogElement.prototype.close = jest.fn(function mock() {
-  this.open = false
-  const evt = new Event("close", { bubbles: true, cancelable: false })
-  this.dispatchEvent(evt)
-})
+	this.open = false;
+	const evt = new Event("close", { bubbles: true, cancelable: false });
+	this.dispatchEvent(evt);
+});
 
 window.scrollTo = (x, y) => {
-  document.documentElement.scrollTop = y
-  window.scrollY = y
-}
+	document.documentElement.scrollTop = y;
+	window.scrollY = y;
+};

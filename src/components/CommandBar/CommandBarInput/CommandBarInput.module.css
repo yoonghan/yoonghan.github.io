@@ -1,63 +1,63 @@
 .command-container {
-  display: flex;
-  font-size: 0.8rem;
-  position: relative;
-  top: 1.5rem;
-  align-items: center;
+	display: flex;
+	font-size: 0.8rem;
+	position: relative;
+	top: 1.5rem;
+	align-items: center;
 }
 
 .command-container label {
-  padding-right: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 .command_text_prompt {
-  padding-left: 3px;
-  height: 2.2rem;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  pointer-events: none;
-  justify-content: center;
-  color: grey;
-  font-family: Inconsolata, Arial, Helvetica, sans-serif;
-  font-style: italic;
+	padding-left: 3px;
+	height: 2.2rem;
+	display: flex;
+	position: absolute;
+	align-items: center;
+	pointer-events: none;
+	justify-content: center;
+	color: grey;
+	font-family: Inconsolata, Arial, Helvetica, sans-serif;
+	font-style: italic;
 }
 
 .command-container .autosuggest__input {
-  font-family: Inconsolata, Arial, Helvetica, sans-serif;
-  background-color: transparent;
-  border: 1px solid var(--link);
-  margin: 0;
-  display: block;
-  font-size: 0.8rem;
-  box-sizing: content-box;
-  -webkit-tap-highlight-color: transparent;
-  padding: 0.5rem 0.5rem 0.5rem 3.5rem;
-  border-radius: 0.3rem;
-  height: 1.1rem;
-  color: var(--link);
-  text-shadow: 0 0 0 #ebebeb;
+	font-family: Inconsolata, Arial, Helvetica, sans-serif;
+	background-color: transparent;
+	border: 1px solid var(--link);
+	margin: 0;
+	display: block;
+	font-size: 0.8rem;
+	box-sizing: content-box;
+	-webkit-tap-highlight-color: transparent;
+	padding: 0.5rem 0.5rem 0.5rem 3.5rem;
+	border-radius: 0.3rem;
+	height: 1.1rem;
+	color: var(--link);
+	text-shadow: 0 0 0 #ebebeb;
 }
 
 @media only screen and (max-width: 340px) {
-  .command-container .autosuggest__input {
-    width: 3.5rem;
-  }
-  .command-container .prompt {
-    display: none;
-  }
+	.command-container .autosuggest__input {
+		width: 3.5rem;
+	}
+	.command-container .prompt {
+		display: none;
+	}
 }
 
 @media only screen and (max-width: 390px) and (min-width: 341px) {
-  .command-container .autosuggest__input {
-    width: 6rem;
-  }
+	.command-container .autosuggest__input {
+		width: 6rem;
+	}
 }
 
 .command-container .autosuggest__input:focus {
-  outline: none;
+	outline: none;
 }
 
 .command-container .autosuggest__suggestion {
-  cursor: pointer;
+	cursor: pointer;
 }

@@ -1,13 +1,13 @@
 @keyframes blink {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 /* stop animation with animate=false */
 .animate-none {
-  animation: none !important;
+	animation: none !important;
 }
