@@ -34,8 +34,6 @@ class RTCPeerConnection {
 	track = [];
 	localDescription = undefined;
 
-	constructor() {}
-
 	addTrack = (track, stream) => {
 		this.track = [...this.track, track];
 		this.stream = stream;
