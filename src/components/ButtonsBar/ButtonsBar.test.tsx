@@ -48,7 +48,6 @@ describe("ButtonsBar", () => {
     )
     const activeText = screen.getByText("two")
     expect(activeText).toHaveAttribute("href", "/two")
-    // eslint-disable-next-line testing-library/no-node-access
     expect(activeText.parentElement).toHaveClass("is-active")
     expect(screen.getByText("one")).not.toHaveClass("is-active")
   })

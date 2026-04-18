@@ -38,12 +38,10 @@ describe("Timeline", () => {
 
   it("should render with fontawesome icons", () => {
     const getFaIcon = (selector: HTMLElement) => {
-      // eslint-disable-next-line testing-library/no-node-access
       const spanElements = selector.querySelectorAll("span")
 
       expect(spanElements).toHaveLength(2)
 
-      // eslint-disable-next-line testing-library/no-node-access
       return spanElements[1]?.children[0]
     }
 

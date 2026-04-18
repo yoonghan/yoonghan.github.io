@@ -15,7 +15,6 @@ describe("Wave", () => {
     renderComponent("waves-1")
     screen
       .getByTitle("waves-1")
-      // eslint-disable-next-line testing-library/no-node-access
       .querySelectorAll("div")
       .forEach((elem) => {
         expect(elem.className).toContain(" animate-none")

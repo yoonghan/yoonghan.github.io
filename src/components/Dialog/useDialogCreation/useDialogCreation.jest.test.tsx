@@ -16,7 +16,6 @@ describe("useDialogCreation", () => {
   )
 
   beforeEach(() => {
-    // eslint-disable-next-line testing-library/no-node-access
     let dialogRoot = document.getElementById("dialog-root")
     if (!dialogRoot) {
       dialogRoot = document.createElement("div")
@@ -31,7 +30,7 @@ describe("useDialogCreation", () => {
     const testText = "sample"
     const { result } = renderHook(useDialogCreation, { initialProps: Wrapper })
 
-    let response: Promise<string | undefined> = new Promise(() => {})
+    let response: Promise<string | undefined> = new Promise(() => { })
     const confirmation = result.current
 
     await act(async () => {

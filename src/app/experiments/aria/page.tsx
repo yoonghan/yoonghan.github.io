@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { site } from "@/config/site"
 
 export const metadata = {

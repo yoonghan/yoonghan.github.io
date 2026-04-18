@@ -49,7 +49,6 @@ describe("Table", () => {
         className="sampleClass"
       />,
     )
-    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByRole("table").parentElement).toHaveClass("sampleClass")
   })
 })

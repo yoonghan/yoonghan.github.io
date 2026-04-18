@@ -18,7 +18,6 @@ describe("Funky Scroller", () => {
     fireEvent.scroll(window, { target: { scrollX: 100, scrollY: 200 } })
     jest.runAllTimers()
 
-    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByTitle("Funky-Scroller-2").firstChild).toHaveStyle({
       width: "180px",
     })

@@ -33,7 +33,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: ✅ Validate lint, prettier and build
+      - name: ✅ Validate build
         run: npm run build
 
       - name: ✅ Dependency checks
