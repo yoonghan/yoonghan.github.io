@@ -23,7 +23,7 @@ const _getUser = (
 	width = 285,
 	height = 385,
 ) => (
-	<div key={"user_" + idx}>
+	<div key={`user_${idx}`}>
 		<Image
 			src={imgSrc}
 			alt={name}

@@ -1,4 +1,4 @@
-import { act, fireEvent, renderHook } from "@testing-library/react";
+import { fireEvent, renderHook } from "@testing-library/react";
 import useScrollTracker from "./useScrollTracker";
 
 describe("useScrollTracker", () => {

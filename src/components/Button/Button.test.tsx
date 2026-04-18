@@ -90,7 +90,7 @@ describe("Button", () => {
 		});
 
 		it("should support additional className", () => {
-			const view = render(
+			render(
 				<Button
 					styling={{
 						small: false,

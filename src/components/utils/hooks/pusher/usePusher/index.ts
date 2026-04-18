@@ -35,12 +35,12 @@ export function usePusher(props: Props) {
 		EnumConnectionStatus.Disconnected,
 	);
 
-	const channelName = `${props.channelPrefix ? props.channelPrefix + "-" : ""}${
+	const channelName = `${props.channelPrefix ? `${props.channelPrefix}-` : ""}${
 		PUSHER.channel_prefix
 	}${props.channelName}`;
 	const eventName = `client-${props.eventName}`;
 
-	useDebugValue("connection:" + connectionStatus.current);
+	useDebugValue(`connection: ${connectionStatus.current}`);
 
 	const updateConnectionStatus = (
 		latestConnectionStatus: EnumConnectionStatus,

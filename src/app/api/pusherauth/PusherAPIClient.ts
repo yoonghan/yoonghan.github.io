@@ -1,5 +1,6 @@
 import Pusher from "pusher";
 
+// biome-ignore lint/complexity/noStaticOnlyClass: Expected
 export class PusherAPIClient {
 	public static client: Pusher | undefined = PusherAPIClient.initPusher();
 

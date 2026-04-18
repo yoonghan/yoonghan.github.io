@@ -61,7 +61,7 @@ const Video = ({
 	return (
 		<>
 			<div className={styles["container-btn"]}>
-				<button onClick={toggleSound}>
+				<button type="button" onClick={toggleSound}>
 					with sound ( <span>{sound ? "on" : "off"}</span>{" "}
 					<i className={`fas ${sound ? "fa-volume-up" : "fa-volume-mute"}`}></i>{" "}
 					)

@@ -38,6 +38,7 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
 	}, [debounceScrollToTop, maxItemsToRender, scrollPosition]);
 
 	const updateScrollPosition = useCallback(() => {
+		// biome-ignore lint/style/noNonNullAssertion: expected
 		setScrollToTop(listRef.current!.scrollTop);
 	}, []);
 
@@ -65,7 +66,7 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
 				}}
 			/>
 			{listItems.slice(startPosition, endPosition).map((item) => (
-				<div key={"list-item-" + item.id} className={style.list}>
+				<div key={`list-item-${item.id}`} className={style.list}>
 					{item.content}
 				</div>
 			))}

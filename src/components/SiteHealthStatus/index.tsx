@@ -15,6 +15,7 @@ function SiteHealthStatus({
 	return (
 		<p className="text-justify whitespace-normal break-words">
 			<Link href={`https://github.com/${repo}/actions/workflows/merge.yml`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://github.com/${repo}/actions/workflows/merge.yml/badge.svg`}
 					alt="Report merged result on main branch"
@@ -22,6 +23,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 			<Link href={`https://codecov.io/gh/${repo}`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://codecov.io/gh/${repo}/graph/badge.svg?token=${codecovToken}`}
 					alt="Code coverage"
@@ -29,6 +31,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 			<Link href={`https://sonarcloud.io/summary/new_code?id=${sonarId}`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://sonarcloud.io/api/project_badges/measure?project=${sonarId}&metric=bugs`}
 					alt="Bugs"
@@ -36,6 +39,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 			<Link href={`https://sonarcloud.io/summary/new_code?id=${sonarId}`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://sonarcloud.io/api/project_badges/measure?project=${sonarId}&metric=code_smells`}
 					alt="Code Smells"
@@ -43,6 +47,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 			<Link href={`https://sonarcloud.io/summary/new_code?id=${sonarId}`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://sonarcloud.io/api/project_badges/measure?project=${sonarId}&metric=vulnerabilities`}
 					alt="Vulnerabilities"
@@ -50,6 +55,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 			<Link href={`https://sonarcloud.io/summary/new_code?id=${sonarId}`}>
+				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://sonarcloud.io/api/project_badges/measure?project=${sonarId}&metric=security_rating`}
 					alt="Security Rating"

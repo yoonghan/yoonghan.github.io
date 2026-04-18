@@ -30,6 +30,7 @@ const generateLink = (url: string) => ({
 			return <InvalidCommand invalidCommand={"This is the page"} />;
 		}
 		router.push(link);
+		// biome-ignore lint/complexity/noUselessFragments: Not working
 		return <></>;
 	},
 });
@@ -77,6 +78,7 @@ export const AvailableInput: ICommand = {
 				return <InvalidCommand invalidCommand={"Already at root"} />;
 			}
 			router.push("/");
+			// biome-ignore lint/complexity/noUselessFragments: Not working
 			return <></>;
 		},
 	},
@@ -88,6 +90,7 @@ export const AvailableInput: ICommand = {
 				return <InvalidCommand invalidCommand={"Already at root"} />;
 			} else {
 				router.back();
+				// biome-ignore lint/complexity/noUselessFragments: Not working
 				return <></>;
 			}
 		},
@@ -108,6 +111,7 @@ export const AvailableInput: ICommand = {
 					text: "An awesome website.",
 					url: site.url,
 				});
+				// biome-ignore lint/complexity/noUselessFragments: Not working
 				return <></>;
 			} else {
 				return <InvalidCommand invalidCommand={"Couldn't run HTML5 share."} />;
@@ -120,7 +124,8 @@ export const AvailableInput: ICommand = {
 		synonym: ["no animate", "stop animate"],
 		action: EnumAction.LINK,
 		exec: (_: AppRouterInstance, pathname: string) => {
-			redirectTo(pathname + "?animate=none");
+			redirectTo(`${pathname}?animate=none`);
+			// biome-ignore lint/complexity/noUselessFragments: Not working
 			return <></>;
 		},
 	},

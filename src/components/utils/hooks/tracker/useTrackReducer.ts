@@ -14,7 +14,7 @@ interface Action {
 function reducer(state: number[], action: Action) {
 	const { value, type, max } = action;
 
-	if (type == Actions.APPEND) {
+	if (type === Actions.APPEND) {
 		return [value, ...(state.length === max ? state.slice(0, max - 1) : state)];
 	}
 	return [...state];

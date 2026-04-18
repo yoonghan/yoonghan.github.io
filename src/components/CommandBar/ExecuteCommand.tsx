@@ -1,5 +1,4 @@
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import * as React from "react";
 import { createPortal } from "react-dom";
 import {
 	AvailableInput,

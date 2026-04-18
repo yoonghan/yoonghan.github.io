@@ -8,7 +8,7 @@ import { POST } from "@/app/api/pusherauth/route";
 jest.mock("@opentelemetry/api", () => ({
 	trace: {
 		getTracer: jest.fn(() => ({
-			startActiveSpan: jest.fn((name, fn) =>
+			startActiveSpan: jest.fn((_name, fn) =>
 				fn({ end: jest.fn(), setAttributes: jest.fn() }),
 			),
 		})),
@@ -85,6 +85,7 @@ describe("pusherauth", () => {
 
 		it("should be able to fail authentication", async () => {
 			jest
+				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "authorizeChannel")
 				.mockReturnValueOnce({ auth: "" });
 			const response = await POST(mockRequest());

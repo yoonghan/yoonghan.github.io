@@ -11,7 +11,9 @@ describe("useDialogCreation", () => {
 	}: ConfirmDialogProps<{ attr: string }, string>) => (
 		<div>
 			{attr}
-			<button onClick={() => proceed("done")}>Yes</button>
+			<button type="button" onClick={() => proceed("done")}>
+				Yes
+			</button>
 		</div>
 	);
 

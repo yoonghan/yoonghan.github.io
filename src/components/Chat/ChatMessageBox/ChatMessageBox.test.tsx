@@ -196,7 +196,9 @@ describe("ChatMessageBox", () => {
 
 			return (
 				<>
-					<button onClick={addCustomMessage}>Custom Buttom</button>
+					<button type="button" onClick={addCustomMessage}>
+						Custom Buttom
+					</button>
 					<ChatMessageBox onMessageSend={jest.fn()} ref={refComponent} />
 				</>
 			);

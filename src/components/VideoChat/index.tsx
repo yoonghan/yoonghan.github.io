@@ -38,10 +38,12 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 		const streamRef = useRef<MediaStream>(undefined);
 
 		const stream = useCallback((stream: MediaStream) => {
+			// biome-ignore lint/style/noNonNullAssertion: expected
 			videoRef.current!.srcObject = stream;
 		}, []);
 
 		const stopStream = useCallback(() => {
+			// biome-ignore lint/style/noNonNullAssertion: expected
 			videoRef.current!.srcObject = null;
 		}, []);
 

@@ -26,6 +26,7 @@ const Grid: React.FC<GridProps> = ({ items }) => {
 					<>
 						<div className="flex items-center mb-4">
 							{item.imageSrc && (
+								// biome-ignore lint/performance/noImgElement: Expected
 								<img
 									src={item.imageSrc}
 									alt={`${item.label} logo`}
