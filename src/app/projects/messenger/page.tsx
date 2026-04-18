@@ -16,22 +16,29 @@ interface Props {
 const Messenger = ({ appKey, cluster }: Props) => {
 	const chatMessageBoxRef = useRef<MessageHandler>(null);
 
-	const printMessage =
+	const printMessage = useCallback(
 		(sender?: number) => (message: string, messageType: MessageType) => {
 			if (chatMessageBoxRef.current !== null) {
 				chatMessageBoxRef.current.addMessage(sender, message, messageType);
 			}
-		};
+		},
+		[],
+	);
 
-	const connectionPrinter = useMemo(() => printMessage(undefined), []);
-	const eventPrinter = useMemo(() => printMessage(2), []);
+	const connectionPrinter = useMemo(
+		() => printMessage(undefined),
+		[printMessage],
+	);
+	const eventPrinter = useMemo(() => printMessage(2), [printMessage]);
 
 	const { connect, disconnect, send } = usePusher({
 		eventName: "walcron_messenger",
 		channelName: "FunChat",
 		printConnectionCallback: connectionPrinter,
 		printEventCallback: eventPrinter,
+		// biome-ignore lint/style/noNonNullAssertion: Expected
 		appKey: appKey!,
+		// biome-ignore lint/style/noNonNullAssertion: Expected
 		cluster: cluster!,
 		authEndpoint: pusherAuthEndpoint,
 		channelPrefix: "private",
@@ -46,7 +53,7 @@ const Messenger = ({ appKey, cluster }: Props) => {
 		return () => {
 			disconnect();
 		};
-	}, []);
+	}, [disconnect, connect]);
 
 	const onMessageSend = useCallback(
 		(message: string, messageType: MessageType) => {

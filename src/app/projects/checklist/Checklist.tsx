@@ -68,7 +68,7 @@ const CronJobCheckList = ({
 		if (cronHistoryUrl) {
 			return <span>Loading data...</span>;
 		}
-		return <></>;
+		return null;
 	}, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl]);
 
 	const isDateValid = useCallback(
