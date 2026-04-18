@@ -1,5 +1,5 @@
 import "@/__tests__/mocks/fetchMock";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { fetchMock } from "@/__tests__/mocks/fetchMock";
 import { maxDuration, metadata } from "./page";
 

@@ -154,7 +154,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
 
 				bind<ClientAnswerAndSdp>("client-sdp", async (msg) => {
 					if (msg.room === myId) {
-						const answer = await new Promise((resolve, reject) => {
+						const answer = await new Promise((resolve) => {
 							promptConfirmDialog({
 								title: "You got a call",
 								message: `You have a call from (${msg.fromName}). Would you like to answer?`,
@@ -266,7 +266,7 @@ const WebrtcVideo = ({ appKey, cluster }: Props) => {
 				<ChatterForm
 					startStopSenderVideo={startStopVideo}
 					senderButtonCanStop={recordingStarted}
-					senderButtonDisabled={recordingStarted && stream == undefined}
+					senderButtonDisabled={recordingStarted && stream === undefined}
 				/>
 			</section>
 			<br />

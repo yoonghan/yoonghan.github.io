@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { assertScrollToTop } from "@/__tests__/utils/_scrollToTop";
 import { findPageByPath } from "@/config/pages";
 import { cards } from "./config";

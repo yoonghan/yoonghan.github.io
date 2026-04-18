@@ -19,7 +19,16 @@ const WebRtc = ({ appKey, cluster }: Props) => {
 	return (
 		<div className="mx-auto max-w-screen-lg px-4 pb-10">
 			<h1 className="py-8">Video call with Web Real Time Communication</h1>
-			<WebrtcVideo appKey={appKey!} cluster={cluster!} />
+			<WebrtcVideo
+				appKey={
+					// biome-ignore lint/style/noNonNullAssertion: Expected
+					appKey!
+				}
+				cluster={
+					// biome-ignore lint/style/noNonNullAssertion: Expected
+					cluster!
+				}
+			/>
 		</div>
 	);
 };

@@ -23,7 +23,7 @@
 			"**",
 			"!!**/crate",
 			"!!**/src/app/experiments",
-			"!!**/src/app/projects",
+			"!!**/src/app/projects/game-snake",
 			"!!**/styles/tailwind.css"
 		]
 	},
