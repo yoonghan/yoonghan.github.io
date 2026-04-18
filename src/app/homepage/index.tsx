@@ -234,11 +234,10 @@ function Homepage() {
 										coding styles.
 									</li>
 									<li>
-										<strong>Compliance</strong> - Security checks. [
+										<strong>Compliance</strong> - Security and Lint checks. [
 										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
 											OWASP check
-										</Link>{" "}
-										and Dependabots]
+										</Link> and Dependabots]
 									</li>
 									<li>
 										<strong>Accessibility</strong> - Integrated lighthouse to
