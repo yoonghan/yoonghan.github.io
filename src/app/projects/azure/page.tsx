@@ -41,6 +41,7 @@ const Result = ({ promise }: { promise: { read: () => any } }) => {
 		<div>
 			{readSuccessResponse === "ready" ? (
 				<iframe
+					title="Azure Integration"
 					src={azureUrl}
 					allowFullScreen
 					className="w-full h-screen"

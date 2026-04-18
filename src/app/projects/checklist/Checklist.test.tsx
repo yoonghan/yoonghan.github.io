@@ -1,14 +1,9 @@
 import "@/__tests__/mocks/fetchMock";
-import {
-	getDefaultNormalizer,
-	render,
-	screen,
-	within,
-} from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SWRConfig } from "swr";
 import { fetchMock } from "@/__tests__/mocks/fetchMock";
-import { setServiceNavigator } from "@/__tests__/mocks/windowMock";
+import "@/__tests__/mocks/windowMock";
 import { CronJobCheckList } from "./Checklist";
 
 describe("Checklist", () => {
@@ -86,7 +81,6 @@ describe("Checklist", () => {
 			fetchMock.mockRejectedValueOnce({
 				json: () => Promise.reject([]),
 			});
-			const date = new Date();
 			render(
 				<CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />,
 			);
@@ -103,7 +97,6 @@ describe("Checklist", () => {
 			fetchMock.mockResolvedValue({
 				json: () => Promise.resolve(undefined),
 			});
-			const date = new Date();
 			render(
 				<CronJobCheckList latestDeployedCronMessage="2024-09-01T01:01:01.293Z" />,
 			);

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM Processing Diagram</title><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>LLM Processing Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7fafc;
         }
+
         .container {
             max-width: 900px;
             margin: auto;
             padding: 2rem;
         }
+
         .step-card {
             background-color: #ffffff;
             border-radius: 1rem;
@@ -22,10 +27,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .step-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
         }
+
         .diagram-container {
             display: flex;
             justify-content: center;
@@ -33,6 +40,7 @@
             height: 300px;
             position: relative;
         }
+
         .diagram-box {
             background-color: #cbd5e1;
             border-radius: 0.5rem;
@@ -46,11 +54,13 @@
             flex-direction: column;
             align-items: center;
         }
+
         .diagram-box.active {
             opacity: 1;
             transform: scale(1);
             display: flex;
         }
+
         .arrow {
             position: absolute;
             font-size: 2rem;
@@ -59,22 +69,42 @@
             transition: opacity 0.5s ease;
             opacity: 0;
         }
+
         .arrow.visible {
             opacity: 1;
         }
-        .arrow-1 { top: 110px; left: 180px; }
-        .arrow-2 { top: 110px; left: 450px; }
-        .arrow-3 { top: 110px; left: 690px; }
-        .text-stage, .tokens-stage, .embeddings-stage, .context-stage {
+
+        .arrow-1 {
+            top: 110px;
+            left: 180px;
+        }
+
+        .arrow-2 {
+            top: 110px;
+            left: 450px;
+        }
+
+        .arrow-3 {
+            top: 110px;
+            left: 690px;
+        }
+
+        .text-stage,
+        .tokens-stage,
+        .embeddings-stage,
+        .context-stage {
             min-width: 200px;
             max-width: 250px;
         }
-        .tokens-grid, .embeddings-grid {
+
+        .tokens-grid,
+        .embeddings-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             justify-content: center;
         }
+
         .token-item {
             background-color: #a0aec0;
             color: white;
@@ -82,6 +112,7 @@
             border-radius: 9999px;
             font-size: 0.875rem;
         }
+
         .vector-item {
             background-color: #63b3ed;
             color: white;
@@ -89,6 +120,7 @@
             border-radius: 9999px;
             font-size: 0.875rem;
         }
+
         .context-window-content {
             background-color: #e2e8f0;
             border: 2px dashed #4a5568;
@@ -104,16 +136,26 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="container bg-white rounded-2xl shadow-xl p-8">
         <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">The LLM Processing Pipeline</h1>
-        <p class="text-center text-gray-600 mb-8">Click the buttons to see how a Large Language Model processes text.</p>
+        <p class="text-center text-gray-600 mb-8">Click the buttons to see how a Large Language Model processes text.
+        </p>
 
         <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-            <button onclick="showStage('text-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">1. Raw Text</button>
-            <button onclick="showStage('tokens-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">2. Tokenization</button>
-            <button onclick="showStage('embeddings-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">3. Embeddings</button>
-            <button onclick="showStage('context-stage')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">4. Context Window</button>
+            <button type="button" onclick="showStage('text-stage')"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">1.
+                Raw Text</button>
+            <button type="button" onclick="showStage('tokens-stage')"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">2.
+                Tokenization</button>
+            <button type="button" onclick="showStage('embeddings-stage')"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">3.
+                Embeddings</button>
+            <button type="button" onclick="showStage('context-stage')"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-colors">4.
+                Context Window</button>
         </div>
 
         <div class="diagram-container bg-gray-200 rounded-xl">
@@ -212,4 +254,5 @@
         });
     </script>
 </body>
+
 </html>
