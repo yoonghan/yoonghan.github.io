@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { initOpenTelemetry } from "@/util/otel-web"
-import { useEffect } from "react"
+import { useEffect } from "react";
+import { initOpenTelemetry } from "@/util/otel-web";
 
 export default function OtelProvider({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    initOpenTelemetry(globalThis)
-  }, [])
+	useEffect(() => {
+		initOpenTelemetry(globalThis);
+	}, []);
 
-  return <>{children}</>
+	return <>{children}</>;
 }

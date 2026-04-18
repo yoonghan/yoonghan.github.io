@@ -42,18 +42,18 @@ For test coverage
 npm run test:ci
 ```
 
-For linting and prettifier check
-
-```bash
-npm run lint
-```
-
 For package analysing, do not check-in as it contains alot of security issues.
 
 ```bash
 npm install @next/bundle-analyzer
 # Wrap next.config.js with withBundleAnalyzer({...})
 npx next build
+```
+
+For linting and prettifier check
+
+```bash
+npm run lint
 ```
 
 For BackstopJS - regression for view and approve website design UI

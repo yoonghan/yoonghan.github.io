@@ -1,51 +1,51 @@
-"use client"
+"use client";
 
-import { ReactNode } from "react"
-import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons"
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { ReactNode } from "react";
+import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation";
 
-export type SupportedAnimation = "bounce" | "shake" | "spin"
+export type SupportedAnimation = "bounce" | "shake" | "spin";
 
 function canAnimate(
-  isAnimatable: boolean,
-  animationType: SupportedAnimation,
-  expectedAnimationType: SupportedAnimation,
+	isAnimatable: boolean,
+	animationType: SupportedAnimation,
+	expectedAnimationType: SupportedAnimation,
 ) {
-  return !!isAnimatable && animationType === expectedAnimationType
+	return !!isAnimatable && animationType === expectedAnimationType;
 }
 
 function FontAwesomeAnimate({
-  children,
-  title,
-  className,
-  faIcon,
-  animate,
-  color,
+	children,
+	title,
+	className,
+	faIcon,
+	animate,
+	color,
 }: Readonly<{
-  children: ReactNode
-  title: string
-  className?: string
-  faIcon: IconDefinition
-  animate: SupportedAnimation
-  color?: string
+	children: ReactNode;
+	title: string;
+	className?: string;
+	faIcon: IconDefinition;
+	animate: SupportedAnimation;
+	color?: string;
 }>) {
-  const { isAnimatable } = useDisableAnimation()
+	const { isAnimatable } = useDisableAnimation();
 
-  return (
-    <div className={`${className ?? ""}`} title={title}>
-      <FontAwesomeIcon
-        icon={faIcon}
-        size={"2xl"}
-        bounce={canAnimate(isAnimatable, animate, "bounce")}
-        shake={canAnimate(isAnimatable, animate, "shake")}
-        spin={canAnimate(isAnimatable, animate, "spin")}
-        color={color}
-      />
-      {children}
-      <div></div>
-    </div>
-  )
+	return (
+		<div className={`${className ?? ""}`} title={title}>
+			<FontAwesomeIcon
+				icon={faIcon}
+				size={"2xl"}
+				bounce={canAnimate(isAnimatable, animate, "bounce")}
+				shake={canAnimate(isAnimatable, animate, "shake")}
+				spin={canAnimate(isAnimatable, animate, "spin")}
+				color={color}
+			/>
+			{children}
+			<div></div>
+		</div>
+	);
 }
 
-export default FontAwesomeAnimate
+export default FontAwesomeAnimate;

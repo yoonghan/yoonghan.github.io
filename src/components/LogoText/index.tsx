@@ -1,7 +1,7 @@
-import styles from "./Logo.module.css"
+import styles from "./Logo.module.css";
 
 function LogoText() {
-  return <span className={styles.logo}>&nbsp;Walcron&nbsp;</span>
+	return <span className={styles.logo}>&nbsp;Walcron&nbsp;</span>;
 }
 
-export default LogoText
+export default LogoText;

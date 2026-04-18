@@ -1,58 +1,52 @@
 {
-  "short_name": "Walcron",
-  "name": "Walcron Web",
-  "icons": [
-    {
-      "src": "/pwa/android-icon-36x36.png",
-      "sizes": "36x36",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/android-icon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/android-icon-72x72.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/android-icon-96x96.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/android-icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/android-icon-192x192.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "/?utm_source=launcher",
-  "background_color": "#000",
-  "display": "fullscreen",
-  "theme_color": "#000000",
-  "dir": "auto",
-  "lang": "en",
-  "orientation": "natural",
-  "display_override": [
-    "browser",
-    "minimal-ui",
-    "window-controls-overlay"
-  ],
-  "categories": [
-    "lifestyle"
-  ],
-  "id": "com.walcron.web",
-  "description": "Walcron Coorperation is an experimental website developed by Han and Gladys."
+	"short_name": "Walcron",
+	"name": "Walcron Web",
+	"icons": [
+		{
+			"src": "/pwa/android-icon-36x36.png",
+			"sizes": "36x36",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/android-icon-48x48.png",
+			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/android-icon-72x72.png",
+			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/android-icon-96x96.png",
+			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/android-icon-144x144.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/android-icon-192x192.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "/pwa/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/?utm_source=launcher",
+	"background_color": "#000",
+	"display": "fullscreen",
+	"theme_color": "#000000",
+	"dir": "auto",
+	"lang": "en",
+	"orientation": "natural",
+	"display_override": ["browser", "minimal-ui", "window-controls-overlay"],
+	"categories": ["lifestyle"],
+	"id": "com.walcron.web",
+	"description": "Walcron Coorperation is an experimental website developed by Han and Gladys."
 }

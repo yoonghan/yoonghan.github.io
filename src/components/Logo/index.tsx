@@ -1,21 +1,21 @@
-import Image from "next/image"
+import Image from "next/image";
 
 interface LogoProps {
-  withText?: boolean
+	withText?: boolean;
 }
 
 const Logo = ({ withText = false }: LogoProps) => {
-  return (
-    <>
-      <Image
-        className={"logo-img"}
-        src="/img/logo/logo-color.svg"
-        alt="walcron-logo"
-        width={100}
-        height={100}
-      />
-      {withText && <div> Walcron</div>}
-      <style>{`
+	return (
+		<>
+			<Image
+				className={"logo-img"}
+				src="/img/logo/logo-color.svg"
+				alt="walcron-logo"
+				width={100}
+				height={100}
+			/>
+			{withText && <div> Walcron</div>}
+			<style>{`
         .logo-img {
           width: 50px;
           position: absolute;
@@ -31,8 +31,8 @@ const Logo = ({ withText = false }: LogoProps) => {
           }
         }
       `}</style>
-    </>
-  )
-}
+		</>
+	);
+};
 
-export default Logo
+export default Logo;

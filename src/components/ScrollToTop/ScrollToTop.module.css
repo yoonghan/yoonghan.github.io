@@ -1,40 +1,42 @@
 .scroller {
-  right: 0;
-  position: fixed;
-  bottom: 1rem;
-  cursor: pointer;
-  color: #fff;
-  visibility: visible;
-  opacity: 1;
-  width: 4.5rem;
-  padding: 0.5rem;
-  border-radius: 3px;
-  z-index: 999;
-  background: var(--footer-color);
-  box-shadow: 2px 2px 3px #000;
-  transition: opacity 0.3s, visibility 0.3s ease-in-out;
-  user-select: none;
-  text-align: left;
+	right: 0;
+	position: fixed;
+	bottom: 1rem;
+	cursor: pointer;
+	color: #fff;
+	visibility: visible;
+	opacity: 1;
+	width: 4.5rem;
+	padding: 0.5rem;
+	border-radius: 3px;
+	z-index: 999;
+	background: var(--footer-color);
+	box-shadow: 2px 2px 3px #000;
+	transition:
+		opacity 0.3s,
+		visibility 0.3s ease-in-out;
+	user-select: none;
+	text-align: left;
 }
 
 .scroller:hover {
-  background: var(--footer-color);
-  opacity: 1;
+	background: var(--footer-color);
+	opacity: 1;
 }
 
 .scroller.hidden {
-  visibility: hidden;
-  opacity: 0;
+	visibility: hidden;
+	opacity: 0;
 }
 
 .scroller:before {
-  content: "";
-  position: absolute;
-  top: 1rem;
-  right: 0.5rem;
-  width: 0;
-  height: 0;
-  border-bottom: solid 0.5rem #fff;
-  border-left: solid 0.5rem transparent;
-  border-right: solid 0.5rem transparent;
+	content: "";
+	position: absolute;
+	top: 1rem;
+	right: 0.5rem;
+	width: 0;
+	height: 0;
+	border-bottom: solid 0.5rem #fff;
+	border-left: solid 0.5rem transparent;
+	border-right: solid 0.5rem transparent;
 }

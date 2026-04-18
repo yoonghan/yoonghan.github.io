@@ -1,95 +1,96 @@
-import "@/__tests__/mocks/apiMockNext13"
-import { POST } from "@/app/api/pusherauth/route"
-import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
-import { NextRequest } from "next/server"
-import { setEnv } from "@/__tests__/mocks/setEnv"
-import { trace } from "@opentelemetry/api"
+import "@/__tests__/mocks/apiMockNext13";
+import { trace } from "@opentelemetry/api";
+import { NextRequest } from "next/server";
+import { setEnv } from "@/__tests__/mocks/setEnv";
+import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient";
+import { POST } from "@/app/api/pusherauth/route";
 
 jest.mock("@opentelemetry/api", () => ({
-  trace: {
-    getTracer: jest.fn(() => ({
-      startActiveSpan: jest.fn((name, fn) =>
-        fn({ end: jest.fn(), setAttributes: jest.fn() }),
-      ),
-    })),
-  },
-}))
+	trace: {
+		getTracer: jest.fn(() => ({
+			startActiveSpan: jest.fn((_name, fn) =>
+				fn({ end: jest.fn(), setAttributes: jest.fn() }),
+			),
+		})),
+	},
+}));
 
 describe("pusherauth", () => {
-  const mockRequest = (channel_name: string = "sample_channel") => {
-    const form = new FormData()
-    form.set("socket_id", "432.123")
-    form.set("channel_name", channel_name)
-    return new NextRequest("http://walcron.com", {
-      method: "POST",
-      body: form,
-    })
-  }
+	const mockRequest = (channel_name: string = "sample_channel") => {
+		const form = new FormData();
+		form.set("socket_id", "432.123");
+		form.set("channel_name", channel_name);
+		return new NextRequest("http://walcron.com", {
+			method: "POST",
+			body: form,
+		});
+	};
 
-  it("should return error with environment not set", async () => {
-    const response = await POST(mockRequest())
-    expect(response.status).toBe(500)
-    expect(await response.json()).toStrictEqual({
-      error: "Pusher initialized values has not been set.",
-    })
-  })
+	it("should return error with environment not set", async () => {
+		const response = await POST(mockRequest());
+		expect(response.status).toBe(500);
+		expect(await response.json()).toStrictEqual({
+			error: "Pusher initialized values has not been set.",
+		});
+	});
 
-  describe("environment setup", () => {
-    const APP_KEY = "SampleKey"
+	describe("environment setup", () => {
+		const APP_KEY = "SampleKey";
 
-    beforeEach(() => {
-      setEnv({
-        NEXT_PUBLIC_PUSHER_APP_KEY: APP_KEY,
-        PUSHER_APP_ID: undefined,
-        PUSHER_SECRET: undefined,
-        NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
-      })
-      PusherAPIClient.reInitialize()
-    })
+		beforeEach(() => {
+			setEnv({
+				NEXT_PUBLIC_PUSHER_APP_KEY: APP_KEY,
+				PUSHER_APP_ID: undefined,
+				PUSHER_SECRET: undefined,
+				NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
+			});
+			PusherAPIClient.reInitialize();
+		});
 
-    it("should return error with empty form set", async () => {
-      const response = await POST(
-        new NextRequest("http://walcron.com", {
-          method: "POST",
-          body: new FormData(),
-        }),
-      )
-      expect(response.status).toBe(405)
-      expect(await response.json()).toStrictEqual({
-        error: "Invalid socket id: ''",
-      })
-    })
+		it("should return error with empty form set", async () => {
+			const response = await POST(
+				new NextRequest("http://walcron.com", {
+					method: "POST",
+					body: new FormData(),
+				}),
+			);
+			expect(response.status).toBe(405);
+			expect(await response.json()).toStrictEqual({
+				error: "Invalid socket id: ''",
+			});
+		});
 
-    it("should return error when only socket id is passed", async () => {
-      const form = new FormData()
-      form.set("socket_id", "123.33")
-      const response = await POST(
-        new NextRequest("http://walcron.com", {
-          method: "POST",
-          body: form,
-        }),
-      )
-      expect(response.status).toBe(405)
-      expect(await response.json()).toStrictEqual({
-        error: "Invalid channel name: ''",
-      })
-    })
+		it("should return error when only socket id is passed", async () => {
+			const form = new FormData();
+			form.set("socket_id", "123.33");
+			const response = await POST(
+				new NextRequest("http://walcron.com", {
+					method: "POST",
+					body: form,
+				}),
+			);
+			expect(response.status).toBe(405);
+			expect(await response.json()).toStrictEqual({
+				error: "Invalid channel name: ''",
+			});
+		});
 
-    it("should to authenticate successfully for a POST", async () => {
-      const response = await POST(mockRequest())
-      expect(response.status).toBe(200)
-      const result = await response.json()
-      expect(result.auth as string).toContain(`${APP_KEY}:`)
-      expect(trace.getTracer).toHaveBeenCalledWith("pusher-auth")
-    })
+		it("should to authenticate successfully for a POST", async () => {
+			const response = await POST(mockRequest());
+			expect(response.status).toBe(200);
+			const result = await response.json();
+			expect(result.auth as string).toContain(`${APP_KEY}:`);
+			expect(trace.getTracer).toHaveBeenCalledWith("pusher-auth");
+		});
 
-    it("should be able to fail authentication", async () => {
-      jest
-        .spyOn(PusherAPIClient.client!, "authorizeChannel")
-        .mockReturnValueOnce({ auth: "" })
-      const response = await POST(mockRequest())
-      expect(response.status).toBe(401)
-      expect(await response.json()).toStrictEqual({ error: "Not authorized." })
-    })
-  })
-})
+		it("should be able to fail authentication", async () => {
+			jest
+				// biome-ignore lint/style/noNonNullAssertion: Expected
+				.spyOn(PusherAPIClient.client!, "authorizeChannel")
+				.mockReturnValueOnce({ auth: "" });
+			const response = await POST(mockRequest());
+			expect(response.status).toBe(401);
+			expect(await response.json()).toStrictEqual({ error: "Not authorized." });
+		});
+	});
+});

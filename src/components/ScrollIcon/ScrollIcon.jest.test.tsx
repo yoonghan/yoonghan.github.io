@@ -1,86 +1,82 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import React, { useRef, RefObject } from "react"
-import ScrollIcon from "."
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import type React from "react";
+import { type RefObject, useRef } from "react";
+import ScrollIcon from ".";
 
 describe("ScrollIcon", () => {
-  const Container = ({
-    children,
-  }: {
-    children: (ref: RefObject<HTMLDivElement | null>) => React.ReactNode
-  }) => {
-    const containerRef = useRef<HTMLDivElement>(null)
+	const Container = ({
+		children,
+	}: {
+		children: (ref: RefObject<HTMLDivElement | null>) => React.ReactNode;
+	}) => {
+		const containerRef = useRef<HTMLDivElement>(null);
 
-    return (
-      <div ref={containerRef} data-testid="parent-elem">
-        {children(containerRef)}
-      </div>
-    )
-  }
+		return (
+			<div ref={containerRef} data-testid="parent-elem">
+				{children(containerRef)}
+			</div>
+		);
+	};
 
-  it("should display component correctly", () => {
-    render(
-      <Container>{(ref) => <ScrollIcon scrollContainer={ref} />}</Container>,
-    )
-    const scrollIcon = screen.getByTestId("scroll-icon")
-    expect(scrollIcon).toHaveClass("scroll icon")
-    // eslint-disable-next-line testing-library/no-node-access
-    expect(scrollIcon.parentElement).toHaveClass("container")
-    // eslint-disable-next-line testing-library/no-node-access
-    expect(scrollIcon.parentElement).toHaveStyle({ opacity: 1 })
-  })
+	it("should display component correctly", () => {
+		render(
+			<Container>{(ref) => <ScrollIcon scrollContainer={ref} />}</Container>,
+		);
+		const scrollIcon = screen.getByTestId("scroll-icon");
+		expect(scrollIcon).toHaveClass("scroll icon");
+		expect(scrollIcon.parentElement).toHaveClass("container");
+		expect(scrollIcon.parentElement).toHaveStyle({ opacity: 1 });
+	});
 
-  it("should display disappear as soon as scroll takes place", async () => {
-    render(
-      <Container>{(ref) => <ScrollIcon scrollContainer={ref} />}</Container>,
-    )
-    const parent = screen.getByTestId("parent-elem")
-    const scrollIcon = screen.getByTestId("scroll-icon")
-    fireEvent.scroll(parent)
-    await waitFor(
-      () => {
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(scrollIcon.parentElement).not.toHaveStyle({ opacity: 1 })
-      },
-      { interval: 1000 },
-    )
-  })
+	it("should display disappear as soon as scroll takes place", async () => {
+		render(
+			<Container>{(ref) => <ScrollIcon scrollContainer={ref} />}</Container>,
+		);
+		const parent = screen.getByTestId("parent-elem");
+		const scrollIcon = screen.getByTestId("scroll-icon");
+		fireEvent.scroll(parent);
+		await waitFor(
+			() => {
+				expect(scrollIcon.parentElement).not.toHaveStyle({ opacity: 1 });
+			},
+			{ interval: 1000 },
+		);
+	});
 
-  it("should be able to display a text in the scroll icon", () => {
-    render(
-      <Container>
-        {(ref) => <ScrollIcon scrollContainer={ref} text={"Howdy"} />}
-      </Container>,
-    )
-    const scrollText = screen.getByText("Howdy")
-    expect(scrollText).toBeInTheDocument()
-    expect(scrollText).toHaveClass("scroll text")
-  })
+	it("should be able to display a text in the scroll icon", () => {
+		render(
+			<Container>
+				{(ref) => <ScrollIcon scrollContainer={ref} text={"Howdy"} />}
+			</Container>,
+		);
+		const scrollText = screen.getByText("Howdy");
+		expect(scrollText).toBeInTheDocument();
+		expect(scrollText).toHaveClass("scroll text");
+	});
 
-  it("should handle no reference passed and nothing happens", async () => {
-    const EmptyContainer = () => {
-      const containerRef = useRef<HTMLDivElement>(null)
+	it("should handle no reference passed and nothing happens", async () => {
+		const EmptyContainer = () => {
+			const containerRef = useRef<HTMLDivElement>(null);
 
-      return (
-        <div data-testid="parent-elem">
-          <ScrollIcon scrollContainer={containerRef} text={"Empty"} />
-        </div>
-      )
-    }
-    render(<EmptyContainer />)
+			return (
+				<div data-testid="parent-elem">
+					<ScrollIcon scrollContainer={containerRef} text={"Empty"} />
+				</div>
+			);
+		};
+		render(<EmptyContainer />);
 
-    const scrollText = screen.getByText("Empty")
-    expect(scrollText).toBeInTheDocument()
-    expect(scrollText).toHaveClass("scroll text")
-    // eslint-disable-next-line testing-library/no-node-access
-    expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
+		const scrollText = screen.getByText("Empty");
+		expect(scrollText).toBeInTheDocument();
+		expect(scrollText).toHaveClass("scroll text");
+		expect(scrollText.parentElement).toHaveStyle({ opacity: 1 });
 
-    fireEvent.scroll(parent)
-    await waitFor(
-      () => {
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(scrollText.parentElement).toHaveStyle({ opacity: 1 })
-      },
-      { interval: 1000 },
-    )
-  })
-})
+		fireEvent.scroll(parent);
+		await waitFor(
+			() => {
+				expect(scrollText.parentElement).toHaveStyle({ opacity: 1 });
+			},
+			{ interval: 1000 },
+		);
+	});
+});
