@@ -1,104 +1,103 @@
+import dynamic from "next/dynamic";
 import {
-  forwardRef,
-  useImperativeHandle,
-  useReducer,
-  useRef,
-  useEffect,
-} from "react"
-import { Message } from "react-bell-chat"
-
-import dynamic from "next/dynamic"
+	forwardRef,
+	useEffect,
+	useImperativeHandle,
+	useReducer,
+	useRef,
+} from "react";
+import type { Message } from "react-bell-chat";
+import { MessageType } from "../../config/MessageType";
 import {
-  MessageActionType,
-  messageReducer,
-  messageReducerInitialState,
-} from "./useMessageReducer/useMessageReducer"
-import { MessageType } from "../../config/MessageType"
+	MessageActionType,
+	messageReducer,
+	messageReducerInitialState,
+} from "./useMessageReducer/useMessageReducer";
 
 const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
-  ssr: false,
-  loading: () => (
-    <div style={{ fontFamily: "Inconsolata", color: "green" }}>
-      Loading Chat Room
-    </div>
-  ),
-})
+	ssr: false,
+	loading: () => (
+		<div style={{ fontFamily: "Inconsolata", color: "green" }}>
+			Loading Chat Room
+		</div>
+	),
+});
 
 export type MessageHandler = {
-  addMessage: (
-    senderId: number | undefined,
-    message: string,
-    messageType?: MessageType,
-  ) => void
-}
+	addMessage: (
+		senderId: number | undefined,
+		message: string,
+		messageType?: MessageType,
+	) => void;
+};
 
 interface Props {
-  initialMessage?: Message[]
+	initialMessage?: Message[];
 }
 
-export const userId = 1
+export const userId = 1;
 
 export const authors = [
-  {
-    id: userId,
-    name: "Me",
-    avatarName: "ME",
-    isTyping: true,
-    lastSeenMessageId: 1,
-    bgImageUrl: undefined,
-  },
-  {
-    id: 2,
-    name: "Anonymous",
-    avatarName: "Anon",
-    isTyping: false,
-    lastSeenMessageId: 1,
-    bgImageUrl: undefined,
-  },
-]
+	{
+		id: userId,
+		name: "Me",
+		avatarName: "ME",
+		isTyping: true,
+		lastSeenMessageId: 1,
+		bgImageUrl: undefined,
+	},
+	{
+		id: 2,
+		name: "Anonymous",
+		avatarName: "Anon",
+		isTyping: false,
+		lastSeenMessageId: 1,
+		bgImageUrl: undefined,
+	},
+];
 
 const ChatMessageDialog = forwardRef<MessageHandler, Props>(
-  function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
-    const [messages, dispatch] = useReducer(
-      messageReducer,
-      initialMessage ?? messageReducerInitialState,
-    )
-    const height = useRef<number>(0)
+	function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
+		const [messages, dispatch] = useReducer(
+			messageReducer,
+			initialMessage ?? messageReducerInitialState,
+		);
+		const height = useRef<number>(0);
 
-    useEffect(() => {
-      height.current = document.body.offsetHeight
-    }, [])
+		useEffect(() => {
+			height.current = document.body.offsetHeight;
+		}, []);
 
-    useImperativeHandle(ref, () => {
-      return {
-        addMessage(
-          senderId: number | undefined,
-          message: string,
-          messageType: MessageType = MessageType.TEXT,
-        ) {
-          dispatch({
-            type: MessageActionType.Add,
-            payload: {
-              message,
-              type: messageType,
-              authorId: senderId,
-            },
-          })
-        },
-      }
-    })
+		useImperativeHandle(ref, () => {
+			return {
+				addMessage(
+					senderId: number | undefined,
+					message: string,
+					messageType: MessageType = MessageType.TEXT,
+				) {
+					dispatch({
+						type: MessageActionType.Add,
+						payload: {
+							message,
+							type: messageType,
+							authorId: senderId,
+						},
+					});
+				},
+			};
+		});
 
-    return (
-      <div>
-        <ChatFeed
-          messages={messages}
-          authors={authors}
-          height={height.current}
-          yourAuthorId={userId}
-        />
-      </div>
-    )
-  },
-)
+		return (
+			<div>
+				<ChatFeed
+					messages={messages}
+					authors={authors}
+					height={height.current}
+					yourAuthorId={userId}
+				/>
+			</div>
+		);
+	},
+);
 
-export default ChatMessageDialog
+export default ChatMessageDialog;

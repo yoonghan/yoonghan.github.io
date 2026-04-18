@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 /**
  * Made for EUROPEAN regulation, but this site do not use cookies.
@@ -6,98 +6,98 @@
  * pass into the props.
  **/
 
-import { useCallback, useEffect, useState } from "react"
-import Button from "@/components/Button"
-import Link from "@/components/Link"
-import Image from "next/image"
-import ReactGA from "react-ga4"
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+import ReactGA from "react-ga4";
+import Button from "@/components/Button";
+import Link from "@/components/Link";
 
-const cookiePrivacy = "https://policies.google.com/technologies/cookies"
-const cookieName = "termsGranted"
+const cookiePrivacy = "https://policies.google.com/technologies/cookies";
+const cookieName = "termsGranted";
 
-type Props = { ga4Id: string }
+type Props = { ga4Id: string };
 
 function ClientCookie({ ga4Id }: Readonly<Props>) {
-  const [isCookieRead, setIsCookieRead] = useState(true)
+	const [isCookieRead, setIsCookieRead] = useState(true);
 
-  const acceptGAConsent = useCallback(() => {
-    ReactGA.gtag("consent", "update", {
-      analytics_storage: "granted",
-    })
-  }, [])
+	const acceptGAConsent = useCallback(() => {
+		ReactGA.gtag("consent", "update", {
+			analytics_storage: "granted",
+		});
+	}, []);
 
-  const onCookieReadClicked = useCallback(() => {
-    document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`
-    setIsCookieRead(true)
-    acceptGAConsent()
-  }, [acceptGAConsent])
+	const onCookieReadClicked = useCallback(() => {
+		document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`;
+		setIsCookieRead(true);
+		acceptGAConsent();
+	}, [acceptGAConsent]);
 
-  useEffect(() => {
-    function getCookie(cname: string) {
-      const name = cname + "="
-      const decodedCookie = decodeURIComponent(document.cookie)
-      const ca = decodedCookie.split(";")
-      for (const cookie of ca) {
-        let c = cookie
-        while (c.startsWith(" ")) {
-          c = c.slice(1)
-        }
-        if (c.startsWith(name)) {
-          return c.substring(name.length, c.length)
-        }
-      }
-      return ""
-    }
+	useEffect(() => {
+		function getCookie(cname: string) {
+			const name = cname + "=";
+			const decodedCookie = decodeURIComponent(document.cookie);
+			const ca = decodedCookie.split(";");
+			for (const cookie of ca) {
+				let c = cookie;
+				while (c.startsWith(" ")) {
+					c = c.slice(1);
+				}
+				if (c.startsWith(name)) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
 
-    const cookieWasRead = !!getCookie(cookieName)
-    setIsCookieRead(cookieWasRead)
+		const cookieWasRead = !!getCookie(cookieName);
+		setIsCookieRead(cookieWasRead);
 
-    if (!ReactGA.isInitialized) {
-      ReactGA.initialize(ga4Id)
-    }
+		if (!ReactGA.isInitialized) {
+			ReactGA.initialize(ga4Id);
+		}
 
-    ReactGA.gtag("consent", "default", {
-      ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
-      ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
-      ad_personalization: "denied", //Sets consent for personalized advertising.
-      analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
-    })
-    if (cookieWasRead) {
-      acceptGAConsent()
-    }
-  }, [acceptGAConsent, ga4Id])
+		ReactGA.gtag("consent", "default", {
+			ad_storage: "denied", //Enables storage (such as cookies) related to advertising.
+			ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
+			ad_personalization: "denied", //Sets consent for personalized advertising.
+			analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
+		});
+		if (cookieWasRead) {
+			acceptGAConsent();
+		}
+	}, [acceptGAConsent, ga4Id]);
 
-  if (isCookieRead) {
-    return <></>
-  } else {
-    return (
-      <div
-        data-testid="cookie-dialog"
-        className={`bg-yellow-50 border-y border-slate-600 drop-shadow-xl animate-[grow_1s_ease-in] z-[101] fixed p-4 w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex`}
-      >
-        <Image
-          src="/img/logo/logo-color.svg"
-          height={50}
-          width={50}
-          alt="Walcron"
-          className="hidden md:block"
-        />
-        <div className="md:flex-1">
-          <strong>This site uses cookies.</strong>
-          <hr className="my-2 border-slate-600" />
-          <p className="mb-4">
-            This site uses cookie to monitor visits and usage traffics through
-            google analytics, please to{" "}
-            <Link href={cookiePrivacy} target="_blank">
-              Google Analytic site
-            </Link>
-            .
-          </p>
-        </div>
-        <Button onClick={onCookieReadClicked}>Accept</Button>
-      </div>
-    )
-  }
+	if (isCookieRead) {
+		return <></>;
+	} else {
+		return (
+			<div
+				data-testid="cookie-dialog"
+				className={`bg-yellow-50 border-y border-slate-600 drop-shadow-xl animate-[grow_1s_ease-in] z-[101] fixed p-4 w-full top-0 gap-4 items-center md:top-auto md:bottom-0 md:flex`}
+			>
+				<Image
+					src="/img/logo/logo-color.svg"
+					height={50}
+					width={50}
+					alt="Walcron"
+					className="hidden md:block"
+				/>
+				<div className="md:flex-1">
+					<strong>This site uses cookies.</strong>
+					<hr className="my-2 border-slate-600" />
+					<p className="mb-4">
+						This site uses cookie to monitor visits and usage traffics through
+						google analytics, please to{" "}
+						<Link href={cookiePrivacy} target="_blank">
+							Google Analytic site
+						</Link>
+						.
+					</p>
+				</div>
+				<Button onClick={onCookieReadClicked}>Accept</Button>
+			</div>
+		);
+	}
 }
 
-export default ClientCookie
+export default ClientCookie;

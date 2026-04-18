@@ -1,20 +1,18 @@
 function isOnlyAlphabetsAndNumberAndSpace(input) {
-  const regex = /^[a-zA-Z0-9 ]*$/
-  return input.match(regex)
+	const regex = /^[a-zA-Z0-9 ]*$/;
+	return input.match(regex);
 }
 
 function removeAllWhiteSpaces(input) {
-  return input.replaceAll(/\s/g, "")
+	return input.replaceAll(/\s/g, "");
 }
 
 function capitalizeFirstWord(str) {
-  return str.replace(/(?:^\w)/, function (word) {
-    return word.toUpperCase()
-  })
+	return str.replace(/(?:^\w)/, (word) => word.toUpperCase());
 }
 
 export {
-  isOnlyAlphabetsAndNumberAndSpace,
-  removeAllWhiteSpaces,
-  capitalizeFirstWord,
-}
+	capitalizeFirstWord,
+	isOnlyAlphabetsAndNumberAndSpace,
+	removeAllWhiteSpaces,
+};

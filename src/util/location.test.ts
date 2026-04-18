@@ -1,21 +1,21 @@
-import { search, redirectTo, reload } from "./location"
+import { redirectTo, reload, search } from "./location";
 
 describe("location", () => {
-    let consoleSpy: jest.SpyInstance
+	let consoleSpy: jest.SpyInstance;
 
-    beforeAll(() => {
-        consoleSpy = jest.spyOn(console, "error").mockImplementation(() => { })
-    })
+	beforeAll(() => {
+		consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+	});
 
-    afterAll(() => {
-        consoleSpy.mockRestore()
-    })
+	afterAll(() => {
+		consoleSpy.mockRestore();
+	});
 
-    it("should run basic location function existance which should not be mocked", () => {
-        expect(search()).toBe("")
+	it("should run basic location function existance which should not be mocked", () => {
+		expect(search()).toBe("");
 
-        expect(redirectTo("http://www.walcron.com")).toBeUndefined()
+		expect(redirectTo("http://www.walcron.com")).toBeUndefined();
 
-        expect(reload()).toBeUndefined()
-    })
-})
+		expect(reload()).toBeUndefined();
+	});
+});

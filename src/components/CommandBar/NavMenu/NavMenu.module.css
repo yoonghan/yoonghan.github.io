@@ -1,11 +1,11 @@
 .container {
-  display: flex;
-  padding: 2rem 0;
-  font-size: 0.75rem;
+	display: flex;
+	padding: 2rem 0;
+	font-size: 0.75rem;
 }
 .navmenu-link {
-  padding-left: 10px;
-  padding-top: 0.5rem;
-  text-decoration: none;
-  color: var(--link);
+	padding-left: 10px;
+	padding-top: 0.5rem;
+	text-decoration: none;
+	color: var(--link);
 }

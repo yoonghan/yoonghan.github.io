@@ -1,65 +1,65 @@
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 2rem;
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	gap: 2rem;
 }
 
 .container div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .container div:nth-child(1) {
-  align-items: flex-end;
-  justify-content: flex-end;
+	align-items: flex-end;
+	justify-content: flex-end;
 }
 
 .container div:nth-child(3) {
-  align-items: flex-end;
-  justify-content: flex-start;
+	align-items: flex-end;
+	justify-content: flex-start;
 }
 
 .container div:nth-child(7) {
-  align-items: flex-start;
-  justify-content: flex-end;
+	align-items: flex-start;
+	justify-content: flex-end;
 }
 
 .container div:nth-child(9) {
-  align-items: flex-start;
-  justify-content: flex-start;
+	align-items: flex-start;
+	justify-content: flex-start;
 }
 
 .container .circle {
-  width: 130px;
-  height: 130px;
-  border: 4px solid var(--button-orange-bg);
-  border-radius: 50%;
-  position: relative;
-  top: -15%;
-  left: -15%;
+	width: 130px;
+	height: 130px;
+	border: 4px solid var(--button-orange-bg);
+	border-radius: 50%;
+	position: relative;
+	top: -15%;
+	left: -15%;
 }
 .container .circle::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  position: absolute;
-  bottom: 0;
-  top: 10px;
-  right: -10px;
-  margin: auto;
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	position: absolute;
+	bottom: 0;
+	top: 10px;
+	right: -10px;
+	margin: auto;
 }
 .container .circle::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 15px solid var(--button-orange-bg);
-  position: absolute;
-  left: 108px;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-top: 15px solid var(--button-orange-bg);
+	position: absolute;
+	left: 108px;
 }

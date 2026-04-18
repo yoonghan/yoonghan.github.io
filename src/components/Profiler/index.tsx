@@ -1,60 +1,60 @@
-import { JSX } from "react"
-import Image, { StaticImageData } from "next/image"
+import Image, { type StaticImageData } from "next/image";
+import type { JSX } from "react";
 
 interface IProfiler {
-  name: string
-  title: string
-  description: JSX.Element
-  imgSrc: string | StaticImageData
-  width?: number
-  height?: number
+	name: string;
+	title: string;
+	description: JSX.Element;
+	imgSrc: string | StaticImageData;
+	width?: number;
+	height?: number;
 }
 
 interface Props {
-  profiles: Array<IProfiler>
+	profiles: Array<IProfiler>;
 }
 
 const _getUser = (
-  idx: number,
-  name: string,
-  title: string,
-  description: JSX.Element,
-  imgSrc: string | StaticImageData,
-  width = 285,
-  height = 385,
+	idx: number,
+	name: string,
+	title: string,
+	description: JSX.Element,
+	imgSrc: string | StaticImageData,
+	width = 285,
+	height = 385,
 ) => (
-  <div key={"user_" + idx}>
-    <Image
-      src={imgSrc}
-      alt={name}
-      width={width}
-      height={height}
-      className="mx-auto"
-    />
-    <div className="py-4 text-center border-b-2 mb-4">
-      <strong>{name}</strong>
-      <p className="text-sm text-gray-500">{title}</p>
-    </div>
-    {description}
-  </div>
-)
+	<div key={"user_" + idx}>
+		<Image
+			src={imgSrc}
+			alt={name}
+			width={width}
+			height={height}
+			className="mx-auto"
+		/>
+		<div className="py-4 text-center border-b-2 mb-4">
+			<strong>{name}</strong>
+			<p className="text-sm text-gray-500">{title}</p>
+		</div>
+		{description}
+	</div>
+);
 
 const Profiler = ({ profiles }: Props) => {
-  return (
-    <div className="flex flex-col gap-16 md:flex-row md:gap-8">
-      {profiles.map((profile, idx) =>
-        _getUser(
-          idx,
-          profile.name,
-          profile.title,
-          profile.description,
-          profile.imgSrc,
-          profile.width,
-          profile.height,
-        ),
-      )}
-    </div>
-  )
-}
+	return (
+		<div className="flex flex-col gap-16 md:flex-row md:gap-8">
+			{profiles.map((profile, idx) =>
+				_getUser(
+					idx,
+					profile.name,
+					profile.title,
+					profile.description,
+					profile.imgSrc,
+					profile.width,
+					profile.height,
+				),
+			)}
+		</div>
+	);
+};
 
-export default Profiler
+export default Profiler;

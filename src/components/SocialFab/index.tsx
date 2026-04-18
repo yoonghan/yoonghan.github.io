@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic";
+import * as React from "react";
 
 const SocialFabNoSSRComponent = dynamic(() => import("./SocialFabNoSSR"), {
-  ssr: false,
-})
+	ssr: false,
+});
 
 const SocialFab = () => {
-  return <SocialFabNoSSRComponent />
-}
+	return <SocialFabNoSSRComponent />;
+};
 
-export default React.memo(SocialFab)
+export default React.memo(SocialFab);
