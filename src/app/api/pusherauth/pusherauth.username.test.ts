@@ -42,7 +42,7 @@ describe("pusherauth/username", () => {
 			({
 				status: status,
 				json: () =>
-					new Promise((resolve, reject) => {
+					new Promise((resolve) => {
 						resolve({ users });
 					}),
 			}) as unknown as Response;
@@ -50,6 +50,7 @@ describe("pusherauth/username", () => {
 		const mockUserResponse = (users: { id: string }[]) => {
 			const userResponse = createResponse(users);
 			jest
+				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "get")
 				.mockResolvedValue(userResponse);
 		};
@@ -124,6 +125,7 @@ describe("pusherauth/username", () => {
 		it("should be able to fail authentication", async () => {
 			mockUserResponse([]);
 			jest
+				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "authorizeChannel")
 				.mockReturnValueOnce({ auth: "" });
 			const response = await POST(mockRequest(), usernameParam);
@@ -142,6 +144,7 @@ describe("pusherauth/username", () => {
 
 		it("should consider user does not exist if getuser api fail and succeed", async () => {
 			jest
+				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "get")
 				.mockResolvedValue(createResponse([], 400));
 			const response = await POST(mockRequest(), usernameParam);

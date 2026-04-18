@@ -23,6 +23,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
 					content: (
 						<div className={className}>
 							{imageSrc && (
+								// biome-ignore lint: expected
 								<img src={imageSrc} height={50} width={50} alt={alt} />
 							)}
 							<div className="text-4xl pb-4">{label}</div>

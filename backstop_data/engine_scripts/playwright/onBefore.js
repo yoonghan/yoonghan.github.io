@@ -1,8 +1,8 @@
 module.exports = async (
-	page,
+	_page,
 	scenario,
-	viewport,
-	isReference,
+	_viewport,
+	_isReference,
 	browserContext,
 ) => {
 	await require("./loadCookies")(browserContext, scenario);

@@ -75,7 +75,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 
 		const sendFileMessage = useCallback(
 			(message: string, notifyReceipient = false) => {
-				chatMessageDialogRef.current!.addMessage(undefined, message);
+				chatMessageDialogRef.current?.addMessage(undefined, message);
 				if (notifyReceipient) onMessageSend(message, MessageType.FILE);
 			},
 			[onMessageSend],
@@ -112,7 +112,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 					message: string,
 					messageType?: MessageType,
 				) {
-					chatMessageDialogRef.current!.addMessage(
+					chatMessageDialogRef.current?.addMessage(
 						senderId,
 						message,
 						messageType,
@@ -156,6 +156,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 							data-testid="file-uploader"
 						/>
 						<button
+							type="button"
 							id="file-upload-btn"
 							aria-label="Upload"
 							onClick={() => {

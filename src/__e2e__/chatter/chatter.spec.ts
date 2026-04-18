@@ -4,7 +4,8 @@
 */
 
 import { expect, test } from "@playwright/test";
-import { callAnotherPerson, startCall } from "./call-util";
+
+// import { callAnotherPerson, startCall } from "./call-util";
 
 test.describe("Webrtc config", () => {
 	test("should have a callback url for pusher to authenticate", async ({
@@ -56,28 +57,28 @@ test.describe("Webrtc calls", () => {
 	// })
 	// Failed to regularly for unknown reasons.
 	/* test("should be able to start 2 persons call, and receiver answers it", async () => {
-    const caller = await startCall("Jupiter")
-    const receiver = await startCall("Mars")
-    console.log("Accept startup")
-    await callAnotherPerson(caller, receiver, "Jupiter", "Mars")
-    console.log("Accept call")
-    await receiver.getByRole("button", { name: "Yes" }).click({ force: true })
-    await caller.waitForTimeout(1000)
-    console.log("Accept confirm")
-    await caller.getByRole("button", { name: "Stop" }).click({ force: true })
-    await caller.waitForTimeout(1000)
-    console.log("Accept decline")
-    expect(await receiver.content()).toContain(
-      "User (Jupiter) has left the chat."
-    )
-    await receiver.getByRole("button", { name: "Ok" }).click({ force: true })
-    await receiver.waitForTimeout(1000)
-    console.log("Accept done")
-    await caller.close()
-    await receiver.close()
+	const caller = await startCall("Jupiter")
+	const receiver = await startCall("Mars")
+	console.log("Accept startup")
+	await callAnotherPerson(caller, receiver, "Jupiter", "Mars")
+	console.log("Accept call")
+	await receiver.getByRole("button", { name: "Yes" }).click({ force: true })
+	await caller.waitForTimeout(1000)
+	console.log("Accept confirm")
+	await caller.getByRole("button", { name: "Stop" }).click({ force: true })
+	await caller.waitForTimeout(1000)
+	console.log("Accept decline")
+	expect(await receiver.content()).toContain(
+	  "User (Jupiter) has left the chat."
+	)
+	await receiver.getByRole("button", { name: "Ok" }).click({ force: true })
+	await receiver.waitForTimeout(1000)
+	console.log("Accept done")
+	await caller.close()
+	await receiver.close()
   })*/
 	/*
-      await caller.screenshot({ path: "screenshot3.png", fullPage: true })
-    await receiver.screenshot({ path: "screenshot4.png", fullPage: true })
+	  await caller.screenshot({ path: "screenshot3.png", fullPage: true })
+	await receiver.screenshot({ path: "screenshot4.png", fullPage: true })
   */
 });

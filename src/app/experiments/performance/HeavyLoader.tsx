@@ -38,11 +38,12 @@ const HeavyLoaderNoSSR = () => {
 		console.log(window.performance.measure("StaticMemo"));
 		window.performance.clearMarks();
 		window.performance.clearMeasures();
-	}, [toggleState]);
+	}, []);
 
 	const renderFree = () => {
 		if (initializeRef.current) {
 			window.performance.mark("Free");
+			// biome-ignore lint/suspicious/noArrayIndexKey
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -52,6 +53,7 @@ const HeavyLoaderNoSSR = () => {
 		if (initializeRef.current) {
 			window.performance.mark("Callback");
 			console.log(toggleState);
+			// biome-ignore lint/suspicious/noArrayIndexKey
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -61,6 +63,7 @@ const HeavyLoaderNoSSR = () => {
 		if (initializeRef.current) {
 			window.performance.mark("Memo");
 			console.log(toggleState);
+			// biome-ignore lint/suspicious/noArrayIndexKey
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -69,6 +72,7 @@ const HeavyLoaderNoSSR = () => {
 	const staticRenderFree = () => {
 		if (initializeRef.current) {
 			window.performance.mark("StaticFree");
+			// biome-ignore lint/suspicious/noArrayIndexKey
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -77,6 +81,7 @@ const HeavyLoaderNoSSR = () => {
 	const staticRenderCallback = useCallback(() => {
 		if (initializeRef.current) {
 			window.performance.mark("StaticCallback");
+			// biome-ignore lint/suspicious/noArrayIndexKey
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -85,6 +90,7 @@ const HeavyLoaderNoSSR = () => {
 	const staticRenderMemo = useMemo(() => {
 		if (initializeRef.current) {
 			window.performance.mark("StaticMemo");
+			// biome-ignore
 			return arrayOfRecords.map((_, i) => <span key={`f_${i}`}>{i},</span>);
 		}
 		return [];
@@ -124,7 +130,9 @@ const HeavyLoaderNoSSR = () => {
 				<strong>Static Memo</strong>
 				<div>{staticRenderMemo}</div>
 			</Profiler>
-			<button onClick={onUpdate}>Retrigger</button>
+			<button type="button" onClick={onUpdate}>
+				Retrigger
+			</button>
 		</div>
 	);
 };

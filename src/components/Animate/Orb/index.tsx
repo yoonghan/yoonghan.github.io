@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation";
 import styles from "./Orb.module.css";
 

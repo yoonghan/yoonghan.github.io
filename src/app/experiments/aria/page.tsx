@@ -17,21 +17,20 @@ function Aria() {
 			<section className="py-4">
 				<strong>Test aria-labelledby</strong>
 				<div>
-					<div aria-label="Fancy Label" id="sec-1">
-						Fancy Label
-					</div>
-					<div aria-labelledby="sec-1" tabIndex={0}>
-						Will read {'"Fancy Label"'}
-					</div>
+					<div id="sec-1">Fancy Label</div>
+					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
+					<div tabIndex={0}>Will read {'"Fancy Label"'}</div>
 				</div>
 			</section>
 
 			<section className="py-4">
 				<strong>Test aria-describedby</strong>
 				<div>
+					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
 					<div aria-label="Fancy Label" id="sec-2">
 						Fancy Label 2
 					</div>
+					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
 					<div aria-describedby="sec-2" tabIndex={0}>
 						{"Doesn't"} work
 					</div>

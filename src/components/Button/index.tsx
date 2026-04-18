@@ -84,13 +84,13 @@ const Button = ({
 			style += ` ${styling.className}`;
 		}
 		if (styling?.small) {
-			style += " " + styles.small;
+			style += ` ${styles.small}`;
 		}
 		if (styling?.inverted) {
-			style += " " + styles.invert;
+			style += ` ${styles.invert}`;
 		}
 		if (color) {
-			style += " " + styles[color];
+			style += ` ${styles[color]}`;
 		}
 		return style;
 	}, [styling, color]);

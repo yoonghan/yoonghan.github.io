@@ -7,7 +7,7 @@ describe("wrapPromise", () => {
 		try {
 			wrapper.read();
 			fail("Expected to throw promise");
-		} catch (goodError) {
+		} catch (_goodError) {
 			// expect(goodError).toStrictEqual(promise)
 		}
 	});

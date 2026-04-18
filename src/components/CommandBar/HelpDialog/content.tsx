@@ -8,7 +8,7 @@ interface Props {
 
 const HelpContent = ({ updateSelectedInput }: Props) => {
 	const onClick = (input: Record<string, ReactNode>) => {
-		updateSelectedInput(input["Command"] as string);
+		updateSelectedInput(input.Command as string);
 	};
 
 	const listsOfCommands = Object.keys(AvailableInput)

@@ -1,10 +1,8 @@
 {
 	"ignore": [
 		"backstop_data/**",
-		"src/__mocks__/**",
 		"crate/**/pkg/**",
-		"crate/**/target/**",
-		"src/__smoke__/playwright.config.ts"
+		"src/__e2e__/chatter/chatter.spec.ts"
 	],
 	"ignoreDependencies": [
 		"sharp",

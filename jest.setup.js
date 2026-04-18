@@ -37,7 +37,7 @@ HTMLDialogElement.prototype.close = jest.fn(function mock() {
 	this.dispatchEvent(evt);
 });
 
-window.scrollTo = (x, y) => {
+window.scrollTo = (_x, y) => {
 	document.documentElement.scrollTop = y;
 	window.scrollY = y;
 };

@@ -83,15 +83,20 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 			() => (
 				<>
 					{showDialog && (
+						// biome-ignore lint/a11y/useKeyWithClickEvents: expected
 						<dialog
 							className={styles.container}
 							ref={dialogElem}
 							onClick={onDialogClick}
 						>
-							<div className={styles.content} onClick={onContentClick}>
-								{children}
-							</div>
-							<button onClick={onCloseClick}>
+							{
+								// biome-ignore lint/a11y/useKeyWithClickEvents: expected
+								// biome-ignore lint/a11y/noStaticElementInteractions: expected
+								<div className={styles.content} onClick={onContentClick}>
+									{children}
+								</div>
+							}
+							<button type="button" onClick={onCloseClick}>
 								{isNotModal ? "×" : "[ESC]"}
 							</button>
 						</dialog>

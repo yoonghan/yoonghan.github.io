@@ -1,8 +1,4 @@
-module.exports = async (
-	page,
-	scenario,
-	viewport
-) => {
+module.exports = async (page, scenario, viewport) => {
 	await require("./customWalcron")(page, scenario, viewport);
 	await require("./clickAndHoverHelper")(page, scenario, viewport);
 

@@ -18,6 +18,7 @@ const getFirebaseCredential = (validCredentials: {
 	};
 };
 
+// biome-ignore lint/complexity/noStaticOnlyClass: Expected
 export class Firebase {
 	public static readonly getValidCredentials = (): {
 		[key: string]: string;

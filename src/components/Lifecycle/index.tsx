@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "../Link";
 import AnimatedCircle from "./AnimatedCircle";
 import styles from "./Lifecycle.module.css";
@@ -10,6 +9,7 @@ type Model = {
 
 function Lifecycle({ models }: Readonly<{ models: Model[] }>) {
 	const drawArrow = (rotation: number) => (
+		// biome-ignore lint/a11y/noSvgWithoutTitle: expected
 		<svg
 			fill="#000000"
 			height="50px"

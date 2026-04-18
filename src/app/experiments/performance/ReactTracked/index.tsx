@@ -1,4 +1,3 @@
-import React from "react";
 import Counter from "./Counter";
 import { SharedStateProvider } from "./store";
 import TextBox from "./TextBox";

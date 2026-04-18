@@ -144,8 +144,12 @@ describe("VideoChat", () => {
 						videoFailedCallback={jest.fn()}
 						videoTracksCallback={videoTracksCallback}
 					/>
-					<button onClick={addStreamToVideoOnClick}>Add</button>
-					<button onClick={stopStream}>Stop Stream</button>
+					<button type="button" onClick={addStreamToVideoOnClick}>
+						Add
+					</button>
+					<button type="button" onClick={stopStream}>
+						Stop Stream
+					</button>
 				</>
 			);
 		};

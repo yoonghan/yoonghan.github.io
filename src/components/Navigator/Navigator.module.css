@@ -35,16 +35,6 @@
 	border-radius: 50%;
 }
 
-.container:first-child > span:first-child {
-	top: 11px;
-}
-.container:last-child > span:first-child {
-	bottom: 40px;
-}
-.container:last-child .icon {
-	background: rgb(25, 128, 25);
-	color: rgb(255, 255, 255);
-}
 .container > span:first-child {
 	top: 0;
 	left: 4px;
@@ -53,17 +43,33 @@
 	width: 2px;
 	background-color: #858b94;
 }
+
+.container:last-child > span:first-child {
+	bottom: 40px;
+}
+
+.container:last-child .icon {
+	background: rgb(25, 128, 25);
+	color: rgb(255, 255, 255);
+}
+
 .container > span:nth-child(2) {
 	left: 0;
 	text-align: center;
 	position: absolute;
 	top: 5px;
 }
+
 .container > .content {
 	padding-bottom: 18px;
 }
+
 .container > .content p {
 	margin: 0;
 	font-size: 0.75rem;
 	white-space: nowrap;
+}
+
+.container:first-child > span:first-child {
+	top: 11px;
 }
