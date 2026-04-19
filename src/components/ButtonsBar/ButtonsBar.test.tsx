@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import ButtonsBar from ".";
+import { render, screen } from "@testing-library/react"
+import ButtonsBar from "."
 
 describe("ButtonsBar", () => {
 	it("should display button bar", () => {
@@ -20,11 +20,11 @@ describe("ButtonsBar", () => {
 					},
 				]}
 			/>,
-		);
-		expect(screen.getByText("sample")).toHaveAttribute("href", "/");
-		expect(screen.getByText("two")).toHaveAttribute("href", "/two");
-		expect(screen.getByText("three")).toHaveAttribute("href", "/three");
-	});
+		)
+		expect(screen.getByText("sample")).toHaveAttribute("href", "/")
+		expect(screen.getByText("two")).toHaveAttribute("href", "/two")
+		expect(screen.getByText("three")).toHaveAttribute("href", "/three")
+	})
 
 	it("should display button bar with active", () => {
 		render(
@@ -45,12 +45,12 @@ describe("ButtonsBar", () => {
 				]}
 				activeIndex={1}
 			/>,
-		);
-		const activeText = screen.getByText("two");
-		expect(activeText).toHaveAttribute("href", "/two");
-		expect(activeText.parentElement).toHaveClass("is-active");
-		expect(screen.getByText("one")).not.toHaveClass("is-active");
-	});
+		)
+		const activeText = screen.getByText("two")
+		expect(activeText).toHaveAttribute("href", "/two")
+		expect(activeText.parentElement).toHaveClass("is-active")
+		expect(screen.getByText("one")).not.toHaveClass("is-active")
+	})
 
 	it("should render if button bar !==3 but with exception", async () => {
 		render(
@@ -62,7 +62,7 @@ describe("ButtonsBar", () => {
 					},
 				]}
 			/>,
-		);
-		expect(screen.getByText("only 1")).toBeInTheDocument();
-	});
-});
+		)
+		expect(screen.getByText("only 1")).toBeInTheDocument()
+	})
+})

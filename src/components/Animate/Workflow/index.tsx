@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import type { ReactNode } from "react";
-import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation";
-import styles from "./Workflow.module.css";
+import type { ReactNode } from "react"
+import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
+import styles from "./Workflow.module.css"
 
 function Workflow({
 	children,
 	title,
 	className = "",
 }: Readonly<{
-	children: ReactNode;
-	title: string;
-	className?: string;
+	children: ReactNode
+	title: string
+	className?: string
 }>) {
-	const { isAnimatable } = useDisableAnimation();
+	const { isAnimatable } = useDisableAnimation()
 	return (
 		<div className={`${className} relative`} title={title}>
 			{children}
@@ -28,7 +28,7 @@ function Workflow({
 				<div className={styles.box}></div>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Workflow;
+export default Workflow

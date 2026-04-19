@@ -1,13 +1,13 @@
-import styles from "./Card.module.css";
+import styles from "./Card.module.css"
 
 interface Props {
 	cards: {
-		id: string;
-		title: string;
-		description: string;
-		href: string;
-		target?: string;
-	}[];
+		id: string
+		title: string
+		description: string
+		href: string
+		target?: string
+	}[]
 }
 
 const Card = ({ cards }: Props) => {
@@ -27,7 +27,7 @@ const Card = ({ cards }: Props) => {
 				</li>
 			))}
 		</ul>
-	);
-};
+	)
+}
 
-export default Card;
+export default Card

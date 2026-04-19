@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
-import Table from "@/components/Table";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
+import Table from "@/components/Table"
 
 const model = [
 	{
@@ -31,7 +31,7 @@ const model = [
 			/>
 		),
 	},
-];
+]
 
 export function NpmCommands() {
 	return (
@@ -39,5 +39,5 @@ export function NpmCommands() {
 			<p className="text-2xl">NPM Commands</p>
 			<Accordion model={model} groupName={"commands"} />
 		</article>
-	);
+	)
 }

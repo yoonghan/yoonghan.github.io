@@ -1,18 +1,18 @@
-import { usePathname } from "next/navigation";
-import styles from "./NavMenu.module.css";
+import { usePathname } from "next/navigation"
+import styles from "./NavMenu.module.css"
 
 const writeLink = (pathname: string | null) => {
-	const paths = (pathname ?? "/").split("/");
-	let accumulatedPath = "";
+	const paths = (pathname ?? "/").split("/")
+	let accumulatedPath = ""
 	const splittedLinks = paths.map((path, index) => {
 		if (path === "") {
 			return index === 0 ? (
 				<a href={"/"} key={`_linkroot`} className={"navmenu-link"}>
 					home
 				</a>
-			) : null;
+			) : null
 		}
-		accumulatedPath += `/${path}`;
+		accumulatedPath += `/${path}`
 		return (
 			<a
 				href={accumulatedPath}
@@ -22,18 +22,18 @@ const writeLink = (pathname: string | null) => {
 				{" "}
 				&gt; {path}
 			</a>
-		);
-	});
-	return splittedLinks;
-};
+		)
+	})
+	return splittedLinks
+}
 const NavMenu = () => {
-	const pathName = usePathname();
+	const pathName = usePathname()
 	return (
 		<nav className={styles.container} aria-label="Site Map">
 			<div>Site Map: &nbsp;</div>
 			<span className="link">{writeLink(pathName)}</span>
 		</nav>
-	);
-};
+	)
+}
 
-export default NavMenu;
+export default NavMenu

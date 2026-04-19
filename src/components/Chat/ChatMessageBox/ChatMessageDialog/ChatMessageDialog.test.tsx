@@ -1,25 +1,25 @@
-import { getDefaultNormalizer, render, screen } from "@testing-library/react";
-import type { Message } from "react-bell-chat";
-import ChatMessageDialog, { authors, userId } from ".";
+import { getDefaultNormalizer, render, screen } from "@testing-library/react"
+import type { Message } from "react-bell-chat"
+import ChatMessageDialog, { authors, userId } from "."
 
 describe("ChatMessageDialog", () => {
 	const renderComponent = (message?: Message[]) =>
-		render(<ChatMessageDialog initialMessage={message} />);
+		render(<ChatMessageDialog initialMessage={message} />)
 
 	const formatDateToTime = (date: Date): string => {
 		let formattedTime = date.toLocaleTimeString("en", {
 			hour: "2-digit",
 			minute: "2-digit",
-		});
+		})
 		formattedTime = formattedTime.substring(
 			formattedTime.startsWith("0") ? 1 : 0,
 			formattedTime.length,
-		);
-		return formattedTime;
-	};
+		)
+		return formattedTime
+	}
 
 	it("should render component correctly", async () => {
-		const createdOn = new Date();
+		const createdOn = new Date()
 		renderComponent([
 			{
 				id: 0,
@@ -35,19 +35,19 @@ describe("ChatMessageDialog", () => {
 				createdOn,
 				isSend: true,
 			},
-		]);
+		])
 
-		expect(await screen.findByText("First Message")).toBeInTheDocument();
-		expect(screen.getByText("Anon")).toBeInTheDocument();
-		expect(screen.getByText("Second Message")).toBeInTheDocument();
+		expect(await screen.findByText("First Message")).toBeInTheDocument()
+		expect(screen.getByText("Anon")).toBeInTheDocument()
+		expect(screen.getByText("Second Message")).toBeInTheDocument()
 		expect(
 			screen.getAllByText(formatDateToTime(createdOn), {
 				normalizer: getDefaultNormalizer({ collapseWhitespace: false }),
 			}),
-		).toHaveLength(2);
-	});
+		).toHaveLength(2)
+	})
 
 	it("should have the first authors to be the user", () => {
-		expect(userId).toBe(authors[0].id);
-	});
-});
+		expect(userId).toBe(authors[0].id)
+	})
+})

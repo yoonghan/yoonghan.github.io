@@ -1,5 +1,5 @@
 interface Props {
-	invalidCommand: string;
+	invalidCommand: string
 }
 
 const InvalidCommand = ({ invalidCommand }: Props) => {
@@ -17,7 +17,7 @@ const InvalidCommand = ({ invalidCommand }: Props) => {
         }
       `}</style>
 		</div>
-	);
-};
+	)
+}
 
-export default InvalidCommand;
+export default InvalidCommand

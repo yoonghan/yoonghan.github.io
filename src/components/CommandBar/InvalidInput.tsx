@@ -1,11 +1,11 @@
 interface InvalidInputProps {
-	invalidInput: string;
+	invalidInput: string
 }
 
 const trimInput = (input: string) => {
-	const _input = input.trim();
-	return _input.length > 6 ? `${_input.substring(0, 4)}...` : _input;
-};
+	const _input = input.trim()
+	return _input.length > 6 ? `${_input.substring(0, 4)}...` : _input
+}
 
 const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
 	return (
@@ -23,7 +23,7 @@ const InvalidInput = ({ invalidInput }: InvalidInputProps) => {
         }
       `}</style>
 		</div>
-	);
-};
+	)
+}
 
-export default InvalidInput;
+export default InvalidInput

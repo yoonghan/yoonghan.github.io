@@ -1,11 +1,12 @@
-import Counter from "./Counter";
-import { SharedStateProvider } from "./store";
-import TextBox from "./TextBox";
+import Counter from "./Counter"
+import { SharedStateProvider } from "./store"
+import TextBox from "./TextBox"
 
 const ReactTracked = () => (
 	<SharedStateProvider>
 		<div>
-			Testing react tracked, that change of 1 component does affect another.
+			Testing react tracked, that change of 1 component does affect
+			another.
 		</div>
 		<div className="App">
 			<header className="App-header">
@@ -15,6 +16,6 @@ const ReactTracked = () => (
 			</header>
 		</div>
 	</SharedStateProvider>
-);
+)
 
-export default ReactTracked;
+export default ReactTracked

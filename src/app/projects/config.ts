@@ -87,4 +87,4 @@ export const cards = [
 		href: "/projects/javascript-free",
 		target: "_self",
 	},
-];
+]

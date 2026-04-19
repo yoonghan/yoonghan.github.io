@@ -1,9 +1,9 @@
-import { memo } from "react";
-import Card from "@/components/Card";
-import LetterBox from "@/components/LetterBox";
-import ScrollToTop from "@/components/ScrollToTop";
-import { site } from "@/config/site";
-import { cards } from "./config";
+import { memo } from "react"
+import Card from "@/components/Card"
+import LetterBox from "@/components/LetterBox"
+import ScrollToTop from "@/components/ScrollToTop"
+import { site } from "@/config/site"
+import { cards } from "./config"
 
 export const metadata = {
 	title: "Lab, Research & Development",
@@ -11,7 +11,7 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/experiments"),
 	},
-};
+}
 
 const Experiments = () => {
 	return (
@@ -30,7 +30,7 @@ const Experiments = () => {
 			</div>
 			<ScrollToTop />
 		</div>
-	);
-};
+	)
+}
 
-export default memo(Experiments);
+export default memo(Experiments)

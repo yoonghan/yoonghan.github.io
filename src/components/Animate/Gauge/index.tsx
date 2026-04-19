@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import type { ReactNode } from "react";
-import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation";
-import styles from "./Gauge.module.css";
+import type { ReactNode } from "react"
+import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation"
+import styles from "./Gauge.module.css"
 
 function Gauge({
 	children,
 	title,
 	className = "",
 }: Readonly<{
-	children: ReactNode;
-	title: string;
-	className?: string;
+	children: ReactNode
+	title: string
+	className?: string
 }>) {
-	const { isAnimatable } = useDisableAnimation();
+	const { isAnimatable } = useDisableAnimation()
 	return (
 		<div className={className} title={title}>
 			<div className={styles.container}>
@@ -25,7 +25,7 @@ function Gauge({
 			</div>
 			{children}
 		</div>
-	);
+	)
 }
 
-export default Gauge;
+export default Gauge

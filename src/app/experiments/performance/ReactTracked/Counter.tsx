@@ -1,10 +1,10 @@
-import { useSharedState } from "./store";
+import { useSharedState } from "./store"
 
 const Counter = () => {
-	const [state, setState] = useSharedState();
+	const [state, setState] = useSharedState()
 	const increment = () => {
-		setState((prev) => ({ ...prev, count: (prev.count as number) + 1 }));
-	};
+		setState((prev) => ({ ...prev, count: (prev.count as number) + 1 }))
+	}
 	return (
 		<div>
 			{state.count}
@@ -12,7 +12,7 @@ const Counter = () => {
 				+1
 			</button>
 		</div>
-	);
-};
+	)
+}
 
-export default Counter;
+export default Counter

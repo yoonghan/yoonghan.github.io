@@ -1,19 +1,19 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { useRef } from "react";
-import { setVideo } from "@/__tests__/mocks/windowMock";
-import VideoChat, { type VideoStreamHandler } from ".";
+import { render, screen, waitFor } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import { useRef } from "react"
+import { setVideo } from "@/__tests__/mocks/windowMock"
+import VideoChat, { type VideoStreamHandler } from "."
 
 describe("VideoChat", () => {
-	let oldVideoFn: () => void;
+	let oldVideoFn: () => void
 
 	beforeAll(() => {
-		oldVideoFn = setVideo();
-	});
+		oldVideoFn = setVideo()
+	})
 
 	afterAll(() => {
-		oldVideoFn();
-	});
+		oldVideoFn()
+	})
 
 	const renderComponent = ({
 		record = true,
@@ -21,10 +21,10 @@ describe("VideoChat", () => {
 		videoTracksCallback = jest.fn(),
 		noRef = false,
 	}: {
-		record?: boolean;
-		videoFailedCallback?: (exception: unknown) => void;
-		videoTracksCallback?: (mediaStream: MediaStream | undefined) => void;
-		noRef?: boolean;
+		record?: boolean
+		videoFailedCallback?: (exception: unknown) => void
+		videoTracksCallback?: (mediaStream: MediaStream | undefined) => void
+		noRef?: boolean
 	}) => {
 		return render(
 			<VideoChat
@@ -35,53 +35,57 @@ describe("VideoChat", () => {
 				videoTracksCallback={videoTracksCallback}
 				noRef={noRef}
 			/>,
-		);
-	};
+		)
+	}
 
 	const createUserMedia = () => {
-		const videoTracks = jest.fn();
-		const stopFn = jest.fn();
-		const stopFnObj = { stop: stopFn };
+		const videoTracks = jest.fn()
+		const stopFn = jest.fn()
+		const stopFnObj = { stop: stopFn }
 		const trackFn = {
 			getTracks: () => [stopFnObj],
-		} as any;
+		} as any
 		const spyGetUserMedia = jest
 			.spyOn(window.navigator.mediaDevices, "getUserMedia")
-			.mockResolvedValueOnce(trackFn);
+			.mockResolvedValueOnce(trackFn)
 		return {
 			videoTracks,
 			stopFn,
 			trackFn,
 			spyGetUserMedia,
-		};
-	};
+		}
+	}
 
 	it("should load with important attributes", () => {
-		renderComponent({});
-		const video = screen.getByTestId("video-chat") as HTMLVideoElement;
-		expect(video).toHaveAttribute("autoplay");
-		expect(video).toHaveAttribute("playsInline");
-		expect(video.muted).toBe(true);
-	});
+		renderComponent({})
+		const video = screen.getByTestId("video-chat") as HTMLVideoElement
+		expect(video).toHaveAttribute("autoplay")
+		expect(video).toHaveAttribute("playsInline")
+		expect(video.muted).toBe(true)
+	})
 
 	it("should getMediaDevices failed/rejected, it will trigger videoFailedCallback", async () => {
-		const failCallback = jest.fn();
-		jest
-			.spyOn(window.navigator.mediaDevices, "getUserMedia")
-			.mockRejectedValueOnce("I failed");
+		const failCallback = jest.fn()
+		jest.spyOn(
+			window.navigator.mediaDevices,
+			"getUserMedia",
+		).mockRejectedValueOnce("I failed")
 
-		renderComponent({ videoFailedCallback: failCallback });
+		renderComponent({ videoFailedCallback: failCallback })
 		await waitFor(() => {
-			expect(failCallback).toHaveBeenCalledWith("I failed");
-		});
-	});
+			expect(failCallback).toHaveBeenCalledWith("I failed")
+		})
+	})
 
 	it("should be able to get then stop a video", async () => {
-		const { videoTracks, stopFn, trackFn, spyGetUserMedia } = createUserMedia();
-		const { rerender } = renderComponent({ videoTracksCallback: videoTracks });
+		const { videoTracks, stopFn, trackFn, spyGetUserMedia } =
+			createUserMedia()
+		const { rerender } = renderComponent({
+			videoTracksCallback: videoTracks,
+		})
 		await waitFor(() => {
-			expect(videoTracks).toHaveBeenCalledWith(trackFn);
-		});
+			expect(videoTracks).toHaveBeenCalledWith(trackFn)
+		})
 		rerender(
 			<VideoChat
 				id="test"
@@ -90,49 +94,52 @@ describe("VideoChat", () => {
 				videoFailedCallback={jest.fn()}
 				videoTracksCallback={videoTracks}
 			/>,
-		);
+		)
 
 		await waitFor(() => {
-			expect(stopFn).toHaveBeenCalledTimes(1);
-		});
-		spyGetUserMedia.mockClear();
-	});
+			expect(stopFn).toHaveBeenCalledTimes(1)
+		})
+		spyGetUserMedia.mockClear()
+	})
 
 	it("should stop a video on unmount", async () => {
-		const { videoTracks, stopFn, trackFn, spyGetUserMedia } = createUserMedia();
-		const { unmount } = renderComponent({ videoTracksCallback: videoTracks });
+		const { videoTracks, stopFn, trackFn, spyGetUserMedia } =
+			createUserMedia()
+		const { unmount } = renderComponent({
+			videoTracksCallback: videoTracks,
+		})
 		await waitFor(() => {
-			expect(videoTracks).toHaveBeenCalledWith(trackFn);
-		});
-		unmount();
+			expect(videoTracks).toHaveBeenCalledWith(trackFn)
+		})
+		unmount()
 
 		await waitFor(() => {
-			expect(stopFn).toHaveBeenCalledTimes(1);
-		});
-		spyGetUserMedia.mockClear();
-	});
+			expect(stopFn).toHaveBeenCalledTimes(1)
+		})
+		spyGetUserMedia.mockClear()
+	})
 
 	describe("integration to pass stream", () => {
 		const Wrapper = ({
 			videoTracksCallback,
 			mediaStream,
 		}: {
-			videoTracksCallback: () => void;
-			mediaStream: MediaStream;
+			videoTracksCallback: () => void
+			mediaStream: MediaStream
 		}) => {
-			const videoRef = useRef<VideoStreamHandler>(null);
+			const videoRef = useRef<VideoStreamHandler>(null)
 
 			const addStreamToVideoOnClick = () => {
 				if (videoRef.current !== null) {
-					videoRef.current.stream(mediaStream);
+					videoRef.current.stream(mediaStream)
 				}
-			};
+			}
 
 			const stopStream = () => {
 				if (videoRef.current !== null) {
-					videoRef.current.stopStream();
+					videoRef.current.stopStream()
 				}
-			};
+			}
 
 			return (
 				<>
@@ -151,34 +158,37 @@ describe("VideoChat", () => {
 						Stop Stream
 					</button>
 				</>
-			);
-		};
+			)
+		}
 
 		it("should be able to assign video with custom stream and stop it", async () => {
-			const streamData = "Stream data" as any;
-			const { videoTracks } = createUserMedia();
+			const streamData = "Stream data" as any
+			const { videoTracks } = createUserMedia()
 			render(
-				<Wrapper videoTracksCallback={videoTracks} mediaStream={streamData} />,
-			);
+				<Wrapper
+					videoTracksCallback={videoTracks}
+					mediaStream={streamData}
+				/>,
+			)
 			await waitFor(() => {
-				expect(videoTracks).toHaveBeenCalled();
-			});
-			const video = screen.getByTestId("video-chat") as HTMLVideoElement;
-			expect(video.srcObject).toBe(null);
-			await userEvent.click(screen.getByRole("button", { name: "Add" }));
-			expect(video.srcObject).toBe(streamData);
+				expect(videoTracks).toHaveBeenCalled()
+			})
+			const video = screen.getByTestId("video-chat") as HTMLVideoElement
+			expect(video.srcObject).toBe(null)
+			await userEvent.click(screen.getByRole("button", { name: "Add" }))
+			expect(video.srcObject).toBe(streamData)
 
 			await userEvent.click(
 				screen.getByRole("button", { name: "Stop Stream" }),
-			);
-			expect(video.srcObject).toBe(null);
-		});
+			)
+			expect(video.srcObject).toBe(null)
+		})
 
 		it("should function as expected if ref is not ready", async () => {
-			const { unmount } = renderComponent({ noRef: true });
-			const video = screen.getByTestId("video-chat") as HTMLVideoElement;
-			expect(video.srcObject).toBe(undefined);
-			unmount();
-		});
-	});
-});
+			const { unmount } = renderComponent({ noRef: true })
+			const video = screen.getByTestId("video-chat") as HTMLVideoElement
+			expect(video.srcObject).toBe(undefined)
+			unmount()
+		})
+	})
+})

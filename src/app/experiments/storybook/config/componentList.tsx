@@ -1,17 +1,16 @@
-import dynamic from "next/dynamic";
-import FunkyScroller from "@/components/Animate/FunkyScroller";
-import Lifecycle from "@/components/Lifecycle";
-import Animate from "./Animate";
-import ButtonsBar from "./ButtonsBar";
-import Canvases from "./Canvases";
-import Cards from "./Cards";
-import { OrderedFigure, ReversedFigure } from "./Figure";
-import { SiriLikeOrb } from "./Orb";
-import { ArrowKeyboard } from "./PopupKeyboard";
-import ScrollableListDemo from "./ScrollableList";
-import Tables from "./Tables";
+import dynamic from "next/dynamic"
+import FunkyScroller from "@/components/Animate/FunkyScroller"
+import Lifecycle from "@/components/Lifecycle"
+import Animate from "./Animate"
+import ButtonsBar from "./ButtonsBar"
+import Canvases from "./Canvases"
+import Cards from "./Cards"
+import { OrderedFigure, ReversedFigure } from "./Figure"
+import { ArrowKeyboard } from "./PopupKeyboard"
+import ScrollableListDemo from "./ScrollableList"
+import Tables from "./Tables"
 
-const NoSSRDialog = dynamic(() => import("./Dialogs"));
+const NoSSRDialog = dynamic(() => import("./Dialogs"))
 
 export const storyBookList = [
 	{
@@ -71,4 +70,4 @@ export const storyBookList = [
 			/>
 		),
 	},
-];
+]

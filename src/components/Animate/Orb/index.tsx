@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation";
-import styles from "./Orb.module.css";
+import { useDisableAnimation } from "@/components/utils/hooks/disableAnimation/useDisableAnimation"
+import styles from "./Orb.module.css"
 
 const Orb = () => {
-	const { isAnimatable } = useDisableAnimation();
+	const { isAnimatable } = useDisableAnimation()
 	return (
 		<div
 			className={`${styles.siriOrb} ${isAnimatable ? "" : styles.noAnimation}`}
@@ -15,7 +15,7 @@ const Orb = () => {
 			<div className={`${styles.wave} ${styles.wave3}`}></div>
 			<div className={`${styles.wave} ${styles.wave4}`}></div>
 		</div>
-	);
-};
+	)
+}
 
-export default Orb;
+export default Orb

@@ -1,29 +1,29 @@
-import type { JSX, ReactNode } from "react";
+import type { JSX, ReactNode } from "react"
 
-type ListRecord = Record<string, ReactNode>;
+type ListRecord = Record<string, ReactNode>
 
 interface Props {
-	list: Array<ListRecord>;
-	headers: Array<string>;
-	onClick?: (key: Record<string, ReactNode>) => void;
-	className?: string;
+	list: Array<ListRecord>
+	headers: Array<string>
+	onClick?: (key: Record<string, ReactNode>) => void
+	className?: string
 }
 
 const Table = ({ list, headers, onClick, className }: Props) => {
 	const renderInfo = (info: { [key: string]: ReactNode }, idx: number) => {
-		const arr: Array<JSX.Element> = [];
+		const arr: Array<JSX.Element> = []
 		for (const [key, value] of Object.entries(info)) {
 			arr.push(
 				<td key={`${key}-${idx}`} className="p-2 border border-black">
 					{value}
 				</td>,
-			);
+			)
 		}
-		return arr;
-	};
+		return arr
+	}
 
 	const listOfObjects = list.map((info, idx) => {
-		const key = Object.keys(info).reduce((acc, x) => `${acc}-${x}`, "");
+		const key = Object.keys(info).reduce((acc, x) => `${acc}-${x}`, "")
 		return (
 			<tr
 				key={`${key}-${idx}`}
@@ -32,8 +32,8 @@ const Table = ({ list, headers, onClick, className }: Props) => {
 			>
 				{renderInfo(info, idx)}
 			</tr>
-		);
-	});
+		)
+	})
 
 	return (
 		<div className={`overflow-x-auto ${className}`}>
@@ -41,7 +41,10 @@ const Table = ({ list, headers, onClick, className }: Props) => {
 				<thead className="text-white bg-slate-800">
 					<tr>
 						{headers.map((header) => (
-							<th key={header} className="p-2 border border-black">
+							<th
+								key={header}
+								className="p-2 border border-black"
+							>
 								{header}
 							</th>
 						))}
@@ -50,7 +53,7 @@ const Table = ({ list, headers, onClick, className }: Props) => {
 				<tbody>{listOfObjects}</tbody>
 			</table>
 		</div>
-	);
-};
+	)
+}
 
-export default Table;
+export default Table

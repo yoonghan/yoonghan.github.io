@@ -7,7 +7,7 @@ jest.mock("@yoonghan/walcron-microfrontend-shared", () => {
 				delta: 1.1,
 				id: "test",
 				value: 2,
-			});
+			})
 		},
-	};
-});
+	}
+})

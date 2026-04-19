@@ -1,24 +1,26 @@
-import Link from "next/link";
-import { memo, useCallback, useMemo } from "react";
-import { type PageConfig, sortedFooterPages } from "../../config/pages";
-import styles from "./Footer.module.css";
+import Link from "next/link"
+import { memo, useCallback, useMemo } from "react"
+import { type PageConfig, sortedFooterPages } from "../../config/pages"
+import styles from "./Footer.module.css"
 
 const Footer = () => {
 	const renameDisplays = useCallback((display: string) => {
 		if (display === "Project Portfolio") {
-			return "All";
+			return "All"
 		}
-		return display;
-	}, []);
+		return display
+	}, [])
 
 	const renderLinks = useCallback(
 		(footerPage: PageConfig) => (
 			<li key={footerPage.display}>
-				<Link href={footerPage.path}>{renameDisplays(footerPage.display)}</Link>
+				<Link href={footerPage.path}>
+					{renameDisplays(footerPage.display)}
+				</Link>
 			</li>
 		),
 		[renameDisplays],
-	);
+	)
 
 	const renderedLearn = useMemo(() => {
 		return sortedFooterPages
@@ -27,20 +29,20 @@ const Footer = () => {
 					!footerPage.path.startsWith("/projects") &&
 					!footerPage.path.startsWith("/experiments"),
 			)
-			.map((footerPage) => renderLinks(footerPage));
-	}, [renderLinks]);
+			.map((footerPage) => renderLinks(footerPage))
+	}, [renderLinks])
 
 	const renderedProjects = useMemo(() => {
 		return sortedFooterPages
 			.filter((footerPage) => footerPage.path.startsWith("/projects"))
-			.map((footerPage) => renderLinks(footerPage));
-	}, [renderLinks]);
+			.map((footerPage) => renderLinks(footerPage))
+	}, [renderLinks])
 
 	const renderedExperiments = useMemo(() => {
 		return sortedFooterPages
 			.filter((footerPage) => footerPage.path.startsWith("/experiments"))
-			.map((footerPage) => renderLinks(footerPage));
-	}, [renderLinks]);
+			.map((footerPage) => renderLinks(footerPage))
+	}, [renderLinks])
 
 	return (
 		<footer className={`pt-16 ${styles.container} text-sm`}>
@@ -80,7 +82,7 @@ const Footer = () => {
 				</ul>
 			</div>
 		</footer>
-	);
-};
+	)
+}
 
-export default memo(Footer);
+export default memo(Footer)

@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
-import StickyCards from "@/components/StickyCards";
-import "@yoonghan/walcron-microfrontend-shared/dist/style.css";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
+import StickyCards from "@/components/StickyCards"
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
 
 const JavascriptFree = () => {
 	return (
@@ -13,12 +13,12 @@ const JavascriptFree = () => {
 					A goal oriented page to make the page working in both{" "}
 					<strong>No Javascript</strong>
 					{""}
-					and javascript environment. Reason for no javascript is to support
-					terminal typed browsers.
+					and javascript environment. Reason for no javascript is to
+					support terminal typed browsers.
 				</p>
 				<p>
-					The latter will be much more powerful, but it&apos;s important to
-					still make it Javascript free.
+					The latter will be much more powerful, but it&apos;s
+					important to still make it Javascript free.
 				</p>
 			</div>
 			<article className="pt-8">
@@ -61,7 +61,7 @@ const JavascriptFree = () => {
 				></StickyCards>
 			</article>
 		</div>
-	);
-};
+	)
+}
 
-export default JavascriptFree;
+export default JavascriptFree

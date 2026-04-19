@@ -1,88 +1,92 @@
-import { context, propagation, trace } from "@opentelemetry/api";
-import PusherJS, { type Channel } from "pusher-js";
-import type { Transport } from "pusher-js/types/src/core/config";
-import { useDebugValue, useRef } from "react";
-import { PUSHER } from "../../../../Chat/config";
+import { context, propagation, trace } from "@opentelemetry/api"
+import PusherJS, { type Channel } from "pusher-js"
+import type { Transport } from "pusher-js/types/src/core/config"
+import { useDebugValue, useRef } from "react"
+import { PUSHER } from "../../../../Chat/config"
 import {
 	decodeMessage,
 	encodeMessage,
-} from "../../../../Chat/config/MessageFormatter";
-import { MessageType } from "../../../../Chat/config/MessageType";
-import { EnumConnectionStatus } from "../type/ConnectionStatus";
-import type { Emitter } from "../type/Emitter";
+} from "../../../../Chat/config/MessageFormatter"
+import { MessageType } from "../../../../Chat/config/MessageType"
+import { EnumConnectionStatus } from "../type/ConnectionStatus"
+import type { Emitter } from "../type/Emitter"
 
 type Props = {
-	eventName: string;
-	channelName: string;
-	printConnectionCallback: (message: string, messageType: MessageType) => void;
+	eventName: string
+	channelName: string
+	printConnectionCallback: (message: string, messageType: MessageType) => void
 	printEventCallback: (
 		message: string,
 		messageType: MessageType,
 		senderId?: number,
-	) => void;
-	appKey: string;
-	cluster: string;
-	channelPrefix?: string;
-	authEndpoint?: string;
-};
+	) => void
+	appKey: string
+	cluster: string
+	channelPrefix?: string
+	authEndpoint?: string
+}
 
 export function usePusher(props: Props) {
 	const { printConnectionCallback, printEventCallback, appKey, cluster } =
-		props;
-	const pusherChannelClient = useRef<PusherJS>(undefined);
-	const channel = useRef<Channel>(undefined);
+		props
+	const pusherChannelClient = useRef<PusherJS>(undefined)
+	const channel = useRef<Channel>(undefined)
 	const connectionStatus = useRef<EnumConnectionStatus>(
 		EnumConnectionStatus.Disconnected,
-	);
+	)
 
 	const channelName = `${props.channelPrefix ? `${props.channelPrefix}-` : ""}${
 		PUSHER.channel_prefix
-	}${props.channelName}`;
-	const eventName = `client-${props.eventName}`;
+	}${props.channelName}`
+	const eventName = `client-${props.eventName}`
 
-	useDebugValue(`connection: ${connectionStatus.current}`);
+	useDebugValue(`connection: ${connectionStatus.current}`)
 
 	const updateConnectionStatus = (
 		latestConnectionStatus: EnumConnectionStatus,
 	) => {
-		connectionStatus.current = latestConnectionStatus;
+		connectionStatus.current = latestConnectionStatus
 		printConnectionCallback(
 			`Status: ${latestConnectionStatus}`,
 			MessageType.CONNECTION,
-		);
-	};
+		)
+	}
 
 	const subscribeToChannel = (current: PusherJS) => {
-		channel.current = current.subscribe(channelName);
+		channel.current = current.subscribe(channelName)
 		channel.current.bind(
 			eventName,
-			(data: { message: string; senderId?: number; traceContext?: any }) => {
+			(data: {
+				message: string
+				senderId?: number
+				traceContext?: any
+			}) => {
 				const parentCtx = propagation.extract(
 					context.active(),
 					data.traceContext,
-				);
-				const tracer = trace.getTracer("pusher-hook");
+				)
+				const tracer = trace.getTracer("pusher-hook")
 				context.with(parentCtx, () => {
 					tracer.startActiveSpan("receive-message", (span) => {
-						const complexMessage = decodeMessage(data.message);
+						const complexMessage = decodeMessage(data.message)
 						span.setAttributes({
 							"pusher.channel": channelName,
 							"pusher.event": eventName,
 							"pusher.message": data.message,
 							"pusher.senderId": data.senderId,
-						});
+						})
 						printEventCallback(
 							complexMessage.message,
 							complexMessage.messageType,
 							data.senderId,
-						);
-						span.end();
-					});
-				});
+						)
+						span.end()
+					})
+				})
 			},
-		);
-		return channel.current;
-	};
+		)
+		return channel.current
+	}
 
 	const monitorOnlineUsers = (channel: Channel) => {
 		channel.bind(
@@ -91,28 +95,28 @@ export function usePusher(props: Props) {
 				printConnectionCallback(
 					`Active user count: ${data.subscription_count}`,
 					MessageType.USERCOUNT,
-				);
+				)
 			},
-		);
-	};
+		)
+	}
 
 	const monitorConnection = (current: PusherJS) => {
 		current.connection.bind("connected", () => {
-			updateConnectionStatus(EnumConnectionStatus.Connected);
-		});
-	};
+			updateConnectionStatus(EnumConnectionStatus.Connected)
+		})
+	}
 
 	const monitorFail = (current: PusherJS) => {
 		current.connection.bind("failed", () => {
-			updateConnectionStatus(EnumConnectionStatus.Disconnected);
+			updateConnectionStatus(EnumConnectionStatus.Disconnected)
 			printConnectionCallback(
 				"Connection failed as websocket is not supported by browser",
 				MessageType.CONNECTION_ERROR,
-			);
-			pusherChannelClient.current = undefined;
-			channel.current = undefined;
-		});
-	};
+			)
+			pusherChannelClient.current = undefined
+			channel.current = undefined
+		})
+	}
 
 	const monitorError = (current: PusherJS) => {
 		current.connection.bind("error", (error: any) => {
@@ -123,114 +127,117 @@ export function usePusher(props: Props) {
 				printConnectionCallback(
 					"A different Id was requested, please refresh the page.",
 					MessageType.CONNECTION_ERROR,
-				);
-				updateConnectionStatus(EnumConnectionStatus.Disconnected);
-				pusherChannelClient.current = undefined;
-				channel.current = undefined;
+				)
+				updateConnectionStatus(EnumConnectionStatus.Disconnected)
+				pusherChannelClient.current = undefined
+				channel.current = undefined
 			} else {
 				// eslint-disable-next-line no-console
-				console.error("error", error);
-				updateConnectionStatus(EnumConnectionStatus.Error);
+				console.error("error", error)
+				updateConnectionStatus(EnumConnectionStatus.Error)
 				printConnectionCallback(
 					"Interruption error encountered",
 					MessageType.CONNECTION_ERROR,
-				);
+				)
 			}
-		});
-	};
+		})
+	}
 
 	const monitorDisconnected = (current: PusherJS) => {
 		current.connection.bind("disconnected", () => {
-			updateConnectionStatus(EnumConnectionStatus.Disconnected);
-			printConnectionCallback("Disconnected", MessageType.CONNECTION_ERROR);
-			pusherChannelClient.current = undefined;
-			channel.current = undefined;
-		});
-	};
+			updateConnectionStatus(EnumConnectionStatus.Disconnected)
+			printConnectionCallback(
+				"Disconnected",
+				MessageType.CONNECTION_ERROR,
+			)
+			pusherChannelClient.current = undefined
+			channel.current = undefined
+		})
+	}
 
 	const connect = () => {
 		if (pusherChannelClient.current) {
 			printConnectionCallback(
 				"Connection is already established",
 				MessageType.TEXT,
-			);
-			return;
+			)
+			return
 		}
 
-		updateConnectionStatus(EnumConnectionStatus.StartConnecting);
+		updateConnectionStatus(EnumConnectionStatus.StartConnecting)
 		printConnectionCallback(
 			"Establishing Connection, please wait.",
 			MessageType.TEXT,
-		);
+		)
 
-		const enabledTransports: Transport[] = ["sockjs", "ws"];
+		const enabledTransports: Transport[] = ["sockjs", "ws"]
 
 		const pusherConfiguration = {
 			cluster,
 			authEndpoint: props.authEndpoint,
 			enabledTransports,
-		};
-		pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration);
+		}
+		pusherChannelClient.current = new PusherJS(appKey, pusherConfiguration)
 
-		const channel = subscribeToChannel(pusherChannelClient.current);
-		monitorConnection(pusherChannelClient.current);
-		monitorError(pusherChannelClient.current);
-		monitorDisconnected(pusherChannelClient.current);
-		monitorFail(pusherChannelClient.current);
-		monitorOnlineUsers(channel);
-	};
+		const channel = subscribeToChannel(pusherChannelClient.current)
+		monitorConnection(pusherChannelClient.current)
+		monitorError(pusherChannelClient.current)
+		monitorDisconnected(pusherChannelClient.current)
+		monitorFail(pusherChannelClient.current)
+		monitorOnlineUsers(channel)
+	}
 
 	const sendMessage = (message: string, messageType: MessageType) => {
-		const tracer = trace.getTracer("pusher-hook");
+		const tracer = trace.getTracer("pusher-hook")
 		return tracer.startActiveSpan("send-message", (span) => {
 			if (channel.current) {
-				const complexMessage = encodeMessage(message, messageType);
-				const traceContext = {};
-				propagation.inject(context.active(), traceContext);
+				const complexMessage = encodeMessage(message, messageType)
+				const traceContext = {}
+				propagation.inject(context.active(), traceContext)
 				span.setAttributes({
 					"pusher.channel": channelName,
 					"pusher.event": eventName,
 					"pusher.message": complexMessage,
-				});
+				})
 				const isSent = channel.current.trigger(eventName, {
 					message: complexMessage,
 					traceContext,
-				});
-				span.end();
-				return isSent;
+				})
+				span.end()
+				return isSent
 			}
-			span.end();
-			return false;
-		});
-	};
+			span.end()
+			return false
+		})
+	}
 
 	const emit = (type: "Event" | "NoOfUsers"): Emitter => {
-		const tracer = trace.getTracer("pusher-hook");
+		const tracer = trace.getTracer("pusher-hook")
 		switch (type) {
 			case "Event":
 				return (message: string, senderId: number) => {
 					return tracer.startActiveSpan("emit-event", (span) => {
 						if (channel.current) {
-							const traceContext = {};
-							propagation.inject(context.active(), traceContext);
+							const traceContext = {}
+							propagation.inject(context.active(), traceContext)
 							span.setAttributes({
 								"pusher.channel": channelName,
 								"pusher.event": eventName,
 								"pusher.message": message,
 								"pusher.senderId": senderId,
-							});
+							})
 							channel.current.emit(eventName, {
 								senderId,
 								message,
 								traceContext,
-							});
-							span.end();
-							return true;
+							})
+							span.end()
+							return true
 						}
-						span.end();
-						return false;
-					});
-				};
+						span.end()
+						return false
+					})
+				}
 			case "NoOfUsers": {
 				return (subscription_count: number) => {
 					return tracer.startActiveSpan("emit-user-count", (span) => {
@@ -239,46 +246,46 @@ export function usePusher(props: Props) {
 								"pusher.channel": channelName,
 								"pusher.event": "pusher:subscription_count",
 								"pusher.subscription_count": subscription_count,
-							});
+							})
 							channel.current.emit("pusher:subscription_count", {
 								subscription_count,
-							});
-							span.end();
-							return true;
+							})
+							span.end()
+							return true
 						}
-						span.end();
-						return false;
-					});
-				};
+						span.end()
+						return false
+					})
+				}
 			}
 		}
-	};
+	}
 
 	const emitConnectionEvent = (event: string, message?: any) => {
 		if (pusherChannelClient.current) {
-			pusherChannelClient.current.connection.emit(event, message);
+			pusherChannelClient.current.connection.emit(event, message)
 		}
-	};
+	}
 
 	const disconnect = () => {
 		if (pusherChannelClient.current) {
-			pusherChannelClient.current.disconnect();
+			pusherChannelClient.current.disconnect()
 		}
-	};
+	}
 
 	const isConnected = () => {
 		switch (connectionStatus.current) {
 			case EnumConnectionStatus.Connected:
 			case EnumConnectionStatus.Error:
-				return true;
+				return true
 			default:
-				return false;
+				return false
 		}
-	};
+	}
 
 	const getConnectionStatus = () => {
-		return connectionStatus.current;
-	};
+		return connectionStatus.current
+	}
 
 	return {
 		connect,
@@ -290,5 +297,5 @@ export function usePusher(props: Props) {
 		getConnectionStatus,
 		channelName,
 		eventName,
-	};
+	}
 }

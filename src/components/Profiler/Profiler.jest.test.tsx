@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import Profiler from ".";
+import { render, screen } from "@testing-library/react"
+import Profiler from "."
 
 describe("Profiler", () => {
 	it("should render correctly", () => {
@@ -27,9 +27,9 @@ describe("Profiler", () => {
 					},
 				]}
 			/>,
-		);
-		expect(screen.getByText("name1")).toBeInTheDocument();
-		expect(screen.getByText("name2")).toBeInTheDocument();
-		expect(screen.getByText("name3")).toBeInTheDocument();
-	});
-});
+		)
+		expect(screen.getByText("name1")).toBeInTheDocument()
+		expect(screen.getByText("name2")).toBeInTheDocument()
+		expect(screen.getByText("name3")).toBeInTheDocument()
+	})
+})

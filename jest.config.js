@@ -1,9 +1,9 @@
-const nextJest = require("next/jest");
+const nextJest = require("next/jest")
 
 const createJestConfig = nextJest({
 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
 	dir: "./",
-});
+})
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
@@ -45,16 +45,16 @@ const customJestConfig = {
 		"<rootDir>/src/instrumentation.ts",
 		"<rootDir>/src/util/location.ts",
 	],
-};
+}
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-const asyncConfig = createJestConfig(customJestConfig);
+const asyncConfig = createJestConfig(customJestConfig)
 
 module.exports = async () => {
-	const config = await asyncConfig();
+	const config = await asyncConfig()
 	config.transformIgnorePatterns = [
 		"/node_modules/(?!(react-ga4|geist)/)(?!.pnpm)",
 		"^.+\\.module\\.(css|sass|scss)$",
-	];
-	return config;
-};
+	]
+	return config
+}

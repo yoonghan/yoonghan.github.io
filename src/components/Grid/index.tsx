@@ -1,16 +1,16 @@
-import type React from "react";
+import type React from "react"
 
 // Define the interface for a single certificate item that the Grid will display.
 export interface Certificate {
-	label: string;
-	imageSrc?: string; // URL or path to the certificate logo/image.
-	text: string; // A short description of the certificate.
-	href?: string; // The external URL the certificate tile will link to.
+	label: string
+	imageSrc?: string // URL or path to the certificate logo/image.
+	text: string // A short description of the certificate.
+	href?: string // The external URL the certificate tile will link to.
 }
 
 // Define the props for the Grid component.
 interface GridProps {
-	items: Certificate[];
+	items: Certificate[]
 }
 
 /**
@@ -41,7 +41,7 @@ const Grid: React.FC<GridProps> = ({ items }) => {
 						</div>
 						<p className="text-gray-600 text-sm">{item.text}</p>
 					</>
-				);
+				)
 
 				return item.href && item.href !== "#" ? (
 					<a
@@ -60,10 +60,10 @@ const Grid: React.FC<GridProps> = ({ items }) => {
 					>
 						{content}
 					</div>
-				);
+				)
 			})}
 		</div>
-	);
-};
+	)
+}
 
-export default Grid;
+export default Grid
