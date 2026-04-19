@@ -1,4 +1,4 @@
-import ButtonsBar from "@/components/ButtonsBar";
+import ButtonsBar from "@/components/ButtonsBar"
 
 const renderButtonsBar = (
 	<ButtonsBar
@@ -8,6 +8,6 @@ const renderButtonsBar = (
 		]}
 		activeIndex={1}
 	/>
-);
+)
 
-export default renderButtonsBar;
+export default renderButtonsBar

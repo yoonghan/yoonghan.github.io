@@ -24,4 +24,4 @@ export const otherDeveloperCertificates = [
 		href: "/certs/samurai-leadership-yoong-han.pdf",
 		className: "bg-teal-400",
 	},
-];
+]

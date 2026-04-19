@@ -1,63 +1,66 @@
-import { trace } from "@opentelemetry/api";
-import { type NextRequest, NextResponse } from "next/server";
-import { PusherAPIClient } from "./PusherAPIClient";
+import { trace } from "@opentelemetry/api"
+import { type NextRequest, NextResponse } from "next/server"
+import { PusherAPIClient } from "./PusherAPIClient"
 
 export type ResponseMessage = {
-	message?: string;
-	auth?: string;
-};
+	message?: string
+	auth?: string
+}
 
 const postMessage = async (req: NextRequest) => {
-	const tracer = trace.getTracer("pusher-auth");
+	const tracer = trace.getTracer("pusher-auth")
 	return await tracer.startActiveSpan(
 		"authorize-pusher-channel",
 		async (span) => {
-			const formData = await req.formData();
-			const socket_id = formData.get("socket_id")?.toString() ?? "";
-			const channel_name = formData.get("channel_name")?.toString() ?? "";
+			const formData = await req.formData()
+			const socket_id = formData.get("socket_id")?.toString() ?? ""
+			const channel_name = formData.get("channel_name")?.toString() ?? ""
 
 			span.setAttributes({
 				"pusher.socket_id": socket_id,
 				"pusher.channel_name": channel_name,
-			});
+			})
 
-			const client = PusherAPIClient.client;
+			const client = PusherAPIClient.client
 			if (client) {
-				const authToken = client.authorizeChannel(socket_id, channel_name);
+				const authToken = client.authorizeChannel(
+					socket_id,
+					channel_name,
+				)
 				if (authToken?.auth && authToken.auth !== "") {
-					span.end();
-					return NextResponse.json(authToken);
+					span.end()
+					return NextResponse.json(authToken)
 				} else {
-					span.end();
+					span.end()
 					return NextResponse.json(
 						{ error: "Not authorized." },
 						{
 							status: 401,
 						},
-					);
+					)
 				}
 			} else {
-				span.end();
+				span.end()
 				return NextResponse.json(
 					{ error: "Pusher initialized values has not been set." },
 					{
 						status: 500,
 					},
-				);
+				)
 			}
 		},
-	);
-};
+	)
+}
 
 export async function POST(request: NextRequest) {
 	try {
-		return await postMessage(request);
+		return await postMessage(request)
 	} catch (err: any) {
 		return NextResponse.json(
 			{
 				error: err?.message,
 			},
 			{ status: 405 },
-		);
+		)
 	}
 }

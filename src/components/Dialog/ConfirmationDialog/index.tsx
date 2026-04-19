@@ -1,7 +1,7 @@
-import React, { useCallback, useRef } from "react";
-import Button from "../../Button";
-import Dialog, { type DialogHandler } from "..";
-import styles from "./ConfirmationDialog.module.css";
+import React, { useCallback, useRef } from "react"
+import Button from "../../Button"
+import Dialog, { type DialogHandler } from ".."
+import styles from "./ConfirmationDialog.module.css"
 
 enum Action {
 	Cancel,
@@ -10,15 +10,15 @@ enum Action {
 }
 
 export interface Props {
-	title: string;
-	message: string;
-	onCancel?: () => void;
-	onNoClick?: () => void;
-	onYesClick: () => void;
-	yesButtonText?: string;
-	noButtonText?: string;
-	nonPortal?: boolean;
-	isNotModal?: boolean;
+	title: string
+	message: string
+	onCancel?: () => void
+	onNoClick?: () => void
+	onYesClick: () => void
+	yesButtonText?: string
+	noButtonText?: string
+	nonPortal?: boolean
+	isNotModal?: boolean
 }
 
 const ConfirmationDialog = ({
@@ -32,7 +32,7 @@ const ConfirmationDialog = ({
 	nonPortal = true,
 	isNotModal = false,
 }: Props) => {
-	const dialogRef = useRef<DialogHandler>(null);
+	const dialogRef = useRef<DialogHandler>(null)
 
 	const onAction = useCallback(
 		(action: Action) =>
@@ -41,24 +41,24 @@ const ConfirmationDialog = ({
 					| React.SubmitEvent<HTMLFormElement>
 					| React.MouseEvent<HTMLButtonElement>,
 			) => {
-				e?.preventDefault();
+				e?.preventDefault()
 
-				dialogRef.current?.close();
+				dialogRef.current?.close()
 
 				switch (action) {
 					case Action.Cancel:
-						onCancel();
-						break;
+						onCancel()
+						break
 					case Action.No:
-						onNoClick();
-						break;
+						onNoClick()
+						break
 					case Action.Yes:
-						onYesClick();
-						break;
+						onYesClick()
+						break
 				}
 			},
 		[onYesClick, onCancel, onNoClick],
-	);
+	)
 
 	return (
 		<Dialog
@@ -86,7 +86,7 @@ const ConfirmationDialog = ({
 				</form>
 			</div>
 		</Dialog>
-	);
-};
+	)
+}
 
-export default React.memo(ConfirmationDialog);
+export default React.memo(ConfirmationDialog)

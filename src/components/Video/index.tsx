@@ -1,13 +1,13 @@
-import * as React from "react";
-import styles from "./Video.module.css";
+import * as React from "react"
+import styles from "./Video.module.css"
 
 interface Props {
-	src: string;
-	imgJpgSrc: string;
-	imgWebpSrc: string;
-	imgAlt: string;
-	preload?: string;
-	noRef?: boolean;
+	src: string
+	imgJpgSrc: string
+	imgWebpSrc: string
+	imgAlt: string
+	preload?: string
+	noRef?: boolean
 }
 
 const Video = ({
@@ -18,52 +18,54 @@ const Video = ({
 	preload,
 	noRef,
 }: Props) => {
-	const videoRef = React.useRef<HTMLVideoElement>(null);
-	const [sound, setSound] = React.useState(false);
-	const [isPlaying, setPlaying] = React.useState(false);
+	const videoRef = React.useRef<HTMLVideoElement>(null)
+	const [sound, setSound] = React.useState(false)
+	const [isPlaying, setPlaying] = React.useState(false)
 
 	const toggleSound = () => {
 		if (videoRef.current !== null) {
-			videoRef.current.muted = sound;
-			setSound(!sound);
+			videoRef.current.muted = sound
+			setSound(!sound)
 		}
-	};
+	}
 
 	const hoverVideo = () => {
 		if (videoRef.current !== null) {
-			videoRef.current.style.opacity = "1";
-			videoRef.current.play();
-			setPlaying(true);
+			videoRef.current.style.opacity = "1"
+			videoRef.current.play()
+			setPlaying(true)
 		}
-	};
+	}
 
 	const hideVideo = () => {
 		if (videoRef.current !== null) {
-			videoRef.current.style.opacity = "0";
-			videoRef.current.pause();
-			setPlaying(false);
+			videoRef.current.style.opacity = "0"
+			videoRef.current.pause()
+			setPlaying(false)
 		}
-	};
+	}
 
 	const toggleSoundAndPlay = () => {
 		if (videoRef.current !== null) {
 			if (isPlaying && !videoRef.current.muted) {
-				hideVideo();
+				hideVideo()
 			} else {
-				hoverVideo();
+				hoverVideo()
 				if (videoRef.current.muted) {
-					toggleSound();
+					toggleSound()
 				}
 			}
 		}
-	};
+	}
 
 	return (
 		<>
 			<div className={styles["container-btn"]}>
 				<button type="button" onClick={toggleSound}>
 					with sound ( <span>{sound ? "on" : "off"}</span>{" "}
-					<i className={`fas ${sound ? "fa-volume-up" : "fa-volume-mute"}`}></i>{" "}
+					<i
+						className={`fas ${sound ? "fa-volume-up" : "fa-volume-mute"}`}
+					></i>{" "}
 					)
 				</button>
 			</div>
@@ -79,7 +81,12 @@ const Video = ({
 				<picture>
 					<source srcSet={imgWebpSrc} type="image/webp" />
 					<source srcSet={imgJpgSrc} type="image/jpg" />
-					<img src={imgJpgSrc} alt={imgAlt} width="756" height="1008" />
+					<img
+						src={imgJpgSrc}
+						alt={imgAlt}
+						width="756"
+						height="1008"
+					/>
 				</picture>
 				<div className={styles.overlay}>
 					<i className="fas fa-play-circle"></i>
@@ -96,7 +103,7 @@ const Video = ({
 				</video>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default Video;
+export default Video

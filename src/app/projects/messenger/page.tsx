@@ -1,35 +1,39 @@
-"use client";
+"use client"
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import ChatMessageBox from "@/components/Chat/ChatMessageBox";
-import type { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog";
-import type { MessageType } from "@/components/Chat/config/MessageType";
-import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck";
-import { usePusher } from "@/components/utils/hooks/pusher/usePusher";
-import { pusherAuthEndpoint } from "./config";
+import { useCallback, useEffect, useMemo, useRef } from "react"
+import ChatMessageBox from "@/components/Chat/ChatMessageBox"
+import type { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
+import type { MessageType } from "@/components/Chat/config/MessageType"
+import { withNonEmptyEnvCheck } from "@/components/utils/hoc/withEnvCheck/withEnvCheck"
+import { usePusher } from "@/components/utils/hooks/pusher/usePusher"
+import { pusherAuthEndpoint } from "./config"
 
 interface Props {
-	appKey?: string;
-	cluster?: string;
+	appKey?: string
+	cluster?: string
 }
 
 const Messenger = ({ appKey, cluster }: Props) => {
-	const chatMessageBoxRef = useRef<MessageHandler>(null);
+	const chatMessageBoxRef = useRef<MessageHandler>(null)
 
 	const printMessage = useCallback(
 		(sender?: number) => (message: string, messageType: MessageType) => {
 			if (chatMessageBoxRef.current !== null) {
-				chatMessageBoxRef.current.addMessage(sender, message, messageType);
+				chatMessageBoxRef.current.addMessage(
+					sender,
+					message,
+					messageType,
+				)
 			}
 		},
 		[],
-	);
+	)
 
 	const connectionPrinter = useMemo(
 		() => printMessage(undefined),
 		[printMessage],
-	);
-	const eventPrinter = useMemo(() => printMessage(2), [printMessage]);
+	)
+	const eventPrinter = useMemo(() => printMessage(2), [printMessage])
 
 	const { connect, disconnect, send } = usePusher({
 		eventName: "walcron_messenger",
@@ -42,38 +46,42 @@ const Messenger = ({ appKey, cluster }: Props) => {
 		cluster: cluster!,
 		authEndpoint: pusherAuthEndpoint,
 		channelPrefix: "private",
-	});
+	})
 
 	/**
 	 * Found reason that useHook returning "object" does a re-render if used as dependency
 	 */
 	useEffect(() => {
-		connect();
+		connect()
 
 		return () => {
-			disconnect();
-		};
-	}, [disconnect, connect]);
+			disconnect()
+		}
+	}, [disconnect, connect])
 
 	const onMessageSend = useCallback(
 		(message: string, messageType: MessageType) => {
-			send(message, messageType);
+			send(message, messageType)
 		},
 		[send],
-	);
+	)
 
 	return (
 		<div className="walcron-container">
 			<h1>A Walcron Chat Program</h1>
 			<p>
-				Used this to test on 3rd party integration and asynchronous replies. The
-				reason this was build was to test authentication, code coverage,
-				integration and capabilites of asynchronous system.
+				Used this to test on 3rd party integration and asynchronous
+				replies. The reason this was build was to test authentication,
+				code coverage, integration and capabilites of asynchronous
+				system.
 			</p>
-			<ChatMessageBox onMessageSend={onMessageSend} ref={chatMessageBoxRef} />
+			<ChatMessageBox
+				onMessageSend={onMessageSend}
+				ref={chatMessageBoxRef}
+			/>
 		</div>
-	);
-};
+	)
+}
 
 export default withNonEmptyEnvCheck(
 	Messenger,
@@ -82,4 +90,4 @@ export default withNonEmptyEnvCheck(
 		cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
 	}),
 	"Pusher initialization failed due to missing environment variable.",
-);
+)

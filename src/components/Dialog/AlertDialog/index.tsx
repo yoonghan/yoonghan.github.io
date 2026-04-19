@@ -1,17 +1,17 @@
-import React, { useCallback, useRef } from "react";
-import Button from "../../Button";
-import Dialog, { type DialogHandler } from "..";
-import styles from "./AlertDialog.module.css";
+import React, { useCallback, useRef } from "react"
+import Button from "../../Button"
+import Dialog, { type DialogHandler } from ".."
+import styles from "./AlertDialog.module.css"
 
 export interface Props {
-	title: string;
-	message: string;
-	okBtnText?: string;
-	onOk: () => void;
+	title: string
+	message: string
+	okBtnText?: string
+	onOk: () => void
 }
 
 const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
-	const dialogRef = useRef<DialogHandler>(null);
+	const dialogRef = useRef<DialogHandler>(null)
 
 	const onAction = useCallback(
 		(isOkClick: boolean) =>
@@ -20,14 +20,14 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
 					| React.SubmitEvent<HTMLFormElement>
 					| React.MouseEvent<HTMLButtonElement>,
 			) => {
-				e?.preventDefault();
+				e?.preventDefault()
 
-				dialogRef.current?.close();
+				dialogRef.current?.close()
 
-				if (isOkClick) onOk();
+				if (isOkClick) onOk()
 			},
 		[onOk],
-	);
+	)
 
 	return (
 		<Dialog onCancel={onAction(false)} ref={dialogRef} nonPortal={true}>
@@ -44,7 +44,7 @@ const AlertDialog = ({ title, message, okBtnText, onOk }: Props) => {
 				</div>
 			</div>
 		</Dialog>
-	);
-};
+	)
+}
 
-export default React.memo(AlertDialog);
+export default React.memo(AlertDialog)

@@ -1,33 +1,33 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
+import { useRef } from "react"
 import {
 	clearBoard,
 	drawCell,
 	drawSquareBoard,
-} from "@/app/projects/game-snake/Snake/util/drawCanvas";
+} from "@/app/projects/game-snake/Snake/util/drawCanvas"
 
-const cellSize = 10;
+const cellSize = 10
 
 const Canvases = () => {
-	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null)
 
 	const onClickDraw = (dimensionWidth: number) => {
 		if (canvasRef.current !== null) {
 			// biome-ignore lint/style/noNonNullAssertion: Expected
-			const ctx = canvasRef.current.getContext("2d")!;
-			ctx.clearRect(0, 0, 100, 100);
-			clearBoard(ctx, canvasRef.current);
+			const ctx = canvasRef.current.getContext("2d")!
+			ctx.clearRect(0, 0, 100, 100)
+			clearBoard(ctx, canvasRef.current)
 			drawCell(
 				ctx,
 				Math.floor(dimensionWidth * 3.5),
 				dimensionWidth,
 				cellSize,
 				"#FF0000",
-			);
-			drawSquareBoard(ctx, dimensionWidth, cellSize);
+			)
+			drawSquareBoard(ctx, dimensionWidth, cellSize)
 		}
-	};
+	}
 
 	return (
 		<div>
@@ -44,7 +44,7 @@ const Canvases = () => {
 			</div>
 			<canvas ref={canvasRef} />
 		</div>
-	);
-};
+	)
+}
 
-export default Canvases;
+export default Canvases

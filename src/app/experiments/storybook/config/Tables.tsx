@@ -1,9 +1,14 @@
-import Table from "@/components/Table";
+import Table from "@/components/Table"
 
 const Tables = (
 	<div style={{ background: "#222" }}>
 		<Table
-			headers={["header one", "header two", "header three", "header four"]}
+			headers={[
+				"header one",
+				"header two",
+				"header three",
+				"header four",
+			]}
 			list={[
 				{
 					"header one": "one",
@@ -20,6 +25,6 @@ const Tables = (
 			]}
 		/>
 	</div>
-);
+)
 
-export default Tables;
+export default Tables

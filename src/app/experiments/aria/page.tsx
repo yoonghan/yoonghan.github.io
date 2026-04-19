@@ -1,4 +1,4 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
 export const metadata = {
 	title: "Accessibility (WCAG)",
@@ -6,7 +6,7 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/experiments/aria"),
 	},
-};
+}
 
 function Aria() {
 	return (
@@ -49,7 +49,7 @@ function Aria() {
 				</ol>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Aria;
+export default Aria

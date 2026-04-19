@@ -23,7 +23,7 @@ const securityHeaders = [
 		key: "X-Content-Type-Options",
 		value: "nosniff",
 	},
-];
+]
 
 const apiSecurityHeaders = [
 	{ key: "Access-Control-Allow-Credentials", value: "true" },
@@ -37,10 +37,9 @@ const apiSecurityHeaders = [
 	},
 	{
 		key: "Access-Control-Allow-Headers",
-		value:
-			"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+		value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
 	},
-];
+]
 
 const nextConfig = {
 	//placeholder_for_static_generation
@@ -54,7 +53,7 @@ const nextConfig = {
 				source: "/api/:path*",
 				headers: apiSecurityHeaders,
 			},
-		];
+		]
 	},
 
 	webpack: (config, { isServer }) => {
@@ -63,11 +62,11 @@ const nextConfig = {
 				...config.resolve.fallback,
 				// Disable the 'tls' module on the client side
 				tls: false,
-			};
+			}
 		}
-		return config;
+		return config
 	},
 	turbopack: {},
-};
+}
 
-export default nextConfig;
+export default nextConfig

@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import Script from "next/script";
-import { site } from "@/config/site";
-import { schema } from "./config/schema";
+import type { Metadata } from "next"
+import Script from "next/script"
+import { site } from "@/config/site"
+import { schema } from "./config/schema"
 
 export const metadata: Metadata = {
 	title: "About Walcron",
@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 	alternates: {
 		...site.generateCanonical("/about"),
 	},
-};
+}
 
 export default function AboutLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: React.ReactNode
 }>) {
 	return (
 		<>
@@ -24,5 +24,5 @@ export default function AboutLayout({
 			</Script>
 			{children}
 		</>
-	);
+	)
 }

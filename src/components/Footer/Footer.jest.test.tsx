@@ -1,53 +1,58 @@
-import { render, screen, within } from "@testing-library/react";
-import Footer from ".";
+import { render, screen, within } from "@testing-library/react"
+import Footer from "."
 
 describe("Footer", () => {
-	const currentYear = new Date().getFullYear();
+	const currentYear = new Date().getFullYear()
 
 	it("should check that we are in the latest year!", () => {
-		render(<Footer />);
-		const footerMessage = `Walcron 2014-${currentYear} ©`;
-		expect(screen.getByText(footerMessage)).toBeInTheDocument();
-	});
+		render(<Footer />)
+		const footerMessage = `Walcron 2014-${currentYear} ©`
+		expect(screen.getByText(footerMessage)).toBeInTheDocument()
+	})
 
 	it("should render without 'undefined' value if className is not overridden", () => {
-		render(<Footer />);
-		expect(screen.getByRole("contentinfo")).not.toHaveClass("undefined");
-	});
+		render(<Footer />)
+		expect(screen.getByRole("contentinfo")).not.toHaveClass("undefined")
+	})
 
 	it("should contain links for sitemap and privacy", () => {
-		render(<Footer />);
-		expect(screen.getByText("Privacy")).toBeInTheDocument();
-		expect(screen.getByText("Site Map")).toBeInTheDocument();
-		expect(screen.getByText("Site Map")).toHaveAttribute("href", "/site-map");
-	});
+		render(<Footer />)
+		expect(screen.getByText("Privacy")).toBeInTheDocument()
+		expect(screen.getByText("Site Map")).toBeInTheDocument()
+		expect(screen.getByText("Site Map")).toHaveAttribute(
+			"href",
+			"/site-map",
+		)
+	})
 
 	it("should contain for main sites", () => {
-		render(<Footer />);
-		expect(screen.getByText("Learn")).toBeInTheDocument();
-		expect(screen.getByText("Project Portfolio")).toBeInTheDocument();
-	});
+		render(<Footer />)
+		expect(screen.getByText("Learn")).toBeInTheDocument()
+		expect(screen.getByText("Project Portfolio")).toBeInTheDocument()
+	})
 
 	it("should group Project Portfolio correctly", () => {
-		render(<Footer />);
-		const projectMenuItem = screen.getByLabelText("Project Portfolio");
-		expect(within(projectMenuItem).getByText("All")).toBeInTheDocument;
+		render(<Footer />)
+		const projectMenuItem = screen.getByLabelText("Project Portfolio")
+		expect(within(projectMenuItem).getByText("All")).toBeInTheDocument
 		expect(within(projectMenuItem).getByText("Microfrontend"))
-			.toBeInTheDocument;
-		expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument;
-	});
+			.toBeInTheDocument
+		expect(within(projectMenuItem).queryByText("Home")).not
+			.toBeInTheDocument
+	})
 
 	it("should group Experiments correctly", () => {
-		render(<Footer />);
-		const projectMenuItem = screen.getByLabelText("Experiments");
-		expect(within(projectMenuItem).queryByText("Home")).not.toBeInTheDocument;
-	});
+		render(<Footer />)
+		const projectMenuItem = screen.getByLabelText("Experiments")
+		expect(within(projectMenuItem).queryByText("Home")).not
+			.toBeInTheDocument
+	})
 
 	it("should group Learn correctly", () => {
-		render(<Footer />);
-		const projectMenuItem = screen.getByLabelText("Learn");
-		expect(within(projectMenuItem).getByText("Home")).toBeInTheDocument;
+		render(<Footer />)
+		const projectMenuItem = screen.getByLabelText("Learn")
+		expect(within(projectMenuItem).getByText("Home")).toBeInTheDocument
 		expect(within(projectMenuItem).queryByText("Lessons")).not
-			.toBeInTheDocument;
-	});
-});
+			.toBeInTheDocument
+	})
+})

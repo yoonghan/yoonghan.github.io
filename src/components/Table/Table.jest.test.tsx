@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Table from ".";
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import Table from "."
 
 describe("Table", () => {
 	it("should render table correctly", () => {
@@ -9,25 +9,25 @@ describe("Table", () => {
 				headers={["headerOne", "headerTwo"]}
 				list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
 			/>,
-		);
+		)
 		expect(
 			screen.getByRole("columnheader", { name: "headerOne" }),
-		).toBeInTheDocument();
-		expect(screen.getByRole("cell", { name: "value2" })).toBeInTheDocument();
+		).toBeInTheDocument()
+		expect(screen.getByRole("cell", { name: "value2" })).toBeInTheDocument()
 		expect(
 			screen.getByRole("row", { name: "headerOne headerTwo" }),
-		).toBeInTheDocument();
+		).toBeInTheDocument()
 		expect(
 			screen.getByRole("row", { name: "value1 value2" }),
-		).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+	})
 
 	it("should allow row click", async () => {
-		const clickFn = jest.fn();
+		const clickFn = jest.fn()
 		const firstRecord = {
 			headerOne: "value1",
 			headerTwo: <span>value2</span>,
-		};
+		}
 
 		render(
 			<Table
@@ -35,10 +35,12 @@ describe("Table", () => {
 				list={[firstRecord]}
 				onClick={clickFn}
 			/>,
-		);
-		await userEvent.click(screen.getByRole("row", { name: "value1 value2" }));
-		expect(clickFn).toHaveBeenCalledWith(firstRecord);
-	});
+		)
+		await userEvent.click(
+			screen.getByRole("row", { name: "value1 value2" }),
+		)
+		expect(clickFn).toHaveBeenCalledWith(firstRecord)
+	})
 
 	it("should allow classname override", () => {
 		render(
@@ -47,7 +49,9 @@ describe("Table", () => {
 				list={[{ headerOne: "value1", headerTwo: <span>value2</span> }]}
 				className="sampleClass"
 			/>,
-		);
-		expect(screen.getByRole("table").parentElement).toHaveClass("sampleClass");
-	});
-});
+		)
+		expect(screen.getByRole("table").parentElement).toHaveClass(
+			"sampleClass",
+		)
+	})
+})

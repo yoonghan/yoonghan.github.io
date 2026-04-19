@@ -1,6 +1,6 @@
 type Props = {
-	items: { title: string; component: React.ReactNode }[];
-};
+	items: { title: string; component: React.ReactNode }[]
+}
 
 function StoryMaker({ items }: Props) {
 	return (
@@ -17,7 +17,7 @@ function StoryMaker({ items }: Props) {
 				</div>
 			))}
 		</>
-	);
+	)
 }
 
-export default StoryMaker;
+export default StoryMaker

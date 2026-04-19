@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import UserEvent from "@testing-library/user-event";
-import type { ChangeEvent } from "react";
-import TextArea from "./TextArea";
+import { render, screen } from "@testing-library/react"
+import UserEvent from "@testing-library/user-event"
+import type { ChangeEvent } from "react"
+import TextArea from "./TextArea"
 
 describe("TextArea", () => {
 	const renderComponent = (
@@ -9,44 +9,48 @@ describe("TextArea", () => {
 		onChange = jest.fn(),
 		onSubmit = jest.fn(),
 	) =>
-		render(<TextArea onSubmit={onSubmit} value={value} onChange={onChange} />);
+		render(
+			<TextArea onSubmit={onSubmit} value={value} onChange={onChange} />,
+		)
 
 	it("should display the correct value inserted", () => {
-		renderComponent("Hello");
-		expect(screen.getByRole("textbox")).toHaveValue("Hello");
-	});
+		renderComponent("Hello")
+		expect(screen.getByRole("textbox")).toHaveValue("Hello")
+	})
 
 	it("should trigger onChange for text typed", async () => {
-		const onChangeFn = jest.fn();
-		renderComponent("", onChangeFn);
-		await UserEvent.type(screen.getByRole("textbox"), "a");
-		expect(onChangeFn).toHaveBeenCalled();
-	});
+		const onChangeFn = jest.fn()
+		renderComponent("", onChangeFn)
+		await UserEvent.type(screen.getByRole("textbox"), "a")
+		expect(onChangeFn).toHaveBeenCalled()
+	})
 
 	it("should submit when enter is keyed in", async () => {
-		const onChangeFn = jest.fn();
-		const onSubmitFn = jest.fn();
-		renderComponent("", onChangeFn, onSubmitFn);
-		await UserEvent.type(screen.getByRole("textbox"), "Hi {enter}");
-		expect(onSubmitFn).toHaveBeenCalled();
-	});
+		const onChangeFn = jest.fn()
+		const onSubmitFn = jest.fn()
+		renderComponent("", onChangeFn, onSubmitFn)
+		await UserEvent.type(screen.getByRole("textbox"), "Hi {enter}")
+		expect(onSubmitFn).toHaveBeenCalled()
+	})
 
 	it("should not trigger submit, but on change if shift+enter is keyed in", async () => {
-		let hasNewLine = false;
-		const onChangeFn = jest.fn();
-		onChangeFn.mockImplementation((event: ChangeEvent<HTMLTextAreaElement>) => {
-			if (event.target.value === "\r\n") {
-				hasNewLine = true;
-			}
-		});
-		const onSubmitFn = jest.fn();
-		renderComponent("", onChangeFn, onSubmitFn);
+		let hasNewLine = false
+		const onChangeFn = jest.fn()
+		onChangeFn.mockImplementation(
+			(event: ChangeEvent<HTMLTextAreaElement>) => {
+				if (event.target.value === "\r\n") {
+					hasNewLine = true
+				}
+			},
+		)
+		const onSubmitFn = jest.fn()
+		renderComponent("", onChangeFn, onSubmitFn)
 		await UserEvent.type(
 			screen.getByRole("textbox"),
 			"Hello{Shift>}{enter}{/Shift}World",
-		);
-		expect(onChangeFn).toHaveBeenCalled();
-		expect(onSubmitFn).not.toHaveBeenCalled();
-		expect(hasNewLine).toBeTruthy();
-	});
-});
+		)
+		expect(onChangeFn).toHaveBeenCalled()
+		expect(onSubmitFn).not.toHaveBeenCalled()
+		expect(hasNewLine).toBeTruthy()
+	})
+})

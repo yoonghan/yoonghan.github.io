@@ -1,22 +1,22 @@
-import type { ReactNode } from "react";
-import Table from "@/components/Table";
-import { AvailableInput } from "../CommandSearch/CommandSearch";
+import type { ReactNode } from "react"
+import Table from "@/components/Table"
+import { AvailableInput } from "../CommandSearch/CommandSearch"
 
 interface Props {
-	updateSelectedInput: (input: string) => void;
+	updateSelectedInput: (input: string) => void
 }
 
 const HelpContent = ({ updateSelectedInput }: Props) => {
 	const onClick = (input: Record<string, ReactNode>) => {
-		updateSelectedInput(input.Command as string);
-	};
+		updateSelectedInput(input.Command as string)
+	}
 
 	const listsOfCommands = Object.keys(AvailableInput)
 		.filter((input) => input !== "help")
 		.map((input) => ({
 			Command: input,
 			Description: AvailableInput[input].description,
-		}));
+		}))
 
 	return (
 		<div className="p-8 bg-white drop-shadow-md">
@@ -27,7 +27,7 @@ const HelpContent = ({ updateSelectedInput }: Props) => {
 				onClick={onClick}
 			/>
 		</div>
-	);
-};
+	)
+}
 
-export default HelpContent;
+export default HelpContent

@@ -5,11 +5,11 @@ enum FilterOption {
 }
 
 export type PageConfig = {
-	path: string;
-	display: string;
-	filterOptions?: FilterOption[];
-	order: number;
-};
+	path: string
+	display: string
+	filterOptions?: FilterOption[]
+	order: number
+}
 
 const pages: PageConfig[] = [
 	{
@@ -112,42 +112,42 @@ const pages: PageConfig[] = [
 		],
 		order: 6,
 	},
-];
+]
 
 export const findPageByPath = (path: string) =>
-	pages.find((page) => page.path === path);
+	pages.find((page) => page.path === path)
 
 export const findAllChildByPath = (path: string) => {
-	const parentPath = isSubMenu(path) ? `/${path.split("/")[1]}` : path;
-	return pages.filter((page) => page.path.startsWith(`${parentPath}/`));
-};
+	const parentPath = isSubMenu(path) ? `/${path.split("/")[1]}` : path
+	return pages.filter((page) => page.path.startsWith(`${parentPath}/`))
+}
 
 export const sortPagesByPath = (pageConfigs: PageConfig[]) => {
 	const pathOrder = ({ order, path }: { order: number; path: string }) => {
-		const isPathRoot = path.split("/").length === 2;
-		return isPathRoot ? `${order}-${path}` : `99-${order}-${path}`;
-	};
+		const isPathRoot = path.split("/").length === 2
+		return isPathRoot ? `${order}-${path}` : `99-${order}-${path}`
+	}
 	return pageConfigs.sort((a: PageConfig, b: PageConfig) => {
-		const aPathWithOrder = pathOrder(a);
-		const bPathWithOrder = pathOrder(b);
-		return aPathWithOrder.localeCompare(bPathWithOrder);
-	});
-};
+		const aPathWithOrder = pathOrder(a)
+		const bPathWithOrder = pathOrder(b)
+		return aPathWithOrder.localeCompare(bPathWithOrder)
+	})
+}
 
-export const sortedPages = sortPagesByPath(pages);
+export const sortedPages = sortPagesByPath(pages)
 
-const isSubMenu = (path: string) => path.split("/").length !== 2;
+const isSubMenu = (path: string) => path.split("/").length !== 2
 
 export const sortedMenuPagesWithFilteredHomeAndSubMenu = sortedPages.filter(
 	(page) =>
 		!page.filterOptions?.includes(FilterOption.NOT_MENU) &&
 		!isSubMenu(page.path),
-);
+)
 
 export const sortedSiteMapPages = sortedPages.filter(
 	(page) => !page.filterOptions?.includes(FilterOption.NOT_SITE_MAP),
-);
+)
 
 export const sortedFooterPages = sortedPages.filter(
 	(page) => !page.filterOptions?.includes(FilterOption.NOT_FOOTER),
-);
+)

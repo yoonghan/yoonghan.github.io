@@ -1,18 +1,18 @@
-import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation";
-import { email } from "../LetterBox";
-import EmailSender from "../LetterBox/EmailSender";
-import styles from "./SocialFab.module.css";
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
+import { email } from "../LetterBox"
+import EmailSender from "../LetterBox/EmailSender"
+import styles from "./SocialFab.module.css"
 
 const SocialFabNoSSR = () => {
-	const confirm = useDialogCreation(EmailSender);
+	const confirm = useDialogCreation(EmailSender)
 
 	const onOpenEmail = () => {
 		confirm({
 			writeFrom: "",
 			writeTo: email,
 			onCancel: () => {},
-		});
-	};
+		})
+	}
 
 	return (
 		<div className={styles.container}>
@@ -90,7 +90,7 @@ const SocialFabNoSSR = () => {
 				</li>
 			</ul>
 		</div>
-	);
-};
+	)
+}
 
-export default SocialFabNoSSR;
+export default SocialFabNoSSR

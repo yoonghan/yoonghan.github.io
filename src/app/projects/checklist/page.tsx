@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
-import ScrollToTop from "@/components/ScrollToTop";
-import Table from "@/components/Table";
-import wrapPromise from "@/components/utils/common/wrapPromise";
-import { site } from "@/config/site";
-import { CronJobCheckList } from "./Checklist";
+import type { ReactNode } from "react"
+import ScrollToTop from "@/components/ScrollToTop"
+import Table from "@/components/Table"
+import wrapPromise from "@/components/utils/common/wrapPromise"
+import { site } from "@/config/site"
+import { CronJobCheckList } from "./Checklist"
 
 export const metadata = {
 	title: "Checklist",
@@ -16,7 +16,7 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/projects/checklist"),
 	},
-};
+}
 
 const links: Array<{ [key: string]: ReactNode }> = [
 	{
@@ -34,7 +34,11 @@ const links: Array<{ [key: string]: ReactNode }> = [
 		Description:
 			"Monitor Site performance and health (Unfortunately telemetry doesn't work).",
 		Url: (
-			<a href="https://app.checklyhq.com/" target={"_blank"} rel="noreferrer">
+			<a
+				href="https://app.checklyhq.com/"
+				target={"_blank"}
+				rel="noreferrer"
+			>
 				link
 			</a>
 		),
@@ -91,28 +95,30 @@ const links: Array<{ [key: string]: ReactNode }> = [
 			</a>
 		),
 	},
-];
+]
 
 const checkCronJob = wrapPromise<string | undefined>(
 	new Promise((resolve) => {
 		fetch(site.cronApiUrl)
 			.then((resp) => resp.json())
 			.then((json) => {
-				resolve(json?.message);
-			});
+				resolve(json?.message)
+			})
 	}),
-);
+)
 
 const CheckList = () => {
-	const latestDeployedCronMessage = checkCronJob.read();
+	const latestDeployedCronMessage = checkCronJob.read()
 
 	return (
 		<div className="mx-auto max-w-screen-lg px-4 pb-8">
 			<h1 className="py-8">Important Checklist Links</h1>
-			<span>A checklist of important links to test and for reference.</span>
 			<span>
-				Note: Page is not robot indexed and viewable only by desktop. May change
-				only in future.
+				A checklist of important links to test and for reference.
+			</span>
+			<span>
+				Note: Page is not robot indexed and viewable only by desktop.
+				May change only in future.
 			</span>
 			<br />
 			<br />
@@ -127,7 +133,7 @@ const CheckList = () => {
 			<Table headers={["Site", "Description", "Url"]} list={links} />
 			<ScrollToTop />
 		</div>
-	);
-};
+	)
+}
 
-export default CheckList;
+export default CheckList

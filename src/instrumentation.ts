@@ -1,6 +1,6 @@
-import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { NodeSDK } from "@opentelemetry/sdk-node";
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node"
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http"
+import { NodeSDK } from "@opentelemetry/sdk-node"
 
 export function register() {
 	if (process.env.NEXT_RUNTIME === "nodejs") {
@@ -14,8 +14,8 @@ export function register() {
 				},
 			}),
 			instrumentations: [getNodeAutoInstrumentations()],
-		});
+		})
 
-		sdk.start();
+		sdk.start()
 	}
 }

@@ -1,88 +1,84 @@
-import { render, screen } from "@testing-library/react";
-import "@/__tests__/mocks/routerMock";
-import HomePage from ".";
+import { render, screen } from "@testing-library/react"
+import "@/__tests__/mocks/routerMock"
+import HomePage from "."
 
 describe("HomePage", () => {
 	const renderComponent = () => {
-		render(<HomePage />);
-	};
+		render(<HomePage />)
+	}
 
 	it("should have a social fab loaded", async () => {
-		renderComponent();
+		renderComponent()
 		expect(
 			await screen.findByRole("link", { name: "git" }),
-		).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+	})
 
 	describe("reliability section", () => {
 		it("can navigate for reliability", () => {
-			const title = "Reliable Deployment";
-			const link = "reliability";
-			renderComponent();
+			const title = "Reliable Deployment"
+			const link = "reliability"
+			renderComponent()
 			expect(screen.getByRole("link", { name: title })).toHaveAttribute(
 				"href",
 				`#${link}`,
-			);
-			expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
-				"id",
-				link,
-			);
-		});
-	});
+			)
+			expect(
+				screen.getByRole("heading", { name: title }),
+			).toHaveAttribute("id", link)
+		})
+	})
 
 	describe("accessibility section", () => {
 		it("can navigate for accessibility", () => {
-			const title = "Accessibility (WCAG)";
-			const link = "accessibility";
-			renderComponent();
+			const title = "Accessibility (WCAG)"
+			const link = "accessibility"
+			renderComponent()
 			expect(screen.getByRole("link", { name: title })).toHaveAttribute(
 				"href",
 				`#${link}`,
-			);
-			expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
-				"id",
-				link,
-			);
-		});
-	});
+			)
+			expect(
+				screen.getByRole("heading", { name: title }),
+			).toHaveAttribute("id", link)
+		})
+	})
 
 	describe("monitoring section", () => {
 		it("can navigate for monitoring", () => {
-			const title = "Monitoring";
-			const link = "monitoring";
-			renderComponent();
+			const title = "Monitoring"
+			const link = "monitoring"
+			renderComponent()
 			expect(screen.getByRole("link", { name: title })).toHaveAttribute(
 				"href",
 				`#${link}`,
-			);
-			expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
-				"id",
-				link,
-			);
-		});
-	});
+			)
+			expect(
+				screen.getByRole("heading", { name: title }),
+			).toHaveAttribute("id", link)
+		})
+	})
 
 	describe("performance section", () => {
 		it("can navigate for performance", () => {
-			const title = "Performance";
-			const link = "performance";
-			renderComponent();
+			const title = "Performance"
+			const link = "performance"
+			renderComponent()
 			expect(screen.getByRole("link", { name: title })).toHaveAttribute(
 				"href",
 				`#${link}`,
-			);
-			expect(screen.getByRole("heading", { name: title })).toHaveAttribute(
-				"id",
-				link,
-			);
-		});
-	});
+			)
+			expect(
+				screen.getByRole("heading", { name: title }),
+			).toHaveAttribute("id", link)
+		})
+	})
 
 	describe("health section", () => {
 		it("can navigate for health", () => {
-			const title = "Site Health Status";
-			renderComponent();
-			expect(screen.getByText(title)).toBeInTheDocument();
-		});
-	});
-});
+			const title = "Site Health Status"
+			renderComponent()
+			expect(screen.getByText(title)).toBeInTheDocument()
+		})
+	})
+})

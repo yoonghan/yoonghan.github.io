@@ -1,4 +1,4 @@
-import type { Certificate } from "@/components/Grid";
+import type { Certificate } from "@/components/Grid"
 
 export const cloudCertificates: Certificate[] = [
 	{
@@ -57,4 +57,4 @@ export const cloudCertificates: Certificate[] = [
 		text: "Aws Certification",
 		href: "https://www.credly.com/badges/b17e3872-c5c5-49f7-8c6a-186e107a28d2",
 	},
-];
+]
