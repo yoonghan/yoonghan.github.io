@@ -2,7 +2,8 @@
 	"ignore": [
 		"backstop_data/**",
 		"crate/**/pkg/**",
-		"src/__e2e__/chatter/call-util.ts"
+		"src/__e2e__/chatter/call-util.ts",
+		"src/app/experiments/storybook/config/Orb.tsx"
 	],
 	"ignoreDependencies": [
 		"sharp",
