@@ -1,33 +1,33 @@
-import { render, screen } from "@testing-library/react";
-import { setEnv } from "@/__tests__/mocks/setEnv";
-import Webrtc, { metadata } from "./page";
+import { render, screen } from "@testing-library/react"
+import { setEnv } from "@/__tests__/mocks/setEnv"
+import Webrtc, { metadata } from "./page"
 
 describe("Webrtc", () => {
-	const renderComponent = () => render(<Webrtc />);
+	const renderComponent = () => render(<Webrtc />)
 
 	it("should have a menu and important loaded info", async () => {
 		setEnv({
 			NEXT_PUBLIC_PUSHER_APP_KEY: "APP123",
 			NEXT_PUBLIC_PUSHER_CLUSTER: "CLUSTER123",
-		});
-		renderComponent();
+		})
+		renderComponent()
 		expect(
 			screen.getByText("Video call with Web Real Time Communication"),
-		).toBeInTheDocument();
-		expect(screen.getByText("Identification")).toBeInTheDocument();
-		expect(screen.getByText("List of online callers")).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+		expect(screen.getByText("Identification")).toBeInTheDocument()
+		expect(screen.getByText("List of online callers")).toBeInTheDocument()
+	})
 
 	it("should show warning if none of the environment is set", () => {
-		renderComponent();
+		renderComponent()
 		expect(
 			screen.getByText(
 				"Pusher initialization failed due to missing environment variable.",
 			),
-		).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+	})
 
 	it("should render the right metaData", () => {
-		expect(metadata.alternates).toEqual({});
-	});
-});
+		expect(metadata.alternates).toEqual({})
+	})
+})

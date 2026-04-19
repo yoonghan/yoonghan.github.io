@@ -1,5 +1,5 @@
-import { MessageType } from "@/components/Chat/config/MessageType";
-import { MessageActionType, messageReducer } from "./useMessageReducer";
+import { MessageType } from "@/components/Chat/config/MessageType"
+import { MessageActionType, messageReducer } from "./useMessageReducer"
 
 describe("useMessageReducer", () => {
 	it("should handle default status", () => {
@@ -9,7 +9,7 @@ describe("useMessageReducer", () => {
 				type: MessageType.CONNECTION,
 				message: "message",
 			},
-		});
-		expect(result).toStrictEqual([]);
-	});
-});
+		})
+		expect(result).toStrictEqual([])
+	})
+})

@@ -13,5 +13,7 @@
 		"@opentelemetry/sdk-trace-node",
 		"@opentelemetry/winston-transport"
 	],
-	"ignoreBinaries": ["wasm-pack"]
+	"ignoreBinaries": [
+		"wasm-pack"
+	]
 }

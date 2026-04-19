@@ -1,27 +1,29 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { confirmable, createConfirmation } from "react-confirm";
-import Dialog from "@/components/Dialog";
-import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog";
+import { useState } from "react"
+import { confirmable, createConfirmation } from "react-confirm"
+import Dialog from "@/components/Dialog"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
 
 const Dialogs = () => {
-	const [showDialogNo, setShowDialogNo] = useState(0);
+	const [showDialogNo, setShowDialogNo] = useState(0)
 	const DialogManual = () => {
 		return (
 			<Dialog onCancel={() => setShowDialogNo(0)} nonPortal={true}>
-				<div>I am dialog 3 and I too do not even have a background!</div>
+				<div>
+					I am dialog 3 and I too do not even have a background!
+				</div>
 			</Dialog>
-		);
-	};
+		)
+	}
 
-	const confirm = createConfirmation(confirmable(DialogManual));
+	const confirm = createConfirmation(confirmable(DialogManual))
 
 	const showDialog3 = async () => {
 		await confirm({
 			confirmation: "Are you sure?",
-		});
-	};
+		})
+	}
 
 	return (
 		<>
@@ -49,7 +51,7 @@ const Dialogs = () => {
 				/>
 			)}
 		</>
-	);
-};
+	)
+}
 
-export default Dialogs;
+export default Dialogs

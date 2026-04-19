@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { MessageType } from "../../../config/MessageType";
-import CustomSystemChatBubble from ".";
+import { render, screen } from "@testing-library/react"
+import { MessageType } from "../../../config/MessageType"
+import CustomSystemChatBubble from "."
 
 describe("CustomSystemChatBubble", () => {
 	it("should render complex text correctly", () => {
@@ -9,9 +9,9 @@ describe("CustomSystemChatBubble", () => {
 				message={{ message: "T|Hello World" }}
 				yourAuthorId={0}
 			/>,
-		);
-		expect(screen.getByText("Hello World")).toBeInTheDocument();
-	});
+		)
+		expect(screen.getByText("Hello World")).toBeInTheDocument()
+	})
 
 	it("should render regular text correctly", () => {
 		render(
@@ -19,9 +19,9 @@ describe("CustomSystemChatBubble", () => {
 				message={{ message: "F|Filed Text" }}
 				yourAuthorId={0}
 			/>,
-		);
-		expect(screen.getByText("Filed Text")).toBeInTheDocument();
-	});
+		)
+		expect(screen.getByText("Filed Text")).toBeInTheDocument()
+	})
 
 	it("should render connection text correctly", () => {
 		render(
@@ -31,12 +31,12 @@ describe("CustomSystemChatBubble", () => {
 				}}
 				yourAuthorId={0}
 			/>,
-		);
-		expect(screen.getByText("Connection OK")).toBeInTheDocument();
+		)
+		expect(screen.getByText("Connection OK")).toBeInTheDocument()
 		expect(screen.getByText("Connection OK")).toHaveStyle({
 			color: "rgb(0, 191, 255)",
-		});
-	});
+		})
+	})
 
 	it("should render connection error text correctly", () => {
 		render(
@@ -46,10 +46,10 @@ describe("CustomSystemChatBubble", () => {
 				}}
 				yourAuthorId={0}
 			/>,
-		);
-		expect(screen.getByText("Connection Error")).toBeInTheDocument();
+		)
+		expect(screen.getByText("Connection Error")).toBeInTheDocument()
 		expect(screen.getByText("Connection Error")).toHaveStyle({
 			color: "rgb(139, 0, 0)",
-		});
-	});
-});
+		})
+	})
+})

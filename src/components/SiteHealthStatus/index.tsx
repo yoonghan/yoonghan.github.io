@@ -1,20 +1,22 @@
-import Link from "@/components/Link";
+import Link from "@/components/Link"
 
 interface SiteHealthStatusProps {
-	repo: string;
-	codecovToken: string;
+	repo: string
+	codecovToken: string
 }
 
 function SiteHealthStatus({
 	repo,
 	codecovToken,
 }: Readonly<SiteHealthStatusProps>) {
-	const sonarId = repo.replace("/", "_");
-	const badgeClass = "inline border-0 mr-2 mb-2";
+	const sonarId = repo.replace("/", "_")
+	const badgeClass = "inline border-0 mr-2 mb-2"
 
 	return (
 		<p className="text-justify whitespace-normal break-words">
-			<Link href={`https://github.com/${repo}/actions/workflows/merge.yml`}>
+			<Link
+				href={`https://github.com/${repo}/actions/workflows/merge.yml`}
+			>
 				{/* biome-ignore lint: expected */}
 				<img
 					src={`https://github.com/${repo}/actions/workflows/merge.yml/badge.svg`}
@@ -63,7 +65,7 @@ function SiteHealthStatus({
 				/>
 			</Link>
 		</p>
-	);
+	)
 }
 
-export default SiteHealthStatus;
+export default SiteHealthStatus

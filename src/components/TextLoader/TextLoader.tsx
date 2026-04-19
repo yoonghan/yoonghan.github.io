@@ -1,5 +1,5 @@
-"use client";
-import styles from "./TextLoader.module.css";
+"use client"
+import styles from "./TextLoader.module.css"
 
 const TextLoader = ({ text }: { text: string }) => {
 	return (
@@ -13,7 +13,7 @@ const TextLoader = ({ text }: { text: string }) => {
 				<span>.</span>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default TextLoader;
+export default TextLoader

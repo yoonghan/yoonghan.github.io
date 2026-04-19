@@ -1,3 +1,3 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
-export const pusherAuthEndpoint = `${site.apiUrl}/pusherauth`;
+export const pusherAuthEndpoint = `${site.apiUrl}/pusherauth`

@@ -1,5 +1,5 @@
 const uuid = {
 	v4: () => "randomThatLooksFixed",
-};
+}
 
-jest.mock("uuid", () => uuid);
+jest.mock("uuid", () => uuid)

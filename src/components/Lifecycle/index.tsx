@@ -1,11 +1,11 @@
-import Link from "../Link";
-import AnimatedCircle from "./AnimatedCircle";
-import styles from "./Lifecycle.module.css";
+import Link from "../Link"
+import AnimatedCircle from "./AnimatedCircle"
+import styles from "./Lifecycle.module.css"
 
 type Model = {
-	label: string;
-	url: string;
-};
+	label: string
+	url: string
+}
 
 function Lifecycle({ models }: Readonly<{ models: Model[] }>) {
 	const drawArrow = (rotation: number) => (
@@ -27,14 +27,14 @@ function Lifecycle({ models }: Readonly<{ models: Model[] }>) {
 				<path d="M197.007,48.479L139.348,0v28.623C63.505,32.538,3.006,95.472,3.006,172.271v27.741h40.099v-27.741 c0-54.682,42.527-99.614,96.243-103.47v28.156L197.007,48.479z"></path>{" "}
 			</g>
 		</svg>
-	);
+	)
 
 	const drawLink = (model: Model) => (
 		<Link href={model.url}>{model.label}</Link>
-	);
+	)
 
 	if (models.length !== 4) {
-		return <div>Not Supported, must be EXACTLY 4 elements.</div>;
+		return <div>Not Supported, must be EXACTLY 4 elements.</div>
 	}
 
 	return (
@@ -51,7 +51,7 @@ function Lifecycle({ models }: Readonly<{ models: Model[] }>) {
 			<div>{drawLink(models[2])}</div>
 			<div className={styles.arrow}>{drawArrow(2)}</div>
 		</div>
-	);
+	)
 }
 
-export default Lifecycle;
+export default Lifecycle

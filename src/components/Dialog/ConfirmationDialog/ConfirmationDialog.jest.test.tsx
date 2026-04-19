@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import ConfirmationDialog from ".";
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import ConfirmationDialog from "."
 
 describe("ConfirmationDialog", () => {
 	it("should render component correctly", async () => {
@@ -14,14 +14,14 @@ describe("ConfirmationDialog", () => {
 				onYesClick={jest.fn()}
 				onNoClick={jest.fn()}
 			/>,
-		);
-		expect(screen.getByText("I am Title")).toBeInTheDocument();
+		)
+		expect(screen.getByText("I am Title")).toBeInTheDocument()
 		expect(
 			screen.getByText(
 				"Can you React from a shooting bullet travelling at lightspeed?",
 			),
-		).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+	})
 
 	it("should have custom Yes/No button", async () => {
 		render(
@@ -34,11 +34,11 @@ describe("ConfirmationDialog", () => {
 				yesButtonText={"Yupe"}
 				noButtonText={"Oh uh"}
 			/>,
-		);
+		)
 
-		screen.getByRole("button", { name: "Yupe" });
-		screen.getByRole("button", { name: "Oh uh" });
-	});
+		screen.getByRole("button", { name: "Yupe" })
+		screen.getByRole("button", { name: "Oh uh" })
+	})
 
 	it("should have a x if it is notModal", async () => {
 		render(
@@ -52,16 +52,16 @@ describe("ConfirmationDialog", () => {
 				noButtonText={"Oh uh"}
 				isNotModal={true}
 			/>,
-		);
+		)
 
-		screen.getByRole("button", { name: "×" });
-	});
+		screen.getByRole("button", { name: "×" })
+	})
 
 	describe("Button clicks", () => {
 		const renderComponent = () => {
-			const onYesClick = jest.fn();
-			const onNoClick = jest.fn();
-			const onCancel = jest.fn();
+			const onYesClick = jest.fn()
+			const onNoClick = jest.fn()
+			const onCancel = jest.fn()
 			render(
 				<ConfirmationDialog
 					title={"I am Title"}
@@ -72,41 +72,41 @@ describe("ConfirmationDialog", () => {
 					onYesClick={onYesClick}
 					onNoClick={onNoClick}
 				/>,
-			);
-			return { onYesClick, onNoClick, onCancel };
-		};
+			)
+			return { onYesClick, onNoClick, onCancel }
+		}
 
 		const assertDialog = (isShown: boolean) => {
 			if (isShown) {
-				expect(screen.getByText("I am Title")).toBeInTheDocument();
+				expect(screen.getByText("I am Title")).toBeInTheDocument()
 			} else {
-				expect(screen.queryByText("I am Title")).not.toBeInTheDocument();
+				expect(screen.queryByText("I am Title")).not.toBeInTheDocument()
 			}
-		};
+		}
 
 		it("should close after Yes is clicked", async () => {
-			const { onYesClick } = renderComponent();
-			assertDialog(true);
-			await userEvent.click(screen.getByRole("button", { name: "Yes" }));
-			expect(onYesClick).toHaveBeenCalled();
-			assertDialog(false);
-		});
+			const { onYesClick } = renderComponent()
+			assertDialog(true)
+			await userEvent.click(screen.getByRole("button", { name: "Yes" }))
+			expect(onYesClick).toHaveBeenCalled()
+			assertDialog(false)
+		})
 
 		it("should close after No is clicked", async () => {
-			const { onNoClick } = renderComponent();
-			assertDialog(true);
-			await userEvent.click(screen.getByRole("button", { name: "No" }));
-			expect(onNoClick).toHaveBeenCalled();
-			assertDialog(false);
-		});
+			const { onNoClick } = renderComponent()
+			assertDialog(true)
+			await userEvent.click(screen.getByRole("button", { name: "No" }))
+			expect(onNoClick).toHaveBeenCalled()
+			assertDialog(false)
+		})
 
 		it("should close after Cancel is clicked", async () => {
-			const { onCancel } = renderComponent();
-			assertDialog(true);
-			await userEvent.type(screen.getByRole("dialog"), "{escape}");
-			expect(onCancel).toHaveBeenCalled();
-			assertDialog(false);
-		});
+			const { onCancel } = renderComponent()
+			assertDialog(true)
+			await userEvent.type(screen.getByRole("dialog"), "{escape}")
+			expect(onCancel).toHaveBeenCalled()
+			assertDialog(false)
+		})
 
 		it("should do still close if default of cancel is rendered as undefined", async () => {
 			render(
@@ -117,11 +117,11 @@ describe("ConfirmationDialog", () => {
 					}
 					onYesClick={jest.fn()}
 				/>,
-			);
-			assertDialog(true);
-			await userEvent.type(screen.getByRole("dialog"), "{escape}");
-			assertDialog(false);
-		});
+			)
+			assertDialog(true)
+			await userEvent.type(screen.getByRole("dialog"), "{escape}")
+			assertDialog(false)
+		})
 
 		it("should do still close if default of No is rendered as undefined", async () => {
 			render(
@@ -132,10 +132,10 @@ describe("ConfirmationDialog", () => {
 					}
 					onYesClick={jest.fn()}
 				/>,
-			);
-			assertDialog(true);
-			await userEvent.click(screen.getByRole("button", { name: "No" }));
-			assertDialog(false);
-		});
-	});
-});
+			)
+			assertDialog(true)
+			await userEvent.click(screen.getByRole("button", { name: "No" }))
+			assertDialog(false)
+		})
+	})
+})

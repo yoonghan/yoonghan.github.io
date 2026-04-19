@@ -135,11 +135,15 @@
 		"html_report": "backstop_data/html_report",
 		"ci_report": "backstop_data/ci_report"
 	},
-	"report": ["browser"],
+	"report": [
+		"browser"
+	],
 	"engine": "playwright",
 	"engineOptions": {
 		"browser": "chromium",
-		"args": ["--no-sandbox"]
+		"args": [
+			"--no-sandbox"
+		]
 	},
 	"asyncCaptureLimit": 5,
 	"asyncCompareLimit": 50,

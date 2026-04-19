@@ -1,7 +1,7 @@
-import stream from "node:stream";
+import stream from "node:stream"
 
-const fileReturnedMock = jest.fn();
-const storeCollectionGet = jest.fn();
+const fileReturnedMock = jest.fn()
+const storeCollectionGet = jest.fn()
 
 const sampleFirebaseConfig = {
 	FIREBASE_BUCKET: "SampleBucket",
@@ -12,22 +12,22 @@ const sampleFirebaseConfig = {
 	FIREBASE_CLIENT_ID: "SampleClientId",
 	FIREBASE_CLIENT_X509_CERT_URL: "SampleClientX509Cert",
 	FIREBASE_DATABASE_URL: "SampleDatabaseUrl",
-};
+}
 
 const createStream = () => {
-	const streamData = new stream.Writable();
+	const streamData = new stream.Writable()
 	streamData._write = (_chunk, _encoding, done) => {
-		done();
-	};
-	return streamData;
-};
+		done()
+	}
+	return streamData
+}
 
 jest.mock("firebase-admin/auth", () => ({
 	...jest.mock("firebase-admin/auth"),
 	getAuth: () => ({
 		createUser: (credentialOptions) => ({ uid: credentialOptions.uid }),
 	}),
-}));
+}))
 
 jest.mock("firebase-admin", () => ({
 	...jest.mock("firebase-admin"),
@@ -65,14 +65,14 @@ jest.mock("firebase-admin", () => ({
 			}),
 		}),
 	}),
-}));
+}))
 
 const setStoreCollectionGetReturn = (toFail) => {
 	if (toFail) {
 		storeCollectionGet.mockImplementation(() => ({
 			id: 3,
 			data: () => undefined,
-		}));
+		}))
 	} else
 		storeCollectionGet.mockImplementationOnce(() => ({
 			id: 2,
@@ -81,12 +81,12 @@ const setStoreCollectionGetReturn = (toFail) => {
 				method: "GET",
 				createdAt: "2024-09-01T01:01:01.293Z",
 			}),
-		}));
-};
+		}))
+}
 
 const setMockFileReturn = (toFail) => {
 	if (toFail) {
-		fileReturnedMock.mockImplementation(() => undefined);
+		fileReturnedMock.mockImplementation(() => undefined)
 	} else {
 		fileReturnedMock.mockImplementation(() => [
 			{
@@ -95,8 +95,8 @@ const setMockFileReturn = (toFail) => {
 					name: "name1",
 				},
 			},
-		]);
+		])
 	}
-};
+}
 
-export { sampleFirebaseConfig, setMockFileReturn, setStoreCollectionGetReturn };
+export { sampleFirebaseConfig, setMockFileReturn, setStoreCollectionGetReturn }

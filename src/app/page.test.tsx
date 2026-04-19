@@ -1,14 +1,14 @@
-import { render, screen } from "@testing-library/react";
-import Index from "./page";
+import { render, screen } from "@testing-library/react"
+import Index from "./page"
 
 describe("main page", () => {
 	it("should render main page", async () => {
-		render(<Index />);
+		render(<Index />)
 		expect(
 			screen.getByRole("heading", { name: "DevOps Solution Portal" }),
-		).toBeInTheDocument();
+		).toBeInTheDocument()
 		expect(
 			await screen.findByRole("link", { name: "git" }),
-		).toBeInTheDocument();
-	});
-});
+		).toBeInTheDocument()
+	})
+})

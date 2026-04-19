@@ -2,14 +2,14 @@ import {
 	capitalizeFirstWord,
 	isOnlyAlphabetsAndNumberAndSpace,
 	removeAllWhiteSpaces,
-} from "@/util/regex";
+} from "@/util/regex"
 
 type Member = {
-	user_id: string;
+	user_id: string
 	user_info: {
-		name: string;
-	};
-};
+		name: string
+	}
+}
 
 export const extractPresenceData = (
 	username: string | string[] | undefined,
@@ -19,13 +19,13 @@ export const extractPresenceData = (
 		username.trim() === "" ||
 		!isOnlyAlphabetsAndNumberAndSpace(username)
 	) {
-		return null;
+		return null
 	}
 
-	const trimmedUsername = username.trim();
+	const trimmedUsername = username.trim()
 
 	return {
 		user_id: removeAllWhiteSpaces(trimmedUsername.toLocaleLowerCase()),
 		user_info: { name: capitalizeFirstWord(trimmedUsername) },
-	};
-};
+	}
+}

@@ -1,18 +1,18 @@
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMemo } from "react";
-import styles from "./Timeline.module.css";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useMemo } from "react"
+import styles from "./Timeline.module.css"
 
 interface Props {
-	events: Array<IEvent>;
+	events: Array<IEvent>
 }
 
 export interface IEvent {
-	id: string;
-	date: string;
-	special?: string;
-	desc: string;
-	faIcon?: IconProp;
+	id: string
+	date: string
+	special?: string
+	desc: string
+	faIcon?: IconProp
 }
 
 const Timeline = ({ events }: Props) => {
@@ -37,10 +37,10 @@ const Timeline = ({ events }: Props) => {
 					<p>{desc}</p>
 				</div>
 			</li>
-		));
-	}, [events]);
+		))
+	}, [events])
 
-	return <ul className={styles.container}>{createLinks}</ul>;
-};
+	return <ul className={styles.container}>{createLinks}</ul>
+}
 
-export default Timeline;
+export default Timeline

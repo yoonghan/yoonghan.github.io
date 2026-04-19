@@ -1,5 +1,5 @@
 interface Props {
-	output: string | number;
+	output: string | number
 }
 
 const Output = ({ output }: Props) => {
@@ -17,7 +17,7 @@ const Output = ({ output }: Props) => {
         }
       `}</style>
 		</div>
-	);
-};
+	)
+}
 
-export default Output;
+export default Output

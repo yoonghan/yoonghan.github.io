@@ -1,16 +1,16 @@
-import { useMemo } from "react";
-import styles from "./Navigator.module.css";
+import { useMemo } from "react"
+import styles from "./Navigator.module.css"
 
 interface Props {
-	label: string;
-	links: Array<ILink>;
-	onLinkClick: (link: string | number) => void;
+	label: string
+	links: Array<ILink>
+	onLinkClick: (link: string | number) => void
 }
 
 interface ILink {
-	id: string;
-	desc: string;
-	link: string | number;
+	id: string
+	desc: string
+	link: string | number
 }
 
 const Navigator = ({ links, onLinkClick, label }: Props) => {
@@ -34,9 +34,9 @@ const Navigator = ({ links, onLinkClick, label }: Props) => {
 						<p>{desc}</p>
 					</div>
 				</li>
-			);
-		});
-	}, [links, onLinkClick]);
+			)
+		})
+	}, [links, onLinkClick])
 
 	return (
 		<aside>
@@ -50,7 +50,7 @@ const Navigator = ({ links, onLinkClick, label }: Props) => {
 				}
 			</nav>
 		</aside>
-	);
-};
+	)
+}
 
-export default Navigator;
+export default Navigator

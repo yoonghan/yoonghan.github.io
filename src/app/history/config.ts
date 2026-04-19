@@ -12,8 +12,8 @@ import {
 	faServer,
 	faSpinner,
 	faTelevision,
-} from "@fortawesome/free-solid-svg-icons";
-import type { IEvent } from "@/components/Timeline";
+} from "@fortawesome/free-solid-svg-icons"
+import type { IEvent } from "@/components/Timeline"
 
 export const nonFictionBooks = [
 	{
@@ -30,8 +30,7 @@ export const nonFictionBooks = [
 	},
 	{
 		title: "The dragon behind the glass",
-		learnt:
-			"Vast history of fish keeping. Treasure nature and don't be tempted by popularity it's just marketing.",
+		learnt: "Vast history of fish keeping. Treasure nature and don't be tempted by popularity it's just marketing.",
 	},
 	{
 		title: "Out of the maze",
@@ -39,20 +38,17 @@ export const nonFictionBooks = [
 	},
 	{
 		title: "Brief history of time",
-		learnt:
-			"Mind blowing stuff about the universe. What we can't see doesn't actually meant it's not there.",
+		learnt: "Mind blowing stuff about the universe. What we can't see doesn't actually meant it's not there.",
 	},
 	{
 		title: "When breath becomes air",
-		learnt:
-			"When you are meeting the inevitable death, is it worth looking back?",
+		learnt: "When you are meeting the inevitable death, is it worth looking back?",
 	},
 	{
 		title: "The girl with seven names",
-		learnt:
-			"Environment makes what you are, without looking out the window everything may had seem better.",
+		learnt: "Environment makes what you are, without looking out the window everything may had seem better.",
 	},
-];
+]
 
 export const siteHistory: IEvent[] = [
 	{
@@ -158,4 +154,4 @@ export const siteHistory: IEvent[] = [
 		desc: "Certified Cosmos DB, now focus on documenting my Azure knowledge.",
 		faIcon: faDatabase,
 	},
-];
+]
