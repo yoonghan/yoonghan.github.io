@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import ScrollableList from ".";
+import { fireEvent, render, screen } from "@testing-library/react"
+import ScrollableList from "."
 
 describe("ScrollableList", () => {
 	const renderComponent = (noRef = false) => {
@@ -16,40 +16,40 @@ describe("ScrollableList", () => {
 				maxItemsToRender={2}
 				noRef={noRef}
 			/>,
-		);
-	};
+		)
+	}
 
 	it("should be able to render first 2 components only", () => {
-		renderComponent();
-		expect(screen.getByText("1")).toBeInTheDocument();
-		expect(screen.getByText("2")).toBeInTheDocument();
-		expect(screen.queryByText("3")).not.toBeInTheDocument();
-	});
+		renderComponent()
+		expect(screen.getByText("1")).toBeInTheDocument()
+		expect(screen.getByText("2")).toBeInTheDocument()
+		expect(screen.queryByText("3")).not.toBeInTheDocument()
+	})
 
 	it("should be able to render next components after scroll", async () => {
-		renderComponent();
-		const scrollableList = screen.getByTestId("scrollable-list");
-		fireEvent.scroll(scrollableList, { target: { scrollTop: 200 } });
-		expect(await screen.findByText("5")).toBeInTheDocument();
-		expect(await screen.findByText("6")).toBeInTheDocument();
-		expect(screen.queryByText("1")).not.toBeInTheDocument();
-		expect(screen.queryByText("2")).not.toBeInTheDocument();
-	});
+		renderComponent()
+		const scrollableList = screen.getByTestId("scrollable-list")
+		fireEvent.scroll(scrollableList, { target: { scrollTop: 200 } })
+		expect(await screen.findByText("5")).toBeInTheDocument()
+		expect(await screen.findByText("6")).toBeInTheDocument()
+		expect(screen.queryByText("1")).not.toBeInTheDocument()
+		expect(screen.queryByText("2")).not.toBeInTheDocument()
+	})
 
 	it("should be able to render center component given height per item is 30", async () => {
-		renderComponent();
-		const scrollableList = screen.getByTestId("scrollable-list");
-		fireEvent.scroll(scrollableList, { target: { scrollTop: 61 } });
-		expect(await screen.findByText("3")).toBeInTheDocument();
-		expect(await screen.findByText("4")).toBeInTheDocument();
-		expect(screen.queryByText("5")).not.toBeInTheDocument();
-		expect(screen.queryByText("6")).not.toBeInTheDocument();
-	});
+		renderComponent()
+		const scrollableList = screen.getByTestId("scrollable-list")
+		fireEvent.scroll(scrollableList, { target: { scrollTop: 61 } })
+		expect(await screen.findByText("3")).toBeInTheDocument()
+		expect(await screen.findByText("4")).toBeInTheDocument()
+		expect(screen.queryByText("5")).not.toBeInTheDocument()
+		expect(screen.queryByText("6")).not.toBeInTheDocument()
+	})
 
 	it("should render without issues with no ref", () => {
-		renderComponent(true);
-		const scrollableList = screen.getByTestId("scrollable-list");
-		fireEvent.scroll(scrollableList, { target: { scrollTop: 61 } });
-		expect(screen.queryByText("3")).not.toBeInTheDocument();
-	});
-});
+		renderComponent(true)
+		const scrollableList = screen.getByTestId("scrollable-list")
+		fireEvent.scroll(scrollableList, { target: { scrollTop: 61 } })
+		expect(screen.queryByText("3")).not.toBeInTheDocument()
+	})
+})

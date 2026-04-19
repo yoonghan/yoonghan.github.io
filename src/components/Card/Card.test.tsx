@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import Card from ".";
+import { render, screen } from "@testing-library/react"
+import Card from "."
 
 describe("Card", () => {
 	it("should display cards correctly", () => {
@@ -21,17 +21,17 @@ describe("Card", () => {
 					},
 				]}
 			/>,
-		);
+		)
 		const linkOne = screen.getByRole("link", {
 			name: "Title one Description one",
-		});
-		expect(linkOne).toHaveAttribute("href", "Href one");
-		expect(linkOne).toHaveAttribute("target", "blank");
+		})
+		expect(linkOne).toHaveAttribute("href", "Href one")
+		expect(linkOne).toHaveAttribute("target", "blank")
 
 		const linkTwo = screen.getByRole("link", {
 			name: "Title two Description two",
-		});
-		expect(linkTwo).toHaveAttribute("href", "Href two");
-		expect(linkTwo).toHaveAttribute("target", "_self");
-	});
-});
+		})
+		expect(linkTwo).toHaveAttribute("href", "Href two")
+		expect(linkTwo).toHaveAttribute("target", "_self")
+	})
+})

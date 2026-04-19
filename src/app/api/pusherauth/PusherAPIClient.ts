@@ -1,8 +1,8 @@
-import Pusher from "pusher";
+import Pusher from "pusher"
 
 // biome-ignore lint/complexity/noStaticOnlyClass: Expected
 export class PusherAPIClient {
-	public static client: Pusher | undefined = PusherAPIClient.initPusher();
+	public static client: Pusher | undefined = PusherAPIClient.initPusher()
 
 	public static initPusher() {
 		const {
@@ -10,7 +10,7 @@ export class PusherAPIClient {
 			PUSHER_APP_ID,
 			PUSHER_SECRET,
 			NEXT_PUBLIC_PUSHER_CLUSTER,
-		} = process.env;
+		} = process.env
 
 		if (process && NEXT_PUBLIC_PUSHER_APP_KEY) {
 			const pusherClient = new Pusher({
@@ -19,13 +19,13 @@ export class PusherAPIClient {
 				secret: PUSHER_SECRET ?? "",
 				cluster: NEXT_PUBLIC_PUSHER_CLUSTER ?? "",
 				useTLS: true,
-			});
-			return pusherClient;
+			})
+			return pusherClient
 		}
-		return undefined;
+		return undefined
 	}
 
 	public static reInitialize() {
-		PusherAPIClient.client = PusherAPIClient.initPusher();
+		PusherAPIClient.client = PusherAPIClient.initPusher()
 	}
 }

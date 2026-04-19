@@ -1,16 +1,16 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import React from "react";
-import CommandBarInput from "./CommandBarInput";
+import { fireEvent, render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import React from "react"
+import CommandBarInput from "./CommandBarInput"
 
 const Wrapper = ({
 	children,
 }: {
-	children: (input: string, setInput: (input: string) => void) => JSX.Element;
+	children: (input: string, setInput: (input: string) => void) => JSX.Element
 }) => {
-	const [input, setInput] = React.useState("");
-	return children(input, setInput);
-};
+	const [input, setInput] = React.useState("")
+	return children(input, setInput)
+}
 
 describe("CommandBarInput", () => {
 	const renderComponent = ({
@@ -21,9 +21,9 @@ describe("CommandBarInput", () => {
 		onSubmitCallback?: (
 			event: React.FormEvent<HTMLFormElement>,
 			typedInput: string,
-		) => void;
-		onBlurCallback?: () => void;
-		onFocusCallback?: () => void;
+		) => void
+		onBlurCallback?: () => void
+		onFocusCallback?: () => void
 	}) => {
 		return render(
 			<Wrapper>
@@ -37,57 +37,57 @@ describe("CommandBarInput", () => {
 					/>
 				)}
 			</Wrapper>,
-		);
-	};
+		)
+	}
 
 	it("should be able to render correctly", () => {
-		renderComponent({});
-		expect(screen.getByText("walcron$")).toBeInTheDocument();
-	});
+		renderComponent({})
+		expect(screen.getByText("walcron$")).toBeInTheDocument()
+	})
 
 	it("should be able to suggest when user type 'he' only", async () => {
-		renderComponent({});
-		const input = screen.getByRole("combobox");
-		expect(input).toHaveAttribute("list", "commands");
-		await userEvent.type(input, "he");
+		renderComponent({})
+		const input = screen.getByRole("combobox")
+		expect(input).toHaveAttribute("list", "commands")
+		await userEvent.type(input, "he")
 		expect(screen.getByRole("listbox", { hidden: true })).toHaveAttribute(
 			"id",
 			"commands",
-		);
-		const options = screen.getAllByRole("option", { hidden: true });
+		)
+		const options = screen.getAllByRole("option", { hidden: true })
 		expect(
 			options.filter((option) => option.getAttribute("value") === "help"),
-		).toHaveLength(1);
-	});
+		).toHaveLength(1)
+	})
 
 	it("should be able to choose and submit suggestedInput", async () => {
-		const submitFn = jest.fn((e) => e.preventDefault());
-		renderComponent({ onSubmitCallback: submitFn });
-		await userEvent.type(screen.getByRole("combobox"), "help{enter}");
-		expect(submitFn).toHaveBeenCalled();
-	});
+		const submitFn = jest.fn((e) => e.preventDefault())
+		renderComponent({ onSubmitCallback: submitFn })
+		await userEvent.type(screen.getByRole("combobox"), "help{enter}")
+		expect(submitFn).toHaveBeenCalled()
+	})
 
 	it("should allow only 22 max characters", async () => {
-		renderComponent({});
-		const input = screen.getByRole("combobox");
-		await userEvent.type(input, "h".repeat(24));
-		expect(screen.getByRole("combobox")).toHaveValue("h".repeat(22));
-	});
+		renderComponent({})
+		const input = screen.getByRole("combobox")
+		await userEvent.type(input, "h".repeat(24))
+		expect(screen.getByRole("combobox")).toHaveValue("h".repeat(22))
+	})
 
 	it("should show prompt when focus", () => {
-		const blurCallback = jest.fn();
-		const focusCallback = jest.fn();
+		const blurCallback = jest.fn()
+		const focusCallback = jest.fn()
 		renderComponent({
 			onBlurCallback: blurCallback,
 			onFocusCallback: focusCallback,
-		});
-		const input = screen.getByRole("combobox");
-		fireEvent.focus(input);
-		expect(focusCallback).toHaveBeenCalled();
-	});
+		})
+		const input = screen.getByRole("combobox")
+		fireEvent.focus(input)
+		expect(focusCallback).toHaveBeenCalled()
+	})
 
 	it("should have a label", () => {
-		renderComponent({});
-		expect(screen.getByLabelText("Command prompt")).toBeInTheDocument();
-	});
-});
+		renderComponent({})
+		expect(screen.getByLabelText("Command prompt")).toBeInTheDocument()
+	})
+})

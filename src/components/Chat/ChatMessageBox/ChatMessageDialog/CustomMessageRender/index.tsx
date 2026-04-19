@@ -1,18 +1,18 @@
-import { useCallback, useState } from "react";
-import type { Message, MessageRenderProps } from "react-bell-chat";
-import Button from "@/components/Button";
-import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog";
-import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation";
-import { decodeMessage } from "../../../config/MessageFormatter";
-import { MessageType } from "../../../config/MessageType";
+import { useCallback, useState } from "react"
+import type { Message, MessageRenderProps } from "react-bell-chat"
+import Button from "@/components/Button"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
+import { decodeMessage } from "../../../config/MessageFormatter"
+import { MessageType } from "../../../config/MessageType"
 
 const CustomMessageRender = ({
 	message,
 	className,
 	style,
 }: MessageRenderProps<string, Message<string>>) => {
-	const [allowDownload, setAllowDownload] = useState(false);
-	const confirm = useDialogCreation(ConfirmationDialog);
+	const [allowDownload, setAllowDownload] = useState(false)
+	const confirm = useDialogCreation(ConfirmationDialog)
 
 	const renderMessage = useCallback(
 		(message: string) => (
@@ -21,7 +21,7 @@ const CustomMessageRender = ({
 			</span>
 		),
 		[className, style],
-	);
+	)
 
 	const downloadCheck = useCallback(async () => {
 		await confirm({
@@ -30,26 +30,30 @@ const CustomMessageRender = ({
 			message:
 				"It's a public file and may contain malicious content. Are you sure you want to download it?",
 			nonPortal: true,
-		});
-	}, [confirm]);
+		})
+	}, [confirm])
 
-	const complexMessage = decodeMessage(message.message);
+	const complexMessage = decodeMessage(message.message)
 
 	if (complexMessage.messageType === MessageType.FILE) {
 		return (
 			<>
 				{allowDownload ? (
-					<a href={complexMessage.message} target={"_blank"} rel="noreferrer">
+					<a
+						href={complexMessage.message}
+						target={"_blank"}
+						rel="noreferrer"
+					>
 						{renderMessage("[File Received]")}
 					</a>
 				) : (
 					<Button onClick={downloadCheck}>Open file ?</Button>
 				)}
 			</>
-		);
+		)
 	}
 
-	return renderMessage(complexMessage.message);
-};
+	return renderMessage(complexMessage.message)
+}
 
-export default CustomMessageRender;
+export default CustomMessageRender

@@ -1,20 +1,24 @@
-"use client";
+"use client"
 
-import { Menu } from "@yoonghan/walcron-microfrontend-shared";
-import "@yoonghan/walcron-microfrontend-shared/dist/style.css";
-import Image from "next/image";
-import { memo } from "react";
-import Link from "@/components/Link";
-import menuItems from "./config/menuItems";
-import styles from "./MegaMenu.module.css";
-import SearchBar from "./SearchBar";
+import { Menu } from "@yoonghan/walcron-microfrontend-shared"
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
+import Image from "next/image"
+import { memo } from "react"
+import Link from "@/components/Link"
+import menuItems from "./config/menuItems"
+import styles from "./MegaMenu.module.css"
+import SearchBar from "./SearchBar"
 
 const MegaMenu = () => {
-	const renderMenuLink = (text: string, href: string, onClick?: () => void) => (
+	const renderMenuLink = (
+		text: string,
+		href: string,
+		onClick?: () => void,
+	) => (
 		<Link href={href} onClick={onClick}>
 			<div>{text}</div>
 		</Link>
-	);
+	)
 
 	const renderHomeLink = (href: string, onClick: () => void) => (
 		<Link href={href} onClick={onClick}>
@@ -25,7 +29,7 @@ const MegaMenu = () => {
 				height={36}
 			/>
 		</Link>
-	);
+	)
 
 	const renderHomeLogoLink = (helperClassName: string) => (
 		<Link href={"/"} className={helperClassName}>
@@ -37,7 +41,7 @@ const MegaMenu = () => {
 				className="mr-4"
 			/>
 		</Link>
-	);
+	)
 
 	return (
 		<Menu
@@ -49,7 +53,7 @@ const MegaMenu = () => {
 			desktopClassName={styles.desktop_container}
 			mobileClassName={styles.mobile_container}
 		/>
-	);
-};
+	)
+}
 
-export default memo(MegaMenu);
+export default memo(MegaMenu)

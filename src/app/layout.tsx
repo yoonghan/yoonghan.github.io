@@ -1,17 +1,17 @@
-import Footer from "@/components/Footer";
-import { GoogleAnalytic } from "@/components/GoogleAnalytic";
-import MegaMenu from "@/components/MegaMenu";
-import OtelProvider from "@/components/OtelProvider";
-import { site } from "@/config/site";
-import "@/styles/global.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import type { Metadata } from "next";
-import Script from "next/script";
+import Footer from "@/components/Footer"
+import { GoogleAnalytic } from "@/components/GoogleAnalytic"
+import MegaMenu from "@/components/MegaMenu"
+import OtelProvider from "@/components/OtelProvider"
+import { site } from "@/config/site"
+import "@/styles/global.css"
+import { config } from "@fortawesome/fontawesome-svg-core"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import type { Metadata } from "next"
+import Script from "next/script"
 
-export { Body, metadata };
+export { Body, metadata }
 
-config.autoAddCss = false;
+config.autoAddCss = false
 
 const metadata: Metadata = {
 	metadataBase: new URL(site.url),
@@ -46,7 +46,7 @@ const metadata: Metadata = {
 	alternates: {
 		...site.generateCanonical(""),
 	},
-};
+}
 
 function Body({ children }: { children: React.ReactNode }) {
 	return (
@@ -58,13 +58,13 @@ function Body({ children }: { children: React.ReactNode }) {
 			<Footer />
 			<GoogleAnalytic ga4Id={site.ga4Id} />
 		</>
-	);
+	)
 }
 
 export default function RootLayout({
 	children,
 }: {
-	children: React.ReactNode;
+	children: React.ReactNode
 }) {
 	return (
 		<html lang="en" className="scroll-smooth">
@@ -79,5 +79,5 @@ export default function RootLayout({
 				</OtelProvider>
 			</body>
 		</html>
-	);
+	)
 }

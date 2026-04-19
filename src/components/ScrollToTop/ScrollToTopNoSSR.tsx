@@ -1,37 +1,37 @@
-"use client";
+"use client"
 
-import { memo, useCallback, useEffect, useState, useTransition } from "react";
-import style from "./ScrollToTop.module.css";
+import { memo, useCallback, useEffect, useState, useTransition } from "react"
+import style from "./ScrollToTop.module.css"
 
 const _isOverTheBar = () => {
-	const currentScrollPos = window.scrollY;
-	return currentScrollPos > 500;
-};
+	const currentScrollPos = window.scrollY
+	return currentScrollPos > 500
+}
 
 const ScrollToTopNoSSR = () => {
-	const [visible, setVisible] = useState(false);
-	const [_, startTransition] = useTransition();
+	const [visible, setVisible] = useState(false)
+	const [_, startTransition] = useTransition()
 
 	const updateScroller = useCallback(
 		() =>
 			startTransition(() => {
-				setVisible(_isOverTheBar());
+				setVisible(_isOverTheBar())
 			}),
 		[],
-	);
+	)
 
 	useEffect(() => {
-		window.addEventListener("scroll", updateScroller);
+		window.addEventListener("scroll", updateScroller)
 		return () => {
-			window.removeEventListener("scroll", updateScroller);
-		};
-	}, [updateScroller]);
+			window.removeEventListener("scroll", updateScroller)
+		}
+	}, [updateScroller])
 
 	const clickScrollUp = () => {
-		window.scrollTo(0, 0);
-	};
+		window.scrollTo(0, 0)
+	}
 
-	const visibilityStyle = visible ? "" : ` ${style.hidden}`;
+	const visibilityStyle = visible ? "" : ` ${style.hidden}`
 
 	return (
 		<button
@@ -43,7 +43,7 @@ const ScrollToTopNoSSR = () => {
 		>
 			TOP
 		</button>
-	);
-};
+	)
+}
 
-export default memo(ScrollToTopNoSSR, () => true);
+export default memo(ScrollToTopNoSSR, () => true)

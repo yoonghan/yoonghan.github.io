@@ -3,23 +3,23 @@ import {
 	faCertificate,
 	faKeyboard,
 	faUniversalAccess,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
-import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate";
-import Gauge from "@/components/Animate/Gauge";
-import Wave from "@/components/Animate/Wave";
-import Workflow from "@/components/Animate/Workflow";
-import Button from "@/components/Button";
-import Figure from "@/components/Figure";
-import Lifecycle from "@/components/Lifecycle";
-import Link from "@/components/Link";
-import SiteHealthStatus from "@/components/SiteHealthStatus";
-import SocialFab from "@/components/SocialFab";
-import styles from "./Homepage.module.css";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Image from "next/image"
+import FontAwesomeAnimate from "@/components/Animate/FontAwesomeAnimate"
+import Gauge from "@/components/Animate/Gauge"
+import Wave from "@/components/Animate/Wave"
+import Workflow from "@/components/Animate/Workflow"
+import Button from "@/components/Button"
+import Figure from "@/components/Figure"
+import Lifecycle from "@/components/Lifecycle"
+import Link from "@/components/Link"
+import SiteHealthStatus from "@/components/SiteHealthStatus"
+import SocialFab from "@/components/SocialFab"
+import styles from "./Homepage.module.css"
 
 function Homepage() {
-	const walcronText = "Walcron";
+	const walcronText = "Walcron"
 
 	return (
 		<>
@@ -39,11 +39,11 @@ function Homepage() {
 				<div className="pb-4 flex-2">
 					<h1 className="py-4">DevOps Solution Portal</h1>
 					<div className="py-4 text-justify">
-						An enterprise-grade, serverless portal architected for 100%
-						accessibility and zero-JS overhead. Leveraging a
-						'Security-by-Design' approach with Cloudflare and Azure, Walcron
-						demonstrates high-performance Edge delivery with integrated DevOps
-						observability.
+						An enterprise-grade, serverless portal architected for
+						100% accessibility and zero-JS overhead. Leveraging a
+						'Security-by-Design' approach with Cloudflare and Azure,
+						Walcron demonstrates high-performance Edge delivery with
+						integrated DevOps observability.
 					</div>
 					<Button href="/about">Get To Know Us</Button>
 				</div>
@@ -58,14 +58,17 @@ function Homepage() {
 							The Evolution of Walcron: A Strategic Shift
 						</h2>
 						<div className="text-justify">
-							Every architecture has a "shelf life." As the web evolved [
-							<Link href="/history">History</Link>], so did our requirements for{" "}
+							Every architecture has a "shelf life." As the web
+							evolved [<Link href="/history">History</Link>], so
+							did our requirements for{" "}
 							<strong>Accessibility (WCAG)</strong> and{" "}
-							<strong>SEO Performance</strong>. The rationale for our migration
-							from a Javascript-heavy Single Page Application (SPA) to our
-							current Server-Side Generated (SSG) optimized website. This site
-							is to showcase our work and a playbox for real-time testing. As of
-							the mantra, we always do "monitored, reliable releases".
+							<strong>SEO Performance</strong>. The rationale for
+							our migration from a Javascript-heavy Single Page
+							Application (SPA) to our current Server-Side
+							Generated (SSG) optimized website. This site is to
+							showcase our work and a playbox for real-time
+							testing. As of the mantra, we always do "monitored,
+							reliable releases".
 						</div>
 						<div className="flex justify-center flex-col items-center">
 							<Lifecycle
@@ -88,12 +91,17 @@ function Homepage() {
 									},
 								]}
 							/>
-							<span className="italic text-md">Site Development Lifecycle</span>
+							<span className="italic text-md">
+								Site Development Lifecycle
+							</span>
 						</div>
 					</article>
 					<hr />
 					<article>
-						<div className="text-3xl text-center pb-8" id="workflow">
+						<div
+							className="text-3xl text-center pb-8"
+							id="workflow"
+						>
 							Serverless Edge Deployment with GitHub Actions
 						</div>
 						<div className="text-center pb-8">
@@ -152,21 +160,24 @@ function Homepage() {
 								to do our biddings. A full CI/CD consist of:
 								<ul className="mt-4 ml-4 list-disc">
 									<li>
-										<strong>Testing</strong> - ensure safety in modification.[
+										<strong>Testing</strong> - ensure safety
+										in modification.[
 										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml?query=workflow%3A">
 											GitHub Actions
 										</Link>
 										]
 									</li>
 									<li>
-										<strong>Integration</strong> - {"API doesn't break"}. [
+										<strong>Integration</strong> -{" "}
+										{"API doesn't break"}. [
 										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/pull-request.yml">
 											Smoke and E2E
 										</Link>
 										]
 									</li>
 									<li>
-										<strong>Quality Gate</strong> - {"Code Quality scans"}. [
+										<strong>Quality Gate</strong> -{" "}
+										{"Code Quality scans"}. [
 										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/validate-quality.yml">
 											Ensure code quality
 										</Link>
@@ -174,7 +185,9 @@ function Homepage() {
 									</li>
 									<li>
 										<strong>Release</strong> - Deploys{" "}
-										<em className="text-green-700">ONLY successful</em>{" "}
+										<em className="text-green-700">
+											ONLY successful
+										</em>{" "}
 										pull-request.
 									</li>
 								</ul>
@@ -193,16 +206,17 @@ function Homepage() {
 									User Interface verification:
 									<ul className="mt-4 ml-4 list-disc">
 										<li>
-											<strong>Layout verification</strong> - Production layout
-											are compared with preview. [
+											<strong>Layout verification</strong>{" "}
+											- Production layout are compared
+											with preview. [
 											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10380878898">
 												Snapshots
 											</Link>
 											]
 										</li>
 										<li>
-											<strong>Approval workflow</strong> - Integrated approval
-											process. [
+											<strong>Approval workflow</strong> -
+											Integrated approval process. [
 											<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/runs/10462109042">
 												Snapshots
 											</Link>
@@ -220,29 +234,34 @@ function Homepage() {
 								}}
 								imageCaption="Code coverage in CodeCov"
 							>
-								We up-keep coding standards and security compliance:
+								We up-keep coding standards and security
+								compliance:
 								<ul className="mt-4 ml-4 list-disc">
 									<li>
-										<strong>Coverage</strong> - 99.9% lines of code covered.[
+										<strong>Coverage</strong> - 99.9% lines
+										of code covered.[
 										<Link href="https://app.codecov.io/gh/yoonghan/yoonghan.github.io">
 											CodeCov
 										</Link>
 										]
 									</li>
 									<li>
-										<strong>Linting</strong> - Coding checks to ensure proper
-										coding styles.
+										<strong>Linting</strong> - Coding checks
+										to ensure proper coding styles.
 									</li>
 									<li>
-										<strong>Compliance</strong> - Security and Lint checks. [
+										<strong>Compliance</strong> - Security
+										and Lint checks. [
 										<Link href="https://github.com/yoonghan/yoonghan.github.io/actions/workflows/push.yml">
 											OWASP check
 										</Link>{" "}
 										and Dependabots]
 									</li>
 									<li>
-										<strong>Accessibility</strong> - Integrated lighthouse to
-										keep best-practises and accessibility at 100%.
+										<strong>Accessibility</strong> -
+										Integrated lighthouse to keep
+										best-practises and accessibility at
+										100%.
 									</li>
 								</ul>
 							</Figure>
@@ -260,23 +279,31 @@ function Homepage() {
 									imageCaption="Checkout Tag and Redeploy"
 									reversed={true}
 								>
-									Face it, this happens with new experimentations. The workflow
-									is built to handles fallback options:
+									Face it, this happens with new
+									experimentations. The workflow is built to
+									handles fallback options:
 									<ul className="list-decimal ml-4 mt-4">
 										<li>
-											Re-run the release tag in action workflow. Every
-											pull-request is tracked via Release [
+											Re-run the release tag in action
+											workflow. Every pull-request is
+											tracked via Release [
 											<Link href="https://github.com/yoonghan/yoonghan.github.io/releases">
 												list of releases
 											</Link>
 											] during merge workflow.
 										</li>
 										<li>
-											Revert via <Link href="https://vercel.com">Vercel</Link>,
-											but not applicable to GitHub Pages. Useful for API break
-											changes.
+											Revert via{" "}
+											<Link href="https://vercel.com">
+												Vercel
+											</Link>
+											, but not applicable to GitHub
+											Pages. Useful for API break changes.
 										</li>
-										<li>A guaranteed revert process is less than 10minutes.</li>
+										<li>
+											A guaranteed revert process is less
+											than 10minutes.
+										</li>
 									</ul>
 								</Figure>
 							</div>
@@ -294,13 +321,16 @@ function Homepage() {
 							faIcon={faUniversalAccess}
 							animate="shake"
 						>
-							This Homepage can be browsed WITHOUT Javascript enabled!
+							This Homepage can be browsed WITHOUT Javascript
+							enabled!
 						</FontAwesomeAnimate>
 						<p>
-							We did it by relying on both PureCSS, Server Side Generation and
-							ensuring non-critical usage for Javascript. The old homepage was
-							Javascript heavy with Parallax Effect and we encountered{" "}
-							<strong>performance and accessibility</strong> issues.
+							We did it by relying on both PureCSS, Server Side
+							Generation and ensuring non-critical usage for
+							Javascript. The old homepage was Javascript heavy
+							with Parallax Effect and we encountered{" "}
+							<strong>performance and accessibility</strong>{" "}
+							issues.
 						</p>
 						<FontAwesomeAnimate
 							title={"Keyboard Accessible"}
@@ -308,11 +338,13 @@ function Homepage() {
 							faIcon={faKeyboard}
 							animate="bounce"
 						>
-							This site can also be browsed with keyboard and text-readers.
+							This site can also be browsed with keyboard and
+							text-readers.
 						</FontAwesomeAnimate>
 						<p className="pt-8">
-							We are going now commited with <strong>Web Accessibility</strong>,
-							eventhough we are still in the learning phase. The best reliance
+							We are going now commited with{" "}
+							<strong>Web Accessibility</strong>, eventhough we
+							are still in the learning phase. The best reliance
 							is to run periodically test with{" "}
 							<Link
 								href="https://www.accessibilitychecker.org/audit/?website=www.walcron.com&flag=us"
@@ -330,8 +362,8 @@ function Homepage() {
 							animate="spin"
 							color="red"
 						>
-							The site is Trusted Web Activity(TWA) and Progressive(PWA)
-							compatible.
+							The site is Trusted Web Activity(TWA) and
+							Progressive(PWA) compatible.
 						</FontAwesomeAnimate>
 						<figure>
 							<Image
@@ -350,9 +382,10 @@ function Homepage() {
 								height={100}
 							/>
 							<figcaption>
-								Access from the search panel and type <em>{'"pwa"'}</em>, once
-								installed you can view our site anytime, anywhere with or
-								without network.
+								Access from the search panel and type{" "}
+								<em>{'"pwa"'}</em>, once installed you can view
+								our site anytime, anywhere with or without
+								network.
 							</figcaption>
 						</figure>
 					</article>
@@ -378,13 +411,16 @@ function Homepage() {
 								}}
 								imageCaption="Leverage Axiom's Open Telemetry to view API workflow"
 							>
-								We use Axiom to stream OpenTelemetry data over. Using this data
-								we can monitor our API&apos;s performance and application
-								integration.
+								We use Axiom to stream OpenTelemetry data over.
+								Using this data we can monitor our API&apos;s
+								performance and application integration.
 								<div className="flex justify-center pt-10">
 									<Button href="/projects/checklist">
 										View Checklists
-										<FontAwesomeIcon icon={faArrowRight} className="pl-2" />
+										<FontAwesomeIcon
+											icon={faArrowRight}
+											className="pl-2"
+										/>
 									</Button>
 								</div>
 							</Figure>
@@ -400,9 +436,10 @@ function Homepage() {
 									reversed={true}
 								>
 									<p>
-										An alarm system if the website is ever down within 24hours.
-										A dashboard is created as well to check on performance and
-										region latency.
+										An alarm system if the website is ever
+										down within 24hours. A dashboard is
+										created as well to check on performance
+										and region latency.
 									</p>
 								</Figure>
 							</div>
@@ -441,8 +478,9 @@ function Homepage() {
 								}}
 								imageCaption="Google Speed Insight"
 							>
-								We maintain a good performance and accessibility. We use
-								Lighthouse to monitored during deployment.
+								We maintain a good performance and
+								accessibility. We use Lighthouse to monitored
+								during deployment.
 							</Figure>
 							<div className="py-24">
 								<Figure
@@ -455,9 +493,10 @@ function Homepage() {
 									imageCaption="We page loading data with Google Analytics."
 									reversed={true}
 								>
-									We occasionally monitor our websites loading performances so
-									that we can keep our rating high for SEO. We also collect
-									client&apos; data ONLY if consensus is given; so...please{" "}
+									We occasionally monitor our websites loading
+									performances so that we can keep our rating
+									high for SEO. We also collect client&apos;
+									data ONLY if consensus is given; so...please{" "}
 									<strong>accept</strong> the cookie. :)
 								</Figure>
 							</div>
@@ -470,34 +509,39 @@ function Homepage() {
 								}}
 								imageCaption="Resources are serve with cache"
 							>
-								All static resources are cache controlled with Cloudflare and
-								NextJS and are served with Edge servers. It is configured to
-								refresh for every deployment even for overrides.
+								All static resources are cache controlled with
+								Cloudflare and NextJS and are served with Edge
+								servers. It is configured to refresh for every
+								deployment even for overrides.
 							</Figure>
 						</div>
 					</article>
 					<hr />
 					{/* Tech Stack */}
 					<article>
-						<div className="text-3xl text-center pb-8" id="tech-stack">
+						<div
+							className="text-3xl text-center pb-8"
+							id="tech-stack"
+						>
 							Tech Stack
 						</div>
 						<ul className="flex flex-col gap-2 w-fit mx-auto">
 							<li>
-								<strong>Platform:</strong> Azure & Vercel (Reliable, Global
-								Infrastructure)
+								<strong>Platform:</strong> Azure & Vercel
+								(Reliable, Global Infrastructure)
 							</li>
 							<li>
-								<strong>Engine:</strong> Next.js & WebAssembly (High-performance
-								Rendering)
+								<strong>Engine:</strong> Next.js & WebAssembly
+								(High-performance Rendering)
 							</li>
 							<li>
-								<strong>Guardrails:</strong> GitHub Actions & CodeCov &
-								SonarQube (Quality & Security Compliance)
+								<strong>Guardrails:</strong> GitHub Actions &
+								CodeCov & SonarQube (Quality & Security
+								Compliance)
 							</li>
 							<li>
-								<strong>Insights:</strong> Axiom & Checkly (Real-time
-								Observability)
+								<strong>Insights:</strong> Axiom & Checkly
+								(Real-time Observability)
 							</li>
 						</ul>
 					</article>
@@ -516,7 +560,7 @@ function Homepage() {
 			</div>
 			<SocialFab />
 		</>
-	);
+	)
 }
 
-export default Homepage;
+export default Homepage

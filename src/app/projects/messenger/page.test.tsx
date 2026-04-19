@@ -1,18 +1,18 @@
-import { render, screen } from "@testing-library/react";
-import { metadata } from "../page";
-import Messenger from "./page";
+import { render, screen } from "@testing-library/react"
+import { metadata } from "../page"
+import Messenger from "./page"
 
 describe("Messenger", () => {
 	it("should show warning if none of the environment is set", () => {
-		render(<Messenger />);
+		render(<Messenger />)
 		expect(
 			screen.getByText(
 				"Pusher initialization failed due to missing environment variable.",
 			),
-		).toBeInTheDocument();
-	});
+		).toBeInTheDocument()
+	})
 
 	it("should render the right metaData", () => {
-		expect(metadata.alternates).toEqual({});
-	});
-});
+		expect(metadata.alternates).toEqual({})
+	})
+})

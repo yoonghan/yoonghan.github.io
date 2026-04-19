@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
-import Link from "@/components/Link";
-import Table from "@/components/Table";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
+import Link from "@/components/Link"
+import Table from "@/components/Table"
 
 const model = [
 	{
@@ -36,8 +36,8 @@ const model = [
 							input: "Task",
 							reference: (
 								<div>
-									Describe your task, specifying a persona and format
-									preference.
+									Describe your task, specifying a persona and
+									format preference.
 									<ol>
 										<li>Give a persona (optional)</li>
 										<li>Define the task</li>
@@ -50,17 +50,21 @@ const model = [
 							input: "Context",
 							reference: (
 								<div>
-									Specify goals, constraints, and requirements. Context has the
-									potential to be the longest piece of a prompt. One of the most
-									powerful and reliable ways to provide an AI tool with context
-									is to give the model specific reference materials to use.
+									Specify goals, constraints, and
+									requirements. Context has the potential to
+									be the longest piece of a prompt. One of the
+									most powerful and reliable ways to provide
+									an AI tool with context is to give the model
+									specific reference materials to use.
 									<ul>
 										<li>Persona</li>
 										<li>I would like...</li>
 										<li>Use this template...</li>
 									</ul>
 									<strong>Tips:</strong>{" "}
-									{"Don't use gender bias. E.g. firefighter not fireman."}
+									{
+										"Don't use gender bias. E.g. firefighter not fireman."
+									}
 								</div>
 							),
 						},
@@ -68,10 +72,13 @@ const model = [
 							input: "Reference",
 							reference: (
 								<div>
-									Add examples, zero/single/few shots for gen AI tool can use to
-									inform its output. Use:
+									Add examples, zero/single/few shots for gen
+									AI tool can use to inform its output. Use:
 									<ul>
-										<li>Transitional phase, i.e. use this template</li>
+										<li>
+											Transitional phase, i.e. use this
+											template
+										</li>
 										<li>Markdown tags</li>
 										<li>XML</li>
 									</ul>
@@ -105,20 +112,28 @@ const model = [
           I know Ching Chong restaurant is good in serving Dim Sum. <- reference`}
 					</pre>
 					<p className="mt-2">
-						I want a gourmet chef suggestion for a list of vegetarian food menu
-						to bring my Chinese friend for a surprised dinner. She prefers Asian
-						food. Could you suggest a menu list? I would prefer to bring her to
-						a dim sum restaurant similar to Ching Chong restaurant located in
-						Los Angeles.
+						I want a gourmet chef suggestion for a list of
+						vegetarian food menu to bring my Chinese friend for a
+						surprised dinner. She prefers Asian food. Could you
+						suggest a menu list? I would prefer to bring her to a
+						dim sum restaurant similar to Ching Chong restaurant
+						located in Los Angeles.
 					</p>
 					<p className="mt-2">
-						I am tight on budget, so list me 2 menu and no appetizer.
+						I am tight on budget, so list me 2 menu and no
+						appetizer.
 					</p>
 					<br />
 					Output expectation / control:
 					<ol>
-						<li>Revisit the prompting framework - add personas, context</li>
-						<li>Break the prompt into shorter sentences - chain of thoughts</li>
+						<li>
+							Revisit the prompting framework - add personas,
+							context
+						</li>
+						<li>
+							Break the prompt into shorter sentences - chain of
+							thoughts
+						</li>
 						<li>Introduce contrainsts</li>
 						<li>Tweak your phrasing / swith analogous task</li>
 					</ol>
@@ -139,9 +154,9 @@ const model = [
 					<li>Asthetics</li>
 				</ul>
 				<br />
-				Example: Use LLM to generate prompt for image generation. I.e. create a
-				poster. Then using that prompt to generate an image, remember to set the
-				a format. E.g.
+				Example: Use LLM to generate prompt for image generation. I.e.
+				create a poster. Then using that prompt to generate an image,
+				remember to set the a format. E.g.
 				<pre>
 					{`
         Generate a poster for a music concert <- task
@@ -166,20 +181,20 @@ const model = [
 			<div>
 				<ul>
 					<li>
-						Protecting privacy: Removes potentially sensitive information from
-						previous interactions.
+						Protecting privacy: Removes potentially sensitive
+						information from previous interactions.
 					</li>
 					<li>
-						Avoiding bias: Prevents the tool from carrying forward assumptions
-						or stereotypes from earlier prompts.
+						Avoiding bias: Prevents the tool from carrying forward
+						assumptions or stereotypes from earlier prompts.
 					</li>
 					<li>
-						Reducing confusion: Ensures the tool focuses solely on the current
-						task and context.
+						Reducing confusion: Ensures the tool focuses solely on
+						the current task and context.
 					</li>
 					<li>
-						Troubleshooting: Refreshes the tool when it seems stuck or is
-						producing unexpected results.{" "}
+						Troubleshooting: Refreshes the tool when it seems stuck
+						or is producing unexpected results.{" "}
 					</li>
 				</ul>
 				<Table
@@ -207,7 +222,8 @@ const model = [
 							Risk: "Inconsistency and relevance",
 							Mitigation: (
 								<div>
-									Example of word: &quot;Think outside the box&quot;
+									Example of word: &quot;Think outside the
+									box&quot;
 									<ul>
 										<li>Provide references</li>
 										<li>Provide context</li>
@@ -234,15 +250,15 @@ const model = [
 			</div>
 		),
 	},
-];
+]
 
 export function AIPractitioner() {
 	return (
 		<article>
 			<p className="text-2xl">AWS Certified AI Practitioner(AIF-C01)</p>
 			<p>
-				Very useful to understand the AI services provided by AWS and how to use
-				them in real world scenarios.
+				Very useful to understand the AI services provided by AWS and
+				how to use them in real world scenarios.
 			</p>
 			<strong>Notes:</strong>{" "}
 			<Link href="https://github.com/users/yoonghan/projects/6">
@@ -250,5 +266,5 @@ export function AIPractitioner() {
 			</Link>
 			<Accordion model={model} groupName={"ai"} />
 		</article>
-	);
+	)
 }

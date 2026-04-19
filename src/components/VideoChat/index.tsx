@@ -5,21 +5,21 @@ import {
 	useEffect,
 	useImperativeHandle,
 	useRef,
-} from "react";
-import styles from "./VideoChat.module.css";
+} from "react"
+import styles from "./VideoChat.module.css"
 
 type Props = {
-	id: string;
-	record: boolean;
-	muted: boolean;
-	videoFailedCallback: (exception: unknown) => void;
-	videoTracksCallback: (mediaStream: MediaStream | undefined) => void;
-	noRef?: boolean;
-};
+	id: string
+	record: boolean
+	muted: boolean
+	videoFailedCallback: (exception: unknown) => void
+	videoTracksCallback: (mediaStream: MediaStream | undefined) => void
+	noRef?: boolean
+}
 
 export interface VideoStreamHandler {
-	stream: (stream: MediaStream) => void;
-	stopStream: () => void;
+	stream: (stream: MediaStream) => void
+	stopStream: () => void
 }
 
 const VideoChat = forwardRef<VideoStreamHandler, Props>(
@@ -34,72 +34,72 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 		}: Props,
 		ref,
 	) {
-		const videoRef = useRef<HTMLVideoElement>(null);
-		const streamRef = useRef<MediaStream>(undefined);
+		const videoRef = useRef<HTMLVideoElement>(null)
+		const streamRef = useRef<MediaStream>(undefined)
 
 		const stream = useCallback((stream: MediaStream) => {
 			// biome-ignore lint/style/noNonNullAssertion: expected
-			videoRef.current!.srcObject = stream;
-		}, []);
+			videoRef.current!.srcObject = stream
+		}, [])
 
 		const stopStream = useCallback(() => {
 			// biome-ignore lint/style/noNonNullAssertion: expected
-			videoRef.current!.srcObject = null;
-		}, []);
+			videoRef.current!.srcObject = null
+		}, [])
 
 		useImperativeHandle(ref, () => {
 			return {
 				stream,
 				stopStream,
-			};
-		});
+			}
+		})
 
 		const gotStream = useCallback(
 			(stream: MediaStream) => {
 				if (videoRef.current !== null) {
-					videoRef.current.srcObject = stream;
-					streamRef.current = stream;
-					videoTracksCallback(stream);
+					videoRef.current.srcObject = stream
+					streamRef.current = stream
+					videoTracksCallback(stream)
 				}
 			},
 			[videoTracksCallback],
-		);
+		)
 
 		const startVideo = useCallback(async () => {
 			try {
 				const videoStream = await navigator.mediaDevices.getUserMedia({
 					audio: true,
 					video: true,
-				});
-				gotStream(videoStream);
+				})
+				gotStream(videoStream)
 			} catch (exception) {
-				videoFailedCallback(exception);
+				videoFailedCallback(exception)
 			}
-		}, [gotStream, videoFailedCallback]);
+		}, [gotStream, videoFailedCallback])
 
 		const stopVideo = useCallback(() => {
 			if (streamRef?.current?.getTracks) {
 				streamRef.current.getTracks().forEach((track) => {
-					track.stop(); //Comment - make sure Chrome browsers tab has no red icon/speaker when stopped
-				});
-				streamRef.current = undefined;
+					track.stop() //Comment - make sure Chrome browsers tab has no red icon/speaker when stopped
+				})
+				streamRef.current = undefined
 			}
 			if (videoRef.current !== null) {
-				videoRef.current.srcObject = null;
-				videoTracksCallback(undefined);
+				videoRef.current.srcObject = null
+				videoTracksCallback(undefined)
 			}
-		}, [videoTracksCallback]);
+		}, [videoTracksCallback])
 
 		useEffect(() => {
 			if (record) {
-				queueMicrotask(startVideo);
+				queueMicrotask(startVideo)
 			} else {
-				queueMicrotask(stopVideo);
+				queueMicrotask(stopVideo)
 			}
 			return () => {
-				queueMicrotask(stopVideo);
-			};
-		}, [startVideo, stopVideo, record]);
+				queueMicrotask(stopVideo)
+			}
+		}, [startVideo, stopVideo, record])
 
 		return (
 			<video
@@ -111,11 +111,11 @@ const VideoChat = forwardRef<VideoStreamHandler, Props>(
 				data-testid={"video-chat"}
 				className={styles.container}
 			></video>
-		);
+		)
 	},
-);
+)
 
 const VideoComparator = (prevProps: Props, nextProps: Props) =>
-	prevProps.record === nextProps.record;
+	prevProps.record === nextProps.record
 
-export default memo(VideoChat, VideoComparator);
+export default memo(VideoChat, VideoComparator)

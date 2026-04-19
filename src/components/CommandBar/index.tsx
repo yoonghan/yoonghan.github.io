@@ -1,10 +1,10 @@
-import dynamic from "next/dynamic";
-import * as React from "react";
-import styles from "./CommandBar.module.css";
-import NavMenu from "./NavMenu";
+import dynamic from "next/dynamic"
+import * as React from "react"
+import styles from "./CommandBar.module.css"
+import NavMenu from "./NavMenu"
 
 interface CommandBarNoSSRProps {
-	commandPromptOnly?: boolean;
+	commandPromptOnly?: boolean
 }
 
 const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
@@ -14,7 +14,7 @@ const NoSSRCommandBar = dynamic(() => import("./NoSSRCommandBar"), {
 			Loading Shell command...
 		</div>
 	),
-});
+})
 
 const CommandBar = ({ commandPromptOnly }: CommandBarNoSSRProps) => {
 	return (
@@ -39,7 +39,7 @@ const CommandBar = ({ commandPromptOnly }: CommandBarNoSSRProps) => {
 				)}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default React.memo(CommandBar);
+export default React.memo(CommandBar)

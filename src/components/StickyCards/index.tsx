@@ -1,17 +1,17 @@
-import { ScrollableCard } from "@yoonghan/walcron-microfrontend-shared";
-import "@yoonghan/walcron-microfrontend-shared/dist/style.css";
-import Image from "next/image";
-import type { ReactNode } from "react";
-import Link from "../Link";
-import styles from "./scrollable.module.css";
+import { ScrollableCard } from "@yoonghan/walcron-microfrontend-shared"
+import "@yoonghan/walcron-microfrontend-shared/dist/style.css"
+import Image from "next/image"
+import type { ReactNode } from "react"
+import Link from "../Link"
+import styles from "./scrollable.module.css"
 
 interface Content {
-	imageSrc?: string;
-	alt?: string;
-	label: string;
-	className: string;
-	text?: ReactNode;
-	href?: string;
+	imageSrc?: string
+	alt?: string
+	label: string
+	className: string
+	text?: ReactNode
+	href?: string
 }
 
 function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
@@ -24,7 +24,12 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
 						<div className={className}>
 							{imageSrc && (
 								// biome-ignore lint: expected
-								<img src={imageSrc} height={50} width={50} alt={alt} />
+								<img
+									src={imageSrc}
+									height={50}
+									width={50}
+									alt={alt}
+								/>
 							)}
 							<div className="text-4xl pb-4">{label}</div>
 							{text && <div className="pb-8">{text}</div>}
@@ -53,7 +58,7 @@ function StickyCards({ contents }: Readonly<{ contents: Content[] }>) {
 			)}
 			className={styles.container}
 		></ScrollableCard>
-	);
+	)
 }
 
-export default StickyCards;
+export default StickyCards

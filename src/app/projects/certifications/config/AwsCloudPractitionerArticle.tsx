@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const model = [
 	{
@@ -58,12 +58,14 @@ const model = [
 				<li>Benefit from Massive scale of Economics</li>
 				<li>Stop Guessing Capacity</li>
 				<li>Increase Speed & Agiity</li>
-				<li>{"Stop Spending money running & maintaining data center"}</li>
+				<li>
+					{"Stop Spending money running & maintaining data center"}
+				</li>
 				<li>Go global in minutes</li>
 			</ul>
 		),
 	},
-];
+]
 
 export function AwsCloudPractitionerArticle() {
 	return (
@@ -71,5 +73,5 @@ export function AwsCloudPractitionerArticle() {
 			<p className="text-2xl">AWS Certified Cloud Practitioner</p>
 			<Accordion model={model} groupName={"aws-cloud-practitioner"} />
 		</article>
-	);
+	)
 }

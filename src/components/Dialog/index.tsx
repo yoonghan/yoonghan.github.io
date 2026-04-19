@@ -6,20 +6,20 @@ import {
 	useImperativeHandle,
 	useMemo,
 	useState,
-} from "react";
-import { createPortal } from "react-dom";
-import styles from "./Dialog.module.css";
-import dialogRootCreator from "./dialogRootCreator";
+} from "react"
+import { createPortal } from "react-dom"
+import styles from "./Dialog.module.css"
+import dialogRootCreator from "./dialogRootCreator"
 
 interface DialogProps {
-	isNotModal?: boolean;
-	onCancel: () => void;
-	children: React.ReactNode;
-	nonPortal: boolean;
+	isNotModal?: boolean
+	onCancel: () => void
+	children: React.ReactNode
+	nonPortal: boolean
 }
 
 export interface DialogHandler {
-	close: () => void;
+	close: () => void
 }
 
 const Dialog = forwardRef<DialogHandler, DialogProps>(
@@ -27,46 +27,46 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 		{ isNotModal = false, onCancel, children, nonPortal },
 		ref,
 	) {
-		dialogRootCreator.create();
-		const dialogElem = createRef<HTMLDialogElement>();
-		const documentDialog = document.querySelector("#dialog-root") as Element;
+		dialogRootCreator.create()
+		const dialogElem = createRef<HTMLDialogElement>()
+		const documentDialog = document.querySelector("#dialog-root") as Element
 
-		const [showDialog, setShowDialog] = useState(true);
+		const [showDialog, setShowDialog] = useState(true)
 
 		const close = useCallback(() => {
-			setShowDialog(false);
-		}, []);
+			setShowDialog(false)
+		}, [])
 
 		useImperativeHandle(ref, () => {
 			return {
 				close,
-			};
-		});
+			}
+		})
 
 		useEffect(() => {
 			if (dialogElem.current !== null && !dialogElem.current.open) {
 				if (isNotModal) {
-					dialogElem.current.show();
+					dialogElem.current.show()
 				} else {
-					dialogElem.current.showModal();
+					dialogElem.current.showModal()
 				}
 			}
-		}, [dialogElem, isNotModal]);
+		}, [dialogElem, isNotModal])
 
 		const cancel = useCallback(() => {
-			close();
-			onCancel();
-		}, [close, onCancel]);
+			close()
+			onCancel()
+		}, [close, onCancel])
 
 		const onCloseClick = useCallback(() => {
-			cancel();
-		}, [cancel]);
+			cancel()
+		}, [cancel])
 
 		const onDialogClick = useCallback(() => {
 			if (!isNotModal) {
-				cancel();
+				cancel()
 			}
-		}, [cancel, isNotModal]);
+		}, [cancel, isNotModal])
 
 		const onContentClick = useCallback(
 			(
@@ -74,10 +74,10 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 					| React.MouseEvent<HTMLDivElement>
 					| React.KeyboardEvent<HTMLDivElement>,
 			) => {
-				event.stopPropagation();
+				event.stopPropagation()
 			},
 			[],
-		);
+		)
 
 		const dialog = useMemo(
 			() => (
@@ -92,7 +92,10 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 							{
 								// biome-ignore lint/a11y/useKeyWithClickEvents: expected
 								// biome-ignore lint/a11y/noStaticElementInteractions: expected
-								<div className={styles.content} onClick={onContentClick}>
+								<div
+									className={styles.content}
+									onClick={onContentClick}
+								>
 									{children}
 								</div>
 							}
@@ -112,10 +115,10 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 				onDialogClick,
 				showDialog,
 			],
-		);
+		)
 
-		return nonPortal ? dialog : createPortal(dialog, documentDialog);
+		return nonPortal ? dialog : createPortal(dialog, documentDialog)
 	},
-);
+)
 
-export default Dialog;
+export default Dialog

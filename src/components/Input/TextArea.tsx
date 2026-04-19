@@ -3,7 +3,7 @@ import type {
 	KeyboardEvent,
 	ReactNode,
 	TextareaHTMLAttributes,
-} from "react";
+} from "react"
 
 const TextArea = ({
 	onSubmit,
@@ -12,26 +12,26 @@ const TextArea = ({
 	additionalProps,
 	children,
 }: {
-	onSubmit: () => void;
-	value: string;
-	onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-	additionalProps?: TextareaHTMLAttributes<HTMLTextAreaElement>;
-	children?: ReactNode;
+	onSubmit: () => void
+	value: string
+	onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
+	additionalProps?: TextareaHTMLAttributes<HTMLTextAreaElement>
+	children?: ReactNode
 }) => {
 	const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "Enter" && (event.shiftKey || event.altKey)) {
-			event.preventDefault();
+			event.preventDefault()
 			const targetChange: any = {
 				target: {
 					value: `${value}\r\n`,
 				} as any,
-			};
-			onChange(targetChange);
+			}
+			onChange(targetChange)
 		} else if (event.key === "Enter") {
-			event.preventDefault();
-			onSubmit();
+			event.preventDefault()
+			onSubmit()
 		}
-	};
+	}
 
 	return (
 		<textarea
@@ -42,7 +42,7 @@ const TextArea = ({
 		>
 			{children}
 		</textarea>
-	);
-};
+	)
+}
 
-export default TextArea;
+export default TextArea

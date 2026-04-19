@@ -1,18 +1,18 @@
-import dynamic from "next/dynamic";
+import dynamic from "next/dynamic"
 import {
 	forwardRef,
 	useEffect,
 	useImperativeHandle,
 	useReducer,
 	useRef,
-} from "react";
-import type { Message } from "react-bell-chat";
-import { MessageType } from "../../config/MessageType";
+} from "react"
+import type { Message } from "react-bell-chat"
+import { MessageType } from "../../config/MessageType"
 import {
 	MessageActionType,
 	messageReducer,
 	messageReducerInitialState,
-} from "./useMessageReducer/useMessageReducer";
+} from "./useMessageReducer/useMessageReducer"
 
 const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
 	ssr: false,
@@ -21,21 +21,21 @@ const ChatFeed = dynamic(() => import("./NoSSRChatFeed"), {
 			Loading Chat Room
 		</div>
 	),
-});
+})
 
 export type MessageHandler = {
 	addMessage: (
 		senderId: number | undefined,
 		message: string,
 		messageType?: MessageType,
-	) => void;
-};
-
-interface Props {
-	initialMessage?: Message[];
+	) => void
 }
 
-export const userId = 1;
+interface Props {
+	initialMessage?: Message[]
+}
+
+export const userId = 1
 
 export const authors = [
 	{
@@ -54,19 +54,19 @@ export const authors = [
 		lastSeenMessageId: 1,
 		bgImageUrl: undefined,
 	},
-];
+]
 
 const ChatMessageDialog = forwardRef<MessageHandler, Props>(
 	function ChatMessageDialogWithMessageHandler({ initialMessage }, ref) {
 		const [messages, dispatch] = useReducer(
 			messageReducer,
 			initialMessage ?? messageReducerInitialState,
-		);
-		const height = useRef<number>(0);
+		)
+		const height = useRef<number>(0)
 
 		useEffect(() => {
-			height.current = document.body.offsetHeight;
-		}, []);
+			height.current = document.body.offsetHeight
+		}, [])
 
 		useImperativeHandle(ref, () => {
 			return {
@@ -82,10 +82,10 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
 							type: messageType,
 							authorId: senderId,
 						},
-					});
+					})
 				},
-			};
-		});
+			}
+		})
 
 		return (
 			<div>
@@ -96,8 +96,8 @@ const ChatMessageDialog = forwardRef<MessageHandler, Props>(
 					yourAuthorId={userId}
 				/>
 			</div>
-		);
+		)
 	},
-);
+)
 
-export default ChatMessageDialog;
+export default ChatMessageDialog

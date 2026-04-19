@@ -1,38 +1,38 @@
-"use client";
+"use client"
 
-import { useEffect } from "react";
-import useScrollTracker from "@/components/utils/hooks/tracker/useScrollTracker";
-import { useTrackReducer } from "@/components/utils/hooks/tracker/useTrackReducer";
-import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation";
-import styles from "./FunkyScroller.module.css";
+import { useEffect } from "react"
+import useScrollTracker from "@/components/utils/hooks/tracker/useScrollTracker"
+import { useTrackReducer } from "@/components/utils/hooks/tracker/useTrackReducer"
+import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
+import styles from "./FunkyScroller.module.css"
 
 function FunkyScroller({
 	title,
 	className,
 }: Readonly<{
-	title: string;
-	className?: string;
+	title: string
+	className?: string
 }>) {
-	const { scrollToTop } = useScrollTracker();
+	const { scrollToTop } = useScrollTracker()
 
-	const { isAnimatable } = useDisableAnimation();
+	const { isAnimatable } = useDisableAnimation()
 
 	const { append, data } = useTrackReducer({
 		initialData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		maxStorage: 10,
 		allowStorageAfterMiliseconds: 50,
-	});
+	})
 
 	useEffect(() => {
 		if (isAnimatable) {
-			append(scrollToTop.y);
+			append(scrollToTop.y)
 		}
-	}, [append, isAnimatable, scrollToTop.y]);
+	}, [append, isAnimatable, scrollToTop.y])
 
 	const calculatePos = (pos: number, currentData: number[]) => {
-		const total = currentData.reduce((sum, i) => sum + i, 0);
-		return `${total === 0 ? 0 : (pos / total) * 180}px`;
-	};
+		const total = currentData.reduce((sum, i) => sum + i, 0)
+		return `${total === 0 ? 0 : (pos / total) * 180}px`
+	}
 
 	return (
 		<div
@@ -47,7 +47,7 @@ function FunkyScroller({
 				></div>
 			))}
 		</div>
-	);
+	)
 }
 
-export default FunkyScroller;
+export default FunkyScroller

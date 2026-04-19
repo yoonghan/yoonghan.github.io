@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 /**
  * Made for EUROPEAN regulation, but this site do not use cookies.
@@ -6,55 +6,55 @@
  * pass into the props.
  **/
 
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import ReactGA from "react-ga4";
-import Button from "@/components/Button";
-import Link from "@/components/Link";
+import Image from "next/image"
+import { useCallback, useEffect, useState } from "react"
+import ReactGA from "react-ga4"
+import Button from "@/components/Button"
+import Link from "@/components/Link"
 
-const cookiePrivacy = "https://policies.google.com/technologies/cookies";
-const cookieName = "termsGranted";
+const cookiePrivacy = "https://policies.google.com/technologies/cookies"
+const cookieName = "termsGranted"
 
-type Props = { ga4Id: string };
+type Props = { ga4Id: string }
 
 function ClientCookie({ ga4Id }: Readonly<Props>) {
-	const [isCookieRead, setIsCookieRead] = useState(true);
+	const [isCookieRead, setIsCookieRead] = useState(true)
 
 	const acceptGAConsent = useCallback(() => {
 		ReactGA.gtag("consent", "update", {
 			analytics_storage: "granted",
-		});
-	}, []);
+		})
+	}, [])
 
 	const onCookieReadClicked = useCallback(() => {
 		// biome-ignore lint: Expected
-		document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`;
-		setIsCookieRead(true);
-		acceptGAConsent();
-	}, [acceptGAConsent]);
+		document.cookie = `${cookieName}=true;secure;path=/;SameSite=Lax;max-age=2592000`
+		setIsCookieRead(true)
+		acceptGAConsent()
+	}, [acceptGAConsent])
 
 	useEffect(() => {
 		function getCookie(cname: string) {
-			const name = `${cname}=`;
-			const decodedCookie = decodeURIComponent(document.cookie);
-			const ca = decodedCookie.split(";");
+			const name = `${cname}=`
+			const decodedCookie = decodeURIComponent(document.cookie)
+			const ca = decodedCookie.split(";")
 			for (const cookie of ca) {
-				let c = cookie;
+				let c = cookie
 				while (c.startsWith(" ")) {
-					c = c.slice(1);
+					c = c.slice(1)
 				}
 				if (c.startsWith(name)) {
-					return c.substring(name.length, c.length);
+					return c.substring(name.length, c.length)
 				}
 			}
-			return "";
+			return ""
 		}
 
-		const cookieWasRead = !!getCookie(cookieName);
-		setIsCookieRead(cookieWasRead);
+		const cookieWasRead = !!getCookie(cookieName)
+		setIsCookieRead(cookieWasRead)
 
 		if (!ReactGA.isInitialized) {
-			ReactGA.initialize(ga4Id);
+			ReactGA.initialize(ga4Id)
 		}
 
 		ReactGA.gtag("consent", "default", {
@@ -62,15 +62,15 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 			ad_user_data: "denied", //Sets consent for sending user data related to advertising to Google.
 			ad_personalization: "denied", //Sets consent for personalized advertising.
 			analytics_storage: "denied", //Enables storage (such as cookies) related to analytics e.g. visit duration.
-		});
+		})
 		if (cookieWasRead) {
-			acceptGAConsent();
+			acceptGAConsent()
 		}
-	}, [acceptGAConsent, ga4Id]);
+	}, [acceptGAConsent, ga4Id])
 
 	if (isCookieRead) {
 		// biome-ignore lint/complexity/noUselessFragments: expected
-		return <></>;
+		return <></>
 	} else {
 		return (
 			<div
@@ -88,8 +88,8 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 					<strong>This site uses cookies.</strong>
 					<hr className="my-2 border-slate-600" />
 					<p className="mb-4">
-						This site uses cookie to monitor visits and usage traffics through
-						google analytics, please to{" "}
+						This site uses cookie to monitor visits and usage
+						traffics through google analytics, please to{" "}
 						<Link href={cookiePrivacy} target="_blank">
 							Google Analytic site
 						</Link>
@@ -98,8 +98,8 @@ function ClientCookie({ ga4Id }: Readonly<Props>) {
 				</div>
 				<Button onClick={onCookieReadClicked}>Accept</Button>
 			</div>
-		);
+		)
 	}
 }
 
-export default ClientCookie;
+export default ClientCookie

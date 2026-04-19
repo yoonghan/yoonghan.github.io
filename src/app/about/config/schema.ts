@@ -1,4 +1,4 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
 const schema = {
 	"@context": "https://schema.org",
@@ -16,6 +16,6 @@ const schema = {
 		opens: "2014-07-04T9:00",
 		closes: "2020-07-04T9:00",
 	},
-};
+}
 
-export { schema };
+export { schema }

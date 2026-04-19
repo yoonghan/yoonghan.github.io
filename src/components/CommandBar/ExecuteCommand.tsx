@@ -1,37 +1,37 @@
-import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { createPortal } from "react-dom";
+import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import { createPortal } from "react-dom"
 import {
 	AvailableInput,
 	EnumAction,
 	type IAvailableInput,
-} from "./CommandSearch/CommandSearch";
-import InvalidCommand from "./CommandSearch/InvalidCommand";
-import Output from "./CommandSearch/Output";
-import HelpDialog from "./HelpDialog";
-import InvalidInput from "./InvalidInput";
+} from "./CommandSearch/CommandSearch"
+import InvalidCommand from "./CommandSearch/InvalidCommand"
+import Output from "./CommandSearch/Output"
+import HelpDialog from "./HelpDialog"
+import InvalidInput from "./InvalidInput"
 
 function evaluateMath(mathEval: string): string {
-	const evaluatedResult = new Function(`"use strict";return ${mathEval}`)();
-	return evaluatedResult;
+	const evaluatedResult = new Function(`"use strict";return ${mathEval}`)()
+	return evaluatedResult
 }
 
 function getMathEvaluation(evaluation: string) {
-	const equalsLocation = 1;
-	const _evaluation = evaluation.replaceAll(" ", "").substring(equalsLocation);
+	const equalsLocation = 1
+	const _evaluation = evaluation.replaceAll(" ", "").substring(equalsLocation)
 
-	const mathRegex = /^\d+(\.\d*)?([+\-*/]\d+(\.\d*)?)+$/;
-	const matches = mathRegex.test(_evaluation);
+	const mathRegex = /^\d+(\.\d*)?([+\-*/]\d+(\.\d*)?)+$/
+	const matches = mathRegex.test(_evaluation)
 
 	if (matches) {
-		const result = evaluateMath(_evaluation);
-		return <Output output={result} />;
+		const result = evaluateMath(_evaluation)
+		return <Output output={result} />
 	} else {
-		return <InvalidCommand invalidCommand={"Unable to evaluate."} />;
+		return <InvalidCommand invalidCommand={"Unable to evaluate."} />
 	}
 }
 
 function isSpecialCommand(inputCommand: string) {
-	return inputCommand.startsWith("=") && inputCommand.length > 3;
+	return inputCommand.startsWith("=") && inputCommand.length > 3
 }
 
 export function exec(
@@ -47,48 +47,48 @@ export function exec(
 	) => {
 		switch (inputSelected.action) {
 			case EnumAction.COMMAND:
-				return executeCommand(inputCommand);
+				return executeCommand(inputCommand)
 			case EnumAction.LINK:
-				return executeLink(inputCommand);
+				return executeLink(inputCommand)
 		}
-	};
+	}
 
 	const executeCommand = (inputCommand: string) => {
 		return AvailableInput[inputCommand].exec(
 			element,
 			cancellationCallback,
 			specialInputCallback,
-		);
-	};
+		)
+	}
 
 	const executeLink = (inputCommand: string) => {
-		return AvailableInput[inputCommand].exec(router, currentPath);
-	};
+		return AvailableInput[inputCommand].exec(router, currentPath)
+	}
 
 	/**
 	 * Convert to understandable commands.
 	 **/
 	const findInputSynonym = (inputCommand: string) => {
 		if (AvailableInput[inputCommand]) {
-			return inputCommand;
+			return inputCommand
 		} else {
-			return findClosestInputMatch(inputCommand);
+			return findClosestInputMatch(inputCommand)
 		}
-	};
+	}
 
 	const findClosestInputMatch = (inputCommand: string) => {
 		//Cache it? Naw, too little to do that.
 		for (const key in AvailableInput) {
-			const synonym = AvailableInput[key].synonym;
+			const synonym = AvailableInput[key].synonym
 			if (synonym) {
-				const found = synonym.find((elem) => elem === inputCommand);
+				const found = synonym.find((elem) => elem === inputCommand)
 				if (found) {
-					return key;
+					return key
 				}
 			}
 		}
-		return inputCommand;
-	};
+		return inputCommand
+	}
 
 	const createHelpPortal = () =>
 		createPortal(
@@ -97,26 +97,26 @@ export function exec(
 				specialInputCallback={specialInputCallback}
 			/>,
 			element,
-		);
+		)
 
 	return function ExecuteCommand(inputCommand: string) {
-		const trimmedCommand = inputCommand.trim().toLocaleLowerCase();
+		const trimmedCommand = inputCommand.trim().toLocaleLowerCase()
 		if (trimmedCommand === "") {
-			return undefined;
+			return undefined
 		}
 
 		if (trimmedCommand === "help" || trimmedCommand === "man") {
-			return createHelpPortal();
+			return createHelpPortal()
 		}
 
-		const _inputCommand = findInputSynonym(trimmedCommand);
-		const matchedCommand: IAvailableInput = AvailableInput[_inputCommand];
+		const _inputCommand = findInputSynonym(trimmedCommand)
+		const matchedCommand: IAvailableInput = AvailableInput[_inputCommand]
 		if (matchedCommand) {
-			return executeBasedOnType(_inputCommand, matchedCommand);
+			return executeBasedOnType(_inputCommand, matchedCommand)
 		}
 		if (isSpecialCommand(_inputCommand)) {
-			return getMathEvaluation(_inputCommand);
+			return getMathEvaluation(_inputCommand)
 		}
-		return <InvalidInput invalidInput={inputCommand} />;
-	};
+		return <InvalidInput invalidInput={inputCommand} />
+	}
 }

@@ -1,17 +1,17 @@
-import Image, { type StaticImageData } from "next/image";
-import type { JSX } from "react";
+import Image, { type StaticImageData } from "next/image"
+import type { JSX } from "react"
 
 interface IProfiler {
-	name: string;
-	title: string;
-	description: JSX.Element;
-	imgSrc: string | StaticImageData;
-	width?: number;
-	height?: number;
+	name: string
+	title: string
+	description: JSX.Element
+	imgSrc: string | StaticImageData
+	width?: number
+	height?: number
 }
 
 interface Props {
-	profiles: Array<IProfiler>;
+	profiles: Array<IProfiler>
 }
 
 const _getUser = (
@@ -37,7 +37,7 @@ const _getUser = (
 		</div>
 		{description}
 	</div>
-);
+)
 
 const Profiler = ({ profiles }: Props) => {
 	return (
@@ -54,7 +54,7 @@ const Profiler = ({ profiles }: Props) => {
 				),
 			)}
 		</div>
-	);
-};
+	)
+}
 
-export default Profiler;
+export default Profiler

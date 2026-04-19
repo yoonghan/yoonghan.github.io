@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "node:fs"
 import {
 	findAllChildByPath,
 	findPageByPath,
@@ -7,7 +7,7 @@ import {
 	sortedPages,
 	sortedSiteMapPages,
 	sortPagesByPath,
-} from "./pages";
+} from "./pages"
 
 describe("pages", () => {
 	it("should be able to sort pages by path, nonRoot is always the last", () => {
@@ -42,11 +42,17 @@ describe("pages", () => {
 				description: "Projects",
 				order: 3,
 			},
-		];
-		expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-			["/", "/about", "/projects", "/history", "/projects/experiment"],
-		);
-	});
+		]
+		expect(
+			sortPagesByPath(pagesToSort).map((page) => page.path),
+		).toStrictEqual([
+			"/",
+			"/about",
+			"/projects",
+			"/history",
+			"/projects/experiment",
+		])
+	})
 
 	it("should ne able to sort non-root", () => {
 		const pagesToSort = [
@@ -74,48 +80,53 @@ describe("pages", () => {
 				description: "Experiment",
 				order: 1,
 			},
-		];
-		expect(sortPagesByPath(pagesToSort).map((page) => page.path)).toStrictEqual(
-			["/projects", "/projects/experiment", "/projects/amp", "/projects/camp"],
-		);
-	});
+		]
+		expect(
+			sortPagesByPath(pagesToSort).map((page) => page.path),
+		).toStrictEqual([
+			"/projects",
+			"/projects/experiment",
+			"/projects/amp",
+			"/projects/camp",
+		])
+	})
 
 	it("should sort sorted pages", () => {
-		const allPages = sortedPages.map((page) => page.path);
-		expect(allPages[0]).toBe("/");
-		expect(allPages[1]).toBe("/about");
-	});
+		const allPages = sortedPages.map((page) => page.path)
+		expect(allPages[0]).toBe("/")
+		expect(allPages[1]).toBe("/about")
+	})
 
 	it("should filter menu with NON_MENU filterOption", () => {
 		const menuPageMappedByDisplay =
-			sortedMenuPagesWithFilteredHomeAndSubMenu.map((page) => page.path);
-		expect(menuPageMappedByDisplay).not.toContain("/");
-		expect(menuPageMappedByDisplay).not.toContain(["/projects/lessons"]);
-		expect(menuPageMappedByDisplay).toContain("/experiments");
-	});
+			sortedMenuPagesWithFilteredHomeAndSubMenu.map((page) => page.path)
+		expect(menuPageMappedByDisplay).not.toContain("/")
+		expect(menuPageMappedByDisplay).not.toContain(["/projects/lessons"])
+		expect(menuPageMappedByDisplay).toContain("/experiments")
+	})
 
 	it("should filter footer with NON_FOOTER filterOption", () => {
 		const footerPageMappedByDisplay = sortedFooterPages.map(
 			(page) => page.path,
-		);
-		expect(footerPageMappedByDisplay).toContain("/projects");
-		expect(footerPageMappedByDisplay).not.toContain(["/site-map"]);
-	});
+		)
+		expect(footerPageMappedByDisplay).toContain("/projects")
+		expect(footerPageMappedByDisplay).not.toContain(["/site-map"])
+	})
 
 	it("should filter sitemap with NON_SITE_MAP filterOption", () => {
 		const footerPageMappedByDisplay = sortedSiteMapPages.map(
 			(page) => page.path,
-		);
-		expect(footerPageMappedByDisplay).not.toContain(["/site-map"]);
-	});
+		)
+		expect(footerPageMappedByDisplay).not.toContain(["/site-map"])
+	})
 
 	it("should be able to ge pageConfig by path", () => {
 		expect(findPageByPath("/about")).toStrictEqual({
 			display: "About Us",
 			order: 2,
 			path: "/about",
-		});
-	});
+		})
+	})
 
 	it("should be able to list out all the child by path", () => {
 		const expectedResult = [
@@ -131,15 +142,15 @@ describe("pages", () => {
 				path: "/experiments/storybook",
 				display: "Storybook",
 			},
-		];
+		]
 
-		expect(findAllChildByPath("/about")).toStrictEqual([]);
+		expect(findAllChildByPath("/about")).toStrictEqual([])
 		expect(
 			findAllChildByPath("/experiments").map(({ path, display }) => ({
 				path,
 				display,
 			})),
-		).toStrictEqual(expectedResult);
+		).toStrictEqual(expectedResult)
 		expect(
 			findAllChildByPath("/experiments/performance").map(
 				({ path, display }) => ({
@@ -147,9 +158,9 @@ describe("pages", () => {
 					display,
 				}),
 			),
-		).toStrictEqual(expectedResult);
-	});
-});
+		).toStrictEqual(expectedResult)
+	})
+})
 
 describe("all sites are defined", () => {
 	const getFiles = (srcpath: string): string[] => {
@@ -158,27 +169,27 @@ describe("all sites are defined", () => {
 				withFileTypes: true,
 			})
 			.flatMap((file) => {
-				const relativePath = `${srcpath}/${file.name}`;
+				const relativePath = `${srcpath}/${file.name}`
 				if (file.isDirectory()) {
-					return getFiles(relativePath);
+					return getFiles(relativePath)
 				} else {
-					return relativePath;
+					return relativePath
 				}
-			});
-	};
+			})
+	}
 
 	const remapAppFiles = (files: string[], rootPath: string): string[] => {
 		const removeRootPath = (file: string) =>
-			file.substring(rootPath.length, file.length);
+			file.substring(rootPath.length, file.length)
 
-		const appPageFile = "/page";
+		const appPageFile = "/page"
 
-		const removeExtension = (file: string) => file.split(".")[0];
+		const removeExtension = (file: string) => file.split(".")[0]
 
 		const removePage = (file: string) => {
-			const filePath = file.substring(0, file.length - appPageFile.length);
-			return filePath === "" ? "/" : filePath;
-		};
+			const filePath = file.substring(0, file.length - appPageFile.length)
+			return filePath === "" ? "/" : filePath
+		}
 
 		return files
 			.filter(
@@ -187,12 +198,14 @@ describe("all sites are defined", () => {
 			) //remove all hidden files, like .DS_Store and .test.
 			.map((file) => removeExtension(removeRootPath(file)))
 			.filter((file) => file.endsWith(appPageFile))
-			.map(removePage);
-	};
+			.map(removePage)
+	}
 
 	it("should be declare in actual page/ directory", async () => {
-		const appFolder = "./src/app";
-		const allApp = remapAppFiles(getFiles(appFolder), appFolder);
-		expect(allApp.sort()).toEqual(sortedPages.map((page) => page.path).sort());
-	});
-});
+		const appFolder = "./src/app"
+		const allApp = remapAppFiles(getFiles(appFolder), appFolder)
+		expect(allApp.sort()).toEqual(
+			sortedPages.map((page) => page.path).sort(),
+		)
+	})
+})

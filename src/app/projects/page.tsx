@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { memo } from "react";
-import Card from "@/components/Card";
-import LetterBox from "@/components/LetterBox";
-import ScrollToTop from "@/components/ScrollToTop";
-import { site } from "@/config/site";
-import { cards } from "./config";
+import type { Metadata } from "next"
+import { memo } from "react"
+import Card from "@/components/Card"
+import LetterBox from "@/components/LetterBox"
+import ScrollToTop from "@/components/ScrollToTop"
+import { site } from "@/config/site"
+import { cards } from "./config"
 
 export const metadata: Metadata = {
 	title: "Projects Portfolio",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	alternates: {
 		...site.generateCanonical("/projects"),
 	},
-};
+}
 
 const Projects = () => {
 	return (
@@ -32,7 +32,7 @@ const Projects = () => {
 			</div>
 			<ScrollToTop />
 		</div>
-	);
-};
+	)
+}
 
-export default memo(Projects);
+export default memo(Projects)

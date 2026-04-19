@@ -1,4 +1,4 @@
-import type { Certificate } from "@/components/Grid";
+import type { Certificate } from "@/components/Grid"
 
 export const aiCertificates: Certificate[] = [
 	{
@@ -27,4 +27,4 @@ export const aiCertificates: Certificate[] = [
 		text: "Learning ChatGPT. [Foundation]",
 		href: "https://www.credly.com/badges/395a3138-11d3-4144-94dd-2389c52213aa",
 	},
-];
+]

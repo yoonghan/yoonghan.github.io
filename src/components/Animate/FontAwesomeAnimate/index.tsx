@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import type { ReactNode } from "react";
-import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation";
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { ReactNode } from "react"
+import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
 
-export type SupportedAnimation = "bounce" | "shake" | "spin";
+export type SupportedAnimation = "bounce" | "shake" | "spin"
 
 function canAnimate(
 	isAnimatable: boolean,
 	animationType: SupportedAnimation,
 	expectedAnimationType: SupportedAnimation,
 ) {
-	return !!isAnimatable && animationType === expectedAnimationType;
+	return !!isAnimatable && animationType === expectedAnimationType
 }
 
 function FontAwesomeAnimate({
@@ -23,14 +23,14 @@ function FontAwesomeAnimate({
 	animate,
 	color,
 }: Readonly<{
-	children: ReactNode;
-	title: string;
-	className?: string;
-	faIcon: IconDefinition;
-	animate: SupportedAnimation;
-	color?: string;
+	children: ReactNode
+	title: string
+	className?: string
+	faIcon: IconDefinition
+	animate: SupportedAnimation
+	color?: string
 }>) {
-	const { isAnimatable } = useDisableAnimation();
+	const { isAnimatable } = useDisableAnimation()
 
 	return (
 		<div className={`${className ?? ""}`} title={title}>
@@ -45,7 +45,7 @@ function FontAwesomeAnimate({
 			{children}
 			<div></div>
 		</div>
-	);
+	)
 }
 
-export default FontAwesomeAnimate;
+export default FontAwesomeAnimate
