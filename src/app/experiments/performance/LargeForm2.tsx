@@ -161,7 +161,7 @@ const InputField = ({ id, updateMonitor, dependantField }: InputProps) => {
 
 	useEffect(() => {
 		updateMonitor(id);
-	}, [id, updateMonitor, form]);
+	}, [id, updateMonitor]);
 
 	const renderInput = useMemo(
 		() =>

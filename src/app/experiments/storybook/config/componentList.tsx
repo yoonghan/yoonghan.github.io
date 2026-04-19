@@ -6,7 +6,6 @@ import ButtonsBar from "./ButtonsBar";
 import Canvases from "./Canvases";
 import Cards from "./Cards";
 import { OrderedFigure, ReversedFigure } from "./Figure";
-import { SiriLikeOrb } from "./Orb";
 import { ArrowKeyboard } from "./PopupKeyboard";
 import ScrollableListDemo from "./ScrollableList";
 import Tables from "./Tables";

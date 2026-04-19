@@ -7,7 +7,7 @@ import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog";
 
 const Dialogs = () => {
 	const [showDialogNo, setShowDialogNo] = useState(0);
-	const DialogManual = (props: any) => {
+	const DialogManual = () => {
 		return (
 			<Dialog onCancel={() => setShowDialogNo(0)} nonPortal={true}>
 				<div>I am dialog 3 and I too do not even have a background!</div>
@@ -25,11 +25,15 @@ const Dialogs = () => {
 
 	return (
 		<>
-			<button onClick={() => setShowDialogNo(1)}>Show Dialog</button>
-			<button onClick={() => setShowDialogNo(2)}>
+			<button type="button" onClick={() => setShowDialogNo(1)}>
+				Show Dialog
+			</button>
+			<button type="button" onClick={() => setShowDialogNo(2)}>
 				Show Confirmation Dialog
 			</button>
-			<button onClick={showDialog3}>Show Dialog</button>
+			<button type="button" onClick={showDialog3}>
+				Show Dialog
+			</button>
 			{showDialogNo === 1 && (
 				<Dialog onCancel={() => setShowDialogNo(0)} nonPortal={false}>
 					<div>HAHAHAHA, I Don&apos;t even have a background!</div>

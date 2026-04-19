@@ -1,4 +1,4 @@
-import React, {
+import {
 	type ChangeEvent,
 	memo,
 	type SubmitEvent,
@@ -154,7 +154,7 @@ const InputField = ({
 }: InputProps) => {
 	useEffect(() => {
 		updateMonitor(id);
-	}, [form, id, updateMonitor]);
+	}, [id, updateMonitor]);
 
 	const renderInput = useMemo(
 		() =>
