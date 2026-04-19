@@ -1,58 +1,58 @@
-"use client";
+"use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useDebounceValue } from "usehooks-ts";
-import style from "./ScrollableList.module.css";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useDebounceValue } from "usehooks-ts"
+import style from "./ScrollableList.module.css"
 
 type Props = {
-	listItems: { id: string; content: React.ReactNode }[];
-	maxItemsToRender: number;
-	noRef?: boolean;
-};
+	listItems: { id: string; content: React.ReactNode }[]
+	maxItemsToRender: number
+	noRef?: boolean
+}
 
-const heightOfItem = 30; //base on item css in px
+const heightOfItem = 30 //base on item css in px
 
 const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
-	const listRef = useRef<HTMLDivElement>(null);
-	const [scrollPosition, setScrollPosition] = useState(0);
-	const [scrollToTop, setScrollToTop] = useState(0);
-	const [debounceScrollToTop] = useDebounceValue(scrollToTop, 10);
+	const listRef = useRef<HTMLDivElement>(null)
+	const [scrollPosition, setScrollPosition] = useState(0)
+	const [scrollToTop, setScrollToTop] = useState(0)
+	const [debounceScrollToTop] = useDebounceValue(scrollToTop, 10)
 
 	const startPosition = useMemo(
 		() => Math.max(scrollPosition - maxItemsToRender, 0),
 		[maxItemsToRender, scrollPosition],
-	);
+	)
 
 	const endPosition = useMemo(
 		() => Math.min(listItems.length, scrollPosition + maxItemsToRender),
 		[listItems.length, maxItemsToRender, scrollPosition],
-	);
+	)
 
 	useEffect(() => {
-		const newScrollPosition = debounceScrollToTop / heightOfItem;
-		const difference = Math.abs(scrollPosition - newScrollPosition);
+		const newScrollPosition = debounceScrollToTop / heightOfItem
+		const difference = Math.abs(scrollPosition - newScrollPosition)
 
 		if (difference >= maxItemsToRender / 5) {
-			setScrollPosition(newScrollPosition);
+			setScrollPosition(newScrollPosition)
 		}
-	}, [debounceScrollToTop, maxItemsToRender, scrollPosition]);
+	}, [debounceScrollToTop, maxItemsToRender, scrollPosition])
 
 	const updateScrollPosition = useCallback(() => {
 		// biome-ignore lint/style/noNonNullAssertion: expected
-		setScrollToTop(listRef.current!.scrollTop);
-	}, []);
+		setScrollToTop(listRef.current!.scrollTop)
+	}, [])
 
 	useEffect(() => {
 		if (listRef.current !== null) {
-			const ref = listRef.current;
-			ref.addEventListener("scroll", updateScrollPosition, false);
+			const ref = listRef.current
+			ref.addEventListener("scroll", updateScrollPosition, false)
 			return () => {
 				queueMicrotask(() => {
-					ref.addEventListener("scroll", updateScrollPosition, false);
-				});
-			};
+					ref.addEventListener("scroll", updateScrollPosition, false)
+				})
+			}
 		}
-	}, [updateScrollPosition]);
+	}, [updateScrollPosition])
 
 	return (
 		<div
@@ -73,11 +73,13 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
 			<div
 				key="list-spacer-bottom"
 				style={{
-					height: listItems.length * heightOfItem - endPosition * heightOfItem,
+					height:
+						listItems.length * heightOfItem -
+						endPosition * heightOfItem,
 				}}
 			/>
 		</div>
-	);
-};
+	)
+}
 
-export default ScrollableList;
+export default ScrollableList

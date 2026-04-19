@@ -20,4 +20,4 @@ export const cards = [
 		href: "/experiments/aria",
 		target: "_self",
 	},
-];
+]

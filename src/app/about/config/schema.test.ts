@@ -1,5 +1,5 @@
-import "@/__tests__/mocks/site";
-import { schema } from "./schema";
+import "@/__tests__/mocks/site"
+import { schema } from "./schema"
 
 describe("schemaGenerator", () => {
 	it("should contain configurable imaged and url", () => {
@@ -19,6 +19,6 @@ describe("schemaGenerator", () => {
 				opens: "2014-07-04T9:00",
 			},
 			url: "https://mockedUrl.com/",
-		});
-	});
-});
+		})
+	})
+})

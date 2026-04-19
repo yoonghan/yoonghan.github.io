@@ -1,8 +1,8 @@
-import path from "node:path";
-import { devices, type PlaywrightTestConfig } from "@playwright/test";
+import path from "node:path"
+import { devices, type PlaywrightTestConfig } from "@playwright/test"
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `https://walcron-git-develop-walcron-coorperations-projects.vercel.app`;
+const baseURL = `https://walcron-git-develop-walcron-coorperations-projects.vercel.app`
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -46,5 +46,5 @@ const config: PlaywrightTestConfig = {
 			use: { ...devices["Pixel 5"] },
 		},
 	],
-};
-export default config;
+}
+export default config

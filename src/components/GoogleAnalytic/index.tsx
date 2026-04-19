@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { reportWebVitals } from "@yoonghan/walcron-microfrontend-shared";
-import { useEffect } from "react";
-import ReactGA from "react-ga4";
-import ClientCookie from "./ClientCookie";
+import { reportWebVitals } from "@yoonghan/walcron-microfrontend-shared"
+import { useEffect } from "react"
+import ReactGA from "react-ga4"
+import ClientCookie from "./ClientCookie"
 
 interface Props {
-	ga4Id: string;
+	ga4Id: string
 }
 
 export function GoogleAnalytic({ ga4Id }: Readonly<Props>) {
 	useEffect(() => {
-		ReactGA.initialize(ga4Id);
+		ReactGA.initialize(ga4Id)
 
 		/* 
     // Do not move outside of useEffect
@@ -24,9 +24,9 @@ export function GoogleAnalytic({ ga4Id }: Readonly<Props>) {
 				metric_id: id,
 				metric_value: value,
 				metric_delta: Math.floor(delta),
-			});
-		});
-	}, [ga4Id]);
+			})
+		})
+	}, [ga4Id])
 
-	return <ClientCookie ga4Id={ga4Id} />;
+	return <ClientCookie ga4Id={ga4Id} />
 }

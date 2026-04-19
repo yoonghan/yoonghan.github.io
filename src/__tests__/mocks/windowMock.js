@@ -1,14 +1,14 @@
 afterEach(() => {
-	jest.restoreAllMocks();
-});
+	jest.restoreAllMocks()
+})
 
 export const spyAsAndroid = () => {
-	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("Android");
-};
+	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("Android")
+}
 
 export const spyAsIPad = () => {
-	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("iPad");
-};
+	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("iPad")
+}
 
 export const setServiceNavigator = () => {
 	Object.defineProperty(window.navigator, "serviceWorker", {
@@ -19,7 +19,7 @@ export const setServiceNavigator = () => {
 						addEventListener: (event, callback) => {
 							switch (event) {
 								case "statechange":
-									return callback();
+									return callback()
 							}
 						},
 						state: "activated",
@@ -31,26 +31,27 @@ export const setServiceNavigator = () => {
 						addEventListener: (event, callback) => {
 							switch (event) {
 								case "statechange":
-									return callback();
+									return callback()
 							}
 						},
 						state: "activated",
 					},
 					unregister: () => {
-						jest
-							.spyOn(window.navigator.serviceWorker, "getRegistration")
-							.mockResolvedValue({
-								active: {
-									state: undefined,
-									addEventListener: () => {},
-								},
-							});
+						jest.spyOn(
+							window.navigator.serviceWorker,
+							"getRegistration",
+						).mockResolvedValue({
+							active: {
+								state: undefined,
+								addEventListener: () => {},
+							},
+						})
 					},
 					addEventListener: (event, callback) => {
 						switch (event) {
 							case "updatefound":
 							case "offline":
-								return callback();
+								return callback()
 						}
 					},
 					installing: {
@@ -58,67 +59,68 @@ export const setServiceNavigator = () => {
 						addEventListener: (event, callback) => {
 							switch (event) {
 								case "statechange":
-									callback();
+									callback()
 							}
 						},
 					},
-				});
+				})
 			}),
 			register: (_swPath, _options) =>
 				new Promise((resolve, _reject) => {
-					jest
-						.spyOn(window.navigator.serviceWorker, "getRegistration")
-						.mockResolvedValue({
-							active: {
-								addEventListener: (event, callback) => {
-									switch (event) {
-										case "statechange":
-											return callback();
-									}
-								},
-								state: "activated",
+					jest.spyOn(
+						window.navigator.serviceWorker,
+						"getRegistration",
+					).mockResolvedValue({
+						active: {
+							addEventListener: (event, callback) => {
+								switch (event) {
+									case "statechange":
+										return callback()
+								}
 							},
-						});
-					resolve();
+							state: "activated",
+						},
+					})
+					resolve()
 				}),
 		},
-	});
-};
+	})
+}
 
 export const spyOnReferrer = (location) => {
-	jest.spyOn(document, "referrer", "get").mockReturnValue(location);
-};
+	jest.spyOn(document, "referrer", "get").mockReturnValue(location)
+}
 
 export const spyOnScrollTo = () => {
-	const scrollToSpy = jest.fn();
-	global.window.scrollTo = scrollToSpy;
-	return scrollToSpy;
-};
+	const scrollToSpy = jest.fn()
+	global.window.scrollTo = scrollToSpy
+	return scrollToSpy
+}
 
 export const spyOnReload = () => {
-	const reloadSpy = jest.fn();
-	window.location.reload = reloadSpy;
-	return reloadSpy;
-};
+	const reloadSpy = jest.fn()
+	window.location.reload = reloadSpy
+	return reloadSpy
+}
 
 export const setShareNavigator = () => {
 	Object.defineProperty(window.navigator, "share", {
 		value: () => {},
 		writable: true,
-	});
-};
+	})
+}
 
 export const setVideo = () => {
-	const oldMedia = window.navigator.mediaDevices;
+	const oldMedia = window.navigator.mediaDevices
 	Object.defineProperty(window.navigator, "mediaDevices", {
 		value: {
 			getUserMedia: () =>
 				new Promise((resolve) => {
-					resolve({ one: 1 });
+					resolve({ one: 1 })
 				}),
 		},
-	});
+	})
 	return () => {
-		Object.defineProperty(window.navigator, "mediaDevices", { ...oldMedia });
-	};
-};
+		Object.defineProperty(window.navigator, "mediaDevices", { ...oldMedia })
+	}
+}

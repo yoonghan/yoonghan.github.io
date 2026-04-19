@@ -1,5 +1,5 @@
-import type { JSX } from "react";
-import { hasEmptyValueInObject } from "../../common/object";
+import type { JSX } from "react"
+import { hasEmptyValueInObject } from "../../common/object"
 
 export const withNonEmptyEnvCheck = <T extends { [key: string]: any }>(
 	Component: (props: T) => JSX.Element,
@@ -7,11 +7,11 @@ export const withNonEmptyEnvCheck = <T extends { [key: string]: any }>(
 	errorMessage = "One of the enviroment variable is missing",
 ) =>
 	function render() {
-		const props = propsFn();
+		const props = propsFn()
 
 		return hasEmptyValueInObject(props) ? (
 			<div>{errorMessage}</div>
 		) : (
 			<Component {...props} />
-		);
-	};
+		)
+	}

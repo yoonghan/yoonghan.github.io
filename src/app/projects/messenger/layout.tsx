@@ -1,4 +1,4 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
 export const metadata = {
 	title: "Messenger",
@@ -6,12 +6,12 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/projects/messenger"),
 	},
-};
+}
 
 export default function MessengerLayout({
 	children,
 }: {
-	children: React.ReactNode;
+	children: React.ReactNode
 }) {
-	return children;
+	return children
 }

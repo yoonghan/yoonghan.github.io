@@ -2,47 +2,47 @@
   A command prompt input
   **/
 
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import styles from "./CommandBar.module.css";
-import CommandBarInput from "./CommandBarInput/CommandBarInput";
-import { exec } from "./ExecuteCommand";
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import styles from "./CommandBar.module.css"
+import CommandBarInput from "./CommandBarInput/CommandBarInput"
+import { exec } from "./ExecuteCommand"
 
 const NoSSRCommandBar = () => {
-	const router = useRouter();
-	const currentPath = usePathname();
-	const [suggestedInput, setSuggestedInput] = useState("");
+	const router = useRouter()
+	const currentPath = usePathname()
+	const [suggestedInput, setSuggestedInput] = useState("")
 	const [renderExecutedCommand, setRenderExecutedCommand] =
-		useState<React.ReactNode>();
+		useState<React.ReactNode>()
 
-	const elem = document.createElement("div");
+	const elem = document.createElement("div")
 
 	useEffect(() => {
-		document.body.appendChild(elem);
+		document.body.appendChild(elem)
 
 		return () => {
 			queueMicrotask(() => {
 				/* istanbul ignore next */
 				if (elem !== null && document.body.contains(elem)) {
-					elem.remove();
+					elem.remove()
 				}
-			});
-		};
-	}, [elem]);
+			})
+		}
+	}, [elem])
 
 	const cancelExecutedCommand = () => {
-		setRenderExecutedCommand(null);
-	};
+		setRenderExecutedCommand(null)
+	}
 
 	const inputCallback = (suggestedInput: string) => {
-		setSuggestedInput(suggestedInput);
-	};
+		setSuggestedInput(suggestedInput)
+	}
 
 	const handleSubmit = (
 		event: React.SubmitEvent<HTMLFormElement>,
 		typedInput: string,
 	) => {
-		event.preventDefault();
+		event.preventDefault()
 
 		setRenderExecutedCommand(
 			exec(
@@ -52,8 +52,8 @@ const NoSSRCommandBar = () => {
 				currentPath,
 				inputCallback,
 			)(typedInput),
-		);
-	};
+		)
+	}
 
 	return (
 		<div className={styles.container}>
@@ -66,7 +66,7 @@ const NoSSRCommandBar = () => {
 			/>
 			{renderExecutedCommand}
 		</div>
-	);
-};
+	)
+}
 
-export default NoSSRCommandBar;
+export default NoSSRCommandBar

@@ -1,18 +1,18 @@
-import { render, screen } from "@testing-library/react";
-import Logo from ".";
+import { render, screen } from "@testing-library/react"
+import Logo from "."
 
 describe("Logo", () => {
 	it("should render with text correctly", () => {
-		render(<Logo withText={true} />);
-		expect(screen.getByRole("img", { name: "walcron-logo" }));
-		expect(screen.getByText("Walcron")).toBeInTheDocument();
-	});
+		render(<Logo withText={true} />)
+		expect(screen.getByRole("img", { name: "walcron-logo" }))
+		expect(screen.getByText("Walcron")).toBeInTheDocument()
+	})
 
 	it("should render without text correctly", () => {
-		render(<Logo />);
+		render(<Logo />)
 		expect(
 			screen.getByRole("img", { name: "walcron-logo" }),
-		).toBeInTheDocument();
-		expect(screen.queryByText("Walcron")).not.toBeInTheDocument();
-	});
-});
+		).toBeInTheDocument()
+		expect(screen.queryByText("Walcron")).not.toBeInTheDocument()
+	})
+})

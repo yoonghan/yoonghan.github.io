@@ -1,41 +1,42 @@
-"use client";
+"use client"
 
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback, useState } from "react";
-import Button from "../Button";
-import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation";
-import EmailSender from "./EmailSender";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useCallback, useState } from "react"
+import Button from "../Button"
+import { useDialogCreation } from "../Dialog/useDialogCreation/useDialogCreation"
+import EmailSender from "./EmailSender"
 
-export const email = "walcoor_perati_on@gm_ail.com".replaceAll("_", "");
+export const email = "walcoor_perati_on@gm_ail.com".replaceAll("_", "")
 
 const LetterBox = () => {
-	const [name, setName] = useState("");
-	const confirm = useDialogCreation(EmailSender);
+	const [name, setName] = useState("")
+	const confirm = useDialogCreation(EmailSender)
 
 	const onSubmitPressed = (event: React.SubmitEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		onSendButtonClick();
-	};
+		event.preventDefault()
+		onSendButtonClick()
+	}
 
 	const onSendButtonClick = useCallback(() => {
 		confirm({
 			writeFrom: name.trim(),
 			writeTo: email,
 			onCancel: () => {
-				setName("");
+				setName("")
 			},
-		});
-	}, [confirm, name]);
+		})
+	}, [confirm, name])
 
 	return (
 		<aside className="text-center max-w-screen-sm mx-auto">
 			<div className="text-2xl pb-4 font-bold">
-				Contact Us <FontAwesomeIcon icon={faEnvelope} className="pr-2" />
+				Contact Us{" "}
+				<FontAwesomeIcon icon={faEnvelope} className="pr-2" />
 			</div>
 			<div>
-				If you are interested to talk to us, leave us your contact. Let us reach
-				you instead.
+				If you are interested to talk to us, leave us your contact. Let
+				us reach you instead.
 				<form
 					onSubmit={onSubmitPressed}
 					className="flex flex-col gap-2 p-4 w-full max-w-screen-sm mx-auto md:flex-row"
@@ -56,7 +57,7 @@ const LetterBox = () => {
 				</form>
 			</div>
 		</aside>
-	);
-};
+	)
+}
 
-export default LetterBox;
+export default LetterBox

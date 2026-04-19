@@ -22,15 +22,16 @@
 		"includes": [
 			"**",
 			"!!**/crate",
-			"!!**/src/__tests__",
-			"!!**/src/app/experiments",
-			"!!**/src/app/projects",
-			"!!**/styles"
+			"!!**/src/app/projects/game-snake",
+			"!!**/styles/tailwind.css"
 		]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineWidth": 80,
+		"trailingNewline": false
 	},
 	"linter": {
 		"enabled": true,
@@ -47,7 +48,19 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double"
+			"quoteStyle": "double",
+			"semicolons": "asNeeded",
+			"trailingCommas": "all",
+			"arrowParentheses": "always"
+		}
+	},
+	"json": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab",
+			"indentWidth": 4,
+			"lineWidth": 80,
+			"expand": "always"
 		}
 	},
 	"assist": {

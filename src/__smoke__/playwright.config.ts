@@ -1,5 +1,5 @@
-import path from "node:path";
-import { devices, type PlaywrightTestConfig } from "@playwright/test";
+import path from "node:path"
+import { devices, type PlaywrightTestConfig } from "@playwright/test"
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -51,5 +51,5 @@ const config: PlaywrightTestConfig = {
 			},
 		},
 	],
-};
-export default config;
+}
+export default config

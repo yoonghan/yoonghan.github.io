@@ -1,4 +1,4 @@
-import Figure from "@/components/Figure";
+import Figure from "@/components/Figure"
 
 export function OrderedFigure() {
 	return (
@@ -15,7 +15,7 @@ export function OrderedFigure() {
 				<p>This is a sticky section</p>
 			</Figure>
 		</div>
-	);
+	)
 }
 
 export function ReversedFigure() {
@@ -34,5 +34,5 @@ export function ReversedFigure() {
 				<p>This is a sticky section</p>
 			</Figure>
 		</div>
-	);
+	)
 }

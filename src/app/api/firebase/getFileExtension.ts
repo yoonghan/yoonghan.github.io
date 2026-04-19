@@ -1,8 +1,8 @@
 export const getFileExtension = (filename: string) => {
-	const idxWithDotIncluded = filename.lastIndexOf(".");
+	const idxWithDotIncluded = filename.lastIndexOf(".")
 	if (idxWithDotIncluded === -1 || filename.endsWith(".")) {
-		return "";
+		return ""
 	} else {
-		return filename.substring(idxWithDotIncluded);
+		return filename.substring(idxWithDotIncluded)
 	}
-};
+}

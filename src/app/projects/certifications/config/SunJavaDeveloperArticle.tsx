@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const model = [
 	{
@@ -8,7 +8,7 @@ const model = [
 		content:
 			"Old collection without streaming/parallel capabilites with Java 1.2.",
 	},
-];
+]
 
 export function SunJavaDeveloperArticle() {
 	return (
@@ -16,5 +16,5 @@ export function SunJavaDeveloperArticle() {
 			<p className="text-2xl">Sun Java Certified</p>
 			<Accordion model={model} groupName={"sun-java-certified"} />
 		</article>
-	);
+	)
 }

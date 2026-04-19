@@ -1,5 +1,5 @@
-import Card from "@/components/Card";
-import { site } from "@/config/site";
+import Card from "@/components/Card"
+import { site } from "@/config/site"
 
 const Cards = (
 	<div style={{ background: "#222" }}>
@@ -34,6 +34,6 @@ const Cards = (
 			]}
 		/>
 	</div>
-);
+)
 
-export default Cards;
+export default Cards

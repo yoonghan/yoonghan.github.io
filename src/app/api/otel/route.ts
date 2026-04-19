@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
 	try {
@@ -12,23 +12,23 @@ export async function POST(req: NextRequest) {
 			body: req.body,
 			// @ts-expect-error duplex is not in RequestInit type yet
 			duplex: "half",
-		});
+		})
 
 		if (response.ok) {
 			return new NextResponse(response.body, {
 				status: response.status,
-			});
+			})
 		} else {
-			const errorText = await response.text();
+			const errorText = await response.text()
 			// eslint-disable-next-line no-console
-			console.error("Axiom API Error:", errorText);
+			console.error("Axiom API Error:", errorText)
 			return new NextResponse(errorText, {
 				status: response.status,
-			});
+			})
 		}
 	} catch (error: any) {
 		// eslint-disable-next-line no-console
-		console.error("Error forwarding to Axiom:", error);
-		return new NextResponse(error.message, { status: 500 });
+		console.error("Error forwarding to Axiom:", error)
+		return new NextResponse(error.message, { status: 500 })
 	}
 }

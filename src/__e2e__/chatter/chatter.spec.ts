@@ -3,7 +3,7 @@
  Due to be using vercel preview, many instabilities happen over here.
 */
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@playwright/test"
 
 // import { callAnotherPerson, startCall } from "./call-util";
 
@@ -11,9 +11,9 @@ test.describe("Webrtc config", () => {
 	test("should have a callback url for pusher to authenticate", async ({
 		request,
 	}) => {
-		const response = await request.get(`/api/pusherauth/ultraman`);
-		expect(response.status()).toBe(405);
-	});
+		const response = await request.get(`/api/pusherauth/ultraman`)
+		expect(response.status()).toBe(405)
+	})
 
 	// test("should be able to stop and restart", async () => {
 	//   const receiver = await startCall("Billy")
@@ -33,7 +33,7 @@ test.describe("Webrtc config", () => {
 
 	//   await receiver.close()
 	// })
-});
+})
 
 test.describe("Webrtc calls", () => {
 	// test("should be able to start 2 persons call, and receiver rejects it", async () => {
@@ -81,4 +81,4 @@ test.describe("Webrtc calls", () => {
 	  await caller.screenshot({ path: "screenshot3.png", fullPage: true })
 	await receiver.screenshot({ path: "screenshot4.png", fullPage: true })
   */
-});
+})

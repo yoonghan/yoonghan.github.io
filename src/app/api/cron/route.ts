@@ -1,25 +1,28 @@
-import { SpanStatusCode, trace } from "@opentelemetry/api";
-import { type NextRequest, NextResponse } from "next/server";
-import { execute } from "@/app/api/cron/module";
-import type { CronJob, Message } from "@/types/cron";
-import { toError } from "@/util/errorHandler";
+import { SpanStatusCode, trace } from "@opentelemetry/api"
+import { type NextRequest, NextResponse } from "next/server"
+import { execute } from "@/app/api/cron/module"
+import type { CronJob, Message } from "@/types/cron"
+import { toError } from "@/util/errorHandler"
 
 function isMessage(response: Message | CronJob): response is Message {
-	return (<Message>response).error !== undefined;
+	return (<Message>response).error !== undefined
 }
 
 export async function GET(request: NextRequest) {
-	const tracer = trace.getTracer("cron-job-api");
+	const tracer = trace.getTracer("cron-job-api")
 	return await tracer.startActiveSpan("cron.GET", async (span) => {
-		const { searchParams } = request.nextUrl;
-		const action = searchParams.get("action");
-		span.setAttribute("action", action || "none");
+		const { searchParams } = request.nextUrl
+		const action = searchParams.get("action")
+		span.setAttribute("action", action || "none")
 
-		const response = await execute(action);
+		const response = await execute(action)
 		if (!Array.isArray(response) && isMessage(response) && response.error) {
-			span.setStatus({ code: SpanStatusCode.ERROR, message: response.message });
-			span.recordException(toError(response.error));
-			span.end();
+			span.setStatus({
+				code: SpanStatusCode.ERROR,
+				message: response.message,
+			})
+			span.recordException(toError(response.error))
+			span.end()
 			return NextResponse.json(
 				{
 					message: response.message,
@@ -28,11 +31,11 @@ export async function GET(request: NextRequest) {
 				{
 					status: 400,
 				},
-			);
+			)
 		} else {
-			span.setStatus({ code: SpanStatusCode.OK });
-			span.end();
-			return NextResponse.json(response);
+			span.setStatus({ code: SpanStatusCode.OK })
+			span.end()
+			return NextResponse.json(response)
 		}
-	});
+	})
 }

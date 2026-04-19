@@ -1,9 +1,9 @@
-import "@/__tests__/mocks/apiMockNext13";
-import { trace } from "@opentelemetry/api";
-import { NextRequest } from "next/server";
-import { setEnv } from "@/__tests__/mocks/setEnv";
-import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient";
-import { POST } from "@/app/api/pusherauth/route";
+import "@/__tests__/mocks/apiMockNext13"
+import { trace } from "@opentelemetry/api"
+import { NextRequest } from "next/server"
+import { setEnv } from "@/__tests__/mocks/setEnv"
+import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
+import { POST } from "@/app/api/pusherauth/route"
 
 jest.mock("@opentelemetry/api", () => ({
 	trace: {
@@ -13,29 +13,29 @@ jest.mock("@opentelemetry/api", () => ({
 			),
 		})),
 	},
-}));
+}))
 
 describe("pusherauth", () => {
 	const mockRequest = (channel_name: string = "sample_channel") => {
-		const form = new FormData();
-		form.set("socket_id", "432.123");
-		form.set("channel_name", channel_name);
+		const form = new FormData()
+		form.set("socket_id", "432.123")
+		form.set("channel_name", channel_name)
 		return new NextRequest("http://walcron.com", {
 			method: "POST",
 			body: form,
-		});
-	};
+		})
+	}
 
 	it("should return error with environment not set", async () => {
-		const response = await POST(mockRequest());
-		expect(response.status).toBe(500);
+		const response = await POST(mockRequest())
+		expect(response.status).toBe(500)
 		expect(await response.json()).toStrictEqual({
 			error: "Pusher initialized values has not been set.",
-		});
-	});
+		})
+	})
 
 	describe("environment setup", () => {
-		const APP_KEY = "SampleKey";
+		const APP_KEY = "SampleKey"
 
 		beforeEach(() => {
 			setEnv({
@@ -43,9 +43,9 @@ describe("pusherauth", () => {
 				PUSHER_APP_ID: undefined,
 				PUSHER_SECRET: undefined,
 				NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
-			});
-			PusherAPIClient.reInitialize();
-		});
+			})
+			PusherAPIClient.reInitialize()
+		})
 
 		it("should return error with empty form set", async () => {
 			const response = await POST(
@@ -53,44 +53,46 @@ describe("pusherauth", () => {
 					method: "POST",
 					body: new FormData(),
 				}),
-			);
-			expect(response.status).toBe(405);
+			)
+			expect(response.status).toBe(405)
 			expect(await response.json()).toStrictEqual({
 				error: "Invalid socket id: ''",
-			});
-		});
+			})
+		})
 
 		it("should return error when only socket id is passed", async () => {
-			const form = new FormData();
-			form.set("socket_id", "123.33");
+			const form = new FormData()
+			form.set("socket_id", "123.33")
 			const response = await POST(
 				new NextRequest("http://walcron.com", {
 					method: "POST",
 					body: form,
 				}),
-			);
-			expect(response.status).toBe(405);
+			)
+			expect(response.status).toBe(405)
 			expect(await response.json()).toStrictEqual({
 				error: "Invalid channel name: ''",
-			});
-		});
+			})
+		})
 
 		it("should to authenticate successfully for a POST", async () => {
-			const response = await POST(mockRequest());
-			expect(response.status).toBe(200);
-			const result = await response.json();
-			expect(result.auth as string).toContain(`${APP_KEY}:`);
-			expect(trace.getTracer).toHaveBeenCalledWith("pusher-auth");
-		});
+			const response = await POST(mockRequest())
+			expect(response.status).toBe(200)
+			const result = await response.json()
+			expect(result.auth as string).toContain(`${APP_KEY}:`)
+			expect(trace.getTracer).toHaveBeenCalledWith("pusher-auth")
+		})
 
 		it("should be able to fail authentication", async () => {
 			jest
 				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "authorizeChannel")
-				.mockReturnValueOnce({ auth: "" });
-			const response = await POST(mockRequest());
-			expect(response.status).toBe(401);
-			expect(await response.json()).toStrictEqual({ error: "Not authorized." });
-		});
-	});
-});
+				.mockReturnValueOnce({ auth: "" })
+			const response = await POST(mockRequest())
+			expect(response.status).toBe(401)
+			expect(await response.json()).toStrictEqual({
+				error: "Not authorized.",
+			})
+		})
+	})
+})

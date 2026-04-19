@@ -1,4 +1,4 @@
-import menuItems from "./menuItems";
+import menuItems from "./menuItems"
 
 describe("menu items", () => {
 	it("should contain list of menus", () => {
@@ -9,13 +9,22 @@ describe("menu items", () => {
 				items: [
 					{ label: "Azure Integration", url: "/projects/azure" },
 					{ label: "Microfrontend", url: "/projects/microfrontend" },
-					{ label: "Web Real-Time Communication", url: "/projects/webrtc" },
+					{
+						label: "Web Real-Time Communication",
+						url: "/projects/webrtc",
+					},
 					{ label: "Chat Messenger", url: "/projects/messenger" },
 					{ label: "Snake Game", url: "/projects/game-snake" },
 					{ label: "Lessons", url: "/projects/lessons" },
-					{ label: "Certifications", url: "/projects/certifications" },
+					{
+						label: "Certifications",
+						url: "/projects/certifications",
+					},
 					{ label: "Checklist", url: "/projects/checklist" },
-					{ label: "No Javascript", url: "/projects/javascript-free" },
+					{
+						label: "No Javascript",
+						url: "/projects/javascript-free",
+					},
 				],
 				label: "Project Portfolio",
 				url: "/projects",
@@ -32,6 +41,6 @@ describe("menu items", () => {
 				label: "Lab/R&D",
 				url: "/experiments",
 			},
-		]);
-	});
-});
+		])
+	})
+})
