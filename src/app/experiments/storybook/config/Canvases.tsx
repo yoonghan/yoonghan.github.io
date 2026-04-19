@@ -14,6 +14,7 @@ const Canvases = () => {
 
 	const onClickDraw = (dimensionWidth: number) => {
 		if (canvasRef.current !== null) {
+			// biome-ignore lint/style/noNonNullAssertion: Expected
 			const ctx = canvasRef.current.getContext("2d")!;
 			ctx.clearRect(0, 0, 100, 100);
 			clearBoard(ctx, canvasRef.current);
@@ -31,9 +32,15 @@ const Canvases = () => {
 	return (
 		<div>
 			<div>
-				<button onClick={() => onClickDraw(4)}>4 X 4</button>
-				<button onClick={() => onClickDraw(10)}>10 X 10</button>
-				<button onClick={() => onClickDraw(17)}>17 X 17</button>
+				<button type="button" onClick={() => onClickDraw(4)}>
+					4 X 4
+				</button>
+				<button type="button" onClick={() => onClickDraw(10)}>
+					10 X 10
+				</button>
+				<button type="button" onClick={() => onClickDraw(17)}>
+					17 X 17
+				</button>
 			</div>
 			<canvas ref={canvasRef} />
 		</div>
