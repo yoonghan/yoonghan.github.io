@@ -1,42 +1,42 @@
-import wrapPromise from "./wrapPromise";
+import wrapPromise from "./wrapPromise"
 
 describe("wrapPromise", () => {
 	it("should intentionally throw promise on first read", () => {
-		const promise = Promise.resolve(() => {});
-		const wrapper = wrapPromise(promise);
+		const promise = Promise.resolve(() => {})
+		const wrapper = wrapPromise(promise)
 		try {
-			wrapper.read();
-			fail("Expected to throw promise");
+			wrapper.read()
+			fail("Expected to throw promise")
 		} catch (_goodError) {
 			// expect(goodError).toStrictEqual(promise)
 		}
-	});
+	})
 
 	it("should return success on next read", async () => {
-		const goodMessage = "I succeeded";
-		const promise = Promise.resolve(goodMessage);
-		const wrapper = wrapPromise(promise);
+		const goodMessage = "I succeeded"
+		const promise = Promise.resolve(goodMessage)
+		const wrapper = wrapPromise(promise)
 		try {
-			wrapper.read();
+			wrapper.read()
 		} catch (goodError) {
-			await goodError;
-			expect(wrapper.read()).toBe(goodMessage);
+			await goodError
+			expect(wrapper.read()).toBe(goodMessage)
 		}
-	});
+	})
 
 	it("should throw reject after next read", async () => {
-		const errorMessage = "I fail";
-		const promise = Promise.reject(errorMessage);
-		const wrapper = wrapPromise(promise);
+		const errorMessage = "I fail"
+		const promise = Promise.reject(errorMessage)
+		const wrapper = wrapPromise(promise)
 		try {
-			wrapper.read();
+			wrapper.read()
 		} catch (goodError) {
-			await goodError;
+			await goodError
 			try {
-				wrapper.read();
+				wrapper.read()
 			} catch (badError) {
-				expect(badError).toStrictEqual(errorMessage);
+				expect(badError).toStrictEqual(errorMessage)
 			}
 		}
-	});
-});
+	})
+})

@@ -1,6 +1,6 @@
-import { faArrows } from "@fortawesome/free-solid-svg-icons";
-import { render, screen, within } from "@testing-library/react";
-import Timeline from ".";
+import { faArrows } from "@fortawesome/free-solid-svg-icons"
+import { render, screen, within } from "@testing-library/react"
+import Timeline from "."
 
 describe("Timeline", () => {
 	const events = [
@@ -16,41 +16,41 @@ describe("Timeline", () => {
 			desc: "issue desc",
 			faIcon: faArrows,
 		},
-	];
+	]
 
 	it("should have 2 groups with title", () => {
-		render(<Timeline events={events} />);
-		expect(screen.getAllByRole("listitem")).toHaveLength(2);
-	});
+		render(<Timeline events={events} />)
+		expect(screen.getAllByRole("listitem")).toHaveLength(2)
+	})
 
 	it("should render timeline correctly", () => {
-		render(<Timeline events={events} />);
+		render(<Timeline events={events} />)
 
-		const groupId1 = within(screen.getAllByRole("listitem")[0]);
-		expect(groupId1.getByText("2022-02-11")).toBeInTheDocument();
-		expect(groupId1.getByText("desc")).toBeInTheDocument();
+		const groupId1 = within(screen.getAllByRole("listitem")[0])
+		expect(groupId1.getByText("2022-02-11")).toBeInTheDocument()
+		expect(groupId1.getByText("desc")).toBeInTheDocument()
 
-		const groupId2 = within(screen.getAllByRole("listitem")[1]);
-		expect(groupId2.getByText("2022-09-11")).toBeInTheDocument();
-		expect(groupId2.getByText("[fix issue]")).toBeInTheDocument();
-		expect(groupId2.getByText("issue desc")).toBeInTheDocument();
-	});
+		const groupId2 = within(screen.getAllByRole("listitem")[1])
+		expect(groupId2.getByText("2022-09-11")).toBeInTheDocument()
+		expect(groupId2.getByText("[fix issue]")).toBeInTheDocument()
+		expect(groupId2.getByText("issue desc")).toBeInTheDocument()
+	})
 
 	it("should render with fontawesome icons", () => {
 		const getFaIcon = (selector: HTMLElement) => {
-			const spanElements = selector.querySelectorAll("span");
+			const spanElements = selector.querySelectorAll("span")
 
-			expect(spanElements).toHaveLength(2);
+			expect(spanElements).toHaveLength(2)
 
-			return spanElements[1]?.children[0];
-		};
+			return spanElements[1]?.children[0]
+		}
 
-		render(<Timeline events={events} />);
+		render(<Timeline events={events} />)
 
-		const timeline1 = screen.getAllByRole("listitem")[0];
-		expect(getFaIcon(timeline1)).toHaveClass("dot");
+		const timeline1 = screen.getAllByRole("listitem")[0]
+		expect(getFaIcon(timeline1)).toHaveClass("dot")
 
-		const timeline2 = screen.getAllByRole("listitem")[1];
-		expect(getFaIcon(timeline2)).toHaveClass("icon");
-	});
-});
+		const timeline2 = screen.getAllByRole("listitem")[1]
+		expect(getFaIcon(timeline2)).toHaveClass("icon")
+	})
+})

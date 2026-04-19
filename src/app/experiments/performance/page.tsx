@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import dynamic from "next/dynamic";
-import { useCallback, useState } from "react";
-import Button from "@/components/Button";
-import styles from "./Performance.module.css";
+import dynamic from "next/dynamic"
+import { useCallback, useState } from "react"
+import Button from "@/components/Button"
+import styles from "./Performance.module.css"
 
 const HeavyLoaderNoSSR = dynamic(() => import("./HeavyLoader"), {
 	ssr: false,
@@ -12,7 +12,7 @@ const HeavyLoaderNoSSR = dynamic(() => import("./HeavyLoader"), {
 			Loading Experimental Performance
 		</div>
 	),
-});
+})
 
 const SuspenseNoSSR = dynamic(() => import("./SuspenseLoader"), {
 	ssr: false,
@@ -21,7 +21,7 @@ const SuspenseNoSSR = dynamic(() => import("./SuspenseLoader"), {
 			Loading Experimental Suspense
 		</div>
 	),
-});
+})
 
 const LargeFormNoSSR = dynamic(() => import("./LargeForm"), {
 	ssr: false,
@@ -30,7 +30,7 @@ const LargeFormNoSSR = dynamic(() => import("./LargeForm"), {
 			Loading Large Form
 		</div>
 	),
-});
+})
 
 const LargeForm2NoSSR = dynamic(() => import("./LargeForm2"), {
 	ssr: false,
@@ -39,7 +39,7 @@ const LargeForm2NoSSR = dynamic(() => import("./LargeForm2"), {
 			Loading Large Form 2
 		</div>
 	),
-});
+})
 
 const ReactTrackedNoSSR = dynamic(() => import("./ReactTracked"), {
 	ssr: false,
@@ -48,7 +48,7 @@ const ReactTrackedNoSSR = dynamic(() => import("./ReactTracked"), {
 			Loading React Tracked
 		</div>
 	),
-});
+})
 
 const Performance = () => {
 	const [shown, setShown] = useState<{ [string: string]: boolean }>({
@@ -57,14 +57,14 @@ const Performance = () => {
 		largeForm: false,
 		largeForm2: false,
 		reactTracked: false,
-	});
+	})
 
 	const toggleShow = useCallback((id: string) => {
 		setShown((shownId) => ({
 			...shownId,
 			[id]: !shownId[id],
-		}));
-	}, []);
+		}))
+	}, [])
 
 	const renderShownComponent = (
 		id: string,
@@ -75,7 +75,7 @@ const Performance = () => {
 			<>
 				<Button
 					onClick={() => {
-						toggleShow(id);
+						toggleShow(id)
 					}}
 					styling={{ small: true, inverted: false }}
 				>
@@ -83,21 +83,21 @@ const Performance = () => {
 				</Button>
 				{shown[id] && component}
 			</>
-		);
-	};
+		)
+	}
 
 	return (
 		<div className={`${styles.container} walcron-container`}>
 			<h1>Test React Performances</h1>
 			<p className="pb-8">
-				A place dedicated to test React loading performances. Goal is to test
-				User Experience and narrow down on writing test cases.
+				A place dedicated to test React loading performances. Goal is to
+				test User Experience and narrow down on writing test cases.
 			</p>
 			<hr />
 			<section>
 				<h3>
-					Using Dynamics of NextJS, the performance logs are visible in console
-					and only in DEV
+					Using Dynamics of NextJS, the performance logs are visible
+					in console and only in DEV
 				</h3>
 				{renderShownComponent(
 					"heavyLoader",
@@ -141,7 +141,7 @@ const Performance = () => {
 				)}
 			</section>
 		</div>
-	);
-};
+	)
+}
 
-export default Performance;
+export default Performance

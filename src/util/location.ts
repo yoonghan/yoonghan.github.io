@@ -1,7 +1,7 @@
 export const redirectTo = (url: string) => {
-	globalThis.location.assign(url);
-};
+	globalThis.location.assign(url)
+}
 
-export const search = () => globalThis.location.search;
+export const search = () => globalThis.location.search
 
-export const reload = () => globalThis.location.reload();
+export const reload = () => globalThis.location.reload()

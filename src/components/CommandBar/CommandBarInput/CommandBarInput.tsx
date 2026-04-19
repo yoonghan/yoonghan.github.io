@@ -1,24 +1,24 @@
-import * as React from "react";
-import { AvailableInput } from "../CommandSearch/CommandSearch";
-import styles from "./CommandBarInput.module.css";
+import * as React from "react"
+import { AvailableInput } from "../CommandSearch/CommandSearch"
+import styles from "./CommandBarInput.module.css"
 
 interface Props {
-	suggestedInput: string;
-	onSuggestedInputCallback: (str: string) => void;
-	onBlurCallback: (event: React.FocusEvent<HTMLInputElement>) => void;
-	onFocusCallback: (event: React.FocusEvent<HTMLInputElement>) => void;
+	suggestedInput: string
+	onSuggestedInputCallback: (str: string) => void
+	onBlurCallback: (event: React.FocusEvent<HTMLInputElement>) => void
+	onFocusCallback: (event: React.FocusEvent<HTMLInputElement>) => void
 	onSubmitCallback: (
 		event: React.SubmitEvent<HTMLFormElement>,
 		typedInput: string,
-	) => void;
+	) => void
 }
 
-const AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput);
+const AVAILABLE_COMMAND_KEYS = Object.keys(AvailableInput)
 const AVAILABLE_COMMAND_KEYS_WITH_HELP = [
 	...AVAILABLE_COMMAND_KEYS,
 	"help",
 	"man",
-];
+]
 
 const CommandBarInput = (props: Props) => {
 	const commandOptions = React.useMemo(
@@ -27,24 +27,24 @@ const CommandBarInput = (props: Props) => {
 				<option value={command} key={command} />
 			)),
 		[],
-	);
+	)
 
 	const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { value } = event.target;
-		props.onSuggestedInputCallback(value);
-	};
+		const { value } = event.target
+		props.onSuggestedInputCallback(value)
+	}
 
 	const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-		props.onSubmitCallback(event, props.suggestedInput);
-	};
+		props.onSubmitCallback(event, props.suggestedInput)
+	}
 
 	const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		props.onFocusCallback(event);
-	};
+		props.onFocusCallback(event)
+	}
 
 	const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		props.onBlurCallback(event);
-	};
+		props.onBlurCallback(event)
+	}
 
 	return (
 		<form onSubmit={onSubmit} className={`${styles["command-container"]}`}>
@@ -67,7 +67,7 @@ const CommandBarInput = (props: Props) => {
 				GO
 			</button>
 		</form>
-	);
-};
+	)
+}
 
-export default CommandBarInput;
+export default CommandBarInput

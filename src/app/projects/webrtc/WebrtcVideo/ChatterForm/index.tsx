@@ -1,50 +1,50 @@
-import { type ChangeEvent, type FormEvent, useCallback, useState } from "react";
-import Button from "@/components/Button";
+import { type ChangeEvent, type FormEvent, useCallback, useState } from "react"
+import Button from "@/components/Button"
 import {
 	isOnlyAlphabetsAndNumberAndSpace,
 	removeAllWhiteSpaces,
-} from "@/util/regex";
-import styles from "./ChatterForm.module.css";
+} from "@/util/regex"
+import styles from "./ChatterForm.module.css"
 
 type Props = {
-	senderButtonCanStop: boolean;
-	senderButtonDisabled: boolean;
-	startStopSenderVideo: (username: string) => void;
-};
+	senderButtonCanStop: boolean
+	senderButtonDisabled: boolean
+	startStopSenderVideo: (username: string) => void
+}
 
 const ChatterForm = ({
 	senderButtonCanStop,
 	senderButtonDisabled,
 	startStopSenderVideo,
 }: Props) => {
-	const [username, setUsername] = useState("");
-	const [errorMessage, setErrorMessage] = useState("");
+	const [username, setUsername] = useState("")
+	const [errorMessage, setErrorMessage] = useState("")
 
 	const onChangeUsername = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-		const { value } = e.target;
-		setUsername(value);
-		setErrorMessage("");
-	}, []);
+		const { value } = e.target
+		setUsername(value)
+		setErrorMessage("")
+	}, [])
 
 	const onSubmitClick = useCallback(
 		(e: FormEvent) => {
-			e.preventDefault();
-			const nonWhiteSpaceUsername = removeAllWhiteSpaces(username);
+			e.preventDefault()
+			const nonWhiteSpaceUsername = removeAllWhiteSpaces(username)
 			if (
 				nonWhiteSpaceUsername !== "" &&
 				isOnlyAlphabetsAndNumberAndSpace(nonWhiteSpaceUsername) &&
 				nonWhiteSpaceUsername.length > 2 &&
 				nonWhiteSpaceUsername.length < 21
 			) {
-				startStopSenderVideo(username);
+				startStopSenderVideo(username)
 			} else {
 				setErrorMessage(
 					"Username can only contains alphabets and numbers with 3 minimum words.",
-				);
+				)
 			}
 		},
 		[startStopSenderVideo, username],
-	);
+	)
 
 	return (
 		<form onSubmit={onSubmitClick} className={styles.container}>
@@ -65,7 +65,7 @@ const ChatterForm = ({
 				{senderButtonCanStop ? "Stop" : "Start"}
 			</Button>
 		</form>
-	);
-};
+	)
+}
 
-export default ChatterForm;
+export default ChatterForm

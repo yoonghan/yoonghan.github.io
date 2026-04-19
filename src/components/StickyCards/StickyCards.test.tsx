@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import StickyCards from ".";
+import { render, screen } from "@testing-library/react"
+import StickyCards from "."
 
 describe("StickyCards", () => {
 	it("should render scrollable correctly", () => {
@@ -19,16 +19,16 @@ describe("StickyCards", () => {
 					},
 				]}
 			/>,
-		);
+		)
 
-		expect(screen.getByText("One")).toBeInTheDocument();
-		expect(screen.getByText("One description")).toBeInTheDocument();
+		expect(screen.getByText("One")).toBeInTheDocument()
+		expect(screen.getByText("One description")).toBeInTheDocument()
 		expect(
 			screen.getByRole("link", { name: "View Arrow icon" }),
-		).toBeInTheDocument();
+		).toBeInTheDocument()
 
-		expect(screen.getByText("Two")).toBeInTheDocument();
-		expect(screen.getByText("Two").parentNode).toHaveClass("class-2");
-		expect(screen.getByText("Two description")).toBeInTheDocument();
-	});
-});
+		expect(screen.getByText("Two")).toBeInTheDocument()
+		expect(screen.getByText("Two").parentNode).toHaveClass("class-2")
+		expect(screen.getByText("Two description")).toBeInTheDocument()
+	})
+})

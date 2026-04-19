@@ -1,21 +1,21 @@
-import Button from "@/components/Button";
-import style from "./Recipient.module.css";
+import Button from "@/components/Button"
+import style from "./Recipient.module.css"
 
 type Props = {
-	recipients: Recipient[];
-	recipientTriggered: (recipient: Recipient) => void;
-	disabled: boolean;
-};
+	recipients: Recipient[]
+	recipientTriggered: (recipient: Recipient) => void
+	disabled: boolean
+}
 
 export type Recipient = {
-	id: string;
-	name: string;
-};
+	id: string
+	name: string
+}
 
 const RecipientList = ({ recipients, recipientTriggered, disabled }: Props) => {
 	const callUser = (recipient: Recipient) => {
-		recipientTriggered(recipient);
-	};
+		recipientTriggered(recipient)
+	}
 
 	return (
 		<div className={style.container}>
@@ -33,7 +33,7 @@ const RecipientList = ({ recipients, recipientTriggered, disabled }: Props) => {
 				))}
 			</ul>
 		</div>
-	);
-};
+	)
+}
 
-export default RecipientList;
+export default RecipientList

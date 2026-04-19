@@ -1,4 +1,4 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
 export const metadata = {
 	title: "Accessibility (WCAG)",
@@ -6,7 +6,7 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/experiments/aria"),
 	},
-};
+}
 
 function Aria() {
 	return (
@@ -18,7 +18,7 @@ function Aria() {
 				<strong>Test aria-labelledby</strong>
 				<div>
 					<div id="sec-1">Fancy Label</div>
-					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
+					{/* biome-ignore lint/a11y/noNoninteractiveTabindex: Expected */}
 					<div tabIndex={0}>Will read {'"Fancy Label"'}</div>
 				</div>
 			</section>
@@ -26,14 +26,18 @@ function Aria() {
 			<section className="py-4">
 				<strong>Test aria-describedby</strong>
 				<div>
-					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
-					<div aria-label="Fancy Label" id="sec-2">
-						Fancy Label 2
-					</div>
-					{/* biome-ignore lint/a11y/noNoninteractiveTabindex */}
-					<div aria-describedby="sec-2" tabIndex={0}>
-						{"Doesn't"} work
-					</div>
+					{
+						// biome-ignore lint/a11y/useAriaPropsSupportedByRole: Expected
+						<div aria-label="Fancy Label" id="sec-2">
+							Fancy Label 2
+						</div>
+					}
+					{
+						// biome-ignore lint/a11y/noNoninteractiveTabindex: Expected
+						<div aria-describedby="sec-2" tabIndex={0}>
+							{"Doesn't"} work
+						</div>
+					}
 				</div>
 			</section>
 
@@ -45,7 +49,7 @@ function Aria() {
 				</ol>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Aria;
+export default Aria

@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { ZoneContextManager } from "@opentelemetry/context-zone";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { registerInstrumentations } from "@opentelemetry/instrumentation";
-import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch";
-import { resourceFromAttributes } from "@opentelemetry/resources";
-import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
-import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
-import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
-import { site } from "@/config/site";
+import { ZoneContextManager } from "@opentelemetry/context-zone"
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http"
+import { registerInstrumentations } from "@opentelemetry/instrumentation"
+import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch"
+import { resourceFromAttributes } from "@opentelemetry/resources"
+import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base"
+import { WebTracerProvider } from "@opentelemetry/sdk-trace-web"
+import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions"
+import { site } from "@/config/site"
 
 export const initOpenTelemetry = (globalObj: typeof globalThis | undefined) => {
 	if (globalObj !== undefined) {
@@ -16,21 +16,21 @@ export const initOpenTelemetry = (globalObj: typeof globalThis | undefined) => {
 			new OTLPTraceExporter({
 				url: `${site.apiUrl}/otel`,
 			}),
-		);
+		)
 
 		const provider = new WebTracerProvider({
 			resource: resourceFromAttributes({
 				[ATTR_SERVICE_NAME]: "web",
 			}),
 			spanProcessors: [spanProcessor],
-		});
+		})
 
 		provider.register({
 			contextManager: new ZoneContextManager(),
-		});
+		})
 
 		registerInstrumentations({
 			instrumentations: [new FetchInstrumentation()],
-		});
+		})
 	}
-};
+}

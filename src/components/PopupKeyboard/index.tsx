@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { useCallback, useEffect, useMemo } from "react";
-import Popup from "reactjs-popup";
-import Button from "../Button";
-import styles from "./PopupKeyboard.module.css";
+import { useCallback, useEffect, useMemo } from "react"
+import Popup from "reactjs-popup"
+import Button from "../Button"
+import styles from "./PopupKeyboard.module.css"
 
 export enum KeyboardKeys {
 	LEFT = "ArrowLeft",
@@ -12,18 +12,18 @@ export enum KeyboardKeys {
 	DOWN = "ArrowDown",
 }
 
-const arrowValues = Object.values(KeyboardKeys);
+const arrowValues = Object.values(KeyboardKeys)
 
 type PopupKeyboardType = {
-	buttonText: string;
-	onClickCallback: (key: KeyboardKeys) => void;
-	enableKeyboardListener?: boolean;
-};
+	buttonText: string
+	onClickCallback: (key: KeyboardKeys) => void
+	enableKeyboardListener?: boolean
+}
 
 const preventKeyboardEvent = (e: Event) => {
-	e.preventDefault();
-	return false;
-};
+	e.preventDefault()
+	return false
+}
 
 const PopupKeyboard = ({
 	buttonText,
@@ -32,40 +32,40 @@ const PopupKeyboard = ({
 }: PopupKeyboardType) => {
 	const onKeyClick = useCallback(
 		(key: KeyboardKeys) => () => {
-			onClickCallback(key);
+			onClickCallback(key)
 		},
 		[onClickCallback],
-	);
+	)
 
 	const buildKeyboardListener = useCallback(() => {
 		return (event: KeyboardEvent) => {
-			const direction = event.key;
+			const direction = event.key
 			const matchedKey = arrowValues.find(
 				(arrowValue) => arrowValue === direction,
-			);
+			)
 			if (matchedKey !== undefined) {
-				queueMicrotask(onKeyClick(matchedKey));
+				queueMicrotask(onKeyClick(matchedKey))
 			}
-		};
-	}, [onKeyClick]);
+		}
+	}, [onKeyClick])
 
 	useEffect(() => {
 		if (enableKeyboardListener) {
-			const keyboardListener = buildKeyboardListener();
-			globalThis.addEventListener("keydown", keyboardListener);
-			globalThis.addEventListener("keydown", preventKeyboardEvent, false);
+			const keyboardListener = buildKeyboardListener()
+			globalThis.addEventListener("keydown", keyboardListener)
+			globalThis.addEventListener("keydown", preventKeyboardEvent, false)
 			return () => {
 				queueMicrotask(() => {
-					globalThis.removeEventListener("keydown", keyboardListener);
+					globalThis.removeEventListener("keydown", keyboardListener)
 					globalThis.removeEventListener(
 						"keydown",
 						preventKeyboardEvent,
 						false,
-					);
-				});
-			};
+					)
+				})
+			}
 		}
-	}, [enableKeyboardListener, buildKeyboardListener]);
+	}, [enableKeyboardListener, buildKeyboardListener])
 
 	const drawnKeyboard = useMemo(() => {
 		return (
@@ -105,8 +105,8 @@ const PopupKeyboard = ({
 					</div>
 				</div>
 			</div>
-		);
-	}, [onKeyClick]);
+		)
+	}, [onKeyClick])
 
 	return (
 		<Popup
@@ -120,7 +120,7 @@ const PopupKeyboard = ({
 		>
 			{drawnKeyboard}
 		</Popup>
-	);
-};
+	)
+}
 
-export default PopupKeyboard;
+export default PopupKeyboard

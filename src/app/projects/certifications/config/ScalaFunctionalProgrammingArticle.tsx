@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Accordion } from "@yoonghan/walcron-microfrontend-shared";
+import { Accordion } from "@yoonghan/walcron-microfrontend-shared"
 
 const model = [
 	{
@@ -27,14 +27,19 @@ const model = [
 		content:
 			"Boost of confidence in writing good programming functions and ease pickup of both Kotlin and Javascript.",
 	},
-];
+]
 
 export function ScalaFunctionalProgrammingArticle() {
 	return (
 		<article>
-			<p className="text-2xl">Functional Programming Principal In Scala</p>
+			<p className="text-2xl">
+				Functional Programming Principal In Scala
+			</p>
 
-			<Accordion model={model} groupName={"functional-programming-in-scala"} />
+			<Accordion
+				model={model}
+				groupName={"functional-programming-in-scala"}
+			/>
 		</article>
-	);
+	)
 }

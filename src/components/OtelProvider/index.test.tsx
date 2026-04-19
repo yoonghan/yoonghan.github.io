@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
-import { initOpenTelemetry } from "@/util/otel-web";
-import OtelProvider from ".";
+import { render } from "@testing-library/react"
+import { initOpenTelemetry } from "@/util/otel-web"
+import OtelProvider from "."
 
 jest.mock("@/util/otel-web", () => ({
 	initOpenTelemetry: jest.fn(),
-}));
+}))
 
 describe("OtelProvider", () => {
 	it("should call initOpenTelemetry on mount", () => {
@@ -12,7 +12,7 @@ describe("OtelProvider", () => {
 			<OtelProvider>
 				<div>child</div>
 			</OtelProvider>,
-		);
-		expect(initOpenTelemetry).toHaveBeenCalled();
-	});
-});
+		)
+		expect(initOpenTelemetry).toHaveBeenCalled()
+	})
+})

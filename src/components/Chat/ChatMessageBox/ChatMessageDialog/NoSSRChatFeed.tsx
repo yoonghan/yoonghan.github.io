@@ -3,23 +3,23 @@ import {
 	ChatFeed,
 	type ChatFeedApi,
 	type Message,
-} from "react-bell-chat";
-import CustomMessageRender from "./CustomMessageRender";
-import CustomSystemChatBubble from "./CustomSystemChatBubble";
+} from "react-bell-chat"
+import CustomMessageRender from "./CustomMessageRender"
+import CustomSystemChatBubble from "./CustomSystemChatBubble"
 
 interface Props {
-	messages: Message[];
-	authors: Author[];
-	height: number;
-	yourAuthorId: number;
+	messages: Message[]
+	authors: Author[]
+	height: number
+	yourAuthorId: number
 }
 
 const NoSSRChatFeed = ({ messages, authors, height, yourAuthorId }: Props) => {
 	const triggerFeed = (api: ChatFeedApi) => {
-		api?.scrollApi?.scrollToBottom("smooth");
-	};
+		api?.scrollApi?.scrollToBottom("smooth")
+	}
 
-	const requiredHeight = Math.abs(height / 2);
+	const requiredHeight = Math.abs(height / 2)
 
 	return (
 		<ChatFeed
@@ -33,7 +33,7 @@ const NoSSRChatFeed = ({ messages, authors, height, yourAuthorId }: Props) => {
 			CustomMessageRender={CustomMessageRender}
 			CustomSystemChatBubble={CustomSystemChatBubble}
 		/>
-	);
-};
+	)
+}
 
-export default NoSSRChatFeed;
+export default NoSSRChatFeed

@@ -1,5 +1,5 @@
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	forwardRef,
 	type SubmitEvent,
@@ -8,35 +8,35 @@ import {
 	useMemo,
 	useRef,
 	useState,
-} from "react";
-import { useDropzone } from "react-dropzone";
-import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog";
-import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation";
-import { site } from "@/config/site";
-import Button from "../../Button";
-import TextArea from "../../Input/TextArea";
-import { MessageType } from "../config/MessageType";
-import styles from "./ChatMessageBox.module.css";
+} from "react"
+import { useDropzone } from "react-dropzone"
+import ConfirmationDialog from "@/components/Dialog/ConfirmationDialog"
+import { useDialogCreation } from "@/components/Dialog/useDialogCreation/useDialogCreation"
+import { site } from "@/config/site"
+import Button from "../../Button"
+import TextArea from "../../Input/TextArea"
+import { MessageType } from "../config/MessageType"
+import styles from "./ChatMessageBox.module.css"
 import ChatMessageDialog, {
 	type MessageHandler,
 	userId,
-} from "./ChatMessageDialog";
-import "../react-chat-bell.css";
+} from "./ChatMessageDialog"
+import "../react-chat-bell.css"
 
 interface Props {
-	onMessageSend: (message: string, messageType: MessageType) => void;
-	noRef?: boolean;
+	onMessageSend: (message: string, messageType: MessageType) => void
+	noRef?: boolean
 }
 
-export const apiUrl = `${site.apiUrl}/firebase`;
+export const apiUrl = `${site.apiUrl}/firebase`
 
 const dropFile =
 	(callback: (message: string, notifyReceipient?: boolean) => void) =>
 	(acceptedFiles: File[]) => {
-		const formData = new FormData();
-		formData.append("file", acceptedFiles[0]);
+		const formData = new FormData()
+		formData.append("file", acceptedFiles[0])
 
-		callback(`Uploading file ${acceptedFiles[0].name}...`);
+		callback(`Uploading file ${acceptedFiles[0].name}...`)
 
 		fetch(apiUrl, {
 			method: "POST",
@@ -45,65 +45,65 @@ const dropFile =
 			.then((resp) => resp.json())
 			.then((data) => {
 				if (data.status === "ok") {
-					callback(`${data.data}`, true);
+					callback(`${data.data}`, true)
 				} else {
-					callback(`File upload failed`);
+					callback(`File upload failed`)
 				}
 			})
 			.catch((err) => {
-				callback(`File upload failed, (${err})`);
-			});
-	};
+				callback(`File upload failed, (${err})`)
+			})
+	}
 
 const ChatMessageBox = forwardRef<MessageHandler, Props>(
 	function ChatMessageDialogWithMessageHandler(
 		{ onMessageSend, noRef = false },
 		ref,
 	) {
-		const confirm = useDialogCreation(ConfirmationDialog);
-		const chatMessageDialogRef = useRef<MessageHandler>(null);
-		const [message, setMessage] = useState("");
+		const confirm = useDialogCreation(ConfirmationDialog)
+		const chatMessageDialogRef = useRef<MessageHandler>(null)
+		const [message, setMessage] = useState("")
 
 		const sendMessage = (e?: Event | SubmitEvent) => {
-			e?.preventDefault();
+			e?.preventDefault()
 			if (chatMessageDialogRef.current !== null && message !== "") {
-				chatMessageDialogRef.current.addMessage(userId, message);
-				onMessageSend(message, MessageType.TEXT);
+				chatMessageDialogRef.current.addMessage(userId, message)
+				onMessageSend(message, MessageType.TEXT)
 			}
-			setMessage("");
-		};
+			setMessage("")
+		}
 
 		const sendFileMessage = useCallback(
 			(message: string, notifyReceipient = false) => {
-				chatMessageDialogRef.current?.addMessage(undefined, message);
-				if (notifyReceipient) onMessageSend(message, MessageType.FILE);
+				chatMessageDialogRef.current?.addMessage(undefined, message)
+				if (notifyReceipient) onMessageSend(message, MessageType.FILE)
 			},
 			[onMessageSend],
-		);
+		)
 
 		const dropFileWithMessage = useMemo(
 			() => dropFile(sendFileMessage),
 			[sendFileMessage],
-		);
+		)
 
 		const onDrop = (acceptedFiles: File[]) => {
-			const filesToUpload = acceptedFiles;
+			const filesToUpload = acceptedFiles
 			if (inputRef.current) {
-				inputRef.current.value = "";
+				inputRef.current.value = ""
 			}
 			confirm({
 				title: "Upload File",
 				onYesClick: () => {
-					filesToUpload && dropFileWithMessage(filesToUpload);
+					filesToUpload && dropFileWithMessage(filesToUpload)
 				},
 				message: "This file will be shared publicly. Are you sure?",
 				nonPortal: true,
-			});
-		};
+			})
+		}
 
 		const { getRootProps, getInputProps, inputRef } = useDropzone({
 			onDrop,
-		});
+		})
 
 		useImperativeHandle(ref, () => {
 			return {
@@ -116,10 +116,10 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 						senderId,
 						message,
 						messageType,
-					);
+					)
 				},
-			};
-		});
+			}
+		})
 
 		return (
 			<div className={styles.container}>
@@ -137,7 +137,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 						<br />
 						<TextArea
 							onChange={(event) => {
-								setMessage(event.target.value);
+								setMessage(event.target.value)
 							}}
 							onSubmit={sendMessage}
 							value={message}
@@ -161,7 +161,7 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 							aria-label="Upload"
 							onClick={() => {
 								if (inputRef.current) {
-									inputRef.current.click();
+									inputRef.current.click()
 								}
 							}}
 						>
@@ -173,8 +173,8 @@ const ChatMessageBox = forwardRef<MessageHandler, Props>(
 					</Button>
 				</form>
 			</div>
-		);
+		)
 	},
-);
+)
 
-export default ChatMessageBox;
+export default ChatMessageBox

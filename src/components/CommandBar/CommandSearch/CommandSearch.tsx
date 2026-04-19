@@ -1,9 +1,9 @@
-import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { findPageByPath } from "@/config/pages";
-import { site } from "@/config/site";
-import { redirectTo } from "@/util/location";
-import InvalidCommand from "./InvalidCommand";
-import Output from "./Output";
+import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import { findPageByPath } from "@/config/pages"
+import { site } from "@/config/site"
+import { redirectTo } from "@/util/location"
+import InvalidCommand from "./InvalidCommand"
+import Output from "./Output"
 
 export enum EnumAction {
 	COMMAND,
@@ -11,29 +11,29 @@ export enum EnumAction {
 }
 
 interface ICommand {
-	[s: string]: IAvailableInput;
+	[s: string]: IAvailableInput
 }
 
 export interface IAvailableInput {
-	action: EnumAction;
-	description: string;
-	url?: string;
-	exec: any;
-	synonym?: Array<string>;
+	action: EnumAction
+	description: string
+	url?: string
+	exec: any
+	synonym?: Array<string>
 }
 
 const generateLink = (url: string) => ({
 	action: EnumAction.LINK,
 	exec: (router: any, path: string) => {
-		const link = findPageByPath(url)?.path;
+		const link = findPageByPath(url)?.path
 		if (path === link) {
-			return <InvalidCommand invalidCommand={"This is the page"} />;
+			return <InvalidCommand invalidCommand={"This is the page"} />
 		}
-		router.push(link);
+		router.push(link)
 		// biome-ignore lint/complexity/noUselessFragments: Not working
-		return <></>;
+		return <></>
 	},
-});
+})
 
 export const AvailableInput: ICommand = {
 	whoami: {
@@ -50,7 +50,7 @@ export const AvailableInput: ICommand = {
 		description: "Print current path.",
 		action: EnumAction.LINK,
 		exec: (_router: any, pathname: string | null) => {
-			return <Output output={pathname ?? "/"} />;
+			return <Output output={pathname ?? "/"} />
 		},
 	},
 	ls: {
@@ -75,11 +75,11 @@ export const AvailableInput: ICommand = {
 		action: EnumAction.LINK,
 		exec: (router: AppRouterInstance, pathname: string) => {
 			if (pathname === "/") {
-				return <InvalidCommand invalidCommand={"Already at root"} />;
+				return <InvalidCommand invalidCommand={"Already at root"} />
 			}
-			router.push("/");
+			router.push("/")
 			// biome-ignore lint/complexity/noUselessFragments: Not working
-			return <></>;
+			return <></>
 		},
 	},
 	"cd ..": {
@@ -87,11 +87,11 @@ export const AvailableInput: ICommand = {
 		action: EnumAction.LINK,
 		exec: (router: AppRouterInstance, pathname: string) => {
 			if (pathname === "/") {
-				return <InvalidCommand invalidCommand={"Already at root"} />;
+				return <InvalidCommand invalidCommand={"Already at root"} />
 			} else {
-				router.back();
+				router.back()
 				// biome-ignore lint/complexity/noUselessFragments: Not working
-				return <></>;
+				return <></>
 			}
 		},
 	},
@@ -110,11 +110,15 @@ export const AvailableInput: ICommand = {
 					title: "Walcron",
 					text: "An awesome website.",
 					url: site.url,
-				});
+				})
 				// biome-ignore lint/complexity/noUselessFragments: Not working
-				return <></>;
+				return <></>
 			} else {
-				return <InvalidCommand invalidCommand={"Couldn't run HTML5 share."} />;
+				return (
+					<InvalidCommand
+						invalidCommand={"Couldn't run HTML5 share."}
+					/>
+				)
 			}
 		},
 	},
@@ -124,9 +128,9 @@ export const AvailableInput: ICommand = {
 		synonym: ["no animate", "stop animate"],
 		action: EnumAction.LINK,
 		exec: (_: AppRouterInstance, pathname: string) => {
-			redirectTo(`${pathname}?animate=none`);
+			redirectTo(`${pathname}?animate=none`)
 			// biome-ignore lint/complexity/noUselessFragments: Not working
-			return <></>;
+			return <></>
 		},
 	},
-};
+}

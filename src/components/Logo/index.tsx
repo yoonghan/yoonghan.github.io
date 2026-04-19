@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from "next/image"
 
 interface LogoProps {
-	withText?: boolean;
+	withText?: boolean
 }
 
 const Logo = ({ withText = false }: LogoProps) => {
@@ -32,7 +32,7 @@ const Logo = ({ withText = false }: LogoProps) => {
         }
       `}</style>
 		</>
-	);
-};
+	)
+}
 
-export default Logo;
+export default Logo

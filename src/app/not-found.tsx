@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
-import { site } from "@/config/site";
-import styles from "./notfound.module.css";
+import Button from "@/components/Button"
+import { site } from "@/config/site"
+import styles from "./notfound.module.css"
 
 export default function NotFound() {
 	return (
@@ -12,5 +12,5 @@ export default function NotFound() {
 				<Button href={site.url}>Go back to home</Button>
 			</div>
 		</div>
-	);
+	)
 }

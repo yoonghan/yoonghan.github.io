@@ -1,4 +1,4 @@
-import { site } from "@/config/site";
+import { site } from "@/config/site"
 
 export const metadata = {
 	title: "Javascript free",
@@ -6,8 +6,8 @@ export const metadata = {
 	alternates: {
 		...site.generateCanonical("/projects/javascript-free"),
 	},
-};
+}
 
 export default function JsFreedom({ children }: { children: React.ReactNode }) {
-	return children;
+	return children
 }
