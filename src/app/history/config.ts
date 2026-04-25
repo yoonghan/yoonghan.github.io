@@ -12,6 +12,7 @@ import {
 	faServer,
 	faSpinner,
 	faTelevision,
+	faToolbox,
 } from "@fortawesome/free-solid-svg-icons"
 import type { IEvent } from "@/components/Timeline"
 
@@ -153,5 +154,11 @@ export const siteHistory: IEvent[] = [
 		special: "Certified Azure Cosmos DB Specialist",
 		desc: "Certified Cosmos DB, now focus on documenting my Azure knowledge.",
 		faIcon: faDatabase,
+	},
+	{
+		id: "Apr-2026",
+		date: "April-2026",
+		desc: "Switch to Biome, purge Git history 400MB → 76MB, fixed .env secret leaks",
+		faIcon: faToolbox,
 	},
 ]
