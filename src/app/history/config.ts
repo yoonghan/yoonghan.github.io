@@ -158,7 +158,7 @@ export const siteHistory: IEvent[] = [
 	{
 		id: "Apr-2026",
 		date: "April-2026",
-		desc: "Linting change to Biome and purge Git history from 400MB -> 76MB.",
+		desc: "Switch to Biome, purge Git history 400MB → 76MB, fixed .env secret leaks",
 		faIcon: faToolbox,
 	},
 ]
