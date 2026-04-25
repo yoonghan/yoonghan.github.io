@@ -20,8 +20,9 @@
 	"files": {
 		"ignoreUnknown": true,
 		"includes": [
-			"**",
-			"!!**/crate",
+			"**/src",
+			"**/public",
+			"**/styles",
 			"!!**/src/app/projects/game-snake",
 			"!!**/styles/tailwind.css"
 		]
