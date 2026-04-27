@@ -95,6 +95,19 @@ const links: Array<{ [key: string]: ReactNode }> = [
 			</a>
 		),
 	},
+	{
+		Site: "Git Guardian",
+		Description: "Check for secrets in code.",
+		Url: (
+			<a
+				href="https://dashboard.gitguardian.com/"
+				target={"_blank"}
+				rel="noreferrer"
+			>
+				link
+			</a>
+		),
+	},
 ]
 
 const checkCronJob = wrapPromise<string | undefined>(
