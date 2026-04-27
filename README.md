@@ -173,7 +173,7 @@ npm run rust:test //test rust running on browser
 
 ## Using Vibe code.
 
-Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md.
+Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md. Also supported for Antigravity.
 
 ## Mermaid generator
 
