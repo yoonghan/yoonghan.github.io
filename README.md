@@ -144,16 +144,10 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 
 ## NextJS Static Site Generation
 
-NextJS for static generation `output: "export"` in `next.config.js`, requires all pages to have removed `"use server"`. Generally all pages that requires _/api_ call needs to be removed as well.
-
-Process.env variable for client side access are required to be defined in .env file (written in merge.yml)
-
-| Key                        | Description                                             |
-| -------------------------- | ------------------------------------------------------- |
-| NEXT_PUBLIC_PUSHER_APP_KEY | Public key for pusher API to access pusher              |
-| NEXT_PUBLIC_PUSHER_CLUSTER | Public pusher API cluster region                        |
-| NEXT_PUBLIC_SITE_URL       | URL to hosted url for content metadata (i.e. canonical) |
-| NEXT_PUBLIC_API_SITE_URL   | URL to hosted api url, i.e. https://www.walcron.com/api |
+1. Add `output: "export"` to `next.config.js`. This will generate a static site that can be hosted on any static hosting provider.
+2. Remove _/api_ folder as this contains "use server" which is not allowed in static site.
+3. Process.env variable are required for client side access. Ease setup is to use `vercel env pull` to pull the environment variables from Vercel.
+4. Run `npx serve@latest out` to test locally.
 
 ## Rust Webassembly
 
