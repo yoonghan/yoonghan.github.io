@@ -12,7 +12,6 @@ const customJestConfig = {
 		"<rootDir>/jest.setup.js",
 		"react-intersection-observer/test-utils",
 	],
-	transformIgnorePatterns: ["/node_modules/(?!react-ga4/)/"],
 	modulePathIgnorePatterns: [
 		"<rootDir>/src/__tests__",
 		"<rootDir>/src/__e2e__",
