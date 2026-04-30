@@ -1,10 +1,8 @@
 import {
 	createRef,
 	forwardRef,
-	useCallback,
 	useEffect,
 	useImperativeHandle,
-	useMemo,
 	useState,
 } from "react"
 import { createPortal } from "react-dom"
@@ -33,9 +31,9 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 
 		const [showDialog, setShowDialog] = useState(true)
 
-		const close = useCallback(() => {
+		const close = () => {
 			setShowDialog(false)
-		}, [])
+		}
 
 		useImperativeHandle(ref, () => {
 			return {
@@ -53,68 +51,55 @@ const Dialog = forwardRef<DialogHandler, DialogProps>(
 			}
 		}, [dialogElem, isNotModal])
 
-		const cancel = useCallback(() => {
+		const cancel = () => {
 			close()
 			onCancel()
-		}, [close, onCancel])
+		}
 
-		const onCloseClick = useCallback(() => {
+		const onCloseClick = () => {
 			cancel()
-		}, [cancel])
+		}
 
-		const onDialogClick = useCallback(() => {
+		const onDialogClick = () => {
 			if (!isNotModal) {
 				cancel()
 			}
-		}, [cancel, isNotModal])
+		}
 
-		const onContentClick = useCallback(
+		const onContentClick =
 			(
 				event:
 					| React.MouseEvent<HTMLDivElement>
 					| React.KeyboardEvent<HTMLDivElement>,
 			) => {
 				event.stopPropagation()
-			},
-			[],
-		)
+			}
 
-		const dialog = useMemo(
-			() => (
-				<>
-					{showDialog && (
-						// biome-ignore lint/a11y/useKeyWithClickEvents: expected
-						<dialog
-							className={styles.container}
-							ref={dialogElem}
-							onClick={onDialogClick}
-						>
-							{
-								// biome-ignore lint/a11y/useKeyWithClickEvents: expected
-								// biome-ignore lint/a11y/noStaticElementInteractions: expected
-								<div
-									className={styles.content}
-									onClick={onContentClick}
-								>
-									{children}
-								</div>
-							}
-							<button type="button" onClick={onCloseClick}>
-								{isNotModal ? "×" : "[ESC]"}
-							</button>
-						</dialog>
-					)}
-				</>
-			),
-			[
-				children,
-				dialogElem,
-				isNotModal,
-				onCloseClick,
-				onContentClick,
-				onDialogClick,
-				showDialog,
-			],
+		const dialog = (
+			<>
+				{showDialog && (
+					// biome-ignore lint/a11y/useKeyWithClickEvents: expected
+					<dialog
+						className={styles.container}
+						ref={dialogElem}
+						onClick={onDialogClick}
+					>
+						{
+							// biome-ignore lint/a11y/useKeyWithClickEvents: expected
+							// biome-ignore lint/a11y/noStaticElementInteractions: expected
+							<div
+								className={styles.content}
+								onClick={onContentClick}
+							>
+								{children}
+							</div>
+						}
+						<button type="button" onClick={onCloseClick}>
+							{isNotModal ? "×" : "[ESC]"}
+						</button>
+					</dialog>
+				)}
+			</>
 		)
 
 		return nonPortal ? dialog : createPortal(dialog, documentDialog)

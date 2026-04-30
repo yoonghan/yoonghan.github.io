@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDebounceValue } from "usehooks-ts"
 import style from "./ScrollableList.module.css"
 
@@ -18,15 +18,9 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
 	const [scrollToTop, setScrollToTop] = useState(0)
 	const [debounceScrollToTop] = useDebounceValue(scrollToTop, 10)
 
-	const startPosition = useMemo(
-		() => Math.max(scrollPosition - maxItemsToRender, 0),
-		[maxItemsToRender, scrollPosition],
-	)
+	const startPosition = Math.max(scrollPosition - maxItemsToRender, 0)
 
-	const endPosition = useMemo(
-		() => Math.min(listItems.length, scrollPosition + maxItemsToRender),
-		[listItems.length, maxItemsToRender, scrollPosition],
-	)
+	const endPosition = Math.min(listItems.length, scrollPosition + maxItemsToRender)
 
 	useEffect(() => {
 		const newScrollPosition = debounceScrollToTop / heightOfItem
@@ -37,10 +31,10 @@ const ScrollableList = ({ listItems, maxItemsToRender, noRef }: Props) => {
 		}
 	}, [debounceScrollToTop, maxItemsToRender, scrollPosition])
 
-	const updateScrollPosition = useCallback(() => {
+	const updateScrollPosition = () => {
 		// biome-ignore lint/style/noNonNullAssertion: expected
 		setScrollToTop(listRef.current!.scrollTop)
-	}, [])
+	}
 
 	useEffect(() => {
 		if (listRef.current !== null) {

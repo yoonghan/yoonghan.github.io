@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { type ButtonHTMLAttributes, type ReactNode, useMemo } from "react"
+import { type ButtonHTMLAttributes, type ReactNode } from "react"
 import styles from "./Button.module.css"
 import { isExternalLink } from "./isExternalLink"
 
@@ -78,7 +78,7 @@ const Button = ({
 	styling,
 	additionalProps,
 }: ButtonProps) => {
-	const definedClass = useMemo(() => {
+	const definedClass = (() => {
 		let style = styles.container
 		if (styling?.className) {
 			style += ` ${styling.className}`
@@ -93,7 +93,7 @@ const Button = ({
 			style += ` ${styles[color]}`
 		}
 		return style
-	}, [styling, color])
+	})()
 
 	if (onClick) {
 		return (

@@ -1,4 +1,4 @@
-import { Fragment, memo, useMemo } from "react"
+import { Fragment, memo } from "react"
 import Link from "@/components/Link"
 import ScrollToTop from "@/components/ScrollToTop"
 import { sortedSiteMapPages } from "@/config/pages"
@@ -14,10 +14,7 @@ export const metadata = {
 }
 
 const SiteMap = () => {
-	const groupedMenu = useMemo(
-		() => new SiteMapConstructor().getGroups(sortedSiteMapPages),
-		[],
-	)
+	const groupedMenu = new SiteMapConstructor().getGroups(sortedSiteMapPages)
 
 	const draw = (results: Result[]) => {
 		return (

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Direction, GameStatus, type World } from "snake-game/snake";
 import { useInterval } from "usehooks-ts";
 import Button from "@/components/Button";
@@ -33,7 +33,7 @@ const Game = ({
 	const [points, setPoints] = useState(0);
 	const [buttonText, setButtonText] = useState("Play");
 
-	const getStatusAsText = useCallback((status: number | undefined) => {
+	const getStatusAsText = (status: number | undefined) => {
 		switch (status) {
 			case GameStatus.Play:
 				return "Playing";
@@ -44,21 +44,21 @@ const Game = ({
 			default:
 				return "None";
 		}
-	}, []);
+	}
 
-	const updateStatusAndPoints = useCallback(() => {
+	const updateStatusAndPoints = () => {
 		const latestStatus = world.game_status();
 		const latestPoints = world.points();
 
 		if (status !== latestStatus) setStatus(latestStatus);
 		if (points !== latestPoints) setPoints(latestPoints);
-	}, [points, status, world]);
+	}
 
-	const drawBoard = useCallback(() => {
+	const drawBoard = () => {
 		drawSquareBoard(ctx, worldWidth, cellSize);
-	}, [cellSize, ctx, worldWidth]);
+	}
 
-	const drawSnake = useCallback(() => {
+	const drawSnake = () => {
 		const snakeCells = world.snake_cells() as number[];
 		snakeCells
 			.filter((snakeCellIdx, i) => !(i > 0 && snakeCellIdx === snakeCells[0]))
@@ -71,9 +71,9 @@ const Game = ({
 					i === 0 ? "#7878db" : "#000000",
 				);
 			});
-	}, [cellSize, ctx, world, worldWidth]);
+	}
 
-	const drawReward = useCallback(() => {
+	const drawReward = () => {
 		const idx = world.reward_cell();
 		if (idx) {
 			drawCell(ctx, idx, worldWidth, cellSize);
@@ -82,16 +82,16 @@ const Game = ({
 		if (rewardInformationCallback) {
 			rewardInformationCallback(idx);
 		}
-	}, [cellSize, ctx, rewardInformationCallback, world, worldWidth]);
+	}
 
-	const paint = useCallback(() => {
+	const paint = () => {
 		drawBoard();
 		drawSnake();
 		drawReward();
 		updateStatusAndPoints();
-	}, [drawBoard, drawReward, drawSnake, updateStatusAndPoints]);
+	}
 
-	const onKeyboardClick = useCallback(
+	const onKeyboardClick =
 		(key: KeyboardKeys) => {
 			switch (key) {
 				case KeyboardKeys.UP:
@@ -107,11 +107,9 @@ const Game = ({
 					world.update_direction(Direction.RIGHT);
 					break;
 			}
-		},
-		[world],
-	);
+		}
 
-	const onPlayClicked = useCallback(() => {
+	const onPlayClicked = () => {
 		if (gameContext.isGameStarted) {
 			reload();
 		} else {
@@ -122,7 +120,7 @@ const Game = ({
 				updateStatusAndPoints();
 			}
 		}
-	}, [gameContext, updateStatusAndPoints, world]);
+	}
 
 	useEffect(() => {
 		canvas.width = worldWidth * cellSize;
@@ -130,13 +128,13 @@ const Game = ({
 		paint();
 	}, [canvas, cellSize, worldWidth, paint]);
 
-	const intervalDelay = useMemo(() => {
+	const intervalDelay = (() => {
 		if (status === GameStatus.Play) {
 			return (snakeSpeed / 100) * 1000;
+		} else {
+			return null;
 		}
-
-		return null;
-	}, [status, snakeSpeed]);
+	})()
 
 	useInterval(() => {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
