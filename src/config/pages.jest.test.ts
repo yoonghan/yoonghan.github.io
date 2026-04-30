@@ -54,7 +54,7 @@ describe("pages", () => {
 		])
 	})
 
-	it("should ne able to sort non-root", () => {
+	it("should be able to sort non-root", () => {
 		const pagesToSort = [
 			{
 				path: "/projects",
