@@ -67,7 +67,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en" className="scroll-smooth">
+		<html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
 			<Script id="reroute-https" strategy="afterInteractive">
 				{`if(location.hostname === "walcron.com") {
           location.href="${site.defaultUrl}";

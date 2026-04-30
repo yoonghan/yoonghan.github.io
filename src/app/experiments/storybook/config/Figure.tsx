@@ -27,6 +27,7 @@ export function ReversedFigure() {
 					height: 500,
 					width: 500,
 					alt: "Sample Image",
+					className: "h-auto",
 				}}
 				imageCaption="Sample Caption"
 				reversed={true}
