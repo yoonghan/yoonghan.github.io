@@ -9,7 +9,7 @@ describe("EmailSender", () => {
 			<EmailSender
 				writeFrom="Recipient"
 				writeTo="Sender"
-				onCancel={jest.fn()}
+				onCancel={vi.fn()}
 			/>,
 		)
 		expect(
@@ -29,7 +29,7 @@ describe("EmailSender", () => {
 			<EmailSender
 				writeFrom="Enc0&dRecX"
 				writeTo={sender}
-				onCancel={jest.fn()}
+				onCancel={vi.fn()}
 			/>,
 		)
 

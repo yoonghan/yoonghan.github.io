@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server"
 import { POST } from "./route"
 
-const mockFetch = jest.fn()
+const mockFetch = vi.fn()
 global.fetch = mockFetch
 
 const originalEnv = process.env
@@ -90,7 +90,7 @@ describe("POST /api/otel", () => {
 	})
 
 	it("should handle errors from the Axiom API", async () => {
-		const consoleErrorSpy = jest
+		const consoleErrorSpy = vi
 			.spyOn(console, "error")
 			.mockImplementation(() => {})
 		const requestBody = JSON.stringify({ trace: "data" })
@@ -113,7 +113,7 @@ describe("POST /api/otel", () => {
 	})
 
 	it("should handle network errors when calling Axiom", async () => {
-		const consoleErrorSpy = jest
+		const consoleErrorSpy = vi
 			.spyOn(console, "error")
 			.mockImplementation(() => {})
 
@@ -143,7 +143,7 @@ describe("POST /api/otel", () => {
 		delete process.env.AXIOM_API_TOKEN
 		delete process.env.AXIOM_DATASET_NAME
 
-		const consoleErrorSpy = jest
+		const consoleErrorSpy = vi
 			.spyOn(console, "error")
 			.mockImplementation(() => {})
 

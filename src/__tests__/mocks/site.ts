@@ -1,4 +1,4 @@
-jest.mock("@/config/site", () => {
+vi.mock("@/config/site", () => {
 	return {
 		__esModule: true,
 		site: { url: "https://mockedUrl.com" },

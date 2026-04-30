@@ -1,4 +1,4 @@
-jest.mock("@yoonghan/walcron-microfrontend-shared", () => {
+vi.mock("@yoonghan/walcron-microfrontend-shared", () => {
 	return {
 		__esModule: true,
 		reportWebVitals: (callback: any) => {

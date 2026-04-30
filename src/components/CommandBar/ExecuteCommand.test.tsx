@@ -4,23 +4,23 @@ import { spyRedirect } from "@/__tests__/mocks/locationMock"
 import { exec } from "./ExecuteCommand"
 
 describe("CommandBar", () => {
-	let routeCallback: jest.Mock<any, any>
-	let routeBackCallback: jest.Mock<any, any>
-	let specialInputCallback: jest.Mock<any, any>
+	let routeCallback: vi.Mock<any, any>
+	let routeBackCallback: vi.Mock<any, any>
+	let specialInputCallback: vi.Mock<any, any>
 
 	const createCommandBar = (
 		routeLocation: string | undefined | null = "/samplePage",
 	) => {
-		routeCallback = jest.fn()
-		routeBackCallback = jest.fn()
+		routeCallback = vi.fn()
+		routeBackCallback = vi.fn()
 		const globalAny = global
 		const divElement = globalAny.document.createElement("div")
-		const cancelCallback = jest.fn()
+		const cancelCallback = vi.fn()
 		const route = {
 			push: routeCallback,
 			back: routeBackCallback,
 		} as unknown as AppRouterInstance
-		specialInputCallback = jest.fn()
+		specialInputCallback = vi.fn()
 		return exec(
 			divElement,
 			cancelCallback,
@@ -185,7 +185,7 @@ describe("CommandBar", () => {
 		})
 
 		it("should attach share", () => {
-			const sharedCallback = jest.fn()
+			const sharedCallback = vi.fn()
 			window.navigator.share = sharedCallback
 			render(<div>{createCommandBar()("share")}</div>)
 			expect(sharedCallback).toHaveBeenCalledWith({

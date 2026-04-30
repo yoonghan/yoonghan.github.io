@@ -4,12 +4,21 @@ import { fetchMock } from "./fetchMock"
 
 // Read the .wasm file to memory
 const file = readFileSync("./crate/snake/pkg/snake_bg.wasm")
-fetchMock.mockResolvedValue(file)
+const arrayBuffer = file.buffer.slice(
+	file.byteOffset,
+	file.byteOffset + file.byteLength,
+)
+fetchMock.mockResolvedValue(
+	new Response(arrayBuffer, {
+		status: 200,
+		headers: { "Content-Type": "application/wasm" },
+	}),
+)
 
-export const mockRandom = jest.fn()
+export const mockRandom = vi.fn()
 mockRandom.mockReturnValue(1)
 
-jest.mock("@/util/random", () => {
+vi.mock("@/util/random", () => {
 	return {
 		__esModule: true,
 		rnd: mockRandom,

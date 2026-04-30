@@ -17,8 +17,8 @@ describe("VideoChat", () => {
 
 	const renderComponent = ({
 		record = true,
-		videoFailedCallback = jest.fn(),
-		videoTracksCallback = jest.fn(),
+		videoFailedCallback = vi.fn(),
+		videoTracksCallback = vi.fn(),
 		noRef = false,
 	}: {
 		record?: boolean
@@ -39,13 +39,13 @@ describe("VideoChat", () => {
 	}
 
 	const createUserMedia = () => {
-		const videoTracks = jest.fn()
-		const stopFn = jest.fn()
+		const videoTracks = vi.fn()
+		const stopFn = vi.fn()
 		const stopFnObj = { stop: stopFn }
 		const trackFn = {
 			getTracks: () => [stopFnObj],
 		} as any
-		const spyGetUserMedia = jest
+		const spyGetUserMedia = vi
 			.spyOn(window.navigator.mediaDevices, "getUserMedia")
 			.mockResolvedValueOnce(trackFn)
 		return {
@@ -65,8 +65,8 @@ describe("VideoChat", () => {
 	})
 
 	it("should getMediaDevices failed/rejected, it will trigger videoFailedCallback", async () => {
-		const failCallback = jest.fn()
-		jest.spyOn(
+		const failCallback = vi.fn()
+		vi.spyOn(
 			window.navigator.mediaDevices,
 			"getUserMedia",
 		).mockRejectedValueOnce("I failed")
@@ -91,7 +91,7 @@ describe("VideoChat", () => {
 				id="test"
 				muted={true}
 				record={false}
-				videoFailedCallback={jest.fn()}
+				videoFailedCallback={vi.fn()}
 				videoTracksCallback={videoTracks}
 			/>,
 		)
@@ -148,7 +148,7 @@ describe("VideoChat", () => {
 						id="test"
 						muted={true}
 						record={false}
-						videoFailedCallback={jest.fn()}
+						videoFailedCallback={vi.fn()}
 						videoTracksCallback={videoTracksCallback}
 					/>
 					<button type="button" onClick={addStreamToVideoOnClick}>

@@ -5,7 +5,7 @@ import Dialog from "."
 describe("Dialog", () => {
 	const renderModal = ({
 		isNotModal = false,
-		onCancel = jest.fn(),
+		onCancel = vi.fn(),
 		nonPortal = false,
 	}: {
 		isNotModal?: boolean
@@ -28,7 +28,7 @@ describe("Dialog", () => {
 	}
 
 	it("should render the model, button is focused and can be used to close", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel })
 		expect(screen.getByRole("dialog")).toBeInTheDocument()
 		const button = screen.getByRole("button", { name: "[ESC]" })
@@ -38,35 +38,35 @@ describe("Dialog", () => {
 	})
 
 	it("should render the model and can be closed by using esc keyboard", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel })
 		await userEvent.type(screen.getByRole("dialog"), "{esc}")
 		expect(onCancel).toHaveBeenCalled()
 	})
 
 	it("should render the model and can be closed by using Escape keyboard", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel })
 		await userEvent.type(screen.getByRole("dialog"), "{Escape}")
 		expect(onCancel).toHaveBeenCalled()
 	})
 
 	it("should render the model will close and will close when outer dialog is click", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel })
 		await userEvent.click(screen.getByRole("dialog"))
 		expect(onCancel).toHaveBeenCalled()
 	})
 
 	it("should render the model will close will not close when the child DIV is clicked", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel })
 		await userEvent.click(screen.getByTestId("child-in-dialog"))
 		expect(onCancel).not.toHaveBeenCalled()
 	})
 
 	it("should render non modal, it cannot be closed by clicking anything outside and only by button", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ isNotModal: true, onCancel: onCancel })
 		await userEvent.click(screen.getByRole("dialog"))
 		expect(onCancel).not.toHaveBeenCalled()
@@ -75,7 +75,7 @@ describe("Dialog", () => {
 	})
 
 	it("should remove dialog completely if portal", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel, nonPortal: false })
 		expect(screen.getByText("Nothing")).toBeInTheDocument()
 		expect(screen.getByRole("dialog")).toBeInTheDocument()
@@ -85,7 +85,7 @@ describe("Dialog", () => {
 	})
 
 	it("should remove dialog completely if non-portal", async () => {
-		const onCancel = jest.fn()
+		const onCancel = vi.fn()
 		renderModal({ onCancel: onCancel, nonPortal: true })
 		expect(screen.getByText("Nothing")).toBeInTheDocument()
 		expect(screen.getByRole("dialog")).toBeInTheDocument()

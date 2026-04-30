@@ -12,11 +12,11 @@ describe("Funky Scroller", () => {
 	})
 
 	it("should reposition last element", async () => {
-		jest.useFakeTimers()
+		vi.useFakeTimers()
 		renderComponent("Funky-Scroller-2")
-		jest.runAllTimers()
+		vi.runAllTimers()
 		fireEvent.scroll(window, { target: { scrollX: 100, scrollY: 200 } })
-		jest.runAllTimers()
+		vi.runAllTimers()
 
 		expect(screen.getByTitle("Funky-Scroller-2").firstChild).toHaveStyle({
 			width: "180px",

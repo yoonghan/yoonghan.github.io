@@ -7,7 +7,7 @@ describe("usePresencePusher", () => {
 		appKey: "APPKEY",
 		cluster: "Cluster",
 		authEndpoint: "/auth",
-		updateConnectionCallback: jest.fn(),
+		updateConnectionCallback: vi.fn(),
 		shouldUpdatedOfflineUserEnd: undefined,
 	}
 
@@ -76,7 +76,7 @@ describe("usePresencePusher", () => {
 		}
 
 		it("should be able to connect", () => {
-			const updateConnectionCallback = jest.fn()
+			const updateConnectionCallback = vi.fn()
 			const { result } = createPusher({
 				...defaultProps,
 				updateConnectionCallback,
@@ -101,7 +101,7 @@ describe("usePresencePusher", () => {
 		})
 
 		it("should not be allowed to connect twice by returning to start connecting again", () => {
-			const updateConnectionCallback = jest.fn()
+			const updateConnectionCallback = vi.fn()
 			const { result } = createPusher({
 				...defaultProps,
 				updateConnectionCallback,
@@ -129,7 +129,7 @@ describe("usePresencePusher", () => {
 		})
 
 		it("should be allowed to connect again after disconnected", () => {
-			const updateConnectionCallback = jest.fn()
+			const updateConnectionCallback = vi.fn()
 			const { result } = createPusher({
 				...defaultProps,
 				updateConnectionCallback,
@@ -170,7 +170,7 @@ describe("usePresencePusher", () => {
 		})
 
 		it("should show error if connection fail", () => {
-			const updateConnectionCallback = jest.fn()
+			const updateConnectionCallback = vi.fn()
 			const error = {
 				type: "AuthError",
 				error: undefined,
@@ -196,7 +196,7 @@ describe("usePresencePusher", () => {
 		})
 
 		it("should be able to add multiple user and remove user", () => {
-			const updateConnectionCallback = jest.fn()
+			const updateConnectionCallback = vi.fn()
 			const { result } = createPusher({
 				...defaultProps,
 				updateConnectionCallback,
@@ -236,7 +236,7 @@ describe("usePresencePusher", () => {
 			})
 			emitSubscriptionSuccess(result.current.emit)
 
-			const clientCallback = jest.fn()
+			const clientCallback = vi.fn()
 			act(() => {
 				expect(
 					result.current.bind<Presence>(
@@ -279,7 +279,7 @@ describe("usePresencePusher", () => {
 				result.current.connect("billy")
 			})
 
-			const clientCallback = jest.fn()
+			const clientCallback = vi.fn()
 
 			emitSubscriptionSuccess(result.current.emit)
 
@@ -310,7 +310,7 @@ describe("usePresencePusher", () => {
 				"Johnny Depp",
 			)
 
-			const newClientCallback = jest.fn()
+			const newClientCallback = vi.fn()
 			act(() => {
 				expect(
 					result.current.bind<Presence>(
@@ -347,8 +347,8 @@ describe("usePresencePusher", () => {
 				)
 			}
 
-			const updateConnectionCallbackFn = jest.fn()
-			const shouldUpdatedOfflineUserEndFn = jest.fn()
+			const updateConnectionCallbackFn = vi.fn()
+			const shouldUpdatedOfflineUserEndFn = vi.fn()
 			const { result } = createPusher({
 				...defaultProps,
 				updateConnectionCallback: updateConnectionCallbackFn,
@@ -358,7 +358,7 @@ describe("usePresencePusher", () => {
 				result.current.connect("billy")
 			})
 
-			const clientCallback = jest.fn()
+			const clientCallback = vi.fn()
 
 			emitSubscriptionSuccess(result.current.emit)
 			expect(updateConnectionCallbackFn).toHaveBeenCalledWith(

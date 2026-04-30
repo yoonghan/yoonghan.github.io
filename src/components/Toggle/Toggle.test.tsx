@@ -24,7 +24,7 @@ describe("Toggle", () => {
 	})
 
 	it("calls onChange when checkbox is clicked", async () => {
-		const handleChange = jest.fn()
+		const handleChange = vi.fn()
 		render(<Toggle label="Test Label" onChange={handleChange} />)
 		const checkbox = screen.getByRole("checkbox")
 		await userEvent.click(checkbox)
@@ -33,7 +33,7 @@ describe("Toggle", () => {
 
 	it("checkbox reflects checked prop", () => {
 		const { rerender } = render(
-			<Toggle label="Test Label" checked={false} onChange={jest.fn()} />,
+			<Toggle label="Test Label" checked={false} onChange={vi.fn()} />,
 		)
 		const checkbox = screen.getByRole("checkbox")
 		expect(checkbox).not.toBeChecked()

@@ -50,7 +50,7 @@ describe("firebase/user", () => {
 
 	describe("environment setup", () => {
 		afterEach(() => {
-			jest.clearAllMocks()
+			vi.clearAllMocks()
 		})
 
 		beforeEach(() => {

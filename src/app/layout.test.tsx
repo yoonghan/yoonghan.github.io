@@ -16,7 +16,7 @@ describe("Main Layout", () => {
 		// Mock the performance object before each test
 		Object.defineProperty(window, "performance", {
 			value: {
-				getEntries: jest.fn(() => [
+				getEntries: vi.fn(() => [
 					{
 						name: "my-mark-1",
 						entryType: "mark",
@@ -30,7 +30,7 @@ describe("Main Layout", () => {
 						duration: 50,
 					},
 				]),
-				getEntriesByType: jest.fn((type) => {
+				getEntriesByType: vi.fn((type) => {
 					if (type === "mark") {
 						return [
 							{
@@ -43,8 +43,8 @@ describe("Main Layout", () => {
 					}
 					return []
 				}),
-				mark: jest.fn(),
-				measure: jest.fn(),
+				mark: vi.fn(),
+				measure: vi.fn(),
 				// Add other performance methods if needed
 			},
 			writable: true, // Make it writable for mocking
@@ -53,7 +53,7 @@ describe("Main Layout", () => {
 
 	afterEach(() => {
 		// Clean up the mock after each test
-		jest.restoreAllMocks()
+		vi.restoreAllMocks()
 	})
 
 	const assertFooter = () => {

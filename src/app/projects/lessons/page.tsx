@@ -127,7 +127,7 @@ const Lessons = () => {
  import "../__mocked__/pusherMock"; //mock library must be the first.
  import X from "someComponentThatUsesPusher"
  --OR--
- jest.mock('pusher', () => class Pusher{});
+ vi.mock('pusher', () => class Pusher{});
  import Pusher from 'pusher'; //then only it takes effect.
             `}</pre>
 			</article>
@@ -140,7 +140,7 @@ const Lessons = () => {
 					Error of `Cannot use import statement outside a module`,
 					cannot be solved at the moment when 3rd party library are
 					executed via mock. Only solution is to mock the whole
-					library with jest.mock(&apos;whole library&apos;).
+					library with vi.mock(&apos;whole library&apos;).
 				</p>
 			</article>
 			<article className="my-8">

@@ -1,10 +1,10 @@
 import { redirectTo, reload, search } from "./location"
 
 describe("location", () => {
-	let consoleSpy: jest.SpyInstance
+	let consoleSpy: vi.SpyInstance
 
 	beforeAll(() => {
-		consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {})
+		consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
 	})
 
 	afterAll(() => {

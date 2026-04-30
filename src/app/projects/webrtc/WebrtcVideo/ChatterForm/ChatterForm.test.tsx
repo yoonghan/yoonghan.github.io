@@ -6,7 +6,7 @@ describe("ChatterFrom", () => {
 	const renderComponent = ({
 		senderButtonCanStop = false,
 		senderButtonDisabled = false,
-		startStopSenderVideo = jest.fn(),
+		startStopSenderVideo = vi.fn(),
 	}: {
 		senderButtonCanStop?: boolean
 		senderButtonDisabled?: boolean
@@ -46,7 +46,7 @@ describe("ChatterFrom", () => {
 	})
 
 	it("should allow non-empty valid name submit", async () => {
-		const startStopSenderVideo = jest.fn()
+		const startStopSenderVideo = vi.fn()
 		const userNameBobMarley = "Bob Marl3y"
 		renderComponent({ startStopSenderVideo })
 		const input = screen.getByLabelText("My user name:")
@@ -60,7 +60,7 @@ describe("ChatterFrom", () => {
 	})
 
 	it("should not allow to submit if name contains special characters", async () => {
-		const startStopSenderVideo = jest.fn()
+		const startStopSenderVideo = vi.fn()
 		renderComponent({ startStopSenderVideo })
 		const input = screen.getByLabelText("My user name:")
 		await userEvent.type(input, "l33tC@")
@@ -70,7 +70,7 @@ describe("ChatterFrom", () => {
 	})
 
 	it("should not allow to submit if name is 3 to 20 characters", async () => {
-		const startStopSenderVideo = jest.fn()
+		const startStopSenderVideo = vi.fn()
 		renderComponent({ startStopSenderVideo })
 		const input = screen.getByLabelText("My user name:")
 		await userEvent.type(input, "na")

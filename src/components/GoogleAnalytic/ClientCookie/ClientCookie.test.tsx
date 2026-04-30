@@ -28,8 +28,8 @@ describe("Client Cookie", () => {
 	}
 
 	it("should show cookie message", () => {
-		const gtagFn = jest.fn()
-		jest.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
+		const gtagFn = vi.fn()
+		vi.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
 		renderComponent()
 		expect(screen.getByText("This site uses cookies.")).toBeInTheDocument()
 		expect(
@@ -44,8 +44,8 @@ describe("Client Cookie", () => {
 	})
 
 	it("should show hide message when Accept button is clicked", async () => {
-		const gtagFn = jest.fn()
-		jest.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
+		const gtagFn = vi.fn()
+		vi.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
 		renderComponent()
 		await userEvent.click(screen.getByRole("button", { name: "Accept" }))
 		expect(
@@ -59,8 +59,8 @@ describe("Client Cookie", () => {
 	})
 
 	it("should not show message if cookie is already set and cookie is called twice", async () => {
-		const gtagFn = jest.fn()
-		jest.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
+		const gtagFn = vi.fn()
+		vi.spyOn(ReactGA, "gtag").mockImplementation(gtagFn)
 		Object.defineProperty(window.document, "cookie", {
 			writable: true,
 			value: expectedCookieValue,

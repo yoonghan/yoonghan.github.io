@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import * as canvasMock from "jest-canvas-mock";
+import * as canvasMock from "vitest-canvas-mock";
 import { clearBoard, drawCell, drawSquareBoard } from "./drawCanvas";
 
 describe("drawCanvas", () => {

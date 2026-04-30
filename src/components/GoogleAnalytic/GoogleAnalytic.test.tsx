@@ -6,10 +6,10 @@ import { GoogleAnalytic } from "."
 describe("Google Analytic", () => {
 	it("should send event for every reload", () => {
 		const gaValue = "123"
-		const initializeMock = jest.fn()
-		const eventMock = jest.fn()
-		jest.spyOn(ReactGA, "initialize").mockImplementation(initializeMock)
-		jest.spyOn(ReactGA, "event").mockImplementation(eventMock)
+		const initializeMock = vi.fn()
+		const eventMock = vi.fn()
+		vi.spyOn(ReactGA, "initialize").mockImplementation(initializeMock)
+		vi.spyOn(ReactGA, "event").mockImplementation(eventMock)
 
 		const { rerender } = render(<GoogleAnalytic ga4Id={gaValue} />)
 		expect(initializeMock).toHaveBeenCalledTimes(2)

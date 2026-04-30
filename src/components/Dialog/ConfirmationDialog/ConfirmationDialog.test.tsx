@@ -10,9 +10,9 @@ describe("ConfirmationDialog", () => {
 				message={
 					"Can you React from a shooting bullet travelling at lightspeed?"
 				}
-				onCancel={jest.fn()}
-				onYesClick={jest.fn()}
-				onNoClick={jest.fn()}
+				onCancel={vi.fn()}
+				onYesClick={vi.fn()}
+				onNoClick={vi.fn()}
 			/>,
 		)
 		expect(screen.getByText("I am Title")).toBeInTheDocument()
@@ -28,9 +28,9 @@ describe("ConfirmationDialog", () => {
 			<ConfirmationDialog
 				title={"I am Title"}
 				message={"Message one"}
-				onCancel={jest.fn()}
-				onYesClick={jest.fn()}
-				onNoClick={jest.fn()}
+				onCancel={vi.fn()}
+				onYesClick={vi.fn()}
+				onNoClick={vi.fn()}
 				yesButtonText={"Yupe"}
 				noButtonText={"Oh uh"}
 			/>,
@@ -45,9 +45,9 @@ describe("ConfirmationDialog", () => {
 			<ConfirmationDialog
 				title={"I am Title"}
 				message={"Message one"}
-				onCancel={jest.fn()}
-				onYesClick={jest.fn()}
-				onNoClick={jest.fn()}
+				onCancel={vi.fn()}
+				onYesClick={vi.fn()}
+				onNoClick={vi.fn()}
 				yesButtonText={"Yupe"}
 				noButtonText={"Oh uh"}
 				isNotModal={true}
@@ -59,9 +59,9 @@ describe("ConfirmationDialog", () => {
 
 	describe("Button clicks", () => {
 		const renderComponent = () => {
-			const onYesClick = jest.fn()
-			const onNoClick = jest.fn()
-			const onCancel = jest.fn()
+			const onYesClick = vi.fn()
+			const onNoClick = vi.fn()
+			const onCancel = vi.fn()
 			render(
 				<ConfirmationDialog
 					title={"I am Title"}
@@ -115,7 +115,7 @@ describe("ConfirmationDialog", () => {
 					message={
 						"Can you React from a shooting bullet travelling at lightspeed?"
 					}
-					onYesClick={jest.fn()}
+					onYesClick={vi.fn()}
 				/>,
 			)
 			assertDialog(true)
@@ -130,7 +130,7 @@ describe("ConfirmationDialog", () => {
 					message={
 						"Can you React from a shooting bullet travelling at lightspeed?"
 					}
-					onYesClick={jest.fn()}
+					onYesClick={vi.fn()}
 				/>,
 			)
 			assertDialog(true)

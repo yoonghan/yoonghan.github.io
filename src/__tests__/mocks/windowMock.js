@@ -1,13 +1,13 @@
 afterEach(() => {
-	jest.restoreAllMocks()
+	vi.restoreAllMocks()
 })
 
 export const spyAsAndroid = () => {
-	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("Android")
+	vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue("Android")
 }
 
 export const spyAsIPad = () => {
-	jest.spyOn(window.navigator, "userAgent", "get").mockReturnValue("iPad")
+	vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue("iPad")
 }
 
 export const setServiceNavigator = () => {
@@ -37,7 +37,7 @@ export const setServiceNavigator = () => {
 						state: "activated",
 					},
 					unregister: () => {
-						jest.spyOn(
+						vi.spyOn(
 							window.navigator.serviceWorker,
 							"getRegistration",
 						).mockResolvedValue({
@@ -67,7 +67,7 @@ export const setServiceNavigator = () => {
 			}),
 			register: (_swPath, _options) =>
 				new Promise((resolve, _reject) => {
-					jest.spyOn(
+					vi.spyOn(
 						window.navigator.serviceWorker,
 						"getRegistration",
 					).mockResolvedValue({
@@ -88,17 +88,17 @@ export const setServiceNavigator = () => {
 }
 
 export const spyOnReferrer = (location) => {
-	jest.spyOn(document, "referrer", "get").mockReturnValue(location)
+	vi.spyOn(document, "referrer", "get").mockReturnValue(location)
 }
 
 export const spyOnScrollTo = () => {
-	const scrollToSpy = jest.fn()
+	const scrollToSpy = vi.fn()
 	global.window.scrollTo = scrollToSpy
 	return scrollToSpy
 }
 
 export const spyOnReload = () => {
-	const reloadSpy = jest.fn()
+	const reloadSpy = vi.fn()
 	window.location.reload = reloadSpy
 	return reloadSpy
 }

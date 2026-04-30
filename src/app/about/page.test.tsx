@@ -19,8 +19,8 @@ describe("About", () => {
 		expect(screen.getAllByText("Certifications")).toHaveLength(2)
 	})
 
-	it("should be able to scroll up", () => {
+	it("should be able to scroll up", async () => {
 		renderComponent()
-		assertScrollToTop()
+		await assertScrollToTop()
 	})
 })

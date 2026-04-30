@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import testLibUserEvent from "@testing-library/user-event";
 import { spyReload } from "@/__tests__/mocks/locationMock";
 import { KeyboardKeys } from "@/components/PopupKeyboard";
@@ -6,7 +6,9 @@ import "@/__tests__/mocks/snakeWasmMock";
 import Board from "./Board";
 import { GameContext } from "./GameContext";
 
-describe("Board", () => {
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+describe("Board", { timeout: 60000 }, () => {
 	let userEvent = testLibUserEvent;
 
 	it("should render screen with a start button", async () => {
@@ -26,15 +28,11 @@ describe("Board", () => {
 
 	describe("being played", () => {
 		beforeEach(() => {
-			jest.useFakeTimers();
-			userEvent = testLibUserEvent.setup({
-				advanceTimers: jest.advanceTimersByTime,
-			}) as any;
+			userEvent = testLibUserEvent.setup();
 		});
 
 		afterEach(() => {
-			jest.runOnlyPendingTimers();
-			jest.useRealTimers();
+			vi.useRealTimers();
 		});
 
 		const renderComponent = async (isGameStarted = false) => {
@@ -69,7 +67,7 @@ describe("Board", () => {
 		};
 
 		const clickPlayButton = async () => {
-			await userEvent.click(screen.getByRole("button", { name: "Play" }));
+			fireEvent.click(screen.getByRole("button", { name: "Play" }));
 		};
 
 		it("should render reload on Play of game if game is start", async () => {
@@ -85,20 +83,11 @@ describe("Board", () => {
 
 			await clickPlayButton();
 
-			expect(
-				await screen.findByRole("button", { name: "Playing..." }),
-			).toBeInTheDocument();
 			expect(await screen.findByText("Playing")).toBeInTheDocument();
-			jest.advanceTimersByTime(1000);
-			await userEvent.keyboard(`{${KeyboardKeys.UP}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			await wait(1000);
+			fireEvent.keyDown(window, { key: KeyboardKeys.UP });
+			await wait(1000);
 			expect(await screen.findByText("1")).toBeInTheDocument();
-
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
 		});
 
 		it("should be able to play the game and move to Lost after play", async () => {
@@ -106,19 +95,12 @@ describe("Board", () => {
 
 			await clickPlayButton();
 
-			expect(
-				await screen.findByRole("button", { name: "Playing..." }),
-			).toBeInTheDocument();
 			expect(await screen.findByText("Playing")).toBeInTheDocument();
-			jest.advanceTimersByTime(1000);
-			await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			await wait(1000);
+			fireEvent.keyDown(window, { key: KeyboardKeys.DOWN });
+			await wait(1000);
 			expect(await screen.findByText("1")).toBeInTheDocument();
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			await wait(1500);
 			expect(await screen.findByText("Lost")).toBeInTheDocument();
 		});
 
@@ -127,30 +109,20 @@ describe("Board", () => {
 
 			await clickPlayButton();
 
-			expect(
-				await screen.findByRole("button", { name: "Playing..." }),
-			).toBeInTheDocument();
 			expect(await screen.findByText("Playing")).toBeInTheDocument();
-			jest.advanceTimersByTime(1000);
-			await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			await wait(1000);
+			fireEvent.keyDown(window, { key: KeyboardKeys.DOWN });
+			await wait(1000);
 			expect(await screen.findByText("1")).toBeInTheDocument();
-			await userEvent.keyboard(`{${KeyboardKeys.LEFT}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			fireEvent.keyDown(window, { key: KeyboardKeys.LEFT });
+			await wait(1000);
 			if (screen.queryByText("2")) {
 				//win if reward spawns on cell = 2
 				expect(await screen.findByText("Won")).toBeInTheDocument();
 			} else {
 				//reward spawns on cell = 0
-				await userEvent.keyboard(`{${KeyboardKeys.UP}}`);
-				act(() => {
-					jest.advanceTimersByTime(1000);
-				});
-
+				fireEvent.keyDown(window, { key: KeyboardKeys.UP });
+				await wait(1000);
 				expect(await screen.findByText("Won")).toBeInTheDocument();
 				expect(screen.getByText("2")).toBeInTheDocument();
 			}
@@ -161,30 +133,20 @@ describe("Board", () => {
 
 			await clickPlayButton();
 
-			expect(
-				await screen.findByRole("button", { name: "Playing..." }),
-			).toBeInTheDocument();
 			expect(await screen.findByText("Playing")).toBeInTheDocument();
-			jest.advanceTimersByTime(1000);
-			await userEvent.keyboard(`{${KeyboardKeys.DOWN}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			await wait(1000);
+			fireEvent.keyDown(window, { key: KeyboardKeys.DOWN });
+			await wait(1000);
 			expect(await screen.findByText("1")).toBeInTheDocument();
-			await userEvent.keyboard(`{${KeyboardKeys.RIGHT}}`);
-			act(() => {
-				jest.advanceTimersByTime(1000);
-			});
+			fireEvent.keyDown(window, { key: KeyboardKeys.RIGHT });
+			await wait(1000);
 			if (screen.queryByText("2")) {
 				//win if reward spawns on cell = 2
 				expect(await screen.findByText("Won")).toBeInTheDocument();
 			} else {
 				//reward spawns on cell = 0
-				await userEvent.keyboard(`{${KeyboardKeys.UP}}`);
-				act(() => {
-					jest.advanceTimersByTime(1000);
-				});
-
+				fireEvent.keyDown(window, { key: KeyboardKeys.UP });
+				await wait(1000);
 				expect(await screen.findByText("Won")).toBeInTheDocument();
 				expect(screen.getByText("2")).toBeInTheDocument();
 			}

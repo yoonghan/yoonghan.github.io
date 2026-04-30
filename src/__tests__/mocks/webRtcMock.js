@@ -1,14 +1,14 @@
-export const setRemoteDescriptionMock = jest.fn()
+export const setRemoteDescriptionMock = vi.fn()
 
-export const setLocalDescriptionMock = jest.fn()
+export const setLocalDescriptionMock = vi.fn()
 
-export const createAnswerMock = jest.fn()
+export const createAnswerMock = vi.fn()
 createAnswerMock.mockReturnValueOnce("answer sdp")
 
-export const createOfferMock = jest.fn()
+export const createOfferMock = vi.fn()
 createOfferMock.mockResolvedValue("offer sdp")
 
-export const closeMock = jest.fn()
+export const closeMock = vi.fn()
 
 class MediaStream {
 	video = []

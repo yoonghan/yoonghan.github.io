@@ -7,7 +7,7 @@ import { MessageType } from "../config/MessageType"
 import ChatMessageBox, { apiUrl } from "."
 
 describe("ChatMessageBox", () => {
-	const renderComponent = (onMessageSend = jest.fn(), noRef = false) =>
+	const renderComponent = (onMessageSend = vi.fn(), noRef = false) =>
 		render(<ChatMessageBox onMessageSend={onMessageSend} noRef={noRef} />)
 
 	const clickDialogYes = async () => {
@@ -37,7 +37,7 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to send message and dialog displays the message", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		renderComponent(messageSendFn)
 		await userEvent.type(
 			screen.getByPlaceholderText("Your Message"),
@@ -50,7 +50,7 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to send message and dialog with enter key only", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		renderComponent(messageSendFn)
 		await userEvent.type(
 			screen.getByPlaceholderText("Your Message"),
@@ -62,7 +62,7 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should not send message, if message input is blank", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		renderComponent(messageSendFn)
 		await userEvent.click(screen.getByRole("button", { name: "Send" }))
 
@@ -70,7 +70,7 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to upload a file, but fail to process", async () => {
-		renderComponent(jest.fn())
+		renderComponent(vi.fn())
 		await userEvent.upload(
 			screen.getByTestId("file-uploader"),
 			new File(["A file content."], "chucknorris.png", {
@@ -87,10 +87,10 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to upload a file and successfully complete it", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		const uploadFilename = "jamesmillar.jpg"
 		const serverFileName = "https://google.com/jamesmillar.jpg"
-		;(global.fetch as unknown as jest.Mock).mockResolvedValue({
+		;(global.fetch as unknown as vi.Mock).mockResolvedValue({
 			json: () => Promise.resolve({ status: "ok", data: serverFileName }),
 		})
 		renderComponent(messageSendFn)
@@ -112,9 +112,9 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to handle failed", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		const uploadFilename = "jamesmillar.jpg"
-		;(global.fetch as unknown as jest.Mock).mockRejectedValue(
+		;(global.fetch as unknown as vi.Mock).mockRejectedValue(
 			"Server failed",
 		)
 		renderComponent(messageSendFn)
@@ -135,9 +135,9 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should be able to handle file upload via button", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		const uploadFilename = "jamesmillar.jpg"
-		;(global.fetch as unknown as jest.Mock).mockRejectedValue(
+		;(global.fetch as unknown as vi.Mock).mockRejectedValue(
 			"Server failed",
 		)
 		renderComponent(messageSendFn)
@@ -159,9 +159,9 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should not do anything when dialog clicked is no", async () => {
-		const messageSendFn = jest.fn()
+		const messageSendFn = vi.fn()
 		const uploadFilename = "jamesmillar.jpg"
-		;(global.fetch as unknown as jest.Mock).mockRejectedValue(
+		;(global.fetch as unknown as vi.Mock).mockRejectedValue(
 			"Server failed",
 		)
 		renderComponent(messageSendFn)
@@ -188,7 +188,7 @@ describe("ChatMessageBox", () => {
 	})
 
 	it("should work as expected if ref is undefined", async () => {
-		const mockSend = jest.fn()
+		const mockSend = vi.fn()
 		const { unmount } = renderComponent(mockSend, true)
 
 		expect(screen.queryByText("Loading Chat Room")).not.toBeInTheDocument()
@@ -226,7 +226,7 @@ describe("ChatMessageBox", () => {
 						Custom Buttom
 					</button>
 					<ChatMessageBox
-						onMessageSend={jest.fn()}
+						onMessageSend={vi.fn()}
 						ref={refComponent}
 					/>
 				</>

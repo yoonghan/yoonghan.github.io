@@ -20,7 +20,7 @@ describe("History", () => {
 
 	it("should be able to scroll up", async () => {
 		renderComponent()
-		assertScrollToTop()
+		await assertScrollToTop()
 	})
 
 	it("should have the right metadata", () => {

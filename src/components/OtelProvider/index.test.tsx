@@ -2,8 +2,8 @@ import { render } from "@testing-library/react"
 import { initOpenTelemetry } from "@/util/otel-web"
 import OtelProvider from "."
 
-jest.mock("@/util/otel-web", () => ({
-	initOpenTelemetry: jest.fn(),
+vi.mock("@/util/otel-web", () => ({
+	initOpenTelemetry: vi.fn(),
 }))
 
 describe("OtelProvider", () => {

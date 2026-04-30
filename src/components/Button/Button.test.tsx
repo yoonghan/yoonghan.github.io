@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import Button from "."
 
-jest.mock("next/link", () => ({
+vi.mock("next/link", () => ({
 	__esModule: true,
 	default: ({ href, children }: { href: string; children: any }) => {
 		return (
@@ -20,14 +20,14 @@ describe("Button", () => {
 	})
 
 	it("should render the button which is clickable", async () => {
-		const clickFn = jest.fn()
+		const clickFn = vi.fn()
 		render(<Button onClick={clickFn}>Click Me</Button>)
 		await userEvent.click(screen.getByRole("button", { name: "Click Me" }))
 		expect(clickFn).toHaveBeenCalled()
 	})
 
 	it("should be able to add additional props for button", async () => {
-		const clickFn = jest.fn()
+		const clickFn = vi.fn()
 		render(
 			<Button onClick={clickFn} additionalProps={{ type: "submit" }}>
 				Click Me

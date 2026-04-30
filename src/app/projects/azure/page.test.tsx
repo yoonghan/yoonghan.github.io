@@ -5,7 +5,7 @@ import { maxDuration, metadata } from "./page"
 
 describe("Azure Integration", () => {
 	beforeEach(() => {
-		jest.resetModules()
+		vi.resetModules()
 		fetchMock.mockReset()
 	})
 
