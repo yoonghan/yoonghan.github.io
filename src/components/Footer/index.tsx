@@ -1,48 +1,40 @@
 import Link from "next/link"
-import { memo, useCallback, useMemo } from "react"
+import { memo } from "react"
 import { type PageConfig, sortedFooterPages } from "../../config/pages"
 import styles from "./Footer.module.css"
 
 const Footer = () => {
-	const renameDisplays = useCallback((display: string) => {
+	const renameDisplays = (display: string) => {
 		if (display === "Project Portfolio") {
 			return "All"
 		}
 		return display
-	}, [])
+	}
 
-	const renderLinks = useCallback(
+	const renderLinks =
 		(footerPage: PageConfig) => (
 			<li key={footerPage.display}>
 				<Link href={footerPage.path}>
 					{renameDisplays(footerPage.display)}
 				</Link>
 			</li>
-		),
-		[renameDisplays],
-	)
+		)
 
-	const renderedLearn = useMemo(() => {
-		return sortedFooterPages
-			.filter(
-				(footerPage) =>
-					!footerPage.path.startsWith("/projects") &&
-					!footerPage.path.startsWith("/experiments"),
-			)
-			.map((footerPage) => renderLinks(footerPage))
-	}, [renderLinks])
+	const renderedLearn = sortedFooterPages
+		.filter(
+			(footerPage) =>
+				!footerPage.path.startsWith("/projects") &&
+				!footerPage.path.startsWith("/experiments"),
+		)
+		.map((footerPage) => renderLinks(footerPage))
 
-	const renderedProjects = useMemo(() => {
-		return sortedFooterPages
-			.filter((footerPage) => footerPage.path.startsWith("/projects"))
-			.map((footerPage) => renderLinks(footerPage))
-	}, [renderLinks])
+	const renderedProjects = sortedFooterPages
+		.filter((footerPage) => footerPage.path.startsWith("/projects"))
+		.map((footerPage) => renderLinks(footerPage))
 
-	const renderedExperiments = useMemo(() => {
-		return sortedFooterPages
-			.filter((footerPage) => footerPage.path.startsWith("/experiments"))
-			.map((footerPage) => renderLinks(footerPage))
-	}, [renderLinks])
+	const renderedExperiments = sortedFooterPages
+		.filter((footerPage) => footerPage.path.startsWith("/experiments"))
+		.map((footerPage) => renderLinks(footerPage))
 
 	return (
 		<footer className={`pt-16 ${styles.container} text-sm`}>

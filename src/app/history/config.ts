@@ -13,6 +13,7 @@ import {
 	faSpinner,
 	faTelevision,
 	faToolbox,
+	faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons"
 import type { IEvent } from "@/components/Timeline"
 
@@ -158,7 +159,14 @@ export const siteHistory: IEvent[] = [
 	{
 		id: "Apr-2026",
 		date: "April-2026",
-		desc: "Switch to Biome, purge Git history 400MB → 76MB, fixed .env secret leaks",
+		desc: "Switch to Biome, purge Git history 400MB → 76MB, Enable GitGuardian fixing .env secret leaks",
 		faIcon: faToolbox,
+	},
+	{
+		id: "May-2026",
+		date: "May-2026",
+		special: "Explore NextJS 16 and React 19",
+		desc: "Enable React Compiler",
+		faIcon: faWandMagicSparkles,
 	},
 ]

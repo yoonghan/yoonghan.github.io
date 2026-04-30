@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef } from "react"
+import { useEffect, useRef } from "react"
 import ChatMessageBox from "@/components/Chat/ChatMessageBox"
 import type { MessageHandler } from "@/components/Chat/ChatMessageBox/ChatMessageDialog"
 import type { MessageType } from "@/components/Chat/config/MessageType"
@@ -16,7 +16,7 @@ interface Props {
 const Messenger = ({ appKey, cluster }: Props) => {
 	const chatMessageBoxRef = useRef<MessageHandler>(null)
 
-	const printMessage = useCallback(
+	const printMessage =
 		(sender?: number) => (message: string, messageType: MessageType) => {
 			if (chatMessageBoxRef.current !== null) {
 				chatMessageBoxRef.current.addMessage(
@@ -25,15 +25,10 @@ const Messenger = ({ appKey, cluster }: Props) => {
 					messageType,
 				)
 			}
-		},
-		[],
-	)
+		}
 
-	const connectionPrinter = useMemo(
-		() => printMessage(undefined),
-		[printMessage],
-	)
-	const eventPrinter = useMemo(() => printMessage(2), [printMessage])
+	const connectionPrinter = printMessage(undefined)
+	const eventPrinter = printMessage(2)
 
 	const { connect, disconnect, send } = usePusher({
 		eventName: "walcron_messenger",
@@ -59,12 +54,9 @@ const Messenger = ({ appKey, cluster }: Props) => {
 		}
 	}, [disconnect, connect])
 
-	const onMessageSend = useCallback(
-		(message: string, messageType: MessageType) => {
-			send(message, messageType)
-		},
-		[send],
-	)
+	const onMessageSend = (message: string, messageType: MessageType) => {
+		send(message, messageType)
+	}
 
 	return (
 		<div className="walcron-container">

@@ -112,6 +112,12 @@ const pages: PageConfig[] = [
 		],
 		order: 6,
 	},
+	{
+		path: "/validator",
+		display: "Validator",
+		order: 7,
+		filterOptions: [FilterOption.NOT_MENU, FilterOption.NOT_FOOTER, FilterOption.NOT_SITE_MAP],
+	}
 ]
 
 export const findPageByPath = (path: string) =>

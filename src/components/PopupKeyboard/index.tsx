@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo } from "react"
+import { useCallback, useEffect } from "react"
 import Popup from "reactjs-popup"
 import Button from "../Button"
 import styles from "./PopupKeyboard.module.css"
@@ -30,12 +30,9 @@ const PopupKeyboard = ({
 	onClickCallback,
 	enableKeyboardListener = false,
 }: PopupKeyboardType) => {
-	const onKeyClick = useCallback(
-		(key: KeyboardKeys) => () => {
-			onClickCallback(key)
-		},
-		[onClickCallback],
-	)
+	const onKeyClick = (key: KeyboardKeys) => () => {
+		onClickCallback(key)
+	}
 
 	const buildKeyboardListener = useCallback(() => {
 		return (event: KeyboardEvent) => {
@@ -67,46 +64,44 @@ const PopupKeyboard = ({
 		}
 	}, [enableKeyboardListener, buildKeyboardListener])
 
-	const drawnKeyboard = useMemo(() => {
-		return (
-			<div className={styles["arrow-BtnContainer"]}>
+	const drawnKeyboard = (
+		<div className={styles["arrow-BtnContainer"]}>
+			<div>
+				<Button
+					styling={{ small: true, inverted: true }}
+					onClick={onKeyClick(KeyboardKeys.UP)}
+				>
+					&nbsp;↑&nbsp;
+				</Button>
+			</div>
+			<div>
 				<div>
 					<Button
 						styling={{ small: true, inverted: true }}
-						onClick={onKeyClick(KeyboardKeys.UP)}
+						onClick={onKeyClick(KeyboardKeys.LEFT)}
 					>
-						&nbsp;↑&nbsp;
+						←
 					</Button>
 				</div>
 				<div>
-					<div>
-						<Button
-							styling={{ small: true, inverted: true }}
-							onClick={onKeyClick(KeyboardKeys.LEFT)}
-						>
-							←
-						</Button>
-					</div>
-					<div>
-						<Button
-							styling={{ small: true, inverted: true }}
-							onClick={onKeyClick(KeyboardKeys.DOWN)}
-						>
-							&nbsp;↓&nbsp;
-						</Button>
-					</div>
-					<div>
-						<Button
-							styling={{ small: true, inverted: true }}
-							onClick={onKeyClick(KeyboardKeys.RIGHT)}
-						>
-							→
-						</Button>
-					</div>
+					<Button
+						styling={{ small: true, inverted: true }}
+						onClick={onKeyClick(KeyboardKeys.DOWN)}
+					>
+						&nbsp;↓&nbsp;
+					</Button>
+				</div>
+				<div>
+					<Button
+						styling={{ small: true, inverted: true }}
+						onClick={onKeyClick(KeyboardKeys.RIGHT)}
+					>
+						→
+					</Button>
 				</div>
 			</div>
-		)
-	}, [onKeyClick])
+		</div>
+	)
 
 	return (
 		<Popup

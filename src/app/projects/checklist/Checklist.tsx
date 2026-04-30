@@ -1,6 +1,6 @@
 "use client"
 
-import { type ReactNode, useCallback, useMemo, useState } from "react"
+import { type ReactNode, useState } from "react"
 import useSWR from "swr"
 import Button from "@/components/Button"
 import ScrollableList from "@/components/ScrollableList"
@@ -27,18 +27,18 @@ const CronJobCheckList = ({
 		fetcher,
 	)
 
-	const convertToLocalDate = useCallback((createdAt?: string) => {
+	const convertToLocalDate = (createdAt?: string) => {
 		if (!createdAt) {
 			return "N/A"
 		}
 		return new Date(createdAt).toLocaleString()
-	}, [])
+	}
 
-	const onClickViewMore = useCallback(async () => {
+	const onClickViewMore = async () => {
 		setCronHistoryUrl(apiUrl)
-	}, [])
+	}
 
-	const cronHistories = useMemo(() => {
+	const cronHistories = () => {
 		if (cronHistoryData && Array.isArray(cronHistoryData)) {
 			return (
 				<ScrollableList
@@ -68,14 +68,12 @@ const CronJobCheckList = ({
 			return <span>Loading data...</span>
 		}
 		return null
-	}, [convertToLocalDate, cronHistoryData, cronHistoryError, cronHistoryUrl])
+	}
 
-	const isDateValid = useCallback(
-		(date: string) => date === "N/A" || date === "Invalid Date",
-		[],
-	)
+	const isDateValid =
+		(date: string) => date === "N/A" || date === "Invalid Date"
 
-	const generateCronTable = useCallback(
+	const generateCronTable =
 		(
 			checksTitle: string,
 			message: string | undefined,
@@ -104,9 +102,7 @@ const CronJobCheckList = ({
 					</>
 				),
 			}
-		},
-		[convertToLocalDate, isDateValid],
-	)
+		}
 
 	return (
 		<section>
@@ -121,11 +117,11 @@ const CronJobCheckList = ({
 					),
 					...(queryTodayCron
 						? [
-								generateCronTable(
-									"Today's Run",
-									latestCron?.message,
-								),
-							]
+							generateCronTable(
+								"Today's Run",
+								latestCron?.message,
+							),
+						]
 						: []),
 				]}
 				className="text-black"
@@ -135,7 +131,7 @@ const CronJobCheckList = ({
 					View More
 				</Button>
 			)}
-			{cronHistories}
+			{cronHistories()}
 		</section>
 	)
 }

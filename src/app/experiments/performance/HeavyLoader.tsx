@@ -110,7 +110,7 @@ const HeavyLoaderNoSSR = () => {
 		<div className={styles.container}>
 			<p>
 				This page will only work on &quot;Development&quot; environment
-				where it profiles on the page rendering. Memo is the fastest.
+				where it profiles on the page rendering. Memo is the fastest - no longer true with React Compiler enabled!
 			</p>
 			<Profiler id="Free" onRender={callProfiling}>
 				<strong>Free</strong>

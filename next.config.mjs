@@ -56,17 +56,7 @@ const nextConfig = {
 		]
 	},
 
-	webpack: (config, { isServer }) => {
-		if (!isServer) {
-			config.resolve.fallback = {
-				...config.resolve.fallback,
-				// Disable the 'tls' module on the client side
-				tls: false,
-			}
-		}
-		return config
-	},
-	turbopack: {},
+	reactCompiler: true,
 }
 
 export default nextConfig

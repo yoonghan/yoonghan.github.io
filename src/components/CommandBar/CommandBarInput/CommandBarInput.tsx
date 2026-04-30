@@ -1,4 +1,3 @@
-import * as React from "react"
 import { AvailableInput } from "../CommandSearch/CommandSearch"
 import styles from "./CommandBarInput.module.css"
 
@@ -21,13 +20,9 @@ const AVAILABLE_COMMAND_KEYS_WITH_HELP = [
 ]
 
 const CommandBarInput = (props: Props) => {
-	const commandOptions = React.useMemo(
-		() =>
-			AVAILABLE_COMMAND_KEYS_WITH_HELP.map((command) => (
-				<option value={command} key={command} />
-			)),
-		[],
-	)
+	const commandOptions = AVAILABLE_COMMAND_KEYS_WITH_HELP.map((command) => (
+		<option value={command} key={command} />
+	))
 
 	const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target
