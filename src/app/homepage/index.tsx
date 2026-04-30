@@ -120,7 +120,7 @@ function Homepage() {
 								width={500}
 								height={1200}
 								alt="Deployment architecture"
-								className="mx-auto border-0"
+								className="h-auto mx-auto"
 							/>
 							<figcaption className="text-center text-sm mt-4">
 								Serverless Edge Architecture & CI/CD Flow

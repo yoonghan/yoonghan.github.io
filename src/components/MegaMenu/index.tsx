@@ -26,7 +26,7 @@ const MegaMenu = () => {
 				src="/img/logo/logo-color.svg"
 				alt="walcron logo"
 				width={36}
-				height={36}
+				height={30}
 			/>
 		</Link>
 	)
@@ -37,7 +37,7 @@ const MegaMenu = () => {
 				src="/img/logo/logo-color.svg"
 				alt="home"
 				width={18}
-				height={18}
+				height={15}
 				className="mr-4"
 			/>
 		</Link>

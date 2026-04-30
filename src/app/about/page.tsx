@@ -40,7 +40,7 @@ const About = () => {
 						{authorModel[0].title}
 					</h1>
 					<p>
-						<strong>Walcron</strong> is a by-product of a
+						Walcron is a by-product of a
 						couple&apos;s journey in the IT industry, with the main
 						purpose of sharing our knowledge and experience with the
 						world. We are also experimenting with new web
@@ -65,7 +65,7 @@ const About = () => {
 							width={454}
 							height={403}
 							alt="Walcron Web Authors"
-							className="m-auto"
+							className="m-auto w-auto"
 							priority={true}
 						/>
 						<Image
