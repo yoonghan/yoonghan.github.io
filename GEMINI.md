@@ -16,7 +16,7 @@ npm run dev
 
 The project uses a multi-layered testing strategy:
 
-*   **Unit Tests:** Run unit tests with Jest:
+*   **Unit Tests:** Run unit tests with Vitest:
     ```bash
     npm run test:single
     ```
