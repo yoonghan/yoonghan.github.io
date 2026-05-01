@@ -14,7 +14,7 @@ runs:
     - name: ⎔ Setup node
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node }}
+        node-version: ${{ vars.NODE_VERSION }}
         cache: "npm"
         registry-url: https://npm.pkg.github.com/
 
