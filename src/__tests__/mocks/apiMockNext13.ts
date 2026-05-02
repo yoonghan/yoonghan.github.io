@@ -41,9 +41,9 @@ const { NextRequestMock, NextResponseMock } = vi.hoisted(() => {
 	class NextResponseMock extends Response {
 		public body: any
 
-		send(_body: string) {}
+		send(_body: string) { }
 
-		setHeader(_name: string, _value: string | number | readonly string[]) {}
+		setHeader(_name: string, _value: string | number | readonly string[]) { }
 
 		static readonly json = (body: any, init?: ResponseInit) => {
 			return new NextResponseMock(JSON.stringify(body), init)
@@ -52,8 +52,6 @@ const { NextRequestMock, NextResponseMock } = vi.hoisted(() => {
 
 	return { NextRequestMock, NextResponseMock }
 })
-
-export { NextResponseMock as NextResponse }
 
 vi.mock("next/server", async (importActual) => {
 	const actual = await importActual<any>()

@@ -2,10 +2,10 @@ export const setRemoteDescriptionMock = vi.fn()
 
 export const setLocalDescriptionMock = vi.fn()
 
-export const createAnswerMock = vi.fn()
+const createAnswerMock = vi.fn()
 createAnswerMock.mockReturnValueOnce("answer sdp")
 
-export const createOfferMock = vi.fn()
+const createOfferMock = vi.fn()
 createOfferMock.mockResolvedValue("offer sdp")
 
 export const closeMock = vi.fn()
@@ -19,15 +19,15 @@ class MediaStream {
 
 	addTrack = () => {
 		this.video = ["one video"]
-		this.track = [{ stop: () => {} }]
+		this.track = [{ stop: () => { } }]
 	}
 }
 
-class RTCIceCandidate {}
+class RTCIceCandidate { }
 
-class RTCSessionDescription {}
+class RTCSessionDescription { }
 
-class MediaStreamTrack {}
+class MediaStreamTrack { }
 
 class RTCPeerConnection {
 	stream = null
