@@ -53,6 +53,7 @@ export default defineConfig({
 				"src/app/projects/game-snake/**",
 				"src/instrumentation.ts",
 				"src/util/location.ts",
+				"src/__tests__/mocks/**",
 			],
 		},
 	},
