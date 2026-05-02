@@ -1,7 +1,16 @@
-import stream from "node:stream"
-
-const fileReturnedMock = jest.fn()
-const storeCollectionGet = jest.fn()
+const { fileReturnedMock, storeCollectionGet, createStream } = vi.hoisted(() => {
+	const stream = require("node:stream")
+	const fileReturnedMock = vi.fn()
+	const storeCollectionGet = vi.fn()
+	const createStream = () => {
+		const streamData = new stream.Writable()
+		streamData._write = (_chunk, _encoding, done) => {
+			done()
+		}
+		return streamData
+	}
+	return { fileReturnedMock, storeCollectionGet, createStream }
+})
 
 const sampleFirebaseConfig = {
 	FIREBASE_BUCKET: "SampleBucket",
@@ -14,58 +23,54 @@ const sampleFirebaseConfig = {
 	FIREBASE_DATABASE_URL: "SampleDatabaseUrl",
 }
 
-const createStream = () => {
-	const streamData = new stream.Writable()
-	streamData._write = (_chunk, _encoding, done) => {
-		done()
-	}
-	return streamData
-}
-
-jest.mock("firebase-admin/auth", () => ({
-	...jest.mock("firebase-admin/auth"),
+vi.mock("firebase-admin/auth", () => ({
 	getAuth: () => ({
 		createUser: (credentialOptions) => ({ uid: credentialOptions.uid }),
 	}),
 }))
 
-jest.mock("firebase-admin", () => ({
-	...jest.mock("firebase-admin"),
-	apps: [], //to ensure only firebase is initialize once.
-	credential: {
-		cert: jest.fn(),
-	},
-	initializeApp: jest.fn(),
+vi.mock("firebase-admin", () => {
+	const adminMock = {
+		apps: [], //to ensure only firebase is initialize once.
+		credential: {
+			cert: vi.fn(),
+		},
+		initializeApp: vi.fn(),
 
-	storage: () => ({
-		bucket: () => ({
-			file: () => ({
-				createWriteStream: createStream,
-				get: fileReturnedMock,
+		storage: () => ({
+			bucket: () => ({
+				file: () => ({
+					createWriteStream: createStream,
+					get: fileReturnedMock,
+				}),
 			}),
 		}),
-	}),
-	firestore: () => ({
-		collection: () => ({
-			doc: () => ({
-				set: () => {},
-				get: storeCollectionGet,
-			}),
-			get: () => ({
-				docs: [
-					{
-						id: 1,
-						data: () => ({
-							source: "Cron",
-							method: "GET",
-							createdAt: "2024-12-01T01:01:01.293Z",
-						}),
-					},
-				],
+		firestore: () => ({
+			collection: () => ({
+				doc: () => ({
+					set: () => {},
+					get: storeCollectionGet,
+				}),
+				get: () => ({
+					docs: [
+						{
+							id: 1,
+							data: () => ({
+								source: "Cron",
+								method: "GET",
+								createdAt: "2024-12-01T01:01:01.293Z",
+							}),
+						},
+					],
+				}),
 			}),
 		}),
-	}),
-}))
+	}
+	return {
+		...adminMock,
+		default: adminMock,
+	}
+})
 
 const setStoreCollectionGetReturn = (toFail) => {
 	if (toFail) {

@@ -19,6 +19,10 @@ describe("Webrtc", () => {
 	})
 
 	it("should show warning if none of the environment is set", () => {
+		setEnv({
+			NEXT_PUBLIC_PUSHER_APP_KEY: undefined,
+			NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
+		})
 		renderComponent()
 		expect(
 			screen.getByText(

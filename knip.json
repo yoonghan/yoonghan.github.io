@@ -3,7 +3,8 @@
 		"backstop_data/**",
 		"crate/**/pkg/**",
 		"src/__e2e__/chatter/call-util.ts",
-		"src/app/experiments/storybook/config/Orb.tsx"
+		"src/app/experiments/storybook/config/Orb.tsx",
+		"src/__tests__/mocks/**"
 	],
 	"ignoreDependencies": [
 		"sharp",
@@ -11,7 +12,8 @@
 		"dotenv-cli",
 		"@opentelemetry/exporter-jaeger",
 		"@opentelemetry/sdk-trace-node",
-		"@opentelemetry/winston-transport"
+		"@opentelemetry/winston-transport",
+		"vite-tsconfig-paths"
 	],
 	"ignoreBinaries": [
 		"wasm-pack"

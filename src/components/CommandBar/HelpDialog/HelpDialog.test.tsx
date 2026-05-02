@@ -7,17 +7,17 @@ describe("HelpDialog", () => {
 	it("should render help dialog correctly", () => {
 		render(
 			<HelpDialog
-				onCancel={jest.fn()}
-				specialInputCallback={jest.fn()}
+				onCancel={vi.fn()}
+				specialInputCallback={vi.fn()}
 			/>,
 		)
 		expect(screen.getByText("Help")).toBeInTheDocument()
 	})
 
 	it("should trigger cancel on close", async () => {
-		const cancelFn = jest.fn()
+		const cancelFn = vi.fn()
 		render(
-			<HelpDialog onCancel={cancelFn} specialInputCallback={jest.fn()} />,
+			<HelpDialog onCancel={cancelFn} specialInputCallback={vi.fn()} />,
 		)
 
 		await userEvent.click(screen.getByRole("button", { name: "[ESC]" }))
@@ -25,8 +25,8 @@ describe("HelpDialog", () => {
 	})
 
 	it("should trigger cancel and special command if one of the input was clicked", async () => {
-		const cancelFn = jest.fn()
-		const specialInputFn = jest.fn()
+		const cancelFn = vi.fn()
+		const specialInputFn = vi.fn()
 		render(
 			<HelpDialog
 				onCancel={cancelFn}

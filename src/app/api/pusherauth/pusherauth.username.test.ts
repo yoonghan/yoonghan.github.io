@@ -17,6 +17,13 @@ describe("pusherauth/username", () => {
 	}
 
 	it("should get error without environment set", async () => {
+		setEnv({
+			NEXT_PUBLIC_PUSHER_APP_KEY: undefined,
+			PUSHER_APP_ID: undefined,
+			PUSHER_SECRET: undefined,
+			NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
+		})
+		PusherAPIClient.reInitialize()
 		const response = await POST(mockRequest(), { params: {} })
 		expect(response.status).toBe(500)
 		expect(await response.json()).toStrictEqual({
@@ -49,7 +56,7 @@ describe("pusherauth/username", () => {
 
 		const mockUserResponse = (users: { id: string }[]) => {
 			const userResponse = createResponse(users)
-			jest
+			vi
 				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "get")
 				.mockResolvedValue(userResponse)
@@ -124,7 +131,7 @@ describe("pusherauth/username", () => {
 
 		it("should be able to fail authentication", async () => {
 			mockUserResponse([])
-			jest
+			vi
 				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "authorizeChannel")
 				.mockReturnValueOnce({ auth: "" })
@@ -145,7 +152,7 @@ describe("pusherauth/username", () => {
 		})
 
 		it("should consider user does not exist if getuser api fail and succeed", async () => {
-			jest
+			vi
 				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "get")
 				.mockResolvedValue(createResponse([], 400))

@@ -137,6 +137,9 @@ _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Tok
 4. NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
 5. Same/extra NPM_TOKEN needs to be created for dependabot under Profile -> Security -> Dependabot.
 
+## Control Node version
+Set via Settings -> Secret and Variables -> Actions -> Variables -> Repository Variables. Add NODE_VERSION with value 22.
+
 ## Vercel/NextJS
 
 1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.

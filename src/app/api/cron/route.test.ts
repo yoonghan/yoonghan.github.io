@@ -5,41 +5,45 @@ import { execute } from "@/app/api/cron/module"
 import { GET } from "./route"
 
 // Mock dependencies
-jest.mock("@/app/api/cron/module", () => ({
-	execute: jest.fn(),
+vi.mock("@/app/api/cron/module", () => ({
+	execute: vi.fn(),
 }))
 
-const mockSpan = {
-	setAttribute: jest.fn(),
-	setStatus: jest.fn(),
-	recordException: jest.fn(),
-	end: jest.fn(),
-}
+const { mockSpan, mockTracer } = vi.hoisted(() => {
+	const mockSpan = {
+		setAttribute: vi.fn(),
+		setStatus: vi.fn(),
+		recordException: vi.fn(),
+		end: vi.fn(),
+	}
 
-const mockTracer = {
-	startActiveSpan: jest.fn().mockImplementation((_name, fn) => {
-		return fn(mockSpan)
-	}),
-}
+	const mockTracer = {
+		startActiveSpan: vi.fn().mockImplementation((_name, fn) => {
+			return fn(mockSpan)
+		}),
+	}
 
-jest.mock("@opentelemetry/api", () => {
-	const originalApi = jest.requireActual("@opentelemetry/api")
+	return { mockSpan, mockTracer }
+})
+
+vi.mock("@opentelemetry/api", async (importActual) => {
+	const originalApi = await importActual<any>()
 	return {
 		...originalApi,
 		trace: {
-			getTracer: jest.fn(() => mockTracer),
+			getTracer: vi.fn(() => mockTracer),
 		},
 	}
 })
 
 describe("GET /api/cron", () => {
 	afterEach(() => {
-		jest.clearAllMocks()
+		vi.clearAllMocks()
 	})
 
 	it("should call execute, trace the request, and return a successful response", async () => {
 		const mockResponse = [{ job: "test", status: "success" }]
-		;(execute as jest.Mock).mockResolvedValue(mockResponse)
+		;(execute as vi.Mock).mockResolvedValue(mockResponse)
 
 		const request = new NextRequest(
 			"http://localhost/api/cron?action=my-action",
@@ -72,7 +76,7 @@ describe("GET /api/cron", () => {
 			error: error,
 			message: "Something went wrong",
 		}
-		;(execute as jest.Mock).mockResolvedValue(mockErrorResponse)
+		;(execute as vi.Mock).mockResolvedValue(mockErrorResponse)
 
 		const request = new NextRequest(
 			"http://localhost/api/cron?action=failing-action",
@@ -102,7 +106,7 @@ describe("GET /api/cron", () => {
 
 	it("should handle requests with no action", async () => {
 		const mockResponse = [{ job: "default", status: "success" }]
-		;(execute as jest.Mock).mockResolvedValue(mockResponse)
+		;(execute as vi.Mock).mockResolvedValue(mockResponse)
 
 		const request = new NextRequest("http://localhost/api/cron")
 		await GET(request)

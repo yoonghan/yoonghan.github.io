@@ -2,7 +2,11 @@ const defaultProcessEnv = { ...process.env }
 
 export const setEnv = (environments: { [key: string]: string | undefined }) => {
 	Object.keys(environments).forEach((key: string) => {
-		process.env[key] = environments[key]
+		if (environments[key] === undefined) {
+			delete process.env[key]
+		} else {
+			process.env[key] = environments[key]
+		}
 	})
 }
 

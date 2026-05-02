@@ -5,7 +5,7 @@ import Form from "./Form";
 describe("Form", () => {
 	const renderComponent = ({
 		disabled = false,
-		onUpdate = jest.fn(),
+		onUpdate = vi.fn(),
 		formValues = {
 			snakeSpeed: 10,
 			worldDimension: 11,
@@ -43,7 +43,7 @@ describe("Form", () => {
 	});
 
 	it("should allow form to change values", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {
@@ -78,7 +78,7 @@ describe("Form", () => {
 	});
 
 	it("should show error if the limit is above 100 and Error should disappear when fixed", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {
@@ -109,7 +109,7 @@ describe("Form", () => {
 	});
 
 	it("should validate snakeSize cannot be larger than worldDimension", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {
@@ -128,7 +128,7 @@ describe("Form", () => {
 	});
 
 	it("should validate worldDimension cannot be smaller than snakeSize", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {
@@ -155,7 +155,7 @@ describe("Form", () => {
 	});
 
 	it("should be able to handle exceptional input cases", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {
@@ -173,7 +173,7 @@ describe("Form", () => {
 	});
 
 	it("should not allow snakeSize less than 2", async () => {
-		const mockUpdate = jest.fn();
+		const mockUpdate = vi.fn();
 		renderComponent({
 			onUpdate: mockUpdate,
 			formValues: {

@@ -6,8 +6,8 @@ import TextArea from "./TextArea"
 describe("TextArea", () => {
 	const renderComponent = (
 		value = "",
-		onChange = jest.fn(),
-		onSubmit = jest.fn(),
+		onChange = vi.fn(),
+		onSubmit = vi.fn(),
 	) =>
 		render(
 			<TextArea onSubmit={onSubmit} value={value} onChange={onChange} />,
@@ -19,15 +19,15 @@ describe("TextArea", () => {
 	})
 
 	it("should trigger onChange for text typed", async () => {
-		const onChangeFn = jest.fn()
+		const onChangeFn = vi.fn()
 		renderComponent("", onChangeFn)
 		await UserEvent.type(screen.getByRole("textbox"), "a")
 		expect(onChangeFn).toHaveBeenCalled()
 	})
 
 	it("should submit when enter is keyed in", async () => {
-		const onChangeFn = jest.fn()
-		const onSubmitFn = jest.fn()
+		const onChangeFn = vi.fn()
+		const onSubmitFn = vi.fn()
 		renderComponent("", onChangeFn, onSubmitFn)
 		await UserEvent.type(screen.getByRole("textbox"), "Hi {enter}")
 		expect(onSubmitFn).toHaveBeenCalled()
@@ -35,7 +35,7 @@ describe("TextArea", () => {
 
 	it("should not trigger submit, but on change if shift+enter is keyed in", async () => {
 		let hasNewLine = false
-		const onChangeFn = jest.fn()
+		const onChangeFn = vi.fn()
 		onChangeFn.mockImplementation(
 			(event: ChangeEvent<HTMLTextAreaElement>) => {
 				if (event.target.value === "\r\n") {
@@ -43,7 +43,7 @@ describe("TextArea", () => {
 				}
 			},
 		)
-		const onSubmitFn = jest.fn()
+		const onSubmitFn = vi.fn()
 		renderComponent("", onChangeFn, onSubmitFn)
 		await UserEvent.type(
 			screen.getByRole("textbox"),

@@ -23,7 +23,7 @@ describe("Table", () => {
 	})
 
 	it("should allow row click", async () => {
-		const clickFn = jest.fn()
+		const clickFn = vi.fn()
 		const firstRecord = {
 			headerOne: "value1",
 			headerTwo: <span>value2</span>,

@@ -5,11 +5,11 @@ import { setEnv } from "@/__tests__/mocks/setEnv"
 import { PusherAPIClient } from "@/app/api/pusherauth/PusherAPIClient"
 import { POST } from "@/app/api/pusherauth/route"
 
-jest.mock("@opentelemetry/api", () => ({
+vi.mock("@opentelemetry/api", () => ({
 	trace: {
-		getTracer: jest.fn(() => ({
-			startActiveSpan: jest.fn((_name, fn) =>
-				fn({ end: jest.fn(), setAttributes: jest.fn() }),
+		getTracer: vi.fn(() => ({
+			startActiveSpan: vi.fn((_name, fn) =>
+				fn({ end: vi.fn(), setAttributes: vi.fn() }),
 			),
 		})),
 	},
@@ -27,6 +27,13 @@ describe("pusherauth", () => {
 	}
 
 	it("should return error with environment not set", async () => {
+		setEnv({
+			NEXT_PUBLIC_PUSHER_APP_KEY: undefined,
+			PUSHER_APP_ID: undefined,
+			PUSHER_SECRET: undefined,
+			NEXT_PUBLIC_PUSHER_CLUSTER: undefined,
+		})
+		PusherAPIClient.reInitialize()
 		const response = await POST(mockRequest())
 		expect(response.status).toBe(500)
 		expect(await response.json()).toStrictEqual({
@@ -84,7 +91,7 @@ describe("pusherauth", () => {
 		})
 
 		it("should be able to fail authentication", async () => {
-			jest
+			vi
 				// biome-ignore lint/style/noNonNullAssertion: Expected
 				.spyOn(PusherAPIClient.client!, "authorizeChannel")
 				.mockReturnValueOnce({ auth: "" })

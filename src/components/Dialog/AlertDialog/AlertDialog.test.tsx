@@ -10,7 +10,7 @@ describe("AlertDialog", () => {
 				message={
 					"Can you React from a shooting bullet travelling at lightspeed?"
 				}
-				onOk={jest.fn()}
+				onOk={vi.fn()}
 			/>,
 		)
 		expect(screen.getByText("I am Title")).toBeInTheDocument()
@@ -26,7 +26,7 @@ describe("AlertDialog", () => {
 			<AlertDialog
 				title={"I am Title"}
 				message={"Message one"}
-				onOk={jest.fn()}
+				onOk={vi.fn()}
 				okBtnText={"I am fine"}
 			/>,
 		)
@@ -36,7 +36,7 @@ describe("AlertDialog", () => {
 
 	describe("Button clicks", () => {
 		const renderComponent = () => {
-			const onOk = jest.fn()
+			const onOk = vi.fn()
 			render(
 				<AlertDialog
 					title={"I am Title"}

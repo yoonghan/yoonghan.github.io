@@ -1,6 +1,6 @@
-export const usePathnameFn = jest.fn()
+export const usePathnameFn = vi.fn()
 
-jest.mock("next/navigation", () => ({
+vi.mock("next/navigation", () => ({
 	usePathname: usePathnameFn,
-	useRouter: jest.fn(),
+	useRouter: vi.fn(),
 }))

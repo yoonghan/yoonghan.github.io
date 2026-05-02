@@ -9,8 +9,8 @@ import { useWebRtc } from "."
 
 describe("useWebRtc", () => {
 	it("should be fail to initiate call, when there is no video", () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),
@@ -23,9 +23,9 @@ describe("useWebRtc", () => {
 	})
 
 	it("should be able initiate call as requestor, when there is a video", async () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
-		const triggerAnswerFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
+		const triggerAnswerFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),
@@ -51,9 +51,9 @@ describe("useWebRtc", () => {
 	})
 
 	it("should be able initiate call as answerer, when there is a video", async () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
-		const triggerOfferFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
+		const triggerOfferFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),
@@ -82,8 +82,8 @@ describe("useWebRtc", () => {
 	})
 
 	it("should throw exception if initiate has not been triggered", () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),
@@ -115,8 +115,8 @@ describe("useWebRtc", () => {
 	})
 
 	it("should only allow to acknowledge answer if offer is set", () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),
@@ -138,8 +138,8 @@ describe("useWebRtc", () => {
 	})
 
 	it("should close connection when disconneced", () => {
-		const setRemoteStreamFn = jest.fn()
-		const errorCallbackFn = jest.fn()
+		const setRemoteStreamFn = vi.fn()
+		const errorCallbackFn = vi.fn()
 		const { result } = renderHook(
 			({ setRemoteStreamFn, errorCallbackFn }) =>
 				useWebRtc(setRemoteStreamFn, errorCallbackFn),

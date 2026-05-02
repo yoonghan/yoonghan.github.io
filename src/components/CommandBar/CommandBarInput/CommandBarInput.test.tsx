@@ -14,9 +14,9 @@ const Wrapper = ({
 
 describe("CommandBarInput", () => {
 	const renderComponent = ({
-		onSubmitCallback = jest.fn(),
-		onBlurCallback = jest.fn(),
-		onFocusCallback = jest.fn(),
+		onSubmitCallback = vi.fn(),
+		onBlurCallback = vi.fn(),
+		onFocusCallback = vi.fn(),
 	}: {
 		onSubmitCallback?: (
 			event: React.FormEvent<HTMLFormElement>,
@@ -61,7 +61,7 @@ describe("CommandBarInput", () => {
 	})
 
 	it("should be able to choose and submit suggestedInput", async () => {
-		const submitFn = jest.fn((e) => e.preventDefault())
+		const submitFn = vi.fn((e) => e.preventDefault())
 		renderComponent({ onSubmitCallback: submitFn })
 		await userEvent.type(screen.getByRole("combobox"), "help{enter}")
 		expect(submitFn).toHaveBeenCalled()
@@ -75,8 +75,8 @@ describe("CommandBarInput", () => {
 	})
 
 	it("should show prompt when focus", () => {
-		const blurCallback = jest.fn()
-		const focusCallback = jest.fn()
+		const blurCallback = vi.fn()
+		const focusCallback = vi.fn()
 		renderComponent({
 			onBlurCallback: blurCallback,
 			onFocusCallback: focusCallback,

@@ -9,10 +9,10 @@ describe("Projects", () => {
 		render(<Projects />)
 	}
 
-	it("should render the page with the important components", () => {
+	it("should render the page with the important components", async () => {
 		renderComponent()
 		expect(screen.getByText("Projects Portfolio"))
-		assertScrollToTop()
+		await assertScrollToTop()
 	})
 
 	it("should have cards pointing to right projects", () => {

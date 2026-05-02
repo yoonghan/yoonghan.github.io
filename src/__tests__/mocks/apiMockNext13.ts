@@ -1,66 +1,79 @@
-import { IncomingMessage } from "node:http"
-import { Socket } from "node:net"
+const { NextRequestMock, NextResponseMock } = vi.hoisted(() => {
+	const { IncomingMessage } = require("node:http")
+	const { Socket } = require("node:net")
 
-class NextRequest extends IncomingMessage {
-	public cookies: Partial<{
-		[key: string]: string
-	}> = {}
-	public body: any
-	public url: any
-	public nextUrl: URL
+	class NextRequestMock extends IncomingMessage {
+		public cookies: Partial<{
+			[key: string]: string
+		}> = {}
+		public body: any
+		public url: any
+		public nextUrl: URL
 
-	constructor(url: URL | string, options?: RequestInit) {
-		super(new Socket())
+		constructor(url: URL | string, options?: RequestInit) {
+			super(new Socket())
 
-		if (options) {
-			this.method = options.method
-			this.body = options.body
+			if (options) {
+				this.method = options.method
+				this.body = options.body
+			}
+			this.url = url
+			this.nextUrl = new URL(url.toString())
 		}
-		this.url = url
-		this.nextUrl = new URL(url.toString())
-	}
 
-	public formData = () => {
-		if (this.body instanceof FormData) {
-			return new Promise((resolve) => resolve(this.body))
+		public formData = () => {
+			if (this.body instanceof FormData) {
+				return new Promise((resolve) => resolve(this.body))
+			}
+			return undefined
 		}
-		return undefined
-	}
 
-	public json = async () => {
-		if (this.body instanceof String || typeof this.body === "string") {
-			return new Promise((resolve) =>
-				resolve(JSON.parse(this.body as string)),
-			)
+		public json = async () => {
+			if (this.body instanceof String || typeof this.body === "string") {
+				return new Promise((resolve) =>
+					resolve(JSON.parse(this.body as string)),
+				)
+			}
+			return undefined
 		}
-		return undefined
 	}
-}
 
-export class NextResponse extends Response {
-	public body: any
+	class NextResponseMock extends Response {
+		public body: any
 
-	send(_body: string) {}
+		send(_body: string) { }
 
-	setHeader(_name: string, _value: string | number | readonly string[]) {}
+		setHeader(_name: string, _value: string | number | readonly string[]) { }
 
-	static readonly json = (body: any, init?: ResponseInit) => {
-		return new NextResponse(JSON.stringify(body), init)
+		static readonly json = (body: any, init?: ResponseInit) => {
+			return new NextResponseMock(JSON.stringify(body), init)
+		}
 	}
-}
 
-jest.mock("next/server", () => ({
-	...jest.requireActual("next/server"),
-	NextRequest,
-	NextResponse,
-}))
+	return { NextRequestMock, NextResponseMock }
+})
 
-jest.mock("next/dist/server/web/spec-extension/request", () => ({
-	...jest.requireActual("next/dist/server/web/spec-extension/request"),
-	NextRequest,
-}))
+vi.mock("next/server", async (importActual) => {
+	const actual = await importActual<any>()
+	return {
+		...actual,
+		NextRequest: NextRequestMock,
+		NextResponse: NextResponseMock,
+	}
+})
 
-jest.mock("next/dist/server/web/spec-extension/response", () => ({
-	...jest.requireActual("next/dist/server/web/spec-extension/response"),
-	NextResponse,
-}))
+vi.mock("next/dist/server/web/spec-extension/request", async (importActual) => {
+	const actual = await importActual<any>()
+	return {
+		...actual,
+		NextRequest: NextRequestMock,
+	}
+})
+
+vi.mock("next/dist/server/web/spec-extension/response", async (importActual) => {
+	const actual = await importActual<any>()
+	return {
+		...actual,
+		NextResponse: NextResponseMock,
+	}
+})

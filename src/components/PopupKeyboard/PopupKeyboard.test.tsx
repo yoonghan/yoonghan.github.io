@@ -4,7 +4,7 @@ import PopupKeyboard, { KeyboardKeys } from "."
 
 describe("PopupKeyboard", () => {
 	it("should render a button and show arrows", async () => {
-		const clickCallback = jest.fn()
+		const clickCallback = vi.fn()
 		render(
 			<PopupKeyboard
 				buttonText={"Interactive Keyboard"}
@@ -28,7 +28,7 @@ describe("PopupKeyboard", () => {
 	})
 
 	it("should hide/show keyboard", async () => {
-		const clickCallback = jest.fn()
+		const clickCallback = vi.fn()
 		render(
 			<div data-testid="outside-wrapper">
 				<PopupKeyboard
@@ -56,7 +56,7 @@ describe("PopupKeyboard", () => {
 		}
 
 	it("should enable keyboard listener", async () => {
-		const clickCallback = jest.fn()
+		const clickCallback = vi.fn()
 		render(
 			<PopupKeyboard
 				buttonText={"Interactive Keyboard"}
@@ -80,7 +80,7 @@ describe("PopupKeyboard", () => {
 	})
 
 	it("should restore keyboard enabled listener on component unmount", async () => {
-		const clickCallback = jest.fn()
+		const clickCallback = vi.fn()
 		const { unmount } = render(
 			<PopupKeyboard
 				buttonText={"Interactive Keyboard"}
@@ -105,7 +105,7 @@ describe("PopupKeyboard", () => {
 	})
 
 	it("should not enable keyboard listener", async () => {
-		const clickCallback = jest.fn()
+		const clickCallback = vi.fn()
 		render(
 			<PopupKeyboard
 				buttonText={"Interactive Keyboard"}

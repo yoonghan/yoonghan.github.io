@@ -1,8 +1,8 @@
-export const spyRedirect = jest.fn()
-export const spySearch = jest.fn()
-export const spyReload = jest.fn()
+export const spyRedirect = vi.fn()
+export const spySearch = vi.fn()
+export const spyReload = vi.fn()
 
-jest.mock("@/util/location", () => ({
+vi.mock("@/util/location", () => ({
 	redirectTo: spyRedirect,
 	search: spySearch,
 	reload: spyReload,

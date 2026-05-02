@@ -6,36 +6,38 @@ import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base"
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web"
 import { initOpenTelemetry } from "./otel-web"
 
-jest.mock("@opentelemetry/exporter-trace-otlp-http", () => ({
-	OTLPTraceExporter: jest.fn(),
+vi.mock("@opentelemetry/exporter-trace-otlp-http", () => ({
+	OTLPTraceExporter: vi.fn(),
 }))
 
-jest.mock("@opentelemetry/sdk-trace-web", () => ({
-	WebTracerProvider: jest.fn().mockImplementation(() => ({
-		addSpanProcessor: jest.fn(),
-		register: jest.fn(),
-	})),
+vi.mock("@opentelemetry/sdk-trace-web", () => ({
+	WebTracerProvider: vi.fn().mockImplementation(function () {
+		return {
+			addSpanProcessor: vi.fn(),
+			register: vi.fn(),
+		}
+	}),
 }))
 
-jest.mock("@opentelemetry/sdk-trace-base", () => ({
-	BatchSpanProcessor: jest.fn(),
+vi.mock("@opentelemetry/sdk-trace-base", () => ({
+	BatchSpanProcessor: vi.fn(),
 }))
 
-jest.mock("@opentelemetry/instrumentation", () => ({
-	registerInstrumentations: jest.fn(),
+vi.mock("@opentelemetry/instrumentation", () => ({
+	registerInstrumentations: vi.fn(),
 }))
 
-jest.mock("@opentelemetry/instrumentation-fetch", () => ({
-	FetchInstrumentation: jest.fn(),
+vi.mock("@opentelemetry/instrumentation-fetch", () => ({
+	FetchInstrumentation: vi.fn(),
 }))
 
-jest.mock("@opentelemetry/context-zone", () => ({
-	ZoneContextManager: jest.fn(),
+vi.mock("@opentelemetry/context-zone", () => ({
+	ZoneContextManager: vi.fn(),
 }))
 
 describe("otel-web", () => {
 	beforeEach(() => {
-		jest.clearAllMocks()
+		vi.clearAllMocks()
 	})
 
 	it("should initialize OpenTelemetry when window is defined", () => {

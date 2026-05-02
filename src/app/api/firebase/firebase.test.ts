@@ -33,12 +33,12 @@ describe("firebase", () => {
 			})
 			const formData = new FormData()
 			// formData.append("file", textFileBlob as any)
-			jest.spyOn(formData, "get").mockReturnValue(textFileBlob as any)
+			vi.spyOn(formData, "get").mockReturnValue(textFileBlob as any)
 			return formData
 		}
 
 		afterEach(() => {
-			jest.clearAllMocks()
+			vi.clearAllMocks()
 		})
 
 		beforeEach(() => {

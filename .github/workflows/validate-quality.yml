@@ -4,9 +4,6 @@ description: Validate code quality and run tests only on main branch
 permissions:
   contents: read
 
-env:
-  NODE_VERSION: 20
-
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -28,7 +25,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ vars.NODE_VERSION }}
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
 

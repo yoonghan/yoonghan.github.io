@@ -67,7 +67,7 @@ describe("Video", () => {
 	it("should play video when user hovers over, but sound is still off to comply to autoplay", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
 		expect(
@@ -84,7 +84,7 @@ describe("Video", () => {
 	it("should be able to play with sound when 'div' is pressed to play", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
 		expect(
@@ -101,9 +101,9 @@ describe("Video", () => {
 	it("should stop playing when user unhover", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
-		const videoPauseFn = jest.fn()
+		const videoPauseFn = vi.fn()
 		video.pause = videoPauseFn
 
 		await userEvent.click(videoDivWrapper)
@@ -118,7 +118,7 @@ describe("Video", () => {
 	it("should play video when user click play  with sound on without unhovering out", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
 		await userEvent.click(
@@ -135,9 +135,9 @@ describe("Video", () => {
 	it("should play video when user click play, then click unplay with sound on", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPauseFn = jest.fn()
+		const videoPauseFn = vi.fn()
 		video.pause = videoPauseFn
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
 		await userEvent.click(
@@ -157,9 +157,9 @@ describe("Video", () => {
 	it("should stop playing video when has sound turned on and play then unhover", async () => {
 		const { video, videoDivWrapper } = renderComponent({})
 
-		const videoPauseFn = jest.fn()
+		const videoPauseFn = vi.fn()
 		video.pause = videoPauseFn
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
 		await userEvent.click(
@@ -186,10 +186,10 @@ describe("Video", () => {
 	it("should work but without functionality if ref is not ready", async () => {
 		const { video, videoDivWrapper } = renderComponent({ noRef: true })
 
-		const videoPlayFn = jest.fn()
+		const videoPlayFn = vi.fn()
 		video.play = videoPlayFn
 
-		const videoPauseFn = jest.fn()
+		const videoPauseFn = vi.fn()
 		video.pause = videoPauseFn
 
 		await userEvent.click(

@@ -20,7 +20,7 @@ describe("Navigator", () => {
 		render(
 			<Navigator
 				links={links}
-				onLinkClick={jest.fn()}
+				onLinkClick={vi.fn()}
 				label="Site Name"
 			/>,
 		)
@@ -31,7 +31,7 @@ describe("Navigator", () => {
 	})
 
 	it("should render timeline correctly", () => {
-		render(<Navigator links={links} onLinkClick={jest.fn()} label="Site" />)
+		render(<Navigator links={links} onLinkClick={vi.fn()} label="Site" />)
 
 		expect(screen.getByText("Site Map:")).toBeInTheDocument()
 
@@ -43,7 +43,7 @@ describe("Navigator", () => {
 	})
 
 	it("should user is able to click or keyenter on the links", async () => {
-		const linkFn = jest.fn()
+		const linkFn = vi.fn()
 		render(<Navigator links={links} onLinkClick={linkFn} label="Site" />)
 
 		await userEvent.click(screen.getAllByRole("menuitem")[0])

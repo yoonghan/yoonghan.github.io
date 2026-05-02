@@ -6,20 +6,8 @@ import ScrollToTopWithNoSSR from "./ScrollToTopNoSSR"
 describe("ScrollToTop", () => {
 	const scrollPoint = 501
 
-	beforeAll(() => {
-		jest.useFakeTimers()
-	})
-
-	afterAll(() => {
-		jest.runOnlyPendingTimers()
-		jest.useRealTimers()
-	})
-
 	const advanceScroll = () => {
 		fireEvent.scroll(window, {})
-		act(() => {
-			jest.runOnlyPendingTimers()
-		})
 	}
 
 	it("should render scroller when the right location is met", async () => {
@@ -34,9 +22,7 @@ describe("ScrollToTop", () => {
 		expect(scrollButton).not.toHaveClass("hidden")
 
 		//test return
-		const timedUserEvent = userEvent.setup({
-			advanceTimers: jest.advanceTimersByTime,
-		})
+		const timedUserEvent = userEvent.setup()
 
 		await timedUserEvent.click(scrollButton)
 		expect(window.scrollY).toBe(0)
@@ -45,13 +31,13 @@ describe("ScrollToTop", () => {
 	})
 
 	describe("listener mounting", () => {
-		let adder: jest.SpyInstance, remover: jest.SpyInstance
+		let adder: vi.SpyInstance, remover: vi.SpyInstance
 
 		beforeEach(() => {
-			adder = jest
+			adder = vi
 				.spyOn(window, "addEventListener")
 				.mockImplementation(() => {})
-			remover = jest
+			remover = vi
 				.spyOn(window, "removeEventListener")
 				.mockImplementation(() => {})
 		})

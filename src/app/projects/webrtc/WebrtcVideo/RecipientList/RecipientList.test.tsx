@@ -14,7 +14,7 @@ describe("RecipientList", () => {
 				name: "alicia",
 			},
 		]
-		const callbackFn = jest.fn()
+		const callbackFn = vi.fn()
 
 		render(
 			<RecipientList
@@ -46,7 +46,7 @@ describe("RecipientList", () => {
 				name: "alicia",
 			},
 		]
-		const callbackFn = jest.fn()
+		const callbackFn = vi.fn()
 
 		render(
 			<RecipientList
