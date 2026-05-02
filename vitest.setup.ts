@@ -55,3 +55,52 @@ vi.mock("next/image", () => ({
 		return React.createElement("img", { ...rest, src: finalSrc })
 	},
 }))
+
+vi.mock("pusher-js", () => {
+	class MockChannel {
+		callbacks: Record<string, Function[]> = {}
+		bind = vi.fn((event: string, cb: Function) => {
+			this.callbacks[event] = this.callbacks[event] || []
+			this.callbacks[event].push(cb)
+		})
+		unbind = vi.fn((event: string) => {
+			delete this.callbacks[event]
+		})
+		emit = vi.fn((event: string, data?: any) => {
+			this.callbacks[event]?.forEach((cb) => cb(data))
+		})
+		trigger = vi.fn((_event: string, _data: any) => {
+			return false
+		})
+	}
+
+	class MockConnection {
+		callbacks: Record<string, Function[]> = {}
+		bind = vi.fn((event: string, cb: Function) => {
+			this.callbacks[event] = this.callbacks[event] || []
+			this.callbacks[event].push(cb)
+		})
+		emit = vi.fn((event: string, data?: any) => {
+			this.callbacks[event]?.forEach((cb) => cb(data))
+		})
+	}
+
+	class MockPusher {
+		connection = new MockConnection()
+		channels: Record<string, MockChannel> = {}
+		subscribe = vi.fn((name: string) => {
+			this.channels[name] = this.channels[name] || new MockChannel()
+			return this.channels[name]
+		})
+		unsubscribe = vi.fn((name: string) => {
+			delete this.channels[name]
+		})
+		disconnect = vi.fn(() => {
+			this.connection.emit("disconnected")
+		})
+	}
+
+	return {
+		default: MockPusher,
+	}
+})
