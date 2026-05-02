@@ -8,8 +8,7 @@ import { AwsCloudPractitionerArticle } from "./config/AwsCloudPractitionerArticl
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
 import { AzureDevOps } from "./config/AzureDevOps"
 import { NpmCommands } from "./config/NpmCommands"
-import { ScalaFunctionalProgrammingArticle } from "./config/ScalaFunctionalProgrammingArticle"
-import { SunJavaDeveloperArticle } from "./config/SunJavaDeveloperArticle"
+import { OpenClaw } from "./config/OpenClaw"
 
 export const metadata: Metadata = {
 	title: "Learning",
@@ -52,12 +51,11 @@ const Learning = () => {
 						Azure Administrator Associate (AZ-104)
 					</Link>
 				</article>
+				<OpenClaw />
 				<AzureDevOps />
 				<AIPractitioner />
 				<AwsSolutionArchitectArticle />
 				<AwsCloudPractitionerArticle />
-				<SunJavaDeveloperArticle />
-				<ScalaFunctionalProgrammingArticle />
 				<NpmCommands />
 			</section>
 			<ScrollToTop />
