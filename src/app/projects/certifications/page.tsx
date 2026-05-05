@@ -7,8 +7,7 @@ import { AIPractitioner } from "./config/AIPractitioner"
 import { AwsCloudPractitionerArticle } from "./config/AwsCloudPractitionerArticle"
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
 import { AzureDevOps } from "./config/AzureDevOps"
-import { NpmCommands } from "./config/NpmCommands"
-import { OpenClaw } from "./config/OpenClaw"
+import { CloudMicroservices } from "./config/CloudMicroservices"
 
 export const metadata: Metadata = {
 	title: "Learning",
@@ -51,15 +50,14 @@ const Learning = () => {
 						Azure Administrator Associate (AZ-104)
 					</Link>
 				</article>
-				<OpenClaw />
+				<CloudMicroservices />
 				<AzureDevOps />
 				<AIPractitioner />
 				<AwsSolutionArchitectArticle />
 				<AwsCloudPractitionerArticle />
-				<NpmCommands />
-			</section>
+			</section >
 			<ScrollToTop />
-		</div>
+		</div >
 	)
 }
 
