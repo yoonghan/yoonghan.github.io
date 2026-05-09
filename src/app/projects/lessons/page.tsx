@@ -23,10 +23,26 @@ const Lessons = () => {
 	return (
 		<div className="walcron-container">
 			<h1>Lessons learned from projects</h1>
-			<span>What was learned over time for the projects.</span>
-			<br />
-			<br />
-			<article className="my-8">
+			<span className="mb-8">What was learned over time for the projects.</span>
+
+			<section>
+				<ul className="list-disc list-inside pl-4">
+					<li><Link href="#large-chunks"> Walcron: Large JS Chunks </Link></li>
+					<li><Link href="#defineProperty"> Testing with Object.defineProperty </Link></li>
+					<li><Link href="#jest-unsolvable"> Jest library with 3rd party library import under NEXT.JS is unsolvable </Link></li>
+					<li><Link href="#git-squash"> GIT commands </Link></li>
+					<li><Link href="#react-suspense"> React Suspense </Link></li>
+					<li><Link href="#google-tag"> Google Tag </Link></li>
+					<li><Link href="#flex-justify-center"> Flex Justify Center </Link></li>
+					<li><Link href="#gitlab"> Gitlab </Link></li>
+					<li><Link href="#godaddy"> Domain Transfer from GoDaddy to Cloudflare </Link></li>
+					<li><Link href="#nextjs-upgrade"> Migrating NextJS major upgrades </Link></li>
+					<li><Link href="#updating-npm-libraries"> Updating npm libraries </Link></li>
+					<li><Link href="#codecov"> Broke CodeCov </Link></li>
+					<li><Link href="#openclaw"> OpenClaw </Link></li>
+				</ul>
+			</section>
+			<article className="my-8" id="large-chunks">
 				<strong>Large JS Chunks in Walcron website</strong>
 				<hr />
 				<span className="text-red-500">Issues we faced</span>
@@ -99,7 +115,7 @@ const Lessons = () => {
 					</li>
 				</ol>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="defineProperty">
 				<strong>Testing with Object.defineProperty</strong>
 				<p>
 					Test suite that have Object.definedProperty override on
@@ -131,7 +147,7 @@ const Lessons = () => {
  import Pusher from 'pusher'; //then only it takes effect.
             `}</pre>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="jest-unsolvable">
 				<strong>
 					Jest library with 3rd party library import under NEXT.JS is
 					unsolvable
@@ -140,10 +156,10 @@ const Lessons = () => {
 					Error of `Cannot use import statement outside a module`,
 					cannot be solved at the moment when 3rd party library are
 					executed via mock. Only solution is to mock the whole
-					library with vi.mock(&apos;whole library&apos;).
+					library with jest.mock(&apos;whole library&apos;).
 				</p>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="git-squash">
 				<strong>GIT commands</strong>
 				<p>
 					https://www.internalpointers.com/post/squash-commits-into-one-git
@@ -152,7 +168,7 @@ const Lessons = () => {
             git rebase --interactive HEAD~3
             `}</pre>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="react-suspense">
 				<strong>React Suspense</strong>
 				<p>
 					A new way to handle asynchronous response. But take notes on
@@ -181,7 +197,7 @@ const Lessons = () => {
 					</li>
 				</ol>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="google-tag">
 				<strong>Google Tag</strong>
 				<ul className="list-decimal ml-4">
 					<li>
@@ -317,7 +333,7 @@ const Lessons = () => {
 					</li>
 				</ul>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="flex-justify-center">
 				<strong>Flex Justify Center</strong>
 				<p>
 					Justify center {"doesn't"} support overflow. Meaning if
@@ -335,7 +351,7 @@ const Lessons = () => {
 					.
 				</p>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="gitlab">
 				<h3 className="font-bold">CI/CD Caveat</h3>
 				<section className="my-4">
 					<h4>Gitlab</h4>
@@ -385,7 +401,7 @@ const Lessons = () => {
 					</ul>
 				</section>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="godaddy">
 				<strong>Domain Transfer from GoDaddy to Cloudflare</strong>
 				<p className="pt-2">
 					Had been a loyal customer of GoDaddy for 10 years, but price
@@ -437,7 +453,7 @@ const Lessons = () => {
 					</li>
 				</ol>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="nextjs-upgrade">
 				<strong>Migrating NextJS major upgrades</strong>
 				<p className="pt-2np">
 					These are the steps that got me moved from 13 -&gt; 14 -
@@ -462,7 +478,7 @@ const Lessons = () => {
 					</li>
 				</ol>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="updating-npm-libraries">
 				<strong>Updating npm libraries</strong>
 				<table className="table-auto">
 					<thead>
@@ -520,7 +536,7 @@ const Lessons = () => {
 					</tbody>
 				</table>
 			</article>
-			<article className="my-8">
+			<article className="my-8" id="codecov">
 				<strong>Broke CodeCov</strong>
 				<p className="pt-2">
 					Code cov was broken due to a merge PR and it was not
@@ -550,6 +566,70 @@ const Lessons = () => {
 					branch by reseting to the commit before the problematic
 					commit. Then, cherry-pick and re-commit.
 				</p>
+			</article>
+			<article id="openclaw" className="my-8">
+				<p className="text-2xl">OpenClaw</p>
+				<ol className="list-decimal list-inside">
+					<li>Install Docker</li>
+					<li> Download<br />
+						<code className="text-sm text-slate-600">
+							docker pull ghcr.io/openclaw/openclaw:latest
+						</code>
+					</li>
+					<li> Run foreground with persistant storage: <br />
+						<code className="text-sm text-slate-600">
+							docker run -d \
+							--name openclaw-agent \
+							-v ~/.openclaw:/home/node/.openclaw \
+							-v ~/openclaw-workspace:/app/workspace \
+							-p 18789:18789 \
+							ghcr.io/openclaw/openclaw:latest \
+							openclaw gateway --bind lan --allow-unconfigured</code>
+					</li>
+					<li>
+						Get token:<br />
+						<code className="text-sm text-slate-600">
+							docker exec -it openclaw-agent cat /home/node/.openclaw/openclaw.json | grep "token"
+						</code>
+					</li>
+					<li>
+						Login: http://localhost:18789
+					</li>
+					<li>
+						Run command: <br />
+						<code className="text-sm text-slate-600">
+							docker stop openclaw-agent && docker rm openclaw-agent;
+							docker run -d \
+							--name openclaw-agent \
+							-e GOOGLE_API_KEY="YOUR_GEMINI_KEY_HERE" \
+							-v ~/.openclaw:/home/node/.openclaw \
+							-v ~/openclaw-workspace:/app/workspace \
+							-p 18789:18789 \
+							ghcr.io/openclaw/openclaw:latest \
+							openclaw gateway --bind lan --allow-unconfigured;
+							docker exec -it openclaw-agent openclaw config set agents.defaults.model.primary "google/gemini-1.5-pro";
+							docker exec -it openclaw-agent rm /home/node/.openclaw/agents/main/agent/auth-profiles.json;
+						</code>
+					</li>
+					<li>
+						Run command: <br />
+						<code>
+							docker exec -it openclaw-agent openclaw onboard
+							# Set with google/gemini-3.1-flash-lite-preview
+						</code>
+					</li>
+					<li>
+						Setup telegram:
+						<ol className="list-decimal list-inside ml-4">
+							<li>Register a bot with @BotFather on Telegram to obtain the Bot Token.</li>
+							<li>/newbot and create a bot.</li>
+							<li>Find the api token, and register as {'"channels": {"telegram": {"tokenFile": "/Users/han/.openclaw/workspace/.telegram_token"}}} into ~/.openclaw/openclaw.json'}</li>
+							<li>Restart `openclaw gateway restart`</li>
+							<li>Go to telegram and find the bot created, instruction are sent there.</li>
+							<li>E.g. `openclaw pairing approve telegram XXXXX` and then updating channel.telegram.allowFrom: [""]</li>
+						</ol>
+					</li>
+				</ol>
 			</article>
 			<ScrollToTop />
 		</div>
