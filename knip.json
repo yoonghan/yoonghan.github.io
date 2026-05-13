@@ -8,7 +8,6 @@
 	],
 	"ignoreDependencies": [
 		"sharp",
-		"snake-game",
 		"dotenv-cli",
 		"@opentelemetry/exporter-jaeger",
 		"@opentelemetry/sdk-trace-node",
