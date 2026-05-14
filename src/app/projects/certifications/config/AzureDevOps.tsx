@@ -19,6 +19,15 @@ export function AzureDevOps() {
 			<Link href="https://github.com/users/yoonghan/projects/4">
 				Azure DevOps
 			</Link>
+			<ul className="list-disc list-inside">
+				<li>Format of User Stories:
+					<p>1. Define user role. Fitness Center</p>
+					<p>2. Describe function/expectation. Need a billing system.</p>
+					<p>3. Reason the user story exists. So that the members can pay for their gym memberships.</p>
+				</li>
+				<li>Extreme Programming (XP), Agile, Scrum</li>
+				<li>Kanban -*gt; Little's law, for stable and make sure few/small WIP to ensure not oversupply.</li>
+			</ul>
 		</article>
 	)
 }
