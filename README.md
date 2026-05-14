@@ -21,66 +21,81 @@ flowchart LR;
 ```
 
 ## How to Use
+<details>
+    <summary>Starting up locally</summary>
 
-In your terminal, run the following command:
+    In your terminal, run the following command:
 
-For local execution:
+    For local execution:
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
-For test with watch
+    For test with watch
 
-```bash
-npm run test
-```
+    ```bash
+    npm run test
+    ```
 
-For test coverage
+    For test coverage
 
-```bash
-npm run test:ci
-```
+    ```bash
+    npm run test:ci
+    ```
 
-For package analysing, do not check-in as it contains alot of security issues.
+    For package analysing, do not check-in as it contains alot of security issues.
 
-```bash
-npm install @next/bundle-analyzer
-# Wrap next.config.js with withBundleAnalyzer({...})
-npx next build
-```
+    ```bash
+    npm install @next/bundle-analyzer
+    # Wrap next.config.js with withBundleAnalyzer({...})
+    npx next build
+    ```
 
-For linting and prettifier check
+    For linting and prettifier check
 
-```bash
-npm run lint
-```
+    ```bash
+    npm run lint
+    ```
 
-For BackstopJS - regression for view and approve website design UI
-**Note**: that browser executes differently in OS, especially font's. In this case use the approved generated backstopJS snapshots directly from the OS/Docker container.
+    For BackstopJS - regression for view and approve website design UI
+    **Note**: that browser executes differently in OS, especially font's. In this case use the approved generated backstopJS snapshots directly from the OS/Docker container.
 
-```bash
-npm run backstop:test  //To test
-npm run backstop:approve // Approve the new website ok
-```
+    ```bash
+    npm run backstop:test  //To test
+    npm run backstop:approve // Approve the new website ok
+    ```
 
-To stop animation, append query string to use `animate-none` class
+    To stop animation, append query string to use `animate-none` class
 
-```js
-?animate=none
-```
+    ```js
+    ?animate=none
+    ```
+</details>
 
 ## Setting environments
+<details>
+    <summary>Local environment settings</summary>
 
-1. Install Vercel Cli, with `npm i -g vercel`
-2. Pull all the environment into local with `vercel env pull .env.local`. This wil create an environment straight for testing. Incase, there are reset of environment to setup in Vercel, refer to .env file.
+    1. Install Vercel Cli, with `npm i -g vercel`
+    2. Pull all the environment into local with `vercel env pull .env.local`. This wil create an environment straight for testing. Incase, there are reset of environment to setup in Vercel, refer to .env file.
+</details>
 
-## Additional environment id in Next.JS
+<details>
+    <summary>Setting environments in Vercel</summary>
 
-1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
-2. NEXT_PUBLIC_SITE_URL - configure for static site to call api. Overrides blank with https://www.walcron.com.
-3. NEXT_PUBLIC_API_SITE_URL - Indicate local api is url.
-4. NEXT_PUBLIC_GA_4_ID - Google 4 Tag Manager Ids
+
+    1. CORS_ALLOW_ORIGIN - for whitelisting /api url defined in next.config.js to external apps.
+    2. NEXT_PUBLIC_SITE_URL - configure for static site to call api. Overrides blank with https://www.walcron.com.
+    3. NEXT_PUBLIC_API_SITE_URL - Indicate local api is url.
+    4. NEXT_PUBLIC_GA_4_ID - Google 4 Tag Manager Ids
+</details>
+
+<details>
+    <summary>Github Control Node version</summary>
+
+    Set via Settings -> Secret and Variables -> Actions -> Variables -> Repository Variables. Add NODE_VERSION with value 22.
+</details>
 
 ## Run Github workflows
 
@@ -88,92 +103,112 @@ To stop animation, append query string to use `animate-none` class
 
 In case there is a need to generate a new backstopJS approved page.
 
-1. In github, go to _Actions_ tab.
-2. Select 'Create Approved Snapshot By File'.
-3. Click on 'Run workflow'
-4. Enter the vercel/public website to generate an approved website domain. Without http, e.g. https:\/\/www.walcron.com to www.walcron.com
-5. Manually enter a valid branch it can checkout, e.g. develop.
+<details>
+    <summary>Using Github Actions</summary>
 
-Updating backstopJS snapshot.
+    1. In github, go to _Actions_ tab.
+    2. Select 'Create Approved Snapshot By File'.
+    3. Click on 'Run workflow'
+    4. Enter the vercel/public website to generate an approved website domain. Without http, e.g. https:\/\/www.walcron.com to www.walcron.com
+    5. Manually enter a valid branch it can checkout, e.g. develop.
 
---By pull request / action
+</details>
+<details>
+    <summary>By pull request / action</summary>
 
-1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop*data/bitmaps_test/*/!failed\_.png
-2. replace into bitmaps_reference.
+    1. Download the artifacts generated in "Summary" of the latest build. Replace generated snapshot in backstop*data/bitmaps_test/*/!failed\_.png
+    2. replace into bitmaps_reference.
+</details>
+<details>
+    <summary>Auto approval _(Recommended)_</summary>
 
---Auto approval _(Recommended)_
+    1. Get the latest pipeline no from _snapshotcheck.sh_ output from previous failed _Validation_ workflow.
+    2. OR view latest running script in github's _Actions_ tab for _Validation_ workflow.
+    3. Execute the command below and it will auto-approve and rerun _Validation_ workflow again.
+    ```bash
+    echo ${running no# +1} > backstopjs.approve
+    git add backstopjs.approve
+    git push
+    ```
 
-1. Get the latest pipeline no from _snapshotcheck.sh_ output from previous failed _Validation_ workflow.
-2. OR view latest running script in github's _Actions_ tab for _Validation_ workflow.
-3. Execute the command below and it will auto-approve and rerun _Validation_ workflow again.
+    _Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Token -> Actions(R)/Commit Statues(RW)/Contents(RW)/Metadata(R)
+</details>
 
-```
-echo ${running no# +1} > backstopjs.approve
-git add backstopjs.approve
-git push
-```
+## Deployment
+<details>
+    <summary>Deployment to Vercel</summary>
 
-_Note:_ Add create PAT, personal profile -> Developer Settings -> Fine Grain Token -> Actions(R)/Commit Statues(RW)/Contents(RW)/Metadata(R)
+    1. Required an NPM token for private repository. See "Deployment for Github NPM_TOKEN for private repo"
+    2. Login locally into github NPM repo with the PAT.
 
-## Deployment to Vercel
+    `npm login --scope=@yoonghan --auth-type=legacy --registry=https://npm.pkg.github.com/`
 
-1. Required an NPM token for private repository. See "Deployment for Github NPM_TOKEN for private repo"
-2. Login locally into github NPM repo with the PAT.
+    3. Copy in ~/.npmrc into vercel's variable NPM_RC. Basically the variable will contain:
 
-`npm login --scope=@yoonghan --auth-type=legacy --registry=https://npm.pkg.github.com/`
+    ```
+    //npm.pkg.github.com/:_authToken=...
+    @yoonghan:registry=https://npm.pkg.github.com/
+    ```
+</details>
 
-3. Copy in ~/.npmrc into vercel's variable NPM_RC. Basically the variable will contain:
+<details>
+    <summary>Deployment for Github NPM_TOKEN for private repo</summary>
 
-```
-//npm.pkg.github.com/:_authToken=...
-@yoonghan:registry=https://npm.pkg.github.com/
-```
+    1. For accessing private repo, please allow Profile -> Settings -> Personal Access Token (classic), open read:packages (basically the same as vercel deployment). For more info refer: https://docs.github.com/en/packages/working-with-a-github-packages-registry. Add as Github secret in Settings->Secrets And variable and add NPM_TOKEN key. NOTE: During npm install NODE_AUTH_TOKEN variable is read instead.
+    2. Workflow requires
+    3. registry-url in checkout action,
+    4. NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
+    5. Same/extra NPM_TOKEN needs to be created for dependabot under Profile -> Security -> Dependabot.
+</details>
 
-## Deployment for Github NPM_TOKEN for private repo
+## External Systems
 
-1. For accessing private repo, please allow Profile -> Settings -> Personal Access Token (classic), open read:packages (basically the same as vercel deployment). For more info refer: https://docs.github.com/en/packages/working-with-a-github-packages-registry. Add as Github secret in Settings->Secrets And variable and add NPM_TOKEN key. NOTE: During npm install NODE_AUTH_TOKEN variable is read instead.
-2. Workflow requires
-3. registry-url in checkout action,
-4. NODE_AUTH_TOKEN env. If the workflow is callable, use "secrets: inherit", else secret cannot be shown. To test print with `echo ${#NODE_AUTH_TOKEN}` and should return some integer values.
-5. Same/extra NPM_TOKEN needs to be created for dependabot under Profile -> Security -> Dependabot.
+<details>
+    <summary>Bug fixes in Vercel/NextJS</summary>
 
-## Control Node version
-Set via Settings -> Secret and Variables -> Actions -> Variables -> Repository Variables. Add NODE_VERSION with value 22.
+    1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.
+    2. To build without previous build cache; click redeploy button from Vercel dashboard (a menu from the 3 vertical dots) and uncheck "Build with previous build cache".
+</details>
 
-## Vercel/NextJS
+<details>
+    <summary>To generate static site in NextJS</summary>
 
-1. NextJS on vercel re-uses .next build cache. This sometimes creates an issue, e.g. a page that was once deployed as AMP will forever be recognized as AMP until the cache is cleared.
-2. To build without previous build cache; click redeploy button from Vercel dashboard (a menu from the 3 vertical dots) and uncheck "Build with previous build cache".
+    1. Add `output: "export"` to `next.config.js`. This will generate a static site that can be hosted on any static hosting provider.
+    2. Remove _/api_ folder as this contains "use server" which is not allowed in static site.
+    3. Process.env variable are required for client side access. Ease setup is to use `vercel env pull` to pull the environment variables from Vercel.
+    4. Run `npx serve@latest out` to test locally.
+</details>
 
-## NextJS Static Site Generation
+<details>
+    <summary>Rust Webassembly</summary>
 
-1. Add `output: "export"` to `next.config.js`. This will generate a static site that can be hosted on any static hosting provider.
-2. Remove _/api_ folder as this contains "use server" which is not allowed in static site.
-3. Process.env variable are required for client side access. Ease setup is to use `vercel env pull` to pull the environment variables from Vercel.
-4. Run `npx serve@latest out` to test locally.
+    1. To regenerate new Wasm from webassembly, run the command below:
+    2. The scripts include a custom .gitignore.
+    3. Incase wanted to run rust:test, remove --headless and browse with https://localhost:8000. Failed to run it in MacOS.
 
-## Rust Webassembly
+    ```
+    npm run rust:generate
+    npm run rust:test //test rust running on browser
+    ```
+</details>
 
-1. To regenerate new Wasm from webassembly, run the command below:
-2. The scripts include a custom .gitignore.
-3. Incase wanted to run rust:test, remove --headless and browse with https://localhost:8000. Failed to run it in MacOS.
+<details>
+    <summary>Opentelemetry view</summary>
 
-```
-npm run rust:generate
-npm run rust:test //test rust running on browser
-```
+    1. Set variables configured in axiom to view telemetry AXIOM_API_TOKEN and AXIOM_DATASET_NAME.
+    2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
+</details>
 
-## Opentelemetry view
+<details>
+    <summary>Using Vibe code.</summary>
 
-1. Set variables configured in axiom to view telemetry AXIOM_API_TOKEN and AXIOM_DATASET_NAME.
-2. To show open telemetry logs, run OTEL_LOG_LEVEL=debug.
+    Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md. Also supported for Antigravity.
+</details>
 
-## Using Vibe code.
+<details>
+    <summary>Mermaid generator</summary>
 
-Adding Gemini capabilities to understand the project. Instructions are added into Gemini.md. Also supported for Antigravity.
-
-## Mermaid generator
-
-```bash
-npm run generate:mermaid
-```
+    ```bash
+    npm run generate:mermaid
+    ```
+</details>
