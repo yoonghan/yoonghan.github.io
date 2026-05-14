@@ -27,6 +27,10 @@ export function AzureDevOps() {
 				</li>
 				<li>Extreme Programming (XP), Agile, Scrum</li>
 				<li>Kanban -*gt; Little's law, for stable and make sure few/small WIP to ensure not oversupply.</li>
+				<li><Link href="https://www.scrum.org/resources/nexus-guide">Nexus Guide / Scaling</Link></li>
+				<li><Link href="https://www.scrumatscale.com/">Scrum at Scale / Scaling</Link></li>
+				<li><Link href="https://www.scaledagileframework.com/">Scaled Agile Framework / Scaling</Link></li>
+				<li><Link href="https://www.less.work/">Less Framework / Scaling</Link></li>
 			</ul>
 		</article>
 	)
