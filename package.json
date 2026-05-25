@@ -69,7 +69,7 @@
 		"firebase-admin": "^13.9.0",
 		"isomorphic-fetch": "^3.0.0",
 		"jsdom": "^29.1.1",
-		"knip": "^6.12.2",
+		"knip": "^6.14.2",
 		"postcss": "^8.5.12",
 		"pusher-js": "^8.4.0",
 		"react-bell-chat": "^1.0.53",
