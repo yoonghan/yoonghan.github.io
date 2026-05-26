@@ -50,26 +50,23 @@ const model = [
 				</li>
 				<li>IAM Role & IAM Policies(JSON)</li>
 				<li>
-					<pre className="code">
-						{`{
-                Version: 2012-10-07
-                Id: "s3-access",
-                Statement: [
-                    {"{"}
-                        "sid": 10202
-                        "Effect": "Allow" // Deny
-                        "Princial": {"{"}
-                            "AWS": ["arn.aws..."],
-                            "Canonical user": "123",
-                            "Federated": []
-                        "Resource": "s3:mybucket" //NOT Resource
-                        {"}"}
-                    {"}"}
-                ]
-            }`}
-					</pre>
+
+					Version: 2012-10-07
+					Id: "s3-access",
+					Statement: [
+					{"{"}
+					"sid": 10202
+					"Effect": "Allow" // Deny
+					"Princial": {"{"}
+					"AWS": ["arn.aws..."],
+					"Canonical user": "123",
+					"Federated": []
+					"Resource": "s3:mybucket" //NOT Resource
+					{"}"}
+					{"}"}
+					]
 				</li>
-			</ul>
+			</ul >
 		),
 	},
 	{
