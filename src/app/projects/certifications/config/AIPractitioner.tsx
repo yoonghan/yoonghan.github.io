@@ -100,17 +100,16 @@ const model = [
 				/>
 				<section className="mt-4">
 					Example:
-					<pre>
-						{`
-          I want to surprise my friend with a birthday meal. <- why task
-          Can you suggest a Gourmet chef <- task
-          I want a list of vegetarian food menu item. <- task/context
-          She prefes Italian food, and she is allergic to nuts. <- context
-          She is a vegetarian. <- context
-          She is a fan of pasta. <- context/reference
-          I want asian cuisine like Dim Sum. <- reference
-          I know Ching Chong restaurant is good in serving Dim Sum. <- reference`}
-					</pre>
+					<br />
+					I want to surprise my friend with a birthday meal. &lt;- why task<br />
+					Can you suggest a Gourmet chef &lt;- task<br />
+					I want a list of vegetarian food menu item. &lt;- task/context <br />
+					She prefes Italian food, and she is allergic to nuts. &lt;- context  <br />
+					She is a vegetarian. &lt;- context <br />
+					She is a fan of pasta. &lt;- context/reference <br />
+					I want asian cuisine like Dim Sum. &lt;- reference <br />
+					I know Ching Chong restaurant is good in serving Dim Sum. &lt;- reference <br />
+
 					<p className="mt-2">
 						I want a gourmet chef suggestion for a list of
 						vegetarian food menu to bring my Chinese friend for a
@@ -156,18 +155,16 @@ const model = [
 				<br />
 				Example: Use LLM to generate prompt for image generation. I.e.
 				create a poster. Then using that prompt to generate an image,
-				remember to set the a format. E.g.
-				<pre>
-					{`
-        Generate a poster for a music concert <- task
-        The image should be photorealistic <- format
-        The poster should display a sense of excitement and energy <- aesthetics
-        The color scheme should be vibrant and eye-catching <- color
-        The poster should be in portrait orientation <- format
-        The poster should include the following text: "Live in Concert: The Rocking Band" <- context
-        The poster should be 24 inches by 36 inches in size <- size
-      `}
-				</pre>
+				remember to set the a format. E.g.<br />
+
+
+				Generate a poster for a music concert &lt;- task<br />
+				The image should be photorealistic &lt;- format<br />
+				The poster should display a sense of excitement and energy &lt;- aesthetics<br />
+				The color scheme should be vibrant and eye-catching &lt;- color<br />
+				The poster should be in portrait orientation &lt;- format<br />
+				The poster should include the following text: "Live in Concert: The Rocking Band" &lt;- context<br />
+				The poster should be 24 inches by 36 inches in size &lt;- size <br />
 			</div>
 		),
 	},
