@@ -8,6 +8,7 @@ import { AwsCloudPractitionerArticle } from "./config/AwsCloudPractitionerArticl
 import { AwsSolutionArchitectArticle } from "./config/AwsSolutionArchitectArticle"
 import { AzureDevOps } from "./config/AzureDevOps"
 import { CloudMicroservices } from "./config/CloudMicroservices"
+import { Otel } from "./config/Otel"
 
 export const metadata: Metadata = {
 	title: "Learning",
@@ -55,6 +56,7 @@ const Learning = () => {
 				<AIPractitioner />
 				<AwsSolutionArchitectArticle />
 				<AwsCloudPractitionerArticle />
+				<Otel />
 			</section >
 			<ScrollToTop />
 		</div >
