@@ -29,7 +29,7 @@
 		"@opentelemetry/auto-instrumentations-node": "^0.76.0",
 		"@opentelemetry/context-zone": "^2.6.1",
 		"@opentelemetry/exporter-jaeger": "^2.7.1",
-		"@opentelemetry/exporter-trace-otlp-http": "^0.208.0",
+		"@opentelemetry/exporter-trace-otlp-http": "^0.218.0",
 		"@opentelemetry/instrumentation": "^0.216.0",
 		"@opentelemetry/instrumentation-fetch": "^0.218.0",
 		"@opentelemetry/resources": "^2.5.0",
