@@ -31,7 +31,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v6
@@ -113,7 +113,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Generate release
@@ -162,7 +162,7 @@ jobs:
       contents: read
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v6
