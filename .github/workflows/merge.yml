@@ -17,6 +17,7 @@ jobs:
     permissions:
       pull-requests: write
       contents: read
+      actions: write # allow workflow push
     uses: ./.github/workflows/push.yml
     secrets: inherit
     with:
