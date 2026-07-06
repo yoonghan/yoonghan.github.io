@@ -1,7 +1,7 @@
 import path from "node:path"
 import { type PlaywrightTestConfig } from "@playwright/test"
 
-const baseURL = `http://localhost:3000`
+const baseURL = process.env.BASE_URL || `http://localhost:3000`
 
 const config: PlaywrightTestConfig = {
 	timeout: 30 * 1000,
@@ -10,7 +10,7 @@ const config: PlaywrightTestConfig = {
 	retries: 0,
 	outputDir: "visual-results/",
 
-	webServer: {
+	webServer: process.env.BASE_URL ? undefined : {
 	  command: "npm run build && npm run start",
 	  url: baseURL,
 	  timeout: 120 * 1000,
