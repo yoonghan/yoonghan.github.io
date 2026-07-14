@@ -42,8 +42,6 @@ jobs:
       - name: Remove package.json with dev or local builds
         run: |
           npm uninstall snake-game
-          npm uninstall backstopjs
-          npm uninstall @ducanh2912/next-pwa
           npm uninstall firebase-admin
 
       # - name: ✅ Owasp Dependency Check
