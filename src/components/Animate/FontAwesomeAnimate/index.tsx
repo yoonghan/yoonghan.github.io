@@ -1,6 +1,5 @@
 "use client"
 
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { ReactNode } from "react"
 import { useDisableAnimation } from "../../utils/hooks/disableAnimation/useDisableAnimation"
@@ -26,7 +25,7 @@ function FontAwesomeAnimate({
 	children: ReactNode
 	title: string
 	className?: string
-	faIcon: IconDefinition
+	faIcon: any
 	animate: SupportedAnimation
 	color?: string
 }>) {
