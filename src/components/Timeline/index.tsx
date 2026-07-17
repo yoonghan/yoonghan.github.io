@@ -1,6 +1,6 @@
-import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "./Timeline.module.css"
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons"
 
 interface Props {
 	events: Array<IEvent>
@@ -11,7 +11,7 @@ export interface IEvent {
 	date: string
 	special?: string
 	desc: string
-	faIcon?: IconProp
+	faIcon?: IconDefinition
 }
 
 const Timeline = ({ events }: Props) => {
