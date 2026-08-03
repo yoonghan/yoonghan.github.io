@@ -38,22 +38,11 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
 
-    - name: Override Backstop
-      uses: ./.github/actions/backstop-override
-      with:
-        deployed_url: ${{ inputs.deployed_url }}
-
-    - name: ✅ Verify deployment and update branch
-      shell: bash
-      run: |
-        URL=${{ inputs.deployed_url }}
-        chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
-
     - name: 📸 Run a test to generate snapshot
       shell: bash
       continue-on-error: true
-      run: npm run backstop:test
+      run: BASE_URL=https://${{ inputs.deployed_url }} npm run visual:test
 
     - name: 💽 Create an approved snapshot
       shell: bash
-      run: npm run backstop:approve
+      run: BASE_URL=https://${{ inputs.deployed_url }} npm run visual:approve

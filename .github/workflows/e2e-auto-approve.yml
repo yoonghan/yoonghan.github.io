@@ -48,9 +48,10 @@ jobs:
           deployed_url: ${{ inputs.deployed_url }}
           npm_auth_token: ${{ secrets.NPM_TOKEN }}
 
-      - name: 💼 Auto commit on approved backstop
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: 💼 Auto commit on approved visual snapshots
+        uses: stefanzweifel/git-auto-commit-action@v5
         id: auto-commit-action
         with:
-          commit_message: Update backstop with auto approval
-          file_pattern: "backstop_data/bitmaps_reference/*.png"
+          branch: "develop"
+          commit_message: Update visual snapshots with auto approval
+          file_pattern: "src/__e2e__/*-snapshots/*.png visual.approve"

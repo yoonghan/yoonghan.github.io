@@ -58,11 +58,6 @@ jobs:
           chmod a+x ./.github/scripts/deployment-check.sh && ./.github/scripts/deployment-check.sh https://${URL//\//\\/}
         shell: bash
 
-      - name: Override Backstop
-        uses: ./.github/actions/backstop-override
-        with:
-          deployed_url: ${{ inputs.deployed_url }}
-
       - name: Make snapshot-check.sh executable
         shell: bash
         run: chmod a+x ./.github/scripts/snapshot-check.sh
@@ -71,27 +66,21 @@ jobs:
         id: renderingCheck
         shell: bash
         continue-on-error: true
-        run: npm run backstop:test
+        run: BASE_URL=https://${{ inputs.deployed_url }} npm run visual:test
 
       - name: ▶️ Retry page rendering check if fail
         if: steps.renderingCheck.outcome == 'failure'
         shell: bash
         continue-on-error: true
-        run: rm -rf backstop_data/bitmaps_test && npm run backstop:test
-
-      - name: Remove local reference file
-        shell: bash
-        run: |
-          rm -rf backstop_data/bitmaps_local_reference
-          rm -rf backstop_data/engine_scripts
+        run: rm -rf visual-results/ && BASE_URL=https://${{ inputs.deployed_url }} npm run visual:test
 
       - name: ⬆️ Upload snapshot artifacts
         uses: actions/upload-artifact@master
         with:
-          name: backstop-artifact
-          path: backstop_data/
+          name: visual-artifact
+          path: visual-results/
 
-      - name: ✅ Validate backstopjs snapshot is valid
+      - name: ✅ Validate visual snapshot is valid
         shell: bash
         run: ./.github/scripts/snapshot-check.sh
 
