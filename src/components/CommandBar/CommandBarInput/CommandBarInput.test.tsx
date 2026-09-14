@@ -6,7 +6,7 @@ import CommandBarInput from "./CommandBarInput"
 const Wrapper = ({
 	children,
 }: {
-	children: (input: string, setInput: (input: string) => void) => JSX.Element
+	children: (input: string, setInput: (input: string) => void) => React.ReactNode
 }) => {
 	const [input, setInput] = React.useState("")
 	return children(input, setInput)
