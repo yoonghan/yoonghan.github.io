@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es2022",
 		"lib": [
 			"dom",
 			"dom.iterable",
@@ -18,16 +18,15 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"incremental": true,
-		"baseUrl": ".",
 		"paths": {
 			"@/*": [
-				"src/*"
+				"./src/*"
 			],
 			"@/images/*": [
-				"public/img/*"
+				"./public/img/*"
 			],
 			"@/styles/*": [
-				"styles/*"
+				"./styles/*"
 			]
 		},
 		"plugins": [
@@ -35,7 +34,9 @@
 				"name": "next"
 			}
 		],
-		"types": ["vitest/globals"]
+		"types": [
+			"vitest/globals"
+		]
 	},
 	"include": [
 		"next-env.d.ts",

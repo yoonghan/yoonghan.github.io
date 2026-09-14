@@ -8,11 +8,13 @@ describe("Profiler", () => {
 				profiles={[
 					{
 						name: "name1",
+						title: "title1",
 						description: <div />,
 						imgSrc: "/imgSrc1",
 					},
 					{
 						name: "name2",
+						title: "title2",
 						description: <div />,
 						imgSrc: "/imgSrc2",
 						width: 12,
@@ -20,6 +22,7 @@ describe("Profiler", () => {
 					},
 					{
 						name: "name3",
+						title: "title3",
 						description: <div />,
 						imgSrc: "/imgSrc2",
 						width: 12,

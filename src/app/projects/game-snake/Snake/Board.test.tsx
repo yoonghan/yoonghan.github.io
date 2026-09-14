@@ -9,7 +9,7 @@ import { GameContext } from "./GameContext";
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe("Board", { timeout: 60000 }, () => {
-	let userEvent = testLibUserEvent;
+	let userEvent: ReturnType<typeof testLibUserEvent.setup>;
 
 	it("should render screen with a start button", async () => {
 		render(
