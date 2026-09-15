@@ -6,6 +6,10 @@ inputs:
   npm_auth_token:
     required: true
     type: string
+  node_version:
+    required: false
+    type: string
+    default: "20"
 
 runs:
   using: "composite"
@@ -14,7 +18,7 @@ runs:
     - name: ⎔ Setup node
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ vars.NODE_VERSION }}
+        node-version: ${{ inputs.node_version }}
         cache: "npm"
         registry-url: https://npm.pkg.github.com/
 
