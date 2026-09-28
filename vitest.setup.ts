@@ -1,5 +1,5 @@
 import "isomorphic-fetch"
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom/vitest"
 import { TextDecoder, TextEncoder } from "node:util"
 import { defaultFallbackInView } from "react-intersection-observer"
 import { vi } from "vitest"
