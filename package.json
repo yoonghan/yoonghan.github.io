@@ -45,7 +45,7 @@
 		"pusher": "^5.3.4",
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0",
-		"react-dropzone": "^17.0.0",
+		"react-dropzone": "^20.1.2",
 		"sharp": "^0.35.4",
 		"swr": "^2.5.1",
 		"uuid": "^14.0.0"
