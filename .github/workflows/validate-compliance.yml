@@ -38,6 +38,9 @@ jobs:
 
       - name: License compliance check
         uses: mikaelvesavuori/license-compliance-action@v1
+        with:
+          allow_licenses: 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;CC-BY-4.0;CC-BY-3.0'
+          exclude_pattern: 'ansi-color;process;/^@fortawesome\/free/;tweetnacl;tweetnacl-util'
 
       - name: Remove package.json with dev or local builds
         run: |
