@@ -65,7 +65,7 @@
 		"autoprefixer": "^10.6.1",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"backstopjs": "^6.3.25",
-		"dotenv-cli": "^11.0.0",
+		"dotenv-cli": "^11.1.0",
 		"firebase-admin": "^13.10.0",
 		"isomorphic-fetch": "^3.0.0",
 		"jsdom": "^29.1.1",
